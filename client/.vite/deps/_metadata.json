@@ -1,0 +1,49 @@
+{
+  "hash": "507b6ec0",
+  "configHash": "0bb2ae1e",
+  "lockfileHash": "fd57399f",
+  "browserHash": "18e97751",
+  "optimized": {
+    "react": {
+      "src": "../../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "0e89226d",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "75e2f8a8",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "d2926e43",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../../node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "885b166e",
+      "needsInterop": false
+    },
+    "zustand/middleware": {
+      "src": "../../../node_modules/zustand/esm/middleware.mjs",
+      "file": "zustand_middleware.js",
+      "fileHash": "dbdb4604",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-WDA2GGCX": {
+      "file": "chunk-WDA2GGCX.js"
+    },
+    "chunk-XDEML3T5": {
+      "file": "chunk-XDEML3T5.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}
