@@ -16,14 +16,22 @@ const toD = (pts: Point[]) => pts.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(1
 /** Pointer drawing surface in KanjiVG 109×109 coordinates. */
 export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking = false, onStroke }: Props) {
   const ref = useRef<SVGSVGElement>(null);
+  // The in-progress stroke lives in a ref (pointermove events are batched by React);
+  // `cur` state only mirrors it for rendering.
+  const drawing = useRef<Point[] | null>(null);
   const [cur, setCur] = useState<Point[]>([]);
 
   const toLocal = (e: PointerEvent): Point => {
     const r = ref.current!.getBoundingClientRect();
     return { x: ((e.clientX - r.left) / r.width) * 109, y: ((e.clientY - r.top) / r.height) * 109 };
   };
-  const finish = () => {
-    if (cur.length > 1) onStroke(cur);
+  const finish = (e: PointerEvent) => {
+    const pts = drawing.current;
+    drawing.current = null;
+    if (pts) {
+      pts.push(toLocal(e));
+      if (pts.length > 1) onStroke(pts);
+    }
     setCur([]);
   };
 
@@ -37,10 +45,13 @@ export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking
       className={`touch-none select-none rounded-2xl bg-cream ring-2 ring-sakura/60 dark:bg-bg ${shaking ? 'shake' : ''}`}
       onPointerDown={(e) => {
         (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
-        setCur([toLocal(e)]);
+        drawing.current = [toLocal(e)];
+        setCur(drawing.current);
       }}
       onPointerMove={(e) => {
-        if (cur.length) setCur((c) => [...c, toLocal(e)]);
+        if (!drawing.current) return;
+        drawing.current.push(toLocal(e));
+        setCur([...drawing.current]);
       }}
       onPointerUp={finish}
       onPointerCancel={finish}
