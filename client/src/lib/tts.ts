@@ -1,3 +1,10 @@
+let defaultRate = 0.9;
+
+/** Default speaking rate (set from the settings store). */
+export function setDefaultRate(r: number): void {
+  defaultRate = r;
+}
+
 export function canSpeak(): boolean {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
 }
@@ -9,7 +16,7 @@ export function stopSpeaking(): void {
 function makeUtterance(text: string, opts: { rate?: number; lang?: string } = {}): SpeechSynthesisUtterance {
   const u = new SpeechSynthesisUtterance(text);
   u.lang = opts.lang ?? 'ja-JP';
-  u.rate = opts.rate ?? 0.9;
+  u.rate = opts.rate ?? defaultRate;
   const voice = window.speechSynthesis
     .getVoices()
     .find((v) => v.lang.replace('_', '-').toLowerCase().startsWith('ja'));

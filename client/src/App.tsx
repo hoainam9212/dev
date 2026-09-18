@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import { AppShell } from './app/AppShell';
-import { NAV } from './app/nav';
 import { Home } from './pages/Home';
 import { Placeholder } from './pages/Placeholder';
 import { KanaPage } from './pages/kana/KanaPage';
@@ -12,6 +11,9 @@ import { ReadingPage } from './pages/reading/ReadingPage';
 import { ListeningPage } from './pages/listening/ListeningPage';
 import { SpeakingPage } from './pages/speaking/SpeakingPage';
 import { WritingPage } from './pages/writing/WritingPage';
+import { BusinessPage } from './pages/business/BusinessPage';
+import { ProgressPage } from './pages/ProgressPage';
+import { SettingsPage } from './pages/SettingsPage';
 
 export default function App() {
   return (
@@ -27,9 +29,10 @@ export default function App() {
         <Route path="/listening" element={<ListeningPage />} />
         <Route path="/speaking" element={<SpeakingPage />} />
         <Route path="/writing" element={<WritingPage />} />
-        {NAV.filter((n) => !['/', '/kana', '/vocab', '/kanji', '/review', '/grammar', '/reading', '/listening', '/speaking', '/writing'].includes(n.to)).map((n) => (
-          <Route key={n.to} path={n.to} element={<Placeholder title={n.label} />} />
-        ))}
+        <Route path="/business" element={<BusinessPage />} />
+        <Route path="/progress" element={<ProgressPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="*" element={<Placeholder title="Không tìm thấy trang" />} />
       </Route>
     </Routes>
   );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Kanji } from '@nihongo/shared';
 import { useKanji } from '../../content/loader';
 import { useLevel } from '../../store/level';
+import { useSettings } from '../../store/settings';
 import { useProgressMap } from '../../db/srs';
 import { LevelPicker } from '../../components/LevelPicker';
 import { Segmented } from '../../components/Segmented';
@@ -18,6 +19,7 @@ export function KanjiPage() {
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useKanji(level);
   const progress = useProgressMap('kanji');
+  const newLimit = useSettings((s) => s.newLimit);
   const [mode, setMode] = useState<Mode>('grid');
   const [sel, setSel] = useState<Kanji | null>(null);
 
@@ -54,7 +56,7 @@ export function KanjiPage() {
         {data && progress && (
           <>
             {mode === 'grid' && <KanjiGrid kanji={data} progress={progress} onPick={setSel} />}
-            {mode === 'cards' && <KanjiFlashcards key={level} kanji={data} progress={progress} />}
+            {mode === 'cards' && <KanjiFlashcards key={level} kanji={data} progress={progress} newLimit={newLimit} />}
             {mode === 'quiz' && <KanjiQuiz key={level} kanji={data} />}
             {mode === 'write' && <KanjiWrite key={level} kanji={data} />}
           </>

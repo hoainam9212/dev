@@ -6,6 +6,7 @@ import { Petals } from '../components/Petals';
 import { useProgress } from '../store/progress';
 import { NAV } from '../app/nav';
 import { useDueCounts } from '../db/srs';
+import { useSettings } from '../store/settings';
 
 const GREETINGS = [
   { ja: 'おはよう！今日もがんばろうね！', vi: 'Chào buổi sáng! Hôm nay cùng cố gắng nhé!' },
@@ -21,6 +22,7 @@ function pickGreeting(d = new Date()) {
 export function Home() {
   const streak = useProgress((s) => s.streak);
   const due = useDueCounts();
+  const petals = useSettings((s) => s.petals);
   const dueTotal = due ? due.vocab + due.kanji + due.grammar : 0;
   const g = pickGreeting();
   const quick = NAV.filter((n) => !['/', '/settings', '/progress'].includes(n.to));
@@ -28,7 +30,7 @@ export function Home() {
   return (
     <div className="space-y-6">
       <section className="card relative overflow-hidden p-6 md:p-8">
-        <Petals />
+        {petals && <Petals />}
         <div className="relative flex flex-col items-center gap-4 md:flex-row md:items-end">
           <Mascot mood="happy" size={180} />
           <div className="flex-1 space-y-3">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Grammar } from '@nihongo/shared';
 import { useGrammar } from '../../content/loader';
 import { useLevel } from '../../store/level';
+import { useSettings } from '../../store/settings';
 import { useProgressMap } from '../../db/srs';
 import { LevelPicker } from '../../components/LevelPicker';
 import { Segmented } from '../../components/Segmented';
@@ -18,6 +19,7 @@ export function GrammarPage() {
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useGrammar(level);
   const progress = useProgressMap('grammar');
+  const newLimit = useSettings((s) => s.newLimit);
   const [mode, setMode] = useState<Mode>('list');
   const [sel, setSel] = useState<Grammar | null>(null);
   const learned = data && progress ? data.filter((g) => progress.has(g.id)).length : 0;
@@ -52,7 +54,7 @@ export function GrammarPage() {
         {data && progress && (
           <>
             {mode === 'list' && <GrammarList grammar={data} progress={progress} onPick={setSel} />}
-            {mode === 'cards' && <GrammarFlashcards key={level} grammar={data} progress={progress} />}
+            {mode === 'cards' && <GrammarFlashcards key={level} grammar={data} progress={progress} newLimit={Math.min(newLimit, 10)} />}
             {mode === 'quiz' && <GrammarQuiz key={level} grammar={data} />}
             {mode === 'scramble' && <SentenceScramble key={level} grammar={data} />}
           </>

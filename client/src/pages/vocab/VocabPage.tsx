@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useVocab } from '../../content/loader';
 import { useLevel } from '../../store/level';
+import { useSettings } from '../../store/settings';
 import { useProgressMap } from '../../db/srs';
 import { LevelPicker } from '../../components/LevelPicker';
 import { Segmented } from '../../components/Segmented';
@@ -17,6 +18,7 @@ export function VocabPage() {
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useVocab(level);
   const progress = useProgressMap('vocab');
+  const newLimit = useSettings((s) => s.newLimit);
   const [mode, setMode] = useState<Mode>('list');
 
   const dueCount = data && progress ? data.filter((v) => progress.get(v.id) && progress.get(v.id)!.due <= new Date().toISOString()).length : 0;
@@ -54,7 +56,7 @@ export function VocabPage() {
         {data && progress && (
           <>
             {mode === 'list' && <VocabList vocab={data} level={level} progress={progress} />}
-            {mode === 'cards' && <VocabFlashcards key={level} vocab={data} level={level} progress={progress} />}
+            {mode === 'cards' && <VocabFlashcards key={level} vocab={data} level={level} progress={progress} newLimit={newLimit} />}
             {mode === 'quiz' && <VocabQuiz key={level} vocab={data} />}
             {mode === 'typing' && <VocabTyping key={level} vocab={data} />}
             {mode === 'listening' && <VocabListening key={level} vocab={data} />}
