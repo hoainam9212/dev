@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", "Segoe UI", system-ui, sans-serif;
+  --color-sakura: #FFB7C5;
+  --color-rose: #FF6F91;
+  --color-sky: #A0E7FF;
+  --color-cream: #FFF8F0;
+  --color-lavender: #C8B6FF;
+  --color-bg: var(--app-bg);
+  --color-surface: var(--app-surface);
+  --color-text: var(--app-text);
+  --color-muted: var(--app-muted);
+  --radius-card: 24px;
+  --shadow-soft: 0 8px 24px rgba(255, 111, 145, 0.15);
+}
+
+:root {
+  --app-bg: #FFF8F0;
+  --app-surface: #FFFFFF;
+  --app-text: #3B2E4A;
+  --app-muted: #8A7C99;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --app-bg: #1E1B2E;
+  --app-surface: #2A2640;
+  --app-text: #F5EFFF;
+  --app-muted: #B3A8C9;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --app-bg: #1E1B2E;
+    --app-surface: #2A2640;
+    --app-text: #F5EFFF;
+    --app-muted: #B3A8C9;
+    color-scheme: dark;
+  }
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: var(--app-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn, .btn-primary, .btn-soft, .btn-sky {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition active:scale-95 disabled:opacity-50;
+}
+.btn-primary { @apply bg-rose text-white hover:brightness-110; }
+.btn-soft { @apply bg-sakura/40 text-text hover:bg-sakura/70; }
+.btn-sky { @apply bg-sky text-text hover:brightness-105; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
