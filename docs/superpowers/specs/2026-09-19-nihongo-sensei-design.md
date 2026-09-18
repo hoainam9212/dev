@@ -159,7 +159,7 @@ viết theo theme anime.
 
 - Palette: sakura `#FFB7C5`, hồng đậm `#FF6F91`, xanh trời `#A0E7FF`, kem `#FFF8F0`,
   tím pastel `#C8B6FF`; dark mode nền `#1E1B2E`. Token CSS ở `:root`.
-- Font: Zen Maru Gothic (JP + UI) qua Google Fonts, fallback system.
+- Font: Quicksand (UI tiếng Việt, có dấu) + Zen Maru Gothic (tiếng Nhật) qua Google Fonts, fallback system.
 - Mascot Sakura: SVG vector tự vẽ (đầu, tóc hồng, đồng phục thủy thủ), 5 biểu cảm bằng
   đổi mắt/miệng, nhấp nháy bằng CSS animation; bong bóng thoại.
 - Thành phần: thẻ bo 24px, bóng mềm, nút dạng viên thuốc, thanh XP kiểu game, hiệu ứng

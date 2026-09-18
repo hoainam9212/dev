@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Quicksand", "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", "Segoe UI", system-ui, sans-serif;
   --color-sakura: #FFB7C5;
   --color-rose: #FF6F91;
   --color-sky: #A0E7FF;
