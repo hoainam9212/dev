@@ -118,3 +118,22 @@ export interface ProgressItem {
   lapses: number;
   updatedAt: string;
 }
+
+export interface KanaChar {
+  kana: string;
+  romaji: string;
+  row: string;
+  group: 'basic' | 'dakuten' | 'yoon';
+  mnemonic?: string;
+  strokePaths: string[];
+}
+
+export interface KanaBundle {
+  hiragana: KanaChar[];
+  katakana: KanaChar[];
+}
+
+export interface ContentIndex {
+  builtAt: string;
+  counts: Record<string, Partial<Record<Level, number>>>;
+}
