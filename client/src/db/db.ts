@@ -5,7 +5,7 @@ export interface SessionLog {
   id?: number;
   startedAt: string;
   kind: 'flashcard' | 'quiz' | 'typing' | 'listening' | 'writing' | 'speaking' | 'reading' | 'dictation' | 'scramble' | 'sentence';
-  type: ItemType | 'kana' | 'reading' | 'listening' | 'speaking' | 'writing';
+  type: ItemType | 'kana' | 'reading' | 'listening' | 'speaking' | 'writing' | 'business';
   correct: number;
   total: number;
   xp: number;
