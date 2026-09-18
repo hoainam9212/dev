@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { ItemType } from '@nihongo/shared';
 import { QuizChoice } from './QuizChoice';
 import { Mascot } from './Mascot';
 import { logSession, type SessionLog } from '../db';
@@ -18,7 +17,7 @@ export interface QuizQuestion {
 interface Props {
   questions: QuizQuestion[];
   kind: SessionLog['kind'];
-  type: ItemType | 'kana';
+  type: SessionLog['type'];
   xpPerCorrect?: number;
   listenFirst?: boolean; // speak the prompt when the question appears
   onFinish: (r: { correct: number; total: number }) => void;
