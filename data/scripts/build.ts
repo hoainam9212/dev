@@ -19,6 +19,7 @@ import {
 import { buildKana } from '../src/kana';
 import { READING } from '../authored/reading';
 import { LISTENING } from '../authored/listening';
+import { BUSINESS } from '../authored/business';
 
 const read = (p: string) => fs.readFileSync(path.join(RAW_DIR, p), 'utf8');
 const readSvg = (ch: string): string | null => {
@@ -109,6 +110,8 @@ async function main() {
     console.log(l, { vocab: v.length, kanji: k.length, grammar: g.length, sentences: s.length, reading: rd.length, listening: ls.length });
   }
   write('kana.json', buildKana(readSvg));
+  write('business/index.json', BUSINESS);
+  console.log('business items', BUSINESS.reduce((n, t) => n + t.items.length, 0));
   const index: ContentIndex = { builtAt: new Date().toISOString(), counts };
   write('index.json', index);
 
