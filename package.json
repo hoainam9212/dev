@@ -11,6 +11,11 @@
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "data:fetch": "npm run fetch -w data",
-    "data:build": "npm run build -w data"
+    "data:build": "npm run build -w data",
+    "dev": "npm run dev -w client",
+    "dev:server": "npm run dev -w server",
+    "icons": "node client/scripts/icons.mjs",
+    "build": "npm run data:build && npm run build -w client && npm run build -w server",
+    "start": "npm run start -w server"
   }
 }
