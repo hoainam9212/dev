@@ -4,8 +4,8 @@ import type { ItemType, ProgressItem } from '@nihongo/shared';
 export interface SessionLog {
   id?: number;
   startedAt: string;
-  kind: 'flashcard' | 'quiz' | 'typing' | 'listening' | 'writing';
-  type: ItemType | 'kana';
+  kind: 'flashcard' | 'quiz' | 'typing' | 'listening' | 'writing' | 'speaking' | 'reading' | 'dictation' | 'scramble' | 'sentence';
+  type: ItemType | 'kana' | 'reading' | 'listening' | 'speaking' | 'writing';
   correct: number;
   total: number;
   xp: number;

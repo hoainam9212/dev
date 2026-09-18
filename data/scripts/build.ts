@@ -17,6 +17,8 @@ import {
   type RawKanji,
 } from '../src/parse';
 import { buildKana } from '../src/kana';
+import { READING } from '../authored/reading';
+import { LISTENING } from '../authored/listening';
 
 const read = (p: string) => fs.readFileSync(path.join(RAW_DIR, p), 'utf8');
 const readSvg = (ch: string): string | null => {
@@ -80,7 +82,7 @@ async function main() {
   console.log('sentences assigned in', Date.now() - t0, 'ms');
   const byId = new Map(pool.map((s) => [s.id, s]));
 
-  const counts: ContentIndex['counts'] = { vocab: {}, kanji: {}, grammar: {}, sentences: {} };
+  const counts: ContentIndex['counts'] = { vocab: {}, kanji: {}, grammar: {}, sentences: {}, reading: {}, listening: {} };
   for (const l of LEVELS) {
     const lv = l.toLowerCase();
     const v = vocab.filter((x) => x.level === l).sort((a, b) => a.id.localeCompare(b.id));
@@ -94,11 +96,17 @@ async function main() {
     write(`kanji/${lv}.json`, k);
     write(`grammar/${lv}.json`, g);
     write(`sentences/${lv}.json`, s);
+    const rd = READING.filter((x) => x.level === l);
+    const ls = LISTENING.filter((x) => x.level === l);
+    write(`reading/${lv}.json`, rd);
+    write(`listening/${lv}.json`, ls);
+    counts.reading![l] = rd.length;
+    counts.listening![l] = ls.length;
     counts.vocab![l] = v.length;
     counts.kanji![l] = k.length;
     counts.grammar![l] = g.length;
     counts.sentences![l] = s.length;
-    console.log(l, { vocab: v.length, kanji: k.length, grammar: g.length, sentences: s.length });
+    console.log(l, { vocab: v.length, kanji: k.length, grammar: g.length, sentences: s.length, reading: rd.length, listening: ls.length });
   }
   write('kana.json', buildKana(readSvg));
   const index: ContentIndex = { builtAt: new Date().toISOString(), counts };
