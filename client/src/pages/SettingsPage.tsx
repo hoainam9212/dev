@@ -5,6 +5,7 @@ import { useProgress } from '../store/progress';
 import { db } from '../db/db';
 import { exportAll, importAll } from '../db/srs';
 import { speak } from '../lib/tts';
+import { AccountCard } from '../components/AccountCard';
 
 const THEMES: { value: Theme; label: string }[] = [
   { value: 'light', label: '☀️ Sáng' },
@@ -72,6 +73,8 @@ export function SettingsPage() {
           {msg}
         </p>
       )}
+
+      <AccountCard />
 
       <section className="card space-y-3 p-4 md:p-6">
         <h2 className="font-black">Giao diện</h2>

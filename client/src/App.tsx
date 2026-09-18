@@ -14,6 +14,7 @@ import { WritingPage } from './pages/writing/WritingPage';
 import { BusinessPage } from './pages/business/BusinessPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { LoginPage } from './pages/LoginPage';
 
 export default function App() {
   return (
@@ -32,6 +33,8 @@ export default function App() {
         <Route path="/business" element={<BusinessPage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/login" element={<LoginPage mode="login" />} />
+        <Route path="/register" element={<LoginPage mode="register" />} />
         <Route path="*" element={<Placeholder title="Không tìm thấy trang" />} />
       </Route>
     </Routes>

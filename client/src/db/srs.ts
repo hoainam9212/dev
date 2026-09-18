@@ -2,6 +2,9 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { newState, review, isDue, type Grade, type ItemType, type ProgressItem, type SrsState } from '@nihongo/shared';
 import { db, type SessionLog } from './db';
 
+/** Fires 'change' after every local progress write (used by sync). */
+export const progressEvents = new EventTarget();
+
 export function toState(p: ProgressItem): SrsState {
   return { ease: p.ease, interval: p.interval, due: p.due, reps: p.reps, lapses: p.lapses };
 }
@@ -17,6 +20,7 @@ export async function recordReview(itemId: string, type: ItemType, grade: Grade,
   const state = review(existing ? toState(existing) : newState(now), grade, now);
   const item: ProgressItem = { itemId, type, ...state, updatedAt: now.toISOString() };
   await db.progress.put(item);
+  progressEvents.dispatchEvent(new Event('change'));
   return item;
 }
 

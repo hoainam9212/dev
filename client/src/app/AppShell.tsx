@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { NAV, MOBILE_PRIMARY } from './nav';
 import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
+import { SyncDot } from './SyncDot';
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-3 rounded-full px-4 py-2 font-bold transition ${
@@ -30,8 +31,9 @@ export function AppShell() {
             </NavLink>
           ))}
         </nav>
-        <div className="mt-auto pt-4">
+        <div className="mt-auto flex items-center justify-between pt-4">
           <ThemeToggle />
+          <SyncDot />
         </div>
       </aside>
 
