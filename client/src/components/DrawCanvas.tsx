@@ -1,0 +1,72 @@
+import { useRef, useState, type PointerEvent } from 'react';
+import type { Point } from '@nihongo/shared';
+import './strokes.css';
+
+interface Props {
+  size?: number;
+  guide?: string[];
+  hint?: string;
+  strokes?: Point[][];
+  shaking?: boolean;
+  onStroke: (pts: Point[]) => void;
+}
+
+const toD = (pts: Point[]) => pts.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+/** Pointer drawing surface in KanjiVG 109×109 coordinates. */
+export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking = false, onStroke }: Props) {
+  const ref = useRef<SVGSVGElement>(null);
+  const [cur, setCur] = useState<Point[]>([]);
+
+  const toLocal = (e: PointerEvent): Point => {
+    const r = ref.current!.getBoundingClientRect();
+    return { x: ((e.clientX - r.left) / r.width) * 109, y: ((e.clientY - r.top) / r.height) * 109 };
+  };
+  const finish = () => {
+    if (cur.length > 1) onStroke(cur);
+    setCur([]);
+  };
+
+  return (
+    <svg
+      ref={ref}
+      data-testid="draw-canvas"
+      viewBox="0 0 109 109"
+      width={size}
+      height={size}
+      className={`touch-none select-none rounded-2xl bg-cream ring-2 ring-sakura/60 dark:bg-bg ${shaking ? 'shake' : ''}`}
+      onPointerDown={(e) => {
+        (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
+        setCur([toLocal(e)]);
+      }}
+      onPointerMove={(e) => {
+        if (cur.length) setCur((c) => [...c, toLocal(e)]);
+      }}
+      onPointerUp={finish}
+      onPointerCancel={finish}
+    >
+      <g stroke="#FFB7C5" strokeWidth="0.8" strokeDasharray="3 3">
+        <line x1="54.5" y1="0" x2="54.5" y2="109" />
+        <line x1="0" y1="54.5" x2="109" y2="54.5" />
+      </g>
+      {guide.map((d, i) => (
+        <path key={i} d={d} className="stroke-guide" />
+      ))}
+      {hint && <path d={hint} className="stroke-hint" data-testid="stroke-hint" />}
+      {strokes.map((s, i) => (
+        <path
+          key={i}
+          d={toD(s)}
+          fill="none"
+          stroke="var(--app-text)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ))}
+      {cur.length > 1 && (
+        <path d={toD(cur)} fill="none" stroke="#FF6F91" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      )}
+    </svg>
+  );
+}
