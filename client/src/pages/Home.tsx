@@ -7,24 +7,16 @@ import { useProgress } from '../store/progress';
 import { NAV } from '../app/nav';
 import { useDueCounts } from '../db/srs';
 import { useSettings } from '../store/settings';
-
-const GREETINGS = [
-  { ja: 'おはよう！今日もがんばろうね！', vi: 'Chào buổi sáng! Hôm nay cùng cố gắng nhé!' },
-  { ja: 'こんにちは！勉強の時間だよ〜', vi: 'Xin chào! Đến giờ học rồi~' },
-  { ja: 'こんばんは！今日はどこまで進む？', vi: 'Chào buổi tối! Hôm nay học đến đâu nào?' },
-];
-
-function pickGreeting(d = new Date()) {
-  const h = d.getHours();
-  return h < 11 ? GREETINGS[0]! : h < 18 ? GREETINGS[1]! : GREETINGS[2]!;
-}
+import { pickMascotLine, levelName } from '../lib/mascot';
+import { levelFromXp } from '../store/streak';
 
 export function Home() {
   const streak = useProgress((s) => s.streak);
   const due = useDueCounts();
   const petals = useSettings((s) => s.petals);
   const dueTotal = due ? due.vocab + due.kanji + due.grammar : 0;
-  const g = pickGreeting();
+  const xp = useProgress((s) => s.xp);
+  const g = pickMascotLine({ hour: new Date().getHours(), streak, due: dueTotal });
   const quick = NAV.filter((n) => !['/', '/settings', '/progress'].includes(n.to));
 
   return (
@@ -40,6 +32,7 @@ export function Home() {
             </SpeechBubble>
             <div className="flex flex-wrap gap-3">
               <div className="rounded-2xl bg-sakura/30 px-4 py-2 font-bold">🔥 Chuỗi: {streak} ngày</div>
+              <div className="rounded-2xl bg-lavender/40 px-4 py-2 font-bold">🏅 {levelName(levelFromXp(xp).level)}</div>
               <div className="rounded-2xl bg-sky/40 px-4 py-2 font-bold" data-testid="due-chip">
                 🔁 Đến hạn: {dueTotal} thẻ
               </div>
