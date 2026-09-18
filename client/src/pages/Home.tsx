@@ -5,6 +5,7 @@ import { XpBar } from '../components/XpBar';
 import { Petals } from '../components/Petals';
 import { useProgress } from '../store/progress';
 import { NAV } from '../app/nav';
+import { useDueCounts } from '../db/srs';
 
 const GREETINGS = [
   { ja: 'おはよう！今日もがんばろうね！', vi: 'Chào buổi sáng! Hôm nay cùng cố gắng nhé!' },
@@ -19,6 +20,8 @@ function pickGreeting(d = new Date()) {
 
 export function Home() {
   const streak = useProgress((s) => s.streak);
+  const due = useDueCounts();
+  const dueTotal = due ? due.vocab + due.kanji + due.grammar : 0;
   const g = pickGreeting();
   const quick = NAV.filter((n) => !['/', '/settings', '/progress'].includes(n.to));
 
@@ -35,6 +38,14 @@ export function Home() {
             </SpeechBubble>
             <div className="flex flex-wrap gap-3">
               <div className="rounded-2xl bg-sakura/30 px-4 py-2 font-bold">🔥 Chuỗi: {streak} ngày</div>
+              <div className="rounded-2xl bg-sky/40 px-4 py-2 font-bold" data-testid="due-chip">
+                🔁 Đến hạn: {dueTotal} thẻ
+              </div>
+              {dueTotal > 0 && (
+                <Link to="/review" className="btn-primary">
+                  Ôn ngay
+                </Link>
+              )}
             </div>
             <XpBar />
           </div>
