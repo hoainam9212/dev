@@ -8,5 +8,14 @@ it('renders the app title on the home route', () => {
       <App />
     </MemoryRouter>,
   );
-  expect(screen.getByText('Nihongo Sensei')).toBeInTheDocument();
+  expect(screen.getByRole('heading', { level: 1, name: 'Nihongo Sensei' })).toBeInTheDocument();
+});
+
+it('renders a placeholder page for a module route', () => {
+  render(
+    <MemoryRouter initialEntries={['/kanji']}>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(screen.getByRole('heading', { level: 1, name: 'Kanji' })).toBeInTheDocument();
 });
