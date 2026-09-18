@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest';
+import 'fake-indexeddb/auto';
 
 // jsdom has no canvas; components must handle a null context gracefully.
 if (typeof HTMLCanvasElement !== 'undefined') {
