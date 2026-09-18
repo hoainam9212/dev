@@ -9,6 +9,9 @@ import { KanjiPage } from './pages/kanji/KanjiPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { GrammarPage } from './pages/grammar/GrammarPage';
 import { ReadingPage } from './pages/reading/ReadingPage';
+import { ListeningPage } from './pages/listening/ListeningPage';
+import { SpeakingPage } from './pages/speaking/SpeakingPage';
+import { WritingPage } from './pages/writing/WritingPage';
 
 export default function App() {
   return (
@@ -21,7 +24,10 @@ export default function App() {
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/grammar" element={<GrammarPage />} />
         <Route path="/reading" element={<ReadingPage />} />
-        {NAV.filter((n) => !['/', '/kana', '/vocab', '/kanji', '/review', '/grammar', '/reading'].includes(n.to)).map((n) => (
+        <Route path="/listening" element={<ListeningPage />} />
+        <Route path="/speaking" element={<SpeakingPage />} />
+        <Route path="/writing" element={<WritingPage />} />
+        {NAV.filter((n) => !['/', '/kana', '/vocab', '/kanji', '/review', '/grammar', '/reading', '/listening', '/speaking', '/writing'].includes(n.to)).map((n) => (
           <Route key={n.to} path={n.to} element={<Placeholder title={n.label} />} />
         ))}
       </Route>
