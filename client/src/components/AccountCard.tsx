@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../store/auth';
 import { fullSync, getLastSync, getSyncStatus, onSyncStatus, type SyncStatus } from '../sync/sync';
+import { getApiBase, setApiBase } from '../api/client';
 
 const STATUS_LABEL: Record<SyncStatus, string> = {
   idle: 'Chưa đồng bộ',
@@ -22,12 +23,29 @@ export function AccountCard() {
   const logout = useAuth((s) => s.logout);
   const { status, detail } = useSyncStatus();
   const [msg, setMsg] = useState<string | null>(null);
+  const [apiBase, setApiBaseState] = useState(getApiBase());
+
+  const serverField = (
+    <label className="block text-sm">
+      <span className="font-bold">Địa chỉ máy chủ đồng bộ</span>
+      <span className="block text-xs text-muted">Để trống khi dùng bản web cùng máy chủ. Trên Android hãy nhập, ví dụ https://nihongo.example.com</span>
+      <input
+        value={apiBase}
+        onChange={(e) => setApiBaseState(e.target.value)}
+        onBlur={() => setApiBase(apiBase)}
+        placeholder="https://…"
+        aria-label="Địa chỉ máy chủ"
+        className="mt-1 w-full rounded-full bg-cream px-4 py-2 ring-2 ring-sakura/50 focus:outline-none focus:ring-rose dark:bg-bg"
+      />
+    </label>
+  );
 
   if (!user) {
     return (
       <section className="card space-y-3 p-4 md:p-6">
         <h2 className="font-black">Tài khoản</h2>
         <p className="text-sm text-muted">Đăng nhập để đồng bộ tiến độ giữa các thiết bị. Không bắt buộc.</p>
+        {serverField}
         <div className="flex gap-2">
           <Link to="/login" className="btn-primary">
             Đăng nhập

@@ -16,6 +16,9 @@
     "dev:server": "npm run dev -w server",
     "icons": "node client/scripts/icons.mjs",
     "build": "npm run data:build && npm run build -w client && npm run build -w server",
-    "start": "npm run start -w server"
+    "start": "npm run start -w server",
+    "android:sync": "npm run build -w client && npx --prefix client cap sync android",
+    "android:apk": "npm run android:sync && cd client/android && gradlew.bat assembleRelease",
+    "android:open": "npx --prefix client cap open android"
   }
 }

@@ -1,3 +1,6 @@
+import { Capacitor } from '@capacitor/core';
+import { SpeechRecognition as NativeSR } from '@capacitor-community/speech-recognition';
+
 interface RecognitionResultLike {
   results: ArrayLike<ArrayLike<{ transcript: string }>>;
 }
@@ -21,19 +24,40 @@ function getCtor(): RecognitionCtor | null {
   return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
 }
 
+const isNative = () => Capacitor.isNativePlatform();
+
 export function canRecognize(): boolean {
-  return getCtor() !== null;
+  return isNative() || getCtor() !== null;
 }
 
 export type SttError = 'unsupported' | 'no-speech' | 'aborted' | 'not-allowed' | 'network' | 'error';
 
+async function recognizeNative(lang: string): Promise<string> {
+  const { available } = await NativeSR.available();
+  if (!available) throw new Error('unsupported');
+  const perm = await NativeSR.requestPermissions();
+  if (perm.speechRecognition !== 'granted') throw new Error('not-allowed');
+  try {
+    const r = await NativeSR.start({ language: lang, maxResults: 1, partialResults: false, popup: false });
+    const t = r.matches?.[0]?.trim() ?? '';
+    if (!t) throw new Error('no-speech');
+    return t;
+  } catch (e) {
+    const msg = (e as Error).message ?? '';
+    if (msg === 'no-speech' || msg === 'not-allowed' || msg === 'unsupported') throw e;
+    throw new Error(/no match|no speech|timeout/i.test(msg) ? 'no-speech' : 'error');
+  }
+}
+
 /** Listen once and resolve with the best transcript. Rejects with an Error whose message is an SttError. */
 export function recognizeOnce(opts: { lang?: string; timeoutMs?: number } = {}): Promise<string> {
+  const lang = opts.lang ?? 'ja-JP';
+  if (isNative()) return recognizeNative(lang);
   const Ctor = getCtor();
   if (!Ctor) return Promise.reject(new Error('unsupported'));
   return new Promise((resolve, reject) => {
     const rec = new Ctor();
-    rec.lang = opts.lang ?? 'ja-JP';
+    rec.lang = lang;
     rec.interimResults = false;
     rec.maxAlternatives = 1;
     rec.continuous = false;
@@ -75,10 +99,10 @@ export function recognizeOnce(opts: { lang?: string; timeoutMs?: number } = {}):
 }
 
 export const STT_MESSAGES: Record<SttError, string> = {
-  unsupported: 'Trình duyệt này không hỗ trợ nhận dạng giọng nói. Hãy dùng Chrome hoặc Edge.',
+  unsupported: 'Thiết bị này không hỗ trợ nhận dạng giọng nói. Hãy dùng Chrome/Edge hoặc bật Google app trên Android.',
   'no-speech': 'Không nghe thấy gì. Hãy thử nói lại gần micro hơn.',
   aborted: 'Đã hủy ghi âm.',
-  'not-allowed': 'Bạn chưa cho phép dùng micro. Hãy bật quyền micro cho trang này.',
+  'not-allowed': 'Bạn chưa cho phép dùng micro. Hãy bật quyền micro cho ứng dụng.',
   network: 'Lỗi mạng khi nhận dạng giọng nói.',
   error: 'Có lỗi khi nhận dạng giọng nói. Hãy thử lại.',
 };

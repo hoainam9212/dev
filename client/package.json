@@ -11,6 +11,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@capacitor-community/speech-recognition": "^6.0.1",
+    "@capacitor/android": "^6.2.2",
+    "@capacitor/core": "^6.2.2",
     "@nihongo/shared": "*",
     "dexie": "^4.4.6",
     "dexie-react-hooks": "^1.1.7",
@@ -20,6 +23,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.2.2",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",

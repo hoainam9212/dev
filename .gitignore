@@ -6,3 +6,14 @@ client/public/content/
 *.db-wal
 *.db-shm
 .DS_Store
+client/android/app/build/
+client/android/build/
+client/android/.gradle/
+client/android/local.properties
+client/android/app/src/main/assets/public/
+client/android/app/src/main/assets/capacitor.config.json
+client/android/app/src/main/assets/capacitor.plugins.json
+client/android/capacitor-cordova-android-plugins/build/
+*.keystore
+*.jks
+client/android/keystore.properties
