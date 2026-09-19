@@ -1,0 +1,13 @@
+{
+  "name": "office-neko",
+  "private": true,
+  "workspaces": ["shared", "client"],
+  "scripts": {
+    "dev": "npm run dev -w client",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build -w client",
+    "preview": "npm run preview -w client",
+    "icons": "node client/scripts/icons.mjs"
+  }
+}
