@@ -86,6 +86,29 @@ describe('desktop sim', () => {
     expect(s.cwd).toBe(s.fs.rootId);
   });
 
+  it('goes up from the trash to root', () => {
+    let s = start();
+    s = reduceDesktop(s, { type: 'remove', ids: [idAt(s.fs, '/ghi-chu.txt')] });
+    s = reduceDesktop(s, { type: 'open', id: s.fs.trashId });
+    expect(s.cwd).toBe(s.fs.trashId);
+    s = reduceDesktop(s, { type: 'up' });
+    expect(s.cwd).toBe(s.fs.rootId);
+  });
+
+  it('resets cwd to root when emptying the trash removes the folder being browsed, and recovers', () => {
+    let s = start();
+    const taiLieu = idAt(s.fs, '/Tài liệu');
+    s = reduceDesktop(s, { type: 'remove', ids: [taiLieu] });
+    s = reduceDesktop(s, { type: 'open', id: s.fs.trashId });
+    s = reduceDesktop(s, { type: 'open', id: taiLieu });
+    expect(s.cwd).toBe(taiLieu);
+    s = reduceDesktop(s, { type: 'emptyTrash' });
+    expect(s.cwd).toBe(s.fs.rootId);
+    s = reduceDesktop(s, { type: 'mkdir', name: 'Sau khi dọn' });
+    expect(s.error).toBeNull();
+    expect(idAt(s.fs, '/Sau khi dọn')).toBeDefined();
+  });
+
   it('caps undo history', () => {
     let s = start();
     for (let i = 0; i < 35; i++) s = reduceDesktop(s, { type: 'mkdir', name: `F${i}` });

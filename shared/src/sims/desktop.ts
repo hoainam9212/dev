@@ -58,6 +58,13 @@ export function uniqueName(fs: Vfs, parentId: string, base: string): string {
   }
 }
 
+/** cwd sau khi fs đổi: giữ nguyên nếu node còn tồn tại và không rơi vào trong thùng rác
+ * (trừ khi chính cwd là thùng rác — khi đó vẫn ở lại đó); ngược lại quay về gốc. */
+function nextCwd(s: DesktopState, fs: Vfs): string {
+  if (s.cwd === fs.trashId) return s.cwd;
+  return fs.nodes[s.cwd] && !vfs.isInside(fs, s.cwd, fs.trashId) ? s.cwd : fs.rootId;
+}
+
 /** Áp một chuỗi thao tác vfs; dừng ở lỗi đầu tiên. */
 function applyAll(s: DesktopState, ops: ((fs: Vfs) => vfs.VfsResult)[], after?: (fs: Vfs, ids: string[]) => Partial<DesktopState>): DesktopState {
   let fs = s.fs;
@@ -68,7 +75,7 @@ function applyAll(s: DesktopState, ops: ((fs: Vfs) => vfs.VfsResult)[], after?: 
     fs = r.fs;
     ids.push(r.id);
   }
-  const cwd = fs.nodes[s.cwd] && !vfs.isInside(fs, s.cwd, fs.trashId) ? s.cwd : s.cwd === fs.trashId ? s.cwd : fs.rootId;
+  const cwd = nextCwd(s, fs);
   return {
     ...s,
     fs,
@@ -104,7 +111,14 @@ export function reduceDesktop(s: DesktopState, a: DesktopAction): DesktopState {
       return applyAll(s, [(fs) => vfs.restore(fs, a.id)], () => ({ selected: [] }));
     case 'emptyTrash': {
       const fs = vfs.emptyTrash(s.fs);
-      return { ...s, fs, past: [...s.past, s.fs].slice(-UNDO_LIMIT), selected: s.selected.filter((id) => fs.nodes[id]), error: null };
+      return {
+        ...s,
+        fs,
+        cwd: nextCwd(s, fs),
+        past: [...s.past, s.fs].slice(-UNDO_LIMIT),
+        selected: s.selected.filter((id) => fs.nodes[id]),
+        error: null,
+      };
     }
     case 'copy':
     case 'cut':
