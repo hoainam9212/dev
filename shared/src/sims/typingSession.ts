@@ -66,10 +66,14 @@ function timeUp(s: TypingState, at: number): boolean {
   return s.durationSec !== null && s.startedAt !== null && at - s.startedAt >= s.durationSec * 1000;
 }
 
+function finishOnTimeout(s: TypingState): TypingState {
+  return { ...s, finished: true, lastAt: s.startedAt! + s.durationSec! * 1000 };
+}
+
 export function reduceTyping(s: TypingState, a: TypingAction): TypingState {
   if (s.finished) return s;
-  if (a.type === 'tick') return timeUp(s, a.at) ? { ...s, finished: true, lastAt: s.startedAt! + s.durationSec! * 1000 } : s;
-  if (timeUp(s, a.at)) return { ...s, finished: true, lastAt: s.startedAt! + s.durationSec! * 1000 };
+  if (a.type === 'tick') return timeUp(s, a.at) ? finishOnTimeout(s) : s;
+  if (timeUp(s, a.at)) return finishOnTimeout(s);
 
   if (a.key === 'Backspace') {
     if (!s.allowBackspace) return s;

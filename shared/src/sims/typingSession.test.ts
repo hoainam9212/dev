@@ -52,6 +52,26 @@ describe('typing session (no IME)', () => {
     expect(s.finished).toBe(true);
     expect(typingMetrics(s).elapsedMs).toBe(1000);
   });
+
+  it('drops keys once typed is already wrong but at full length', () => {
+    let s = typingInitial({ target: 'ab' });
+    s = typeAll(s, ['a', 'x']);
+    expect(typedText(s)).toBe('ax');
+    expect(s.finished).toBe(false);
+    expect(s.keystrokes).toBe(2);
+    s = reduceTyping(s, { type: 'key', key: 'y', at: 1400 });
+    expect(typedText(s)).toBe('ax');
+    expect(s.keystrokes).toBe(2);
+  });
+
+  it('ends a timed test when the timeout is discovered on a key action', () => {
+    let s = typingInitial({ target: 'abcdefghij', mode: 'test', durationSec: 1 });
+    s = reduceTyping(s, { type: 'key', key: 'a', at: 0 });
+    s = reduceTyping(s, { type: 'key', key: 'b', at: 1500 });
+    expect(s.finished).toBe(true);
+    expect(s.lastAt).toBe(s.startedAt! + 1000);
+    expect(s.keystrokes).toBe(1);
+  });
 });
 
 describe('typing session (Telex/VNI)', () => {
