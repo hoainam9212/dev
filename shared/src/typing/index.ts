@@ -36,3 +36,5 @@ export function weakestKeys(stats: KeyStats, n = 5, minAttempts = 3): string[] {
     .slice(0, n)
     .map((e) => e.key);
 }
+
+export * from './keyboard';
