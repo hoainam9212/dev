@@ -1,4 +1,5 @@
 import type { BusinessCategory, BusinessItem, BusinessTopic } from '@nihongo/shared';
+import { IT_TOPICS } from './business-it';
 
 type KeigoRow = [plain: string, reading: string, vi: string, sonkei: string, kenjou: string, teinei: string];
 type Phrase = [ja: string, reading: string, vi: string, note?: string];
@@ -182,44 +183,59 @@ const DAILY: Phrase[] = [
 export const BUSINESS: BusinessTopic[] = [
   {
     id: 'keigo',
+    group: 'basic',
+    kind: 'keigo',
     title: 'Kính ngữ (敬語)',
     intro: 'Ba loại kính ngữ: 尊敬語 (tôn kính, nâng đối phương), 謙譲語 (khiêm nhường, hạ mình), 丁寧語 (lịch sự, dạng ます/です). Bảng dưới liệt kê các động từ hay gặp nhất.',
     items: keigoItems,
   },
   {
     id: 'email',
+    group: 'basic',
+    kind: 'email',
     title: 'Email công việc',
     intro: 'Cấu trúc email chuẩn: 件名 (tiêu đề) → 宛名 (người nhận) → 挨拶 (chào hỏi) → 本文 (nội dung) → 結び (kết) → 署名 (chữ ký). Chạm tiêu đề để xem toàn văn.',
     items: items('email', EMAIL),
   },
   {
     id: 'phone',
+    group: 'basic',
+    kind: 'phrases',
     title: 'Điện thoại',
     intro: 'Khi nhận điện thoại, xưng tên công ty trước; khi gọi, xin lỗi vì làm phiền rồi mới xưng tên.',
     items: items('phone', PHONE),
   },
   {
     id: 'meeting',
+    group: 'basic',
+    kind: 'phrases',
     title: 'Họp',
     intro: 'Mẫu câu mở đầu, nêu ý kiến, xác nhận, chuyển chủ đề và kết thúc cuộc họp.',
     items: items('meeting', MEETING),
   },
   {
     id: 'meishi',
+    group: 'basic',
+    kind: 'phrases',
     title: 'Trao danh thiếp (名刺交換)',
     intro: 'Người vị trí thấp hơn trao trước, cầm hai tay, đọc kỹ tên và không cất danh thiếp ngay.',
     items: items('meishi', MEISHI),
   },
   {
     id: 'interview',
+    group: 'basic',
+    kind: 'phrases',
     title: 'Phỏng vấn (面接)',
     intro: 'Tự giới thiệu ngắn gọn, nêu lý do ứng tuyển và điểm mạnh theo cấu trúc kết luận → lý do → ví dụ.',
     items: items('interview', INTERVIEW),
   },
   {
     id: 'daily',
+    group: 'basic',
+    kind: 'phrases',
     title: 'Giao tiếp hàng ngày ở công ty',
     intro: 'Các câu chào hỏi và cụm cố định dùng mỗi ngày trong văn phòng Nhật.',
     items: items('daily', DAILY),
   },
+  ...IT_TOPICS,
 ];

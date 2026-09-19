@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import type { BusinessItem, BusinessTopic } from '@nihongo/shared';
+import { topicKind, type BusinessItem, type BusinessTopic } from '@nihongo/shared';
 import { Mascot } from '../../components/Mascot';
+import { Segmented } from '../../components/Segmented';
 import { SpeechBubble } from '../../components/SpeechBubble';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { shuffle } from '../../lib/quiz';
@@ -9,10 +10,11 @@ import { moodForScore } from '../speaking/Shadowing';
 
 export function BusinessRoleplay({ topics, total = 8 }: { topics: BusinessTopic[]; total?: number }) {
   const [seed, setSeed] = useState(0);
+  const [scope, setScope] = useState<'all' | 'it' | 'basic'>('all');
   const items = useMemo<BusinessItem[]>(
-    () => shuffle(topics.flatMap((t) => t.items).filter((i) => i.category !== 'keigo' && i.category !== 'email')).slice(0, total),
+    () => shuffle(topics.filter((t) => topicKind(t) === 'phrases' && (scope === 'all' || (t.group ?? 'basic') === scope)).flatMap((t) => t.items)).slice(0, total),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [topics, total, seed],
+    [topics, total, seed, scope],
   );
   const [i, setI] = useState(0);
   const [reveal, setReveal] = useState(false);
@@ -45,6 +47,24 @@ export function BusinessRoleplay({ topics, total = 8 }: { topics: BusinessTopic[
 
   return (
     <div className="flex flex-col items-center gap-4">
+      {topics.some((t) => t.group === 'it') && (
+        <Segmented<'all' | 'it' | 'basic'>
+          ariaLabel="Phạm vi"
+          value={scope}
+          onChange={(v) => {
+            setScope(v);
+            setI(0);
+            setScores([]);
+            setResult(null);
+            setReveal(false);
+          }}
+          options={[
+            { value: 'all', label: 'Tất cả' },
+            { value: 'it', label: 'IT & BrSE' },
+            { value: 'basic', label: 'Cơ bản' },
+          ]}
+        />
+      )}
       <p className="text-sm font-bold text-muted">
         Tình huống {i + 1} / {items.length}
       </p>

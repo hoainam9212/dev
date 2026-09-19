@@ -80,14 +80,7 @@ export interface ListeningLesson {
   dictation: string[];
 }
 
-export type BusinessCategory =
-  | 'keigo'
-  | 'email'
-  | 'phone'
-  | 'meeting'
-  | 'meishi'
-  | 'interview'
-  | 'daily';
+export type BusinessCategory = string;
 
 export interface BusinessItem {
   id: string;
@@ -97,13 +90,49 @@ export interface BusinessItem {
   note?: string;
   category: BusinessCategory;
   keigo?: { sonkei?: string; kenjou?: string; teinei?: string };
+  /** Example sentence (glossary terms). */
+  example?: { ja: string; vi: string };
+  /** The blunt/inappropriate way to say it (rephrase topics); `ja` is the recommended wording. */
+  ng?: string;
 }
+
+export interface ScenarioLine {
+  /** true = the learner's line (spoken in roleplay). */
+  me: boolean;
+  ja: string;
+  vi: string;
+}
+
+export interface BusinessScenario {
+  id: string;
+  title: string;
+  /** Situation description in Vietnamese. */
+  situation: string;
+  roles: { me: string; other: string };
+  lines: ScenarioLine[];
+  /** Key takeaways in Vietnamese. */
+  points: string[];
+}
+
+export type BusinessKind = 'keigo' | 'email' | 'phrases' | 'glossary' | 'rephrase' | 'scenarios';
+export type BusinessGroup = 'basic' | 'it';
 
 export interface BusinessTopic {
   id: string;
   title: string;
   intro: string;
+  group?: BusinessGroup;
+  kind?: BusinessKind;
   items: BusinessItem[];
+  scenarios?: BusinessScenario[];
+}
+
+/** Kind of a topic, inferring it for older bundles without `kind`. */
+export function topicKind(t: Pick<BusinessTopic, 'id' | 'kind'>): BusinessKind {
+  if (t.kind) return t.kind;
+  if (t.id === 'keigo') return 'keigo';
+  if (t.id === 'email') return 'email';
+  return 'phrases';
 }
 
 export type ItemType = 'vocab' | 'kanji' | 'grammar';
