@@ -1,6 +1,7 @@
 import type { SimKind } from '../types';
 import { gradeWith, type GradeReport, type Grader } from './core';
 import { gradeMouse } from '../sims/mouse';
+import { gradeDesktop } from '../sims/desktop';
 
 export * from './core';
 
@@ -8,6 +9,7 @@ export * from './core';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GRADERS: Partial<Record<SimKind, Grader<any, any>>> = {
   mouse: gradeMouse,
+  desktop: gradeDesktop,
 };
 
 export function grade(sim: SimKind, state: unknown, checks: unknown[]): GradeReport {
