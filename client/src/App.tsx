@@ -7,6 +7,8 @@ import { WelcomePage } from './pages/WelcomePage';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { TypingHubPage } from './pages/TypingHubPage';
+import { SpeedTestPage } from './pages/SpeedTestPage';
 import { Mochi } from './components/Mochi';
 import { HelpButton } from './help/HelpButton';
 import { HelpDrawer } from './help/HelpDrawer';
@@ -39,6 +41,8 @@ export default function App() {
           <Route element={<RequireProfile><AppShell /></RequireProfile>}>
             <Route index element={<HomePage />} />
             <Route path="/lesson/:id" element={<LessonRoute />} />
+            <Route path="/typing" element={<TypingHubPage />} />
+            <Route path="/typing/test/:min" element={<SpeedTestPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

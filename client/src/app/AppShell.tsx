@@ -19,6 +19,7 @@ export function AppShell() {
           <span title={`Còn ${lvl.need - lvl.into} XP nữa lên cấp`} className="rounded-full bg-lavender/40 px-3 py-1">
             Cấp {lvl.level} · {profile.xp} XP
           </span>
+          <Link to="/typing" data-help-id="app.typing" className="rounded-full bg-sky/50 px-3 py-1">⌨️ Luyện gõ</Link>
           <Link to="/settings" data-help-id="app.settings" aria-label="Cài đặt" className="rounded-full bg-white px-3 py-1 shadow">⚙️</Link>
         </div>
       </header>

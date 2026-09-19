@@ -4,6 +4,7 @@ import type { HelpIdEntry } from '@office-neko/shared';
 export const HELP_IDS: Record<string, HelpIdEntry> = {
   'app.help': { label: 'Trợ giúp (F1)', vi: 'Mở Từ điển thuật ngữ và Hỏi Mèo.' },
   'app.settings': { label: 'Cài đặt', vi: 'Đổi hệ điều hành, cỡ chữ, sao lưu tiến độ.' },
+  'app.typing': { label: 'Luyện gõ', vi: 'Kiểm tra tốc độ gõ, chơi Mèo bắt cá và xem phím nào hay gõ sai.' },
   'player.hint': { label: 'Gợi ý', vi: 'Xem gợi ý từng bậc. Dùng gợi ý sẽ bớt một chút sao.' },
   'player.check': { label: 'Kiểm tra', vi: 'Nhờ Mochi chấm bài bạn vừa làm.' },
   'player.close': { label: 'Thoát bài', vi: 'Quay về bản đồ. Bài đang học dở sẽ không được lưu.' },
