@@ -38,6 +38,11 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
     dispatch({ type: 'mkdir', name: desktopSim.uniqueName(state.fs, state.cwd, os === 'win' ? 'Thư mục mới' : 'thư mục không tên') });
   }, [state.fs, state.cwd, os]);
 
+  const dropToTrash = useCallback(() => {
+    if (dragIds.current.length) dispatch({ type: 'remove', ids: dragIds.current });
+    dragIds.current = [];
+  }, []);
+
   const open = (id: string) => {
     const n = state.fs.nodes[id];
     if (!n) return;
@@ -93,10 +98,7 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
       <Chrome
         os={os}
         onTrash={() => dispatch({ type: 'open', id: state.fs.trashId })}
-        onDropToTrash={() => {
-          if (dragIds.current.length) dispatch({ type: 'remove', ids: dragIds.current });
-          dragIds.current = [];
-        }}
+        onDropToTrash={dropToTrash}
       >
         <div className="flex flex-wrap items-center gap-1 border-b border-muted/20 px-2 py-1">
           {inTrash ? (
@@ -133,12 +135,10 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
             <button
               type="button"
               className={`${btn} w-full text-left`}
+              data-help-id="desktop.trash"
               onClick={() => dispatch({ type: 'open', id: state.fs.trashId })}
               onDragOver={(e) => e.preventDefault()}
-              onDrop={() => {
-                if (dragIds.current.length) dispatch({ type: 'remove', ids: dragIds.current });
-                dragIds.current = [];
-              }}
+              onDrop={dropToTrash}
             >
               🗑️ Thùng rác
             </button>
