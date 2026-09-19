@@ -2,6 +2,7 @@ import type { SimKind } from '../types';
 import { gradeWith, type GradeReport, type Grader } from './core';
 import { gradeMouse } from '../sims/mouse';
 import { gradeDesktop } from '../sims/desktop';
+import { gradeTyping } from '../sims/typingSession';
 
 export * from './core';
 
@@ -10,6 +11,7 @@ export * from './core';
 export const GRADERS: Partial<Record<SimKind, Grader<any, any>>> = {
   mouse: gradeMouse,
   desktop: gradeDesktop,
+  keyboard: gradeTyping,
 };
 
 export function grade(sim: SimKind, state: unknown, checks: unknown[]): GradeReport {

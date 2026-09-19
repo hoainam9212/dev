@@ -9,5 +9,6 @@ export * from './progress';
 export * from './rich';
 export * as mouseSim from './sims/mouse';
 export * as desktopSim from './sims/desktop';
+export * as typingSim from './sims/typingSession';
 
 export const APP_NAME = 'Tin Học Cùng Mochi';
