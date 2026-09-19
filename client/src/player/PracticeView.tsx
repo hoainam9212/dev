@@ -6,6 +6,7 @@ import { Mochi } from '../components/Mochi';
 import { RichText } from '../help/RichText';
 import { SpotlightOverlay } from '../help/SpotlightOverlay';
 import { useSound } from '../lib/sound';
+import { ErrorBoundary } from '../app/ErrorBoundary';
 import { HintPanel } from './HintPanel';
 import type { PlayerAction, PlayerState } from './playerReducer';
 
@@ -51,7 +52,9 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
         <RichText text={step.task} className="text-lg font-semibold" />
       </div>
       <div ref={setRoot} className="relative">
-        <Sim initial={step.initial} onState={onState} os={os} spotlight={spotlight} />
+        <ErrorBoundary message="Trình mô phỏng gặp lỗi… Hãy thử tải lại trang." key={step.sim}>
+          <Sim initial={step.initial} onState={onState} os={os} spotlight={spotlight} />
+        </ErrorBoundary>
       </div>
       <SpotlightOverlay target={spotlight} root={root} />
       {state.stepHint > 0 && !state.stepDone && <HintPanel step={step} level={state.stepHint} />}
