@@ -5,10 +5,11 @@ import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
 import { Mascot } from '../../components/Mascot';
 import { SpeechBubble } from '../../components/SpeechBubble';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { moodForScore } from './Shadowing';
 
 export function Roleplay({ level }: { level: Level }) {
+  useStopSpeechOnUnmount();
   const { data, error, loading } = useJson<ListeningLesson[]>(`listening/${level.toLowerCase()}.json`);
   const [lesson, setLesson] = useState<ListeningLesson | null>(null);
   const [role, setRole] = useState<string | null>(null);

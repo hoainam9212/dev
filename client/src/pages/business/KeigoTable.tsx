@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { BusinessItem } from '@nihongo/shared';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 /** "申す・申し上げる" → "申す" for TTS. */
 export const firstForm = (s?: string) => (s ?? '').split('・')[0]!.trim();
@@ -15,6 +15,7 @@ function Cell({ text }: { text?: string }) {
 }
 
 export function KeigoTable({ items }: { items: BusinessItem[] }) {
+  useStopSpeechOnUnmount();
   const [q, setQ] = useState('');
   const rows = useMemo(() => {
     const t = q.trim().toLowerCase();

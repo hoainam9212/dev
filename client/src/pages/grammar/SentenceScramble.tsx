@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from 'react';
 import type { Grammar } from '@nihongo/shared';
 import { chunkSentence } from '../../lib/chunk';
 import { shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
 import { Mascot } from '../../components/Mascot';
@@ -31,6 +31,7 @@ export function buildScrambleItems(grammar: Grammar[], total: number, rng: () =>
 }
 
 export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; total?: number }) {
+  useStopSpeechOnUnmount();
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const items = useMemo(() => buildScrambleItems(grammar, total), [grammar, total, seed]);

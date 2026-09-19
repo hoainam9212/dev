@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { TextToSpeech, QueueStrategy } from '@capacitor-community/text-to-speech';
 
@@ -25,6 +26,13 @@ function emitError(e: TtsError) {
 }
 
 const isNative = () => Capacitor.isNativePlatform();
+
+/**
+ * Playback generation. Every stop or new speak() starts a new generation; a running
+ * sequence keeps going only while its generation is current. (Cancelling an utterance
+ * fires its end/error handler, which would otherwise start the next line.)
+ */
+let generation = 0;
 const hasWebSpeech = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
 
 export function canSpeak(): boolean {
@@ -80,7 +88,13 @@ function makeUtterance(text: string, opts: { rate: number; lang: string }): Spee
 
 // ---------------- public API ----------------
 
+/** React hook: stop any speech when the calling component unmounts (leaving a lesson, closing a dialog…). */
+export function useStopSpeechOnUnmount(): void {
+  useEffect(() => () => stopSpeaking(), []);
+}
+
 export function stopSpeaking(): void {
+  generation++;
   if (isNative()) void TextToSpeech.stop().catch(() => {});
   else if (hasWebSpeech()) window.speechSynthesis.cancel();
 }
@@ -90,10 +104,12 @@ export function speak(text: string, opts: { rate?: number; lang?: string } = {})
   const lang = opts.lang ?? 'ja-JP';
   const rate = opts.rate ?? defaultRate;
   if (isNative()) {
+    generation++;
     void speakNative(text, lang, rate);
     return true;
   }
   if (!hasWebSpeech()) return false;
+  generation++;
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(makeUtterance(text, { rate, lang }));
   return true;
@@ -122,36 +138,38 @@ export function speakSequence(
   const gap = opts.gapMs ?? 350;
   const lang = opts.lang ?? 'ja-JP';
   const rate = opts.rate ?? defaultRate;
+  // start a new generation (interrupting whatever was playing) and remember it
+  stopSpeaking();
+  const gen = generation;
+  const alive = () => !cancelled && gen === generation;
+  const cancel = () => {
+    if (cancelled) return;
+    cancelled = true;
+    if (gen === generation) stopSpeaking();
+    resolveDone();
+  };
 
   if (isNative()) {
     void (async () => {
-      for (let i = 0; i < lines.length && !cancelled; i++) {
+      for (let i = 0; i < lines.length && alive(); i++) {
         opts.onLine?.(i);
         await speakNative(lines[i]!, lang, rate);
-        if (!cancelled && gap > 0 && i < lines.length - 1) await new Promise((r) => setTimeout(r, gap));
+        if (alive() && gap > 0 && i < lines.length - 1) await new Promise((r) => setTimeout(r, gap));
       }
       resolveDone();
     })();
-    return {
-      cancel: () => {
-        cancelled = true;
-        void TextToSpeech.stop().catch(() => {});
-        resolveDone();
-      },
-      done,
-    };
+    return { cancel, done };
   }
 
-  window.speechSynthesis.cancel();
   const playFrom = (i: number) => {
-    if (cancelled || i >= lines.length) {
+    if (!alive() || i >= lines.length) {
       resolveDone();
       return;
     }
     opts.onLine?.(i);
     const u = makeUtterance(lines[i]!, { rate, lang });
     const next = () => {
-      if (cancelled) return resolveDone();
+      if (!alive()) return resolveDone();
       setTimeout(() => playFrom(i + 1), gap);
     };
     u.onend = next;
@@ -159,12 +177,5 @@ export function speakSequence(
     window.speechSynthesis.speak(u);
   };
   playFrom(0);
-  return {
-    cancel: () => {
-      cancelled = true;
-      window.speechSynthesis.cancel();
-      resolveDone();
-    },
-    done,
-  };
+  return { cancel, done };
 }

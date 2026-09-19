@@ -3,7 +3,7 @@ import { QuizChoice } from './QuizChoice';
 import { Mascot } from './Mascot';
 import { logSession, type SessionLog } from '../db';
 import { useProgress } from '../store/progress';
-import { speak } from '../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../lib/tts';
 
 export interface QuizQuestion {
   prompt: ReactNode;
@@ -25,6 +25,7 @@ interface Props {
 
 /** Runs a list of multiple-choice questions, awards XP, logs the session and shows a result screen. */
 export function QuizRunner({ questions, kind, type, xpPerCorrect = 2, listenFirst = false, onFinish }: Props) {
+  useStopSpeechOnUnmount();
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
   const addXp = useProgress((s) => s.addXp);

@@ -3,7 +3,7 @@ import type { KanaChar } from '@nihongo/shared';
 import { QuizChoice } from '../../components/QuizChoice';
 import { Mascot } from '../../components/Mascot';
 import { makeChoices, shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { useProgress } from '../../store/progress';
 
 export type KanaQuizMode = 'kana→romaji' | 'romaji→kana';
@@ -33,6 +33,7 @@ function buildQuestions(chars: KanaChar[], mode: KanaQuizMode, total: number): Q
 }
 
 export function KanaQuiz({ chars, mode, total = 10, onFinish }: Props) {
+  useStopSpeechOnUnmount();
   const questions = useMemo(() => buildQuestions(chars, mode, total), [chars, mode, total]);
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);

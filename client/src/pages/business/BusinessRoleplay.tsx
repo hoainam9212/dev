@@ -5,10 +5,11 @@ import { Segmented } from '../../components/Segmented';
 import { SpeechBubble } from '../../components/SpeechBubble';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { moodForScore } from '../speaking/Shadowing';
 
 export function BusinessRoleplay({ topics, total = 8 }: { topics: BusinessTopic[]; total?: number }) {
+  useStopSpeechOnUnmount();
   const [seed, setSeed] = useState(0);
   const [scope, setScope] = useState<'all' | 'it' | 'basic'>('all');
   const items = useMemo<BusinessItem[]>(

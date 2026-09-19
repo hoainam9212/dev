@@ -3,7 +3,7 @@ import type { Kanji } from '@nihongo/shared';
 import { StrokeAnimation } from '../../components/StrokeAnimation';
 import { WritingPractice } from '../../components/WritingPractice';
 import { useVocabByIds } from '../../content/useVocabByIds';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { recordReview } from '../../db/srs';
 import { useProgress } from '../../store/progress';
 
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export function KanjiDetail({ kanji, onClose }: Props) {
+  useStopSpeechOnUnmount();
   const [play, setPlay] = useState(0);
   const [writing, setWriting] = useState(false);
   const [marked, setMarked] = useState(false);

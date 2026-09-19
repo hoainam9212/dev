@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { BusinessItem } from '@nihongo/shared';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 export const GLOSSARY_GROUPS: Record<string, string> = {
   process: 'Công đoạn dự án',
@@ -11,6 +11,7 @@ export const GLOSSARY_GROUPS: Record<string, string> = {
 };
 
 export function GlossaryList({ items }: { items: BusinessItem[] }) {
+  useStopSpeechOnUnmount();
   const [q, setQ] = useState('');
   const [group, setGroup] = useState<string>('all');
   const [showEx, setShowEx] = useState(true);

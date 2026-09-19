@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Grade, ItemType } from '@nihongo/shared';
 import { recordReview, logSession } from '../db/srs';
 import { useProgress } from '../store/progress';
-import { speak } from '../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../lib/tts';
 import { Mascot } from './Mascot';
 
 export interface CardItem {
@@ -27,6 +27,7 @@ const GRADES: { g: Grade; label: string; cls: string; hint: string }[] = [
 
 /** Generic SRS flashcard runner. Grade 0 re-queues the card once at the end. */
 export function FlashcardSession({ items, onFinish }: Props) {
+  useStopSpeechOnUnmount();
   const [queue, setQueue] = useState<CardItem[]>(items);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);

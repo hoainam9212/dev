@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { KanaChar } from '@nihongo/shared';
 import { StrokeAnimation } from '../../components/StrokeAnimation';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 interface Props {
   chars: KanaChar[];
@@ -18,6 +18,7 @@ function groupRows(chars: KanaChar[]): { row: string; items: KanaChar[] }[] {
 }
 
 export function KanaChart({ chars }: Props) {
+  useStopSpeechOnUnmount();
   const [sel, setSel] = useState<KanaChar | null>(null);
   const [play, setPlay] = useState(0);
   const rows = groupRows(chars);

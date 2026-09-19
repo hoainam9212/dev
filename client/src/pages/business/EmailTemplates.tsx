@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import type { BusinessItem } from '@nihongo/shared';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 export function EmailTemplates({ items }: { items: BusinessItem[] }) {
+  useStopSpeechOnUnmount();
   const [open, setOpen] = useState<string | null>(items[0]?.id ?? null);
   const [copied, setCopied] = useState<string | null>(null);
 

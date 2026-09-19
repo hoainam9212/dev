@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Level, ProgressItem, Sentence, Vocab } from '@nihongo/shared';
 import { SrsBadge } from '../../components/SrsBadge';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { useSentenceMap } from '../../content/useSentenceMap';
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 const PAGE = 50;
 
 export function VocabList({ vocab, level, progress }: Props) {
+  useStopSpeechOnUnmount();
   const [q, setQ] = useState('');
   const [limit, setLimit] = useState(PAGE);
   const [open, setOpen] = useState<string | null>(null);

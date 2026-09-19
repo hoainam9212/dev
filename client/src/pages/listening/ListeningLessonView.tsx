@@ -4,7 +4,7 @@ import { QuizRunner, type QuizQuestion } from '../../components/QuizRunner';
 import { TypingAnswer } from '../../components/TypingAnswer';
 import { Segmented } from '../../components/Segmented';
 import { Mascot } from '../../components/Mascot';
-import { speak, speakSequence, stopSpeaking, canSpeak, type Sequence } from '../../lib/tts';
+import { speak, speakSequence, stopSpeaking, canSpeak, type Sequence, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
 
@@ -12,6 +12,7 @@ type Mode = 'listen' | 'questions' | 'dictation';
 const XP_DICTATION = 2;
 
 export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesson; onBack: () => void }) {
+  useStopSpeechOnUnmount();
   const [mode, setMode] = useState<Mode>('listen');
   const [rate, setRate] = useState(0.9);
   const [showScript, setShowScript] = useState(false);
@@ -116,6 +117,7 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
 }
 
 function Dictation({ lesson, rate }: { lesson: ListeningLesson; rate: number }) {
+  useStopSpeechOnUnmount();
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
   const addXp = useProgress((s) => s.addXp);

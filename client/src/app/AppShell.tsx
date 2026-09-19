@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { stopSpeaking } from '../lib/tts';
 import { NAV, MOBILE_PRIMARY } from './nav';
 import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
@@ -13,6 +14,23 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function AppShell() {
   const [more, setMore] = useState(false);
+  const { pathname } = useLocation();
+
+  // Speech never outlives the screen that started it: stop on every route change…
+  useEffect(() => {
+    stopSpeaking();
+  }, [pathname]);
+  // …and when the page is left or hidden (tab closed, app sent to background).
+  useEffect(() => {
+    const stop = () => stopSpeaking();
+    const onVisibility = () => document.visibilityState === 'hidden' && stopSpeaking();
+    window.addEventListener('pagehide', stop);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.removeEventListener('pagehide', stop);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, []);
   const primary = NAV.filter((n) => MOBILE_PRIMARY.includes(n.to));
   const secondary = NAV.filter((n) => !MOBILE_PRIMARY.includes(n.to));
 

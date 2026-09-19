@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { diffChars, similarity, type Grammar } from '@nihongo/shared';
 import { shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
 import { Mascot } from '../../components/Mascot';
@@ -32,6 +32,7 @@ export function pickSentenceItems(grammar: Grammar[], total: number, rng: () => 
 }
 
 export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; total?: number }) {
+  useStopSpeechOnUnmount();
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const items = useMemo(() => pickSentenceItems(grammar, total), [grammar, total, seed]);

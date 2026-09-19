@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import type { BusinessItem } from '@nihongo/shared';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 export function PhraseList({ items }: { items: BusinessItem[] }) {
+  useStopSpeechOnUnmount();
   const [showReading, setShowReading] = useState(true);
   return (
     <div className="space-y-3">

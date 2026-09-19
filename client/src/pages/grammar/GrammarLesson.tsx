@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Grammar } from '@nihongo/shared';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { recordReview } from '../../db/srs';
 import { useProgress } from '../../store/progress';
 
@@ -10,6 +10,7 @@ interface Props {
 }
 
 export function GrammarLesson({ grammar, onClose }: Props) {
+  useStopSpeechOnUnmount();
   const [marked, setMarked] = useState(false);
   const addXp = useProgress((s) => s.addXp);
 

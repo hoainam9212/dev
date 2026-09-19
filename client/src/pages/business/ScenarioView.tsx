@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { BusinessScenario } from '@nihongo/shared';
-import { speak, speakSequence, stopSpeaking, type Sequence } from '../../lib/tts';
+import { speak, speakSequence, stopSpeaking, type Sequence, useStopSpeechOnUnmount } from '../../lib/tts';
 import { Mascot } from '../../components/Mascot';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { moodForScore } from '../speaking/Shadowing';
@@ -23,6 +23,7 @@ export function ScenarioList({ scenarios, onPick }: { scenarios: BusinessScenari
 }
 
 export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario; onBack: () => void }) {
+  useStopSpeechOnUnmount();
   const [mode, setMode] = useState<'read' | 'roleplay'>('read');
   const [showVi, setShowVi] = useState(true);
   const [playing, setPlaying] = useState<number | null>(null);
@@ -131,6 +132,7 @@ function Points({ points }: { points: string[] }) {
 }
 
 function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
+  useStopSpeechOnUnmount();
   const [i, setI] = useState(0);
   const [hint, setHint] = useState(false);
   const [result, setResult] = useState<SpeakResult | null>(null);

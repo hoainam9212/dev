@@ -5,7 +5,7 @@ import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
 import { Mascot, type Mood } from '../../components/Mascot';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 
 export function pickShadowing(sentences: Sentence[], total: number, rng: () => number = Math.random): Sentence[] {
@@ -18,6 +18,7 @@ export function moodForScore(score: number): Mood {
 }
 
 export function Shadowing({ level, total = 10 }: { level: Level; total?: number }) {
+  useStopSpeechOnUnmount();
   const { data, error, loading } = useSentences(level);
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps

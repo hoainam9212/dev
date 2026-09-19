@@ -3,13 +3,14 @@ import type { Vocab } from '@nihongo/shared';
 import { TypingAnswer } from '../../components/TypingAnswer';
 import { Mascot } from '../../components/Mascot';
 import { shuffle } from '../../lib/quiz';
-import { speak } from '../../lib/tts';
+import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
 
 const XP = 2;
 
 export function VocabTyping({ vocab, total = 10 }: { vocab: Vocab[]; total?: number }) {
+  useStopSpeechOnUnmount();
   const [seed, setSeed] = useState(0);
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);

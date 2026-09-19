@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { stripFurigana, type ReadingLesson } from '@nihongo/shared';
 import { Furigana } from '../../components/Furigana';
 import { QuizRunner, type QuizQuestion } from '../../components/QuizRunner';
-import { speak, stopSpeaking } from '../../lib/tts';
+import { speak, stopSpeaking, useStopSpeechOnUnmount } from '../../lib/tts';
 
 interface Props {
   lesson: ReadingLesson;
@@ -10,6 +10,7 @@ interface Props {
 }
 
 export function ReadingLessonView({ lesson, onBack }: Props) {
+  useStopSpeechOnUnmount();
   const [showFuri, setShowFuri] = useState(true);
   const [rate, setRate] = useState(0.9);
   const [popover, setPopover] = useState<ReadingLesson['vocab'][number] | null>(null);
