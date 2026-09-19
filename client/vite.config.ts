@@ -10,6 +10,8 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      // registered from main.tsx so the native (Capacitor) app can skip it
+      injectRegister: null,
       includeAssets: ['icons/*.png'],
       manifest: {
         name: 'Nihongo Sensei',
@@ -31,9 +33,15 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
           {
+            // Network first: always show the latest lessons when online; cached copy only offline/slow.
+            // (CacheFirst kept serving outdated lesson files forever after a content update.)
             urlPattern: ({ url }) => url.pathname.startsWith('/content/'),
-            handler: 'CacheFirst',
-            options: { cacheName: 'content', expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 90 } },
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'content-v2',
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 90 },
+            },
           },
           {
             urlPattern: ({ url }) => url.origin.includes('fonts.googleapis.com') || url.origin.includes('fonts.gstatic.com'),

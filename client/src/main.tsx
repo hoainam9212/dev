@@ -4,8 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './styles/theme.css';
 import { installSync } from './sync/sync';
+import { setupPwa } from './pwa';
 
 installSync();
+void setupPwa();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
