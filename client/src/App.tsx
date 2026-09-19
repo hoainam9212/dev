@@ -5,6 +5,7 @@ import { AppShell } from './app/AppShell';
 import { WelcomePage } from './pages/WelcomePage';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
+import { SettingsPage } from './pages/SettingsPage';
 import { Mochi } from './components/Mochi';
 
 function RequireProfile({ children }: { children: ReactNode }) {
@@ -33,6 +34,7 @@ export default function App() {
         <Route element={<RequireProfile><AppShell /></RequireProfile>}>
           <Route index element={<HomePage />} />
           <Route path="/lesson/:id" element={<LessonRoute />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
