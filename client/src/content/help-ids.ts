@@ -7,4 +7,6 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'player.hint': { label: 'Gợi ý', vi: 'Xem gợi ý từng bậc. Dùng gợi ý sẽ bớt một chút sao.' },
   'player.check': { label: 'Kiểm tra', vi: 'Nhờ Mochi chấm bài bạn vừa làm.' },
   'player.close': { label: 'Thoát bài', vi: 'Quay về bản đồ. Bài đang học dở sẽ không được lưu.' },
+  'mouse.target': { label: 'Mục tiêu', vi: 'Đưa chuột tới đây rồi thao tác theo đề bài.' },
+  'mouse.basket': { label: 'Giỏ cá', vi: 'Kéo cá thả vào giỏ này.' },
 };
