@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import fastifyStatic from '@fastify/static';
 import { buildApp } from './app.js';
 import { openDb } from './db.js';
+import { registerClient } from './static.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT ?? 8787);
@@ -18,11 +18,7 @@ async function main() {
   const app = await buildApp({ db: openDb(DB_PATH), jwtSecret: JWT_SECRET, logger: true });
 
   if (fs.existsSync(CLIENT_DIST)) {
-    await app.register(fastifyStatic, { root: CLIENT_DIST, prefix: '/', wildcard: false });
-    app.setNotFoundHandler(async (req, reply) => {
-      if (req.url.startsWith('/api/')) return reply.code(404).send({ error: 'Không tìm thấy.' });
-      return reply.sendFile('index.html');
-    });
+    await registerClient(app, CLIENT_DIST);
     app.log.info(`serving client from ${CLIENT_DIST}`);
   }
 
