@@ -39,6 +39,9 @@ export function parseBackup(text: string): BackupFile {
       throw new Error(`File sao lưu thiếu dữ liệu "${name}".`);
     }
   }
+  if (typeof b.exportedAt !== 'string') {
+    throw new Error('File sao lưu thiếu ngày xuất file (exportedAt).');
+  }
   return b as BackupFile;
 }
 

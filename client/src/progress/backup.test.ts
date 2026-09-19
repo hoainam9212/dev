@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { db } from '../db/db';
 import { createProfile } from '../db/profile';
+import { TABLES } from '../db/db';
 import { backupFileName, exportBackup, importBackup, parseBackup } from './backup';
 import { resetDb } from '../test/utils';
 
@@ -34,5 +35,14 @@ describe('backup', () => {
     expect(() => parseBackup('{"app":"other"}')).toThrow(/không phải file sao lưu/);
     expect(() => parseBackup('{"app":"office-neko","schemaVersion":9,"tables":{}}')).toThrow(/không được hỗ trợ/);
     expect(() => parseBackup('{"app":"office-neko","schemaVersion":1,"tables":{}}')).toThrow(/thiếu dữ liệu/);
+  });
+
+  it('rejects a file with all tables but a missing/invalid exportedAt instead of crashing later', () => {
+    const tables = Object.fromEntries(TABLES.map((t) => [t, []]));
+    const withoutExportedAt = JSON.stringify({ app: 'office-neko', schemaVersion: 1, tables });
+    expect(() => parseBackup(withoutExportedAt)).toThrow(/exportedAt/);
+
+    const withNumericExportedAt = JSON.stringify({ app: 'office-neko', schemaVersion: 1, tables, exportedAt: 123 });
+    expect(() => parseBackup(withNumericExportedAt)).toThrow(/exportedAt/);
   });
 });

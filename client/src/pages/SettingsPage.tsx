@@ -52,9 +52,13 @@ export function SettingsPage() {
 
   const confirmImport = async () => {
     if (!pending) return;
-    await importBackup(pending);
-    setPending(null);
-    setMessage('Đã khôi phục dữ liệu từ file sao lưu. 🎉');
+    try {
+      await importBackup(pending);
+      setPending(null);
+      setMessage('Đã khôi phục dữ liệu từ file sao lưu. 🎉');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    }
   };
 
   return (
@@ -117,7 +121,18 @@ export function SettingsPage() {
       <Section title="Sao lưu tiến độ">
         <p className="text-muted">Tiến độ nằm trong trình duyệt của máy này. Hãy tải file sao lưu để giữ an toàn hoặc chuyển sang máy khác.</p>
         <div className="flex flex-wrap items-center gap-3">
-          <button type="button" className="btn-mint" onClick={async () => downloadJson(backupFileName(), await exportBackup())}>
+          <button
+            type="button"
+            className="btn-mint"
+            onClick={async () => {
+              setError(null);
+              try {
+                downloadJson(backupFileName(), await exportBackup());
+              } catch (e) {
+                setError(e instanceof Error ? e.message : String(e));
+              }
+            }}
+          >
             Tải file sao lưu
           </button>
           <label className="btn-soft cursor-pointer">
