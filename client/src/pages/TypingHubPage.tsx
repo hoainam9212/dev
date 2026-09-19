@@ -6,7 +6,7 @@ import { WpmChart } from '../typing/WpmChart';
 import { KeyHeatmap } from '../typing/KeyHeatmap';
 
 export function TypingHubPage() {
-  const { runs, stats } = useTypingHub(20);
+  const { runs, stats, error } = useTypingHub(20);
   const best = runs.reduce((m, r) => Math.max(m, r.wpm), 0);
   const weak = weakestKeys(stats, 5);
   return (
@@ -18,6 +18,11 @@ export function TypingHubPage() {
           <p className="text-muted">Mỗi ngày vài phút, ngón tay sẽ nhớ đường đi của phím.</p>
         </div>
       </section>
+      {error && (
+        <p role="alert" className="rounded-2xl bg-rose/30 p-3 text-sm text-rose-ink">
+          Không tải được dữ liệu luyện gõ. Thử tải lại trang nhé.
+        </p>
+      )}
       <div className="grid gap-4 sm:grid-cols-2">
         <section className="card space-y-3 p-5">
           <h2 className="text-xl font-extrabold">⏱️ Kiểm tra tốc độ</h2>
