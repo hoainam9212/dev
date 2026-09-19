@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { db } from '../db/db';
 import { createProfile } from '../db/profile';
 import { LessonPage } from './LessonPage';
@@ -42,10 +42,21 @@ describe('LessonPage', () => {
 
   it('shows a saving placeholder then a save-error note instead of crashing when recording fails', async () => {
     const record = await import('../progress/record');
-    vi.mocked(record.recordLessonResult).mockRejectedValueOnce(new Error('boom'));
+    // Hold recordLessonResult pending (instead of an immediately-rejected promise) so the
+    // "saving" state is observed deterministically, then reject it ourselves inside act()
+    // so the resulting setDone() update is provably wrapped — no race, no act() warning.
+    let rejectSave!: (err: unknown) => void;
+    const pending = new Promise<{ xpGained: number; prevStars: number }>((_, reject) => {
+      rejectSave = reject;
+    });
+    vi.mocked(record.recordLessonResult).mockReturnValueOnce(pending);
     renderWithProfile(<LessonPage id="basics.welcome" />, { route: '/lesson/basics.welcome' });
     await finishWelcomeLesson();
     expect(screen.getByText('Đang lưu kết quả…')).toBeInTheDocument();
+    await act(async () => {
+      rejectSave(new Error('boom'));
+      await pending.catch(() => {});
+    });
     expect(await screen.findByRole('alert')).toHaveTextContent('Chưa lưu được kết quả');
     expect(screen.getByText('Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!')).toBeInTheDocument();
     await waitFor(async () => expect((await db.progress.get('basics.welcome'))?.stars).toBeUndefined());
