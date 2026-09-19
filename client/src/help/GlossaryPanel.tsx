@@ -14,7 +14,7 @@ function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () =>
       <button type="button" className="btn !px-3 !py-1 text-sm" onClick={onBack}>← Quay lại</button>
       <h2 className="text-2xl font-extrabold">{entry.term}</h2>
       <p className="text-muted">Cách đọc: /{entry.say}/</p>
-      <p className="text-lg font-bold text-rose">{entry.vi}</p>
+      <p className="text-lg font-bold text-rose-ink">{entry.vi}</p>
       <RichText text={entry.explain} />
       {entry.image && <img src={`/img/glossary/${entry.image}`} alt={entry.term} className="max-h-48 rounded-2xl" />}
       {lessons.length > 0 && (
@@ -23,7 +23,7 @@ function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () =>
           <ul className="list-disc pl-6">
             {lessons.map((l) => (
               <li key={l!.id}>
-                <Link to={`/lesson/${l!.id}`} onClick={close} className="text-rose underline">{l!.title}</Link>
+                <Link to={`/lesson/${l!.id}`} onClick={close} className="text-rose-ink underline">{l!.title}</Link>
               </li>
             ))}
           </ul>
@@ -57,7 +57,7 @@ export function GlossaryPanel() {
       {list.length === 0 ? (
         <p className="text-muted">
           Chưa có từ này trong Từ điển. Thử{' '}
-          <button type="button" className="font-bold text-rose underline" onClick={() => openAsk(q)}>Hỏi Mèo</button> nhé!
+          <button type="button" className="font-bold text-rose-ink underline" onClick={() => openAsk(q)}>Hỏi Mèo</button> nhé!
         </p>
       ) : (
         <ul className="space-y-2">

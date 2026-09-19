@@ -58,14 +58,14 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
       {report && (
         <ul aria-label="Kết quả chấm" className="space-y-1">
           {report.results.map((r, i) => (
-            <li key={i} className={r.ok ? 'text-excel' : 'text-rose'}>{r.ok ? '✅' : '❌'} {r.messageVi}</li>
+            <li key={i} className={r.ok ? 'text-excel-ink' : 'text-rose-ink'}>{r.ok ? '✅' : '❌'} {r.messageVi}</li>
           ))}
         </ul>
       )}
       <div className="flex flex-wrap items-center gap-3">
         {state.stepDone ? (
           <>
-            <span className="flex items-center gap-2 font-bold text-excel">
+            <span className="flex items-center gap-2 font-bold text-excel-ink">
               <Mochi mood="happy" size={48} animated={false} /> Giỏi quá! Bạn làm đúng rồi 🎉
             </span>
             <button type="button" className="btn-primary" onClick={() => dispatch({ type: 'next' })} autoFocus>Tiếp tục →</button>

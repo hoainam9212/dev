@@ -5,6 +5,7 @@
   --font-sans: "Nunito Variable", "Segoe UI", system-ui, sans-serif;
   --color-peach: #FFB38A;
   --color-rose: #FF7A9A;
+  --color-rose-ink: #B0164A;
   --color-mint: #8FE3CF;
   --color-sky: #A0D8FF;
   --color-lavender: #C8B6FF;
@@ -12,7 +13,9 @@
   --color-cream: #FFF9F2;
   --color-word: #7FB2FF;
   --color-excel: #3FB871;
+  --color-excel-ink: #1E7B45;
   --color-ppt: #FFA878;
+  --color-primary-btn: #D6336C;
   --color-bg: var(--app-bg);
   --color-surface: var(--app-surface);
   --color-text: var(--app-text);
@@ -25,7 +28,7 @@
   --app-bg: #FFF9F2;
   --app-surface: #FFFFFF;
   --app-text: #3B2E4A;
-  --app-muted: #7D7090;
+  --app-muted: #6A5D7B;
   color-scheme: light;
   font-size: 17px;
 }
@@ -50,7 +53,7 @@ body {
   @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
 }
 .btn { @apply bg-white text-text shadow-sm hover:bg-cream; }
-.btn-primary { @apply bg-rose text-white hover:brightness-110; }
+.btn-primary { @apply bg-primary-btn text-white hover:brightness-110; }
 .btn-soft { @apply bg-peach/30 text-text hover:bg-peach/50; }
 .btn-mint { @apply bg-mint text-text hover:brightness-105; }
 

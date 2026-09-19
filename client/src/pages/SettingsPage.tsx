@@ -134,8 +134,8 @@ export function SettingsPage() {
             />
           </label>
         </div>
-        {error && <p role="alert" className="font-semibold text-rose">{error}</p>}
-        {message && <p className="font-semibold text-excel">{message}</p>}
+        {error && <p role="alert" className="font-semibold text-rose-ink">{error}</p>}
+        {message && <p className="font-semibold text-excel-ink">{message}</p>}
         {pending && (
           <div role="alertdialog" aria-label="Xác nhận khôi phục" className="space-y-3 rounded-2xl bg-butter/40 p-4">
             <p>Dữ liệu hiện tại sẽ được <strong>thay thế</strong> bằng dữ liệu trong file (lưu ngày {pending.exportedAt.slice(0, 10)}). Tiếp tục?</p>

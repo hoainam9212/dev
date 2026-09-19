@@ -77,7 +77,7 @@ export function WelcomePage() {
               <button key={o.value} type="button" role="radio" aria-checked={os === o.value} onClick={() => setOs(o.value)} className={card(os === o.value)}>
                 <span className="block text-xl font-extrabold">{o.title}</span>
                 <span className="block text-muted">{o.desc}</span>
-                {guessed === o.value && <span className="mt-1 block text-sm text-rose">Mochi đoán máy bạn là loại này</span>}
+                {guessed === o.value && <span className="mt-1 block text-sm text-rose-ink">Mochi đoán máy bạn là loại này</span>}
               </button>
             ))}
           </div>

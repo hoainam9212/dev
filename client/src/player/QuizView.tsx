@@ -33,7 +33,7 @@ export function QuizView({ step, done, onPick, onNext }: { step: QuizStep; done:
           );
         })}
       </div>
-      {wrong.length > 0 && !done && <p className="font-semibold text-rose">Chưa đúng rồi, thử lại nhé! 💪</p>}
+      {wrong.length > 0 && !done && <p className="font-semibold text-rose-ink">Chưa đúng rồi, thử lại nhé! 💪</p>}
       {done && (
         <div className="space-y-3">
           <div className="flex items-start gap-3 rounded-2xl bg-mint/30 p-3">
