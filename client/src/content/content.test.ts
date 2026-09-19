@@ -8,7 +8,7 @@ const lessons = Object.values(LESSONS);
 function textsOf(l: Lesson): string[] {
   return l.steps.flatMap((s) =>
     s.kind === 'explain' ? [s.body] : s.kind === 'quiz' ? [s.question, ...s.choices, s.why] : [s.task, s.hints[0], ...s.hints[2]],
-  );
+  ).concat(l.osNote ? [l.osNote.win ?? '', l.osNote.mac ?? ''] : []);
 }
 
 describe('content', () => {

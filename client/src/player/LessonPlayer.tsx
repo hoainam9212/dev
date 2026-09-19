@@ -2,6 +2,7 @@ import { useEffect, useMemo, useReducer, useRef } from 'react';
 import { computeStars, type Lesson } from '@office-neko/shared';
 import { useOs } from '../db/profile';
 import { Mochi } from '../components/Mochi';
+import { InlineText } from '../help/RichText';
 import { initPlayer, playerReducer, type HintLevel } from './playerReducer';
 import { ExplainView } from './ExplainView';
 import { QuizView } from './QuizView';
@@ -47,7 +48,7 @@ export function LessonPlayer({ lesson, onFinish, onExit }: { lesson: Lesson; onF
         </div>
         <span className="text-sm font-bold text-muted">{Math.min(state.index + 1, total)}/{total}</span>
       </header>
-      {note && <p className="rounded-2xl bg-sky/30 p-3 text-sm">💡 {note}</p>}
+      {note && <p className="rounded-2xl bg-sky/30 p-3 text-sm">💡 <InlineText text={note} /></p>}
       {state.finished ? (
         <div className="flex flex-col items-center gap-2 p-10 text-center">
           <Mochi mood="neutral" size={80} />

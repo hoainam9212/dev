@@ -4,7 +4,11 @@ export const TRACKS: Track[] = [
   {
     id: 'basics', order: 0, title: 'Làm quen máy tính', emoji: '🖱️', color: '#FFB38A',
     blurb: 'Cầm chuột, bấm phím, sắp xếp thư mục và file.',
-    chapters: [{ id: 'basics.start', title: 'Bắt đầu cùng Mochi', lessonIds: ['basics.welcome'] }],
+    chapters: [
+      { id: 'basics.start', title: 'Bắt đầu cùng Mochi', lessonIds: ['basics.welcome'] },
+      { id: 'basics.mouse', title: 'Cầm chuột', lessonIds: ['basics.mouse.click', 'basics.mouse.double', 'basics.mouse.right', 'basics.mouse.drag', 'basics.mouse.scroll'] },
+      { id: 'basics.keys', title: 'Làm quen bàn phím', lessonIds: ['basics.keys.special', 'basics.keys.shortcuts'] },
+    ],
   },
   { id: 'typing', order: 1, title: 'Gõ phím 10 ngón', emoji: '⌨️', color: '#A0D8FF', blurb: 'Gõ nhanh, gõ đúng, gõ tiếng Việt có dấu.', chapters: [] },
   { id: 'word', order: 2, title: 'Word – Soạn thảo văn bản', emoji: '📝', color: '#7FB2FF', blurb: 'Viết đơn, định dạng chữ, chèn bảng và ảnh.', chapters: [] },

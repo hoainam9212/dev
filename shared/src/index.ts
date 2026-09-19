@@ -13,3 +13,5 @@ export * as typingSim from './sims/typingSession';
 export * as fishGame from './games/fish';
 
 export const APP_NAME = 'Tin Học Cùng Mochi';
+
+export type { TreeSpec } from './vfs';
