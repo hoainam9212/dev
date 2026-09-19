@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { HelpIdEntry } from '@office-neko/shared';
 import { HELP_IDS } from '../content';
+import { placePopover, type PopoverPosition } from './placement';
 
 interface Tip {
   entry: HelpIdEntry;
-  x: number;
-  y: number;
+  anchor: DOMRect;
 }
 
 export function HelpTooltipLayer() {
   const [tip, setTip] = useState<Tip | null>(null);
+  const [pos, setPos] = useState<PopoverPosition | null>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     let timer: number | undefined;
     let current: Element | null = null;
@@ -17,8 +20,7 @@ export function HelpTooltipLayer() {
       const id = el.getAttribute('data-help-id');
       const entry = id ? HELP_IDS[id] : undefined;
       if (!entry) return;
-      const r = el.getBoundingClientRect();
-      setTip({ entry, x: r.left + r.width / 2, y: r.bottom + 8 });
+      setTip({ entry, anchor: el.getBoundingClientRect() });
     };
     const over = (e: Event) => {
       const target = e.target instanceof Element ? e.target : null;
@@ -46,12 +48,23 @@ export function HelpTooltipLayer() {
       document.removeEventListener('scroll', hide, true);
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (!tip) {
+      setPos(null);
+      return;
+    }
+    const size = tooltipRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 };
+    setPos(placePopover(tip.anchor, size, { width: window.innerWidth, height: window.innerHeight }, { align: 'center' }));
+  }, [tip]);
+
   if (!tip) return null;
   return (
     <div
+      ref={tooltipRef}
       role="tooltip"
-      className="pointer-events-none fixed z-[70] max-w-xs -translate-x-1/2 rounded-2xl bg-text px-3 py-2 text-sm text-white shadow-lg"
-      style={{ left: tip.x, top: tip.y }}
+      className="pointer-events-none fixed z-[70] max-w-xs rounded-2xl bg-text px-3 py-2 text-sm text-white shadow-lg"
+      style={{ left: pos?.left ?? 0, top: pos?.top ?? 0, visibility: pos ? 'visible' : 'hidden' }}
     >
       <div className="font-extrabold">{tip.entry.label}</div>
       <div>{tip.entry.vi}</div>
