@@ -1,0 +1,10 @@
+.mochi-blink { animation: mochi-blink 4s infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes mochi-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.mochi-bob { animation: mochi-bob 3s ease-in-out infinite; }
+@keyframes mochi-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}

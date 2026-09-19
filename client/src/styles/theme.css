@@ -1,1 +1,89 @@
 @import "tailwindcss";
+@import "@fontsource-variable/nunito";
+
+@theme {
+  --font-sans: "Nunito Variable", "Segoe UI", system-ui, sans-serif;
+  --color-peach: #FFB38A;
+  --color-rose: #FF7A9A;
+  --color-mint: #8FE3CF;
+  --color-sky: #A0D8FF;
+  --color-lavender: #C8B6FF;
+  --color-butter: #FFE08A;
+  --color-cream: #FFF9F2;
+  --color-word: #7FB2FF;
+  --color-excel: #3FB871;
+  --color-ppt: #FFA878;
+  --color-bg: var(--app-bg);
+  --color-surface: var(--app-surface);
+  --color-text: var(--app-text);
+  --color-muted: var(--app-muted);
+  --radius-card: 24px;
+  --shadow-soft: 0 8px 24px rgba(255, 122, 154, 0.14);
+}
+
+:root {
+  --app-bg: #FFF9F2;
+  --app-surface: #FFFFFF;
+  --app-text: #3B2E4A;
+  --app-muted: #7D7090;
+  color-scheme: light;
+  font-size: 17px;
+}
+:root[data-font="lg"] { font-size: 19px; }
+:root[data-font="xl"] { font-size: 21px; }
+
+html, body, #root { min-height: 100%; }
+body {
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: var(--app-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn, .btn-primary, .btn-soft, .btn-mint {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
+}
+.btn { @apply bg-white text-text shadow-sm hover:bg-cream; }
+.btn-primary { @apply bg-rose text-white hover:brightness-110; }
+.btn-soft { @apply bg-peach/30 text-text hover:bg-peach/50; }
+.btn-mint { @apply bg-mint text-text hover:brightness-105; }
+
+.kbd {
+  @apply inline-flex min-w-[1.8em] items-center justify-center rounded-md border border-b-4 border-muted/40 bg-surface px-1.5 py-0.5 text-[0.85em] font-bold;
+}
+
+.term {
+  @apply cursor-help font-semibold underline decoration-rose decoration-dotted decoration-2 underline-offset-4;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.animate-shake { animation: shake 0.3s ease-in-out 2; }
+
+@keyframes spotlight-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 154, 0.55); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 122, 154, 0); }
+}
+.spotlight-ring { animation: spotlight-pulse 1.4s ease-in-out infinite; }
+@keyframes paw-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
+}
+.spotlight-paw { animation: paw-bounce 0.9s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+:root[data-motion="reduce"] *, :root[data-motion="reduce"] *::before, :root[data-motion="reduce"] *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
