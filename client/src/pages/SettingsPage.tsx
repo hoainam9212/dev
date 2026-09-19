@@ -71,7 +71,14 @@ export function SettingsPage() {
             value={name}
             maxLength={40}
             onChange={(e) => setName(e.target.value)}
-            onBlur={() => name.trim() && name.trim() !== profile.name && updateProfile({ name: name.trim() })}
+            onBlur={() => {
+              const trimmed = name.trim();
+              if (!trimmed) {
+                setName(profile.name);
+                return;
+              }
+              if (trimmed !== profile.name) updateProfile({ name: trimmed });
+            }}
             className="w-full rounded-full border-2 border-peach/60 bg-white px-4 py-2 outline-none focus:border-rose"
           />
         </label>

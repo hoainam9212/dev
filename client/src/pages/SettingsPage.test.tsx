@@ -42,6 +42,15 @@ describe('SettingsPage', () => {
     await waitFor(async () => expect((await db.profile.get('me'))?.name).toBe('Chi'));
   });
 
+  it('resets the name field to the stored name when cleared and blurred', async () => {
+    renderPage();
+    const input = await screen.findByLabelText('Tên của bạn');
+    fireEvent.change(input, { target: { value: '' } });
+    fireEvent.blur(input);
+    await waitFor(() => expect(input).toHaveValue('An'));
+    expect((await db.profile.get('me'))?.name).toBe('An');
+  });
+
   it('downloads a backup file', async () => {
     const backup = await import('../progress/backup');
     renderPage();
