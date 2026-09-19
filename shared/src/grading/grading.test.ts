@@ -26,8 +26,9 @@ describe('gradeWith', () => {
 });
 
 describe('grade registry', () => {
+  const saved = GRADERS.mouse;
   afterEach(() => {
-    delete GRADERS.mouse;
+    GRADERS.mouse = saved;
   });
   it('looks up the grader by sim kind', () => {
     GRADERS.mouse = atLeast;
@@ -35,5 +36,8 @@ describe('grade registry', () => {
   });
   it('throws for sims without a grader', () => {
     expect(() => grade('excel', {}, [{}])).toThrow(/excel/);
+  });
+  it('registers the real mouse grader', () => {
+    expect(saved).toBeDefined();
   });
 });
