@@ -32,4 +32,12 @@ describe('App', () => {
     expect(screen.getByRole('link', { name: 'Học tiếp ▶' })).toHaveAttribute('href', '/lesson/basics.welcome');
     expect(screen.getByRole('button', { name: 'Trợ giúp' })).toBeInTheDocument();
   });
+
+  it('opens help with F1 even on the welcome screen (no profile yet)', async () => {
+    renderApp('/welcome');
+    expect(await screen.findByRole('button', { name: 'Bắt đầu nào!' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Trợ giúp' })).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: 'F1' });
+    expect(screen.getByRole('dialog', { name: 'Trợ giúp' })).toBeInTheDocument();
+  });
 });

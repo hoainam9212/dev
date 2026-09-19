@@ -3,9 +3,6 @@ import { levelFromXp } from '@office-neko/shared';
 import { useProfile } from '../db/profile';
 import { useStreak } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
-import { HelpButton } from '../help/HelpButton';
-import { HelpDrawer } from '../help/HelpDrawer';
-import { HelpTooltipLayer } from '../help/HelpTooltipLayer';
 
 export function AppShell() {
   const profile = useProfile()!;
@@ -28,9 +25,6 @@ export function AppShell() {
       <main>
         <Outlet />
       </main>
-      <HelpButton />
-      <HelpDrawer />
-      <HelpTooltipLayer />
     </div>
   );
 }

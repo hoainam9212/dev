@@ -8,6 +8,9 @@ import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { Mochi } from './components/Mochi';
+import { HelpButton } from './help/HelpButton';
+import { HelpDrawer } from './help/HelpDrawer';
+import { HelpTooltipLayer } from './help/HelpTooltipLayer';
 
 function RequireProfile({ children }: { children: ReactNode }) {
   const profile = useProfile();
@@ -40,6 +43,9 @@ export default function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <HelpButton />
+        <HelpDrawer />
+        <HelpTooltipLayer />
       </ProfileProvider>
     </ErrorBoundary>
   );
