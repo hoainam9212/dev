@@ -4,6 +4,7 @@ import { NAV, MOBILE_PRIMARY } from './nav';
 import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
 import { SyncDot } from './SyncDot';
+import { TtsNotice } from './TtsNotice';
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-3 rounded-full px-4 py-2 font-bold transition ${
@@ -18,6 +19,7 @@ export function AppShell() {
   return (
     <div className="min-h-screen md:flex">
       <Celebration />
+      <TtsNotice />
       <aside className="hidden md:sticky md:top-0 md:flex md:h-screen md:w-64 md:flex-col md:gap-1 md:overflow-y-auto md:border-r md:border-sakura/40 md:bg-surface md:p-4">
         <div className="mb-4 flex items-center gap-2 px-2">
           <span className="text-2xl">🌸</span>

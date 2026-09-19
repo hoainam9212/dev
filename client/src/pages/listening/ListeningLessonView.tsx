@@ -61,7 +61,7 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
         />
       </div>
       <h2 className="text-2xl font-black">{lesson.title}</h2>
-      {!canSpeak() && <p className="text-sm text-rose">Trình duyệt này không hỗ trợ đọc văn bản. Hãy dùng Chrome hoặc Edge.</p>}
+      {!canSpeak() && <p className="text-sm text-rose">Thiết bị này không hỗ trợ đọc văn bản. Trên máy tính hãy dùng Chrome hoặc Edge.</p>}
 
       {mode === 'listen' && (
         <div className="space-y-3">

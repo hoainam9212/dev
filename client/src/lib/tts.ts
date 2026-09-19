@@ -1,3 +1,9 @@
+import { Capacitor } from '@capacitor/core';
+import { TextToSpeech, QueueStrategy } from '@capacitor-community/text-to-speech';
+
+// Android WebView does not implement window.speechSynthesis (crbug.com/40417848),
+// so inside the native app speech goes through the system TTS engine via a Capacitor plugin.
+
 let defaultRate = 0.9;
 
 /** Default speaking rate (set from the settings store). */
@@ -5,18 +11,66 @@ export function setDefaultRate(r: number): void {
   defaultRate = r;
 }
 
+export type TtsError = 'no-japanese-voice' | 'error';
+type ErrorListener = (e: TtsError) => void;
+const errorListeners = new Set<ErrorListener>();
+
+/** Subscribe to speech failures (e.g. no Japanese voice installed). Returns an unsubscribe function. */
+export function onTtsError(l: ErrorListener): () => void {
+  errorListeners.add(l);
+  return () => errorListeners.delete(l);
+}
+function emitError(e: TtsError) {
+  errorListeners.forEach((l) => l(e));
+}
+
+const isNative = () => Capacitor.isNativePlatform();
+const hasWebSpeech = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
+
 export function canSpeak(): boolean {
-  return typeof window !== 'undefined' && 'speechSynthesis' in window;
+  return isNative() || hasWebSpeech();
 }
 
-export function stopSpeaking(): void {
-  if (canSpeak()) window.speechSynthesis.cancel();
+// ---------------- native (Android/iOS) ----------------
+
+let jaSupported: Promise<boolean> | null = null;
+function checkJapanese(lang: string): Promise<boolean> {
+  if (!jaSupported) {
+    const p = TextToSpeech.isLanguageSupported({ lang })
+      .then((r) => r.supported)
+      .catch(() => true); // unknown → try anyway
+    jaSupported = p;
+    void p.then((ok) => {
+      if (!ok && jaSupported === p) jaSupported = null; // re-check later (user may install the voice)
+    });
+  }
+  return jaSupported;
 }
 
-function makeUtterance(text: string, opts: { rate?: number; lang?: string } = {}): SpeechSynthesisUtterance {
+/** Speak one line natively; resolves when finished (or on failure). */
+async function speakNative(text: string, lang: string, rate: number): Promise<void> {
+  if (!(await checkJapanese(lang))) {
+    emitError('no-japanese-voice');
+    return;
+  }
+  try {
+    await TextToSpeech.speak({ text, lang, rate, pitch: 1, volume: 1, queueStrategy: QueueStrategy.Flush });
+  } catch {
+    emitError('error');
+  }
+}
+
+/** Opens Android's "install voice data" screen (native only). */
+export async function openVoiceInstall(): Promise<void> {
+  if (isNative()) await TextToSpeech.openInstall().catch(() => {});
+}
+
+// ---------------- web ----------------
+
+function makeUtterance(text: string, opts: { rate: number; lang: string }): SpeechSynthesisUtterance {
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = opts.lang ?? 'ja-JP';
-  u.rate = opts.rate ?? defaultRate;
+  u.lang = opts.lang;
+  u.rate = opts.rate;
   const voice = window.speechSynthesis
     .getVoices()
     .find((v) => v.lang.replace('_', '-').toLowerCase().startsWith('ja'));
@@ -24,11 +78,24 @@ function makeUtterance(text: string, opts: { rate?: number; lang?: string } = {}
   return u;
 }
 
-/** Speak Japanese text with the browser TTS. Returns false when unsupported. */
+// ---------------- public API ----------------
+
+export function stopSpeaking(): void {
+  if (isNative()) void TextToSpeech.stop().catch(() => {});
+  else if (hasWebSpeech()) window.speechSynthesis.cancel();
+}
+
+/** Speak Japanese text. Returns false when no speech engine is available. */
 export function speak(text: string, opts: { rate?: number; lang?: string } = {}): boolean {
-  if (!canSpeak()) return false;
+  const lang = opts.lang ?? 'ja-JP';
+  const rate = opts.rate ?? defaultRate;
+  if (isNative()) {
+    void speakNative(text, lang, rate);
+    return true;
+  }
+  if (!hasWebSpeech()) return false;
   window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(makeUtterance(text, opts));
+  window.speechSynthesis.speak(makeUtterance(text, { rate, lang }));
   return true;
 }
 
@@ -52,15 +119,37 @@ export function speakSequence(
     resolveDone();
     return { cancel: () => {}, done };
   }
-  window.speechSynthesis.cancel();
   const gap = opts.gapMs ?? 350;
+  const lang = opts.lang ?? 'ja-JP';
+  const rate = opts.rate ?? defaultRate;
+
+  if (isNative()) {
+    void (async () => {
+      for (let i = 0; i < lines.length && !cancelled; i++) {
+        opts.onLine?.(i);
+        await speakNative(lines[i]!, lang, rate);
+        if (!cancelled && gap > 0 && i < lines.length - 1) await new Promise((r) => setTimeout(r, gap));
+      }
+      resolveDone();
+    })();
+    return {
+      cancel: () => {
+        cancelled = true;
+        void TextToSpeech.stop().catch(() => {});
+        resolveDone();
+      },
+      done,
+    };
+  }
+
+  window.speechSynthesis.cancel();
   const playFrom = (i: number) => {
     if (cancelled || i >= lines.length) {
       resolveDone();
       return;
     }
     opts.onLine?.(i);
-    const u = makeUtterance(lines[i]!, opts);
+    const u = makeUtterance(lines[i]!, { rate, lang });
     const next = () => {
       if (cancelled) return resolveDone();
       setTimeout(() => playFrom(i + 1), gap);
