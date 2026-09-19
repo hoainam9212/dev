@@ -11,12 +11,16 @@ export function LessonPage({ id }: { id: string }) {
   const lesson = LESSONS[id];
   const navigate = useNavigate();
   const os = useOs();
-  const [done, setDone] = useState<{ result: LessonResult; xpGained: number } | null>(null);
+  const [done, setDone] = useState<{ result: LessonResult; xpGained: number; saveError?: string } | null>(null);
 
   const onFinish = useCallback(
     async (result: LessonResult) => {
-      const { xpGained } = await recordLessonResult({ lessonId: id, stars: result.stars, hintsUsed: result.maxHint, timeMs: result.timeMs });
-      setDone({ result, xpGained });
+      try {
+        const { xpGained } = await recordLessonResult({ lessonId: id, stars: result.stars, hintsUsed: result.maxHint, timeMs: result.timeMs });
+        setDone({ result, xpGained });
+      } catch {
+        setDone({ result, xpGained: 0, saveError: 'Chưa lưu được kết quả bài học này, nhưng bạn vẫn có thể học tiếp. Hãy thử lại sau nhé.' });
+      }
     },
     [id],
   );
@@ -30,6 +34,16 @@ export function LessonPage({ id }: { id: string }) {
       </div>
     );
   }
-  if (done) return <FinishView lesson={lesson} result={done.result} xpGained={done.xpGained} nextId={nextLessonId(TRACKS, LESSONS, os, id)} />;
+  if (done) {
+    return (
+      <FinishView
+        lesson={lesson}
+        result={done.result}
+        xpGained={done.xpGained}
+        nextId={nextLessonId(TRACKS, LESSONS, os, id)}
+        saveError={done.saveError}
+      />
+    );
+  }
   return <LessonPlayer lesson={lesson} onFinish={onFinish} onExit={onExit} />;
 }

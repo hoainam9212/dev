@@ -24,6 +24,8 @@ export function WelcomePage() {
   const [guessed] = useState<OS>(guessOs);
   const [os, setOs] = useState<OS>(guessed);
   const [goal, setGoal] = useState<Goal>(10);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (profile) return <Navigate to="/" replace />;
 
@@ -32,7 +34,14 @@ export function WelcomePage() {
   // Gọi navigate() thủ công ở đây tạo ra tình huống đua (điều hướng trước khi
   // profile cập nhật) khiến app nảy lại "/welcome" rồi mới quay lại "/".
   const finish = async () => {
-    await createProfile({ name, os, dailyGoalMin: goal });
+    setSaving(true);
+    setError(null);
+    try {
+      await createProfile({ name, os, dailyGoalMin: goal });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+      setSaving(false);
+    }
   };
 
   const card = (selected: boolean) =>
@@ -100,9 +109,12 @@ export function WelcomePage() {
             ))}
           </div>
           <div className="flex gap-3">
-            <button type="button" className="btn" onClick={() => setStep(2)}>← Quay lại</button>
-            <button type="button" className="btn-primary" onClick={finish}>Vào học thôi! 🎉</button>
+            <button type="button" className="btn" onClick={() => setStep(2)} disabled={saving}>← Quay lại</button>
+            <button type="button" className="btn-primary" onClick={finish} disabled={saving}>
+              {saving ? 'Đang lưu…' : 'Vào học thôi! 🎉'}
+            </button>
           </div>
+          {error && <p role="alert" className="font-semibold text-rose-ink">{error}</p>}
         </div>
       )}
     </div>

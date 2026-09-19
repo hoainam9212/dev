@@ -6,7 +6,9 @@ import { Mochi } from '../components/Mochi';
 import { useSound } from '../lib/sound';
 import type { LessonResult } from './LessonPlayer';
 
-export function FinishView({ lesson, result, xpGained, nextId }: { lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null }) {
+export function FinishView({
+  lesson, result, xpGained, nextId, saveError,
+}: { lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null; saveError?: string }) {
   const sound = useSound();
   useEffect(() => sound('finish'), [sound]);
   return (
@@ -21,6 +23,7 @@ export function FinishView({ lesson, result, xpGained, nextId }: { lesson: Lesso
         {xpGained > 0 ? `+${xpGained} XP` : 'Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!'}
       </p>
       <p className="text-muted">Gợi ý đã dùng: {result.maxHint}/3 · Lần kiểm tra chưa đúng: {result.failures}</p>
+      {saveError && <p role="alert" className="font-semibold text-rose-ink">{saveError}</p>}
       <div className="flex flex-wrap justify-center gap-3">
         {nextId && <Link to={`/lesson/${nextId}`} className="btn-primary">Bài tiếp theo →</Link>}
         <Link to="/" className="btn-soft">Về bản đồ</Link>

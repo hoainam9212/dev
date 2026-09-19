@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useReducer, useRef } from 'react';
 import { computeStars, type Lesson } from '@office-neko/shared';
 import { useOs } from '../db/profile';
+import { Mochi } from '../components/Mochi';
 import { initPlayer, playerReducer, type HintLevel } from './playerReducer';
 import { ExplainView } from './ExplainView';
 import { QuizView } from './QuizView';
@@ -47,13 +48,20 @@ export function LessonPlayer({ lesson, onFinish, onExit }: { lesson: Lesson; onF
         <span className="text-sm font-bold text-muted">{Math.min(state.index + 1, total)}/{total}</span>
       </header>
       {note && <p className="rounded-2xl bg-sky/30 p-3 text-sm">💡 {note}</p>}
-      {step && !state.finished && (
-        step.kind === 'explain' ? (
-          <ExplainView key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
-        ) : step.kind === 'quiz' ? (
-          <QuizView key={state.index} step={step} done={state.stepDone} onPick={(correct) => dispatch({ type: 'quizPick', correct })} onNext={() => dispatch({ type: 'next' })} />
-        ) : (
-          <PracticeView key={state.index} step={step} state={state} dispatch={dispatch} />
+      {state.finished ? (
+        <div className="flex flex-col items-center gap-2 p-10 text-center">
+          <Mochi mood="neutral" size={80} />
+          <p className="font-semibold text-muted">Đang lưu kết quả…</p>
+        </div>
+      ) : (
+        step && (
+          step.kind === 'explain' ? (
+            <ExplainView key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
+          ) : step.kind === 'quiz' ? (
+            <QuizView key={state.index} step={step} done={state.stepDone} onPick={(correct) => dispatch({ type: 'quizPick', correct })} onNext={() => dispatch({ type: 'next' })} />
+          ) : (
+            <PracticeView key={state.index} step={step} state={state} dispatch={dispatch} />
+          )
         )
       )}
     </div>
