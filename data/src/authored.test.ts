@@ -40,3 +40,41 @@ describe('authored listening lessons', () => {
     }
   });
 });
+
+describe('reading lessons – coverage and furigana quality', () => {
+  const KANJI = /[一-龯㐀-䶿々]/;
+  const KANA_ONLY = /^[぀-ゟ゠-ヿー]+$/;
+
+  it('N2 and N1 have at least 12 lessons each, and every lesson has a topic', () => {
+    for (const l of ['N2', 'N1'] as const) expect(READING.filter((r) => r.level === l).length, l).toBeGreaterThanOrEqual(12);
+    for (const r of READING) expect(r.topic, r.id).toBeTruthy();
+  });
+
+  it('N2/N1 lessons cover at least 8 distinct topics per level', () => {
+    for (const l of ['N2', 'N1'] as const) {
+      const topics = new Set(READING.filter((r) => r.level === l).map((r) => r.topic));
+      expect(topics.size, l).toBeGreaterThanOrEqual(8);
+    }
+  });
+
+  it('every kanji in a lesson body is inside furigana markup, and rubies are kana', () => {
+    for (const r of READING) {
+      for (const seg of parseFurigana(r.body)) {
+        if (seg.ruby) {
+          expect(seg.ruby, `${r.id} [${seg.text}|${seg.ruby}]`).toMatch(KANA_ONLY);
+          expect(KANJI.test(seg.text), `${r.id} ruby base without kanji: ${seg.text}`).toBe(true);
+        } else {
+          const bare = [...seg.text].filter((c) => KANJI.test(c)).join('');
+          expect(bare, `${r.id} kanji without furigana in: ${seg.text.slice(0, 30)}`).toBe('');
+        }
+      }
+    }
+  });
+
+  it('new N2/N1 questions explain at least one answer per lesson', () => {
+    for (const r of READING.filter((x) => (x.level === 'N2' || x.level === 'N1') && Number(x.id.slice(-2)) >= 4)) {
+      expect(r.questions.some((q) => q.explain), r.id).toBe(true);
+      expect(r.questions.length, r.id).toBeGreaterThanOrEqual(3);
+    }
+  });
+});

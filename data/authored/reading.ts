@@ -1,25 +1,9 @@
-import type { Level, Question, ReadingLesson } from '@nihongo/shared';
+import type { ReadingLesson } from '@nihongo/shared';
 
-type V = [word: string, reading: string, vi: string];
-type Q = [prompt: string, choices: string[], answer: number, explain?: string];
+import { lesson } from './reading-lesson';
+import { READING_ADVANCED } from './reading-advanced';
 
-function lesson(level: Level, n: number, title: string, body: string, vocab: V[], qs: Q[]): ReadingLesson {
-  const id = `r-${level.toLowerCase()}-${String(n).padStart(2, '0')}`;
-  return {
-    id,
-    level,
-    title,
-    body: body.trim(),
-    vocab: vocab.map(([word, reading, vi]) => ({ word, reading, vi })),
-    questions: qs.map(([prompt, choices, answer, explain], i): Question => {
-      const q: Question = { id: `${id}-q${i + 1}`, prompt, choices, answer };
-      if (explain) q.explain = explain;
-      return q;
-    }),
-  };
-}
-
-export const READING: ReadingLesson[] = [
+const BASE: ReadingLesson[] = [
   // ---------------- N5 ----------------
   lesson(
     'N5',
@@ -310,4 +294,28 @@ export const READING: ReadingLesson[] = [
       ['表面的な取り組みにとどまる企業はどうなると述べていますか。', ['利益が増える', '厳しい評価を受ける', '投資が集まる', '何も変わらない'], 1],
     ],
   ),
+];
+
+/** Themes of the original lessons (by id). */
+const BASE_TOPICS: Record<string, string> = {
+  'r-n5-01': 'Đời sống',
+  'r-n5-02': 'Đời sống',
+  'r-n5-03': 'Mua sắm',
+  'r-n4-01': 'Thư từ',
+  'r-n4-02': 'Giao thông',
+  'r-n4-03': 'Sức khỏe',
+  'r-n3-01': 'Công việc',
+  'r-n3-02': 'Môi trường',
+  'r-n3-03': 'Đời sống',
+  'r-n2-01': 'Công việc',
+  'r-n2-02': 'Văn hóa',
+  'r-n2-03': 'Công việc',
+  'r-n1-01': 'Xã hội',
+  'r-n1-02': 'Ngôn ngữ',
+  'r-n1-03': 'Kinh tế',
+};
+
+export const READING: ReadingLesson[] = [
+  ...BASE.map((l) => ({ ...l, topic: l.topic ?? BASE_TOPICS[l.id] })),
+  ...READING_ADVANCED,
 ];

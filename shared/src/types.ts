@@ -60,6 +60,8 @@ export interface ReadingLesson {
   id: string;
   level: Level;
   title: string;
+  /** Theme shown as a filter chip (Vietnamese), e.g. "Công nghệ". */
+  topic?: string;
   body: string;
   vocab: { word: string; reading: string; vi: string }[];
   questions: Question[];

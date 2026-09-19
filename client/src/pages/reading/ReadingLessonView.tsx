@@ -62,7 +62,7 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
       </div>
 
       <h2 className="text-2xl font-black">{lesson.title}</h2>
-      <p className="text-2xl leading-[2.4]">
+      <p className="whitespace-pre-line text-2xl leading-[2.4]">
         <Furigana text={lesson.body} show={showFuri} onWordTap={onWordTap} />
       </p>
 
