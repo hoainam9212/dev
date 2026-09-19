@@ -18,6 +18,10 @@
 | Tiến độ | XP, cấp độ, chuỗi ngày, biểu đồ 7 ngày, lịch ôn, sao lưu/khôi phục |
 | Tài khoản | Đăng ký/đăng nhập, đồng bộ tiến độ nhiều thiết bị (server Fastify + SQLite) |
 
+## Mở nhanh trên Windows
+
+Nhấp đúp `Start Nihongo Sensei.bat` ở thư mục gốc. File này tự build nếu cần, khởi động máy chủ và mở http://localhost:8787. Đóng cửa sổ đó để tắt máy chủ.
+
 ## Chạy phát triển
 
 ```bash
