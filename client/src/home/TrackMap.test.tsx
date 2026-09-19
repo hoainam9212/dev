@@ -14,7 +14,7 @@ const tracks: Track[] = [
 function renderMap(completed: string[], stars: Record<string, number>) {
   const unlock = unlockState(tracks, lessons, 'win', new Set(completed));
   return render(
-    <MemoryRouter>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <TrackMap tracks={tracks} lessons={lessons} os="win" unlock={unlock} stars={stars} currentId="a2" />
     </MemoryRouter>,
   );

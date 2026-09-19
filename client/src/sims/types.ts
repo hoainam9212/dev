@@ -13,6 +13,10 @@ export interface SimProps<S> {
 export interface SimDefinition<S = any, A = any> {
   kind: SimKind;
   Component: ComponentType<SimProps<S>>;
-  /** Reducer thuần; test nội dung dùng để phát lại `solution` của bài. */
+  /**
+   * Reducer thuần. BẮT BUỘC: Component phải giữ state bằng `useReducer(def.reduce, initial)`
+   * và gọi `onState` mỗi khi state đổi — nhờ vậy test nội dung (phát lại `solution` qua reducer)
+   * chứng minh được bài học qua được trên đúng logic giao diện đang dùng.
+   */
   reduce: (state: S, action: A) => S;
 }

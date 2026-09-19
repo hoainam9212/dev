@@ -139,6 +139,7 @@ export function rename(fs: Vfs, id: string, name: string): VfsResult {
 }
 
 export function move(fs: Vfs, id: string, destId: string): VfsResult {
+  if (destId === TRASH) return remove(fs, id);
   const n = fs.nodes[id];
   const d = fs.nodes[destId];
   if (!n || !d || n.parentId === null) return fail('notFound');

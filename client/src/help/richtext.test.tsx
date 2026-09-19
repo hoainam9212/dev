@@ -38,6 +38,14 @@ describe('RichText', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
+  it('closes the popup when the page scrolls', () => {
+    render(<RichText text="[[mouse|chuột]]" />);
+    fireEvent.click(screen.getByRole('button', { name: 'chuột' }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    fireEvent.scroll(window);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
   it('shows plain text for unknown terms', () => {
     render(<RichText text="[[khong-co|từ lạ]]" />);
     expect(screen.queryByRole('button')).not.toBeInTheDocument();

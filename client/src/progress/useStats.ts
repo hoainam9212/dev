@@ -5,11 +5,12 @@ import { db, type ActivityRow, type ProgressRow } from '../db/db';
 const NO_PROGRESS: ProgressRow[] = [];
 const NO_ACTIVITY: ActivityRow[] = [];
 
-export function useCompleted(): { completed: Set<string>; stars: Record<string, number> } {
-  const rows = useLiveQuery(() => db.progress.toArray(), [], NO_PROGRESS);
+export function useCompleted(): { completed: Set<string>; stars: Record<string, number>; loaded: boolean } {
+  const raw = useLiveQuery(() => db.progress.toArray(), []);
+  const rows = raw ?? NO_PROGRESS;
   const completed = new Set(rows.filter((r) => r.stars > 0).map((r) => r.lessonId));
   const stars = Object.fromEntries(rows.map((r) => [r.lessonId, r.stars]));
-  return { completed, stars };
+  return { completed, stars, loaded: raw !== undefined };
 }
 
 function useActivity(): ActivityRow[] {

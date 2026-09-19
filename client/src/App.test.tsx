@@ -6,7 +6,12 @@ import { db } from './db/db';
 import { createProfile } from './db/profile';
 import { resetDb } from './test/utils';
 
-const renderApp = (route = '/') => render(<MemoryRouter initialEntries={[route]}><App /></MemoryRouter>);
+const renderApp = (route = '/') =>
+  render(
+    <MemoryRouter initialEntries={[route]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <App />
+    </MemoryRouter>,
+  );
 
 describe('App', () => {
   beforeEach(resetDb);

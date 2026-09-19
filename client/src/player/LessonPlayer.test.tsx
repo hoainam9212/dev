@@ -35,9 +35,10 @@ function setupFakeSim() {
 }
 
 describe('LessonPlayer', () => {
+  const saved = { sim: SIMS.mouse, grader: GRADERS.mouse };
   afterEach(() => {
-    delete SIMS.mouse;
-    delete GRADERS.mouse;
+    if (saved.sim) SIMS.mouse = saved.sim; else delete SIMS.mouse;
+    if (saved.grader) GRADERS.mouse = saved.grader; else delete GRADERS.mouse;
   });
 
   it('runs explain + quiz and reports 3 stars', async () => {
@@ -93,6 +94,26 @@ describe('LessonPlayer', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Tiếp tục →' }));
     await waitFor(() => expect(onFinish).toHaveBeenCalled());
     expect(onFinish.mock.calls[0]![0]).toMatchObject({ stars: 1, maxHint: 3 });
+  });
+
+  it('stops auto-grading once the step is done', async () => {
+    setupFakeSim();
+    const spy = vi.fn((s: FakeState) => ({ ok: s.clicked, messageVi: 'x' }));
+    GRADERS.mouse = spy;
+    renderWithProfile(<LessonPlayer lesson={practiceLesson} onFinish={() => {}} onExit={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Bấm tôi' }));
+    await screen.findByText(/Giỏi quá/);
+    const calls = spy.mock.calls.length;
+    fireEvent.click(screen.getByRole('button', { name: 'Bấm tôi' }));
+    await new Promise((r) => setTimeout(r, 400));
+    expect(spy.mock.calls.length).toBe(calls);
+  });
+
+  it('shows a not-ready card when the grader is missing', () => {
+    setupFakeSim();
+    delete GRADERS.mouse;
+    renderWithProfile(<LessonPlayer lesson={practiceLesson} onFinish={() => {}} onExit={() => {}} />);
+    expect(screen.getByText(/chưa sẵn sàng/)).toBeInTheDocument();
   });
 
   it('calls onExit from the close button', () => {

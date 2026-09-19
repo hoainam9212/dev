@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type Dispatch } from 'react';
-import { grade, type GradeReport, type PracticeStep } from '@office-neko/shared';
+import { grade, GRADERS, type GradeReport, type PracticeStep } from '@office-neko/shared';
 import { SIMS } from '../sims/registry';
 import { useOs } from '../db/profile';
 import { Mochi } from '../components/Mochi';
@@ -16,6 +16,8 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const sound = useSound();
   const latest = useRef<unknown>(step.initial);
   const timer = useRef<number | undefined>(undefined);
+  const doneRef = useRef(state.stepDone);
+  doneRef.current = state.stepDone;
   const [report, setReport] = useState<GradeReport | null>(null);
   const [root, setRoot] = useState<HTMLDivElement | null>(null);
 
@@ -33,6 +35,7 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const onState = useCallback(
     (s: unknown) => {
       latest.current = s;
+      if (doneRef.current) return;
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(() => runGrade(false), 300);
     },
@@ -41,7 +44,7 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  if (!def) return <div className="card p-6">😿 Trình mô phỏng “{step.sim}” chưa sẵn sàng.</div>;
+  if (!def || !GRADERS[step.sim]) return <div className="card p-6">😿 Trình mô phỏng “{step.sim}” chưa sẵn sàng.</div>;
   const Sim = def.Component;
   const spotlight = state.stepHint >= 2 && !state.stepDone ? step.hints[1] : null;
 

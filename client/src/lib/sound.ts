@@ -12,6 +12,7 @@ export function playSound(name: SoundName): void {
     if (!AC) return;
     ctx ??= new AC();
     const audio = ctx;
+    if (audio.state === 'suspended') void audio.resume();
     const now = audio.currentTime;
     TONES[name].forEach((freq, i) => {
       const osc = audio.createOscillator();

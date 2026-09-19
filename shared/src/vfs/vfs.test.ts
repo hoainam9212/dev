@@ -94,6 +94,15 @@ describe('vfs', () => {
     expect(vfs.pathOf(c.fs, f.id)).toBe('/ghi-chu.txt');
   });
 
+  it('moving into the trash behaves like remove', () => {
+    const fs = sample();
+    const f = vfs.findByPath(fs, '/Tài liệu/ghi-chu.txt')!;
+    const r = ok(vfs.move(fs, f.id, fs.trashId));
+    expect(r.fs.nodes[f.id]?.trashedFrom).toBe(vfs.findByPath(fs, '/Tài liệu')!.id);
+    const back = ok(vfs.restore(r.fs, f.id));
+    expect(vfs.pathOf(back.fs, f.id)).toBe('/Tài liệu/ghi-chu.txt');
+  });
+
   it('empties the trash permanently', () => {
     const fs = sample();
     const docs = vfs.findByPath(fs, '/Tài liệu')!;

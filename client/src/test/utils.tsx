@@ -28,7 +28,7 @@ export function renderWithProfile(
   { profile = makeProfile(), route = '/' }: { profile?: Profile | null; route?: string } = {},
 ) {
   return render(
-    <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter initialEntries={[route]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ProfileContext.Provider value={profile}>{ui}</ProfileContext.Provider>
     </MemoryRouter>,
   );

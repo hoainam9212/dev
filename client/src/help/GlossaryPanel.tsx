@@ -1,14 +1,20 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { searchItems, type GlossaryEntry } from '@office-neko/shared';
-import { GLOSSARY, LESSONS } from '../content';
+import { searchItems, unlockState, type GlossaryEntry, type Lesson } from '@office-neko/shared';
+import { GLOSSARY, LESSONS, TRACKS } from '../content';
 import { useOs } from '../db/profile';
+import { useCompleted } from '../progress/useStats';
 import { useHelp } from './helpStore';
 import { RichText } from './RichText';
 
 function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () => void }) {
   const close = useHelp((s) => s.close);
-  const lessons = entry.lessonIds.map((id) => LESSONS[id]).filter((l) => !!l);
+  const os = useOs();
+  const { completed } = useCompleted();
+  const unlocked = unlockState(TRACKS, LESSONS, os, completed).lessonUnlocked;
+  const lessons = entry.lessonIds
+    .map((id) => LESSONS[id])
+    .filter((l): l is Lesson => !!l && (!l.os || l.os === os));
   return (
     <article className="space-y-3">
       <button type="button" className="btn !px-3 !py-1 text-sm" onClick={onBack}>← Quay lại</button>
@@ -22,8 +28,12 @@ function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () =>
           <h3 className="font-bold">Có trong bài:</h3>
           <ul className="list-disc pl-6">
             {lessons.map((l) => (
-              <li key={l!.id}>
-                <Link to={`/lesson/${l!.id}`} onClick={close} className="text-rose-ink underline">{l!.title}</Link>
+              <li key={l.id}>
+                {unlocked.has(l.id) ? (
+                  <Link to={`/lesson/${l.id}`} onClick={close} className="text-rose-ink underline">{l.title}</Link>
+                ) : (
+                  <span className="text-muted">🔒 {l.title}</span>
+                )}
               </li>
             ))}
           </ul>
