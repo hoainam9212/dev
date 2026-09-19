@@ -8,6 +8,11 @@ export const TRACKS: Track[] = [
       { id: 'basics.start', title: 'Bắt đầu cùng Mochi', lessonIds: ['basics.welcome'] },
       { id: 'basics.mouse', title: 'Cầm chuột', lessonIds: ['basics.mouse.click', 'basics.mouse.double', 'basics.mouse.right', 'basics.mouse.drag', 'basics.mouse.scroll'] },
       { id: 'basics.keys', title: 'Làm quen bàn phím', lessonIds: ['basics.keys.special', 'basics.keys.shortcuts'] },
+      {
+        id: 'basics.files',
+        title: 'Thư mục và file',
+        lessonIds: ['open', 'newfolder', 'rename', 'move', 'trash', 'project'].flatMap((x) => [`basics.files.${x}.win`, `basics.files.${x}.mac`]),
+      },
     ],
   },
   { id: 'typing', order: 1, title: 'Gõ phím 10 ngón', emoji: '⌨️', color: '#A0D8FF', blurb: 'Gõ nhanh, gõ đúng, gõ tiếng Việt có dấu.', chapters: [] },
