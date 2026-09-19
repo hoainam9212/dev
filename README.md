@@ -51,6 +51,18 @@ docker build -t nihongo-sensei .
 docker run -p 8787:8787 -e JWT_SECRET=doi-khoa-nay -v nihongo-data:/data nihongo-sensei
 ```
 
+## Ứng dụng Android (Capacitor)
+
+Bản web được đóng gói thành APK bằng Capacitor; nội dung học nằm sẵn trong app nên chạy offline. Nhận dạng giọng nói dùng dịch vụ của Android (cần Google app), đọc văn bản dùng TTS của hệ thống.
+
+```bash
+npm run android:apk     # build web → sync → client/android/app/build/outputs/apk/release/app-release.apk
+```
+
+Yêu cầu: JDK 17 và Android SDK (platform 34, build-tools 34). Đặt `JAVA_HOME`, `ANDROID_HOME` hoặc tạo `client/android/local.properties` với `sdk.dir=...`.
+Ký bản release: đặt `client/android/keystore.properties` (storeFile, storePassword, keyAlias, keyPassword); file này và keystore không đưa vào git.
+Để đồng bộ tiến độ trên điện thoại, vào Cài đặt → nhập địa chỉ máy chủ (ví dụ `https://nihongo.example.com`) rồi đăng nhập.
+
 ## Cấu trúc
 
 - `shared/` – kiểu dữ liệu và thuật toán dùng chung (SM-2, kana, chấm điểm, SVG path, furigana)
