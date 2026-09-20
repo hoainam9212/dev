@@ -7,8 +7,10 @@ import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
 import { KanaWrite } from '../kana/KanaWrite';
 import { KanjiWrite } from '../kanji/KanjiWrite';
 import { SentenceBuilder } from './SentenceBuilder';
+import { WritingLog } from './WritingLog';
+import { useWritingCount } from '../../db/writings';
 
-type Mode = 'kana' | 'kanji' | 'sentence';
+type Mode = 'kana' | 'kanji' | 'sentence' | 'log';
 type Script = 'hiragana' | 'katakana';
 
 export function WritingPage() {
@@ -18,12 +20,13 @@ export function WritingPage() {
   const kana = useKana();
   const kanji = useKanji(level);
   const grammar = useGrammar(level);
+  const savedCount = useWritingCount() ?? 0;
 
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-black text-rose">Viết</h1>
-        {mode !== 'kana' && <LevelPicker />}
+        {mode !== 'kana' && mode !== 'log' && <LevelPicker />}
       </header>
       <div className="flex flex-wrap items-center gap-3">
         <Segmented<Mode>
@@ -34,6 +37,7 @@ export function WritingPage() {
             { value: 'kana', label: 'Kana' },
             { value: 'kanji', label: 'Kanji' },
             { value: 'sentence', label: 'Đặt câu' },
+            { value: 'log', label: savedCount ? `Câu đã đặt · ${savedCount}` : 'Câu đã đặt' },
           ]}
         />
         {mode === 'kana' && (
@@ -53,6 +57,7 @@ export function WritingPage() {
           (kana.loading ? <LoadingCat /> : kana.error || !kana.data ? <ErrorCat text={kana.error ?? 'Không có dữ liệu'} /> : <KanaWrite key={script} chars={kana.data[script]} />)}
         {mode === 'kanji' &&
           (kanji.loading ? <LoadingCat /> : kanji.error || !kanji.data ? <ErrorCat text={kanji.error ?? 'Không có dữ liệu'} /> : <KanjiWrite key={level} kanji={kanji.data} />)}
+        {mode === 'log' && <WritingLog />}
         {mode === 'sentence' &&
           (grammar.loading ? (
             <LoadingCat />

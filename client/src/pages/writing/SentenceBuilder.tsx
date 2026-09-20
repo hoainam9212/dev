@@ -3,6 +3,7 @@ import { diffChars, similarity, type Grammar } from '@nihongo/shared';
 import { shuffle } from '../../lib/quiz';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
+import { saveWriting, useWritingsFor } from '../../db/writings';
 import { useProgress } from '../../store/progress';
 import { Mascot } from '../../components/Mascot';
 
@@ -44,6 +45,7 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
   const addXp = useProgress((s) => s.addXp);
   const startedAt = useRef(new Date().toISOString());
   const item = items[i];
+  const previous = useWritingsFor(item?.grammar.id ?? null);
 
   const restart = () => {
     setSeed((s) => s + 1);
@@ -84,6 +86,17 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
             addXp(XP);
             setCorrect((c) => c + 1);
           }
+          // keep the sentence so it can be reviewed later
+          void saveWriting({
+            grammarId: item.grammar.id,
+            grammarTitle: item.grammar.title,
+            level: item.grammar.level,
+            prompt: item.en,
+            expected: item.ja,
+            typed: typed.trim(),
+            score: r.score,
+            ok: r.ok,
+          });
           speak(item.ja);
         } else {
           const n = i + 1;
@@ -108,6 +121,24 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
         </button>
         {hint && <p className="mt-1 font-mono text-sm">{item.grammar.formation}</p>}
       </div>
+      {previous && previous.length > 0 && (
+        <details className="w-full max-w-lg rounded-2xl bg-lavender/20 p-3 text-sm" data-testid="previous-writing">
+          <summary className="cursor-pointer font-bold">
+            Lần trước bạn viết ({previous.length})
+          </summary>
+          <ul className="mt-2 space-y-1">
+            {previous.map((w) => (
+              <li key={w.id} className="flex items-baseline gap-2">
+                <span className={`text-xs font-bold ${w.ok ? 'text-emerald-600' : 'text-rose'}`}>{Math.round(w.score * 100)}%</span>
+                <span className="font-bold" lang="ja">
+                  {w.typed}
+                </span>
+                <span className="ml-auto text-xs text-muted">{new Date(w.createdAt).toLocaleDateString('vi-VN')}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       <textarea
         value={typed}
         onChange={(e) => setTyped(e.target.value)}

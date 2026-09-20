@@ -13,7 +13,7 @@
 | Đọc hiểu | 15 bài đọc tự soạn có furigana, chạm từ để tra, câu hỏi hiểu |
 | Nghe | 15 hội thoại, đọc bằng TTS trình duyệt, chỉnh tốc độ, câu hỏi, chép chính tả |
 | Nói | Shadowing và đóng vai với nhận dạng giọng nói (Chrome/Edge), chấm điểm phát âm |
-| Viết | Luyện viết kana/kanji, đặt câu theo mẫu ngữ pháp |
+| Viết | Luyện viết kana/kanji, đặt câu theo mẫu ngữ pháp, nhật ký câu đã đặt để xem lại |
 | Business | Bảng kính ngữ 42 động từ, 7 mẫu email, điện thoại, họp, meishi, phỏng vấn, trắc nghiệm, đóng vai |
 | Tiến độ | XP, cấp độ, chuỗi ngày, biểu đồ 7 ngày, lịch ôn, sao lưu/khôi phục |
 | Tài khoản | Đăng ký/đăng nhập, đồng bộ tiến độ nhiều thiết bị (server Fastify + SQLite) |

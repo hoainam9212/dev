@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { newState, review, isDue, type Grade, type ItemType, type ProgressItem, type SrsState } from '@nihongo/shared';
-import { db, type SessionLog } from './db';
+import { db, type SessionLog, type Writing } from './db';
 
 /** Fires 'change' after every local progress write (used by sync). */
 export const progressEvents = new EventTarget();
@@ -47,13 +47,13 @@ export async function logSession(s: Omit<SessionLog, 'id'>): Promise<void> {
   await db.sessions.add(s);
 }
 
-export async function exportAll(): Promise<{ progress: ProgressItem[]; sessions: SessionLog[] }> {
-  return { progress: await db.progress.toArray(), sessions: await db.sessions.toArray() };
+export async function exportAll(): Promise<{ progress: ProgressItem[]; sessions: SessionLog[]; writings: Writing[] }> {
+  return { progress: await db.progress.toArray(), sessions: await db.sessions.toArray(), writings: await db.writings.toArray() };
 }
 
 /** Merge imported progress: newer `updatedAt` wins per item; sessions are appended. */
-export async function importAll(data: { progress: ProgressItem[]; sessions?: SessionLog[] }): Promise<void> {
-  await db.transaction('rw', db.progress, db.sessions, async () => {
+export async function importAll(data: { progress: ProgressItem[]; sessions?: SessionLog[]; writings?: Writing[] }): Promise<void> {
+  await db.transaction('rw', db.progress, db.sessions, db.writings, async () => {
     for (const p of data.progress) {
       const cur = await db.progress.get(p.itemId);
       if (!cur || cur.updatedAt < p.updatedAt) await db.progress.put(p);
@@ -61,6 +61,15 @@ export async function importAll(data: { progress: ProgressItem[]; sessions?: Ses
     for (const s of data.sessions ?? []) {
       const { id: _id, ...rest } = s;
       await db.sessions.add(rest);
+    }
+    for (const w of data.writings ?? []) {
+      const { id: _id, ...rest } = w;
+      const exists = await db.writings
+        .where('grammarId')
+        .equals(rest.grammarId)
+        .filter((x) => x.createdAt === rest.createdAt && x.typed === rest.typed)
+        .count();
+      if (!exists) await db.writings.add(rest);
     }
   });
 }

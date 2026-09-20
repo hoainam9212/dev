@@ -45,13 +45,20 @@ export function SettingsPage() {
 
   const doImport = async (file: File) => {
     try {
-      const json = JSON.parse(await file.text()) as { progress?: never[]; sessions?: never[]; xp?: number; streak?: number; lastStudyDay?: string | null };
-      await importAll({ progress: json.progress ?? [], sessions: json.sessions ?? [] });
+      const json = JSON.parse(await file.text()) as {
+        progress?: never[];
+        sessions?: never[];
+        writings?: never[];
+        xp?: number;
+        streak?: number;
+        lastStudyDay?: string | null;
+      };
+      await importAll({ progress: json.progress ?? [], sessions: json.sessions ?? [], writings: json.writings ?? [] });
       if (typeof json.xp === 'number') {
         const cur = useProgress.getState();
         useProgress.setState({ xp: Math.max(cur.xp, json.xp), streak: Math.max(cur.streak, json.streak ?? 0), lastStudyDay: json.lastStudyDay ?? cur.lastStudyDay });
       }
-      setMsg(`Đã nhập ${json.progress?.length ?? 0} thẻ tiến độ.`);
+      setMsg(`Đã nhập ${json.progress?.length ?? 0} thẻ tiến độ và ${json.writings?.length ?? 0} câu đã đặt.`);
     } catch {
       setMsg('File không hợp lệ.');
     }
@@ -60,6 +67,7 @@ export function SettingsPage() {
   const doReset = async () => {
     await db.progress.clear();
     await db.sessions.clear();
+    await db.writings.clear();
     useProgress.setState({ xp: 0, streak: 0, lastStudyDay: null });
     setConfirmReset(false);
     setMsg('Đã xóa toàn bộ tiến độ.');
@@ -117,7 +125,9 @@ export function SettingsPage() {
 
       <section className="card space-y-3 p-4 md:p-6">
         <h2 className="font-black">Sao lưu</h2>
-        <p className="text-sm text-muted">Tiến độ được lưu trong trình duyệt này. Xuất file để chuyển sang máy khác hoặc phòng mất dữ liệu.</p>
+        <p className="text-sm text-muted">
+          Tiến độ và các câu bạn đã đặt được lưu trong trình duyệt này. Xuất file để chuyển sang máy khác hoặc phòng mất dữ liệu.
+        </p>
         <div className="flex flex-wrap gap-2">
           <button type="button" className="btn-primary" onClick={() => void doExport()}>
             ⬇️ Xuất file sao lưu
