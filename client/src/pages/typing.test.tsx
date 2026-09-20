@@ -32,11 +32,13 @@ describe('TypingHubPage', () => {
     renderAt('/typing');
     expect(await screen.findByText(/Chưa có lần kiểm tra nào/)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /1 phút/ })).toHaveAttribute('href', '/typing/test/1');
-    await db.typingRuns.bulkAdd([
-      { at: '2026-09-19T10:00:00.000Z', mode: 'test-1', wpm: 22, accuracy: 90 },
-      { at: '2026-09-20T10:00:00.000Z', mode: 'test-1', wpm: 40, accuracy: 97 },
-    ]);
-    await db.keyStats.put({ key: 'j', hit: 3, miss: 3 });
+    await act(async () => {
+      await db.typingRuns.bulkAdd([
+        { at: '2026-09-19T10:00:00.000Z', mode: 'test-1', wpm: 22, accuracy: 90 },
+        { at: '2026-09-20T10:00:00.000Z', mode: 'test-1', wpm: 40, accuracy: 97 },
+      ]);
+      await db.keyStats.put({ key: 'j', hit: 3, miss: 3 });
+    });
     expect(await screen.findByText('Tốt nhất: 40 WPM')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Biểu đồ WPM' })).toBeInTheDocument();
     expect(document.querySelector('[data-key="j"]')).toHaveAttribute('title', 'J: 3 đúng, 3 sai');
