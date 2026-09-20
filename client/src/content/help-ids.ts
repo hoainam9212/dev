@@ -21,6 +21,7 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'desktop.restore': { label: 'Khôi phục', vi: 'Đưa mục đang chọn về lại chỗ cũ.' },
   'desktop.emptyTrash': { label: 'Dọn sạch thùng rác', vi: 'Xoá hẳn mọi thứ trong thùng rác. Không lấy lại được nữa!' },
   'desktop.trash': { label: 'Thùng rác', vi: 'Mở thùng rác, hoặc kéo file thả vào đây để xoá.' },
+  'desktop.trashSidebar': { label: 'Thùng rác (thanh bên)', vi: 'Mở thùng rác từ thanh bên.' },
   'desktop.address': { label: 'Thanh địa chỉ', vi: 'Cho biết bạn đang ở thư mục nào.' },
   'keyboard.area': { label: 'Vùng gõ phím', vi: 'Bấm vào đây rồi gõ theo dòng chữ. Chữ xanh là đúng, chữ đỏ là sai.' },
   'keyboard.board': { label: 'Bàn phím ảo', vi: 'Phím sáng viền hồng là phím cần bấm tiếp theo. Màu phím cho biết dùng ngón nào.' },

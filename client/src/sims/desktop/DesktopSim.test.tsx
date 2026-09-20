@@ -93,6 +93,18 @@ describe('DesktopSim', () => {
     expect(item('Ảnh')).toHaveAttribute('data-path', '/Ảnh');
   });
 
+  it('focuses itself on mount so keyboard shortcuts work without clicking first', () => {
+    setup('win');
+    expect(document.activeElement).toBe(screen.getByTestId('desktop-sim'));
+  });
+
+  it('gives the taskbar/Dock trash its own help id, separate from the sidebar entry', () => {
+    setup('win');
+    expect(document.querySelectorAll('[data-help-id="desktop.trash"]')).toHaveLength(1);
+    expect(screen.getByRole('button', { name: 'Thùng rác' })).toHaveAttribute('data-help-id', 'desktop.trash');
+    expect(screen.getByRole('button', { name: /🗑️ Thùng rác/ })).toHaveAttribute('data-help-id', 'desktop.trashSidebar');
+  });
+
   it('opens the context menu at the click position and closes it on Escape', () => {
     const { item } = setup('win');
     fireEvent.contextMenu(item('ghi-chu.txt'), { clientX: 123, clientY: 45 });

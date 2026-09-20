@@ -19,6 +19,11 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
   const [tip, setTip] = useState<string | null>(null);
   const pendingRename = useRef(false);
   const dragIds = useRef<string[]>([]);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    rootRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     onState(state);
@@ -94,7 +99,7 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
   const topFolders = vfs.childrenOf(state.fs, state.fs.rootId).filter((n) => n.type === 'folder');
 
   return (
-    <div data-testid="desktop-sim" tabIndex={0} onKeyDown={onKeyDown} className="outline-none focus-visible:ring-4 focus-visible:ring-sky rounded-3xl">
+    <div ref={rootRef} data-testid="desktop-sim" tabIndex={0} onKeyDown={onKeyDown} className="outline-none focus-visible:ring-4 focus-visible:ring-sky rounded-3xl">
       <Chrome
         os={os}
         onTrash={() => dispatch({ type: 'open', id: state.fs.trashId })}
@@ -135,7 +140,7 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
             <button
               type="button"
               className={`${btn} w-full text-left`}
-              data-help-id="desktop.trash"
+              data-help-id="desktop.trashSidebar"
               onClick={() => dispatch({ type: 'open', id: state.fs.trashId })}
               onDragOver={(e) => e.preventDefault()}
               onDrop={dropToTrash}
