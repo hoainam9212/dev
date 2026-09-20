@@ -19,8 +19,9 @@ const ICON: Record<mouseSim.MouseGame, string> = { click: '🫧', double: '🎁'
 export function MouseSim({ initial, onState, os }: SimProps<S>) {
   const [state, dispatch] = useReducer(mouseSim.reduceMouse, initial);
   const [tip, setTip] = useState<string | null>(null);
-  const [menuFor, setMenuFor] = useState<string | null>(null);
+  const [menuFor, setMenuFor] = useState<{ id: string; x: number; y: number } | null>(null);
   const dragging = useRef<string | null>(null);
+  const areaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     onState(state);
@@ -53,6 +54,13 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
       {game === 'scroll' ? (
         <div data-testid="mouse-area" className="relative h-72 overflow-y-auto rounded-3xl bg-sky/20" onClick={onBackground}>
           <div className="relative" style={{ height: 1600 }}>
+            {done && (
+              <div className="sticky top-0 z-20 grid h-72 place-items-center">
+                <div className="flex items-center gap-3 rounded-3xl bg-white/90 p-4 font-bold">
+                  <Mochi mood="happy" size={64} animated={false} /> Tuyệt vời! 🎉
+                </div>
+              </div>
+            )}
             <p className="p-4 text-muted">Lăn bánh xe chuột (hoặc vuốt hai ngón) để tìm các chú mèo đang trốn 👇</p>
             {remaining.map((id) => {
               const i = targets.indexOf(id);
@@ -74,6 +82,7 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
         </div>
       ) : (
         <div
+          ref={areaRef}
           data-testid="mouse-area"
           className="relative h-72 overflow-hidden rounded-3xl bg-sky/20"
           onClick={onBackground}
@@ -103,6 +112,9 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
                     dragging.current = id;
                     e.dataTransfer?.setData('text/plain', id);
                   }}
+                  onDragEnd={() => {
+                    dragging.current = null;
+                  }}
                 >
                   🐟
                 </span>
@@ -125,7 +137,8 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
                 onContextMenu={(e) => {
                   if (game !== 'right') return;
                   e.preventDefault();
-                  setMenuFor(id);
+                  const rect = areaRef.current?.getBoundingClientRect();
+                  setMenuFor({ id, x: rect ? e.clientX - rect.left : e.clientX, y: rect ? e.clientY - rect.top : e.clientY });
                 }}
               >
                 {ICON[game]}
@@ -148,7 +161,7 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
             </div>
           )}
           {menuFor && (
-            <ul role="menu" className="card absolute left-1/2 top-1/2 z-10 w-44 -translate-x-1/2 -translate-y-1/2 p-2">
+            <ul role="menu" className="card absolute z-10 w-44 p-2" style={{ left: menuFor.x, top: menuFor.y }}>
               {['Mở', '🎁 Mở quà', 'Đổi tên'].map((label) => (
                 <li key={label}>
                   <button
@@ -157,7 +170,7 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
                     className="w-full rounded-xl px-3 py-2 text-left hover:bg-peach/30"
                     onClick={(e) => {
                       e.stopPropagation();
-                      const id = menuFor;
+                      const id = menuFor.id;
                       setMenuFor(null);
                       if (label === '🎁 Mở quà') hit(id);
                       else miss();

@@ -43,6 +43,15 @@ describe('MouseSim', () => {
     expect(last().hitIds).toEqual(['t1']);
   });
 
+  it('right: opens the context menu at the click position, not the centre', () => {
+    setup('right', 1, 'win');
+    const box = screen.getByRole('button', { name: /Thùng/ });
+    fireEvent.contextMenu(box, { clientX: 77, clientY: 88 });
+    const menu = screen.getByRole('menu');
+    expect(menu.style.left).toBe('77px');
+    expect(menu.style.top).toBe('88px');
+  });
+
   it('drag: dropping a fish in the basket is a hit', () => {
     const { last } = setup('drag', 1);
     const fish = screen.getByRole('img', { name: /Cá số 1/ });
@@ -54,12 +63,28 @@ describe('MouseSim', () => {
     expect(last().hitIds).toEqual(['t1']);
   });
 
+  it('drag: a cancelled drag (dragend with no drop) does not leave stale state for a later drop', () => {
+    const { onState } = setup('drag', 1);
+    const callsAfterMount = onState.mock.calls.length;
+    const fish = screen.getByRole('img', { name: /Cá số 1/ });
+    fireEvent.dragStart(fish);
+    fireEvent.dragEnd(fish);
+    fireEvent.drop(screen.getByTestId('mouse-area'));
+    expect(onState.mock.calls.length).toBe(callsAfterMount);
+  });
+
   it('scroll: finds and clicks the hidden cats', () => {
     const { last } = setup('scroll', 2);
     fireEvent.click(screen.getByRole('button', { name: /Mèo số 2/ }));
     expect(last().hitIds).toEqual(['t2']);
     fireEvent.click(screen.getByTestId('mouse-area'));
     expect(last().misses).toBe(0);
+  });
+
+  it('scroll: shows the completion overlay once every cat is found', () => {
+    setup('scroll', 1);
+    fireEvent.click(screen.getByRole('button', { name: /Mèo số 1/ }));
+    expect(screen.getByText(/Tuyệt vời/)).toBeInTheDocument();
   });
 
   it('marks the first remaining target for the spotlight', () => {
