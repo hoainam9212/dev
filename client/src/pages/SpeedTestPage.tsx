@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { typingSim } from '@office-neko/shared';
 import { useOs } from '../db/profile';
@@ -20,7 +20,7 @@ export function SpeedTestPage() {
   const minutes = min === '1' ? 1 : min === '3' ? 3 : null;
   const os = useOs();
   const [attempt, setAttempt] = useState(0);
-  const [initial, setInitial] = useState(() => makeInitial(minutes ?? 1, 0));
+  const initial = useMemo(() => makeInitial(minutes ?? 1, attempt), [minutes, attempt]);
   const [result, setResult] = useState<ReturnType<typeof typingSim.typingMetrics> | null>(null);
   const saved = useRef(false);
 
@@ -38,7 +38,6 @@ export function SpeedTestPage() {
   useEffect(() => {
     saved.current = false;
     setResult(null);
-    if (minutes !== null) setInitial(makeInitial(minutes, attempt));
   }, [attempt, minutes]);
 
   if (minutes === null) return <Navigate to="/typing" replace />;

@@ -67,4 +67,23 @@ describe('SpeedTestPage', () => {
     renderAt('/typing/test/7');
     expect(await screen.findByText(/Kiểm tra tốc độ/)).toBeInTheDocument();
   });
+
+  it('replays a different passage after "Làm lại"', async () => {
+    vi.useFakeTimers({ toFake: ['Date', 'setInterval', 'clearInterval'] });
+    vi.setSystemTime(new Date(2026, 8, 20, 9));
+    renderAt('/typing/test/1');
+    const firstBox = screen.getByRole('textbox', { name: 'Vùng gõ phím' });
+    const firstText = firstBox.textContent;
+    expect(firstText).toBe(speedTestText(1, 0));
+    fireEvent.keyDown(firstBox, { key: 'M' });
+    act(() => {
+      vi.advanceTimersByTime(61_000);
+    });
+    vi.useRealTimers();
+    const retryButton = await screen.findByRole('button', { name: 'Làm lại' });
+    fireEvent.click(retryButton);
+    const secondBox = screen.getByRole('textbox', { name: 'Vùng gõ phím' });
+    expect(secondBox.textContent).toBe(speedTestText(1, 1));
+    expect(secondBox.textContent).not.toBe(firstText);
+  });
 });
