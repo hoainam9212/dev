@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { extractTermKeys, grade, GRADERS, type Lesson, type PracticeStep } from '@office-neko/shared';
+import { extractTermKeys, grade, GRADERS, typingSim, type Lesson, type PracticeStep } from '@office-neko/shared';
 import { FAQ, GLOSSARY, HELP_IDS, LESSONS, TRACKS, findTerm } from './index';
 import { SIMS } from '../sims/registry';
 
@@ -67,6 +67,15 @@ describe('content', () => {
         expect(GRADERS[step.sim], `${l.id}: grader ${step.sim} missing`).toBeDefined();
         const spot = step.hints[1];
         if ('helpId' in spot) expect(HELP_IDS[spot.helpId], `${l.id}: helpId ${spot.helpId}`).toBeDefined();
+        else if ('path' in spot) expect(spot.path.length, `${l.id}: empty path spotlight`).toBeGreaterThan(0);
+        else if ('key' in spot) expect(spot.key.length, `${l.id}: empty key spotlight`).toBeGreaterThan(0);
+        expect(step.hints[2].length, `${l.id}: empty step-by-step hint (hints[2])`).toBeGreaterThan(0);
+        if (step.sim === 'keyboard') {
+          for (const a of step.solution as typingSim.TypingAction[]) {
+            if (a.type !== 'key') continue;
+            expect(a.key === 'Backspace' || /^[\x20-\x7e]$/.test(a.key), `${l.id}: untypable key "${a.key}" in solution`).toBe(true);
+          }
+        }
         let state = step.initial;
         for (const a of step.solution) state = def!.reduce(state, a);
         expect(grade(step.sim, state, step.checks).pass, `${l.id}: solution does not pass`).toBe(true);
