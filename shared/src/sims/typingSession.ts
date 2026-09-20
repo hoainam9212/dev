@@ -141,6 +141,7 @@ export function gradeTyping(s: TypingState, c: TypingCheck): CheckResult {
     ok = ok && m.complete;
     parts.push(m.complete ? 'đã gõ đúng hết' : `còn ${compareText(s.target, typedText(s)).filter((x) => x !== 'correct').length} ký tự chưa đúng`);
   }
+  if (parts.length === 0) return { ok, messageVi: 'Đã gõ xong.' };
   const text = parts.join(', ');
   return { ok, messageVi: text.charAt(0).toUpperCase() + text.slice(1) + '.' };
 }

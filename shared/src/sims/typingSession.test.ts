@@ -111,4 +111,11 @@ describe('gradeTyping', () => {
     s = typeAll(s, ['a', 'b']);
     expect(gradeTyping(s, { kind: 'typing', completeText: true }).ok).toBe(true);
   });
+  it('returns a sensible message when the check has no fields set', () => {
+    const s = typingInitial({ target: 'ab' });
+    const r = gradeTyping(s, { kind: 'typing' });
+    expect(r.ok).toBe(true);
+    expect(r.messageVi).not.toBe('.');
+    expect(r.messageVi.length).toBeGreaterThan(1);
+  });
 });
