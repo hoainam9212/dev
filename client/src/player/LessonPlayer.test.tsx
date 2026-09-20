@@ -1,10 +1,11 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { GRADERS, type Lesson } from '@office-neko/shared';
+import { GRADERS, typingSim, type Lesson } from '@office-neko/shared';
 import { SIMS } from '../sims/registry';
 import type { SimProps } from '../sims/types';
+import { db } from '../db/db';
 import { LessonPlayer } from './LessonPlayer';
-import { renderWithProfile } from '../test/utils';
+import { renderWithProfile, resetDb } from '../test/utils';
 
 type FakeState = { clicked: boolean };
 function FakeSim({ onState }: SimProps<FakeState>) {
@@ -121,5 +122,32 @@ describe('LessonPlayer', () => {
     renderWithProfile(<LessonPlayer lesson={quizLesson} onFinish={() => {}} onExit={onExit} />);
     fireEvent.click(screen.getByRole('button', { name: 'Thoát bài' }));
     expect(onExit).toHaveBeenCalled();
+  });
+});
+
+describe('LessonPlayer keyboard practice', () => {
+  beforeEach(resetDb);
+
+  const keyboardLesson: Lesson = {
+    id: 't.keyboard', trackId: 't', chapterId: 't.c', title: 'Gõ phím', minutes: 1,
+    steps: [
+      {
+        kind: 'practice', sim: 'keyboard', task: 'Gõ chữ "ok"',
+        initial: typingSim.typingInitial({ target: 'ok' }),
+        checks: [{ kind: 'typing', completeText: true }],
+        hints: ['Gõ đúng chữ', { helpId: 'keyboard.area' }, ['Gõ o rồi k']],
+        solution: [],
+      },
+    ],
+  };
+
+  it('records exactly one lesson typing run when a keyboard practice step finishes', async () => {
+    renderWithProfile(<LessonPlayer lesson={keyboardLesson} onFinish={() => {}} onExit={() => {}} />);
+    const box = screen.getByRole('textbox', { name: 'Vùng gõ phím' });
+    fireEvent.keyDown(box, { key: 'o' });
+    fireEvent.keyDown(box, { key: 'k' });
+    await waitFor(async () => expect(await db.typingRuns.count()).toBe(1));
+    const rows = await db.typingRuns.toArray();
+    expect(rows[0]!.mode).toBe('lesson');
   });
 });

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type Dispatch } from 'react';
-import { grade, GRADERS, type GradeReport, type PracticeStep } from '@office-neko/shared';
+import { grade, GRADERS, typingSim, type GradeReport, type PracticeStep } from '@office-neko/shared';
 import { SIMS } from '../sims/registry';
 import { useOs } from '../db/profile';
 import { Mochi } from '../components/Mochi';
@@ -7,6 +7,7 @@ import { RichText } from '../help/RichText';
 import { SpotlightOverlay } from '../help/SpotlightOverlay';
 import { useSound } from '../lib/sound';
 import { ErrorBoundary } from '../app/ErrorBoundary';
+import { recordTypingRun } from '../progress/typing';
 import { HintPanel } from './HintPanel';
 import type { PlayerAction, PlayerState } from './playerReducer';
 
@@ -18,6 +19,9 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const timer = useRef<number | undefined>(undefined);
   const doneRef = useRef(state.stepDone);
   doneRef.current = state.stepDone;
+  /** Ghi đúng một lần WPM/keyStats của bài gõ phím khi trình mô phỏng báo đã gõ xong,
+   * kể cả khi việc chấm điểm chạy lại nhiều lần trên cùng một bước. */
+  const typingRecordedRef = useRef(false);
   const [report, setReport] = useState<GradeReport | null>(null);
   const [root, setRoot] = useState<HTMLDivElement | null>(null);
 
@@ -35,11 +39,19 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const onState = useCallback(
     (s: unknown) => {
       latest.current = s;
+      if (step.sim === 'keyboard' && !typingRecordedRef.current) {
+        const ts = s as typingSim.TypingState;
+        if (ts.finished) {
+          typingRecordedRef.current = true;
+          const m = typingSim.typingMetrics(ts);
+          void recordTypingRun({ mode: 'lesson', wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: ts.keyStats }).catch(() => undefined);
+        }
+      }
       if (doneRef.current) return;
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(() => runGrade(false), 300);
     },
-    [runGrade],
+    [runGrade, step.sim],
   );
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
