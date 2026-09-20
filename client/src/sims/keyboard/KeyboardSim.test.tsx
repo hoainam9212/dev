@@ -70,4 +70,16 @@ describe('KeyboardSim', () => {
     expect(last().finished).toBe(true);
     expect(screen.getByText(/Hết giờ/)).toBeInTheDocument();
   });
+
+  it('updates the countdown between keystrokes, not just when typing', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 20, 9, 0, 0));
+    const { type } = setup({ target: 'abcdefghijklmnopqrst', mode: 'test', durationSec: 10 });
+    type('a');
+    expect(screen.getByText(/Còn lại 10s/)).toBeInTheDocument();
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+    expect(screen.getByText(/Còn lại 7s/)).toBeInTheDocument();
+  });
 });

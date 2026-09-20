@@ -9,6 +9,7 @@ type S = typingSim.TypingState;
 export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
   const [state, dispatch] = useReducer(typingSim.reduceTyping, initial);
   const [imeWarning, setImeWarning] = useState(false);
+  const [now, setNow] = useState(() => Date.now());
   const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,7 +22,11 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
 
   useEffect(() => {
     if (state.durationSec === null || state.startedAt === null || state.finished) return;
-    const id = window.setInterval(() => dispatch({ type: 'tick', at: Date.now() }), 250);
+    const id = window.setInterval(() => {
+      const at = Date.now();
+      setNow(at);
+      dispatch({ type: 'tick', at });
+    }, 250);
     return () => window.clearInterval(id);
   }, [state.durationSec, state.startedAt, state.finished]);
 
@@ -48,7 +53,7 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
   const next = state.ime || state.finished ? null : (targetChars[textLen] ?? null);
   const left =
     state.durationSec !== null
-      ? Math.max(0, Math.ceil(state.durationSec - (state.startedAt !== null && state.lastAt !== null ? (Date.now() - state.startedAt) / 1000 : 0)))
+      ? Math.max(0, Math.ceil(state.durationSec - (state.startedAt !== null && state.lastAt !== null ? (now - state.startedAt) / 1000 : 0)))
       : null;
 
   return (
