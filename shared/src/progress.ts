@@ -54,6 +54,25 @@ export function visibleLessons(track: Track, lessons: Record<string, Lesson>, os
 
 const byOrder = (tracks: Track[]) => [...tracks].sort((a, b) => a.order - b.order);
 
+/**
+ * Id "chị em" của một bài học theo HĐH khác, nếu có — ví dụ
+ * `basics.files.rename.win` ↔ `basics.files.rename.mac`. Bài học không gắn
+ * `os` (dùng chung cho cả hai HĐH) không có id chị em.
+ */
+function siblingLessonId(l: Lesson): string | null {
+  if (!l.os) return null;
+  if (l.id.endsWith('.win')) return l.id.slice(0, -'.win'.length) + '.mac';
+  if (l.id.endsWith('.mac')) return l.id.slice(0, -'.mac'.length) + '.win';
+  return null;
+}
+
+/** Một bài học đã "xong" nếu chính nó hoặc bài chị em cùng cặp OS đã hoàn thành. */
+function lessonSatisfied(l: Lesson, completed: ReadonlySet<string>): boolean {
+  if (completed.has(l.id)) return true;
+  const sibling = siblingLessonId(l);
+  return sibling !== null && completed.has(sibling);
+}
+
 export function unlockState(
   tracks: Track[],
   lessons: Record<string, Lesson>,
@@ -68,10 +87,10 @@ export function unlockState(
     if (prevDone) {
       trackUnlocked.add(t.id);
       ls.forEach((l, i) => {
-        if (i === 0 || completed.has(ls[i - 1]!.id)) lessonUnlocked.add(l.id);
+        if (i === 0 || lessonSatisfied(ls[i - 1]!, completed)) lessonUnlocked.add(l.id);
       });
     }
-    prevDone = prevDone && ls.every((l) => completed.has(l.id));
+    prevDone = prevDone && ls.every((l) => lessonSatisfied(l, completed));
   }
   return { trackUnlocked, lessonUnlocked };
 }

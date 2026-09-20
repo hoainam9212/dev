@@ -68,4 +68,26 @@ describe('unlocking', () => {
     expect(nextLessonId(tracks, lessons, 'mac', 'a3')).toBe('b1');
     expect(nextLessonId(tracks, lessons, 'mac', 'b1')).toBeNull();
   });
+  it('treats an OS-paired lesson as satisfied when its sibling is completed', () => {
+    const pairLessons: Record<string, Lesson> = {
+      'x.win': L('x.win', 'a', 'win'),
+      'x.mac': L('x.mac', 'a', 'mac'),
+      'y.win': L('y.win', 'a', 'win'),
+      'y.mac': L('y.mac', 'a', 'mac'),
+      b1: L('b1', 'b'),
+    };
+    const pairTracks: Track[] = [
+      { id: 'a', order: 0, title: 'A', emoji: '', blurb: '', color: '', chapters: [{ id: 'a.c', title: '', lessonIds: ['x.win', 'x.mac', 'y.win', 'y.mac'] }] },
+      { id: 'b', order: 1, title: 'B', emoji: '', blurb: '', color: '', chapters: [{ id: 'b.c', title: '', lessonIds: ['b1'] }] },
+    ];
+    // Completed on 'win': both lessons of track 'a', identified by their .win ids.
+    const completed = new Set(['x.win', 'y.win']);
+    const s = unlockState(pairTracks, pairLessons, 'mac', completed);
+    // Viewed as 'mac', the .mac siblings should unlock (not just the first one) …
+    expect(s.lessonUnlocked.has('x.mac')).toBe(true);
+    expect(s.lessonUnlocked.has('y.mac')).toBe(true);
+    // … and the next track should unlock too, since track 'a' counts as finished.
+    expect(s.trackUnlocked.has('b')).toBe(true);
+    expect(s.lessonUnlocked.has('b1')).toBe(true);
+  });
 });
