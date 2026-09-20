@@ -68,7 +68,7 @@ export function reduceFish(s: FishState, a: FishAction): FishState {
   if (a.key === 'Enter' || a.key === 'Escape') return { ...s, input: '' };
   if (a.key.length !== 1 || !/[a-z0-9]/i.test(a.key)) return s;
   const input = s.input + a.key.toLowerCase();
-  const hit = s.fish.find((f) => f.word === input);
+  const hit = s.fish.filter((f) => f.word === input).sort((a2, b2) => b2.y - a2.y)[0];
   if (!hit) return { ...s, input };
   const caught = s.caught + 1;
   return {

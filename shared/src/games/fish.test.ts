@@ -49,4 +49,18 @@ describe('fish game', () => {
     s = reduceFish(s, { type: 'key', key: 'Escape' });
     expect(s.input).toBe('');
   });
+
+  it('catches the same duplicate-word fish that is highlighted (lowest one), not the first', () => {
+    let s: FishState = {
+      ...fishInitial(words),
+      fish: [
+        { id: 1, word: 'ca', x: 0.2, y: 0.1 },
+        { id: 2, word: 'ca', x: 0.6, y: 0.8 },
+      ],
+    };
+    s = typeWord(s, 'c');
+    expect(targetFish(s)?.id).toBe(2);
+    s = typeWord(s, 'a');
+    expect(s.fish.map((f) => f.id)).toEqual([1]);
+  });
 });
