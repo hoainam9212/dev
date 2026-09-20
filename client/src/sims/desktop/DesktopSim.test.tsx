@@ -92,4 +92,14 @@ describe('DesktopSim', () => {
     const { item } = setup('win');
     expect(item('Ảnh')).toHaveAttribute('data-path', '/Ảnh');
   });
+
+  it('opens the context menu at the click position and closes it on Escape', () => {
+    const { item } = setup('win');
+    fireEvent.contextMenu(item('ghi-chu.txt'), { clientX: 123, clientY: 45 });
+    const menu = screen.getByRole('menu');
+    expect(menu.style.left).toBe('123px');
+    expect(menu.style.top).toBe('45px');
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
 });

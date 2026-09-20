@@ -1,5 +1,6 @@
-import { useState, type MouseEvent as RME } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent as RME } from 'react';
 import { vfs, type OS } from '@office-neko/shared';
+import { placePopover, type PopoverPosition } from '../../help/placement';
 
 export type MenuAction = 'open' | 'rename' | 'copy' | 'cut' | 'remove' | 'restore' | 'newFolder' | 'paste';
 
@@ -30,7 +31,10 @@ function iconFor(n: vfs.VNode): string {
 }
 
 export function FileArea(p: Props) {
-  const [menu, setMenu] = useState<{ id: string | null } | null>(null);
+  const [menu, setMenu] = useState<{ id: string | null; x: number; y: number } | null>(null);
+  const [menuPos, setMenuPos] = useState<PopoverPosition | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
   const inTrash = p.cwd === p.fs.trashId;
   const items = vfs.childrenOf(p.fs, p.cwd);
 
@@ -38,11 +42,13 @@ export function FileArea(p: Props) {
     e.preventDefault();
     e.stopPropagation();
     if (id && !p.selected.includes(id)) p.onSelect([id]);
-    setMenu({ id });
+    const rect = containerRef.current?.getBoundingClientRect();
+    setMenu({ id, x: rect ? e.clientX - rect.left : e.clientX, y: rect ? e.clientY - rect.top : e.clientY });
   };
+  const closeMenu = () => setMenu(null);
   const choose = (action: MenuAction) => {
     const id = menu?.id ?? null;
-    setMenu(null);
+    closeMenu();
     p.onMenu(action, id);
   };
 
@@ -54,14 +60,53 @@ export function FileArea(p: Props) {
       ? []
       : [['newFolder', 'Thư mục mới'], ['paste', 'Dán']];
 
+  // Đóng menu bằng Escape hoặc khi bấm ra ngoài vùng file (kể cả ngoài trình mô phỏng).
+  useEffect(() => {
+    if (!menu) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (containerRef.current?.contains(e.target as Node)) return;
+      closeMenu();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [menu]);
+
+  // Giữ menu trong vùng nhìn thấy được — chỉ kẹp toạ độ khi đã đo được kích thước
+  // thật của vùng chứa/menu (trong test jsdom không có layout nên bỏ qua, dùng
+  // thẳng toạ độ chuột đã lưu).
+  useLayoutEffect(() => {
+    if (!menu) {
+      setMenuPos(null);
+      return;
+    }
+    const container = containerRef.current;
+    const menuEl = menuRef.current;
+    const cw = container?.clientWidth ?? 0;
+    const ch = container?.clientHeight ?? 0;
+    if (!container || !menuEl || cw === 0 || ch === 0) {
+      setMenuPos({ left: menu.x, top: menu.y, above: false });
+      return;
+    }
+    const anchor = { left: menu.x, top: menu.y, right: menu.x, bottom: menu.y, width: 0, height: 0 };
+    setMenuPos(placePopover(anchor, { width: menuEl.offsetWidth, height: menuEl.offsetHeight }, { width: cw, height: ch }, { gap: 0, margin: 4 }));
+  }, [menu, menuItems.length]);
+
   return (
     <div
+      ref={containerRef}
       data-testid="file-area"
       className="relative min-h-56 flex-1 p-3"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           p.onSelect([]);
-          setMenu(null);
+          closeMenu();
         }
       }}
       onContextMenu={(e) => openMenu(e, null)}
@@ -101,7 +146,7 @@ export function FileArea(p: Props) {
                   className={`flex w-full flex-col items-center gap-1 rounded-xl p-2 text-sm ${selected ? 'bg-sky/40 ring-2 ring-sky' : 'hover:bg-sky/15'}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setMenu(null);
+                    closeMenu();
                     const add = p.os === 'mac' ? e.metaKey : e.ctrlKey;
                     if (add) p.onSelect(selected ? p.selected.filter((x) => x !== n.id) : [...p.selected, n.id]);
                     else p.onSelect([n.id]);
@@ -128,7 +173,12 @@ export function FileArea(p: Props) {
         })}
       </ul>
       {menu && menuItems.length > 0 && (
-        <ul role="menu" className="card absolute left-4 top-4 z-20 w-48 p-2">
+        <ul
+          ref={menuRef}
+          role="menu"
+          className="card absolute z-20 w-48 p-2"
+          style={{ left: menuPos?.left ?? menu.x, top: menuPos?.top ?? menu.y }}
+        >
           {menuItems.map(([action, label]) => (
             <li key={action}>
               <button
