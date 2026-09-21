@@ -4,7 +4,7 @@ import { levelFromXp } from '@office-neko/shared';
 import { db } from '../db/db';
 import { Mochi } from '../components/Mochi';
 import { avatarSkin } from './avatars';
-import { setCurrentProfileId } from './current';
+import { clearCurrentProfileId, setCurrentProfileId } from './current';
 import { listProfiles, touchProfile } from './manage';
 
 /**
@@ -61,7 +61,11 @@ export function ProfilePicker() {
         <button
           type="button"
           aria-label="Thêm người mới"
-          onClick={() => navigate('/welcome')}
+          onClick={() => {
+            // Bỏ chọn người hiện tại, nếu không màn hình chào sẽ nảy về bản đồ của họ.
+            clearCurrentProfileId();
+            navigate('/welcome');
+          }}
           className="card flex flex-col items-center justify-center gap-2 border-2 border-dashed border-peach/70 p-5 transition hover:ring-4 hover:ring-peach"
         >
           <span aria-hidden className="text-4xl">➕</span>

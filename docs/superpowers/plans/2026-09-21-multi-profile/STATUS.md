@@ -11,7 +11,9 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 | 3 Màn "Ai đang học?" | ☑ | (commit này) | client 148 test xanh; di trú đã chạy thật trên máy: hồ sơ cũ "Thầy Mạnh" thành p1, nguyên cài đặt |
 | 4 Cài đặt: quản lý hồ sơ | ☑ | (commit này) | Đã thử xoá thật trên trình duyệt: gõ sai tên vẫn mờ nút, xoá xong danh sách còn một người và hết nút Xoá |
 | 5 Sao lưu v2 | ☑ | (commit này) | Đã thử file v1 thật trên trình duyệt: nhận, chuyển thành 1 hồ sơ, hộp thoại nói đúng số người. Không bấm Khôi phục để giữ nguyên dữ liệu thật của máy |
-| 6 Kiểm tra tổng thể + gộp nhánh | ☐ | | |
+| 6 Kiểm tra tổng thể + gộp nhánh | ☑ | (commit này) | Đi một lượt với 3 hồ sơ thật; xuất + khôi phục file sao lưu thật chạy đúng |
+
+**Xong toàn bộ 2026-09-21.** Giai đoạn kế tiếp vẫn là Word — plan ở `plans/2026-09-20-phase3-word/`.
 
 ## Quyết định đã chốt
 
@@ -24,7 +26,8 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 
 ## Việc còn treo
 
-- Task 6 nên tự tay bấm **Tải file sao lưu** và **Khôi phục** một lần trên máy thật — ở Task 5 mới kiểm tới bước hộp thoại, chưa bấm khôi phục để không đụng dữ liệu đang dùng.
+- (xong ở Task 6) đã xuất file thật (3 hồ sơ, UTF-8 đúng) rồi khôi phục lại: dữ liệu nguyên vẹn, app quay về màn chọn người.
+- Chưa kiểm lại PWA offline sau thay đổi này: tính năng không đụng service worker, và `npm run build` vẫn sinh 17 mục precache. Kiểm được thì nên chạy `npm run preview` rồi tắt mạng.
 
 - (xong ở Task 2) đổi tên bảng ở mọi chỗ dùng.
 - (xong ở Task 3) bước chọn ảnh trong màn hình chào.

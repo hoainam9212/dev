@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { db } from '../db/db';
 import { createProfile } from './manage';
-import { getCurrentProfileId } from './current';
+import { getCurrentProfileId, setCurrentProfileId } from './current';
 import { resetDb } from '../test/utils';
 
 const renderRoute = (route: string) =>
@@ -68,5 +68,15 @@ describe('ProfilePicker', () => {
     renderRoute('/who');
     fireEvent.click(await screen.findByRole('button', { name: 'Thêm người mới' }));
     expect(await screen.findByRole('button', { name: 'Bắt đầu nào!' })).toBeInTheDocument();
+  });
+
+  it('adds another learner even while someone is still chosen', async () => {
+    const { a } = await seed();
+    setCurrentProfileId(a.id);
+    renderRoute('/who');
+    fireEvent.click(await screen.findByRole('button', { name: 'Thêm người mới' }));
+    // Không được nảy về bản đồ của người đang chọn: đang muốn tạo người MỚI.
+    expect(await screen.findByRole('button', { name: 'Bắt đầu nào!' })).toBeInTheDocument();
+    expect(getCurrentProfileId()).toBeNull();
   });
 });
