@@ -588,5 +588,45 @@
     "lessonIds": [
       "word.color"
     ]
+  },
+  {
+    "id": "align",
+    "term": "Align",
+    "say": "/əˈlaɪn/ — ơ-lai",
+    "vi": "Căn lề",
+    "explain": "Chữ nằm về phía nào của trang: trái, giữa, phải hay đều hai bên.",
+    "lessonIds": [
+      "word.align"
+    ]
+  },
+  {
+    "id": "table",
+    "term": "Table",
+    "say": "/ˈteɪbl/ — tây-bồ",
+    "vi": "Bảng",
+    "explain": "Khung kẻ ô để xếp thông tin thành hàng và cột cho dễ đọc.",
+    "lessonIds": [
+      "word.table"
+    ]
+  },
+  {
+    "id": "row",
+    "term": "Row",
+    "say": "/rəʊ/ — râu",
+    "vi": "Hàng",
+    "explain": "Dãy ô nằm ngang trong một [[table|bảng]].",
+    "lessonIds": [
+      "word.table"
+    ]
+  },
+  {
+    "id": "column",
+    "term": "Column",
+    "say": "/ˈkɒləm/ — cô-lầm",
+    "vi": "Cột",
+    "explain": "Dãy ô nằm dọc trong một [[table|bảng]].",
+    "lessonIds": [
+      "word.table"
+    ]
   }
 ]

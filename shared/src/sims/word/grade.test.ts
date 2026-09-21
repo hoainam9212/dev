@@ -51,6 +51,13 @@ describe('word grader', () => {
     expect(gradeWord(s, { kind: 'imageCount', count: 2 }).ok).toBe(false);
   });
 
+  it('checks the image width', () => {
+    const s = run(wordInitial(), { type: 'insertImage', src: '/images/word/meo.svg', alt: 'Mèo' }, { type: 'setImageWidth', width: '60%' });
+    expect(gradeWord(s, { kind: 'imageWidth', width: '60%' }).ok).toBe(true);
+    expect(gradeWord(s, { kind: 'imageWidth', width: '25%' }).ok).toBe(false);
+    expect(gradeWord(wordInitial(), { kind: 'imageWidth', width: '60%' }).ok).toBe(false);
+  });
+
   it('checks the table of contents, saving and printing', () => {
     let s = run(wordInitial({ text: 'Giới thiệu' }), { type: 'selectText', text: 'Giới thiệu' }, { type: 'setHeading', level: 1 }, { type: 'insertToc' });
     expect(gradeWord(s, { kind: 'hasToc' }).ok).toBe(true);

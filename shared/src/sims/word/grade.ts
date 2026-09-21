@@ -17,6 +17,7 @@ export type WordCheck =
   | { kind: 'tableSize'; rows: number; cols: number }
   | { kind: 'cellText'; row: number; col: number; text: string }
   | { kind: 'imageCount'; count: number }
+  | { kind: 'imageWidth'; width: '25%' | '40%' | '60%' | '100%' }
   | { kind: 'hasToc' }
   | { kind: 'saved'; name?: string }
   | { kind: 'printed' };
@@ -111,6 +112,12 @@ export function gradeWord(s: WordState, c: WordCheck): CheckResult {
       const count = imagesOf(s.doc).length;
       const ok = count === c.count;
       return { ok, messageVi: ok ? `Bài đã có ${c.count} ảnh.` : `Bài đang có ${count} ảnh, cần ${c.count} ảnh.` };
+    }
+    case 'imageWidth': {
+      const images = imagesOf(s.doc);
+      if (images.length === 0) return { ok: false, messageVi: 'Chưa có ảnh nào trong bài.' };
+      const ok = images.some((i) => i.width === c.width);
+      return { ok, messageVi: ok ? `Ảnh đã rộng ${c.width}.` : `Hãy đặt độ rộng ảnh thành ${c.width} ở thẻ Layout.` };
     }
     case 'hasToc': {
       const ok = hasToc(s.doc);

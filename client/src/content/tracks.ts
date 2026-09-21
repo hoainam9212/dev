@@ -33,6 +33,8 @@ export const TRACKS: Track[] = [
     chapters: [
       { id: 'word.start', title: 'Làm quen trang giấy', lessonIds: ['word.intro', 'word.edit', 'word.select'] },
       { id: 'word.format', title: 'Định dạng chữ', lessonIds: ['word.bold', 'word.font', 'word.color'] },
+      { id: 'word.para', title: 'Đoạn văn cho đẹp', lessonIds: ['word.align', 'word.spacing', 'word.list'] },
+      { id: 'word.objects', title: 'Bảng và ảnh', lessonIds: ['word.table', 'word.image'] },
     ],
   },
   { id: 'excel', order: 3, title: 'Excel – Bảng tính', emoji: '📊', color: '#3FB871', blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.', chapters: [] },
