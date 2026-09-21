@@ -9,7 +9,7 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 | 1 Schema v2 + di trú | ☑ | (commit này) | Đích cho Task 2: 28 test đỏ / 10 file, 58 lỗi typecheck — đều do mã cũ còn dùng `db.profile`, `db.progress`… |
 | 2 Người đang học + hàm nhận profileId | ☑ | (commit này) | client: 140 test xanh (trước tính năng này là 124), typecheck sạch |
 | 3 Màn "Ai đang học?" | ☑ | (commit này) | client 148 test xanh; di trú đã chạy thật trên máy: hồ sơ cũ "Thầy Mạnh" thành p1, nguyên cài đặt |
-| 4 Cài đặt: quản lý hồ sơ | ☐ | | |
+| 4 Cài đặt: quản lý hồ sơ | ☑ | (commit này) | Đã thử xoá thật trên trình duyệt: gõ sai tên vẫn mờ nút, xoá xong danh sách còn một người và hết nút Xoá |
 | 5 Sao lưu v2 | ☐ | | |
 | 6 Kiểm tra tổng thể + gộp nhánh | ☐ | | |
 

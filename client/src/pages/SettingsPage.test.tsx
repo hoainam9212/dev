@@ -46,6 +46,17 @@ describe('SettingsPage', () => {
     await waitFor(async () => expect((await db.profiles.get('p1'))?.unlockAll).toBe(false));
   });
 
+  it('changes the avatar', async () => {
+    renderPage();
+    fireEvent.click(await screen.findByRole('radio', { name: 'Mèo tím' }));
+    await waitFor(async () => expect((await db.profiles.get('p1'))?.avatar).toBe('tim'));
+  });
+
+  it('lists the learners on this computer', async () => {
+    renderPage();
+    expect(await screen.findByText(/An \(bạn\)/)).toBeInTheDocument();
+  });
+
   it('renames on blur', async () => {
     renderPage();
     const input = await screen.findByLabelText('Tên của bạn');

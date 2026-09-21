@@ -8,6 +8,9 @@ import {
 } from '../progress/backup';
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
+import { Mochi } from '../components/Mochi';
+import { AVATARS, avatarSkin } from '../profiles/avatars';
+import { ProfileList } from '../profiles/ProfileList';
 
 const LICENSES: [string, string][] = [
   ['React, React Router, Zustand', 'MIT'],
@@ -86,6 +89,29 @@ export function SettingsPage() {
             className="w-full rounded-full border-2 border-peach/60 bg-white px-4 py-2 outline-none focus:border-rose"
           />
         </label>
+        <div className="space-y-1">
+          <span className="font-semibold">Ảnh đại diện</span>
+          <div role="radiogroup" aria-label="Ảnh đại diện" className="flex flex-wrap gap-2">
+            {AVATARS.map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                role="radio"
+                aria-checked={profile.avatar === a.id}
+                aria-label={a.label}
+                onClick={() => updateProfile(profile.id, { avatar: a.id })}
+                className={`rounded-2xl bg-white p-1 transition ${profile.avatar === a.id ? 'ring-4 ring-rose' : 'hover:ring-2 hover:ring-peach'}`}
+              >
+                <Mochi skin={avatarSkin(a.id)} size={48} mood="happy" animated={false} label={a.label} />
+              </button>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Người học trên máy này">
+        <p className="text-muted">Mỗi người có tiến độ riêng. Chọn tên mình ở màn hình “Ai đang học?” trước khi bắt đầu.</p>
+        <ProfileList currentId={profile.id} />
       </Section>
 
       <Section title="Hệ điều hành">
