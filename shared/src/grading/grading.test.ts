@@ -35,10 +35,15 @@ describe('grade registry', () => {
     expect(grade('mouse', { n: 2 }, [{ min: 2 }]).pass).toBe(true);
   });
   it('throws for sims without a grader', () => {
-    expect(() => grade('excel', {}, [{}])).toThrow(/excel/);
+    // 'ppt' là sim chưa làm; trước đây test này dùng 'excel', nhưng giai đoạn 4A
+    // đã đăng ký grader cho Excel nên phải đổi sang sim khác.
+    expect(() => grade('ppt', {}, [{}])).toThrow(/ppt/);
   });
   it('registers the real word grader', () => {
     expect(GRADERS.word).toBeDefined();
+  });
+  it('registers the real excel grader', () => {
+    expect(GRADERS.excel).toBeDefined();
   });
 
   it('registers the real mouse grader', () => {
