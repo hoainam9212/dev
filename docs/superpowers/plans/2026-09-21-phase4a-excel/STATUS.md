@@ -9,8 +9,8 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 3 evaluate | ☑ | (commit này) | 14 test. Bảng hàm cắm vào bằng `registerFunctions()` chứ không import thẳng — `functions.ts` phải import `evaluate`, nên import ngược sẽ thành vòng. Task 4 gọi nó lúc nạp module |
 | 4 functions | ☑ | (commit này) | 19 test, đủ 25 hàm. `isErr` nhận `unknown` để thu hẹp được cả `number[] \| FormulaError` |
 | 5 errors + numfmt | ☑ | (commit này) | 12 test; `CellFormat` định nghĩa tại `numfmt.ts`, Task 6–8 import lại từ đó |
-| 6 workbook | ☑ | (commit này) | 12 test. `withEdit`/`withSheets` là cổng DUY NHẤT đẩy lịch sử. Task 7–8 cắm nhánh action qua `registerReducers()`, giống cách Task 4 cắm bảng hàm |
-| 7 copy + fill | ☐ | | |
+| 6 workbook | ☑ | (commit này) | 12 test. `withEdit`/`withSheets` là cổng DUY NHẤT đẩy lịch sử |
+| 7 copy + fill | ☑ | (commit này) | 10 test. Clipboard nhớ cả `origin` nên độ dịch là phép trừ, không phải đoán |
 | 8 format + sheets | ☐ | | |
 | 9 grader | ☐ | | |
 | 10 grid | ☐ | | |
@@ -33,6 +33,11 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 - **Task 4 nói sai một chỗ:** `IF` tính sẵn cả hai nhánh nhưng lỗi ở nhánh KHÔNG được chọn vẫn không lọt ra,
   vì `IF` chỉ trả về đúng nhánh đã chọn. Chỉ lỗi ở chính ĐIỀU KIỆN mới lan lên. Vậy `=IF(A1=0,0,10/A1)` **chạy đúng**;
   cấm dùng mẫu đó trong bài học là thừa, bỏ lệnh cấm ấy đi.
+
+- **Kiểu "đăng ký" của Task 6 đã bị gỡ (Task 7).** `registerReducers()` chỉ chạy khi ai đó nạp `index.ts`, mà test
+  import thẳng `./state` nên nhánh action mới im lặng không hoạt động — 8 test đỏ không rõ lý do. Nay `state.ts`
+  gọi thẳng `reduceEdit`/`reduceFormat`; import vòng giữa chúng là cố ý và an toàn vì cả hai phía đều là khai báo hàm.
+  (`registerFunctions` của Task 3–4 thì vẫn giữ: ở đó `functions.ts` nạp qua barrel `formula/index.ts` nên không vướng.)
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 

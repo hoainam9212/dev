@@ -12,6 +12,8 @@ import {
   type CellValue,
   type Range,
 } from '../../formula';
+import { reduceEdit } from './edit';
+import { reduceFormat } from './format';
 
 export interface Cell {
   /** Đúng chữ người dùng gõ: "120000", "=SUM(B2:B5)", "Nguyễn Văn A". */
@@ -45,7 +47,8 @@ export interface WorkbookState {
   editing: string | null;
   /** Mốc thời gian cho TODAY(); reducer không bao giờ gọi Date.now(). */
   now: number;
-  clipboard: { cells: { dRow: number; dCol: number; cell: Cell }[] } | null;
+  /** Clipboard nằm TRONG state (không dùng clipboard hệ điều hành) để reducer vẫn thuần. */
+  clipboard: { origin: { row: number; col: number }; cells: { dRow: number; dCol: number; cell: Cell }[] } | null;
   past: Sheet[][];
 }
 
@@ -221,14 +224,10 @@ export function reduceExcel(s: WorkbookState, a: ExcelAction): WorkbookState {
       return { ...s, sheets: prev, past: s.past.slice(0, -1), editing: null };
     }
     default:
-      return reduceRest(s, a);
+      // Import vòng với `edit.ts`/`format.ts` là CỐ Ý và an toàn: cả hai phía đều
+      // là khai báo hàm, nên lúc gọi thì hai module đã nạp xong.
+      return reduceEdit(s, a) ?? reduceFormat(s, a) ?? s;
   }
-}
-
-/** Task 7–8 cài phần còn lại và thay hàm này. */
-let reduceRest: (s: WorkbookState, a: ExcelAction) => WorkbookState = (s) => s;
-export function registerReducers(fn: (s: WorkbookState, a: ExcelAction) => WorkbookState): void {
-  reduceRest = fn;
 }
 
 export function cellsIn(sel: Range): { row: number; col: number }[] {
