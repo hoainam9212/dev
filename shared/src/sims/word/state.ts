@@ -2,6 +2,7 @@ import { emptyDoc, type WordDoc } from './schema';
 import { setHighlight, setStyle, toggleMark, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
 import { setAlign, setHeading, setLineHeight, toggleList, blockOf, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
 import { fillCell, insertImage, insertTable, setImageWidth, tableColOp, tableRowOp, type ImageWidth } from './objects';
+import { replaceAll, replaceOne, writeToc } from './doc';
 import {
   backspace,
   clampRange,
@@ -46,8 +47,14 @@ export type WordAction =
   | { type: 'fillCell'; row: number; col: number; text: string }
   | { type: 'insertImage'; src: string; alt: string }
   | { type: 'setImageWidth'; width: ImageWidth }
+  | { type: 'replaceAll'; find: string; replace: string }
+  | { type: 'replaceOne'; find: string; replace: string; nth?: number }
+  | { type: 'insertToc' }
+  | { type: 'refreshToc' }
+  | { type: 'openDialog'; dialog: WordState['dialog'] }
+  | { type: 'save'; name: string; at: number }
+  | { type: 'print' }
   | { type: 'undo' };
-// Task 6 thêm nhánh vào union này.
 
 export function wordInitial(o: { doc?: WordDoc; text?: string } = {}): WordState {
   return {
@@ -117,6 +124,20 @@ export function reduceWord(s: WordState, a: WordAction): WordState {
       return withEdit(s, insertImage(s.doc, s.sel, a.src, a.alt));
     case 'setImageWidth':
       return withEdit(s, setImageWidth(s.doc, s.sel, a.width));
+    case 'replaceAll':
+      return withEdit(s, replaceAll(s.doc, s.sel, a.find, a.replace));
+    case 'replaceOne':
+      return withEdit(s, replaceOne(s.doc, s.sel, a.find, a.replace, a.nth ?? 1));
+    case 'insertToc':
+    case 'refreshToc':
+      return withEdit(s, writeToc(s.doc, s.sel));
+    case 'openDialog':
+      return { ...s, dialog: a.dialog };
+    // Lưu và in không đổi tài liệu nên không đẩy lịch sử hoàn tác.
+    case 'save':
+      return { ...s, saved: { name: a.name, at: a.at } };
+    case 'print':
+      return { ...s, printed: true };
     case 'selectText': {
       const range = findText(s.doc, a.text, a.nth ?? 1);
       return range ? { ...s, sel: range } : s;

@@ -37,6 +37,10 @@ describe('grade registry', () => {
   it('throws for sims without a grader', () => {
     expect(() => grade('excel', {}, [{}])).toThrow(/excel/);
   });
+  it('registers the real word grader', () => {
+    expect(GRADERS.word).toBeDefined();
+  });
+
   it('registers the real mouse grader', () => {
     expect(saved).toBeDefined();
   });
