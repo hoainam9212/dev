@@ -1,6 +1,7 @@
 import { emptyDoc, type WordDoc } from './schema';
 import { setHighlight, setStyle, toggleMark, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
 import { setAlign, setHeading, setLineHeight, toggleList, blockOf, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
+import { fillCell, insertImage, insertTable, setImageWidth, tableColOp, tableRowOp, type ImageWidth } from './objects';
 import {
   backspace,
   clampRange,
@@ -39,8 +40,14 @@ export type WordAction =
   | { type: 'setLineHeight'; value: LineHeight }
   | { type: 'setHeading'; level: 0 | 1 | 2 | 3 }
   | { type: 'toggleList'; list: ListKind }
+  | { type: 'insertTable'; rows: number; cols: number }
+  | { type: 'tableRow'; op: 'add' | 'remove' }
+  | { type: 'tableCol'; op: 'add' | 'remove' }
+  | { type: 'fillCell'; row: number; col: number; text: string }
+  | { type: 'insertImage'; src: string; alt: string }
+  | { type: 'setImageWidth'; width: ImageWidth }
   | { type: 'undo' };
-// Task 5–6 thêm nhánh vào union này.
+// Task 6 thêm nhánh vào union này.
 
 export function wordInitial(o: { doc?: WordDoc; text?: string } = {}): WordState {
   return {
@@ -98,6 +105,18 @@ export function reduceWord(s: WordState, a: WordAction): WordState {
       return withEdit(s, setHeading(s.doc, s.sel, a.level));
     case 'toggleList':
       return withEdit(s, toggleList(s.doc, s.sel, a.list));
+    case 'insertTable':
+      return withEdit(s, insertTable(s.doc, s.sel, a.rows, a.cols));
+    case 'tableRow':
+      return withEdit(s, tableRowOp(s.doc, s.sel, a.op));
+    case 'tableCol':
+      return withEdit(s, tableColOp(s.doc, s.sel, a.op));
+    case 'fillCell':
+      return withEdit(s, fillCell(s.doc, s.sel, a.row, a.col, a.text));
+    case 'insertImage':
+      return withEdit(s, insertImage(s.doc, s.sel, a.src, a.alt));
+    case 'setImageWidth':
+      return withEdit(s, setImageWidth(s.doc, s.sel, a.width));
     case 'selectText': {
       const range = findText(s.doc, a.text, a.nth ?? 1);
       return range ? { ...s, sel: range } : s;

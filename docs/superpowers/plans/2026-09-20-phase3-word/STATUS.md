@@ -8,7 +8,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 2 Reducer lõi | ☑ | (commit này) | 13 test; `findText` là bản đồ ký tự→pos mà Task 3–7 dùng lại |
 | 3 Marks | ☑ | (commit này) | 7 test lấy nguyên từ plan; `editDoc()` trong text.ts là cổng chung cho mọi thao tác sửa tài liệu |
 | 4 Blocks | ☑ | (commit này) | 8 test |
-| 5 Bảng + ảnh | ☐ | | |
+| 5 Bảng + ảnh | ☑ | (commit này) | 9 test; 6 ảnh SVG đã tạo trong client/public/images/word/ |
 | 6 Find/TOC/Save | ☐ | | |
 | 7 Grader | ☐ | | |
 | 8 WordSim shell | ☐ | | |
