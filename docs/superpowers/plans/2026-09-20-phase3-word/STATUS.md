@@ -11,7 +11,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 5 Bảng + ảnh | ☑ | (commit này) | 9 test; 6 ảnh SVG đã tạo trong client/public/images/word/ |
 | 6 Find/TOC/Save | ☑ | (commit này) | 10 test |
 | 7 Grader | ☑ | (commit này) | 7 test; `GRADERS.word` đã đăng ký. Xong toàn bộ phần shared — từ Task 8 là giao diện |
-| 8 WordSim shell | ☐ | | |
+| 8 WordSim shell | ☑ | (commit này) | 3 test client + 2 test `setDoc` ở shared; đã gõ thật trong TipTap và Hoàn tác trên trình duyệt |
 | 9 Ribbon Home | ☐ | | |
 | 10 Ribbon còn lại | ☐ | | |
 | 11 Bài chương 1–2 | ☐ | | |
@@ -30,6 +30,8 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   `{ type: 'doc', content: [{ type: 'paragraph' }] }` và JSON trong bài học đọc được bằng mắt.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
+
+- Route tạm `/dev/word` + file `client/src/sims/word/WordDevPage.tsx` — **Task 11 phải xoá** khi đã có bài học Word thật.
 
 - **`wordInitial` đặt con trỏ ở ĐẦU đoạn.** Muốn dựng tài liệu nhiều đoạn thì phải đưa con trỏ về cuối chữ
   (`selectText` rồi `setSelection(from: sel.to, to: sel.to)`) trước khi `splitBlock`, kẻo tách ra một đoạn rỗng phía trước.

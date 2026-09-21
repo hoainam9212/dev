@@ -24,6 +24,9 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'desktop.trashSidebar': { label: 'Thùng rác (thanh bên)', vi: 'Mở thùng rác từ thanh bên.' },
   'desktop.address': { label: 'Thanh địa chỉ', vi: 'Cho biết bạn đang ở thư mục nào.' },
   'keyboard.area': { label: 'Vùng gõ phím', vi: 'Bấm vào đây rồi gõ theo dòng chữ. Chữ xanh là đúng, chữ đỏ là sai.' },
+  'word.page': { label: 'Trang giấy', vi: 'Trang A4 — mọi thứ bạn gõ sẽ nằm gọn trong trang này.' },
+  'word.editor': { label: 'Vùng soạn thảo', vi: 'Bấm vào đây rồi gõ như viết trên giấy.' },
+  'word.undo': { label: 'Undo (Hoàn tác)', vi: 'Quay lại thao tác vừa làm. Phím tắt: Ctrl + Z.' },
   'fish.pond': { label: 'Hồ cá', vi: 'Gõ đúng chữ trên con cá để Mochi bắt nó trước khi cá rơi xuống đáy. Phím Space để tạm dừng.' },
   'keyboard.board': { label: 'Bàn phím ảo', vi: 'Phím sáng viền hồng là phím cần bấm tiếp theo. Màu phím cho biết dùng ngón nào.' },
 };

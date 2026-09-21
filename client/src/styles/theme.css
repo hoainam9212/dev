@@ -70,6 +70,18 @@ body {
     @apply inline-flex min-w-[1.8em] items-center justify-center rounded-md border border-b-4 border-muted/40 bg-surface px-1.5 py-0.5 text-[0.85em] font-bold;
   }
 
+.word-prose { line-height: 1.6; }
+  .word-prose p { margin: 0 0 0.6em; min-height: 1.2em; }
+  .word-prose h1 { font-size: 1.6em; font-weight: 800; margin: 0 0 0.5em; }
+  .word-prose h2 { font-size: 1.35em; font-weight: 800; margin: 0 0 0.5em; }
+  .word-prose h3 { font-size: 1.15em; font-weight: 800; margin: 0 0 0.5em; }
+  .word-prose ul { list-style: disc; padding-left: 1.6em; margin: 0 0 0.6em; }
+  .word-prose ol { list-style: decimal; padding-left: 1.6em; margin: 0 0 0.6em; }
+  .word-prose table { border-collapse: collapse; margin: 0 0 0.8em; width: 100%; }
+  .word-prose th, .word-prose td { border: 1px solid #C9C0D6; padding: 4px 8px; vertical-align: top; }
+  .word-prose th { background: #F4EFFA; font-weight: 700; }
+  .word-prose img { display: block; margin: 0.4em 0; }
+
   .term {
     @apply cursor-help font-semibold underline decoration-rose decoration-dotted decoration-2 underline-offset-4;
   }

@@ -54,6 +54,7 @@ export type WordAction =
   | { type: 'openDialog'; dialog: WordState['dialog'] }
   | { type: 'save'; name: string; at: number }
   | { type: 'print' }
+  | { type: 'setDoc'; doc: WordDoc }
   | { type: 'undo' };
 
 export function wordInitial(o: { doc?: WordDoc; text?: string } = {}): WordState {
@@ -124,6 +125,11 @@ export function reduceWord(s: WordState, a: WordAction): WordState {
       return withEdit(s, insertImage(s.doc, s.sel, a.src, a.alt));
     case 'setImageWidth':
       return withEdit(s, setImageWidth(s.doc, s.sel, a.width));
+    // Giao diện TipTap báo về cả tài liệu sau khi người dùng gõ; dịch ngược từng
+    // phím thành action không mang lại gì cho bài học, mà lời giải của bài vẫn
+    // dùng `insertText`/`selectText` nên vẫn phát lại được.
+    case 'setDoc':
+      return withEdit(s, { doc: a.doc, sel: clampRange(a.doc, s.sel) });
     case 'replaceAll':
       return withEdit(s, replaceAll(s.doc, s.sel, a.find, a.replace));
     case 'replaceOne':

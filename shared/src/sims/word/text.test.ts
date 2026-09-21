@@ -86,6 +86,20 @@ describe('word text editing', () => {
     expect(t.past).toHaveLength(30);
   });
 
+  it('takes a whole document from the editor and keeps it undoable', () => {
+    const before = wordInitial({ text: 'Cũ' });
+    const after = run(before, { type: 'setDoc', doc: wordInitial({ text: 'Người dùng vừa gõ' }).doc });
+    expect(text(after)).toBe('Người dùng vừa gõ');
+    expect(after.past).toHaveLength(1);
+    expect(text(run(after, { type: 'undo' }))).toBe('Cũ');
+  });
+
+  it('clamps the selection when the editor sends a shorter document', () => {
+    const long = run(wordInitial({ text: 'Một câu khá dài' }), { type: 'selectAll' });
+    const short = run(long, { type: 'setDoc', doc: wordInitial({ text: 'Ngắn' }).doc });
+    expect(short.sel.to).toBeLessThanOrEqual(6);
+  });
+
   it('does not push history for a selection change', () => {
     const s = run(wordInitial({ text: 'Xin chào' }), { type: 'selectText', text: 'chào' }, { type: 'selectAll' });
     expect(s.past).toEqual([]);
