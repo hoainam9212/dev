@@ -1,5 +1,6 @@
 import type { Lesson } from '@office-neko/shared';
-import { typingPractice } from '../lessonKit';
+import { fishPractice, typingPractice } from '../lessonKit';
+import { FISH_WORDS } from '../fish-words';
 
 const L = (chapterId: string, id: string, title: string, steps: Lesson['steps'], extra: Partial<Lesson> = {}): Lesson => ({
   trackId: 'typing',
@@ -93,9 +94,17 @@ export const typingLessons: Lesson[] = [
     typingPractice({ task: 'Gõ câu sau bằng VNI.', target: 'Tôi đang học gõ tiếng Việt.', raw: 'To6i d9ang ho5c go4 tie6ng1 Vie6t5.', ime: 'vni', hint: 'o6 → ô, d9 → đ, 5 → nặng, 4 → ngã, 1 → sắc.', steps: ['To6i d9ang', 'ho5c go4', 'tie6ng1 Vie6t5.'] }),
   ], { optional: true }),
   L('typing.final', 'game', 'Chơi “Mèo bắt cá”', [
-    { kind: 'explain', mood: 'happy', body: 'Luyện tập mỗi ngày sẽ giúp bạn gõ nhanh hơn! Vào mục **⌨️ Luyện gõ** trên thanh trên cùng để chơi **Mèo bắt cá** 🐟 (gõ đúng chữ để Mochi bắt cá) và **kiểm tra tốc độ** 1 hoặc 3 phút.' },
+    { kind: 'explain', mood: 'happy', body: 'Đến lúc chơi rồi! Cá mang chữ rơi từ trên xuống — **gõ đúng chữ** là Mochi bắt được con cá đó. Để cá rơi xuống đáy thì mất một mạng, hết 3 mạng là hết lượt.\n\nPhím **Space** tạm dừng, phím **Esc** xoá chữ đang gõ.' },
+    fishPractice({
+      words: FISH_WORDS,
+      minCaught: 8,
+      task: 'Bắt đủ **8 con cá** trước khi hết 3 mạng nhé!',
+      hint: 'Gõ chữ của con cá thấp nhất trước — nó sắp chạm đáy rồi.',
+      steps: ['Bấm "Bắt đầu" để cá bắt đầu rơi.', 'Nhìn con cá gần đáy nhất, gõ đúng chữ trên mình nó.', 'Gõ nhầm thì bấm Esc để xoá rồi gõ lại.'],
+    }),
     { kind: 'quiz', question: '[[wpm|WPM]] là gì?', choices: ['Số từ gõ được mỗi phút', 'Số lỗi mỗi phút', 'Số phím trên bàn phím'], answer: 0, why: 'Chính xác! WPM (Words Per Minute): cứ 5 ký tự tính là 1 từ.' },
-  ]),
+    { kind: 'explain', body: 'Muốn chơi nữa thì vào mục **⌨️ Luyện gõ** trên thanh trên cùng — ở đó còn có **kiểm tra tốc độ** 1 hoặc 3 phút.' },
+  ], { minutes: 6 }),
   L(
     'typing.final',
     'project',

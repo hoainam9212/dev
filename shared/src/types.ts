@@ -1,5 +1,5 @@
 export type OS = 'win' | 'mac';
-export type SimKind = 'mouse' | 'desktop' | 'keyboard' | 'word' | 'excel' | 'ppt' | 'aichat';
+export type SimKind = 'mouse' | 'desktop' | 'keyboard' | 'fish' | 'word' | 'excel' | 'ppt' | 'aichat';
 export type MochiMood = 'happy' | 'sad' | 'surprised' | 'sleepy' | 'neutral';
 
 /** Vùng Mochi chỉ vào ở gợi ý bậc 2. */

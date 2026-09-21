@@ -1,4 +1,4 @@
-import { desktopSim, mouseSim, typingSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
+import { desktopSim, fishGame, fishSim, mouseSim, typingSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
 
 export function keyActions(raw: string, msPerKey = 150, start = 1000): typingSim.TypingAction[] {
   return [...raw].map((key, i) => ({ type: 'key', key, at: start + i * msPerKey }));
@@ -69,5 +69,29 @@ export function desktopPractice(o: {
     checks: o.checks,
     hints: [o.hint, o.spotlight, o.steps],
     solution: o.solve(initial),
+  };
+}
+
+/**
+ * Bước thực hành "chơi Mèo bắt cá". Lời giải được sinh bằng cách chơi ngầm với
+ * đúng seed của bài, nên test nội dung phát lại được và chứng minh bài qua được.
+ */
+export function fishPractice(o: {
+  words: string[];
+  minCaught: number;
+  task: string;
+  hint: string;
+  steps: string[];
+  seed?: number;
+}): PracticeStep<fishGame.FishState, fishSim.FishCheck, fishGame.FishAction> {
+  const initial = fishGame.fishInitial(o.words, o.seed ?? 20260921);
+  return {
+    kind: 'practice',
+    sim: 'fish',
+    task: o.task,
+    initial,
+    checks: [{ kind: 'fishGame', minCaught: o.minCaught }],
+    hints: [o.hint, { helpId: 'fish.pond' }, o.steps],
+    solution: fishSim.fishSolution(initial, o.minCaught),
   };
 }
