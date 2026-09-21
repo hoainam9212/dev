@@ -1,4 +1,4 @@
-import { desktopSim, fishGame, fishSim, mouseSim, typingSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
+import { desktopSim, fishGame, fishSim, mouseSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
 
 export function keyActions(raw: string, msPerKey = 150, start = 1000): typingSim.TypingAction[] {
   return [...raw].map((key, i) => ({ type: 'key', key, at: start + i * msPerKey }));
@@ -93,5 +93,35 @@ export function fishPractice(o: {
     checks: [{ kind: 'fishGame', minCaught: o.minCaught }],
     hints: [o.hint, { helpId: 'fish.pond' }, o.steps],
     solution: fishSim.fishSolution(initial, o.minCaught),
+  };
+}
+
+/**
+ * Bước thực hành trên trình soạn thảo Word. `setup` dựng sẵn tài liệu đầu bài
+ * (không tính vào lịch sử hoàn tác), `solve` là lời giải mẫu — luôn viết bằng
+ * `selectText` chứ không bằng số vị trí, để sửa lời bài không làm hỏng lời giải.
+ */
+export function wordPractice(o: {
+  text?: string;
+  doc?: wordSim.WordDoc;
+  task: string;
+  checks: wordSim.WordCheck[];
+  spotlight: Spotlight;
+  hint: string;
+  steps: string[];
+  setup?: (s0: wordSim.WordState) => wordSim.WordAction[];
+  solve: (s0: wordSim.WordState) => wordSim.WordAction[];
+}): PracticeStep<wordSim.WordState, wordSim.WordCheck, wordSim.WordAction> {
+  const fresh = wordSim.wordInitial({ doc: o.doc, text: o.text });
+  const prepared = (o.setup ? o.setup(fresh) : []).reduce(wordSim.reduceWord, fresh);
+  const initial: wordSim.WordState = { ...prepared, past: [], dialog: null };
+  return {
+    kind: 'practice',
+    sim: 'word',
+    task: o.task,
+    initial,
+    checks: o.checks,
+    hints: [o.hint, o.spotlight, o.steps],
+    solution: o.solve(initial),
   };
 }

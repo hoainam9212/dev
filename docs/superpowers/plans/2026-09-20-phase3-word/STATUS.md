@@ -14,7 +14,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 8 WordSim shell | ☑ | (commit này) | 3 test client + 2 test `setDoc` ở shared; đã gõ thật trong TipTap và Hoàn tác trên trình duyệt |
 | 9 Ribbon Home | ☑ | (commit này) | 5 test; đã thử thật trên trình duyệt: đậm, font, cỡ, căn giữa, giãn dòng, heading, danh sách, hoàn tác |
 | 10 Ribbon còn lại | ☑ | (commit này) | 14 test; đã thử thật: bảng + thêm hàng, chèn ảnh, tìm & thay thế, mục lục, Esc đóng hộp thoại |
-| 11 Bài chương 1–2 | ☐ | | |
+| 11 Bài chương 1–2 | ☑ | (commit này) | 6 bài; đã thêm 6 mục từ điển (a4, bold, italic, underline, font, highlight) — Task 14 chỉ cần bổ sung phần còn lại |
 | 12 Bài chương 3–4 | ☐ | | |
 | 13 Bài chương 5 + dự án | ☐ | | |
 | 14 Từ điển + tổng kết | ☐ | | |
@@ -36,7 +36,12 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
-- Route tạm `/dev/word` + file `client/src/sims/word/WordDevPage.tsx` — **Task 11 phải xoá** khi đã có bài học Word thật.
+- (xong ở Task 11) đã xoá route tạm `/dev/word`.
+- **Soạn bài Word: dùng `text` NHIỀU DÒNG** (`'Dòng một
+Dòng hai'`) để dựng tài liệu đầu bài — `emptyDoc` tách mỗi dòng
+  thành một đoạn. Đừng xếp `splitBlock` thủ công trong `setup`: con trỏ mặc định ở ĐẦU đoạn nên rất dễ tách nhầm
+  chỗ (test chỉ kiểm check nên KHÔNG bắt được lỗi này — phải nhìn tài liệu trên trình duyệt).
+- Trình kể chuyện chỉ hiểu `**đậm**`, `[[thuật ngữ]]`, `{{phím}}` — **không có `*nghiêng*`**.
 
 - **`wordInitial` đặt con trỏ ở ĐẦU đoạn.** Muốn dựng tài liệu nhiều đoạn thì phải đưa con trỏ về cuối chữ
   (`selectText` rồi `setSelection(from: sel.to, to: sel.to)`) trước khi `splitBlock`, kẻo tách ra một đoạn rỗng phía trước.

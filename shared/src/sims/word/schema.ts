@@ -179,9 +179,15 @@ function strip(json: unknown): unknown {
   return obj;
 }
 
+/**
+ * Tài liệu từ chữ thô: MỖI DÒNG một đoạn văn. Nhờ vậy bài học dựng sẵn tài liệu
+ * nhiều đoạn chỉ bằng một chuỗi, không phải xếp `splitBlock` thủ công (rất dễ
+ * tách nhầm chỗ vì con trỏ mặc định nằm ở đầu đoạn).
+ */
 export function emptyDoc(text?: string): WordDoc {
-  const paragraph = text ? { type: 'paragraph', content: [{ type: 'text', text }] } : { type: 'paragraph' };
-  return { type: 'doc', content: [paragraph] };
+  const lines = (text ?? '').split('\n');
+  const content = lines.map((line) => (line ? { type: 'paragraph', content: [{ type: 'text', text: line }] } : { type: 'paragraph' }));
+  return { type: 'doc', content };
 }
 
 /** Text của một node và mọi node con. */

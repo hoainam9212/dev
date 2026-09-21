@@ -7,6 +7,17 @@ describe('word schema', () => {
     expect(plainText(emptyDoc('Xin chào'))).toBe('Xin chào');
   });
 
+  it('builds one paragraph per line so lessons can set up a document in one go', () => {
+    expect(emptyDoc('Dòng một\nDòng hai')).toEqual({
+      type: 'doc',
+      content: [
+        { type: 'paragraph', content: [{ type: 'text', text: 'Dòng một' }] },
+        { type: 'paragraph', content: [{ type: 'text', text: 'Dòng hai' }] },
+      ],
+    });
+    expect(plainText(emptyDoc('Một\nHai\nBa'))).toBe('Một\nHai\nBa');
+  });
+
   it('round-trips a document through ProseMirror', () => {
     const json = emptyDoc('Kính gửi');
     expect(docToJSON(docFromJSON(json))).toEqual(json);

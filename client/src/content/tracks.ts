@@ -27,7 +27,14 @@ export const TRACKS: Track[] = [
       { id: 'typing.final', title: 'Về đích', lessonIds: ['typing.game', 'typing.project'] },
     ],
   },
-  { id: 'word', order: 2, title: 'Word – Soạn thảo văn bản', emoji: '📝', color: '#7FB2FF', blurb: 'Viết đơn, định dạng chữ, chèn bảng và ảnh.', chapters: [] },
+  {
+    id: 'word', order: 2, title: 'Word – Soạn thảo văn bản', emoji: '📝', color: '#7FB2FF',
+    blurb: 'Viết đơn, định dạng chữ, chèn bảng và ảnh.',
+    chapters: [
+      { id: 'word.start', title: 'Làm quen trang giấy', lessonIds: ['word.intro', 'word.edit', 'word.select'] },
+      { id: 'word.format', title: 'Định dạng chữ', lessonIds: ['word.bold', 'word.font', 'word.color'] },
+    ],
+  },
   { id: 'excel', order: 3, title: 'Excel – Bảng tính', emoji: '📊', color: '#3FB871', blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.', chapters: [] },
   { id: 'ppt', order: 4, title: 'PowerPoint – Trình chiếu', emoji: '🎞️', color: '#FFA878', blurb: 'Làm slide đẹp và trình bày tự tin.', chapters: [] },
   { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [] },

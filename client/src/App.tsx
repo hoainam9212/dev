@@ -5,7 +5,6 @@ import { AppShell } from './app/AppShell';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { WelcomePage } from './pages/WelcomePage';
 import { ProfilePicker } from './profiles/ProfilePicker';
-import { WordDevPage } from './sims/word/WordDevPage';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
@@ -49,8 +48,6 @@ export default function App() {
             <Route path="/typing/test/:min" element={<SpeedTestPage />} />
             <Route path="/typing/fish" element={<FishGamePage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            {/* Route tạm để xem trình soạn thảo Word khi chưa có bài học; Task 11 xoá. */}
-            <Route path="/dev/word" element={<WordDevPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
