@@ -19,3 +19,5 @@ export const APP_NAME = 'Tin Học Cùng Mochi';
 export type { TreeSpec } from './vfs';
 
 export * as formula from './formula';
+
+export * as excelSim from './sims/excel';

@@ -9,7 +9,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 3 evaluate | ☑ | (commit này) | 14 test. Bảng hàm cắm vào bằng `registerFunctions()` chứ không import thẳng — `functions.ts` phải import `evaluate`, nên import ngược sẽ thành vòng. Task 4 gọi nó lúc nạp module |
 | 4 functions | ☑ | (commit này) | 19 test, đủ 25 hàm. `isErr` nhận `unknown` để thu hẹp được cả `number[] \| FormulaError` |
 | 5 errors + numfmt | ☑ | (commit này) | 12 test; `CellFormat` định nghĩa tại `numfmt.ts`, Task 6–8 import lại từ đó |
-| 6 workbook | ☐ | | |
+| 6 workbook | ☑ | (commit này) | 12 test. `withEdit`/`withSheets` là cổng DUY NHẤT đẩy lịch sử. Task 7–8 cắm nhánh action qua `registerReducers()`, giống cách Task 4 cắm bảng hàm |
 | 7 copy + fill | ☐ | | |
 | 8 format + sheets | ☐ | | |
 | 9 grader | ☐ | | |
