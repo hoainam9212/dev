@@ -13,7 +13,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 7 copy + fill | ☑ | (commit này) | 10 test. Clipboard nhớ cả `origin` nên độ dịch là phép trừ, không phải đoán |
 | 8 format + sheets | ☑ | (commit này) | 13 test. Hết phần `shared` trừ grader; Task 9 là `gradeExcel` rồi sang giao diện |
 | 9 grader | ☑ | (commit này) | 12 test. **Plan ghi sai chữ ký:** `Grader` trong codebase là MỘT check một lần, `gradeWith` mới gộp — `gradeExcel(state, check)` chứ không phải `(state, checks[])` |
-| 10 grid | ☐ | | |
+| 10 grid | ☑ | (commit này) | 13 test. Lưới dựng cửa sổ 18×10 quanh ô chọn. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 12 PHẢI xoá.** Gợi ý bậc 2 trỏ vào ô chưa thử |
 | 11 ribbon Home | ☐ | | |
 | 12 FnTip + chương 1 | ☐ | | |
 | 13 chương 2–4 + tổng kết | ☐ | | |
@@ -38,6 +38,11 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   import thẳng `./state` nên nhánh action mới im lặng không hoạt động — 8 test đỏ không rõ lý do. Nay `state.ts`
   gọi thẳng `reduceEdit`/`reduceFormat`; import vòng giữa chúng là cố ý và an toàn vì cả hai phía đều là khai báo hàm.
   (`registerFunctions` của Task 3–4 thì vẫn giữ: ở đó `functions.ts` nạp qua barrel `formula/index.ts` nên không vướng.)
+
+- **Lỗi thật bắt được khi thử trên trình duyệt (Task 10):** gõ một ký tự vào lưới thì ô vào chế độ sửa nhưng con trỏ
+  vẫn ở lưới, nên mọi ký tự sau đó rơi vào hư không; lưới lại không xử lý Enter. jsdom bắn sự kiện thẳng vào thanh
+  công thức nên 10 test đầu đều xanh mà tính năng vẫn hỏng. Đã sửa (chuyển con trỏ sang thanh công thức khi bắt đầu
+  sửa, trả về lưới khi xong) và thêm 3 test canh đúng chỗ đó.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
