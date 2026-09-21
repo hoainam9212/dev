@@ -32,17 +32,17 @@ export const EXCEL_FORMAT: Lesson[] = [
       },
       excelPractice({
         cells: { A1: 'Nhân viên', B1: 'Lương', A2: 'Nguyễn Văn Nam', B2: '7500000', A3: 'Trần Thị Lan', B3: '6200000' },
-        task: 'Chọn vùng **B2:B3** rồi bấm nút **Tiền VNĐ** trên thanh Ribbon để hai ô lương hiện kèm dấu ₫.',
+        task: 'Chọn vùng **B2:B3** rồi ở ô **Kiểu số** trên thanh Ribbon, chọn **Tiền ₫** để hai ô lương hiện kèm dấu ₫.',
         checks: [
           { kind: 'cellFormat', cell: 'B2', fmt: { numFmt: 'currencyVnd' } },
           { kind: 'cellFormat', cell: 'B3', fmt: { numFmt: 'currencyVnd' } },
         ],
-        spotlight: { helpId: 'excel.fmtCurrency' },
-        hint: 'Bấm ô B2, giữ {{Shift}} rồi bấm ô B3 để chọn cả hai, sau đó bấm Tiền VNĐ.',
+        spotlight: { helpId: 'excel.numFmt' },
+        hint: 'Bấm ô B2, giữ {{Shift}} rồi bấm ô B3 để chọn cả hai, sau đó mở ô Kiểu số và chọn Tiền ₫.',
         steps: [
           'Bấm vào ô B2.',
           'Giữ Shift và bấm ô B3 — hai ô cùng sáng lên.',
-          'Bấm nút Tiền VNĐ ở nhóm Định dạng số.',
+          'Mở ô chọn Kiểu số ở nhóm Định dạng số, chọn Tiền ₫.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'B2:B3' },

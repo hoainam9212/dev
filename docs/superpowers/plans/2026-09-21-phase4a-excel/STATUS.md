@@ -57,6 +57,13 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   `theme.test.ts` cũ vẫn xanh vì nó chỉ hỏi "chuỗi lớp có nằm trong layer không", không hỏi lớp đó ở CẤP NÀO.
   Đã thêm test đòi mọi lớp thành phần nằm ở cấp đầu của `@layer components`.
 
+- **Ribbon Excel làm lại (người dùng chỉ ra sau khi gộp):** bản đầu là một bức tường nút bo tròn giống hệt nhau,
+  nhãn tiếng Việt dài — không giống Excel, và lạc khỏi chính ribbon Word của app. Nay dùng ĐÚNG khuôn Word:
+  thanh tab File/Home/Insert/Formulas/Data/View, nút vuông nhỏ mang ký hiệu (B, I, ⬅, ⤓) với lời tiếng Việt ở
+  tooltip + helpId, ô thả xuống cho kiểu số và màu. Tab **Formulas** chèn sẵn `=TÊN(` để thẻ cú pháp bật lên;
+  tab **File** có hộp thoại Lưu/In mô phỏng (`saved`, `printed`, `dialog` mới trong `WorkbookState`).
+  Insert/Data/View nói rõ "sẽ có ở phần sau" thay vì để trống.
+
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
 - Từ giai đoạn 3 để lại, **chưa xếp lịch**: bài cho vỏ máy tính (Start/Taskbar/Dock/Spotlight); một lượt rà soát trợ năng cho toàn bộ sim; bàn phím ảo theo HĐH; Shift+click chọn dải trong vùng file; `SpotlightOverlay` hỏi lại mỗi 250 ms (**sẽ cắn ở lưới Excel** — Task 10 phải để ý).

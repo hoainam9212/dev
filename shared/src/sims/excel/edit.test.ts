@@ -94,3 +94,28 @@ describe('hoàn tác', () => {
     expect(reduceExcel(s, { type: 'undo' })).toEqual(s);
   });
 });
+
+describe('lưu, in và hộp thoại', () => {
+  it('ghi lại tên tệp đã lưu và lần in, không đụng vào dữ liệu', () => {
+    const before = excelInitial({ cells: { A1: 'Bảng lương' } });
+    const s = run(before, { type: 'save', name: 'bang-luong.xlsx', at: 1700000000000 }, { type: 'print' });
+    expect(s.saved).toEqual({ name: 'bang-luong.xlsx', at: 1700000000000 });
+    expect(s.printed).toBe(true);
+    expect(s.sheets).toEqual(before.sheets);
+    expect(s.past).toEqual([]);
+  });
+
+  it('mở rồi đóng hộp thoại', () => {
+    let s = run(excelInitial(), { type: 'openDialog', dialog: 'save' });
+    expect(s.dialog).toBe('save');
+    s = reduceExcel(s, { type: 'openDialog', dialog: null });
+    expect(s.dialog).toBeNull();
+  });
+
+  it('sổ tính mới chưa lưu, chưa in, không mở hộp thoại nào', () => {
+    const s = excelInitial();
+    expect(s.saved).toBeNull();
+    expect(s.printed).toBe(false);
+    expect(s.dialog).toBeNull();
+  });
+});

@@ -3,7 +3,7 @@ import { excelSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { Grid } from './Grid';
 import { CellHint, FormulaBar } from './FormulaBar';
-import { RibbonHome } from './RibbonHome';
+import { ExcelDialogs, Ribbon } from './Ribbon';
 import { SheetTabs } from './SheetTabs';
 import { FnTip } from './FnTip';
 
@@ -37,13 +37,14 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
   return (
     <div className="space-y-2">
       <div className="card p-2">
-        <RibbonHome state={state} dispatch={dispatch} />
+        <Ribbon state={state} dispatch={dispatch} />
       </div>
       <FormulaBar state={state} dispatch={dispatch} inputRef={bar} />
       {state.editing !== null ? <FnTip text={state.editing} /> : null}
       <Grid state={state} dispatch={dispatch} gridRef={grid} />
       <SheetTabs state={state} dispatch={dispatch} />
       <CellHint state={state} />
+      <ExcelDialogs state={state} dispatch={dispatch} now={Date.now()} />
     </div>
   );
 }

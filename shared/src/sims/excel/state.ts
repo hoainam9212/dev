@@ -49,8 +49,14 @@ export interface WorkbookState {
   now: number;
   /** Clipboard nằm TRONG state (không dùng clipboard hệ điều hành) để reducer vẫn thuần. */
   clipboard: { origin: { row: number; col: number }; cells: { dRow: number; dCol: number; cell: Cell }[] } | null;
+  /** Lưu và In là MÔ PHỎNG: chỉ ghi lại là đã bấm, không tạo tệp thật. */
+  saved: { name: string; at: number } | null;
+  printed: boolean;
+  dialog: ExcelDialog;
   past: Sheet[][];
 }
+
+export type ExcelDialog = 'save' | 'print' | null;
 
 export type ExcelAction =
   | { type: 'select'; cell: string }
@@ -73,6 +79,9 @@ export type ExcelAction =
   | { type: 'addSheet'; name?: string }
   | { type: 'renameSheet'; index: number; name: string }
   | { type: 'switchSheet'; index: number }
+  | { type: 'save'; name: string; at: number }
+  | { type: 'print' }
+  | { type: 'openDialog'; dialog: ExcelDialog }
   | { type: 'undo' };
 
 const MAX_UNDO = 30;
@@ -96,6 +105,9 @@ export function excelInitial(o?: { cells?: Record<string, string>; sheets?: stri
     editing: null,
     now: o?.now ?? 0,
     clipboard: null,
+    saved: null,
+    printed: false,
+    dialog: null,
     past: [],
   };
 }
@@ -218,6 +230,13 @@ export function reduceExcel(s: WorkbookState, a: ExcelAction): WorkbookState {
         for (const c of cellsIn(s.sel)) next = setRawAt(next, c.row, c.col, '');
         return next;
       });
+    case 'save':
+      // Không đi qua withEdit: lưu không sửa tài liệu nên không vào lịch sử hoàn tác.
+      return { ...s, saved: { name: a.name, at: a.at }, dialog: null };
+    case 'print':
+      return { ...s, printed: true, dialog: null };
+    case 'openDialog':
+      return { ...s, dialog: a.dialog };
     case 'undo': {
       const prev = s.past[s.past.length - 1];
       if (!prev) return s;

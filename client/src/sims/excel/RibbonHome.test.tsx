@@ -8,11 +8,18 @@ import { HELP_IDS } from '../../content/help-ids';
 const state = excelSim.excelInitial({ cells: { B2: '7500000' } });
 
 describe('Ribbon Home', () => {
-  it('bấm Tiền VNĐ thì phát đúng action', () => {
+  it('chọn Tiền ₫ trong ô Kiểu số thì phát đúng action', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={state} dispatch={dispatch} />);
-    fireEvent.click(screen.getByRole('button', { name: /tiền vnđ/i }));
+    fireEvent.change(screen.getByLabelText('Kiểu số'), { target: { value: 'currencyVnd' } });
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { numFmt: 'currencyVnd' } });
+  });
+
+  it('nút mang ký hiệu ngắn, lời tiếng Việt nằm ở nhãn trợ giúp', () => {
+    render(<RibbonHome state={state} dispatch={() => {}} />);
+    const bold = screen.getByRole('button', { name: /in đậm/i });
+    expect(bold.textContent).toBe('B');
+    expect(bold).toHaveAttribute('title');
   });
 
   it('bấm B phát định dạng đậm', () => {
@@ -44,8 +51,13 @@ describe('Ribbon Home', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'fillDown' });
   });
 
-  it('mọi nút đều có helpId đã khai báo', () => {
+  it('mọi nút và ô chọn đều có helpId đã khai báo', () => {
     render(<RibbonHome state={state} dispatch={() => {}} />);
+    for (const box of screen.getAllByRole('combobox')) {
+      const id = box.getAttribute('data-help-id');
+      expect(id, box.getAttribute('aria-label') ?? '').toBeTruthy();
+      expect(HELP_IDS, id!).toHaveProperty(id!);
+    }
     for (const btn of screen.getAllByRole('button')) {
       const id = btn.getAttribute('data-help-id');
       expect(id, btn.textContent ?? '').toBeTruthy();
