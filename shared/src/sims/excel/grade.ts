@@ -5,6 +5,8 @@ import { cellRaw, cellValue, formatOf, type WorkbookState } from './state';
 
 export type ExcelCheck =
   | { kind: 'cellValue'; cell: string; value: string | number | boolean; sheet?: string }
+  /** Ô có nội dung gì cũng được. Dùng cho bài bảo học viên gõ tên mình. */
+  | { kind: 'cellNotEmpty'; cell: string; sheet?: string }
   | { kind: 'cellFormula'; cell: string; fn?: string; range?: string; absolute?: boolean; contains?: string; sheet?: string }
   | { kind: 'cellFormat'; cell: string; fmt: Partial<CellFormat>; sheet?: string }
   | { kind: 'merged'; range: string }
@@ -56,6 +58,10 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
       if (isErr(actual)) return no(`Ô ${check.cell} đang báo lỗi ${actual.err}. Xem lại công thức nhé.`);
       const shown = displayValue(actual);
       return no(`Ô ${check.cell} đang là "${shown}", cần là "${String(check.value)}".`);
+    }
+    case 'cellNotEmpty': {
+      const raw = cellRaw(state, at(check.cell, check.sheet)).trim();
+      return raw === '' ? no(`Ô ${check.cell} vẫn đang trống.`) : ok(`Ô ${check.cell} đã có nội dung.`);
     }
     case 'cellFormula': {
       const cell = at(check.cell, check.sheet);

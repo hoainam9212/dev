@@ -32,7 +32,7 @@ export const EXCEL_BASICS: Lesson[] = [
       },
       excelPractice({
         task: 'Bấm vào ô **C3** rồi gõ tên của bạn vào đó, xong bấm {{Enter}}.',
-        checks: [{ kind: 'cellValue', cell: 'C3', value: 'Mochi' }],
+        checks: [{ kind: 'cellNotEmpty', cell: 'C3' }],
         spotlight: { helpId: 'excel.nameBox' },
         hint: 'Đi sang cột C (cột thứ ba), xuống hàng 3, rồi gõ chữ vào.',
         steps: [
@@ -40,7 +40,8 @@ export const EXCEL_BASICS: Lesson[] = [
           'Nhìn Name Box, phải thấy chữ C3.',
           'Gõ tên rồi bấm Enter.',
         ],
-        solve: () => [{ type: 'setCell', cell: 'C3', raw: 'Mochi' }],
+        // Lời giải mẫu gõ một cái tên bất kỳ; check chỉ đòi ô có nội dung.
+        solve: () => [{ type: 'setCell', cell: 'C3', raw: 'Nguyễn Văn Nam' }],
       }),
     ],
   },

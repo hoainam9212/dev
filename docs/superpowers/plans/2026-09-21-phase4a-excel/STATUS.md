@@ -64,6 +64,15 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   tab **File** có hộp thoại Lưu/In mô phỏng (`saved`, `printed`, `dialog` mới trong `WorkbookState`).
   Insert/Data/View nói rõ "sẽ có ở phần sau" thay vì để trống.
 
+- **Bài `excel.intro` chấm vô lý (người dùng chỉ ra):** đề bảo "gõ tên của bạn" nhưng check đòi đúng chữ "Mochi",
+  nên ai gõ tên thật cũng trượt. Đã thêm loại check **`cellNotEmpty`** (ô có nội dung gì cũng đạt) — đúng ý bài này,
+  vì điều cần học là bấm đúng ô và gõ được chữ, không phải gõ đúng một từ. **Bài học chung: đề bài mở thì check phải
+  mở; đừng để `solution` mẫu biến thành đáp án duy nhất.**
+- **`gradeWith` giờ chặn `undefined`:** grader trả undefined khi gặp loại check nó chưa biết (`switch` rơi hết nhánh),
+  và `PracticeView` đọc `r.ok` nên nổ, làm sập cả bài học. Gặp thật khi bản `shared` cũ còn trong bộ nhớ đệm Vite —
+  đệm cũ không biết `cellNotEmpty`. Đã có test tái hiện. Nếu thấy lỗi kiểu này: `rm -rf client/node_modules/.vite`
+  rồi khởi động lại dev server.
+
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
 - Từ giai đoạn 3 để lại, **chưa xếp lịch**: bài cho vỏ máy tính (Start/Taskbar/Dock/Spotlight); một lượt rà soát trợ năng cho toàn bộ sim; bàn phím ảo theo HĐH; Shift+click chọn dải trong vùng file; `SpotlightOverlay` hỏi lại mỗi 250 ms (**sẽ cắn ở lưới Excel** — Task 10 phải để ý).

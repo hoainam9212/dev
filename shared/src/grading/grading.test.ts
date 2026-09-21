@@ -39,6 +39,16 @@ describe('grade registry', () => {
     // đã đăng ký grader cho Excel nên phải đổi sang sim khác.
     expect(() => grade('ppt', {}, [{}])).toThrow(/ppt/);
   });
+  it('không sập khi grader trả về undefined vì gặp loại check lạ', () => {
+    // Xảy ra thật: bản `shared` cũ còn trong bộ nhớ đệm của Vite không biết loại
+    // check mới, `switch` rơi hết nhánh và trả undefined — giao diện nổ ở `r.ok`.
+    GRADERS.mouse = (() => undefined) as never;
+    const report = grade('mouse', {}, [{ kind: 'loai-check-la' }]);
+    expect(report.pass).toBe(false);
+    expect(report.results[0]!.ok).toBe(false);
+    expect(report.results[0]!.messageVi.length).toBeGreaterThan(10);
+  });
+
   it('registers the real word grader', () => {
     expect(GRADERS.word).toBeDefined();
   });

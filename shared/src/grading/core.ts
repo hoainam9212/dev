@@ -8,12 +8,17 @@ export interface GradeReport {
   results: CheckResult[];
 }
 
+const FALLBACK: CheckResult = { ok: false, messageVi: 'Mochi chưa kiểm tra được bước này, bạn thử lại nhé.' };
+
 export function gradeWith<S, C>(grader: Grader<S, C>, state: S, checks: C[]): GradeReport {
   const results = checks.map((c) => {
     try {
-      return grader(state, c);
+      // Grader trả undefined khi gặp loại check nó chưa biết (switch rơi hết
+      // nhánh). Không được để undefined lọt ra: giao diện đọc `r.ok` và sẽ nổ,
+      // làm sập cả bài học thay vì chỉ báo một câu.
+      return grader(state, c) ?? FALLBACK;
     } catch {
-      return { ok: false, messageVi: 'Mochi chưa kiểm tra được bước này, bạn thử lại nhé.' };
+      return FALLBACK;
     }
   });
   return { pass: results.length > 0 && results.every((r) => r.ok), results };

@@ -69,6 +69,19 @@ describe('chấm bài Excel', () => {
     expect(check(s, { kind: 'cellValue', cell: 'A1', value: 9, sheet: 'Sheet2' }).pass).toBe(true);
   });
 
+  it('cellNotEmpty đạt với BẤT KỲ nội dung nào', () => {
+    // Dùng cho những bài bảo "gõ tên của bạn": đáp án không thể là một chữ cố định.
+    for (const raw of ['Nguyễn Văn Nam', 'Lan', '7']) {
+      const s = excelInitial({ cells: { C3: raw } });
+      expect(check(s, { kind: 'cellNotEmpty', cell: 'C3' }).pass, raw).toBe(true);
+    }
+  });
+
+  it('cellNotEmpty không đạt khi ô trống hoặc chỉ có khoảng trắng', () => {
+    expect(check(excelInitial(), { kind: 'cellNotEmpty', cell: 'C3' }).pass).toBe(false);
+    expect(check(excelInitial({ cells: { C3: '   ' } }), { kind: 'cellNotEmpty', cell: 'C3' }).pass).toBe(false);
+  });
+
   it('gộp mọi câu báo lỗi, không dừng ở check đầu tiên', () => {
     const s = excelInitial();
     const r = check(s, { kind: 'cellValue', cell: 'A1', value: 1 }, { kind: 'cellValue', cell: 'A2', value: 2 });
