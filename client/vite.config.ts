@@ -32,6 +32,9 @@ export default defineConfig({
       },
     }),
   ],
+  // Một instance ProseMirror duy nhất cho cả TipTap (client) lẫn reducer Word
+  // (shared). Hai instance khác nhau sẽ ném "Invalid content for node doc".
+  resolve: { dedupe: ['@tiptap/pm', 'prosemirror-model', 'prosemirror-state', 'prosemirror-transform', 'prosemirror-view'] },
   server: { port: 5174 },
   test: {
     globals: true,

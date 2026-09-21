@@ -11,6 +11,7 @@ export * as mouseSim from './sims/mouse';
 export * as desktopSim from './sims/desktop';
 export * as typingSim from './sims/typingSession';
 export * as fishSim from './sims/fishSim';
+export * as wordSim from './sims/word';
 export * as fishGame from './games/fish';
 
 export const APP_NAME = 'Tin Học Cùng Mochi';

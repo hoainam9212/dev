@@ -4,7 +4,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 Deps + schema | ☐ | | |
+| 1 Deps + schema | ☑ | (commit này) | shared 148 test xanh; schema tự khai báo node, không dùng addListNodes/tableNodes |
 | 2 Reducer lõi | ☐ | | |
 | 3 Marks | ☐ | | |
 | 4 Blocks | ☐ | | |
@@ -22,6 +22,12 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 ## Quyết định đã chốt
 
 - 2026-09-20: Word dựng trên TipTap ở client, nhưng lõi ProseMirror thuần (`@tiptap/pm/*`) nằm trong `shared` làm reducer — giữ được test phát lại `solution`.
+- 2026-09-21 (Task 1, phát sinh khi làm): **tự khai báo node bảng và danh sách** thay vì dùng `addListNodes`/`tableNodes`,
+  vì hai hàm đó sinh tên `bullet_list`, `table_row` (snake_case) còn TipTap ở giao diện dùng `bulletList`, `tableRow`.
+  Hành vi bảng vẫn do `tableRole` quyết định nên không mất gì.
+- 2026-09-21 (Task 1): `Node.toJSON` của ProseMirror **luôn** kèm `attrs` nếu node có thuộc tính, kể cả khi đúng bằng
+  mặc định (plan đoán sai chỗ này). `docToJSON` tự lược các giá trị mặc định, nhờ vậy `emptyDoc()` đúng bằng
+  `{ type: 'doc', content: [{ type: 'paragraph' }] }` và JSON trong bài học đọc được bằng mắt.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
