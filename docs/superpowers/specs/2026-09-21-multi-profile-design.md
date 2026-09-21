@@ -56,18 +56,20 @@ Tên **không** bắt buộc duy nhất — hai người trùng tên vẫn là h
 
 Dexie `version(2)`:
 
-| Bảng | Khoá v1 | Khoá v2 |
-|---|---|---|
-| `profiles` | (mới) | `id` |
-| `progress` | `lessonId` | `[profileId+lessonId]` |
-| `activity` | `day` | `[profileId+day]` |
-| `keyStats` | `key` | `[profileId+key]` |
-| `badges` | `id` | `[profileId+id]` |
-| `typingRuns` | `++id, at` | `++id, [profileId+at]` |
-| `sandboxDocs` | `id, sim, updatedAt` | `id, [profileId+updatedAt]` |
-| `profile` | `id` | (xoá) |
+| Bảng v1 | Khoá v1 | Bảng v2 | Khoá v2 |
+|---|---|---|---|
+| (mới) | | `profiles` | `id` |
+| `progress` | `lessonId` | **`lessonProgress`** | `[profileId+lessonId]` |
+| `activity` | `day` | **`dailyActivity`** | `[profileId+day]` |
+| `keyStats` | `key` | **`keyPractice`** | `[profileId+key]` |
+| `badges` | `id` | **`earnedBadges`** | `[profileId+id]` |
+| `typingRuns` | `++id, at` | `typingRuns` | `++id, [profileId+at]` |
+| `sandboxDocs` | `id, sim, updatedAt` | `sandboxDocs` | `id, [profileId+updatedAt]` |
+| `profile` | `id` | (xoá) | |
 
 Mỗi dòng của các bảng trên mang thêm trường `profileId: string`.
+
+**Vì sao bốn bảng đổi tên:** Dexie không đổi được khoá chính của một bảng đã tồn tại (`UpgradeError: Not yet support for changing primary key`), mà bốn bảng đó chuyển từ khoá đơn sang khoá kép. Cách ít rủi ro nhất là tạo bảng mới, chép sang một lần, rồi xoá bảng cũ — đổi lấy việc phải sửa tên ở nơi dùng, việc mà trình biên dịch bắt hết. `typingRuns` và `sandboxDocs` giữ nguyên tên vì khoá chính của chúng không đổi, chỉ thêm chỉ mục.
 
 ### 4.3 Di trú v1 → v2
 
@@ -75,8 +77,10 @@ Trong `upgrade` của `version(2)`:
 
 1. Đọc hàng `profile` cũ (`id: 'me'`). Không có → không có gì để di trú, dừng.
 2. Tạo `profiles` với `id: 'p1'`, giữ nguyên `name`, `os`, `dailyGoalMin`, `fontScale`, `sound`, `reducedMotion`, `unlockAll`, `xp`, `createdAt`; `avatar: 'cam'`; `lastActiveAt` = thời điểm di trú.
-3. Gán `profileId: 'p1'` cho **mọi** dòng của 6 bảng dữ liệu.
-4. Xoá bảng `profile`.
+3. Chép từng dòng của 4 bảng đổi tên sang bảng mới, thêm `profileId: 'p1'`.
+4. Gán `profileId: 'p1'` tại chỗ cho mọi dòng của `typingRuns` và `sandboxDocs`.
+
+`version(3)` xoá `profile` và 4 bảng cũ, sau khi đã chép xong.
 
 Người đang dùng app mở lên phải thấy **nguyên vẹn** tiến độ cũ dưới tên cũ của mình. Đây là ràng buộc cứng, có test riêng.
 

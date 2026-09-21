@@ -105,6 +105,11 @@ Run: `npm test -w client -- current record typing`
 
 - [ ] **Step 5: Sửa các hàm tiến độ và mọi chỗ gọi**
 
+**Đổi tên bảng cùng lúc** (quyết định phát sinh ở Task 1, xem `STATUS.md`): `db.progress` → `db.lessonProgress`,
+`db.keyStats` → `db.keyPractice`, `db.activity` → `db.dailyActivity`, `db.badges` → `db.earnedBadges`. Sau Task 1 có
+28 test đỏ / 10 file và 58 lỗi typecheck, phần lớn chính là chỗ này — `npm run typecheck -w client` là danh sách việc
+phải làm, sửa cho tới khi sạch.
+
 Theo chữ ký ở phần Interfaces. Ở tầng trang, lấy id bằng `useProfileId()` rồi truyền xuống. Tìm hết chỗ phải sửa:
 ```bash
 grep -rn "useCompleted\|useStreak\|useTodayMinutes\|useTypingHub\|useTypingRuns\|useKeyStats\|recordLessonResult\|recordTypingRun\|updateProfile" client/src

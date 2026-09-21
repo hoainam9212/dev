@@ -6,7 +6,7 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 Schema v2 + di trú | ☐ | | |
+| 1 Schema v2 + di trú | ☑ | (commit này) | Đích cho Task 2: 28 test đỏ / 10 file, 58 lỗi typecheck — đều do mã cũ còn dùng `db.profile`, `db.progress`… |
 | 2 Người đang học + hàm nhận profileId | ☐ | | |
 | 3 Màn "Ai đang học?" | ☐ | | |
 | 4 Cài đặt: quản lý hồ sơ | ☐ | | |
@@ -17,7 +17,11 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 
 - 2026-09-21: luôn hiện màn chọn người khi mở app; không PIN, không mật khẩu; một file sao lưu chứa mọi người.
 - 2026-09-21: một database, mọi bảng thêm `profileId` vào khoá (đã loại: mỗi hồ sơ một DB riêng; khoá tổ hợp dạng chuỗi).
+- 2026-09-21 (Task 1, phát sinh khi làm): **bốn bảng phải đổi tên** vì Dexie không đổi được khoá chính của bảng đã có
+  (`UpgradeError: Not yet support for changing primary key`): `progress`→`lessonProgress`, `keyStats`→`keyPractice`,
+  `activity`→`dailyActivity`, `badges`→`earnedBadges`. Di trú làm hai bước: v2 tạo bảng mới và chép sang, v3 xoá bảng cũ.
+  `typingRuns` và `sandboxDocs` giữ tên (khoá chính không đổi). Spec mục 4.2 đã cập nhật theo.
 
 ## Việc còn treo
 
-- (trống)
+- Task 2 phải đổi tên bảng ở mọi chỗ đang dùng (`db.progress` → `db.lessonProgress`, v.v.) cùng với việc thêm `profileId`.
