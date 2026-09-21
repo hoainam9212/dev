@@ -6,7 +6,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 |---|---|---|---|
 | 1 refs | ☑ | (commit này) | 11 test; `shiftFormula` quét regex 3 nhánh (chuỗi → tên hàm → địa chỉ), Task 7 dùng lại, đừng viết regex mới |
 | 2 lex + parse | ☑ | (commit này) | 11 test; `lex` thử vùng → ô → tên theo đúng thứ tự đó, và giữ `#REF!` lại làm `name` để Task 3 đổi thành lỗi |
-| 3 evaluate | ☐ | | |
+| 3 evaluate | ☑ | (commit này) | 14 test. Bảng hàm cắm vào bằng `registerFunctions()` chứ không import thẳng — `functions.ts` phải import `evaluate`, nên import ngược sẽ thành vòng. Task 4 gọi nó lúc nạp module |
 | 4 functions | ☐ | | |
 | 5 errors + numfmt | ☐ | | |
 | 6 workbook | ☐ | | |
