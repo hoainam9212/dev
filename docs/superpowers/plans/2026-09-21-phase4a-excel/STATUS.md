@@ -8,7 +8,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 2 lex + parse | ☑ | (commit này) | 11 test; `lex` thử vùng → ô → tên theo đúng thứ tự đó, và giữ `#REF!` lại làm `name` để Task 3 đổi thành lỗi |
 | 3 evaluate | ☑ | (commit này) | 14 test. Bảng hàm cắm vào bằng `registerFunctions()` chứ không import thẳng — `functions.ts` phải import `evaluate`, nên import ngược sẽ thành vòng. Task 4 gọi nó lúc nạp module |
 | 4 functions | ☑ | (commit này) | 19 test, đủ 25 hàm. `isErr` nhận `unknown` để thu hẹp được cả `number[] \| FormulaError` |
-| 5 errors + numfmt | ☐ | | |
+| 5 errors + numfmt | ☑ | (commit này) | 12 test; `CellFormat` định nghĩa tại `numfmt.ts`, Task 6–8 import lại từ đó |
 | 6 workbook | ☐ | | |
 | 7 copy + fill | ☐ | | |
 | 8 format + sheets | ☐ | | |
