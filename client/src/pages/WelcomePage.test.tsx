@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { WelcomePage } from './WelcomePage';
 import { renderWithProfile, resetDb } from '../test/utils';
+import { getCurrentProfileId } from '../profiles/current';
 
 vi.mock('../db/profile', async (importOriginal) => {
   const mod = await importOriginal<typeof import('../db/profile')>();
@@ -16,6 +17,8 @@ const goToLastStep = async () => {
   fireEvent.click(screen.getByRole('radio', { name: /Mac/ }));
   fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục' }));
   fireEvent.click(screen.getByRole('radio', { name: /10 phút/ }));
+  fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục' }));
+  fireEvent.click(screen.getByRole('radio', { name: 'Mèo tím' }));
 };
 
 describe('WelcomePage', () => {
@@ -32,12 +35,13 @@ describe('WelcomePage', () => {
     expect(finishBtn).not.toBeDisabled();
   });
 
-  it('creates the profile on success', async () => {
+  it('creates the profile with the chosen avatar and starts learning as them', async () => {
     await goToLastStep();
     fireEvent.click(screen.getByRole('button', { name: 'Vào học thôi! 🎉' }));
     await waitFor(async () => {
       const { db } = await import('../db/db');
-      expect((await db.profiles.get('p1'))?.name).toBe('An');
+      expect(await db.profiles.get('p1')).toMatchObject({ name: 'An', avatar: 'tim' });
     });
+    expect(getCurrentProfileId()).toBe('p1');
   });
 });

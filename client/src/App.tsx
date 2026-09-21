@@ -4,6 +4,7 @@ import { ProfileProvider, useProfile } from './db/profile';
 import { AppShell } from './app/AppShell';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { WelcomePage } from './pages/WelcomePage';
+import { ProfilePicker } from './profiles/ProfilePicker';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
@@ -24,7 +25,7 @@ function RequireProfile({ children }: { children: ReactNode }) {
       </div>
     );
   }
-  if (profile === null) return <Navigate to="/welcome" replace />;
+  if (profile === null) return <Navigate to="/who" replace />;
   return <>{children}</>;
 }
 
@@ -38,6 +39,7 @@ export default function App() {
     <ErrorBoundary>
       <ProfileProvider>
         <Routes>
+          <Route path="/who" element={<ProfilePicker />} />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route element={<RequireProfile><AppShell /></RequireProfile>}>
             <Route index element={<HomePage />} />

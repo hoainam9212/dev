@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import type { OS } from '@office-neko/shared';
 import { createProfile, guessOs, useProfile } from '../db/profile';
 import { setCurrentProfileId } from '../profiles/current';
+import { AVATARS, avatarSkin } from '../profiles/avatars';
+import type { AvatarId } from '../db/db';
 import { Mochi } from '../components/Mochi';
 import { SpeechBubble } from '../components/SpeechBubble';
 
@@ -25,6 +27,7 @@ export function WelcomePage() {
   const [guessed] = useState<OS>(guessOs);
   const [os, setOs] = useState<OS>(guessed);
   const [goal, setGoal] = useState<Goal>(10);
+  const [avatar, setAvatar] = useState<AvatarId>('cam');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,7 +41,7 @@ export function WelcomePage() {
     setSaving(true);
     setError(null);
     try {
-      const created = await createProfile({ name, os, dailyGoalMin: goal, avatar: 'cam' });
+      const created = await createProfile({ name, os, dailyGoalMin: goal, avatar });
       setCurrentProfileId(created.id);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -111,7 +114,33 @@ export function WelcomePage() {
             ))}
           </div>
           <div className="flex gap-3">
-            <button type="button" className="btn" onClick={() => setStep(2)} disabled={saving}>← Quay lại</button>
+            <button type="button" className="btn" onClick={() => setStep(2)}>← Quay lại</button>
+            <button type="button" className="btn-primary" onClick={() => setStep(4)}>Tiếp tục</button>
+          </div>
+        </div>
+      )}
+      {step === 4 && (
+        <div className="w-full space-y-4">
+          <h1 className="text-2xl font-extrabold">Chọn một chú mèo cho riêng bạn</h1>
+          <p className="text-muted">Ảnh này giúp bạn nhận ra tên mình khi máy có nhiều người cùng học.</p>
+          <div role="radiogroup" aria-label="Ảnh đại diện" className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+            {AVATARS.map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                role="radio"
+                aria-checked={avatar === a.id}
+                aria-label={a.label}
+                onClick={() => setAvatar(a.id)}
+                className={`card flex flex-col items-center gap-1 p-2 transition ${avatar === a.id ? 'ring-4 ring-rose' : 'hover:ring-2 hover:ring-peach'}`}
+              >
+                <Mochi skin={avatarSkin(a.id)} size={64} mood="happy" animated={false} label={a.label} />
+                <span className="text-xs font-bold">{a.label}</span>
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-3">
+            <button type="button" className="btn" onClick={() => setStep(3)} disabled={saving}>← Quay lại</button>
             <button type="button" className="btn-primary" onClick={finish} disabled={saving}>
               {saving ? 'Đang lưu…' : 'Vào học thôi! 🎉'}
             </button>

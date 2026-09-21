@@ -6,6 +6,10 @@ interface Props {
   size?: number;
   animated?: boolean;
   className?: string;
+  /** Bộ màu lông cho ảnh đại diện. Bỏ trống ⇒ Mochi màu gốc. */
+  skin?: { fur: string; patch: string };
+  /** Tên đọc cho trình đọc màn hình; mặc định "Mochi <tâm trạng>". */
+  label?: string;
 }
 
 const FUR = '#FFFDF8';
@@ -70,27 +74,29 @@ function Mouth({ mood }: { mood: MochiMood }) {
 }
 
 /** Mèo Mochi: lông trắng kem, tai và má vá cam, kẹp tóc dango 3 màu. */
-export function Mochi({ mood = 'neutral', size = 160, animated = true, className = '' }: Props) {
+export function Mochi({ mood = 'neutral', size = 160, animated = true, className = '', skin, label }: Props) {
+  const fur = skin?.fur ?? FUR;
+  const patch = skin?.patch ?? PATCH;
   return (
     <svg
       role="img"
-      aria-label={`Mochi ${mood}`}
+      aria-label={label ?? `Mochi ${mood}`}
       viewBox="0 0 120 150"
       width={size}
       height={(size * 150) / 120}
       className={`${animated ? 'mochi-bob' : ''} ${className}`}
     >
-      <path d="M86 128 q32 -6 22 -36" stroke={PATCH} strokeWidth="11" fill="none" strokeLinecap="round" />
-      <path d="M86 128 q32 -6 22 -36" stroke={FUR} strokeWidth="6" fill="none" strokeLinecap="round" />
-      <ellipse cx="60" cy="120" rx="30" ry="24" fill={FUR} stroke="#F1E4D6" strokeWidth="1.5" />
-      <ellipse cx="46" cy="140" rx="10" ry="6" fill={FUR} stroke="#F1E4D6" strokeWidth="1.5" />
-      <ellipse cx="74" cy="140" rx="10" ry="6" fill={FUR} stroke="#F1E4D6" strokeWidth="1.5" />
-      <path d="M26 54 L32 14 L58 40 Z" fill={PATCH} />
-      <path d="M94 54 L88 14 L62 40 Z" fill={FUR} stroke="#F1E4D6" strokeWidth="1.5" />
+      <path d="M86 128 q32 -6 22 -36" stroke={patch} strokeWidth="11" fill="none" strokeLinecap="round" />
+      <path d="M86 128 q32 -6 22 -36" stroke={fur} strokeWidth="6" fill="none" strokeLinecap="round" />
+      <ellipse cx="60" cy="120" rx="30" ry="24" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
+      <ellipse cx="46" cy="140" rx="10" ry="6" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
+      <ellipse cx="74" cy="140" rx="10" ry="6" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
+      <path d="M26 54 L32 14 L58 40 Z" fill={patch} />
+      <path d="M94 54 L88 14 L62 40 Z" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
       <path d="M32 48 L35 24 L50 40 Z" fill={PINK} />
       <path d="M88 48 L85 24 L70 40 Z" fill={PINK} />
-      <circle cx="60" cy="70" r="37" fill={FUR} stroke="#F1E4D6" strokeWidth="1.5" />
-      <path d="M26 62 q6 -26 30 -30 q-10 14 -8 34 q-12 4 -22 -4 z" fill={PATCH} opacity="0.9" />
+      <circle cx="60" cy="70" r="37" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
+      <path d="M26 62 q6 -26 30 -30 q-10 14 -8 34 q-12 4 -22 -4 z" fill={patch} opacity="0.9" />
       <ellipse cx="34" cy="82" rx="6.5" ry="4" fill={PINK} opacity="0.9" />
       <ellipse cx="86" cy="82" rx="6.5" ry="4" fill={PINK} opacity="0.9" />
       <g stroke={INK} strokeWidth="1.5" strokeLinecap="round" opacity="0.6">
