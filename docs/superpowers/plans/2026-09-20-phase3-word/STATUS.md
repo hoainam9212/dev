@@ -1,5 +1,7 @@
 # Giai đoạn 3 (Word) – tình trạng
 
+**XONG toàn bộ 2026-09-21.** Giai đoạn kế tiếp là Excel (spec mục 7.5) — chưa có plan.
+
 Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên mới đọc file này trước, không đọc lại các file task đã xong.
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
@@ -17,7 +19,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 11 Bài chương 1–2 | ☑ | (commit này) | 6 bài; đã thêm 6 mục từ điển (a4, bold, italic, underline, font, highlight) — Task 14 chỉ cần bổ sung phần còn lại |
 | 12 Bài chương 3–4 | ☑ | (commit này) | 5 bài; grader thêm check `imageWidth`; từ điển thêm align/table/row/column/cell |
 | 13 Bài chương 5 + dự án | ☑ | (commit này) | 4 bài; đủ 15 bài / 6 chương trên bản đồ |
-| 14 Từ điển + tổng kết | ☐ | | |
+| 14 Từ điển + tổng kết | ☑ | (commit này) | 13 mục từ điển + 15 câu FAQ cho Word; README; đã thử bài mục lục và Hỏi Mèo không dấu |
 
 ## Quyết định đã chốt
 
@@ -35,6 +37,9 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   `{ type: 'doc', content: [{ type: 'paragraph' }] }` và JSON trong bài học đọc được bằng mắt.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
+
+- `faq.json` và `glossary.json` được **ép kiểu** nên typecheck KHÔNG bắt thiếu trường. Mỗi mục FAQ bắt buộc có
+  `keywords` (Task 14 đã quên một lần, làm Hỏi Mèo văng khi render).
 
 - (xong ở Task 11) đã xoá route tạm `/dev/word`.
 - **Soạn bài Word: dùng `text` NHIỀU DÒNG** (`'Dòng một

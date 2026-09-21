@@ -1,17 +1,341 @@
 [
-  { "id": "open-glossary", "q": "Làm sao mở Từ điển?", "a": "Bấm nút **?** tròn ở góc dưới bên phải, hoặc nhấn phím {{f1}}. Gõ từ cần tra, có dấu hay không dấu đều được.", "keywords": ["tu dien", "tra nghia", "tra tu", "help", "tro giup", "f1"] },
-  { "id": "hint-cost", "q": "Dùng gợi ý có bị mất điểm không?", "a": "Gợi ý không bao giờ chặn bạn học tiếp. Chỉ là dùng ít gợi ý thì được nhiều sao hơn: gợi ý bậc 1 còn tối đa 2 sao, bậc 2 trở lên còn 1 sao.", "keywords": ["goi y", "mat diem", "sao", "hint"] },
-  { "id": "stars", "q": "Làm sao để được 3 sao?", "a": "Làm xong bài mà không dùng gợi ý, và chọn sai câu hỏi / bấm **Kiểm tra** chưa đúng tối đa 1 lần. Bạn có thể học lại bài cũ để nâng số sao.", "keywords": ["3 sao", "ba sao", "diem", "sao"] },
-  { "id": "where-saved", "q": "Tiến độ học được lưu ở đâu?", "a": "Tiến độ được lưu ngay trong trình duyệt trên máy này. Nếu xoá dữ liệu trình duyệt thì tiến độ cũng mất, vì vậy hãy tạo file sao lưu trong **Cài đặt** nhé.", "keywords": ["luu", "tien do", "mat du lieu", "du lieu"] },
-  { "id": "move-device", "q": "Làm sao chuyển tiến độ sang máy khác?", "a": "Vào **Cài đặt** → **Tải file sao lưu**. Mang file đó sang máy mới, mở app, vào **Cài đặt** → **Khôi phục từ file**.", "keywords": ["chuyen may", "may khac", "sao luu", "backup", "khoi phuc"] },
-  { "id": "change-os", "q": "Làm sao đổi giữa Windows và Mac?", "a": "Vào **Cài đặt** (nút ⚙️ góc trên bên phải) và chọn lại hệ điều hành. Phím tắt và bài Làm quen máy tính sẽ đổi theo.", "keywords": ["doi", "windows", "mac", "macos", "he dieu hanh"] },
-  { "id": "font-size", "q": "Chữ nhỏ quá, làm sao phóng to?", "a": "Vào **Cài đặt** → **Cỡ chữ** và chọn **Lớn** hoặc **Rất lớn**.", "keywords": ["chu nho", "phong to", "co chu", "kho doc"] },
-  { "id": "ctrl-where", "q": "Phím Ctrl nằm ở đâu?", "a": "Phím [[ctrl|Ctrl]] nằm ở góc dưới bên trái bàn phím (thường có thêm một phím Ctrl ở bên phải). Phím tắt dạng {{mod+c}} nghĩa là giữ Ctrl rồi bấm C.", "keywords": ["ctrl", "control", "phim ctrl"], "os": "win" },
-  { "id": "cmd-where", "q": "Phím Command (⌘) nằm ở đâu?", "a": "Phím [[command|Command ⌘]] nằm ngay hai bên phím cách. Phím tắt dạng {{mod+c}} nghĩa là giữ ⌘ rồi bấm C.", "keywords": ["command", "cmd", "phim command"], "os": "mac" },
-  { "id": "copy-paste", "q": "Làm sao sao chép (copy) và dán (paste)?", "a": "Chọn thứ cần chép rồi nhấn {{mod+c}} để [[copy|sao chép]]. Đưa con trỏ tới chỗ mới rồi nhấn {{mod+v}} để [[paste|dán]].", "keywords": ["copy", "paste", "sao chep", "dan", "chep"] },
-  { "id": "undo", "q": "Lỡ tay xoá mất, làm sao lấy lại?", "a": "Nhấn ngay {{mod+z}} để [[undo|hoàn tác]] thao tác vừa làm. Nếu là file đã xoá thì mở thùng rác để khôi phục.", "keywords": ["lo tay", "xoa nham", "lay lai", "undo", "hoan tac"] },
-  { "id": "daily", "q": "Mỗi ngày nên học bao lâu?", "a": "Chỉ cần 10 phút mỗi ngày là tiến bộ rõ. Học đều đặn tốt hơn học dồn một lần thật lâu.", "keywords": ["bao lau", "moi ngay", "thoi gian", "muc tieu"] },
-  { "id": "streak", "q": "Chuỗi ngày học 🔥 là gì?", "a": "Là số ngày liên tiếp bạn có học. Chỉ cần xong 1 bài mỗi ngày là chuỗi được giữ.", "keywords": ["chuoi", "streak", "lua", "ngay lien tiep"] },
-  { "id": "offline", "q": "App có cần mạng Internet không?", "a": "Không. Sau lần mở đầu tiên, app chạy được cả khi mất mạng.", "keywords": ["mang", "internet", "wifi", "offline"] },
-  { "id": "mac-right-click", "q": "Nhấp chuột phải trên Mac làm thế nào?", "a": "Giữ phím control rồi bấm chuột, hoặc chạm hai ngón lên trackpad. Xem thêm [[control-click|Control-click]].", "keywords": ["chuot phai", "right click", "control click", "hai ngon"], "os": "mac" }
+  {
+    "id": "open-glossary",
+    "q": "Làm sao mở Từ điển?",
+    "a": "Bấm nút **?** tròn ở góc dưới bên phải, hoặc nhấn phím {{f1}}. Gõ từ cần tra, có dấu hay không dấu đều được.",
+    "keywords": [
+      "tu dien",
+      "tra nghia",
+      "tra tu",
+      "help",
+      "tro giup",
+      "f1"
+    ]
+  },
+  {
+    "id": "hint-cost",
+    "q": "Dùng gợi ý có bị mất điểm không?",
+    "a": "Gợi ý không bao giờ chặn bạn học tiếp. Chỉ là dùng ít gợi ý thì được nhiều sao hơn: gợi ý bậc 1 còn tối đa 2 sao, bậc 2 trở lên còn 1 sao.",
+    "keywords": [
+      "goi y",
+      "mat diem",
+      "sao",
+      "hint"
+    ]
+  },
+  {
+    "id": "stars",
+    "q": "Làm sao để được 3 sao?",
+    "a": "Làm xong bài mà không dùng gợi ý, và chọn sai câu hỏi / bấm **Kiểm tra** chưa đúng tối đa 1 lần. Bạn có thể học lại bài cũ để nâng số sao.",
+    "keywords": [
+      "3 sao",
+      "ba sao",
+      "diem",
+      "sao"
+    ]
+  },
+  {
+    "id": "where-saved",
+    "q": "Tiến độ học được lưu ở đâu?",
+    "a": "Tiến độ được lưu ngay trong trình duyệt trên máy này. Nếu xoá dữ liệu trình duyệt thì tiến độ cũng mất, vì vậy hãy tạo file sao lưu trong **Cài đặt** nhé.",
+    "keywords": [
+      "luu",
+      "tien do",
+      "mat du lieu",
+      "du lieu"
+    ]
+  },
+  {
+    "id": "move-device",
+    "q": "Làm sao chuyển tiến độ sang máy khác?",
+    "a": "Vào **Cài đặt** → **Tải file sao lưu**. Mang file đó sang máy mới, mở app, vào **Cài đặt** → **Khôi phục từ file**.",
+    "keywords": [
+      "chuyen may",
+      "may khac",
+      "sao luu",
+      "backup",
+      "khoi phuc"
+    ]
+  },
+  {
+    "id": "change-os",
+    "q": "Làm sao đổi giữa Windows và Mac?",
+    "a": "Vào **Cài đặt** (nút ⚙️ góc trên bên phải) và chọn lại hệ điều hành. Phím tắt và bài Làm quen máy tính sẽ đổi theo.",
+    "keywords": [
+      "doi",
+      "windows",
+      "mac",
+      "macos",
+      "he dieu hanh"
+    ]
+  },
+  {
+    "id": "font-size",
+    "q": "Chữ nhỏ quá, làm sao phóng to?",
+    "a": "Vào **Cài đặt** → **Cỡ chữ** và chọn **Lớn** hoặc **Rất lớn**.",
+    "keywords": [
+      "chu nho",
+      "phong to",
+      "co chu",
+      "kho doc"
+    ]
+  },
+  {
+    "id": "ctrl-where",
+    "q": "Phím Ctrl nằm ở đâu?",
+    "a": "Phím [[ctrl|Ctrl]] nằm ở góc dưới bên trái bàn phím (thường có thêm một phím Ctrl ở bên phải). Phím tắt dạng {{mod+c}} nghĩa là giữ Ctrl rồi bấm C.",
+    "keywords": [
+      "ctrl",
+      "control",
+      "phim ctrl"
+    ],
+    "os": "win"
+  },
+  {
+    "id": "cmd-where",
+    "q": "Phím Command (⌘) nằm ở đâu?",
+    "a": "Phím [[command|Command ⌘]] nằm ngay hai bên phím cách. Phím tắt dạng {{mod+c}} nghĩa là giữ ⌘ rồi bấm C.",
+    "keywords": [
+      "command",
+      "cmd",
+      "phim command"
+    ],
+    "os": "mac"
+  },
+  {
+    "id": "copy-paste",
+    "q": "Làm sao sao chép (copy) và dán (paste)?",
+    "a": "Chọn thứ cần chép rồi nhấn {{mod+c}} để [[copy|sao chép]]. Đưa con trỏ tới chỗ mới rồi nhấn {{mod+v}} để [[paste|dán]].",
+    "keywords": [
+      "copy",
+      "paste",
+      "sao chep",
+      "dan",
+      "chep"
+    ]
+  },
+  {
+    "id": "undo",
+    "q": "Lỡ tay xoá mất, làm sao lấy lại?",
+    "a": "Nhấn ngay {{mod+z}} để [[undo|hoàn tác]] thao tác vừa làm. Nếu là file đã xoá thì mở thùng rác để khôi phục.",
+    "keywords": [
+      "lo tay",
+      "xoa nham",
+      "lay lai",
+      "undo",
+      "hoan tac"
+    ]
+  },
+  {
+    "id": "daily",
+    "q": "Mỗi ngày nên học bao lâu?",
+    "a": "Chỉ cần 10 phút mỗi ngày là tiến bộ rõ. Học đều đặn tốt hơn học dồn một lần thật lâu.",
+    "keywords": [
+      "bao lau",
+      "moi ngay",
+      "thoi gian",
+      "muc tieu"
+    ]
+  },
+  {
+    "id": "streak",
+    "q": "Chuỗi ngày học 🔥 là gì?",
+    "a": "Là số ngày liên tiếp bạn có học. Chỉ cần xong 1 bài mỗi ngày là chuỗi được giữ.",
+    "keywords": [
+      "chuoi",
+      "streak",
+      "lua",
+      "ngay lien tiep"
+    ]
+  },
+  {
+    "id": "offline",
+    "q": "App có cần mạng Internet không?",
+    "a": "Không. Sau lần mở đầu tiên, app chạy được cả khi mất mạng.",
+    "keywords": [
+      "mang",
+      "internet",
+      "wifi",
+      "offline"
+    ]
+  },
+  {
+    "id": "mac-right-click",
+    "q": "Nhấp chuột phải trên Mac làm thế nào?",
+    "a": "Giữ phím control rồi bấm chuột, hoặc chạm hai ngón lên trackpad. Xem thêm [[control-click|Control-click]].",
+    "keywords": [
+      "chuot phai",
+      "right click",
+      "control click",
+      "hai ngon"
+    ],
+    "os": "mac"
+  },
+  {
+    "id": "word-bo-in-dam",
+    "q": "Làm sao bỏ in đậm?",
+    "a": "Bôi đen chữ đang đậm rồi bấm lại nút **B** — nút này bật/tắt. Phím tắt Ctrl + B cũng vậy.",
+    "keywords": [
+      "in đậm",
+      "bold",
+      "bỏ đậm",
+      "chữ đậm"
+    ]
+  },
+  {
+    "id": "word-chu-dinh-nhau",
+    "q": "Chữ bị dính nhau, giãn dòng ở đâu?",
+    "a": "Bấm vào đoạn đó rồi chọn ô **Giãn dòng** ở thẻ Home, thử 1,5. Văn bản sẽ thoáng hơn.",
+    "keywords": [
+      "giãn dòng",
+      "line spacing",
+      "chữ dính",
+      "khoảng cách dòng"
+    ]
+  },
+  {
+    "id": "word-lo-xoa",
+    "q": "Tôi lỡ xoá mất một đoạn, lấy lại được không?",
+    "a": "Được. Bấm nút **Hoàn tác** (↶) hoặc Ctrl + Z. Bấm nhiều lần thì lùi lại nhiều bước.",
+    "keywords": [
+      "hoàn tác",
+      "undo",
+      "ctrl z",
+      "lỡ xoá",
+      "khôi phục"
+    ]
+  },
+  {
+    "id": "word-go-de-len",
+    "q": "Vì sao chữ tôi gõ lại đè lên chữ cũ?",
+    "a": "Vì đang có chữ được **bôi đen**. Gõ khi đang bôi đen thì chữ mới thay chỗ chữ cũ. Bấm chuột ra chỗ trống để bỏ bôi đen trước khi gõ.",
+    "keywords": [
+      "bôi đen",
+      "chọn chữ",
+      "gõ đè",
+      "mất chữ"
+    ]
+  },
+  {
+    "id": "word-bang-tran",
+    "q": "Bảng bị tràn ra ngoài trang thì làm sao?",
+    "a": "Xoá bớt cột: bấm vào một ô trong cột thừa rồi bấm **－ Cột** ở thẻ Insert. Ít cột lại thì bảng vừa trang.",
+    "keywords": [
+      "bảng",
+      "table",
+      "tràn trang",
+      "xoá cột"
+    ]
+  },
+  {
+    "id": "word-muc-luc-khong-doi",
+    "q": "Sửa tiêu đề rồi mà mục lục không đổi?",
+    "a": "Mục lục không tự đổi theo. Vào thẻ **References** bấm **Cập nhật mục lục** là khớp lại ngay.",
+    "keywords": [
+      "mục lục",
+      "table of contents",
+      "cập nhật",
+      "references"
+    ]
+  },
+  {
+    "id": "word-danh-so-trang",
+    "q": "Làm sao đánh số trang?",
+    "a": "Bản Word mô phỏng trong app chưa có đánh số trang. Trên Word thật, bạn tìm ở thẻ Insert → Page Number.",
+    "keywords": [
+      "số trang",
+      "page number",
+      "đánh số"
+    ]
+  },
+  {
+    "id": "word-tim-hoa-thuong",
+    "q": "Tìm và thay thế có phân biệt chữ hoa không?",
+    "a": "Không. Gõ `abc` vẫn tìm thấy `ABC`. Nhưng có **phân biệt dấu**: `nam` không tìm ra `năm`.",
+    "keywords": [
+      "tìm",
+      "thay thế",
+      "find",
+      "replace",
+      "chữ hoa",
+      "dấu"
+    ]
+  },
+  {
+    "id": "word-anh-to-qua",
+    "q": "Ảnh chèn vào to quá thì sao?",
+    "a": "Mở thẻ **Layout** rồi chọn độ rộng nhỏ hơn: 25%, 40% hay 60% bề ngang trang.",
+    "keywords": [
+      "ảnh",
+      "hình",
+      "độ rộng",
+      "layout",
+      "thu nhỏ"
+    ]
+  },
+  {
+    "id": "word-file-o-dau",
+    "q": "Bấm Lưu rồi thì file nằm ở đâu?",
+    "a": "Đây là bản lưu **mô phỏng** để bạn tập thao tác, không tạo file thật trên máy. Trên Word thật, file lưu vào thư mục bạn chọn trong hộp thoại Save.",
+    "keywords": [
+      "lưu",
+      "save",
+      "file",
+      "ở đâu"
+    ]
+  },
+  {
+    "id": "word-mau-chu-vs-to-nen",
+    "q": "Màu chữ và tô nền khác nhau thế nào?",
+    "a": "**Màu chữ** đổi màu của chính nét chữ. **Tô nền** ([[highlight]]) tô một mảng màu phía sau chữ, như bút dạ quang.",
+    "keywords": [
+      "màu chữ",
+      "tô nền",
+      "highlight",
+      "bút dạ quang"
+    ]
+  },
+  {
+    "id": "word-heading-de-lam-gi",
+    "q": "Heading để làm gì, tô đậm cho to có được không?",
+    "a": "Tô đậm chỉ làm chữ trông khác. Đặt [[heading|Heading]] mới cho Word biết đó là tiêu đề, nhờ vậy nó tự dựng được [[toc|mục lục]].",
+    "keywords": [
+      "heading",
+      "tiêu đề",
+      "mục lục",
+      "tô đậm"
+    ]
+  },
+  {
+    "id": "word-in-that",
+    "q": "Bấm In thì máy in có chạy không?",
+    "a": "Không. Đây là bản in **thử** để bạn xem trang trông thế nào trước khi in thật.",
+    "keywords": [
+      "in",
+      "print",
+      "máy in",
+      "in thử"
+    ]
+  },
+  {
+    "id": "word-phim-tat",
+    "q": "Word có phím tắt nào nên nhớ?",
+    "a": "Ba cái hay dùng nhất: **Ctrl + B** in đậm, **Ctrl + Z** hoàn tác, **Ctrl + S** lưu.",
+    "keywords": [
+      "phím tắt",
+      "ctrl",
+      "shortcut"
+    ]
+  },
+  {
+    "id": "word-chon-ca-dong",
+    "q": "Làm sao chọn nhanh cả một dòng?",
+    "a": "Nháy đúp chọn một từ; giữ chuột trái rồi kéo từ đầu đến cuối dòng để chọn cả dòng.",
+    "keywords": [
+      "chọn",
+      "bôi đen",
+      "cả dòng",
+      "nháy đúp"
+    ]
+  }
 ]
