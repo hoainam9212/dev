@@ -8,7 +8,9 @@ import { WORD_BASICS } from './word-basics';
 import { WORD_FORMAT } from './word-format';
 import { WORD_PARA } from './word-para';
 import { WORD_OBJECTS } from './word-objects';
+import { WORD_LONG } from './word-long';
+import { WORD_PROJECT } from './word-project';
 
-const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS];
+const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT];
 
 export const LESSONS: Record<string, Lesson> = Object.fromEntries(ALL.map((l) => [l.id, l]));

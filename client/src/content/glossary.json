@@ -628,5 +628,26 @@
     "lessonIds": [
       "word.table"
     ]
+  },
+  {
+    "id": "heading",
+    "term": "Heading",
+    "say": "/ˈhedɪŋ/ — héc-đinh",
+    "vi": "Tiêu đề mục",
+    "explain": "Dòng tiêu đề của một phần trong bài. Đặt Heading thay vì chỉ tô đậm thì Word mới tự làm được [[toc|mục lục]] cho bạn.",
+    "lessonIds": [
+      "word.heading",
+      "word.toc"
+    ]
+  },
+  {
+    "id": "toc",
+    "term": "Table of contents",
+    "say": "/ˈteɪbl əv ˈkɒntents/ — tây-bồ ơv con-ten",
+    "vi": "Mục lục",
+    "explain": "Danh sách các mục trong bài, đặt ở đầu. Word tự dựng từ các dòng [[heading|Heading]]; sửa tiêu đề xong bấm Cập nhật mục lục.",
+    "lessonIds": [
+      "word.toc"
+    ]
   }
 ]

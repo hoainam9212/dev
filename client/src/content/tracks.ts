@@ -35,6 +35,8 @@ export const TRACKS: Track[] = [
       { id: 'word.format', title: 'Định dạng chữ', lessonIds: ['word.bold', 'word.font', 'word.color'] },
       { id: 'word.para', title: 'Đoạn văn cho đẹp', lessonIds: ['word.align', 'word.spacing', 'word.list'] },
       { id: 'word.objects', title: 'Bảng và ảnh', lessonIds: ['word.table', 'word.image'] },
+      { id: 'word.long', title: 'Văn bản dài', lessonIds: ['word.heading', 'word.toc', 'word.find'] },
+      { id: 'word.final', title: 'Dự án: Đơn xin việc', lessonIds: ['word.project'] },
     ],
   },
   { id: 'excel', order: 3, title: 'Excel – Bảng tính', emoji: '📊', color: '#3FB871', blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.', chapters: [] },

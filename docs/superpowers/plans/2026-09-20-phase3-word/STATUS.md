@@ -16,7 +16,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 10 Ribbon còn lại | ☑ | (commit này) | 14 test; đã thử thật: bảng + thêm hàng, chèn ảnh, tìm & thay thế, mục lục, Esc đóng hộp thoại |
 | 11 Bài chương 1–2 | ☑ | (commit này) | 6 bài; đã thêm 6 mục từ điển (a4, bold, italic, underline, font, highlight) — Task 14 chỉ cần bổ sung phần còn lại |
 | 12 Bài chương 3–4 | ☑ | (commit này) | 5 bài; grader thêm check `imageWidth`; từ điển thêm align/table/row/column/cell |
-| 13 Bài chương 5 + dự án | ☐ | | |
+| 13 Bài chương 5 + dự án | ☑ | (commit này) | 4 bài; đủ 15 bài / 6 chương trên bản đồ |
 | 14 Từ điển + tổng kết | ☐ | | |
 
 ## Quyết định đã chốt
