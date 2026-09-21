@@ -5,7 +5,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
 | 1 Deps + schema | ☑ | (commit này) | shared 148 test xanh; schema tự khai báo node, không dùng addListNodes/tableNodes |
-| 2 Reducer lõi | ☐ | | |
+| 2 Reducer lõi | ☑ | (commit này) | 13 test; `findText` là bản đồ ký tự→pos mà Task 3–7 dùng lại |
 | 3 Marks | ☐ | | |
 | 4 Blocks | ☐ | | |
 | 5 Bảng + ảnh | ☐ | | |
@@ -31,4 +31,4 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
-- (trống)
+- Task 3–6 dùng `withEdit(s, edit)` trong `state.ts` để đẩy lịch sử hoàn tác — đừng tự viết lại chỗ này ở từng file.
