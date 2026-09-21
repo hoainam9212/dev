@@ -4,7 +4,7 @@ import type { OS } from '@office-neko/shared';
 import { updateProfile, useProfile } from '../db/profile';
 import type { Profile } from '../db/db';
 import {
-  backupFileName, downloadJson, exportBackup, importBackup, parseBackup, readFileText, type BackupFile,
+  backupFileName, downloadJson, exportBackup, importBackup, parseBackup, profilesInBackup, readFileText, type BackupFile,
 } from '../progress/backup';
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
@@ -191,7 +191,10 @@ export function SettingsPage() {
         {message && <p className="font-semibold text-excel-ink">{message}</p>}
         {pending && (
           <div role="alertdialog" aria-label="Xác nhận khôi phục" className="space-y-3 rounded-2xl bg-butter/40 p-4">
-            <p>Dữ liệu hiện tại sẽ được <strong>thay thế</strong> bằng dữ liệu trong file (lưu ngày {pending.exportedAt.slice(0, 10)}). Tiếp tục?</p>
+            <p>
+              File này có <strong>{profilesInBackup(pending)} người học</strong> (lưu ngày {pending.exportedAt.slice(0, 10)}).
+              Toàn bộ dữ liệu hiện tại trên máy sẽ được <strong>thay thế</strong>. Tiếp tục?
+            </p>
             <div className="flex gap-3">
               <button type="button" className="btn-primary" onClick={confirmImport}>Khôi phục</button>
               <button type="button" className="btn" onClick={() => setPending(null)}>Huỷ</button>

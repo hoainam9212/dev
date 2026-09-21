@@ -6,7 +6,7 @@ import { ProfileProvider, createProfile } from '../db/profile';
 import { exportBackup } from '../progress/backup';
 import { SettingsPage } from './SettingsPage';
 import { resetDb } from '../test/utils';
-import { setCurrentProfileId } from '../profiles/current';
+import { getCurrentProfileId, setCurrentProfileId } from '../profiles/current';
 
 vi.mock('../progress/backup', async (importOriginal) => {
   const mod = await importOriginal<typeof import('../progress/backup')>();
@@ -102,7 +102,17 @@ describe('SettingsPage', () => {
     expect(screen.getByRole('alertdialog', { name: 'Xác nhận khôi phục' })).toBeInTheDocument();
   });
 
-  it('restores a valid backup after confirmation', async () => {
+  it('says how many learners the file holds before replacing anything', async () => {
+    const { createProfile } = await import('../profiles/manage');
+    await createProfile({ name: 'Bình', os: 'mac', dailyGoalMin: 5, avatar: 'tim' });
+    const text = JSON.stringify(await exportBackup());
+    renderPage();
+    const input = await screen.findByLabelText('Khôi phục từ file');
+    fireEvent.change(input, { target: { files: [new File([text], 'b.json', { type: 'application/json' })] } });
+    expect(await screen.findByText(/2 người học/)).toBeInTheDocument();
+  });
+
+  it('restores a valid backup after confirmation and asks who is learning again', async () => {
     await db.profiles.update('p1', { name: 'Dũng' });
     const text = JSON.stringify(await exportBackup());
     await db.profiles.update('p1', { name: 'An' });
@@ -110,7 +120,8 @@ describe('SettingsPage', () => {
     const input = await screen.findByLabelText('Khôi phục từ file');
     fireEvent.change(input, { target: { files: [new File([text], 'b.json', { type: 'application/json' })] } });
     fireEvent.click(await screen.findByRole('button', { name: 'Khôi phục' }));
-    expect(await screen.findByText(/Đã khôi phục/)).toBeInTheDocument();
-    expect((await db.profiles.get('p1'))?.name).toBe('Dũng');
+    await waitFor(async () => expect((await db.profiles.get('p1'))?.name).toBe('Dũng'));
+    // Khôi phục xong thì không còn ai "đang học": app quay về màn chọn người.
+    await waitFor(() => expect(getCurrentProfileId()).toBeNull());
   });
 });

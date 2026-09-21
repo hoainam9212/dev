@@ -10,7 +10,7 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 | 2 Người đang học + hàm nhận profileId | ☑ | (commit này) | client: 140 test xanh (trước tính năng này là 124), typecheck sạch |
 | 3 Màn "Ai đang học?" | ☑ | (commit này) | client 148 test xanh; di trú đã chạy thật trên máy: hồ sơ cũ "Thầy Mạnh" thành p1, nguyên cài đặt |
 | 4 Cài đặt: quản lý hồ sơ | ☑ | (commit này) | Đã thử xoá thật trên trình duyệt: gõ sai tên vẫn mờ nút, xoá xong danh sách còn một người và hết nút Xoá |
-| 5 Sao lưu v2 | ☐ | | |
+| 5 Sao lưu v2 | ☑ | (commit này) | Đã thử file v1 thật trên trình duyệt: nhận, chuyển thành 1 hồ sơ, hộp thoại nói đúng số người. Không bấm Khôi phục để giữ nguyên dữ liệu thật của máy |
 | 6 Kiểm tra tổng thể + gộp nhánh | ☐ | | |
 
 ## Quyết định đã chốt
@@ -23,6 +23,8 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
   `typingRuns` và `sandboxDocs` giữ tên (khoá chính không đổi). Spec mục 4.2 đã cập nhật theo.
 
 ## Việc còn treo
+
+- Task 6 nên tự tay bấm **Tải file sao lưu** và **Khôi phục** một lần trên máy thật — ở Task 5 mới kiểm tới bước hộp thoại, chưa bấm khôi phục để không đụng dữ liệu đang dùng.
 
 - (xong ở Task 2) đổi tên bảng ở mọi chỗ dùng.
 - (xong ở Task 3) bước chọn ảnh trong màn hình chào.
