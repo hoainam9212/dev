@@ -5,6 +5,7 @@ import { gradeDesktop } from '../sims/desktop';
 import { gradeTyping } from '../sims/typingSession';
 import { gradeFish } from '../sims/fishSim';
 import { gradeWord } from '../sims/word/grade';
+import { gradeExcel } from '../sims/excel/grade';
 
 export * from './core';
 
@@ -16,6 +17,7 @@ export const GRADERS: Partial<Record<SimKind, Grader<any, any>>> = {
   keyboard: gradeTyping,
   fish: gradeFish,
   word: gradeWord,
+  excel: gradeExcel,
 };
 
 export function grade(sim: SimKind, state: unknown, checks: unknown[]): GradeReport {

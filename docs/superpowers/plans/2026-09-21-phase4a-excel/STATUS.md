@@ -12,7 +12,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 6 workbook | ☑ | (commit này) | 12 test. `withEdit`/`withSheets` là cổng DUY NHẤT đẩy lịch sử |
 | 7 copy + fill | ☑ | (commit này) | 10 test. Clipboard nhớ cả `origin` nên độ dịch là phép trừ, không phải đoán |
 | 8 format + sheets | ☑ | (commit này) | 13 test. Hết phần `shared` trừ grader; Task 9 là `gradeExcel` rồi sang giao diện |
-| 9 grader | ☐ | | |
+| 9 grader | ☑ | (commit này) | 12 test. **Plan ghi sai chữ ký:** `Grader` trong codebase là MỘT check một lần, `gradeWith` mới gộp — `gradeExcel(state, check)` chứ không phải `(state, checks[])` |
 | 10 grid | ☐ | | |
 | 11 ribbon Home | ☐ | | |
 | 12 FnTip + chương 1 | ☐ | | |
