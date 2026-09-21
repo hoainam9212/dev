@@ -39,7 +39,13 @@ export const TRACKS: Track[] = [
       { id: 'word.final', title: 'Dự án: Đơn xin việc', lessonIds: ['word.project'] },
     ],
   },
-  { id: 'excel', order: 3, title: 'Excel – Bảng tính', emoji: '📊', color: '#3FB871', blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.', chapters: [] },
+  {
+    id: 'excel', order: 3, title: 'Excel – Bảng tính', emoji: '📊', color: '#3FB871',
+    blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.',
+    chapters: [
+      { id: 'excel.start', title: 'Làm quen bảng tính', lessonIds: ['excel.intro', 'excel.enter', 'excel.sheet'] },
+    ],
+  },
   { id: 'ppt', order: 4, title: 'PowerPoint – Trình chiếu', emoji: '🎞️', color: '#FFA878', blurb: 'Làm slide đẹp và trình bày tự tin.', chapters: [] },
   { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [] },
 ];

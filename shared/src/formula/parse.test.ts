@@ -18,6 +18,11 @@ describe('tách token', () => {
     expect(lex('1<>2')).toEqual([{ t: 'num', v: 1 }, { t: 'op', v: '<>' }, { t: 'num', v: 2 }]);
   });
 
+  it('nhận tên sheet tiếng Việt có dấu và có khoảng trắng', () => {
+    expect(lex('Báo cáo!B1')).toEqual([{ t: 'ref', v: 'Báo cáo!B1' }]);
+    expect(lex('Bảng lương!A1:B5')).toEqual([{ t: 'range', v: 'Bảng lương!A1:B5' }]);
+  });
+
   it('bỏ qua khoảng trắng', () => {
     expect(lex('  1 +  2 ')).toEqual([{ t: 'num', v: 1 }, { t: 'op', v: '+' }, { t: 'num', v: 2 }]);
   });

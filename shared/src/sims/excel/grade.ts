@@ -52,7 +52,7 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
     case 'cellValue': {
       const cell = at(check.cell, check.sheet);
       const actual = cellValue(state, cell);
-      if (sameValue(actual, check.value)) return ok(`✅ Ô ${check.cell} đã đúng.`);
+      if (sameValue(actual, check.value)) return ok(`Ô ${check.cell} đã đúng.`);
       if (isErr(actual)) return no(`Ô ${check.cell} đang báo lỗi ${actual.err}. Xem lại công thức nhé.`);
       const shown = displayValue(actual);
       return no(`Ô ${check.cell} đang là "${shown}", cần là "${String(check.value)}".`);
@@ -78,7 +78,7 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
       if (check.contains && !norm.includes(normalize(check.contains))) {
         return no(`Công thức ở ô ${check.cell} chưa có "${check.contains}".`);
       }
-      return ok(`✅ Công thức ở ô ${check.cell} đã đúng.`);
+      return ok(`Công thức ở ô ${check.cell} đã đúng.`);
     }
     case 'cellFormat': {
       const cell = at(check.cell, check.sheet);
@@ -88,7 +88,7 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
           return no(`Ô ${check.cell} chưa được đặt ${fmtValueVi(key, want)}.`);
         }
       }
-      return ok(`✅ Ô ${check.cell} đã định dạng đúng.`);
+      return ok(`Ô ${check.cell} đã định dạng đúng.`);
     }
     case 'merged': {
       const want = parseRange(check.range);
@@ -97,13 +97,13 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
       if (want && merged
         && merged.from.row === want.from.row && merged.from.col === want.from.col
         && merged.to.row === want.to.row && merged.to.col === want.to.col) {
-        return ok(`✅ Đã gộp ô ${check.range}.`);
+        return ok(`Đã gộp ô ${check.range}.`);
       }
       return no(`Chưa gộp vùng ${check.range} thành một ô.`);
     }
     case 'sheetNamed': {
       const found = state.sheets.some((s) => s.name.trim().toLowerCase() === check.name.trim().toLowerCase());
-      return found ? ok(`✅ Đã có sheet "${check.name}".`) : no(`Chưa có sheet nào tên "${check.name}".`);
+      return found ? ok(`Đã có sheet "${check.name}".`) : no(`Chưa có sheet nào tên "${check.name}".`);
     }
   }
 }

@@ -649,5 +649,75 @@
     "lessonIds": [
       "word.toc"
     ]
+  },
+  {
+    "id": "bang-tinh",
+    "term": "Spreadsheet",
+    "say": "xpret-sit",
+    "vi": "Bảng tính",
+    "explain": "Tấm lưới gồm hàng và cột để ghi số liệu và tính toán. Excel là phần mềm bảng tính quen thuộc nhất.",
+    "lessonIds": [
+      "excel.intro"
+    ]
+  },
+  {
+    "id": "o",
+    "term": "Cell",
+    "say": "xeo",
+    "vi": "Ô",
+    "explain": "Một ngăn trong bảng tính, chỗ một cột gặp một hàng. Tên ô là chữ của cột rồi số của hàng, ví dụ B2.",
+    "lessonIds": [
+      "excel.intro"
+    ]
+  },
+  {
+    "id": "hang",
+    "term": "Row",
+    "say": "râu",
+    "vi": "Hàng",
+    "explain": "Một dãy ô nằm ngang, đánh số 1, 2, 3… ở mép trái bảng tính.",
+    "lessonIds": [
+      "excel.intro"
+    ]
+  },
+  {
+    "id": "cot",
+    "term": "Column",
+    "say": "co-lâm",
+    "vi": "Cột",
+    "explain": "Một dãy ô nằm dọc, đánh chữ A, B, C… ở mép trên bảng tính.",
+    "lessonIds": [
+      "excel.intro"
+    ]
+  },
+  {
+    "id": "sheet",
+    "term": "Sheet",
+    "say": "sít",
+    "vi": "Trang tính",
+    "explain": "Một trang bảng tính. Một tệp chứa được nhiều sheet; tên chúng nằm ở thanh dưới cùng.",
+    "lessonIds": [
+      "excel.sheet"
+    ]
+  },
+  {
+    "id": "name-box",
+    "term": "Name Box",
+    "say": "nêm bốc",
+    "vi": "Ô địa chỉ",
+    "explain": "Ô vuông nhỏ bên trái thanh công thức, cho biết bạn đang chọn ô nào. Gõ một địa chỉ vào đó là nhảy tới ô ấy.",
+    "lessonIds": [
+      "excel.intro"
+    ]
+  },
+  {
+    "id": "thanh-cong-thuc",
+    "term": "Formula bar",
+    "say": "pho-miu-la ba",
+    "vi": "Thanh công thức",
+    "explain": "Dải dài phía trên lưới. Ô chỉ hiện KẾT QUẢ, còn thanh này hiện đúng công thức bạn đã gõ.",
+    "lessonIds": [
+      "excel.intro"
+    ]
   }
 ]

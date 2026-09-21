@@ -22,8 +22,12 @@ const OPS1 = ['+', '-', '*', '/', '^', '&', '=', '<', '>', '%'];
  * Một chuỗi chữ cái + số có thể là vùng (`B2:B10`), là ô (`$A$1`), là tên sheet
  * kèm ô (`Sheet2!A1`), hay là tên hàm. Thử theo đúng thứ tự đó: vùng trước ô,
  * ô trước tên — nếu không `B2:B10` sẽ thành ba token rời.
+ *
+ * Phần tên sheet dùng `\p{L}` chứ không phải `[A-Za-z]`: người học đặt tên sheet
+ * bằng tiếng Việt có dấu ("Báo cáo", "Bảng lương"), và `=Báo cáo!B1` phải chạy.
+ * Phần địa chỉ ô thì vẫn chỉ ASCII, vì cột bảng tính chỉ có A–Z.
  */
-const WORD = /^(?:'[^']+'|[A-Za-z_][A-Za-z0-9_. ]*)?!?\$?[A-Za-z]+\$?[0-9]*(?::\$?[A-Za-z]+\$?[0-9]+)?/;
+const WORD = /^(?:'[^']+'|[\p{L}_][\p{L}0-9_. ]*)?!?\$?[A-Za-z]+\$?[0-9]*(?::\$?[A-Za-z]+\$?[0-9]+)?/u;
 
 export function lex(src: string): Token[] {
   const out: Token[] = [];
@@ -50,7 +54,7 @@ export function lex(src: string): Token[] {
     const two = src.slice(i, i + 2);
     if (OPS2.includes(two)) { out.push({ t: 'op', v: two }); i += 2; continue; }
     if (OPS1.includes(ch)) { out.push({ t: 'op', v: ch }); i++; continue; }
-    if (/[A-Za-z_$']/.test(ch)) {
+    if (/[\p{L}_$']/u.test(ch)) {
       const m = WORD.exec(src.slice(i));
       if (!m || m[0] === '') throw new LexError(`Không hiểu ký tự "${ch}"`);
       const word = m[0];

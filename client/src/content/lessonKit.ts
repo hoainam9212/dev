@@ -1,4 +1,4 @@
-import { desktopSim, fishGame, fishSim, mouseSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
+import { desktopSim, excelSim, fishGame, fishSim, mouseSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
 
 export function keyActions(raw: string, msPerKey = 150, start = 1000): typingSim.TypingAction[] {
   return [...raw].map((key, i) => ({ type: 'key', key, at: start + i * msPerKey }));
@@ -118,6 +118,36 @@ export function wordPractice(o: {
   return {
     kind: 'practice',
     sim: 'word',
+    task: o.task,
+    initial,
+    checks: o.checks,
+    hints: [o.hint, o.spotlight, o.steps],
+    solution: o.solve(initial),
+  };
+}
+
+/**
+ * Bước thực hành trên bảng tính. `cells` dựng sẵn dữ liệu đầu bài bằng MỘT lời
+ * gọi (đừng xếp `setCell` thủ công — bài học giai đoạn 3 đã dạy rằng dựng tài
+ * liệu bằng chuỗi action rất dễ sai mà test không bắt được).
+ */
+export function excelPractice(o: {
+  cells?: Record<string, string>;
+  sheets?: string[];
+  task: string;
+  checks: excelSim.ExcelCheck[];
+  spotlight: Spotlight;
+  hint: string;
+  steps: string[];
+  setup?: (s0: excelSim.WorkbookState) => excelSim.ExcelAction[];
+  solve: (s0: excelSim.WorkbookState) => excelSim.ExcelAction[];
+}): PracticeStep<excelSim.WorkbookState, excelSim.ExcelCheck, excelSim.ExcelAction> {
+  const fresh = excelSim.excelInitial({ cells: o.cells, sheets: o.sheets });
+  const prepared = (o.setup ? o.setup(fresh) : []).reduce(excelSim.reduceExcel, fresh);
+  const initial: excelSim.WorkbookState = { ...prepared, past: [], editing: null, clipboard: null };
+  return {
+    kind: 'practice',
+    sim: 'excel',
     task: o.task,
     initial,
     checks: o.checks,

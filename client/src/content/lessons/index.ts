@@ -10,7 +10,8 @@ import { WORD_PARA } from './word-para';
 import { WORD_OBJECTS } from './word-objects';
 import { WORD_LONG } from './word-long';
 import { WORD_PROJECT } from './word-project';
+import { EXCEL_BASICS } from './excel-basics';
 
-const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT];
+const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS];
 
 export const LESSONS: Record<string, Lesson> = Object.fromEntries(ALL.map((l) => [l.id, l]));

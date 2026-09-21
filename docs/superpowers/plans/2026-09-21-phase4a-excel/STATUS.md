@@ -15,7 +15,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 9 grader | ☑ | (commit này) | 12 test. **Plan ghi sai chữ ký:** `Grader` trong codebase là MỘT check một lần, `gradeWith` mới gộp — `gradeExcel(state, check)` chứ không phải `(state, checks[])` |
 | 10 grid | ☑ | (commit này) | 13 test. Lưới dựng cửa sổ 18×10 quanh ô chọn. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 12 PHẢI xoá.** Gợi ý bậc 2 trỏ vào ô chưa thử |
 | 11 ribbon Home | ☑ | (commit này) | 13 test, 26 helpId mới. Đã thử thật: tiền VNĐ, in đậm (nút sáng đúng), thêm sheet |
-| 12 FnTip + chương 1 | ☐ | | |
+| 12 FnTip + chương 1 | ☑ | (commit này) | 7 test FnTip + 3 bài. Đã xoá route tạm `/dev/excel`. Đã học thật bài `excel.sheet` tới lúc chấm đạt |
 | 13 chương 2–4 + tổng kết | ☐ | | |
 
 ## Quyết định đã chốt
@@ -43,6 +43,12 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   vẫn ở lưới, nên mọi ký tự sau đó rơi vào hư không; lưới lại không xử lý Enter. jsdom bắn sự kiện thẳng vào thanh
   công thức nên 10 test đầu đều xanh mà tính năng vẫn hỏng. Đã sửa (chuyển con trỏ sang thanh công thức khi bắt đầu
   sửa, trả về lưới khi xong) và thêm 3 test canh đúng chỗ đó.
+
+- **Hai lỗi thật do `content.test.ts` và trình duyệt bắt (Task 12):**
+  (a) **tên sheet tiếng Việt có dấu làm hỏng công thức** — bộ tách token chỉ nhận `[A-Za-z]`, nên `=Báo cáo!B1`
+  thành `#NAME?`. Đã đổi phần tên sheet sang `\p{L}` (địa chỉ ô vẫn ASCII vì cột chỉ có A–Z) và thêm test.
+  (b) câu chấm hiện **"✅ ✅"** vì `PracticeView` đã tự thêm dấu — `gradeWord` không hề gắn ✅, chỉ grader Excel gắn. Đã bỏ.
+- Cú pháp liên kết từ điển trong bài là `[[id|chữ hiện ra]]`, không phải `[[chữ]]`.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 

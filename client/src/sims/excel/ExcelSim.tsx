@@ -5,6 +5,7 @@ import { Grid } from './Grid';
 import { CellHint, FormulaBar } from './FormulaBar';
 import { RibbonHome } from './RibbonHome';
 import { SheetTabs } from './SheetTabs';
+import { FnTip } from './FnTip';
 
 /**
  * Bảng tính mô phỏng. Trạng thái do `useReducer(reduceExcel, initial)` giữ; lưới
@@ -39,6 +40,7 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
         <RibbonHome state={state} dispatch={dispatch} />
       </div>
       <FormulaBar state={state} dispatch={dispatch} inputRef={bar} />
+      {state.editing !== null ? <FnTip text={state.editing} /> : null}
       <Grid state={state} dispatch={dispatch} gridRef={grid} />
       <SheetTabs state={state} dispatch={dispatch} />
       <CellHint state={state} />
