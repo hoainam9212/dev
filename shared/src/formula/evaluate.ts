@@ -24,8 +24,12 @@ const ERR_CODES = new Set<string>(['#DIV/0!', '#N/A', '#REF!', '#NAME?', '#VALUE
 const key = (sheet: string, row: number, col: number) => `${sheet}!${row},${col}`;
 
 /**
- * Giá trị của một ô. `visiting` phải được XOÁ sau khi tính xong, nếu không hai ô
- * cùng trỏ vào một ô thứ ba sẽ bị báo nhầm là tham chiếu vòng.
+ * Giá trị của một ô.
+ *
+ * Thứ giữ cho hai ô cùng trỏ vào một ô thứ ba KHÔNG bị báo nhầm là vòng chính là
+ * `memo`: ô nào tính xong cũng nằm trong memo, nên lần hỏi sau không bao giờ đi
+ * tới `visiting`. Việc xoá khoá khỏi `visiting` chỉ là dọn dẹp cho sạch — plan
+ * Task 3 nói nó là chỗ sinh lỗi, nhưng thử bỏ đi thì mọi test vẫn xanh.
  */
 export function evaluateCell(ctx: EvalContext, sheet: string, row: number, col: number): CellValue {
   const k = key(sheet, row, col);

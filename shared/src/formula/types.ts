@@ -6,7 +6,11 @@ export type CellValue = number | string | boolean | FormulaError;
 
 export const ERR = (code: ErrCode): FormulaError => ({ err: code });
 
-export function isErr(v: CellValue): v is FormulaError {
+/**
+ * Nhận `unknown` chứ không chỉ `CellValue`: các hàm trả về `number[] | FormulaError`
+ * hay `{ picked } | FormulaError` cũng cần thu hẹp kiểu bằng đúng vệ sĩ này.
+ */
+export function isErr(v: unknown): v is FormulaError {
   return typeof v === 'object' && v !== null && 'err' in v;
 }
 

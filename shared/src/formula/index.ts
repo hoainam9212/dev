@@ -3,3 +3,4 @@ export * from './lex';
 export * from './parse';
 export * from './types';
 export * from './evaluate';
+export * from './functions';
