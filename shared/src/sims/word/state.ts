@@ -1,5 +1,6 @@
 import { emptyDoc, type WordDoc } from './schema';
 import { setHighlight, setStyle, toggleMark, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
+import { setAlign, setHeading, setLineHeight, toggleList, blockOf, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
 import {
   backspace,
   clampRange,
@@ -34,8 +35,12 @@ export type WordAction =
   | { type: 'toggleMark'; mark: ToggleableMark }
   | { type: 'setStyle'; attr: StyleAttr; value: string | null }
   | { type: 'setHighlight'; color: string | null }
+  | { type: 'setAlign'; align: Align }
+  | { type: 'setLineHeight'; value: LineHeight }
+  | { type: 'setHeading'; level: 0 | 1 | 2 | 3 }
+  | { type: 'toggleList'; list: ListKind }
   | { type: 'undo' };
-// Task 4–6 thêm nhánh vào union này.
+// Task 5–6 thêm nhánh vào union này.
 
 export function wordInitial(o: { doc?: WordDoc; text?: string } = {}): WordState {
   return {
@@ -65,6 +70,12 @@ export function activeMarks(s: WordState): MarkReport | null {
   return marksInRange(s.doc, s.sel);
 }
 
+/** Khối chứa con trỏ — ribbon dùng để hiện kiểu đoạn đang áp dụng. */
+export function activeBlock(s: WordState): BlockReport | null {
+  const text = textInRange(s.doc, s.sel);
+  return text ? blockOf(s.doc, text) : null;
+}
+
 export function reduceWord(s: WordState, a: WordAction): WordState {
   switch (a.type) {
     case 'insertText':
@@ -79,6 +90,14 @@ export function reduceWord(s: WordState, a: WordAction): WordState {
       return withEdit(s, setStyle(s.doc, s.sel, a.attr, a.value));
     case 'setHighlight':
       return withEdit(s, setHighlight(s.doc, s.sel, a.color));
+    case 'setAlign':
+      return withEdit(s, setAlign(s.doc, s.sel, a.align));
+    case 'setLineHeight':
+      return withEdit(s, setLineHeight(s.doc, s.sel, a.value));
+    case 'setHeading':
+      return withEdit(s, setHeading(s.doc, s.sel, a.level));
+    case 'toggleList':
+      return withEdit(s, toggleList(s.doc, s.sel, a.list));
     case 'selectText': {
       const range = findText(s.doc, a.text, a.nth ?? 1);
       return range ? { ...s, sel: range } : s;

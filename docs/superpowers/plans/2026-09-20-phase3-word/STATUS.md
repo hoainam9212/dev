@@ -7,7 +7,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 1 Deps + schema | ☑ | (commit này) | shared 148 test xanh; schema tự khai báo node, không dùng addListNodes/tableNodes |
 | 2 Reducer lõi | ☑ | (commit này) | 13 test; `findText` là bản đồ ký tự→pos mà Task 3–7 dùng lại |
 | 3 Marks | ☑ | (commit này) | 7 test lấy nguyên từ plan; `editDoc()` trong text.ts là cổng chung cho mọi thao tác sửa tài liệu |
-| 4 Blocks | ☐ | | |
+| 4 Blocks | ☑ | (commit này) | 8 test |
 | 5 Bảng + ảnh | ☐ | | |
 | 6 Find/TOC/Save | ☐ | | |
 | 7 Grader | ☐ | | |
@@ -31,4 +31,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
+- **`wordInitial` đặt con trỏ ở ĐẦU đoạn.** Muốn dựng tài liệu nhiều đoạn thì phải đưa con trỏ về cuối chữ
+  (`selectText` rồi `setSelection(from: sel.to, to: sel.to)`) trước khi `splitBlock`, kẻo tách ra một đoạn rỗng phía trước.
+  Fixture trong plan Task 4 viết thiếu bước này, đã sửa trong test.
 - Task 3–6 dùng `withEdit(s, edit)` trong `state.ts` để đẩy lịch sử hoàn tác — đừng tự viết lại chỗ này ở từng file.
