@@ -5,6 +5,7 @@ import App from './App';
 import { db } from './db/db';
 import { createProfile } from './db/profile';
 import { resetDb } from './test/utils';
+import { setCurrentProfileId } from './profiles/current';
 
 const renderApp = (route = '/') =>
   render(
@@ -27,11 +28,12 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Vào học thôi! 🎉' }));
     expect(await screen.findByRole('heading', { name: /Chào An/ })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: 'Làm quen máy tính' })).toBeInTheDocument();
-    expect(await db.profile.get('me')).toMatchObject({ name: 'An', os: 'mac', dailyGoalMin: 10 });
+    expect(await db.profiles.get('p1')).toMatchObject({ name: 'An', os: 'mac', dailyGoalMin: 10 });
   });
 
   it('skips onboarding when a profile exists', async () => {
-    await createProfile({ name: 'Bình', os: 'win', dailyGoalMin: 5 });
+    const p = await createProfile({ name: 'Bình', os: 'win', dailyGoalMin: 5, avatar: 'cam' });
+    setCurrentProfileId(p.id);
     renderApp('/welcome');
     expect(await screen.findByRole('heading', { name: /Chào Bình/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Học tiếp ▶' })).toHaveAttribute('href', '/lesson/basics.welcome');

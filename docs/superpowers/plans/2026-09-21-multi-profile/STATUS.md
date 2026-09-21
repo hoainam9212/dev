@@ -7,7 +7,7 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
 | 1 Schema v2 + di trú | ☑ | (commit này) | Đích cho Task 2: 28 test đỏ / 10 file, 58 lỗi typecheck — đều do mã cũ còn dùng `db.profile`, `db.progress`… |
-| 2 Người đang học + hàm nhận profileId | ☐ | | |
+| 2 Người đang học + hàm nhận profileId | ☑ | (commit này) | client: 140 test xanh (trước tính năng này là 124), typecheck sạch |
 | 3 Màn "Ai đang học?" | ☐ | | |
 | 4 Cài đặt: quản lý hồ sơ | ☐ | | |
 | 5 Sao lưu v2 | ☐ | | |
@@ -24,4 +24,5 @@ Nhánh: `feat/multi-profile` (tạo ở Task 1, gộp `--ff-only` vào `master` 
 
 ## Việc còn treo
 
-- Task 2 phải đổi tên bảng ở mọi chỗ đang dùng (`db.progress` → `db.lessonProgress`, v.v.) cùng với việc thêm `profileId`.
+- (xong ở Task 2) đổi tên bảng ở mọi chỗ dùng.
+- Task 3 lưu ý: `WelcomePage` hiện tạm đặt `avatar: 'cam'` cho mọi hồ sơ mới — bước chọn ảnh là việc của Task 3.

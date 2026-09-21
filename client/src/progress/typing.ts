@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useSyncExternalStore } from 'react';
-import { liveQuery } from 'dexie';
+import Dexie, { liveQuery } from 'dexie';
 import { dayKey, type KeyStats } from '@office-neko/shared';
 import { db, type KeyStatRow, type TypingRun } from '../db/db';
 
 export async function recordTypingRun(r: {
+  profileId: string;
   mode: string;
   wpm: number;
   accuracy: number;
@@ -12,15 +13,15 @@ export async function recordTypingRun(r: {
   now?: Date;
 }): Promise<void> {
   const now = r.now ?? new Date();
-  await db.transaction('rw', db.typingRuns, db.keyStats, db.activity, async () => {
-    await db.typingRuns.add({ at: now.toISOString(), mode: r.mode, wpm: r.wpm, accuracy: r.accuracy });
+  await db.transaction('rw', db.typingRuns, db.keyPractice, db.dailyActivity, async () => {
+    await db.typingRuns.add({ profileId: r.profileId, at: now.toISOString(), mode: r.mode, wpm: r.wpm, accuracy: r.accuracy });
     for (const [key, s] of Object.entries(r.keyStats)) {
-      const prev = await db.keyStats.get(key);
-      await db.keyStats.put({ key, hit: (prev?.hit ?? 0) + s.hit, miss: (prev?.miss ?? 0) + s.miss });
+      const prev = await db.keyPractice.get([r.profileId, key]);
+      await db.keyPractice.put({ profileId: r.profileId, key, hit: (prev?.hit ?? 0) + s.hit, miss: (prev?.miss ?? 0) + s.miss });
     }
     const day = dayKey(now);
-    const act = (await db.activity.get(day)) ?? { day, minutes: 0, xp: 0 };
-    await db.activity.put({ ...act, minutes: act.minutes + Math.max(1, Math.round(r.elapsedMs / 60_000)) });
+    const act = (await db.dailyActivity.get([r.profileId, day])) ?? { profileId: r.profileId, day, minutes: 0, xp: 0 };
+    await db.dailyActivity.put({ ...act, minutes: act.minutes + Math.max(1, Math.round(r.elapsedMs / 60_000)) });
   });
 }
 
@@ -55,13 +56,19 @@ interface HubStore {
   sub: { unsubscribe: () => void } | null;
 }
 
-const hubStores = new Map<number, HubStore>();
+/** Khoá gồm cả `profileId`: hai người học không được dùng chung một snapshot. */
+const hubStores = new Map<string, HubStore>();
 
-function ensureHubSubscription(store: HubStore, limit: number): void {
+function ensureHubSubscription(store: HubStore, profileId: string, limit: number): void {
   if (store.sub) return;
   const observable = liveQuery(async () => {
-    const runsDesc = await db.typingRuns.orderBy('at').reverse().limit(limit).toArray();
-    const keyStats = await db.keyStats.toArray();
+    const runsDesc = await db.typingRuns
+      .where('[profileId+at]')
+      .between([profileId, Dexie.minKey], [profileId, Dexie.maxKey])
+      .reverse()
+      .limit(limit)
+      .toArray();
+    const keyStats = await db.keyPractice.where('profileId').equals(profileId).toArray();
     return { runs: [...runsDesc].reverse(), keyStats };
   });
   store.sub = observable.subscribe({
@@ -79,27 +86,29 @@ function ensureHubSubscription(store: HubStore, limit: number): void {
   });
 }
 
-function useHubSnapshot(limit: number): HubSnapshot {
+function useHubSnapshot(profileId: string | null, limit: number): HubSnapshot {
+  const key = `${profileId ?? ''}:${limit}`;
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
-      let store = hubStores.get(limit);
+      if (!profileId) return () => {};
+      let store = hubStores.get(key);
       if (!store) {
         store = { snapshot: EMPTY_HUB, listeners: new Set(), sub: null };
-        hubStores.set(limit, store);
+        hubStores.set(key, store);
       }
       store.listeners.add(onStoreChange);
-      ensureHubSubscription(store, limit);
+      ensureHubSubscription(store, profileId, limit);
       return () => {
         store!.listeners.delete(onStoreChange);
         if (store!.listeners.size === 0) {
           store!.sub?.unsubscribe();
-          hubStores.delete(limit);
+          hubStores.delete(key);
         }
       };
     },
-    [limit],
+    [key, profileId, limit],
   );
-  const getSnapshot = useCallback(() => hubStores.get(limit)?.snapshot ?? EMPTY_HUB, [limit]);
+  const getSnapshot = useCallback(() => (profileId ? (hubStores.get(key)?.snapshot ?? EMPTY_HUB) : EMPTY_HUB), [key, profileId]);
   return useSyncExternalStore(subscribe, getSnapshot);
 }
 
@@ -109,16 +118,16 @@ function useHubSnapshot(limit: number): HubSnapshot {
  * `useTypingRuns` + `useKeyStats` riêng — gọi riêng vẫn đúng dữ liệu, nhưng tạo
  * hai lượt cập nhật rời nhau khi cả hai bảng cùng đổi.
  */
-export function useTypingHub(limit = 20): { runs: TypingRun[]; stats: KeyStats; error: boolean } {
-  const { runs, keyStats, error } = useHubSnapshot(limit);
+export function useTypingHub(profileId: string | null, limit = 20): { runs: TypingRun[]; stats: KeyStats; error: boolean } {
+  const { runs, keyStats, error } = useHubSnapshot(profileId, limit);
   const stats = useMemo(() => Object.fromEntries(keyStats.map((r) => [r.key, { hit: r.hit, miss: r.miss }])), [keyStats]);
   return { runs, stats, error };
 }
 
-export function useTypingRuns(limit = 20): TypingRun[] {
-  return useTypingHub(limit).runs;
+export function useTypingRuns(profileId: string | null, limit = 20): TypingRun[] {
+  return useTypingHub(profileId, limit).runs;
 }
 
-export function useKeyStats(): KeyStats {
-  return useTypingHub().stats;
+export function useKeyStats(profileId: string | null): KeyStats {
+  return useTypingHub(profileId).stats;
 }

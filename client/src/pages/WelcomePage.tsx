@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import type { OS } from '@office-neko/shared';
 import { createProfile, guessOs, useProfile } from '../db/profile';
+import { setCurrentProfileId } from '../profiles/current';
 import { Mochi } from '../components/Mochi';
 import { SpeechBubble } from '../components/SpeechBubble';
 
@@ -37,7 +38,8 @@ export function WelcomePage() {
     setSaving(true);
     setError(null);
     try {
-      await createProfile({ name, os, dailyGoalMin: goal });
+      const created = await createProfile({ name, os, dailyGoalMin: goal, avatar: 'cam' });
+      setCurrentProfileId(created.id);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setSaving(false);

@@ -2,24 +2,48 @@ import { createContext, useContext, useEffect, type ReactNode } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { detectOs, type OS } from '@office-neko/shared';
 import { db, type Profile } from './db';
+import { clearCurrentProfileId, useCurrentProfileId } from '../profiles/current';
 
-export type NewProfile = Pick<Profile, 'name' | 'os' | 'dailyGoalMin'>;
+export { createProfile, deleteProfile, listProfiles, touchProfile, updateProfile, type NewProfile } from '../profiles/manage';
 
 export const ProfileContext = createContext<Profile | null | undefined>(undefined);
 
 export function ProfileProvider({ children }: { children: ReactNode }) {
-  const profile = useLiveQuery(async () => (await db.profile.get('me')) ?? null, []);
+  const id = useCurrentProfileId();
+  // Kết quả mang theo id đã dùng để truy vấn: ngay sau khi đổi người,
+  // `useLiveQuery` còn trả kết quả của id cũ trong một lần render — coi kết quả
+  // lệch id là "đang tải" thay vì tin nhầm là "hồ sơ không tồn tại".
+  const found = useLiveQuery(
+    async () => ({ forId: id, profile: id ? ((await db.profiles.get(id)) ?? null) : null }),
+    [id],
+  );
+  const fresh = found && found.forId === id ? found : undefined;
+  const profile = fresh ? fresh.profile : undefined;
+
+  // Con trỏ trỏ vào hồ sơ không còn (bị xoá, hoặc khôi phục từ file sao lưu):
+  // dọn con trỏ để app quay về màn chọn người thay vì kẹt ở màn hình trắng.
+  useEffect(() => {
+    if (id && fresh && fresh.profile === null) clearCurrentProfileId();
+  }, [id, fresh]);
+
   useEffect(() => {
     const root = document.documentElement;
     root.dataset.font = profile?.fontScale ?? 'md';
     if (profile?.reducedMotion) root.dataset.motion = 'reduce';
     else delete root.dataset.motion;
   }, [profile?.fontScale, profile?.reducedMotion]);
-  return <ProfileContext.Provider value={profile}>{children}</ProfileContext.Provider>;
+
+  // id rỗng ⇒ null: chưa chọn ai (khác với undefined = đang tải).
+  return <ProfileContext.Provider value={id ? profile : null}>{children}</ProfileContext.Provider>;
 }
 
 export function useProfile(): Profile | null | undefined {
   return useContext(ProfileContext);
+}
+
+/** Id của người đang học, hoặc null khi chưa chọn ai / hồ sơ không còn. */
+export function useProfileId(): string | null {
+  return useProfile()?.id ?? null;
 }
 
 export function guessOs(): OS {
@@ -35,25 +59,4 @@ export function useOs(): OS {
 /** Người hướng dẫn đã bật "Mở khoá toàn bộ bài học" trong Cài đặt chưa. */
 export function useUnlockAll(): boolean {
   return useProfile()?.unlockAll ?? false;
-}
-
-export async function createProfile(p: NewProfile, now = new Date()): Promise<Profile> {
-  const profile: Profile = {
-    id: 'me',
-    name: p.name.trim(),
-    os: p.os,
-    dailyGoalMin: p.dailyGoalMin,
-    fontScale: 'md',
-    sound: true,
-    reducedMotion: false,
-    unlockAll: false,
-    xp: 0,
-    createdAt: now.toISOString(),
-  };
-  await db.profile.put(profile);
-  return profile;
-}
-
-export async function updateProfile(patch: Partial<Omit<Profile, 'id'>>): Promise<void> {
-  await db.profile.update('me', patch);
 }

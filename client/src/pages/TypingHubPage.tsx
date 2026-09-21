@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { weakestKeys } from '@office-neko/shared';
+import { useProfileId } from '../db/profile';
 import { useTypingHub } from '../progress/typing';
 import { Mochi } from '../components/Mochi';
 import { WpmChart } from '../typing/WpmChart';
 import { KeyHeatmap } from '../typing/KeyHeatmap';
 
 export function TypingHubPage() {
-  const { runs, stats, error } = useTypingHub(20);
+  const { runs, stats, error } = useTypingHub(useProfileId(), 20);
   const best = runs.reduce((m, r) => Math.max(m, r.wpm), 0);
   const weak = weakestKeys(stats, 5);
   return (

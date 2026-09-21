@@ -10,9 +10,9 @@ import { GoalRing } from '../home/GoalRing';
 
 export function HomePage() {
   const profile = useProfile()!;
-  const { completed, stars } = useCompleted();
-  const today = useTodayMinutes();
-  const streak = useStreak();
+  const { completed, stars } = useCompleted(profile.id);
+  const today = useTodayMinutes(profile.id);
+  const streak = useStreak(profile.id);
   const doneKey = [...completed].sort().join('|');
   const unlockAll = profile.unlockAll ?? false;
   const unlock = useMemo(

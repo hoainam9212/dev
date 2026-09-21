@@ -2,7 +2,8 @@ import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { db } from '../db/db';
-import { resetDb } from '../test/utils';
+import { makeProfile, resetDb } from '../test/utils';
+import { ProfileContext } from '../db/profile';
 import { speedTestText, TYPING_TEXTS } from '../content/typing-texts';
 import { TypingHubPage } from './TypingHubPage';
 import { SpeedTestPage } from './SpeedTestPage';
@@ -10,10 +11,12 @@ import { SpeedTestPage } from './SpeedTestPage';
 const renderAt = (path: string) =>
   render(
     <MemoryRouter initialEntries={[path]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <Routes>
-        <Route path="/typing" element={<TypingHubPage />} />
-        <Route path="/typing/test/:min" element={<SpeedTestPage />} />
-      </Routes>
+      <ProfileContext.Provider value={makeProfile()}>
+        <Routes>
+          <Route path="/typing" element={<TypingHubPage />} />
+          <Route path="/typing/test/:min" element={<SpeedTestPage />} />
+        </Routes>
+      </ProfileContext.Provider>
     </MemoryRouter>,
   );
 
@@ -34,10 +37,10 @@ describe('TypingHubPage', () => {
     expect(screen.getByRole('link', { name: /1 phút/ })).toHaveAttribute('href', '/typing/test/1');
     await act(async () => {
       await db.typingRuns.bulkAdd([
-        { at: '2026-09-19T10:00:00.000Z', mode: 'test-1', wpm: 22, accuracy: 90 },
-        { at: '2026-09-20T10:00:00.000Z', mode: 'test-1', wpm: 40, accuracy: 97 },
+        { profileId: 'p1', at: '2026-09-19T10:00:00.000Z', mode: 'test-1', wpm: 22, accuracy: 90 },
+        { profileId: 'p1', at: '2026-09-20T10:00:00.000Z', mode: 'test-1', wpm: 40, accuracy: 97 },
       ]);
-      await db.keyStats.put({ key: 'j', hit: 3, miss: 3 });
+      await db.keyPractice.put({ profileId: 'p1', key: 'j', hit: 3, miss: 3 });
     });
     expect(await screen.findByText('Tốt nhất: 40 WPM')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Biểu đồ WPM' })).toBeInTheDocument();

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type Dispatch } from 'react';
 import { grade, GRADERS, typingSim, type GradeReport, type PracticeStep } from '@office-neko/shared';
 import { SIMS } from '../sims/registry';
-import { useOs } from '../db/profile';
+import { useOs, useProfileId } from '../db/profile';
 import { Mochi } from '../components/Mochi';
 import { RichText } from '../help/RichText';
 import { SpotlightOverlay } from '../help/SpotlightOverlay';
@@ -14,6 +14,7 @@ import type { PlayerAction, PlayerState } from './playerReducer';
 export function PracticeView({ step, state, dispatch }: { step: PracticeStep; state: PlayerState; dispatch: Dispatch<PlayerAction> }) {
   const def = SIMS[step.sim];
   const os = useOs();
+  const profileId = useProfileId();
   const sound = useSound();
   const latest = useRef<unknown>(step.initial);
   const timer = useRef<number | undefined>(undefined);
@@ -41,17 +42,17 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
       latest.current = s;
       if (step.sim === 'keyboard' && !typingRecordedRef.current) {
         const ts = s as typingSim.TypingState;
-        if (ts.finished) {
+        if (ts.finished && profileId) {
           typingRecordedRef.current = true;
           const m = typingSim.typingMetrics(ts);
-          void recordTypingRun({ mode: 'lesson', wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: ts.keyStats }).catch(() => undefined);
+          void recordTypingRun({ profileId, mode: 'lesson', wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: ts.keyStats }).catch(() => undefined);
         }
       }
       if (doneRef.current) return;
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(() => runGrade(false), 300);
     },
-    [runGrade, step.sim],
+    [runGrade, step.sim, profileId],
   );
 
   useEffect(() => () => window.clearTimeout(timer.current), []);

@@ -81,7 +81,7 @@ export function SettingsPage() {
                 setName(profile.name);
                 return;
               }
-              if (trimmed !== profile.name) updateProfile({ name: trimmed });
+              if (trimmed !== profile.name) updateProfile(profile.id, { name: trimmed });
             }}
             className="w-full rounded-full border-2 border-peach/60 bg-white px-4 py-2 outline-none focus:border-rose"
           />
@@ -90,13 +90,13 @@ export function SettingsPage() {
 
       <Section title="Hệ điều hành">
         <p className="text-muted">Phím tắt và bài "Làm quen máy tính" sẽ hiển thị theo máy bạn dùng.</p>
-        <Segmented<OS> label="Hệ điều hành" value={profile.os} onChange={(os) => updateProfile({ os })}
+        <Segmented<OS> label="Hệ điều hành" value={profile.os} onChange={(os) => updateProfile(profile.id, { os })}
           options={[{ value: 'win', label: 'Windows' }, { value: 'mac', label: 'Mac' }]} />
       </Section>
 
       <Section title="Mục tiêu mỗi ngày">
         <Segmented<'5' | '10' | '20'> label="Mục tiêu mỗi ngày" value={String(profile.dailyGoalMin) as '5' | '10' | '20'}
-          onChange={(v) => updateProfile({ dailyGoalMin: Number(v) as Profile['dailyGoalMin'] })}
+          onChange={(v) => updateProfile(profile.id, { dailyGoalMin: Number(v) as Profile['dailyGoalMin'] })}
           options={[{ value: '5', label: '5 phút' }, { value: '10', label: '10 phút' }, { value: '20', label: '20 phút' }]} />
       </Section>
 
@@ -104,17 +104,17 @@ export function SettingsPage() {
         <div className="space-y-1">
           <span className="font-semibold">Cỡ chữ</span>
           <div>
-            <Segmented<Profile['fontScale']> label="Cỡ chữ" value={profile.fontScale} onChange={(fontScale) => updateProfile({ fontScale })}
+            <Segmented<Profile['fontScale']> label="Cỡ chữ" value={profile.fontScale} onChange={(fontScale) => updateProfile(profile.id, { fontScale })}
               options={[{ value: 'md', label: 'Vừa' }, { value: 'lg', label: 'Lớn' }, { value: 'xl', label: 'Rất lớn' }]} />
           </div>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-semibold">Âm thanh</span>
-          <Toggle label="Âm thanh" checked={profile.sound} onChange={(sound) => updateProfile({ sound })} />
+          <Toggle label="Âm thanh" checked={profile.sound} onChange={(sound) => updateProfile(profile.id, { sound })} />
         </div>
         <div className="flex items-center justify-between">
           <span className="font-semibold">Giảm chuyển động</span>
-          <Toggle label="Giảm chuyển động" checked={profile.reducedMotion} onChange={(reducedMotion) => updateProfile({ reducedMotion })} />
+          <Toggle label="Giảm chuyển động" checked={profile.reducedMotion} onChange={(reducedMotion) => updateProfile(profile.id, { reducedMotion })} />
         </div>
       </Section>
 
@@ -122,7 +122,7 @@ export function SettingsPage() {
         <div className="flex items-center justify-between gap-3">
           <span className="font-semibold">Mở khoá toàn bộ bài học</span>
           <Toggle label="Mở khoá toàn bộ bài học" checked={profile.unlockAll ?? false}
-            onChange={(unlockAll) => updateProfile({ unlockAll })} />
+            onChange={(unlockAll) => updateProfile(profile.id, { unlockAll })} />
         </div>
         <p className="text-muted">
           Bật lên để vào thẳng bất kỳ bài nào mà không cần học theo thứ tự — tiện khi bạn muốn xem trước nội dung hoặc

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { typingSim } from '@office-neko/shared';
-import { useOs } from '../db/profile';
+import { useOs, useProfileId } from '../db/profile';
 import { speedTestText, TYPING_TEXTS } from '../content/typing-texts';
 import { KeyboardSim } from '../sims/keyboard/KeyboardSim';
 import { recordTypingRun } from '../progress/typing';
@@ -19,6 +19,7 @@ export function SpeedTestPage() {
   const { min = '' } = useParams();
   const minutes = min === '1' ? 1 : min === '3' ? 3 : null;
   const os = useOs();
+  const profileId = useProfileId();
   const [attempt, setAttempt] = useState(0);
   const initial = useMemo(() => makeInitial(minutes ?? 1, attempt), [minutes, attempt]);
   const [result, setResult] = useState<ReturnType<typeof typingSim.typingMetrics> | null>(null);
@@ -26,13 +27,13 @@ export function SpeedTestPage() {
 
   const onState = useCallback(
     (s: typingSim.TypingState) => {
-      if (!s.finished || saved.current || minutes === null) return;
+      if (!s.finished || saved.current || minutes === null || !profileId) return;
       saved.current = true;
       const m = typingSim.typingMetrics(s);
       setResult(m);
-      void recordTypingRun({ mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: s.keyStats }).catch(() => undefined);
+      void recordTypingRun({ profileId, mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: s.keyStats }).catch(() => undefined);
     },
-    [minutes],
+    [minutes, profileId],
   );
 
   useEffect(() => {

@@ -23,7 +23,7 @@ const finishWelcomeLesson = async () => {
 describe('LessonPage', () => {
   beforeEach(async () => {
     await resetDb();
-    await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10 });
+    await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
   });
 
   it('plays the welcome lesson, saves 3 stars and shows +30 XP', async () => {
@@ -31,8 +31,8 @@ describe('LessonPage', () => {
     await finishWelcomeLesson();
     expect(await screen.findByText('+30 XP')).toBeInTheDocument();
     expect(screen.getByLabelText('3 trên 3 sao')).toBeInTheDocument();
-    expect((await db.progress.get('basics.welcome'))?.stars).toBe(3);
-    expect((await db.profile.get('me'))?.xp).toBe(30);
+    expect((await db.lessonProgress.get(['p1', 'basics.welcome']))?.stars).toBe(3);
+    expect((await db.profiles.get('p1'))?.xp).toBe(30);
   });
 
   it('shows a friendly message for unknown lessons', () => {
@@ -59,7 +59,7 @@ describe('LessonPage', () => {
     });
     expect(await screen.findByRole('alert')).toHaveTextContent('Chưa lưu được kết quả');
     expect(screen.getByText('Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!')).toBeInTheDocument();
-    await waitFor(async () => expect((await db.progress.get('basics.welcome'))?.stars).toBeUndefined());
+    await waitFor(async () => expect((await db.lessonProgress.get(['p1', 'basics.welcome']))?.stars).toBeUndefined());
   });
 
   it('refuses a lesson for the other operating system', async () => {

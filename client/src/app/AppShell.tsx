@@ -6,7 +6,7 @@ import { Mochi } from '../components/Mochi';
 
 export function AppShell() {
   const profile = useProfile()!;
-  const streak = useStreak();
+  const streak = useStreak(profile.id);
   const lvl = levelFromXp(profile.xp);
   return (
     <div className="min-h-screen">

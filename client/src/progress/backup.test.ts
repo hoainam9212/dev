@@ -13,21 +13,21 @@ describe('backup', () => {
   });
 
   it('round-trips all tables', async () => {
-    await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10 });
-    await db.progress.put({ lessonId: 'x', stars: 3, hintsUsed: 0, bestTimeMs: 1, completedAt: 't' });
+    await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
+    await db.lessonProgress.put({ profileId: 'p1', lessonId: 'x', stars: 3, hintsUsed: 0, bestTimeMs: 1, completedAt: 't' });
     const text = JSON.stringify(await exportBackup(new Date(2026, 8, 19)));
     await resetDb();
     await importBackup(parseBackup(text));
-    expect((await db.profile.get('me'))?.name).toBe('An');
-    expect((await db.progress.get('x'))?.stars).toBe(3);
+    expect((await db.profiles.get('p1'))?.name).toBe('An');
+    expect((await db.lessonProgress.get(['p1', 'x']))?.stars).toBe(3);
   });
 
   it('replaces existing data on import', async () => {
-    await createProfile({ name: 'Cũ', os: 'win', dailyGoalMin: 10 });
+    await createProfile({ name: 'Cũ', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
     const b = await exportBackup();
-    await db.progress.put({ lessonId: 'y', stars: 1, hintsUsed: 0, bestTimeMs: 1, completedAt: 't' });
+    await db.lessonProgress.put({ profileId: 'p1', lessonId: 'y', stars: 1, hintsUsed: 0, bestTimeMs: 1, completedAt: 't' });
     await importBackup(b);
-    expect(await db.progress.get('y')).toBeUndefined();
+    expect(await db.lessonProgress.get(['p1', 'y'])).toBeUndefined();
   });
 
   it('rejects invalid files with Vietnamese messages', () => {

@@ -37,7 +37,7 @@ describe('WelcomePage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Vào học thôi! 🎉' }));
     await waitFor(async () => {
       const { db } = await import('../db/db');
-      expect((await db.profile.get('me'))?.name).toBe('An');
+      expect((await db.profiles.get('p1'))?.name).toBe('An');
     });
   });
 });
