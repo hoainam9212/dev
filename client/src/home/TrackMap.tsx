@@ -31,12 +31,13 @@ export function TrackMap({ tracks, lessons, os, unlock, stars, currentId }: Prop
                 {ls.map((l, i) => {
                   const unlocked = unlock.lessonUnlocked.has(l.id);
                   const s = stars[l.id] ?? 0;
+                  const label = l.optional ? `${l.title} (tự chọn)` : l.title;
                   return (
                     <li key={l.id} className={`flex w-24 flex-col items-center text-center ${i % 2 ? 'translate-y-4' : ''}`}>
                       {unlocked ? (
                         <Link
                           to={`/lesson/${l.id}`}
-                          aria-label={s ? `${l.title}, ${s} sao` : l.title}
+                          aria-label={s ? `${label}, ${s} sao` : label}
                           className="relative grid h-16 w-16 place-items-center rounded-full text-2xl font-extrabold text-white shadow-md transition hover:scale-105"
                           style={{ background: t.color }}
                         >
@@ -50,6 +51,9 @@ export function TrackMap({ tracks, lessons, os, unlock, stars, currentId }: Prop
                       )}
                       <span aria-hidden className="mt-1 text-xs text-butter">{'★'.repeat(s)}<span className="text-muted/40">{'★'.repeat(3 - s)}</span></span>
                       <span className="text-sm font-semibold leading-tight">{l.title}</span>
+                      {l.optional && (
+                        <span className="mt-1 rounded-full bg-lavender/40 px-2 py-0.5 text-[0.7rem] font-bold text-muted">Tự chọn</span>
+                      )}
                     </li>
                   );
                 })}

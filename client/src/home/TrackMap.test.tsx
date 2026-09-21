@@ -33,6 +33,18 @@ describe('TrackMap', () => {
     expect(screen.getByRole('link', { name: 'Bài hai' })).toBeInTheDocument();
   });
 
+  it('marks an optional lesson so it does not look required', () => {
+    const withOptional = { a1: L('a1', 'Bài một'), a2: { ...L('a2', 'Bài hai'), optional: true } };
+    const unlock = unlockState(tracks, withOptional, 'win', new Set(['a1']));
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <TrackMap tracks={tracks} lessons={withOptional} os="win" unlock={unlock} stars={{}} />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole('link', { name: 'Bài hai (tự chọn)' })).toBeInTheDocument();
+    expect(screen.getByText('Tự chọn')).toBeInTheDocument();
+  });
+
   it('marks tracks without lessons as in preparation', () => {
     renderMap([], {});
     const b = screen.getByRole('region', { name: 'Lộ trình B' });

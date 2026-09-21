@@ -42,6 +42,12 @@ export interface Lesson {
   minutes: number;
   /** Chỉ hiện với HĐH này (lộ trình 0). */
   os?: OS;
+  /**
+   * Bài tự chọn: vẫn học được, vẫn tính sao và XP, nhưng KHÔNG chặn bài sau và
+   * không chặn mở lộ trình kế tiếp. Dùng cho nội dung hay nhưng không bắt buộc
+   * với mọi người, ví dụ kiểu gõ VNI khi phần lớn người học dùng Telex.
+   */
+  optional?: boolean;
   osNote?: { win?: string; mac?: string };
   steps: Step[];
 }

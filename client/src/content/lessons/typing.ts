@@ -86,12 +86,12 @@ export const typingLessons: Lesson[] = [
     typingPractice({ task: 'Gõ câu sau bằng Telex (nhớ chữ hoa đầu câu).', target: 'Tôi đang học gõ tiếng Việt.', raw: 'Tooi ddang hocj gox tieengs Vieetj.', ime: 'telex', hint: 'Tooi → Tôi, gox → gõ, tieengs → tiếng.', steps: ['Tooi ddang', 'hocj gox', 'tieengs Vieetj.'] }),
   ]),
   L('typing.vi', 'vni1', 'VNI: dấu bằng số', [
-    { kind: 'explain', body: 'VNI dùng **số** gõ sau chữ:\n\n- **1** sắc, **2** huyền, **3** hỏi, **4** ngã, **5** nặng, **0** xoá dấu\n- **6** mũ (â ê ô), **7** móc (ơ ư), **8** trăng (ă), **9** đ' },
+    { kind: 'explain', body: 'Hai bài VNI là **tự chọn**: phần lớn người Việt gõ Telex, nên bạn có thể bỏ qua và về đích bình thường. Biết thêm VNI vẫn tiện khi dùng máy của người khác.\n\nVNI dùng **số** gõ sau chữ:\n\n- **1** sắc, **2** huyền, **3** hỏi, **4** ngã, **5** nặng, **0** xoá dấu\n- **6** mũ (â ê ô), **7** móc (ơ ư), **8** trăng (ă), **9** đ' },
     typingPractice({ task: 'Gõ các chữ sau bằng VNI.', target: 'má mà mả mã mạ', raw: 'ma1 ma2 ma3 ma4 ma5', ime: 'vni', hint: 'Gõ chữ rồi gõ số dấu: 1 đến 5.', steps: ['ma1 → má', 'ma2 → mà', 'ma3 → mả', 'ma4 → mã', 'ma5 → mạ'] }),
-  ]),
+  ], { optional: true }),
   L('typing.vi', 'vni2', 'VNI: gõ cả câu', [
     typingPractice({ task: 'Gõ câu sau bằng VNI.', target: 'Tôi đang học gõ tiếng Việt.', raw: 'To6i d9ang ho5c go4 tie6ng1 Vie6t5.', ime: 'vni', hint: 'o6 → ô, d9 → đ, 5 → nặng, 4 → ngã, 1 → sắc.', steps: ['To6i d9ang', 'ho5c go4', 'tie6ng1 Vie6t5.'] }),
-  ]),
+  ], { optional: true }),
   L('typing.final', 'game', 'Chơi “Mèo bắt cá”', [
     { kind: 'explain', mood: 'happy', body: 'Luyện tập mỗi ngày sẽ giúp bạn gõ nhanh hơn! Vào mục **⌨️ Luyện gõ** trên thanh trên cùng để chơi **Mèo bắt cá** 🐟 (gõ đúng chữ để Mochi bắt cá) và **kiểm tra tốc độ** 1 hoặc 3 phút.' },
     { kind: 'quiz', question: '[[wpm|WPM]] là gì?', choices: ['Số từ gõ được mỗi phút', 'Số lỗi mỗi phút', 'Số phím trên bàn phím'], answer: 0, why: 'Chính xác! WPM (Words Per Minute): cứ 5 ký tự tính là 1 từ.' },

@@ -66,8 +66,12 @@ function siblingLessonId(l: Lesson): string | null {
   return null;
 }
 
-/** Một bài học đã "xong" nếu chính nó hoặc bài chị em cùng cặp OS đã hoàn thành. */
+/**
+ * Một bài học đã "xong" nếu chính nó hoặc bài chị em cùng cặp OS đã hoàn thành.
+ * Bài tự chọn luôn coi như xong khi xét mở khoá — nó không được phép chặn ai.
+ */
 function lessonSatisfied(l: Lesson, completed: ReadonlySet<string>): boolean {
+  if (l.optional) return true;
   if (completed.has(l.id)) return true;
   const sibling = siblingLessonId(l);
   return sibling !== null && completed.has(sibling);

@@ -73,6 +73,40 @@ describe('unlocking', () => {
     expect(s.lessonUnlocked.has('a2m')).toBe(true);
     expect(s.lessonUnlocked.has('a2w')).toBe(false);
   });
+  it('lets an optional lesson be skipped without blocking anything', () => {
+    const lessonsWithOptional: Record<string, Lesson> = {
+      a1: L('a1', 'a'),
+      a2: { ...L('a2', 'a'), optional: true },
+      a3: L('a3', 'a'),
+      b1: L('b1', 'b'),
+    };
+    const tracksWithOptional: Track[] = [
+      { id: 'a', order: 0, title: 'A', emoji: '', blurb: '', color: '', chapters: [{ id: 'a.c', title: '', lessonIds: ['a1', 'a2', 'a3'] }] },
+      { id: 'b', order: 1, title: 'B', emoji: '', blurb: '', color: '', chapters: [{ id: 'b.c', title: '', lessonIds: ['b1'] }] },
+    ];
+    // Học a1 rồi bỏ qua a2: a3 vẫn phải mở.
+    const s = unlockState(tracksWithOptional, lessonsWithOptional, 'win', new Set(['a1']));
+    expect(s.lessonUnlocked.has('a2')).toBe(true);
+    expect(s.lessonUnlocked.has('a3')).toBe(true);
+    // Xong a1 và a3, chưa đụng a2 — lộ trình sau vẫn mở.
+    const done = unlockState(tracksWithOptional, lessonsWithOptional, 'win', new Set(['a1', 'a3']));
+    expect(done.trackUnlocked.has('b')).toBe(true);
+    expect(done.lessonUnlocked.has('b1')).toBe(true);
+  });
+
+  it('still hides an optional lesson until its own turn comes', () => {
+    const lessonsWithOptional: Record<string, Lesson> = {
+      a1: L('a1', 'a'),
+      a2: { ...L('a2', 'a'), optional: true },
+    };
+    const tracksWithOptional: Track[] = [
+      { id: 'a', order: 0, title: 'A', emoji: '', blurb: '', color: '', chapters: [{ id: 'a.c', title: '', lessonIds: ['a1', 'a2'] }] },
+    ];
+    const s = unlockState(tracksWithOptional, lessonsWithOptional, 'win', new Set());
+    expect(s.lessonUnlocked.has('a1')).toBe(true);
+    expect(s.lessonUnlocked.has('a2')).toBe(false);
+  });
+
   it('finds the next lesson across tracks', () => {
     expect(nextLessonId(tracks, lessons, 'mac', 'a2m')).toBe('a3');
     expect(nextLessonId(tracks, lessons, 'mac', 'a3')).toBe('b1');
