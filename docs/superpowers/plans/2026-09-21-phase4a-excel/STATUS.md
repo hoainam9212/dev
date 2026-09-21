@@ -4,7 +4,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 refs | ☐ | | |
+| 1 refs | ☑ | (commit này) | 11 test; `shiftFormula` quét regex 3 nhánh (chuỗi → tên hàm → địa chỉ), Task 7 dùng lại, đừng viết regex mới |
 | 2 lex + parse | ☐ | | |
 | 3 evaluate | ☐ | | |
 | 4 functions | ☐ | | |
