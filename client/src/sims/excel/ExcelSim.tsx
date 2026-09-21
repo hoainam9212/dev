@@ -3,6 +3,8 @@ import { excelSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { Grid } from './Grid';
 import { CellHint, FormulaBar } from './FormulaBar';
+import { RibbonHome } from './RibbonHome';
+import { SheetTabs } from './SheetTabs';
 
 /**
  * Bảng tính mô phỏng. Trạng thái do `useReducer(reduceExcel, initial)` giữ; lưới
@@ -33,8 +35,12 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
 
   return (
     <div className="space-y-2">
+      <div className="card p-2">
+        <RibbonHome state={state} dispatch={dispatch} />
+      </div>
       <FormulaBar state={state} dispatch={dispatch} inputRef={bar} />
       <Grid state={state} dispatch={dispatch} gridRef={grid} />
+      <SheetTabs state={state} dispatch={dispatch} />
       <CellHint state={state} />
     </div>
   );

@@ -14,7 +14,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 8 format + sheets | ☑ | (commit này) | 13 test. Hết phần `shared` trừ grader; Task 9 là `gradeExcel` rồi sang giao diện |
 | 9 grader | ☑ | (commit này) | 12 test. **Plan ghi sai chữ ký:** `Grader` trong codebase là MỘT check một lần, `gradeWith` mới gộp — `gradeExcel(state, check)` chứ không phải `(state, checks[])` |
 | 10 grid | ☑ | (commit này) | 13 test. Lưới dựng cửa sổ 18×10 quanh ô chọn. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 12 PHẢI xoá.** Gợi ý bậc 2 trỏ vào ô chưa thử |
-| 11 ribbon Home | ☐ | | |
+| 11 ribbon Home | ☑ | (commit này) | 13 test, 26 helpId mới. Đã thử thật: tiền VNĐ, in đậm (nút sáng đúng), thêm sheet |
 | 12 FnTip + chương 1 | ☐ | | |
 | 13 chương 2–4 + tổng kết | ☐ | | |
 
