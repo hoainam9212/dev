@@ -13,7 +13,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 7 Grader | ☑ | (commit này) | 7 test; `GRADERS.word` đã đăng ký. Xong toàn bộ phần shared — từ Task 8 là giao diện |
 | 8 WordSim shell | ☑ | (commit này) | 3 test client + 2 test `setDoc` ở shared; đã gõ thật trong TipTap và Hoàn tác trên trình duyệt |
 | 9 Ribbon Home | ☑ | (commit này) | 5 test; đã thử thật trên trình duyệt: đậm, font, cỡ, căn giữa, giãn dòng, heading, danh sách, hoàn tác |
-| 10 Ribbon còn lại | ☐ | | |
+| 10 Ribbon còn lại | ☑ | (commit này) | 14 test; đã thử thật: bảng + thêm hàng, chèn ảnh, tìm & thay thế, mục lục, Esc đóng hộp thoại |
 | 11 Bài chương 1–2 | ☐ | | |
 | 12 Bài chương 3–4 | ☐ | | |
 | 13 Bài chương 5 + dự án | ☐ | | |
