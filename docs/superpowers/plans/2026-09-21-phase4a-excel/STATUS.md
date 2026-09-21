@@ -11,7 +11,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 5 errors + numfmt | ☑ | (commit này) | 12 test; `CellFormat` định nghĩa tại `numfmt.ts`, Task 6–8 import lại từ đó |
 | 6 workbook | ☑ | (commit này) | 12 test. `withEdit`/`withSheets` là cổng DUY NHẤT đẩy lịch sử |
 | 7 copy + fill | ☑ | (commit này) | 10 test. Clipboard nhớ cả `origin` nên độ dịch là phép trừ, không phải đoán |
-| 8 format + sheets | ☐ | | |
+| 8 format + sheets | ☑ | (commit này) | 13 test. Hết phần `shared` trừ grader; Task 9 là `gradeExcel` rồi sang giao diện |
 | 9 grader | ☐ | | |
 | 10 grid | ☐ | | |
 | 11 ribbon Home | ☐ | | |
