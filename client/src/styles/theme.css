@@ -43,26 +43,36 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.card {
-  background: var(--app-surface);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-soft);
-}
+/*
+ * Các lớp thành phần PHẢI nằm trong `@layer components`. Tailwind 4 đặt mọi
+ * utility vào `@layer utilities`, mà CSS không thuộc layer nào thì luôn thắng
+ * CSS có layer — bất kể độ đặc hiệu. Để `.card` ngoài layer thì `box-shadow`
+ * của nó nuốt luôn `ring-*` (ring của Tailwind cũng là box-shadow), nên viền
+ * "đang chọn" ở màn hình chào không bao giờ hiện ra: người dùng bấm mà tưởng
+ * app không cho chọn.
+ */
+@layer components {
+  .card {
+    background: var(--app-surface);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+  }
 
-.btn, .btn-primary, .btn-soft, .btn-mint {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
-}
-.btn { @apply bg-white text-text shadow-sm hover:bg-cream; }
-.btn-primary { @apply bg-primary-btn text-white hover:brightness-110; }
-.btn-soft { @apply bg-peach/30 text-text hover:bg-peach/50; }
-.btn-mint { @apply bg-mint text-text hover:brightness-105; }
+  .btn, .btn-primary, .btn-soft, .btn-mint {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn { @apply bg-white text-text shadow-sm hover:bg-cream; }
+  .btn-primary { @apply bg-primary-btn text-white hover:brightness-110; }
+  .btn-soft { @apply bg-peach/30 text-text hover:bg-peach/50; }
+  .btn-mint { @apply bg-mint text-text hover:brightness-105; }
 
-.kbd {
-  @apply inline-flex min-w-[1.8em] items-center justify-center rounded-md border border-b-4 border-muted/40 bg-surface px-1.5 py-0.5 text-[0.85em] font-bold;
-}
+  .kbd {
+    @apply inline-flex min-w-[1.8em] items-center justify-center rounded-md border border-b-4 border-muted/40 bg-surface px-1.5 py-0.5 text-[0.85em] font-bold;
+  }
 
-.term {
-  @apply cursor-help font-semibold underline decoration-rose decoration-dotted decoration-2 underline-offset-4;
+  .term {
+    @apply cursor-help font-semibold underline decoration-rose decoration-dotted decoration-2 underline-offset-4;
+  }
 }
 
 @keyframes shake {
