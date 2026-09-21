@@ -104,6 +104,18 @@ export function toggleList(doc: WordDoc, sel: Range, list: ListKind): DocEdit | 
   const current = listAround(node, firstPos + 1);
 
   if (current && current.kind === list) return lift(doc, range);
+
+  // `listItem` chỉ chứa được đoạn văn, nên Heading phải hạ về đoạn thường trước
+  // khi bọc vào danh sách — nếu không, `findWrapping` trả null và nút bấm không
+  // làm gì cả.
+  if (!current && targets.some((t) => t.node.type.name === 'heading')) {
+    const flattened = setHeading(doc, range, 0);
+    if (flattened) {
+      const again = findRangeAgain(flattened.doc, node, range);
+      return wrap(flattened.doc, again, listType, itemType, flattened);
+    }
+  }
+
   if (current) {
     const lifted = lift(doc, range);
     if (!lifted) return null;

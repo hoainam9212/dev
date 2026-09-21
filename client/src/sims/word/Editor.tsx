@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Extension } from '@tiptap/core';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -19,10 +20,49 @@ interface Props {
   dispatch: (a: wordSim.WordAction) => void;
 }
 
+/**
+ * TipTap chỉ giữ những thuộc tính mà extension của nó khai báo. Schema ở
+ * `shared` có `fontSize` (trên mark textStyle) và `lineHeight` (trên đoạn văn và
+ * tiêu đề) mà TipTap không biết, nên nếu không khai báo thêm thì hai thuộc tính
+ * này bị XOÁ mỗi lần nạp tài liệu vào editor — cỡ chữ và giãn dòng "mất" ngay
+ * sau khi đặt.
+ */
+const TextStyleWithSize = TextStyle.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      fontSize: {
+        default: null,
+        parseHTML: (element) => element.style.fontSize || null,
+        renderHTML: (attributes) => (attributes.fontSize ? { style: `font-size: ${String(attributes.fontSize)}` } : {}),
+      },
+    };
+  },
+});
+
+const LineHeight = Extension.create({
+  name: 'lineHeight',
+  addGlobalAttributes() {
+    return [
+      {
+        types: ['paragraph', 'heading'],
+        attributes: {
+          lineHeight: {
+            default: null,
+            parseHTML: (element) => element.style.lineHeight || null,
+            renderHTML: (attributes) => (attributes.lineHeight ? { style: `line-height: ${String(attributes.lineHeight)}` } : {}),
+          },
+        },
+      },
+    ];
+  },
+});
+
 const extensions = [
   StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
   Underline,
-  TextStyle,
+  TextStyleWithSize,
+  LineHeight,
   Color,
   FontFamily,
   Highlight.configure({ multicolor: true }),

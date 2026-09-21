@@ -52,6 +52,16 @@ describe('word blocks', () => {
     expect(plainText(s.doc)).toBe('Tiêu đề\nĐoạn một\nĐoạn hai');
   });
 
+  it('turns a heading into a plain paragraph when it is put in a list', () => {
+    // `listItem` chỉ chứa được đoạn văn (giống TipTap), nên bọc một Heading vào
+    // danh sách thì phải hạ nó về đoạn thường — im lặng không làm gì thì người
+    // học bấm nút mà tưởng app hỏng.
+    let s = run(threeParagraphs(), { type: 'selectText', text: 'Tiêu đề' }, { type: 'setHeading', level: 1 });
+    expect(blockOf(s.doc, 'Tiêu đề')?.type).toBe('heading');
+    s = run(s, { type: 'selectText', text: 'Tiêu đề' }, { type: 'toggleList', list: 'bullet' });
+    expect(blockOf(s.doc, 'Tiêu đề')).toMatchObject({ type: 'paragraph', list: 'bullet' });
+  });
+
   it('applies to every paragraph the selection touches', () => {
     const s = run(threeParagraphs(), { type: 'selectAll' }, { type: 'toggleList', list: 'bullet' });
     for (const t of ['Tiêu đề', 'Đoạn một', 'Đoạn hai']) expect(blockOf(s.doc, t)?.list, t).toBe('bullet');
