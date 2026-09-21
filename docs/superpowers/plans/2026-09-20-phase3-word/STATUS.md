@@ -6,7 +6,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 |---|---|---|---|
 | 1 Deps + schema | ☑ | (commit này) | shared 148 test xanh; schema tự khai báo node, không dùng addListNodes/tableNodes |
 | 2 Reducer lõi | ☑ | (commit này) | 13 test; `findText` là bản đồ ký tự→pos mà Task 3–7 dùng lại |
-| 3 Marks | ☐ | | |
+| 3 Marks | ☑ | (commit này) | 7 test lấy nguyên từ plan; `editDoc()` trong text.ts là cổng chung cho mọi thao tác sửa tài liệu |
 | 4 Blocks | ☐ | | |
 | 5 Bảng + ảnh | ☐ | | |
 | 6 Find/TOC/Save | ☐ | | |

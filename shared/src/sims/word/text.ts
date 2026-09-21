@@ -94,7 +94,7 @@ export function findText(doc: WordDoc, text: string, nth = 1): Range | null {
  * `WordState` không bao giờ giữ `EditorState` — state phải so sánh được bằng
  * `toEqual` và lưu được xuống Dexie.
  */
-function apply(doc: WordDoc, sel: Range, run: (tr: Transaction) => void): DocEdit {
+export function editDoc(doc: WordDoc, sel: Range, run: (tr: Transaction) => void): DocEdit {
   const node = docFromJSON(doc);
   const { from, to } = clampRange(doc, sel);
   const state = EditorState.create({ doc: node, selection: TextSelection.create(node, from, to) });
@@ -104,7 +104,7 @@ function apply(doc: WordDoc, sel: Range, run: (tr: Transaction) => void): DocEdi
 }
 
 export function insertText(doc: WordDoc, sel: Range, text: string): DocEdit {
-  return apply(doc, sel, (tr) => {
+  return editDoc(doc, sel, (tr) => {
     tr.insertText(text, tr.selection.from, tr.selection.to);
   });
 }
@@ -113,17 +113,17 @@ export function backspace(doc: WordDoc, sel: Range): DocEdit | null {
   const range = clampRange(doc, sel);
   if (range.from === range.to) {
     if (range.from <= 1) return null;
-    return apply(doc, range, (tr) => {
+    return editDoc(doc, range, (tr) => {
       tr.delete(range.from - 1, range.from);
     });
   }
-  return apply(doc, range, (tr) => {
+  return editDoc(doc, range, (tr) => {
     tr.delete(range.from, range.to);
   });
 }
 
 export function splitBlock(doc: WordDoc, sel: Range): DocEdit {
-  return apply(doc, sel, (tr) => {
+  return editDoc(doc, sel, (tr) => {
     if (tr.selection.from !== tr.selection.to) tr.deleteSelection();
     tr.split(tr.selection.from);
   });

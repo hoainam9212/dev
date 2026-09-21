@@ -1,4 +1,5 @@
 import { emptyDoc, type WordDoc } from './schema';
+import { setHighlight, setStyle, toggleMark, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
 import {
   backspace,
   clampRange,
@@ -30,8 +31,11 @@ export type WordAction =
   | { type: 'selectAll' }
   | { type: 'setSelection'; from: number; to: number }
   | { type: 'splitBlock' }
+  | { type: 'toggleMark'; mark: ToggleableMark }
+  | { type: 'setStyle'; attr: StyleAttr; value: string | null }
+  | { type: 'setHighlight'; color: string | null }
   | { type: 'undo' };
-// Task 3–6 thêm nhánh vào union này.
+// Task 4–6 thêm nhánh vào union này.
 
 export function wordInitial(o: { doc?: WordDoc; text?: string } = {}): WordState {
   return {
@@ -56,6 +60,11 @@ export function selectedText(s: WordState): string {
 
 export { findText };
 
+/** Định dạng của vùng đang chọn — ribbon dùng để tô sáng nút đang bật. */
+export function activeMarks(s: WordState): MarkReport | null {
+  return marksInRange(s.doc, s.sel);
+}
+
 export function reduceWord(s: WordState, a: WordAction): WordState {
   switch (a.type) {
     case 'insertText':
@@ -64,6 +73,12 @@ export function reduceWord(s: WordState, a: WordAction): WordState {
       return withEdit(s, backspace(s.doc, s.sel));
     case 'splitBlock':
       return withEdit(s, splitBlock(s.doc, s.sel));
+    case 'toggleMark':
+      return withEdit(s, toggleMark(s.doc, s.sel, a.mark));
+    case 'setStyle':
+      return withEdit(s, setStyle(s.doc, s.sel, a.attr, a.value));
+    case 'setHighlight':
+      return withEdit(s, setHighlight(s.doc, s.sel, a.color));
     case 'selectText': {
       const range = findText(s.doc, a.text, a.nth ?? 1);
       return range ? { ...s, sel: range } : s;
