@@ -719,5 +719,75 @@
     "lessonIds": [
       "excel.intro"
     ]
+  },
+  {
+    "id": "dinh-dang-so",
+    "term": "Number format",
+    "say": "nâm-bơ pho-mát",
+    "vi": "Định dạng số",
+    "explain": "Cách một con số hiện ra: có dấu chấm ngăn nghìn, có ₫, có % hay không. Nó KHÔNG đổi giá trị thật của ô.",
+    "lessonIds": [
+      "excel.numfmt"
+    ]
+  },
+  {
+    "id": "gop-o",
+    "term": "Merge",
+    "say": "mơ-giơ",
+    "vi": "Gộp ô",
+    "explain": "Nhập nhiều ô liền nhau thành một ô lớn, hay dùng cho dòng tiêu đề nằm vắt ngang bảng. Bấm lần nữa là tách ra.",
+    "lessonIds": [
+      "excel.width"
+    ]
+  },
+  {
+    "id": "cong-thuc",
+    "term": "Formula",
+    "say": "pho-miu-la",
+    "vi": "Công thức",
+    "explain": "Phép tính bạn viết trong ô, LUÔN bắt đầu bằng dấu =. Ô hiện kết quả, còn công thức nằm trên thanh công thức.",
+    "lessonIds": [
+      "excel.equals"
+    ]
+  },
+  {
+    "id": "ham",
+    "term": "Function",
+    "say": "phăng-sần",
+    "vi": "Hàm",
+    "explain": "Phép tính viết sẵn của bảng tính, gọi bằng tên rồi mở ngoặc, ví dụ SUM(B2:B6) là cộng cả vùng.",
+    "lessonIds": [
+      "excel.sum"
+    ]
+  },
+  {
+    "id": "vung",
+    "term": "Range",
+    "say": "rên-giơ",
+    "vi": "Vùng",
+    "explain": "Một khối ô liền nhau, viết bằng ô đầu, dấu hai chấm, ô cuối: B2:B6 đọc là từ B2 đến B6.",
+    "lessonIds": [
+      "excel.sum"
+    ]
+  },
+  {
+    "id": "dia-chi-tuong-doi",
+    "term": "Relative reference",
+    "say": "re-la-típ re-phơ-rần",
+    "vi": "Địa chỉ tương đối",
+    "explain": "Cách viết A2, B2 không có dấu $. Chép công thức sang chỗ khác thì địa chỉ tự dịch theo — thường là điều bạn muốn.",
+    "lessonIds": [
+      "excel.copy"
+    ]
+  },
+  {
+    "id": "dia-chi-tuyet-doi",
+    "term": "Absolute reference",
+    "say": "áp-sồ-lút re-phơ-rần",
+    "vi": "Địa chỉ tuyệt đối",
+    "explain": "Cách viết $E$1 có dấu $. Chép đi đâu ô đó cũng đứng yên. Dùng cho những ô cả bảng dùng chung như thuế suất, tỉ giá.",
+    "lessonIds": [
+      "excel.absolute"
+    ]
   }
 ]

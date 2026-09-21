@@ -337,5 +337,140 @@
       "cả dòng",
       "nháy đúp"
     ]
+  },
+  {
+    "id": "excel.no-equals",
+    "q": "Tôi gõ công thức mà ô chỉ hiện ra dòng chữ, không tính gì cả?",
+    "a": "Gần như chắc chắn là bạn quên dấu = ở đầu. Mọi công thức đều phải bắt đầu bằng dấu =, ví dụ =SUM(B2:B6). Bấm vào ô, bấm F2 rồi thêm dấu = vào trước là xong.",
+    "keywords": [
+      "cong thuc",
+      "dau bang",
+      "khong tinh",
+      "hien chu",
+      "="
+    ]
+  },
+  {
+    "id": "excel.hash",
+    "q": "Ô hiện đầy dấu ##### là lỗi gì?",
+    "a": "Không phải lỗi đâu! Đó chỉ là cột quá hẹp, không đủ chỗ hiện hết con số. Kéo mép cột cho rộng ra là số hiện lại bình thường.",
+    "keywords": [
+      "#####",
+      "cot hep",
+      "dau thang",
+      "loi hien thi"
+    ]
+  },
+  {
+    "id": "excel.div0",
+    "q": "#DIV/0! nghĩa là gì?",
+    "a": "Công thức đang chia cho số không, hoặc chia cho một ô còn trống (ô trống được coi là 0). Kiểm tra ô nằm dưới dấu chia xem đã có số chưa.",
+    "keywords": [
+      "div",
+      "chia khong",
+      "loi chia",
+      "#DIV/0!"
+    ]
+  },
+  {
+    "id": "excel.na",
+    "q": "VLOOKUP báo #N/A thì sao?",
+    "a": "Nghĩa là không tìm thấy giá trị cần tra trong cột đầu tiên của bảng tra. Hay gặp nhất là do thừa khoảng trắng, hoặc bảng tra không bắt đầu đúng ở cột chứa giá trị cần tìm.",
+    "keywords": [
+      "na",
+      "vlookup",
+      "khong tim thay",
+      "#N/A",
+      "tra cuu"
+    ]
+  },
+  {
+    "id": "excel.name",
+    "q": "#NAME? là lỗi gì?",
+    "a": "Bảng tính không hiểu một cái tên trong công thức. Thường là gõ sai tên hàm (SUMM thay vì SUM), hoặc thiếu dấu ngoặc đóng.",
+    "keywords": [
+      "name",
+      "sai ten ham",
+      "#NAME?",
+      "loi ten"
+    ]
+  },
+  {
+    "id": "excel.value",
+    "q": "#VALUE! xuất hiện khi nào?",
+    "a": "Khi công thức đang tính toán trên một ô chứa chữ chứ không phải số. Kiểm tra lại các ô trong công thức xem có ô nào lỡ gõ chữ vào không.",
+    "keywords": [
+      "value",
+      "loi kieu",
+      "chu va so",
+      "#VALUE!"
+    ]
+  },
+  {
+    "id": "excel.dollar",
+    "q": "Dấu $ trong công thức để làm gì?",
+    "a": "Để khoá ô lại. $E$1 nghĩa là dù chép công thức đi đâu thì nó vẫn trỏ đúng ô E1. Dùng cho những ô cả bảng dùng chung như thuế suất hay tỉ giá. Không có $ thì địa chỉ tự dịch theo khi chép.",
+    "keywords": [
+      "dola",
+      "khoa o",
+      "tuyet doi",
+      "$",
+      "chep cong thuc"
+    ]
+  },
+  {
+    "id": "excel.sum-vs-plus",
+    "q": "Dùng SUM hay cộng tay bằng dấu + thì hơn?",
+    "a": "Dùng SUM. Nó ngắn hơn, ít gõ sót ô, và khi bạn thêm một dòng vào giữa vùng thì SUM tự tính luôn dòng mới. Cộng tay thì lần nào cũng phải sửa lại công thức.",
+    "keywords": [
+      "sum",
+      "cong tay",
+      "dau cong",
+      "tong"
+    ]
+  },
+  {
+    "id": "excel.count-counta",
+    "q": "COUNT và COUNTA khác nhau chỗ nào?",
+    "a": "COUNT chỉ đếm những ô chứa SỐ. COUNTA đếm mọi ô không trống, kể cả ô ghi chữ. Đếm nhân viên thì dùng COUNTA trên cột tên; đếm ai đã có điểm thì dùng COUNT trên cột điểm.",
+    "keywords": [
+      "count",
+      "counta",
+      "dem o",
+      "khac nhau"
+    ]
+  },
+  {
+    "id": "excel.format-value",
+    "q": "Đổi định dạng sang Tiền VNĐ có làm sai phép tính không?",
+    "a": "Không. Định dạng chỉ đổi cách con số hiện ra thôi; giá trị thật vẫn nguyên. Ô hiện 7.500.000 ₫ thì bên trong vẫn là số 7500000, cộng trừ nhân chia bình thường.",
+    "keywords": [
+      "dinh dang",
+      "tien vnd",
+      "gia tri that",
+      "format"
+    ]
+  },
+  {
+    "id": "excel.if-how",
+    "q": "Hàm IF viết thế nào?",
+    "a": "Ba phần ngăn nhau bằng dấu phẩy: điều kiện, giá trị khi đúng, giá trị khi sai. Ví dụ =IF(B2>=5,\"Đạt\",\"Chưa đạt\"). Chữ phải bỏ trong nháy kép, số thì không cần.",
+    "keywords": [
+      "if",
+      "neu thi",
+      "dieu kien",
+      "dat chua dat"
+    ]
+  },
+  {
+    "id": "excel.sheet-ref",
+    "q": "Làm sao lấy số từ sheet khác?",
+    "a": "Viết tên sheet, dấu chấm than, rồi địa chỉ ô: =Sheet1!A1. Tên sheet có dấu tiếng Việt hay có khoảng trắng đều dùng được, ví dụ =Báo cáo!B1.",
+    "keywords": [
+      "sheet khac",
+      "cham than",
+      "tham chieu",
+      "trang tinh"
+    ]
   }
 ]

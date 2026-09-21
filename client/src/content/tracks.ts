@@ -44,6 +44,9 @@ export const TRACKS: Track[] = [
     blurb: 'Nhập số liệu, tính toán bằng công thức, vẽ biểu đồ.',
     chapters: [
       { id: 'excel.start', title: 'Làm quen bảng tính', lessonIds: ['excel.intro', 'excel.enter', 'excel.sheet'] },
+      { id: 'excel.format', title: 'Định dạng cho dễ đọc', lessonIds: ['excel.numfmt', 'excel.look', 'excel.width'] },
+      { id: 'excel.calc', title: 'Công thức đầu tiên', lessonIds: ['excel.equals', 'excel.sum', 'excel.stats'] },
+      { id: 'excel.ref', title: 'Ô nào cố định', lessonIds: ['excel.copy', 'excel.absolute', 'excel.if'] },
     ],
   },
   { id: 'ppt', order: 4, title: 'PowerPoint – Trình chiếu', emoji: '🎞️', color: '#FFA878', blurb: 'Làm slide đẹp và trình bày tự tin.', chapters: [] },

@@ -1,5 +1,7 @@
 # Giai đoạn 4A (Excel nền tảng) – tình trạng
 
+**XONG toàn bộ 13/13 task, 2026-09-21.** Việc kế tiếp là plan 4B (VLOOKUP, SUMIF, hàm chữ, sắp xếp/lọc, biểu đồ, dự án Bảng lương, 8 bài) — chưa có.
+
 Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên mới đọc file này trước, không đọc lại các file task đã xong.
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
@@ -16,7 +18,7 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
 | 10 grid | ☑ | (commit này) | 13 test. Lưới dựng cửa sổ 18×10 quanh ô chọn. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 12 PHẢI xoá.** Gợi ý bậc 2 trỏ vào ô chưa thử |
 | 11 ribbon Home | ☑ | (commit này) | 13 test, 26 helpId mới. Đã thử thật: tiền VNĐ, in đậm (nút sáng đúng), thêm sheet |
 | 12 FnTip + chương 1 | ☑ | (commit này) | 7 test FnTip + 3 bài. Đã xoá route tạm `/dev/excel`. Đã học thật bài `excel.sheet` tới lúc chấm đạt |
-| 13 chương 2–4 + tổng kết | ☐ | | |
+| 13 chương 2–4 + tổng kết | ☑ | (commit này) | 9 bài, đủ 12 bài / 4 chương; 14 mục từ điển + 12 câu Hỏi Mèo cho Excel; README |
 
 ## Quyết định đã chốt
 
