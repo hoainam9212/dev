@@ -9,6 +9,8 @@ export interface Profile {
   fontScale: 'md' | 'lg' | 'xl';
   sound: boolean;
   reducedMotion: boolean;
+  /** Chế độ mở khoá toàn bộ bài học (dành cho người hướng dẫn). Hồ sơ cũ không có trường này. */
+  unlockAll?: boolean;
   xp: number;
   createdAt: string;
 }

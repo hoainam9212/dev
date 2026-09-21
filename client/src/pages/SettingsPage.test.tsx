@@ -34,6 +34,16 @@ describe('SettingsPage', () => {
     await waitFor(() => expect(document.documentElement.dataset.font).toBe('xl'));
   });
 
+  it('turns the unlock-all mode on and off', async () => {
+    renderPage();
+    const toggle = await screen.findByRole('switch', { name: 'Mở khoá toàn bộ bài học' });
+    expect(toggle).toHaveAttribute('aria-checked', 'false');
+    fireEvent.click(toggle);
+    await waitFor(async () => expect((await db.profile.get('me'))?.unlockAll).toBe(true));
+    fireEvent.click(toggle);
+    await waitFor(async () => expect((await db.profile.get('me'))?.unlockAll).toBe(false));
+  });
+
   it('renames on blur', async () => {
     renderPage();
     const input = await screen.findByLabelText('Tên của bạn');

@@ -32,6 +32,11 @@ export function useOs(): OS {
   return useProfile()?.os ?? guessOs();
 }
 
+/** Người hướng dẫn đã bật "Mở khoá toàn bộ bài học" trong Cài đặt chưa. */
+export function useUnlockAll(): boolean {
+  return useProfile()?.unlockAll ?? false;
+}
+
 export async function createProfile(p: NewProfile, now = new Date()): Promise<Profile> {
   const profile: Profile = {
     id: 'me',
@@ -41,6 +46,7 @@ export async function createProfile(p: NewProfile, now = new Date()): Promise<Pr
     fontScale: 'md',
     sound: true,
     reducedMotion: false,
+    unlockAll: false,
     xp: 0,
     createdAt: now.toISOString(),
   };

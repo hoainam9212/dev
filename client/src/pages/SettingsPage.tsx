@@ -118,6 +118,18 @@ export function SettingsPage() {
         </div>
       </Section>
 
+      <Section title="Dành cho người hướng dẫn">
+        <div className="flex items-center justify-between gap-3">
+          <span className="font-semibold">Mở khoá toàn bộ bài học</span>
+          <Toggle label="Mở khoá toàn bộ bài học" checked={profile.unlockAll ?? false}
+            onChange={(unlockAll) => updateProfile({ unlockAll })} />
+        </div>
+        <p className="text-muted">
+          Bật lên để vào thẳng bất kỳ bài nào mà không cần học theo thứ tự — tiện khi bạn muốn xem trước nội dung hoặc
+          kiểm tra một bài cụ thể. Sao và tiến độ vẫn được lưu như bình thường. Học viên nên tắt mục này để học đúng lộ trình.
+        </p>
+      </Section>
+
       <Section title="Sao lưu tiến độ">
         <p className="text-muted">Tiến độ nằm trong trình duyệt của máy này. Hãy tải file sao lưu để giữ an toàn hoặc chuyển sang máy khác.</p>
         <div className="flex flex-wrap items-center gap-3">

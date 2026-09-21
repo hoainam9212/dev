@@ -14,10 +14,11 @@ export function HomePage() {
   const today = useTodayMinutes();
   const streak = useStreak();
   const doneKey = [...completed].sort().join('|');
+  const unlockAll = profile.unlockAll ?? false;
   const unlock = useMemo(
-    () => unlockState(TRACKS, LESSONS, profile.os, completed),
+    () => unlockState(TRACKS, LESSONS, profile.os, completed, unlockAll),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [profile.os, doneKey],
+    [profile.os, doneKey, unlockAll],
   );
   const next = [...TRACKS]
     .sort((a, b) => a.order - b.order)

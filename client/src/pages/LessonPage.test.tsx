@@ -3,7 +3,7 @@ import { screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { db } from '../db/db';
 import { createProfile } from '../db/profile';
 import { LessonPage } from './LessonPage';
-import { renderWithProfile, resetDb } from '../test/utils';
+import { makeProfile, renderWithProfile, resetDb } from '../test/utils';
 
 vi.mock('../progress/record', async (importOriginal) => {
   const mod = await importOriginal<typeof import('../progress/record')>();
@@ -76,6 +76,16 @@ describe('LessonPage', () => {
     TRACKS[0]!.chapters[0]!.lessonIds.push('t.second');
     renderWithProfile(<LessonPage id="t.second" />);
     expect(await screen.findByText(/chưa mở khoá/)).toBeInTheDocument();
+    TRACKS[0]!.chapters[0]!.lessonIds.pop();
+    delete LESSONS['t.second'];
+  });
+
+  it('opens a locked lesson when the unlock-all mode is on', async () => {
+    const { LESSONS, TRACKS } = await import('../content');
+    LESSONS['t.second'] = { id: 't.second', trackId: 'basics', chapterId: 'basics.start', title: 'Bài hai', minutes: 1, steps: [{ kind: 'explain', body: 'Nội dung bài hai' }] };
+    TRACKS[0]!.chapters[0]!.lessonIds.push('t.second');
+    renderWithProfile(<LessonPage id="t.second" />, { profile: makeProfile({ unlockAll: true }) });
+    expect(await screen.findByText('Nội dung bài hai')).toBeInTheDocument();
     TRACKS[0]!.chapters[0]!.lessonIds.pop();
     delete LESSONS['t.second'];
   });

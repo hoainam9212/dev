@@ -63,6 +63,16 @@ describe('unlocking', () => {
     expect(s.lessonUnlocked.has('b1')).toBe(true);
     expect(s.trackUnlocked.has('c')).toBe(false);
   });
+  it('unlocks every track and lesson when unlockAll is on', () => {
+    const s = unlockState(tracks, lessons, 'win', new Set(), true);
+    expect([...s.trackUnlocked]).toEqual(['a', 'b', 'c']);
+    expect([...s.lessonUnlocked]).toEqual(['a1', 'a2w', 'a3', 'b1']);
+  });
+  it('still hides lessons of the other operating system when unlockAll is on', () => {
+    const s = unlockState(tracks, lessons, 'mac', new Set(), true);
+    expect(s.lessonUnlocked.has('a2m')).toBe(true);
+    expect(s.lessonUnlocked.has('a2w')).toBe(false);
+  });
   it('finds the next lesson across tracks', () => {
     expect(nextLessonId(tracks, lessons, 'mac', 'a2m')).toBe('a3');
     expect(nextLessonId(tracks, lessons, 'mac', 'a3')).toBe('b1');

@@ -78,12 +78,19 @@ export function unlockState(
   lessons: Record<string, Lesson>,
   os: OS,
   completed: ReadonlySet<string>,
+  /** Chế độ mở khoá toàn bộ: bỏ qua thứ tự học, nhưng vẫn ẩn bài của hệ điều hành khác. */
+  unlockAll = false,
 ): { trackUnlocked: Set<string>; lessonUnlocked: Set<string> } {
   const trackUnlocked = new Set<string>();
   const lessonUnlocked = new Set<string>();
   let prevDone = true;
   for (const t of byOrder(tracks)) {
     const ls = visibleLessons(t, lessons, os);
+    if (unlockAll) {
+      trackUnlocked.add(t.id);
+      ls.forEach((l) => lessonUnlocked.add(l.id));
+      continue;
+    }
     if (prevDone) {
       trackUnlocked.add(t.id);
       ls.forEach((l, i) => {

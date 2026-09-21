@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { nextLessonId, unlockState } from '@office-neko/shared';
 import { LESSONS, TRACKS } from '../content';
-import { useOs } from '../db/profile';
+import { useOs, useUnlockAll } from '../db/profile';
 import { recordLessonResult } from '../progress/record';
 import { useCompleted } from '../progress/useStats';
 import { LessonPlayer, type LessonResult } from '../player/LessonPlayer';
@@ -12,6 +12,7 @@ export function LessonPage({ id }: { id: string }) {
   const lesson = LESSONS[id];
   const navigate = useNavigate();
   const os = useOs();
+  const unlockAll = useUnlockAll();
   const [done, setDone] = useState<{ result: LessonResult; xpGained: number; saveError?: string } | null>(null);
   const { completed, loaded } = useCompleted();
 
@@ -46,7 +47,7 @@ export function LessonPage({ id }: { id: string }) {
     );
   }
   if (!loaded) return null;
-  if (!done && !unlockState(TRACKS, LESSONS, os, completed).lessonUnlocked.has(id)) {
+  if (!done && !unlockState(TRACKS, LESSONS, os, completed, unlockAll).lessonUnlocked.has(id)) {
     return (
       <div className="card mx-auto mt-10 max-w-md space-y-3 p-6 text-center">
         <p className="text-lg font-bold">Bài này chưa mở khoá 🔒</p>
