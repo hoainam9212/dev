@@ -28,8 +28,38 @@ describe('theme.css', () => {
   it('keeps component classes inside @layer components so utilities can override them', () => {
     const inLayer = componentsLayer(css);
     expect(inLayer, 'thiếu khối @layer components').not.toBe('');
-    for (const cls of ['.card', '.btn', '.btn-primary', '.kbd', '.term']) {
+    for (const cls of ['.card', '.btn', '.btn-primary', '.kbd', '.term', '.cellbox', '.gridhead']) {
       expect(inLayer.includes(`${cls} `) || inLayer.includes(`${cls},`) || inLayer.includes(`${cls} {`), `${cls} phải nằm trong @layer components`).toBe(true);
+    }
+  });
+
+  /**
+   * Mọi lớp thành phần phải nằm ở CẤP ĐẦU của `@layer components`. Lần đầu viết
+   * `.cellbox`/`.gridhead` chúng lọt vào trong khối `:root[data-motion="reduce"]`
+   * (chèn nhầm ngay trước dấu } cuối file) nên lưới bảng tính không có đường kẻ ô
+   * nào — test cũ vẫn xanh vì nó chỉ hỏi "chuỗi này có trong layer không".
+   */
+  it('declares every component class at the top level of the layer, not nested in another rule', () => {
+    const inLayer = componentsLayer(css);
+    const body = inLayer.slice(inLayer.indexOf('{') + 1);
+    let depth = 0;
+    const topLevel: string[] = [];
+    let line = '';
+    for (const ch of body) {
+      if (ch === '{') {
+        if (depth === 0) topLevel.push(line.trim());
+        depth++;
+        line = '';
+      } else if (ch === '}') {
+        depth--;
+        line = '';
+      } else if (depth === 0) {
+        line += ch;
+      }
+    }
+    const selectors = topLevel.join(' | ');
+    for (const cls of ['.card', '.btn', '.kbd', '.term', '.cellbox', '.gridhead']) {
+      expect(selectors.includes(cls), `${cls} phải ở cấp đầu của @layer components`).toBe(true);
     }
   });
 

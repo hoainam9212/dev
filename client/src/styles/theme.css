@@ -85,6 +85,28 @@ body {
   .term {
     @apply cursor-help font-semibold underline decoration-rose decoration-dotted decoration-2 underline-offset-4;
   }
+
+  /* Bảng tính: ô lưới và đầu hàng/cột. Nằm TRONG @layer components vì lý do
+     ghi ở đầu khối này — `ring-*` của ô đang chọn cũng là box-shadow. */
+  .cellbox {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 6px;
+    font-size: 0.875rem;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--app-surface);
+  }
+  .gridhead {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.04);
+    font-size: 0.75rem;
+    color: var(--color-muted, #6b7280);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @keyframes shake {
@@ -112,25 +134,4 @@ body {
   animation-duration: 0.001ms !important;
   transition-duration: 0.001ms !important;
 
-  /* Bảng tính: ô lưới và đầu hàng/cột. Nằm TRONG @layer components vì lý do
-     ghi ở đầu khối này — `ring-*` của ô đang chọn cũng là box-shadow. */
-  .cellbox {
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 0 6px;
-    font-size: 0.875rem;
-    overflow: hidden;
-    white-space: nowrap;
-    background: var(--app-surface);
-  }
-  .gridhead {
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    background: rgba(0, 0, 0, 0.04);
-    font-size: 0.75rem;
-    color: var(--color-muted, #6b7280);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }

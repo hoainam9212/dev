@@ -52,6 +52,11 @@ Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên 
   (b) câu chấm hiện **"✅ ✅"** vì `PracticeView` đã tự thêm dấu — `gradeWord` không hề gắn ✅, chỉ grader Excel gắn. Đã bỏ.
 - Cú pháp liên kết từ điển trong bài là `[[id|chữ hiện ra]]`, không phải `[[chữ]]`.
 
+- **Lỗi người dùng chỉ ra sau khi gộp nhánh:** lưới không có đường kẻ ô nào. `.cellbox`/`.gridhead` bị chèn nhầm
+  vào TRONG khối `:root[data-motion="reduce"]` (chèn ngay trước dấu `}` cuối file) nên không bao giờ có hiệu lực.
+  `theme.test.ts` cũ vẫn xanh vì nó chỉ hỏi "chuỗi lớp có nằm trong layer không", không hỏi lớp đó ở CẤP NÀO.
+  Đã thêm test đòi mọi lớp thành phần nằm ở cấp đầu của `@layer components`.
+
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
 - Từ giai đoạn 3 để lại, **chưa xếp lịch**: bài cho vỏ máy tính (Start/Taskbar/Dock/Spotlight); một lượt rà soát trợ năng cho toàn bộ sim; bàn phím ảo theo HĐH; Shift+click chọn dải trong vùng file; `SpotlightOverlay` hỏi lại mỗi 250 ms (**sẽ cắn ở lưới Excel** — Task 10 phải để ý).
