@@ -14,6 +14,7 @@ import {
 } from '../../formula';
 import { reduceEdit } from './edit';
 import { reduceFormat } from './format';
+import { reduceTable } from './table';
 
 export interface Cell {
   /** Đúng chữ người dùng gõ: "120000", "=SUM(B2:B5)", "Nguyễn Văn A". */
@@ -81,6 +82,7 @@ export type ExcelAction =
   | { type: 'switchSheet'; index: number }
   | { type: 'save'; name: string; at: number }
   | { type: 'print' }
+  | { type: 'sortRange'; range: string; by: string; dir: 'asc' | 'desc'; header?: boolean }
   | { type: 'openDialog'; dialog: ExcelDialog }
   | { type: 'undo' };
 
@@ -245,7 +247,7 @@ export function reduceExcel(s: WorkbookState, a: ExcelAction): WorkbookState {
     default:
       // Import vòng với `edit.ts`/`format.ts` là CỐ Ý và an toàn: cả hai phía đều
       // là khai báo hàm, nên lúc gọi thì hai module đã nạp xong.
-      return reduceEdit(s, a) ?? reduceFormat(s, a) ?? s;
+      return reduceEdit(s, a) ?? reduceFormat(s, a) ?? reduceTable(s, a) ?? s;
   }
 }
 
