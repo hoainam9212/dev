@@ -1,7 +1,8 @@
-import { displayValue, formatRange, isErr, parseRange, type CellFormat, type CellValue } from '../../formula';
+import { displayValue, formatRange, isErr, nameToCol, parseRange, type CellFormat, type CellValue } from '../../formula';
 import type { CheckResult } from '../../grading/core';
 import { mergedAt } from './format';
-import { cellRaw, cellValue, formatOf, type WorkbookState } from './state';
+import { isSorted } from './table';
+import { cellRaw, cellValue, formatOf, type Chart, type WorkbookState } from './state';
 
 export type ExcelCheck =
   | { kind: 'cellValue'; cell: string; value: string | number | boolean; sheet?: string }
@@ -10,7 +11,18 @@ export type ExcelCheck =
   | { kind: 'cellFormula'; cell: string; fn?: string; range?: string; absolute?: boolean; contains?: string; sheet?: string }
   | { kind: 'cellFormat'; cell: string; fmt: Partial<CellFormat>; sheet?: string }
   | { kind: 'merged'; range: string }
-  | { kind: 'sheetNamed'; name: string };
+  | { kind: 'sheetNamed'; name: string }
+  | { kind: 'rangeSorted'; range: string; by: string; dir: 'asc' | 'desc' }
+  | { kind: 'filterActive'; col: string; values?: string[] }
+  /** Tên trường là `chartType` chứ không phải `type`: `kind` đã dùng để phân nhánh check. */
+  | { kind: 'chart'; chartType: Chart['type']; range?: string };
+
+const CHART_VI: Record<Chart['type'], string> = {
+  column: 'biểu đồ cột',
+  bar: 'biểu đồ thanh ngang',
+  line: 'biểu đồ đường',
+  pie: 'biểu đồ tròn',
+};
 
 const ok = (messageVi: string): CheckResult => ({ ok: true, messageVi });
 const no = (messageVi: string): CheckResult => ({ ok: false, messageVi });
@@ -110,6 +122,47 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
     case 'sheetNamed': {
       const found = state.sheets.some((s) => s.name.trim().toLowerCase() === check.name.trim().toLowerCase());
       return found ? ok(`Đã có sheet "${check.name}".`) : no(`Chưa có sheet nào tên "${check.name}".`);
+    }
+    case 'rangeSorted': {
+      const huong = check.dir === 'asc' ? 'tăng dần' : 'giảm dần';
+      if (isSorted(state, check.range, check.by, check.dir)) {
+        return ok(`Vùng ${check.range} đã được sắp ${huong} theo cột ${check.by}.`);
+      }
+      return no(`Vùng ${check.range} chưa được sắp ${huong} theo cột ${check.by}.`);
+    }
+    case 'filterActive': {
+      const sheet = state.sheets[state.active]!;
+      const conds = sheet.filter?.conditions ?? {};
+      const col = nameToCol(check.col);
+      const values = conds[col];
+      if (!values || values.length === 0) {
+        return no(`Chưa lọc ở cột ${check.col}. Chọn vùng rồi bấm Filter ở thẻ Data.`);
+      }
+      if (check.values) {
+        const got = values.map((v) => v.trim().toLowerCase()).sort();
+        const want = check.values.map((v) => v.trim().toLowerCase()).sort();
+        if (got.join('|') !== want.join('|')) {
+          return no(`Cột ${check.col} đang lọc "${values.join(', ')}", cần lọc "${check.values.join(', ')}".`);
+        }
+      }
+      return ok(`Cột ${check.col} đã lọc đúng.`);
+    }
+    case 'chart': {
+      const charts = state.sheets[state.active]!.charts ?? [];
+      const ten = CHART_VI[check.chartType];
+      const found = charts.filter((c) => c.type === check.chartType);
+      if (found.length === 0) return no(`Chưa có ${ten} nào. Chọn vùng số liệu rồi chèn ở thẻ Insert.`);
+      if (check.range) {
+        const want = parseRange(check.range);
+        const hit = found.some((c) => {
+          const got = parseRange(c.range);
+          return want && got
+            && got.from.row === want.from.row && got.from.col === want.from.col
+            && got.to.row === want.to.row && got.to.col === want.to.col;
+        });
+        if (!hit) return no(`Đã có ${ten} nhưng chưa vẽ từ vùng ${check.range}.`);
+      }
+      return ok(`Đã có ${ten}.`);
     }
   }
 }

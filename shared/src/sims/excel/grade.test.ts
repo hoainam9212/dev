@@ -95,3 +95,46 @@ describe('chấm bài Excel', () => {
     expect(r.results[0]!.messageVi).toContain('#DIV/0!');
   });
 });
+
+describe('chấm sắp xếp, lọc và biểu đồ', () => {
+  const staff = () => excelInitial({
+    cells: {
+      A1: 'Nhân viên', B1: 'Lương', C1: 'Phòng',
+      A2: 'Nam', B2: '7500000', C2: 'Kế toán',
+      A3: 'Lan', B3: '6200000', C3: 'Kinh doanh',
+    },
+  });
+
+  it('rangeSorted sai trước khi sắp, đúng sau khi sắp', () => {
+    const before = staff();
+    expect(check(before, { kind: 'rangeSorted', range: 'A2:C3', by: 'B', dir: 'asc' }).pass).toBe(false);
+    const after = reduceExcel(before, { type: 'sortRange', range: 'A2:C3', by: 'B', dir: 'asc' });
+    expect(check(after, { kind: 'rangeSorted', range: 'A2:C3', by: 'B', dir: 'asc' }).pass).toBe(true);
+  });
+
+  it('filterActive đòi đúng cột, và đòi đúng giá trị nếu check nói rõ', () => {
+    const s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C3' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] });
+    expect(check(s, { kind: 'filterActive', col: 'C' }).pass).toBe(true);
+    expect(check(s, { kind: 'filterActive', col: 'C', values: ['Kế toán'] }).pass).toBe(true);
+    expect(check(s, { kind: 'filterActive', col: 'C', values: ['Kinh doanh'] }).pass).toBe(false);
+    expect(check(s, { kind: 'filterActive', col: 'A' }).pass).toBe(false);
+  });
+
+  it('chart đòi đúng loại, và đúng vùng nếu check nói rõ', () => {
+    const s = reduceExcel(staff(), {
+      type: 'insertChart',
+      chart: { id: 'c1', type: 'pie', range: 'A2:B3', title: 'Lương' },
+    });
+    expect(check(s, { kind: 'chart', chartType: 'pie' }).pass).toBe(true);
+    expect(check(s, { kind: 'chart', chartType: 'pie', range: 'A2:B3' }).pass).toBe(true);
+    expect(check(s, { kind: 'chart', chartType: 'column' }).pass).toBe(false);
+    expect(check(s, { kind: 'chart', chartType: 'pie', range: 'A1:B9' }).pass).toBe(false);
+  });
+
+  it('câu báo lỗi nói rõ phải làm gì', () => {
+    const r = check(staff(), { kind: 'chart', chartType: 'column' });
+    expect(r.results[0]!.messageVi).toContain('biểu đồ cột');
+  });
+});

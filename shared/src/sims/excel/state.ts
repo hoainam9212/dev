@@ -15,6 +15,7 @@ import {
 import { reduceEdit } from './edit';
 import { reduceFormat } from './format';
 import { reduceTable } from './table';
+import { reduceChart } from './chart';
 
 export interface Cell {
   /** Đúng chữ người dùng gõ: "120000", "=SUM(B2:B5)", "Nguyễn Văn A". */
@@ -86,6 +87,8 @@ export type ExcelAction =
   | { type: 'enableFilter'; range: string }
   | { type: 'disableFilter' }
   | { type: 'setFilterValues'; col: string; values: string[] }
+  | { type: 'insertChart'; chart: Chart }
+  | { type: 'removeChart'; id: string }
   | { type: 'openDialog'; dialog: ExcelDialog }
   | { type: 'undo' };
 
@@ -250,7 +253,7 @@ export function reduceExcel(s: WorkbookState, a: ExcelAction): WorkbookState {
     default:
       // Import vòng với `edit.ts`/`format.ts` là CỐ Ý và an toàn: cả hai phía đều
       // là khai báo hàm, nên lúc gọi thì hai module đã nạp xong.
-      return reduceEdit(s, a) ?? reduceFormat(s, a) ?? reduceTable(s, a) ?? s;
+      return reduceEdit(s, a) ?? reduceFormat(s, a) ?? reduceTable(s, a) ?? reduceChart(s, a) ?? s;
   }
 }
 

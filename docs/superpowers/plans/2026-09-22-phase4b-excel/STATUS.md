@@ -8,7 +8,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 |---|---|---|---|
 | 1 sortRange | ☑ | (commit này) | 11 test. Sắp xếp đổi chỗ **cả object `Cell`** nên định dạng đi theo hàng; ô nguồn trống thì `delete` ô đích, kẻo dữ liệu cũ sót lại. `isSorted` dùng chung cho grader Task 3 |
 | 2 AutoFilter | ☑ | (commit này) | 9 test. `conditions` khoá theo **chỉ số cột**, giá trị `[]` là bỏ lọc cột đó. `filterOptions`/`hiddenRows` bỏ hàng tiêu đề (hàng đầu của vùng). So sánh theo chữ hiển thị đã trim, không phân biệt hoa thường |
-| 3 chart + grader | ☐ | | |
+| 3 chart + grader | ☑ | (commit này) | 12 test. Hết phần `shared` của 4B. `chartData` vùng một cột thì lấy địa chỉ ô làm nhãn; ô chữ/ô lỗi coi là 0. Check dùng `chartType`, không phải `type` |
 | 4 tab Data | ☐ | | |
 | 5 ChartView + tab Insert | ☐ | | |
 | 6 Bài chương 5 | ☐ | | |
