@@ -1,5 +1,6 @@
 import { clampEl, elOf, resizeBy, SHAPE_FILL, type Handle } from './elements';
 import { applyLayout } from './layout';
+import { mergeFmt } from './text';
 
 /** Khung slide 16:9. Mọi toạ độ đối tượng tính bằng px trên khung này; giao diện chỉ co giãn khi vẽ. */
 export const SLIDE_W = 960;
@@ -92,7 +93,17 @@ export type PptAction =
   | { type: 'moveEl'; dx: number; dy: number }
   | { type: 'resizeEl'; handle: Handle; dx: number; dy: number }
   | { type: 'bringToFront' }
-  | { type: 'sendToBack' };
+  | { type: 'sendToBack' }
+  | { type: 'startEditEl'; id: string }
+  | { type: 'setText'; text: string }
+  | { type: 'commitEdit' }
+  | { type: 'cancelEdit' }
+  | { type: 'setFmt'; fmt: Partial<ElFormat> }
+  | { type: 'undo' }
+  | { type: 'openDialog'; dialog: Exclude<PptDialog, null> }
+  | { type: 'closeDialog' }
+  | { type: 'save'; name: string; at: number }
+  | { type: 'print' };
 
 export const PPT_LAYOUTS: { id: Layout; label: string; vi: string }[] = [
   { id: 'title', label: 'Title Slide', vi: 'Slide tiêu đề' },
@@ -135,13 +146,14 @@ function withSlides(s: PptState, slides: Slide[], extra?: Partial<PptState>): Pp
   return { ...s, slides, past: [...s.past, s.slides].slice(-30), ...extra };
 }
 
-/** Thay danh sách đối tượng của slide đang mở. */
-function withEls(s: PptState, els: El[], extra?: Partial<PptState>): PptState {
-  return withSlides(
-    s,
-    s.slides.map((x, i) => (i === s.active ? { ...x, els } : x)),
-    extra,
-  );
+/**
+ * Thay danh sách đối tượng của slide đang mở. `track = false` khi thao tác không
+ * đáng một bậc hoàn tác riêng — gõ từng ký tự là một bậc thì bấm Undo sẽ lùi từng
+ * chữ, rất khó chịu; `startEditEl` đã ghi một bậc cho cả lần sửa rồi.
+ */
+function withEls(s: PptState, els: El[], extra?: Partial<PptState>, track = true): PptState {
+  const slides = s.slides.map((x, i) => (i === s.active ? { ...x, els } : x));
+  return track ? withSlides(s, slides, extra) : { ...s, slides, ...extra };
 }
 
 /** Chèn một đối tượng mới, chọn luôn nó. */
@@ -246,6 +258,64 @@ export function reducePpt(s: PptState, a: PptAction): PptState {
       if (!el) return s;
       return withEls(s, [el, ...slideOf(s).els.filter((e) => e.id !== el.id)]);
     }
+    case 'startEditEl': {
+      const el = slideOf(s).els.find((e) => e.id === a.id);
+      if (!el) return s;
+      // Chụp một bậc hoàn tác cho CẢ lần sửa; `setText` sau đó không chụp thêm nữa.
+      return withSlides(s, s.slides, { sel: el.id, editing: el.id, editBackup: el.text ?? '' });
+    }
+    case 'setText': {
+      if (!s.editing) return s;
+      const id = s.editing;
+      return withEls(
+        s,
+        slideOf(s).els.map((e) => (e.id === id ? { ...e, text: a.text } : e)),
+        undefined,
+        false,
+      );
+    }
+    case 'commitEdit':
+      return s.editing ? { ...s, editing: null, editBackup: null } : s;
+    case 'cancelEdit': {
+      if (!s.editing) return s;
+      const id = s.editing;
+      const text = s.editBackup ?? '';
+      return withEls(
+        s,
+        slideOf(s).els.map((e) => (e.id === id ? { ...e, text } : e)),
+        { editing: null, editBackup: null },
+        false,
+      );
+    }
+    case 'setFmt': {
+      const el = elOf(s);
+      if (!el) return s;
+      return withEls(
+        s,
+        slideOf(s).els.map((e) => (e.id === el.id ? mergeFmt(e, a.fmt) : e)),
+      );
+    }
+    case 'undo': {
+      const prev = s.past[s.past.length - 1];
+      if (!prev) return s;
+      return {
+        ...s,
+        slides: prev,
+        past: s.past.slice(0, -1),
+        sel: null,
+        editing: null,
+        editBackup: null,
+        active: Math.min(s.active, prev.length - 1),
+      };
+    }
+    case 'openDialog':
+      return { ...s, dialog: a.dialog, editing: null };
+    case 'closeDialog':
+      return { ...s, dialog: null };
+    case 'save':
+      return { ...s, saved: { name: a.name, at: a.at }, dialog: null };
+    case 'print':
+      return { ...s, printed: true, dialog: null };
     default:
       return s;
   }
