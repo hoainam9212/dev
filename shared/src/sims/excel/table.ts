@@ -1,4 +1,4 @@
-import { isErr, nameToCol, parseRange, type CellValue, type Range } from '../../formula';
+import { isErr, nameToCol, parseRange, shiftFormula, type CellValue, type Range } from '../../formula';
 import {
   cellKey,
   cellText,
@@ -28,9 +28,11 @@ function compareValues(a: CellValue, b: CellValue): number {
   return String(a).localeCompare(String(b), 'vi', { sensitivity: 'base' });
 }
 
-/** Mỗi hàng của vùng: các ô nguyên vẹn (kể cả định dạng) và khoá để so sánh. */
+/** Mỗi hàng của vùng: các ô nguyên vẹn (kể cả định dạng), hàng gốc, và khoá để so sánh. */
 interface Row {
   cells: (Cell | undefined)[];
+  /** Hàng ban đầu, để biết công thức phải dịch đi bao nhiêu khi xếp lại. */
+  row: number;
   key: CellValue;
 }
 
@@ -42,7 +44,7 @@ function readRows(s: WorkbookState, range: Range, byCol: number, from: number): 
     for (let col = range.from.col; col <= range.to.col; col++) {
       cells.push(sheet.cells[cellKey(row, col)]);
     }
-    rows.push({ cells, key: cellValue(s, refName({ row, col: byCol })) });
+    rows.push({ cells, row, key: cellValue(s, refName({ row, col: byCol })) });
   }
   return rows;
 }
@@ -50,11 +52,21 @@ function readRows(s: WorkbookState, range: Range, byCol: number, from: number): 
 function writeRows(sheet: Sheet, range: Range, from: number, rows: Row[]): Sheet {
   const cells = { ...sheet.cells };
   rows.forEach((r, i) => {
+    const dRow = from + i - r.row;
     r.cells.forEach((cell, j) => {
       const k = cellKey(from + i, range.from.col + j);
       // Ô nguồn trống thì ô đích cũng phải trống, nếu không dữ liệu cũ còn sót lại.
-      if (cell) cells[k] = cell;
-      else delete cells[k];
+      if (!cell) {
+        delete cells[k];
+        return;
+      }
+      // Hàng đi đâu thì công thức của nó phải trỏ theo đó: `=C3+E3` ở hàng 3 mà
+      // tụt xuống hàng 5 phải thành `=C5+E5`, nếu không lương của người này ghép
+      // với tên người khác. Excel thật cũng chỉnh địa chỉ khi sắp xếp. Địa chỉ có
+      // `$` (bảng tra, ô tỉ lệ) giữ nguyên — đúng lý do bài học bắt khoá chúng.
+      cells[k] = dRow !== 0 && cell.raw.startsWith('=')
+        ? { ...cell, raw: shiftFormula(cell.raw, dRow, 0) }
+        : cell;
     });
   });
   return { ...sheet, cells };

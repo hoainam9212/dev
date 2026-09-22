@@ -13,7 +13,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 | 5 ChartView + tab Insert | ☑ | (commit này) | 12 test. Hết phần giao diện 4B. `SoonTab` đã xoá (cả sáu tab có nội dung thật). Nhãn dài cắt còn 12 ký tự, tên đầy đủ nằm trong `aria-label` |
 | 6 Bài chương 5 | ☑ | (commit này) | 4 bài, track Excel 16 bài / 5 chương. Đã học thật bài VLOOKUP tới lúc chấm đạt. **5 mục từ điển của chương 6 (sap-xep, loc, bieu-do, bieu-do-cot, bieu-do-tron) đang để `lessonIds: []`** — Task 7 phải điền, vì test bắt lessonIds trỏ tới bài CÓ THẬT |
 | 7 Bài chương 6 | ☑ | (commit này) | 3 bài, track Excel 19 bài / 6 chương. Đã xoá route tạm `/dev/excel`. Đã học thật bài sắp xếp và bài biểu đồ tới lúc chấm đạt |
-| 8 Dự án Bảng lương | ☐ | | |
+| 8 Dự án Bảng lương | ☑ | (commit này) | 3 chặng, track Excel **20 bài / 7 chương** (spec nói 6 chương; ta có 7 vì tách 'Ô nào cố định' riêng). Đã làm thật cả ba chặng bằng ribbon trên trình duyệt |
 | 9 Từ điển + tổng kết + gộp | ☐ | | |
 
 ## Quyết định đã chốt
@@ -35,6 +35,16 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
   vẫn đúng tuyệt đối nên không test nào kêu** — phải ĐỌC mã SVG xuất ra mới thấy. Đã sửa: thanh ngang chừa 104px bên
   trái và neo nhãn căn trái, đường thì nhãn đầu `anchor=start` / cuối `anchor=end`, mọi nhãn cắt còn 12 ký tự.
   Cách kiểm lại: duyệt mọi `<text>` trong SVG, so `getBBox()` với `viewBox` — phải không có cái nào lọt ra ngoài.
+
+## Lỗi thiết kế do bài dự án phơi ra
+
+- **Task 1 sắp xếp KHÔNG dịch địa chỉ tương đối — sai.** Hàng mang `=C3+E3` tụt xuống hàng 5 mà công thức vẫn trỏ
+  hàng 3, nên lương ghép nhầm sang tên người khác. Test cũ của Task 1 lại khẳng định đúng cái hành vi sai đó
+  (`expect(cellRaw(s,'B1')).toBe('=A2*10')`), nên không ai kêu — mãi tới khi chặng 3 của dự án chấm `rangeSorted`
+  mới lộ. Excel thật cũng chỉnh địa chỉ khi sắp xếp. Đã sửa `writeRows` dịch công thức theo độ lệch hàng, và viết lại
+  test cho đúng; thêm test riêng khẳng định địa chỉ có `$` KHÔNG dịch — đúng lý do bài học bắt khoá bảng tra.
+- Bài học: **một test có thể khoá chặt hành vi sai**. Test xanh chỉ chứng minh code làm đúng điều test nói, không
+  chứng minh điều đó đúng.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 

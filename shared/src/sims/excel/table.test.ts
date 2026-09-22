@@ -46,13 +46,22 @@ describe('sắp xếp', () => {
     expect([cellRaw(s, 'A1'), cellRaw(s, 'A2'), cellRaw(s, 'A3')]).toEqual(['1', '5', '']);
   });
 
-  it('công thức trong hàng đi theo hàng, KHÔNG bị dịch địa chỉ', () => {
-    // Sắp xếp là đổi chỗ nội dung, không phải chép công thức sang chỗ khác.
+  it('công thức đi theo hàng và ĐỊA CHỈ DỊCH THEO, để số không ghép nhầm người', () => {
+    // Hàng có A=2 tụt xuống hàng 2, nên `=A1*10` của nó phải thành `=A2*10`.
+    // Nếu không dịch, hàng A=1 sẽ hiện 20 — lương của người này ghép tên người kia.
     let s = excelInitial({ cells: { A1: '2', B1: '=A1*10', A2: '1', B2: '=A2*10' } });
     s = run(s, { type: 'sortRange', range: 'A1:B2', by: 'A', dir: 'asc' });
     expect(cellRaw(s, 'A1')).toBe('1');
-    expect(cellRaw(s, 'B1')).toBe('=A2*10');
-    expect(cellValue(s, 'B1')).toBe(20);
+    expect(cellValue(s, 'B1')).toBe(10);
+    expect(cellValue(s, 'B2')).toBe(20);
+  });
+
+  it('địa chỉ có $ KHÔNG dịch khi sắp xếp — đúng lý do bài học bắt khoá bảng tra', () => {
+    let s = excelInitial({ cells: { E1: '100', A1: '2', B1: '=A1*$E$1', A2: '1', B2: '=A2*$E$1' } });
+    s = run(s, { type: 'sortRange', range: 'A1:B2', by: 'A', dir: 'asc' });
+    expect(cellRaw(s, 'B1')).toBe('=A1*$E$1');
+    expect(cellValue(s, 'B1')).toBe(100);
+    expect(cellValue(s, 'B2')).toBe(200);
   });
 
   it('giữ nguyên định dạng của ô theo hàng', () => {
