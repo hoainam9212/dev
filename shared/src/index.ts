@@ -21,3 +21,5 @@ export type { TreeSpec } from './vfs';
 export * as formula from './formula';
 
 export * as excelSim from './sims/excel';
+
+export * as pptSim from './sims/ppt';

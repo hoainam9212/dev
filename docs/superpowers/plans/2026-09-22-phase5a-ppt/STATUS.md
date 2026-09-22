@@ -8,7 +8,7 @@ Nền: 4B đã lên `master`, lộ trình Excel 20 bài / 7 chương, shared 330
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 mô hình slide + bố cục | ☐ | | |
+| 1 mô hình slide + bố cục | ☑ | (commit này) | 15 test (4 layout + 11 state). Không phải dùng `it.todo`: test `duplicateSlide` và "đổi slide thì bỏ chọn" viết bằng cách **dựng state trực tiếp** thay vì gọi `setText`/`selectEl` của Task 2–3. `applyLayout` giữ **cả `fmt`** của chỗ dành sẵn cũ, không chỉ chữ |
 | 2 đối tượng | ☐ | | |
 | 3 chữ + định dạng + hoàn tác | ☐ | | |
 | 4 grader | ☐ | | |

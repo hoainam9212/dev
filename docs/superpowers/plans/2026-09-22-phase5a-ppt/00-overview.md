@@ -1,6 +1,11 @@
 # Giai đoạn 5A – PowerPoint: lõi và soạn slide (tổng quan)
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans.
+> **Cách thực thi (người dùng đã chốt 2026-09-22): CHẠY THẲNG TRONG PHIÊN, KHÔNG dùng subagent.**
+> Ba task một phiên rồi mở phiên mới (`1–3`, `4–6`, `7–8`, `9–11`). Lý do: các task nối nhau chặt — ở giai đoạn 4B,
+> một lỗi sinh ở task 1 mãi task 8 mới lộ và phải quay lại sửa cả code lẫn test của task 1, việc mà một subagent
+> không có ngữ cảnh để làm. Plan này lại **không chứa mã test nguyên văn** (cố ý, để tiết kiệm token), nên subagent
+> sẽ phải tự thiết kế test — mất luôn phần rẻ. Kiểm tra trên trình duyệt cũng là việc của phiên chính.
+> Đừng gọi `superpowers:subagent-driven-development`.
 > **Cách đọc plan này:** đọc **đúng file này + đúng một file `task-NN-*.md`**. Không đọc các task khác. Đọc `STATUS.md` trước để biết đã làm tới đâu.
 
 **Goal:** Dựng trình mô phỏng PowerPoint tới mức **soạn được một bài trình chiếu**: nhiều slide, bốn bố cục, ba loại đối tượng (hộp chữ / hình khối / ảnh) kéo–thả–đổi kích thước được, định dạng chữ cơ bản, chấm bài bằng 4 loại check, và 6 bài học đầu (chương 1–2). Trang trí (theme), chuyển cảnh, trình chiếu toàn màn hình và 6 bài còn lại + dự án để dành cho **5B**.
