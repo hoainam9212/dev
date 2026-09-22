@@ -145,6 +145,32 @@ body {
     overflow: hidden;
   }
   .ppt-placeholder { color: rgba(0, 0, 0, 0.35); }
+  /* Tay nắm to 10px THẬT trên màn hình: khung cha đã bị scale nên phải chia ngược lại. */
+  .ppt-handle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2px solid var(--color-rose, #FF7A9A);
+    z-index: 2;
+  }
+  .ppt-edit {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 0;
+    outline: 2px solid var(--color-rose, #FF7A9A);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 4px 8px;
+    font: inherit;
+    line-height: 1.25;
+    z-index: 1;
+  }
   .ppt-shape {
     position: absolute;
     inset: 0;
