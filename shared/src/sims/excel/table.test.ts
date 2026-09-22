@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { cellRaw, cellValue, excelInitial, reduceExcel, type ExcelAction, type WorkbookState } from './state';
-import { isSorted } from './table';
+import { filterOptions, hiddenRows, isSorted } from './table';
 
 const run = (s: WorkbookState, ...as: ExcelAction[]) => as.reduce(reduceExcel, s);
 
@@ -84,5 +84,83 @@ describe('isSorted', () => {
 
   it('vùng một hàng thì coi như đã sắp', () => {
     expect(isSorted(table(), 'A2:B2', 'B', 'asc')).toBe(true);
+  });
+});
+
+describe('AutoFilter', () => {
+  /** Bốn nhân viên; cột C là phòng ban, hàng 1 là tiêu đề. */
+  const staff = () => excelInitial({
+    cells: {
+      A1: 'Nhân viên', B1: 'Lương', C1: 'Phòng',
+      A2: 'Nam', B2: '7500000', C2: 'Kế toán',
+      A3: 'Lan', B3: '6200000', C3: 'Kinh doanh',
+      A4: 'Tú', B4: '8100000', C4: 'Kế toán',
+      A5: 'Hà', B5: '5500000', C5: 'Kinh doanh',
+    },
+  });
+  const hidden = (s: WorkbookState) => [...hiddenRows(s)].sort((x, y) => x - y);
+
+  it('bật AutoFilter thì nhớ vùng, chưa ẩn hàng nào', () => {
+    const s = run(staff(), { type: 'enableFilter', range: 'A1:C5' });
+    expect(s.sheets[0]!.filter).toBeTruthy();
+    expect(hidden(s)).toEqual([]);
+  });
+
+  it('liệt kê giá trị của một cột, không trùng lặp, theo thứ tự xuất hiện', () => {
+    const s = run(staff(), { type: 'enableFilter', range: 'A1:C5' });
+    expect(filterOptions(s, 'C')).toEqual(['Kế toán', 'Kinh doanh']);
+  });
+
+  it('chọn một giá trị thì hàng khác bị ẩn, tiêu đề vẫn hiện', () => {
+    const s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C5' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] });
+    // Hàng 0 là tiêu đề; hàng 1 và 3 là Kế toán nên còn lại bị ẩn.
+    expect(hidden(s)).toEqual([2, 4]);
+  });
+
+  it('lọc KHÔNG xoá dữ liệu, và SUM vẫn cộng cả hàng đang ẩn', () => {
+    let s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C5' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] });
+    expect(cellRaw(s, 'B3')).toBe('6200000');
+    s = reduceExcel(s, { type: 'setCell', cell: 'B7', raw: '=SUM(B2:B5)' });
+    expect(cellValue(s, 'B7')).toBe(27300000);
+  });
+
+  it('lọc hai cột thì hàng phải thoả cả hai', () => {
+    const s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C5' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] },
+      { type: 'setFilterValues', col: 'A', values: ['Tú'] });
+    expect(hidden(s)).toEqual([1, 2, 4]);
+  });
+
+  it('chọn lại danh sách rỗng là bỏ lọc cột đó', () => {
+    const s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C5' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] },
+      { type: 'setFilterValues', col: 'C', values: [] });
+    expect(hidden(s)).toEqual([]);
+  });
+
+  it('tắt AutoFilter thì mọi hàng hiện lại', () => {
+    const s = run(staff(),
+      { type: 'enableFilter', range: 'A1:C5' },
+      { type: 'setFilterValues', col: 'C', values: ['Kế toán'] },
+      { type: 'disableFilter' });
+    expect(s.sheets[0]!.filter ?? null).toBeNull();
+    expect(hidden(s)).toEqual([]);
+  });
+
+  it('chưa bật lọc thì không ẩn gì và không có lựa chọn nào', () => {
+    const s = staff();
+    expect(hidden(s)).toEqual([]);
+    expect(filterOptions(s, 'C')).toEqual([]);
+  });
+
+  it('bật lọc là một bước hoàn tác', () => {
+    const s = run(staff(), { type: 'enableFilter', range: 'A1:C5' }, { type: 'undo' });
+    expect(s.sheets[0]!.filter ?? null).toBeNull();
   });
 });

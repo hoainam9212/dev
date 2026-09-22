@@ -1,6 +1,7 @@
 import { isErr, nameToCol, parseRange, type CellValue, type Range } from '../../formula';
 import {
   cellKey,
+  cellText,
   cellValue,
   refName,
   withEdit,
@@ -100,9 +101,82 @@ export function isSorted(s: WorkbookState, range: string, by: string, dir: 'asc'
   return true;
 }
 
+// ——— AutoFilter ———
+
+/**
+ * Lọc **chỉ ẩn hàng khi vẽ**, không xoá dữ liệu: `SUM` vẫn cộng cả hàng đang ẩn,
+ * đúng như Excel với hàm thường (và đó là một điểm dạy học ở bài chương 6).
+ */
+function filterOf(s: WorkbookState) {
+  return s.sheets[s.active]!.filter ?? null;
+}
+
+/** Chữ hiển thị của một ô, đã chuẩn hoá để so sánh. */
+function keyOf(s: WorkbookState, row: number, col: number): string {
+  return cellText(s, refName({ row, col })).trim();
+}
+
+/** Giá trị đang có ở một cột của vùng lọc, không trùng lặp, theo thứ tự xuất hiện. */
+export function filterOptions(s: WorkbookState, col: string): string[] {
+  const f = filterOf(s);
+  if (!f) return [];
+  const c = nameToCol(col);
+  if (c < f.range.from.col || c > f.range.to.col) return [];
+  const seen = new Set<string>();
+  const out: string[] = [];
+  // Bỏ hàng tiêu đề (hàng đầu của vùng).
+  for (let row = f.range.from.row + 1; row <= f.range.to.row; row++) {
+    const v = keyOf(s, row, c);
+    if (v === '' || seen.has(v.toLowerCase())) continue;
+    seen.add(v.toLowerCase());
+    out.push(v);
+  }
+  return out;
+}
+
+/** Hàng (đếm từ 0) bị ẩn vì không thoả điều kiện lọc. Lưới dùng cái này để bỏ qua hàng. */
+export function hiddenRows(s: WorkbookState): ReadonlySet<number> {
+  const hidden = new Set<number>();
+  const f = filterOf(s);
+  if (!f) return hidden;
+  const conds = Object.entries(f.conditions).filter(([, vs]) => vs.length > 0);
+  if (conds.length === 0) return hidden;
+  for (let row = f.range.from.row + 1; row <= f.range.to.row; row++) {
+    // Một hàng phải thoả MỌI cột đang lọc mới được hiện.
+    const ok = conds.every(([col, values]) => {
+      const here = keyOf(s, row, Number(col)).toLowerCase();
+      return values.some((v) => v.trim().toLowerCase() === here);
+    });
+    if (!ok) hidden.add(row);
+  }
+  return hidden;
+}
+
+function setFilterValues(s: WorkbookState, col: string, values: string[]): WorkbookState {
+  const f = filterOf(s);
+  if (!f) return s;
+  const c = nameToCol(col);
+  if (c < f.range.from.col || c > f.range.to.col) return s;
+  return withEdit(s, (sheet) => {
+    const conditions = { ...(sheet.filter?.conditions ?? {}) };
+    if (values.length === 0) delete conditions[c];
+    else conditions[c] = values;
+    return { ...sheet, filter: { range: f.range, conditions } };
+  });
+}
+
 export function reduceTable(s: WorkbookState, a: ExcelAction): WorkbookState | null {
   switch (a.type) {
     case 'sortRange': return sortRange(s, a);
+    case 'enableFilter': {
+      const range = parseRange(a.range);
+      if (!range) return s;
+      return withEdit(s, (sheet) => ({ ...sheet, filter: { range, conditions: {} } }));
+    }
+    case 'disableFilter':
+      return withEdit(s, (sheet) => ({ ...sheet, filter: null }));
+    case 'setFilterValues':
+      return setFilterValues(s, a.col, a.values);
     default: return null;
   }
 }

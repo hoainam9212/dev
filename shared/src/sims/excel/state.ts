@@ -83,6 +83,9 @@ export type ExcelAction =
   | { type: 'save'; name: string; at: number }
   | { type: 'print' }
   | { type: 'sortRange'; range: string; by: string; dir: 'asc' | 'desc'; header?: boolean }
+  | { type: 'enableFilter'; range: string }
+  | { type: 'disableFilter' }
+  | { type: 'setFilterValues'; col: string; values: string[] }
   | { type: 'openDialog'; dialog: ExcelDialog }
   | { type: 'undo' };
 

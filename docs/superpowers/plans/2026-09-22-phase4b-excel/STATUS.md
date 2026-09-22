@@ -7,7 +7,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
 | 1 sortRange | ☑ | (commit này) | 11 test. Sắp xếp đổi chỗ **cả object `Cell`** nên định dạng đi theo hàng; ô nguồn trống thì `delete` ô đích, kẻo dữ liệu cũ sót lại. `isSorted` dùng chung cho grader Task 3 |
-| 2 AutoFilter | ☐ | | |
+| 2 AutoFilter | ☑ | (commit này) | 9 test. `conditions` khoá theo **chỉ số cột**, giá trị `[]` là bỏ lọc cột đó. `filterOptions`/`hiddenRows` bỏ hàng tiêu đề (hàng đầu của vùng). So sánh theo chữ hiển thị đã trim, không phân biệt hoa thường |
 | 3 chart + grader | ☐ | | |
 | 4 tab Data | ☐ | | |
 | 5 ChartView + tab Insert | ☐ | | |
