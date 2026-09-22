@@ -35,9 +35,9 @@ describe('grade registry', () => {
     expect(grade('mouse', { n: 2 }, [{ min: 2 }]).pass).toBe(true);
   });
   it('throws for sims without a grader', () => {
-    // 'ppt' là sim chưa làm; trước đây test này dùng 'excel', nhưng giai đoạn 4A
-    // đã đăng ký grader cho Excel nên phải đổi sang sim khác.
-    expect(() => grade('ppt', {}, [{}])).toThrow(/ppt/);
+    // 'aichat' là sim chưa làm; test này lần lượt đổi từ 'excel' (4A) sang 'ppt'
+    // (5A) mỗi khi sim đó có grader thật.
+    expect(() => grade('aichat', {}, [{}])).toThrow(/aichat/);
   });
   it('không sập khi grader trả về undefined vì gặp loại check lạ', () => {
     // Xảy ra thật: bản `shared` cũ còn trong bộ nhớ đệm của Vite không biết loại

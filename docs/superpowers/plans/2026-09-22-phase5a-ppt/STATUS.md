@@ -11,7 +11,7 @@ Nền: 4B đã lên `master`, lộ trình Excel 20 bài / 7 chương, shared 330
 | 1 mô hình slide + bố cục | ☑ | (commit này) | 15 test (4 layout + 11 state). Không phải dùng `it.todo`: test `duplicateSlide` và "đổi slide thì bỏ chọn" viết bằng cách **dựng state trực tiếp** thay vì gọi `setText`/`selectEl` của Task 2–3. `applyLayout` giữ **cả `fmt`** của chỗ dành sẵn cũ, không chỉ chữ |
 | 2 đối tượng | ☑ | (commit này) | 18 test. **`pptInitial` đặt `nextId = nextId + số slide`** để id slide (`s<n>`) không đụng id đối tượng sau này ⇒ đối tượng đầu tiên là `e2` chứ không phải `e1`: test **không được hardcode id**, phải lấy từ `slideOf(s).els`. Mảng action literal trong test phải khai báo `PptAction[]`, nếu không `reduce` suy kiểu lỏng và typecheck đỏ |
 | 3 chữ + định dạng + hoàn tác | ☑ | (commit này) | 15 test. Hết phần lõi state của 5A (shared 411 test). **`startEditEl` là chỗ chụp bậc hoàn tác cho CẢ lần sửa** (`withSlides(s, s.slides, …)`); `setText`/`cancelEdit` gọi `withEls(..., track=false)` nên gõ từng ký tự không sinh bậc mới. Undo sau một lần sửa trả chữ về đúng nguyên văn trước lúc bắt đầu sửa |
-| 4 grader | ☐ | | |
+| 4 grader | ☑ | (commit này) | 12 test. Phải sửa `grading.test.ts`: case "sim chưa có grader" đang dùng `'ppt'`, đổi sang `'aichat'`. Test **không hardcode id** — lấy id chỗ dành sẵn qua `role === 'title'`, id đối tượng vừa chèn qua phần tử cuối `slideOf(s).els`. Shared xong phần 5A: 423 test |
 | 5 vỏ sim + thumbnail | ☐ | | |
 | 6 kéo–thả + tay nắm | ☐ | | |
 | 7 tab Home | ☐ | | |
