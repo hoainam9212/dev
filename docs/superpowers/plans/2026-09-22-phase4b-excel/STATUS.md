@@ -10,7 +10,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 | 2 AutoFilter | ☑ | (commit này) | 9 test. `conditions` khoá theo **chỉ số cột**, giá trị `[]` là bỏ lọc cột đó. `filterOptions`/`hiddenRows` bỏ hàng tiêu đề (hàng đầu của vùng). So sánh theo chữ hiển thị đã trim, không phân biệt hoa thường |
 | 3 chart + grader | ☑ | (commit này) | 12 test. Hết phần `shared` của 4B. `chartData` vùng một cột thì lấy địa chỉ ô làm nhãn; ô chữ/ô lỗi coi là 0. Check dùng `chartType`, không phải `type` |
 | 4 tab Data | ☑ | (commit này) | 11 test. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 7 PHẢI xoá.** Đã thử thật: sắp A→Z (tên đi theo lương), lọc cột C (số hàng nhảy 1,4,5), tắt lọc |
-| 5 ChartView + tab Insert | ☐ | | |
+| 5 ChartView + tab Insert | ☑ | (commit này) | 12 test. Hết phần giao diện 4B. `SoonTab` đã xoá (cả sáu tab có nội dung thật). Nhãn dài cắt còn 12 ký tự, tên đầy đủ nằm trong `aria-label` |
 | 6 Bài chương 5 | ☐ | | |
 | 7 Bài chương 6 | ☐ | | |
 | 8 Dự án Bảng lương | ☐ | | |
@@ -28,8 +28,13 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
   theo chiều dọc** — menu thả xuống (110px) bị cụt ở đáy khung (126px). jsdom không có layout nên 11 test vẫn xanh.
   Đã sửa bằng cách đưa `FilterMenu` ra **ngoài** khung cuộn (một khối nằm dưới hàng nút), không dùng `absolute` nữa.
   **Task 5 để ý:** `RibbonInsert` cũng nằm trong khung cuộn đó — đừng đặt thứ gì thả xuống bên trong.
-- **Test cũ đổ vỡ khi tab có nội dung thật:** `Ribbon.test.tsx` dùng tab **Data** làm ví dụ "tab chưa có gì". Đã đổi
-  sang **Insert**, và Task 5 (làm Insert) sẽ phải đổi lần nữa — lúc đó dùng **View**.
+- **Test cũ đổ vỡ khi tab có nội dung thật:** `Ribbon.test.tsx` dùng tab **Data** làm ví dụ "tab chưa có gì" → Task 4
+  đổi sang **Insert** → Task 5 lại đổ vỡ, giờ đổi sang **View** và xoá hẳn `SoonTab` vì cả sáu tab đã có nội dung.
+- **Task 5: nhãn tiếng Việt tràn ra ngoài khung SVG.** Thanh ngang vẽ nhãn từ `x=36` hướng trái nên "Nguyễn Văn Nam"
+  (~70px) chạy tới `x≈-34`; biểu đồ đường có điểm cuối sát mép phải, nhãn căn giữa tràn ra ~35px. **Số đo tỉ lệ cột
+  vẫn đúng tuyệt đối nên không test nào kêu** — phải ĐỌC mã SVG xuất ra mới thấy. Đã sửa: thanh ngang chừa 104px bên
+  trái và neo nhãn căn trái, đường thì nhãn đầu `anchor=start` / cuối `anchor=end`, mọi nhãn cắt còn 12 ký tự.
+  Cách kiểm lại: duyệt mọi `<text>` trong SVG, so `getBBox()` với `viewBox` — phải không có cái nào lọt ra ngoài.
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 

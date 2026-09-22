@@ -40,12 +40,3 @@ export function RibbonFormulas({ dispatch }: Props) {
     </div>
   );
 }
-
-/** Ghi chú cho tab chưa có nội dung, để người học không tưởng là app hỏng. */
-export function SoonTab({ what }: { what: string }) {
-  return (
-    <p className="px-3 py-2 text-sm text-muted">
-      {what} sẽ có ở phần sau của lộ trình Excel. Bạn cứ học tiếp các bài hiện có nhé!
-    </p>
-  );
-}

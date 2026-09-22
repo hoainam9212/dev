@@ -40,12 +40,17 @@ describe('Thanh tab ribbon', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'save' });
   });
 
-  it('tab chưa có nội dung thì nói rõ là sẽ có sau, không để trống trơn', () => {
-    // Trước đây test này dùng tab Data; Task 4 của 4B đã cho Data nội dung thật,
-    // nên ví dụ "chưa có gì" giờ là Insert (biểu đồ, làm ở Task 5).
+  it('không tab nào để trống trơn — View tự giải thích vì sao nó ít nút', () => {
+    // Hết 4B thì cả sáu tab đều có nội dung thật, nên `SoonTab` đã bị xoá.
+    show();
+    fireEvent.click(screen.getByRole('tab', { name: 'View' }));
+    expect(screen.getByText(/chưa có gì để đổi/i)).toBeInTheDocument();
+  });
+
+  it('tab Insert chèn được biểu đồ', () => {
     show();
     fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
-    expect(screen.getByText(/sẽ có ở phần sau/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /chèn biểu đồ/i })).toBeInTheDocument();
   });
 
   it('tab Data có nút sắp xếp và lọc thật', () => {

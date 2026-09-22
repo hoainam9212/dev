@@ -6,6 +6,7 @@ import { CellHint, FormulaBar } from './FormulaBar';
 import { ExcelDialogs, Ribbon } from './Ribbon';
 import { SheetTabs } from './SheetTabs';
 import { FnTip } from './FnTip';
+import { ChartView } from './ChartView';
 
 /**
  * Bảng tính mô phỏng. Trạng thái do `useReducer(reduceExcel, initial)` giữ; lưới
@@ -44,6 +45,14 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
       <Grid state={state} dispatch={dispatch} gridRef={grid} />
       <SheetTabs state={state} dispatch={dispatch} />
       <CellHint state={state} />
+      {excelSim.chartsOf(state).map((chart) => (
+        <ChartView
+          key={chart.id}
+          state={state}
+          chart={chart}
+          onRemove={() => dispatch({ type: 'removeChart', id: chart.id })}
+        />
+      ))}
       <ExcelDialogs state={state} dispatch={dispatch} now={Date.now()} />
     </div>
   );
