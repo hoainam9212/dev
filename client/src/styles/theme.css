@@ -107,6 +107,87 @@ body {
     align-items: center;
     justify-content: center;
   }
+
+  /* Trình chiếu: khung slide 960x540 co giãn bằng container query. Khung cha
+     phải có `container-type` và `aspect-ratio`, nếu không `100cqw` vô nghĩa và
+     slide đè lên thứ nằm dưới. */
+  .ppt-stage {
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .ppt-canvas {
+    position: relative;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / 960px));
+    background: var(--app-surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+  .ppt-el {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    line-height: 1.25;
+  }
+  /* Chỗ nội dung chảy chữ từ trên xuống như PowerPoint thật; tiêu đề thì căn giữa ô. */
+  .ppt-el[data-role="body"], .ppt-el[data-role="body2"] { align-items: flex-start; }
+  .ppt-el.is-selected {
+    outline: 2px solid var(--color-rose, #FF7A9A);
+    outline-offset: 2px;
+  }
+  .ppt-text, .ppt-placeholder {
+    display: block;
+    width: 100%;
+    white-space: pre-wrap;
+    overflow: hidden;
+  }
+  .ppt-placeholder { color: rgba(0, 0, 0, 0.35); }
+  .ppt-shape {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+  }
+  .ppt-shape[data-shape="ellipse"] { border-radius: 50%; }
+  .ppt-shape[data-shape="arrow"] {
+    border-radius: 0;
+    clip-path: polygon(0% 30%, 60% 30%, 60% 5%, 100% 50%, 60% 95%, 60% 70%, 0% 70%);
+  }
+  .ppt-shape[data-shape="star"] {
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .ppt-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .ppt-thumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 2px;
+    background: transparent;
+  }
+  .ppt-thumb.is-active { outline: 2px solid var(--color-rose, #FF7A9A); }
+  .ppt-thumb-no { font-size: 0.75rem; color: var(--color-muted, #6b7280); width: 1.1em; }
+  .ppt-thumb-stage {
+    container-type: inline-size;
+    display: block;
+    flex: 1;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    background: var(--app-surface);
+  }
+  .ppt-thumb-canvas {
+    position: relative;
+    display: block;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / 960px));
+    pointer-events: none;
+  }
 }
 
 @keyframes shake {

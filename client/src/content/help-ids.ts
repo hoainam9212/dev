@@ -95,4 +95,6 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'excel.fnLookup': { label: 'Hàm tra cứu', vi: 'VLOOKUP — tra một giá trị trong bảng rồi lấy về cột bên phải.' },
   'excel.fnText': { label: 'Hàm chữ', vi: 'LEFT, RIGHT, MID, LEN, UPPER, TRIM, CONCAT — xử lý chuỗi chữ.' },
   'excel.fnMisc': { label: 'Hàm khác', vi: 'ROUND làm tròn, ABS bỏ dấu trừ, TODAY lấy ngày hôm nay.' },
+  'ppt.canvas': { label: 'Khung slide', vi: 'Mọi thứ bạn thêm sẽ nằm trong khung 16:9 này, đúng như khi chiếu lên máy chiếu.' },
+  'ppt.newSlide': { label: 'New Slide — Slide mới', vi: 'Thêm một slide ngay sau slide đang mở.' },
 };
