@@ -135,13 +135,13 @@ Expected: PASS, 4 test.
 
 - [ ] **Bước 6: Viết test cho các hành động slide (FAIL)**
 
-`shared/src/sims/ppt/state.test.ts`:
+`shared/src/sims/ppt/state.test.ts` — bản đã ship (đã chạy thật, 11 test xanh):
 
 ```ts
 import { describe, expect, it } from 'vitest';
-import { pptInitial, reducePpt, slideOf } from './state';
+import { pptInitial, reducePpt, slideOf, type PptAction } from './state';
 
-const run = (...actions: Parameters<typeof reducePpt>[1][]) => actions.reduce(reducePpt, pptInitial());
+const run = (...actions: PptAction[]) => actions.reduce(reducePpt, pptInitial());
 
 describe('reducePpt – slide', () => {
   it('bài mới có đúng một slide bố cục title', () => {
@@ -162,12 +162,24 @@ describe('reducePpt – slide', () => {
   });
 
   it('duplicateSlide chép nội dung nhưng cấp id mới cho slide và đối tượng', () => {
-    const s0 = run({ type: 'setText', text: 'Mochi' });
-    const s = reducePpt({ ...s0, editing: null }, { type: 'duplicateSlide' });
+    const s0 = pptInitial();
+    const typed = {
+      ...s0,
+      slides: s0.slides.map((sl) => ({ ...sl, els: sl.els.map((e) => ({ ...e, text: 'Mochi' })) })),
+    };
+    const s = reducePpt(typed, { type: 'duplicateSlide' });
     expect(s.slides).toHaveLength(2);
     expect(s.slides[1]?.id).not.toBe(s.slides[0]?.id);
     expect(s.slides[1]?.els[0]?.id).not.toBe(s.slides[0]?.els[0]?.id);
-    expect(s.slides[1]?.els[0]?.text).toBe(s.slides[0]?.els[0]?.text);
+    expect(s.slides[1]?.els[0]?.text).toBe('Mochi');
+    expect(s.active).toBe(1);
+  });
+
+  it('đổi slide thì bỏ chọn và bỏ đang-sửa', () => {
+    const s0 = reducePpt(pptInitial(), { type: 'addSlide' });
+    const busy = { ...s0, sel: 'e1', editing: 'e1' };
+    expect(reducePpt(busy, { type: 'gotoSlide', index: 0 })).toMatchObject({ sel: null, editing: null });
+    expect(reducePpt(busy, { type: 'setLayout', layout: 'blank' })).toMatchObject({ sel: null, editing: null });
   });
 
   it('deleteSlide slide cuối cùng là phép không', () => {
@@ -187,26 +199,27 @@ describe('reducePpt – slide', () => {
     expect(s.active).toBe(0);
   });
 
-  it('gotoSlide bỏ chọn và bỏ đang-sửa', () => {
-    const s0 = run({ type: 'addSlide' });
-    const s1 = reducePpt(s0, { type: 'selectEl', id: slideOf(s0).els[0]?.id ?? null });
-    const s = reducePpt({ ...s1, editing: 'e1' }, { type: 'gotoSlide', index: 0 });
-    expect(s.sel).toBeNull();
-    expect(s.editing).toBeNull();
+  it('gotoSlide ra ngoài danh sách là phép không', () => {
+    const s0 = pptInitial();
+    expect(reducePpt(s0, { type: 'gotoSlide', index: 3 })).toBe(s0);
   });
 
   it('setLayout đổi bố cục của slide đang mở', () => {
     const s = run({ type: 'setLayout', layout: 'twoContent' });
     expect(slideOf(s).els.map((e) => e.role)).toEqual(['title', 'body', 'body2']);
   });
+
+  it('mọi slide và đối tượng đều có id riêng, không trùng nhau', () => {
+    const s = run({ type: 'addSlide' }, { type: 'addSlide', layout: 'twoContent' });
+    const ids = [...s.slides.map((x) => x.id), ...s.slides.flatMap((x) => x.els.map((e) => e.id))];
+    expect(new Set(ids).size).toBe(ids.length);
+  });
 });
 ```
 
-Lưu ý: test `duplicateSlide` và `gotoSlide` dùng `setText`/`selectEl` của Task 2–3;
-ở task này chỉ cần các nhánh ấy **tồn tại và trả về state không đổi** là đủ để test
-chạy — hãy để `default: return state` trong `reducePpt`, Task 2 và 3 sẽ điền.
-Nếu điều đó làm hai test trên đỏ, **đánh dấu `it.todo` cho đúng hai test ấy** và ghi
-vào STATUS rằng Task 3 phải bật lại. Không sửa nội dung test.
+Hai test `duplicateSlide` và "đổi slide thì bỏ chọn" **không** gọi `setText`/`selectEl` của Task 2–3 mà dựng thẳng state — nhờ vậy Task 1 không phải đánh `it.todo` cho test nào.
+
+**Đừng hardcode id đối tượng trong test.** `pptInitial` đặt `nextId = nextId + số slide` để id slide (`s<n>`) không đụng id đối tượng, nên đối tượng đầu tiên là `e2` chứ không phải `e1`. Luôn lấy id từ `slideOf(s).els`.
 
 - [ ] **Bước 7: Chạy, xác nhận FAIL**
 
@@ -329,5 +342,4 @@ git add shared/src/sims/ppt shared/src/index.ts docs/superpowers
 git commit -m "feat(ppt): mô hình slide, bố cục và hành động slide" -m "Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
 ```
 
-Cập nhật dòng Task 1 của `STATUS.md` **trong cùng commit này**: số test, và có phải
-đánh `it.todo` hai test nào không.
+Cập nhật dòng Task 1 của `STATUS.md` **trong cùng commit này**: số test và những gì phát hiện được.

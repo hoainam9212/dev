@@ -4,7 +4,6 @@
 - Create: `shared/src/sims/ppt/text.ts`, `shared/src/sims/ppt/text.test.ts`
 - Modify: `shared/src/sims/ppt/state.ts` (thêm nhánh action)
 - Modify: `shared/src/sims/ppt/index.ts`
-- Modify: `shared/src/sims/ppt/state.test.ts` (bật lại hai test `it.todo` của Task 1, nếu có)
 
 **Interfaces:**
 - Consumes (Task 1–2): `PptState`, `PptAction`, `El`, `slideOf`, `elOf`, hàm nội bộ `withEls`, `withSlides`.
@@ -19,24 +18,31 @@ nhất và test nội dung phát lại được mà không cần mô phỏng ph�
 
 - [ ] **Bước 1: Viết test (FAIL)**
 
-`shared/src/sims/ppt/text.test.ts`:
+`shared/src/sims/ppt/text.test.ts` — bản đã ship (đã chạy thật, 15 test xanh):
 
 ```ts
 import { describe, expect, it } from 'vitest';
 import { pptInitial, reducePpt, slideOf, type PptAction, type PptState } from './state';
 
-const run = (...a: PptAction[]): PptState => a.reduce(reducePpt, pptInitial());
+/** id của chỗ dành sẵn tiêu đề trên slide đầu — không hardcode, vì `nextId` chừa chỗ cho id slide. */
+const titleId = (s: PptState) => slideOf(s).els.find((e) => e.role === 'title')!.id;
 const title = (s: PptState) => slideOf(s).els.find((e) => e.role === 'title');
+
+/** Chuỗi action dựng từ state ban đầu; `make` nhận id tiêu đề để khỏi đoán. */
+function run(make: (id: string) => PptAction[]): PptState {
+  const s0 = pptInitial();
+  return make(titleId(s0)).reduce(reducePpt, s0);
+}
 
 describe('reducePpt – chữ', () => {
   it('startEditEl chọn luôn đối tượng đó và bật chế độ sửa', () => {
-    const s = run({ type: 'startEditEl', id: 'e1' });
-    expect(s.editing).toBe('e1');
-    expect(s.sel).toBe('e1');
+    const s = run((id) => [{ type: 'startEditEl', id }]);
+    expect(s.editing).toBe(titleId(s));
+    expect(s.sel).toBe(titleId(s));
   });
 
   it('setText ghi thẳng vào đối tượng đang sửa', () => {
-    const s = run({ type: 'startEditEl', id: 'e1' }, { type: 'setText', text: 'Xin chào, tôi là Mochi' });
+    const s = run((id) => [{ type: 'startEditEl', id }, { type: 'setText', text: 'Xin chào, tôi là Mochi' }]);
     expect(title(s)?.text).toBe('Xin chào, tôi là Mochi');
   });
 
@@ -46,25 +52,50 @@ describe('reducePpt – chữ', () => {
   });
 
   it('commitEdit tắt chế độ sửa nhưng giữ chữ và giữ đối tượng đang chọn', () => {
-    const s = run({ type: 'startEditEl', id: 'e1' }, { type: 'setText', text: 'Mochi' }, { type: 'commitEdit' });
+    const s = run((id) => [{ type: 'startEditEl', id }, { type: 'setText', text: 'Mochi' }, { type: 'commitEdit' }]);
     expect(s.editing).toBeNull();
-    expect(s.sel).toBe('e1');
+    expect(s.sel).toBe(titleId(s));
     expect(title(s)?.text).toBe('Mochi');
   });
 
   it('cancelEdit trả chữ về như trước khi bắt đầu sửa', () => {
-    const s = run(
-      { type: 'startEditEl', id: 'e1' }, { type: 'setText', text: 'Bản tốt' }, { type: 'commitEdit' },
-      { type: 'startEditEl', id: 'e1' }, { type: 'setText', text: 'Gõ nhầm' }, { type: 'cancelEdit' },
-    );
+    const s = run((id) => [
+      { type: 'startEditEl', id },
+      { type: 'setText', text: 'Bản tốt' },
+      { type: 'commitEdit' },
+      { type: 'startEditEl', id },
+      { type: 'setText', text: 'Gõ nhầm' },
+      { type: 'cancelEdit' },
+    ]);
     expect(title(s)?.text).toBe('Bản tốt');
     expect(s.editing).toBeNull();
+  });
+
+  it('gõ từng chữ không làm đầy lịch sử hoàn tác', () => {
+    const s = run((id) => [
+      { type: 'startEditEl', id },
+      { type: 'setText', text: 'M' },
+      { type: 'setText', text: 'Mo' },
+      { type: 'setText', text: 'Moc' },
+    ]);
+    expect(s.past.length).toBeLessThanOrEqual(1);
+  });
+
+  it('hoàn tác sau khi sửa chữ trả về nguyên văn trước lúc sửa, không lùi từng ký tự', () => {
+    const s = run((id) => [
+      { type: 'startEditEl', id },
+      { type: 'setText', text: 'Một' },
+      { type: 'setText', text: 'Một hai' },
+      { type: 'commitEdit' },
+      { type: 'undo' },
+    ]);
+    expect(title(s)?.text).toBe('');
   });
 });
 
 describe('reducePpt – định dạng', () => {
   it('setFmt gộp vào định dạng cũ, không xoá trường khác', () => {
-    const s = run({ type: 'selectEl', id: 'e1' }, { type: 'setFmt', fmt: { color: '#D2691E' } });
+    const s = run((id) => [{ type: 'selectEl', id }, { type: 'setFmt', fmt: { color: '#D2691E' } }]);
     expect(title(s)?.fmt).toMatchObject({ size: 40, bold: true, color: '#D2691E' });
   });
 
@@ -76,7 +107,7 @@ describe('reducePpt – định dạng', () => {
 
 describe('reducePpt – hoàn tác, Lưu, In', () => {
   it('undo trả lại slide trước một bước', () => {
-    const s = run({ type: 'addSlide' }, { type: 'undo' });
+    const s = run(() => [{ type: 'addSlide' }, { type: 'undo' }]);
     expect(s.slides).toHaveLength(1);
   });
 
@@ -86,18 +117,26 @@ describe('reducePpt – hoàn tác, Lưu, In', () => {
   });
 
   it('undo bỏ chọn, vì đối tượng đang chọn có thể vừa bị hoàn tác mất', () => {
-    const s = run({ type: 'addText', x: 100, y: 300, w: 320, h: 80 }, { type: 'undo' });
+    const s = run(() => [{ type: 'addText', x: 100, y: 300, w: 320, h: 80 }, { type: 'undo' }]);
     expect(s.sel).toBeNull();
   });
 
+  it('undo lùi cả slide đang mở về trong khoảng hợp lệ', () => {
+    const s = run(() => [{ type: 'addSlide' }, { type: 'undo' }]);
+    expect(s.active).toBe(0);
+  });
+
   it('save ghi lại tên và thời điểm do action đưa vào, đóng hộp thoại', () => {
-    const s = run({ type: 'openDialog', dialog: 'save' }, { type: 'save', name: 'Gioi thieu.pptx', at: 1700000000000 });
+    const s = run(() => [
+      { type: 'openDialog', dialog: 'save' },
+      { type: 'save', name: 'Gioi thieu.pptx', at: 1700000000000 },
+    ]);
     expect(s.saved).toEqual({ name: 'Gioi thieu.pptx', at: 1700000000000 });
     expect(s.dialog).toBeNull();
   });
 
   it('print chỉ ghi lại là đã bấm', () => {
-    expect(run({ type: 'print' }).printed).toBe(true);
+    expect(run(() => [{ type: 'print' }]).printed).toBe(true);
   });
 });
 ```
@@ -140,12 +179,13 @@ khai báo và khởi tạo `null` từ Task 1; task này là chỗ đầu tiên 
     case 'startEditEl': {
       const el = slideOf(s).els.find((e) => e.id === a.id);
       if (!el) return s;
-      return { ...s, sel: el.id, editing: el.id, editBackup: el.text ?? '' };
+      // Chụp một bậc hoàn tác cho CẢ lần sửa; `setText` sau đó không chụp thêm nữa.
+      return withSlides(s, s.slides, { sel: el.id, editing: el.id, editBackup: el.text ?? '' });
     }
     case 'setText': {
       if (!s.editing) return s;
       const id = s.editing;
-      return withEls(s, slideOf(s).els.map((e) => (e.id === id ? { ...e, text: a.text } : e)));
+      return withEls(s, slideOf(s).els.map((e) => (e.id === id ? { ...e, text: a.text } : e)), undefined, false);
     }
     case 'commitEdit':
       return s.editing ? { ...s, editing: null, editBackup: null } : s;
@@ -153,7 +193,7 @@ khai báo và khởi tạo `null` từ Task 1; task này là chỗ đầu tiên 
       if (!s.editing) return s;
       const id = s.editing;
       const text = s.editBackup ?? '';
-      return withEls(s, slideOf(s).els.map((e) => (e.id === id ? { ...e, text } : e)), { editing: null, editBackup: null });
+      return withEls(s, slideOf(s).els.map((e) => (e.id === id ? { ...e, text } : e)), { editing: null, editBackup: null }, false);
     }
     case 'setFmt': {
       const el = elOf(s);
@@ -178,24 +218,23 @@ khai báo và khởi tạo `null` từ Task 1; task này là chỗ đầu tiên 
       return { ...s, printed: true, dialog: null };
 ```
 
-**Cẩn thận với `withEls` và hoàn tác:** `setText` gọi `withEls` nên mỗi phím gõ sẽ
-đẩy một mục vào `past` — hoàn tác sẽ lùi từng ký tự một, rất khó chịu. Sửa bằng cách
-cho `withEls` nhận cờ `track = true`; `setText` gọi với `track: false` (giữ nguyên
-`past`), `commitEdit` không cần ghi vì `startEditEl` đã ghi một mục. Viết đúng một
-test cho điều này, thêm vào `text.test.ts`:
+**Bậc hoàn tác nằm ở `startEditEl`, không ở `setText`.** Nếu mỗi `setText` đẩy một mục vào
+`past` thì Undo sẽ lùi từng ký tự một. Vì vậy `withEls` nhận thêm tham số thứ tư `track = true`;
+`setText` và `cancelEdit` gọi với `false`, còn `startEditEl` chụp một bậc cho cả lần sửa bằng
+`withSlides(s, s.slides, …)`. Thiếu phần `startEditEl` này thì Undo sau khi sửa chữ **không trả lại
+được chữ cũ** — test "hoàn tác sau khi sửa chữ trả về nguyên văn trước lúc sửa" canh điều đó:
 
 ```ts
-  it('gõ từng chữ không làm đầy lịch sử hoàn tác', () => {
-    const s = run({ type: 'startEditEl', id: 'e1' }, { type: 'setText', text: 'M' }, { type: 'setText', text: 'Mo' }, { type: 'setText', text: 'Moc' });
-    expect(s.past.length).toBeLessThanOrEqual(1);
-  });
+function withEls(s: PptState, els: El[], extra?: Partial<PptState>, track = true): PptState {
+  const slides = s.slides.map((x, i) => (i === s.active ? { ...x, els } : x));
+  return track ? withSlides(s, slides, extra) : { ...s, slides, ...extra };
+}
 ```
 
 - [ ] **Bước 5: Chạy, xác nhận PASS**
 
 Run: `npm test -w shared -- ppt`
-Expected: PASS. Nếu Task 1 có đánh `it.todo` hai test (`duplicateSlide`, `gotoSlide`),
-**bỏ `.todo` ngay bây giờ** và chạy lại — chúng phải xanh.
+Expected: PASS — 15 test mới, cộng toàn bộ test của Task 1–2 (tổng 48 test trong thư mục `ppt`).
 
 - [ ] **Bước 6: Export và commit**
 
