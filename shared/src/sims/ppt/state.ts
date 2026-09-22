@@ -1,3 +1,4 @@
+import { clampEl, elOf, resizeBy, SHAPE_FILL, type Handle } from './elements';
 import { applyLayout } from './layout';
 
 /** Khung slide 16:9. Mọi toạ độ đối tượng tính bằng px trên khung này; giao diện chỉ co giãn khi vẽ. */
@@ -82,7 +83,16 @@ export type PptAction =
   | { type: 'deleteSlide' }
   | { type: 'moveSlide'; from: number; to: number }
   | { type: 'gotoSlide'; index: number }
-  | { type: 'setLayout'; layout: Layout };
+  | { type: 'setLayout'; layout: Layout }
+  | { type: 'addText'; x: number; y: number; w: number; h: number; text?: string }
+  | { type: 'addShape'; shape: ShapeKind; x: number; y: number; w: number; h: number }
+  | { type: 'addImage'; src: string; alt: string }
+  | { type: 'selectEl'; id: string | null }
+  | { type: 'deleteEl' }
+  | { type: 'moveEl'; dx: number; dy: number }
+  | { type: 'resizeEl'; handle: Handle; dx: number; dy: number }
+  | { type: 'bringToFront' }
+  | { type: 'sendToBack' };
 
 export const PPT_LAYOUTS: { id: Layout; label: string; vi: string }[] = [
   { id: 'title', label: 'Title Slide', vi: 'Slide tiêu đề' },
@@ -125,6 +135,21 @@ function withSlides(s: PptState, slides: Slide[], extra?: Partial<PptState>): Pp
   return { ...s, slides, past: [...s.past, s.slides].slice(-30), ...extra };
 }
 
+/** Thay danh sách đối tượng của slide đang mở. */
+function withEls(s: PptState, els: El[], extra?: Partial<PptState>): PptState {
+  return withSlides(
+    s,
+    s.slides.map((x, i) => (i === s.active ? { ...x, els } : x)),
+    extra,
+  );
+}
+
+/** Chèn một đối tượng mới, chọn luôn nó. */
+function addEl(s: PptState, el: Omit<El, 'id'>): PptState {
+  const made = clampEl({ ...el, id: `e${s.nextId}` });
+  return withEls(s, [...slideOf(s).els, made], { sel: made.id, nextId: s.nextId + 1 });
+}
+
 export function reducePpt(s: PptState, a: PptAction): PptState {
   switch (a.type) {
     case 'addSlide': {
@@ -165,6 +190,61 @@ export function reducePpt(s: PptState, a: PptAction): PptState {
         s.slides.map((x, i) => (i === s.active ? r.slide : x)),
         { nextId: r.nextId, sel: null, editing: null },
       );
+    }
+    case 'addText':
+      return addEl(s, { kind: 'text', x: a.x, y: a.y, w: a.w, h: a.h, text: a.text ?? '', fmt: { size: 20, align: 'left' } });
+    case 'addShape':
+      return addEl(s, {
+        kind: 'shape',
+        shape: a.shape,
+        x: a.x,
+        y: a.y,
+        w: a.w,
+        h: a.h,
+        text: '',
+        fmt: { size: 20, align: 'center', fill: SHAPE_FILL },
+      });
+    case 'addImage':
+      return addEl(s, { kind: 'image', src: a.src, alt: a.alt, x: 320, y: 152, w: 320, h: 240 });
+    case 'selectEl': {
+      if (a.id !== null && !slideOf(s).els.some((e) => e.id === a.id)) return s;
+      return { ...s, sel: a.id, editing: null };
+    }
+    case 'deleteEl': {
+      if (!s.sel) return s;
+      return withEls(
+        s,
+        slideOf(s).els.filter((e) => e.id !== s.sel),
+        { sel: null, editing: null },
+      );
+    }
+    case 'moveEl': {
+      const el = elOf(s);
+      if (!el) return s;
+      const moved = clampEl({ ...el, x: el.x + a.dx, y: el.y + a.dy });
+      return withEls(
+        s,
+        slideOf(s).els.map((e) => (e.id === el.id ? moved : e)),
+      );
+    }
+    case 'resizeEl': {
+      const el = elOf(s);
+      if (!el) return s;
+      const sized = resizeBy(el, a.handle, a.dx, a.dy);
+      return withEls(
+        s,
+        slideOf(s).els.map((e) => (e.id === el.id ? sized : e)),
+      );
+    }
+    case 'bringToFront': {
+      const el = elOf(s);
+      if (!el) return s;
+      return withEls(s, [...slideOf(s).els.filter((e) => e.id !== el.id), el]);
+    }
+    case 'sendToBack': {
+      const el = elOf(s);
+      if (!el) return s;
+      return withEls(s, [el, ...slideOf(s).els.filter((e) => e.id !== el.id)]);
     }
     default:
       return s;
