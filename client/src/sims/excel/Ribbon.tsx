@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { excelSim } from '@office-neko/shared';
 import { Group, RibbonHome, ToolButton } from './RibbonHome';
 import { RibbonFormulas, SoonTab } from './RibbonFormulas';
+import { RibbonData } from './RibbonData';
 
 export { ExcelDialogs } from './dialogs';
 
@@ -54,7 +55,7 @@ export function Ribbon({ state, dispatch }: Props) {
       )}
 
       {tab === 'Insert' && <SoonTab what="Chèn biểu đồ" />}
-      {tab === 'Data' && <SoonTab what="Sắp xếp và lọc dữ liệu" />}
+      {tab === 'Data' && <RibbonData state={state} dispatch={dispatch} />}
       {tab === 'View' && (
         <p className="px-3 py-2 text-sm text-muted">
           Bảng tính mô phỏng luôn hiện lưới và đầu hàng/cột, nên tab này chưa có gì để đổi.

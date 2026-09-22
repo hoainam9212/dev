@@ -41,8 +41,17 @@ describe('Thanh tab ribbon', () => {
   });
 
   it('tab chưa có nội dung thì nói rõ là sẽ có sau, không để trống trơn', () => {
+    // Trước đây test này dùng tab Data; Task 4 của 4B đã cho Data nội dung thật,
+    // nên ví dụ "chưa có gì" giờ là Insert (biểu đồ, làm ở Task 5).
+    show();
+    fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
+    expect(screen.getByText(/sẽ có ở phần sau/i)).toBeInTheDocument();
+  });
+
+  it('tab Data có nút sắp xếp và lọc thật', () => {
     show();
     fireEvent.click(screen.getByRole('tab', { name: 'Data' }));
-    expect(screen.getByText(/sẽ có ở phần sau/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /A→Z/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Filter/i })).toBeInTheDocument();
   });
 });

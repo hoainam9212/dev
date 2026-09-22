@@ -22,7 +22,17 @@ export function Grid({ state, dispatch, gridRef }: Props) {
   const rowStart = window1(sel.from.row, VIEW_ROWS, formula.MAX_ROWS);
   const colStart = window1(sel.from.col, VIEW_COLS, formula.MAX_COLS);
 
-  const rows = useMemo(() => Array.from({ length: VIEW_ROWS }, (_, i) => rowStart + i), [rowStart]);
+  // Hàng bị lọc ẩn thì KHÔNG dựng ra; bỏ qua nó rồi lấy tiếp cho đủ cửa sổ, kẻo
+  // lưới trống hoác. Đầu hàng vẫn đánh số thật (1, 2, 5…) như Excel — nhìn số
+  // nhảy là biết đang lọc.
+  const hidden = excelSim.hiddenRows(state);
+  const rows = useMemo(() => {
+    const out: number[] = [];
+    for (let row = rowStart; row < formula.MAX_ROWS && out.length < VIEW_ROWS; row++) {
+      if (!hidden.has(row)) out.push(row);
+    }
+    return out;
+  }, [rowStart, hidden]);
   const cols = useMemo(() => Array.from({ length: VIEW_COLS }, (_, i) => colStart + i), [colStart]);
 
   const lo = { row: Math.min(sel.from.row, sel.to.row), col: Math.min(sel.from.col, sel.to.col) };
