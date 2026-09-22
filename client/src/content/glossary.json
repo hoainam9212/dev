@@ -789,5 +789,95 @@
     "lessonIds": [
       "excel.absolute"
     ]
+  },
+  {
+    "id": "countif",
+    "term": "COUNTIF",
+    "say": "cao-nờ-íp",
+    "vi": "Đếm có điều kiện",
+    "explain": "Đếm xem trong một vùng có bao nhiêu ô thoả điều kiện, ví dụ =COUNTIF(B2:B5,\"Kế toán\") đếm số người phòng Kế toán.",
+    "lessonIds": [
+      "excel.countif"
+    ]
+  },
+  {
+    "id": "sumif",
+    "term": "SUMIF",
+    "say": "sâm-íp",
+    "vi": "Cộng có điều kiện",
+    "explain": "Chỉ cộng những dòng thoả điều kiện. Ba phần: vùng xét, điều kiện, vùng cộng — ví dụ =SUMIF(B2:B5,\"Kế toán\",C2:C5).",
+    "lessonIds": [
+      "excel.sumif"
+    ]
+  },
+  {
+    "id": "vlookup",
+    "term": "VLOOKUP",
+    "say": "vi-lúc-ắp",
+    "vi": "Tra bảng theo cột dọc",
+    "explain": "Cầm một giá trị đi tìm trong cột đầu của bảng tra, rồi mang về giá trị ở cột bên phải. Luôn gõ FALSE ở cuối để tìm chính xác.",
+    "lessonIds": [
+      "excel.vlookup"
+    ]
+  },
+  {
+    "id": "bang-tra",
+    "term": "Lookup table",
+    "say": "lúc-ắp tê-bồ",
+    "vi": "Bảng tra",
+    "explain": "Bảng nhỏ ghi sẵn cách quy đổi, ví dụ mã A là Giỏi, B là Khá. Cột đầu tiên phải chứa thứ cần tìm, và nhớ khoá bằng $ khi chép công thức.",
+    "lessonIds": [
+      "excel.vlookup"
+    ]
+  },
+  {
+    "id": "noi-chuoi",
+    "term": "Concatenate",
+    "say": "con-ca-tơ-nết",
+    "vi": "Nối chuỗi",
+    "explain": "Ghép nhiều đoạn chữ thành một bằng dấu &, ví dụ =A2&\" \"&B2 ghép họ với tên và chèn một dấu cách ở giữa.",
+    "lessonIds": [
+      "excel.text"
+    ]
+  },
+  {
+    "id": "sap-xep",
+    "term": "Sort",
+    "say": "sót",
+    "vi": "Sắp xếp",
+    "explain": "Xếp lại thứ tự các hàng theo một cột. Phải chọn CẢ vùng dữ liệu, nếu chỉ chọn một cột thì cột đó đổi chỗ còn các cột khác đứng yên, bảng sẽ lệch.",
+    "lessonIds": []
+  },
+  {
+    "id": "loc",
+    "term": "Filter",
+    "say": "phin-tơ",
+    "vi": "Lọc",
+    "explain": "Tạm ẩn những hàng không cần xem. Lọc KHÔNG xoá dữ liệu; nhìn số hàng nhảy cách quãng là biết đang lọc.",
+    "lessonIds": []
+  },
+  {
+    "id": "bieu-do",
+    "term": "Chart",
+    "say": "chát",
+    "vi": "Biểu đồ",
+    "explain": "Hình vẽ thay cho dãy số, giúp nhìn một cái là thấy ai cao ai thấp. Vẽ từ một vùng: cột đầu làm nhãn, cột sau làm số liệu.",
+    "lessonIds": []
+  },
+  {
+    "id": "bieu-do-cot",
+    "term": "Column chart",
+    "say": "co-lâm chát",
+    "vi": "Biểu đồ cột",
+    "explain": "Mỗi mục một cột dọc, cao thấp theo giá trị. Dùng khi muốn so sánh các mục với nhau.",
+    "lessonIds": []
+  },
+  {
+    "id": "bieu-do-tron",
+    "term": "Pie chart",
+    "say": "pai chát",
+    "vi": "Biểu đồ tròn",
+    "explain": "Chia một hình tròn thành các múi theo tỉ lệ. Dùng khi muốn thấy mỗi phần chiếm bao nhiêu phần trăm của tổng.",
+    "lessonIds": []
   }
 ]

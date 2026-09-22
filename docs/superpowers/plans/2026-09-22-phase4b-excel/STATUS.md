@@ -11,7 +11,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 | 3 chart + grader | ☑ | (commit này) | 12 test. Hết phần `shared` của 4B. `chartData` vùng một cột thì lấy địa chỉ ô làm nhãn; ô chữ/ô lỗi coi là 0. Check dùng `chartType`, không phải `type` |
 | 4 tab Data | ☑ | (commit này) | 11 test. **Route tạm `/dev/excel` + `pages/DevExcelPage.tsx` — Task 7 PHẢI xoá.** Đã thử thật: sắp A→Z (tên đi theo lương), lọc cột C (số hàng nhảy 1,4,5), tắt lọc |
 | 5 ChartView + tab Insert | ☑ | (commit này) | 12 test. Hết phần giao diện 4B. `SoonTab` đã xoá (cả sáu tab có nội dung thật). Nhãn dài cắt còn 12 ký tự, tên đầy đủ nằm trong `aria-label` |
-| 6 Bài chương 5 | ☐ | | |
+| 6 Bài chương 5 | ☑ | (commit này) | 4 bài, track Excel 16 bài / 5 chương. Đã học thật bài VLOOKUP tới lúc chấm đạt. **5 mục từ điển của chương 6 (sap-xep, loc, bieu-do, bieu-do-cot, bieu-do-tron) đang để `lessonIds: []`** — Task 7 phải điền, vì test bắt lessonIds trỏ tới bài CÓ THẬT |
 | 7 Bài chương 6 | ☐ | | |
 | 8 Dự án Bảng lương | ☐ | | |
 | 9 Từ điển + tổng kết + gộp | ☐ | | |
