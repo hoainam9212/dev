@@ -8,7 +8,6 @@ import { ProfilePicker } from './profiles/ProfilePicker';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
-import { DevExcelPage } from './pages/DevExcelPage';
 import { TypingHubPage } from './pages/TypingHubPage';
 import { SpeedTestPage } from './pages/SpeedTestPage';
 import { FishGamePage } from './pages/FishGamePage';
@@ -49,8 +48,6 @@ export default function App() {
             <Route path="/typing/test/:min" element={<SpeedTestPage />} />
             <Route path="/typing/fish" element={<FishGamePage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            {/* Trang thử tay, Task 7 của 4B sẽ xoá. */}
-            <Route path="/dev/excel" element={<DevExcelPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

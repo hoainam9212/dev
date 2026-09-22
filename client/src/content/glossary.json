@@ -846,7 +846,9 @@
     "say": "sót",
     "vi": "Sắp xếp",
     "explain": "Xếp lại thứ tự các hàng theo một cột. Phải chọn CẢ vùng dữ liệu, nếu chỉ chọn một cột thì cột đó đổi chỗ còn các cột khác đứng yên, bảng sẽ lệch.",
-    "lessonIds": []
+    "lessonIds": [
+      "excel.sort"
+    ]
   },
   {
     "id": "loc",
@@ -854,7 +856,9 @@
     "say": "phin-tơ",
     "vi": "Lọc",
     "explain": "Tạm ẩn những hàng không cần xem. Lọc KHÔNG xoá dữ liệu; nhìn số hàng nhảy cách quãng là biết đang lọc.",
-    "lessonIds": []
+    "lessonIds": [
+      "excel.filter"
+    ]
   },
   {
     "id": "bieu-do",
@@ -862,7 +866,9 @@
     "say": "chát",
     "vi": "Biểu đồ",
     "explain": "Hình vẽ thay cho dãy số, giúp nhìn một cái là thấy ai cao ai thấp. Vẽ từ một vùng: cột đầu làm nhãn, cột sau làm số liệu.",
-    "lessonIds": []
+    "lessonIds": [
+      "excel.chart"
+    ]
   },
   {
     "id": "bieu-do-cot",
@@ -870,7 +876,9 @@
     "say": "co-lâm chát",
     "vi": "Biểu đồ cột",
     "explain": "Mỗi mục một cột dọc, cao thấp theo giá trị. Dùng khi muốn so sánh các mục với nhau.",
-    "lessonIds": []
+    "lessonIds": [
+      "excel.chart"
+    ]
   },
   {
     "id": "bieu-do-tron",
@@ -878,6 +886,8 @@
     "say": "pai chát",
     "vi": "Biểu đồ tròn",
     "explain": "Chia một hình tròn thành các múi theo tỉ lệ. Dùng khi muốn thấy mỗi phần chiếm bao nhiêu phần trăm của tổng.",
-    "lessonIds": []
+    "lessonIds": [
+      "excel.chart"
+    ]
   }
 ]
