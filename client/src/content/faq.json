@@ -472,5 +472,125 @@
       "tham chieu",
       "trang tinh"
     ]
+  },
+  {
+    "id": "excel.sort-desync",
+    "q": "Sắp xếp xong thì tên một đằng lương một nẻo, vì sao?",
+    "a": "Vì bạn chỉ bôi đen một cột rồi mới sắp. Bảng tính làm đúng điều bạn bảo: chỉ xếp lại phần bạn chọn, các cột khác đứng yên. Bấm Ctrl+Z để hoàn tác, rồi chọn CẢ vùng dữ liệu (từ cột đầu tới cột cuối) và sắp lại.",
+    "keywords": [
+      "sap xep lech",
+      "sap xep sai",
+      "ten mot dang luong mot neo",
+      "sort lech",
+      "bang bi loan"
+    ]
+  },
+  {
+    "id": "excel.filter-delete",
+    "q": "Lọc rồi thì dữ liệu có bị xoá mất không?",
+    "a": "Không hề. Lọc chỉ TẠM ẨN những hàng không thoả điều kiện, dữ liệu vẫn nguyên vẹn. Bấm nút Filter lần nữa là mọi hàng hiện lại đầy đủ.",
+    "keywords": [
+      "loc co xoa du lieu khong",
+      "loc mat du lieu",
+      "filter xoa",
+      "an hang"
+    ]
+  },
+  {
+    "id": "excel.filter-sum",
+    "q": "Sao SUM vẫn cộng cả những hàng đang bị lọc ẩn?",
+    "a": "Vì dữ liệu vẫn còn nguyên, chỉ là không hiện ra. Hàm SUM cộng mọi ô trong vùng, kể cả ô đang bị ẩn. Đây là chỗ rất nhiều người nhầm, nên khi đang lọc thì đừng vội tin con số tổng.",
+    "keywords": [
+      "sum khi loc",
+      "tong khi loc",
+      "cong ca hang an",
+      "sum sai khi filter"
+    ]
+  },
+  {
+    "id": "excel.row-numbers",
+    "q": "Số hàng nhảy 1, 4, 5 nghĩa là gì?",
+    "a": "Nghĩa là bảng đang được lọc: những hàng số 2 và 3 bị ẩn tạm thời. Số hàng luôn giữ số thật của nó, nên nhìn số nhảy cách quãng là biết ngay đang có bộ lọc bật.",
+    "keywords": [
+      "so hang nhay",
+      "so dong khong lien tuc",
+      "hang bi thieu",
+      "1 4 5"
+    ]
+  },
+  {
+    "id": "excel.vlookup-na",
+    "q": "VLOOKUP báo #N/A thì sửa thế nào?",
+    "a": "#N/A nghĩa là không tìm thấy. Kiểm ba chỗ: giá trị cần tra có đúng nằm ở CỘT ĐẦU TIÊN của bảng tra không; có gõ thừa khoảng trắng không (dùng TRIM để dọn); và đã gõ FALSE ở cuối chưa.",
+    "keywords": [
+      "na",
+      "vlookup loi",
+      "khong tim thay",
+      "tra khong ra"
+    ]
+  },
+  {
+    "id": "excel.vlookup-lock",
+    "q": "Vì sao bảng tra trong VLOOKUP phải khoá bằng $?",
+    "a": "Vì khi bạn chép công thức xuống các dòng dưới, mọi địa chỉ không khoá sẽ trôi xuống theo. Bảng tra mà trôi thì từ dòng thứ hai trở đi nó tra vào chỗ trống và báo #N/A. Viết $J$1:$K$3 là bảng tra đứng yên.",
+    "keywords": [
+      "khoa bang tra",
+      "dola vlookup",
+      "vlookup chep xuong loi",
+      "tuyet doi"
+    ]
+  },
+  {
+    "id": "excel.countif-wildcard",
+    "q": "COUNTIF dùng được dấu sao để tìm gần đúng không?",
+    "a": "Trong bảng tính mô phỏng này thì không — hãy gõ đủ chữ cần tìm. Excel thật có hỗ trợ dấu sao, nhưng ở đây Mochi cố ý giữ đơn giản để bạn tập trung vào cách dùng điều kiện.",
+    "keywords": [
+      "countif dau sao",
+      "ky tu dai dien",
+      "wildcard",
+      "tim gan dung"
+    ]
+  },
+  {
+    "id": "excel.chart-which",
+    "q": "Nên chọn biểu đồ cột hay biểu đồ tròn?",
+    "a": "Hỏi xem bạn muốn trả lời câu gì. So sánh các mục với nhau thì dùng CỘT. Xem mỗi phần chiếm bao nhiêu phần trăm của một tổng thì dùng TRÒN. Xem tăng giảm theo thời gian thì dùng ĐƯỜNG.",
+    "keywords": [
+      "chon bieu do",
+      "cot hay tron",
+      "bieu do nao",
+      "loai bieu do"
+    ]
+  },
+  {
+    "id": "excel.chart-remove",
+    "q": "Làm sao xoá một biểu đồ đã chèn?",
+    "a": "Bấm nút dấu nhân ở góc trên bên phải của biểu đồ. Xoá nhầm thì bấm Ctrl+Z là nó quay lại.",
+    "keywords": [
+      "xoa bieu do",
+      "bo bieu do",
+      "chart remove"
+    ]
+  },
+  {
+    "id": "excel.sort-vs-filter",
+    "q": "Sắp xếp và lọc khác nhau ở đâu?",
+    "a": "Sắp xếp ĐỔI THỨ TỰ các hàng nhưng vẫn giữ đủ mọi hàng. Lọc GIỮ NGUYÊN thứ tự nhưng tạm ẩn bớt hàng. Hai việc dùng được cùng lúc: sắp xếp trước rồi lọc, hoặc ngược lại.",
+    "keywords": [
+      "sap xep va loc",
+      "khac nhau sort filter",
+      "sort vs filter"
+    ]
+  },
+  {
+    "id": "excel.chart-empty",
+    "q": "Chèn biểu đồ mà nó báo vùng chưa có số để vẽ?",
+    "a": "Biểu đồ lấy cột ĐẦU của vùng làm nhãn và cột NGAY SAU làm số liệu. Nếu cột thứ hai là chữ (ví dụ cột Phòng) thì không có số nào để vẽ. Hãy chọn vùng sao cho cột số nằm ngay cạnh cột nhãn.",
+    "keywords": [
+      "bieu do trong",
+      "chua co so de ve",
+      "bieu do khong hien",
+      "chart rong"
+    ]
   }
 ]

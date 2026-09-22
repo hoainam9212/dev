@@ -1,5 +1,7 @@
 # Giai đoạn 4B (Excel: tra cứu, dữ liệu, biểu đồ) – tình trạng
 
+**XONG toàn bộ 9/9 task, 2026-09-22.** Lộ trình Excel đủ 20 bài / 7 chương. Giai đoạn kế tiếp là 5 (PowerPoint) — chưa có plan.
+
 Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên mới đọc file này trước, không đọc lại các file task đã xong.
 
 Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
@@ -14,7 +16,7 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 | 6 Bài chương 5 | ☑ | (commit này) | 4 bài, track Excel 16 bài / 5 chương. Đã học thật bài VLOOKUP tới lúc chấm đạt. **5 mục từ điển của chương 6 (sap-xep, loc, bieu-do, bieu-do-cot, bieu-do-tron) đang để `lessonIds: []`** — Task 7 phải điền, vì test bắt lessonIds trỏ tới bài CÓ THẬT |
 | 7 Bài chương 6 | ☑ | (commit này) | 3 bài, track Excel 19 bài / 6 chương. Đã xoá route tạm `/dev/excel`. Đã học thật bài sắp xếp và bài biểu đồ tới lúc chấm đạt |
 | 8 Dự án Bảng lương | ☑ | (commit này) | 3 chặng, track Excel **20 bài / 7 chương** (spec nói 6 chương; ta có 7 vì tách 'Ô nào cố định' riêng). Đã làm thật cả ba chặng bằng ribbon trên trình duyệt |
-| 9 Từ điển + tổng kết + gộp | ☐ | | |
+| 9 Từ điển + tổng kết + gộp | ☑ | (commit này) | 10 mục từ điển + 11 câu Hỏi Mèo cho 4B; README; đã thử Hỏi Mèo gõ không dấu |
 
 ## Quyết định đã chốt
 
@@ -52,3 +54,6 @@ Nền: 4A đã lên `master` (tip `d125e6b`), shared 330 + client 224 test.
 - Từ 4A: PWA ngoại tuyến chưa kiểm lại từ sau multi-profile (`npm run preview` rồi ngắt mạng).
 - Từ giai đoạn 3, chưa xếp lịch: bài cho vỏ máy tính (Start/Taskbar/Dock/Spotlight); một lượt rà soát trợ năng cho toàn bộ sim; bàn phím ảo theo HĐH; Shift+click chọn dải trong vùng file.
 - Sau 4B là giai đoạn 5 (PowerPoint) — chưa có plan.
+- **Cố ý KHÔNG làm ở 4B** (ghi để ai sau khỏi tưởng bỏ sót): không chấm việc đã Lưu tệp (cần thêm loại check mới);
+  biểu đồ không có trục số/lưới ngang, chỉ có nhãn; lọc chỉ chọn theo danh sách giá trị, không có lọc theo điều kiện
+  số (">5"); sắp xếp chỉ theo MỘT cột, không có sắp nhiều tầng.
