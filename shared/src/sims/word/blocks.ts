@@ -162,9 +162,13 @@ function findRangeAgain(doc: WordDoc, before: Node, range: Range): Range {
 /** Thông tin khối chứa đoạn chữ `text`. */
 export function blockOf(doc: WordDoc, text: string, nth = 1): BlockReport | null {
   const range = findText(doc, text, nth);
-  if (!range) return null;
+  return range ? blockAt(doc, range.from) : null;
+}
+
+/** Đoạn chứa vị trí `pos` — ribbon dùng với con trỏ, kể cả khi không bôi đen gì. */
+export function blockAt(doc: WordDoc, pos: number): BlockReport | null {
   const node = docFromJSON(doc);
-  const $pos = node.resolve(range.from);
+  const $pos = node.resolve(Math.max(0, Math.min(pos, node.content.size)));
   let block: Node | null = null;
   for (let depth = $pos.depth; depth > 0; depth--) {
     const candidate = $pos.node(depth);
@@ -180,6 +184,6 @@ export function blockOf(doc: WordDoc, text: string, nth = 1): BlockReport | null
     level: block.type.name === 'heading' ? Number(attrs.level ?? 1) : 0,
     align: (attrs.textAlign as string | null) ?? 'left',
     lineHeight: (attrs.lineHeight as string | null) ?? '1',
-    list: listAround(node, range.from)?.kind ?? null,
+    list: listAround(node, $pos.pos)?.kind ?? null,
   };
 }

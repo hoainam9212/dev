@@ -28,8 +28,18 @@ describe('RibbonHome', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Danh sách chấm' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setAlign', align: 'center' });
     expect(dispatch).toHaveBeenCalledWith({ type: 'toggleList', list: 'bullet' });
-    fireEvent.change(screen.getByRole('combobox', { name: 'Kiểu đoạn' }), { target: { value: '1' } });
+    // Styles là dải ô mẫu như Word (Normal, Heading 1…), không phải ô thả xuống.
+    fireEvent.click(screen.getByRole('button', { name: 'Kiểu Heading 1' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setHeading', level: 1 });
+    expect(screen.getByRole('button', { name: 'Kiểu Normal' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('sets line spacing from the Line Spacing menu', () => {
+    const dispatch = vi.fn();
+    render(<RibbonHome state={withSelection()} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Giãn dòng' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Giãn dòng 1,5' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setLineHeight', value: '1.5' });
   });
 
   it('dispatches font family and size', () => {

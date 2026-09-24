@@ -75,8 +75,8 @@ export const WORD_PROJECT: Lesson[] = [
         hint: 'Danh sách ở thẻ Home, ảnh ở thẻ Insert, lưu ở thẻ File.',
         steps: [
           'Bôi đen ba dòng kỹ năng, bấm Danh sách chấm.',
-          'Thẻ Insert → Ảnh → chọn một ảnh.',
-          'Thẻ File → Lưu.',
+          'Thẻ Insert › Pictures → chọn một ảnh.',
+          'Thẻ File › Save As.',
           'Gõ tên: don-xin-viec.docx rồi bấm Lưu.',
         ],
         solve: () => [

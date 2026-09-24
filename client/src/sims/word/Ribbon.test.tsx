@@ -5,30 +5,78 @@ import { Ribbon, WordDialogs } from './Ribbon';   // Ribbon.tsx re-export WordDi
 
 const base = () => wordSim.wordInitial({ text: 'công ty ABC và công ty ABC' });
 
+const withTable = () => wordSim.reduceWord(base(), { type: 'insertTable', rows: 2, cols: 2 });
+const withImage = () => wordSim.reduceWord(base(), { type: 'insertImage', src: '/images/word/meo.svg', alt: 'Mèo' });
+const groupTitles = () => [...document.querySelectorAll('[data-variant="office"] > span')].map((e) => e.textContent);
+
 describe('Ribbon tabs', () => {
-  it('starts on Home and switches to Insert', () => {
-    const dispatch = vi.fn();
-    render(<Ribbon state={base()} dispatch={dispatch} />);
-    expect(screen.getByRole('button', { name: 'In đậm' })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Chèn bảng' }));
-    expect(dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: 'insertTable' }));
+  it('lays Home out in the groups and order of Word 365', () => {
+    render(<Ribbon state={base()} dispatch={vi.fn()} />);
+    expect(groupTitles()).toEqual(['Undo', 'Font', 'Paragraph', 'Styles', 'Editing']);
   });
 
-  it('opens the find dialog from View', () => {
+  it('picks a table size from the Insert › Table grid, as in Word', () => {
     const dispatch = vi.fn();
     render(<Ribbon state={base()} dispatch={dispatch} />);
-    fireEvent.click(screen.getByRole('tab', { name: 'View' }));
+    fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
+    expect(groupTitles()).toEqual(['Tables', 'Illustrations']);
+    fireEvent.click(screen.getByRole('button', { name: 'Chèn bảng' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Bảng 3 hàng × 2 cột' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'insertTable', rows: 3, cols: 2 });
+    fireEvent.click(screen.getByRole('button', { name: 'Chèn ảnh' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'image' });
+  });
+
+  it('opens Find & Replace from Home › Editing, where Word keeps it', () => {
+    const dispatch = vi.fn();
+    render(<Ribbon state={base()} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Tìm và thay thế' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'find' });
   });
 
-  it('inserts a table of contents from References', () => {
+  it('inserts and updates a table of contents from References', () => {
     const dispatch = vi.fn();
     render(<Ribbon state={base()} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('tab', { name: 'References' }));
+    expect(groupTitles()).toEqual(['Table of Contents']);
     fireEvent.click(screen.getByRole('button', { name: 'Chèn mục lục' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Cập nhật mục lục' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'insertToc' });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'refreshToc' });
+  });
+
+  it('saves and prints from File', () => {
+    const dispatch = vi.fn();
+    render(<Ribbon state={base()} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'File' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Lưu văn bản' }));
+    fireEvent.click(screen.getByRole('button', { name: 'In thử' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'save' });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'print' });
+  });
+
+  it('shows Picture Format only when the document has a picture', () => {
+    const dispatch = vi.fn();
+    const { rerender } = render(<Ribbon state={base()} dispatch={dispatch} />);
+    expect(screen.queryByRole('tab', { name: 'Picture Format' })).toBeNull();
+    rerender(<Ribbon state={withImage()} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Picture Format' }));
+    expect(groupTitles()).toEqual(['Size']);
+    fireEvent.click(screen.getByRole('button', { name: 'Độ rộng ảnh 60%' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setImageWidth', width: '60%' });
+  });
+
+  it('shows Table Layout only when the document has a table', () => {
+    const dispatch = vi.fn();
+    const { rerender } = render(<Ribbon state={base()} dispatch={dispatch} />);
+    expect(screen.queryByRole('tab', { name: 'Table Layout' })).toBeNull();
+    rerender(<Ribbon state={withTable()} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Table Layout' }));
+    expect(groupTitles()).toEqual(['Rows & Columns']);
+    fireEvent.click(screen.getByRole('button', { name: 'Thêm hàng' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Xoá cột' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'tableRow', op: 'add' });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'tableCol', op: 'remove' });
   });
 });
 

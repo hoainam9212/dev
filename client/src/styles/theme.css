@@ -78,7 +78,8 @@ body {
   .word-prose h3 { font-size: 1.15em; font-weight: 800; margin: 0 0 0.5em; }
   .word-prose ul { list-style: disc; padding-left: 1.6em; margin: 0 0 0.6em; }
   .word-prose ol { list-style: decimal; padding-left: 1.6em; margin: 0 0 0.6em; }
-  .word-prose table { border-collapse: collapse; margin: 0 0 0.8em; width: 100%; }
+  /* fixed: cột chia đều và KHÔNG nở theo chữ như Word; auto làm ô đầu phình ra, người học bấm nhầm ô. */
+  .word-prose table { border-collapse: collapse; margin: 0 0 0.8em; width: 100%; table-layout: fixed; }
   .word-prose th, .word-prose td { border: 1px solid #C9C0D6; padding: 4px 8px; vertical-align: top; }
   .word-prose th { background: #F4EFFA; font-weight: 700; }
   .word-prose img { display: block; margin: 0.4em 0; }

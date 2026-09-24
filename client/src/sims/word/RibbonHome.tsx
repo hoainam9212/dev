@@ -1,7 +1,22 @@
 import type { ReactNode } from 'react';
 import { wordSim } from '@office-neko/shared';
-import { Highlight20Regular, TextBold20Regular, TextColor20Regular, TextItalic20Regular, TextUnderline20Regular } from '@fluentui/react-icons';
-import { Group, Picker, Row, ToolButton } from '../../components/ribbon';
+import {
+  ArrowSwap20Regular,
+  ArrowUndo20Regular,
+  Highlight20Regular,
+  TextAlignCenter20Regular,
+  TextAlignJustify20Regular,
+  TextAlignLeft20Regular,
+  TextAlignRight20Regular,
+  TextBold20Regular,
+  TextBulletListLtr20Regular,
+  TextColor20Regular,
+  TextItalic20Regular,
+  TextLineSpacing20Regular,
+  TextNumberListLtr20Regular,
+  TextUnderline20Regular,
+} from '@fluentui/react-icons';
+import { Group, MenuButton, Picker, Row, ToolButton } from '../../components/ribbon';
 
 interface Props {
   state: wordSim.WordState;
@@ -26,11 +41,23 @@ const HIGHLIGHTS: [label: string, value: string | null][] = [
   ['Xanh dương', '#C6E7FF'],
   ['Hồng', '#FFD6E5'],
 ];
-const ALIGNS: [label: string, value: wordSim.Align, helpId: string, icon: string][] = [
-  ['Căn trái', 'left', 'word.alignLeft', '⬅'],
-  ['Căn giữa', 'center', 'word.alignCenter', '↔'],
-  ['Căn phải', 'right', 'word.alignRight', '➡'],
-  ['Căn đều', 'justify', 'word.alignJustify', '☰'],
+const ALIGNS: [label: string, value: wordSim.Align, helpId: string, icon: ReactNode][] = [
+  ['Căn trái', 'left', 'word.alignLeft', <TextAlignLeft20Regular key="l" />],
+  ['Căn giữa', 'center', 'word.alignCenter', <TextAlignCenter20Regular key="c" />],
+  ['Căn phải', 'right', 'word.alignRight', <TextAlignRight20Regular key="r" />],
+  ['Căn đều', 'justify', 'word.alignJustify', <TextAlignJustify20Regular key="j" />],
+];
+const SPACINGS: [value: wordSim.LineHeight, label: string][] = [
+  ['1', '1,0'],
+  ['1.5', '1,5'],
+  ['2', '2,0'],
+];
+/** Dải ô mẫu của nhóm Styles; mỗi ô vẽ chữ "AaBbCc" đúng kiểu của nó như Word. */
+const STYLES: [level: 0 | 1 | 2 | 3, name: string, look: string][] = [
+  [0, 'Normal', 'text-[0.8rem]'],
+  [1, 'Heading 1', 'text-[1rem] text-[#2F5496]'],
+  [2, 'Heading 2', 'text-[0.9rem] text-[#2F5496]'],
+  [3, 'Heading 3', 'text-[0.8rem] text-[#1F3763]'],
 ];
 
 /** Icon có vạch màu bên dưới, như chữ A đỏ của Font Color và bút vàng của Highlight trên Word thật. */
@@ -43,20 +70,32 @@ function Swatched({ icon, color }: { icon: ReactNode; color: string }) {
   );
 }
 
+const SWATCH_SELECT = { width: '1.1rem', border: 'none', background: 'transparent' } as const;
+
+/**
+ * Tab Home dựng theo Word 365 tiếng Anh: Undo | Font | Paragraph | Styles | Editing — chỉ các nút
+ * bài học dùng, nhưng đúng nhóm, đúng thứ tự, đúng icon để người học mở Word thật vẫn nhận ra.
+ * Không bọc trong khung `overflow-x-auto`: menu thả xuống (Line Spacing) sẽ bị cắt (lỗi 4B).
+ */
 export function RibbonHome({ state, dispatch }: Props) {
   const marks = wordSim.activeMarks(state);
   const block = wordSim.activeBlock(state);
+  const level = block?.level ?? 0;
 
   return (
-    <div className="flex flex-wrap items-start gap-y-2 overflow-x-auto py-1">
-      {/* Nhóm Font đã làm giống Word 365 tiếng Anh, khớp ảnh chụp ở cuối bài word.bold. */}
+    <div className="flex flex-wrap items-stretch gap-y-2 py-1">
+      <Group title="Undo" variant="office">
+        <ToolButton variant="office" large helpId="word.undo" label="Hoàn tác" onClick={() => dispatch({ type: 'undo' })}>
+          <ArrowUndo20Regular />
+        </ToolButton>
+      </Group>
+
       <Group title="Font" variant="office">
         <Row>
           <Picker
             variant="office"
             helpId="word.font"
             label="Phông chữ"
-            tooltip="Font — Phông chữ"
             value={marks?.fontFamily ?? ''}
             style={{ fontFamily: marks?.fontFamily ?? undefined, width: '8.5rem' }}
             options={[{ value: '', label: 'Phông chữ' }, ...FONTS.map((f) => ({ value: f, label: f, style: { fontFamily: f } }))]}
@@ -66,7 +105,6 @@ export function RibbonHome({ state, dispatch }: Props) {
             variant="office"
             helpId="word.size"
             label="Cỡ chữ"
-            tooltip="Font Size — Cỡ chữ"
             value={marks?.fontSize ?? ''}
             style={{ width: '3.5rem' }}
             options={[{ value: '', label: 'Cỡ' }, ...SIZES.map((s) => ({ value: s, label: s.replace('pt', '') }))]}
@@ -74,13 +112,13 @@ export function RibbonHome({ state, dispatch }: Props) {
           />
         </Row>
         <Row>
-          <ToolButton variant="office" helpId="word.bold" label="In đậm" tooltip="Bold (Ctrl+B) — In đậm" pressed={marks?.bold} onClick={() => dispatch({ type: 'toggleMark', mark: 'bold' })}>
+          <ToolButton variant="office" helpId="word.bold" label="In đậm" pressed={marks?.bold} onClick={() => dispatch({ type: 'toggleMark', mark: 'bold' })}>
             <TextBold20Regular />
           </ToolButton>
-          <ToolButton variant="office" helpId="word.italic" label="In nghiêng" tooltip="Italic (Ctrl+I) — In nghiêng" pressed={marks?.italic} onClick={() => dispatch({ type: 'toggleMark', mark: 'italic' })}>
+          <ToolButton variant="office" helpId="word.italic" label="In nghiêng" pressed={marks?.italic} onClick={() => dispatch({ type: 'toggleMark', mark: 'italic' })}>
             <TextItalic20Regular />
           </ToolButton>
-          <ToolButton variant="office" helpId="word.underline" label="Gạch chân" tooltip="Underline (Ctrl+U) — Gạch chân" pressed={marks?.underline} onClick={() => dispatch({ type: 'toggleMark', mark: 'underline' })}>
+          <ToolButton variant="office" helpId="word.underline" label="Gạch chân" pressed={marks?.underline} onClick={() => dispatch({ type: 'toggleMark', mark: 'underline' })}>
             <TextUnderline20Regular />
           </ToolButton>
           <span className="mx-1 h-5 w-px bg-neutral-300" aria-hidden />
@@ -90,9 +128,8 @@ export function RibbonHome({ state, dispatch }: Props) {
               variant="office"
               helpId="word.highlight"
               label="Tô nền"
-              tooltip="Text Highlight Color — Tô nền"
               value={marks?.highlight ?? ''}
-              style={{ width: '1.1rem', border: 'none', background: 'transparent' }}
+              style={SWATCH_SELECT}
               options={HIGHLIGHTS.map(([label, value]) => ({ value: value ?? '', label }))}
               onChange={(value) => dispatch({ type: 'setHighlight', color: value || null })}
             />
@@ -103,9 +140,8 @@ export function RibbonHome({ state, dispatch }: Props) {
               variant="office"
               helpId="word.color"
               label="Màu chữ"
-              tooltip="Font Color — Màu chữ"
               value={marks?.color ?? ''}
-              style={{ width: '1.1rem', border: 'none', background: 'transparent' }}
+              style={SWATCH_SELECT}
               options={COLORS.map(([label, value]) => ({ value: value ?? '', label }))}
               onChange={(value) => dispatch({ type: 'setStyle', attr: 'color', value: value || null })}
             />
@@ -113,49 +149,63 @@ export function RibbonHome({ state, dispatch }: Props) {
         </Row>
       </Group>
 
-      <Group title="Đoạn văn">
-        {ALIGNS.map(([label, value, helpId, icon]) => (
-          <ToolButton key={value} helpId={helpId} label={label} pressed={block?.align === value} onClick={() => dispatch({ type: 'setAlign', align: value })}>
-            {icon}
+      {/* Word xếp: hàng trên Bullets, Numbering; hàng dưới bốn nút căn lề rồi Line Spacing. */}
+      <Group title="Paragraph" variant="office">
+        <Row>
+          <ToolButton variant="office" helpId="word.bullet" label="Danh sách chấm" pressed={block?.list === 'bullet'} onClick={() => dispatch({ type: 'toggleList', list: 'bullet' })}>
+            <TextBulletListLtr20Regular />
           </ToolButton>
-        ))}
-        <Picker
-          helpId="word.lineHeight"
-          label="Giãn dòng"
-          value={block?.lineHeight ?? '1'}
-          options={[
-            { value: '1', label: '1,0' },
-            { value: '1.5', label: '1,5' },
-            { value: '2', label: '2,0' },
-          ]}
-          onChange={(value) => dispatch({ type: 'setLineHeight', value: value as wordSim.LineHeight })}
-        />
-        <ToolButton helpId="word.bullet" label="Danh sách chấm" pressed={block?.list === 'bullet'} onClick={() => dispatch({ type: 'toggleList', list: 'bullet' })}>
-          •≡
-        </ToolButton>
-        <ToolButton helpId="word.ordered" label="Danh sách số" pressed={block?.list === 'ordered'} onClick={() => dispatch({ type: 'toggleList', list: 'ordered' })}>
-          1≡
-        </ToolButton>
+          <ToolButton variant="office" helpId="word.ordered" label="Danh sách số" pressed={block?.list === 'ordered'} onClick={() => dispatch({ type: 'toggleList', list: 'ordered' })}>
+            <TextNumberListLtr20Regular />
+          </ToolButton>
+        </Row>
+        <Row>
+          {ALIGNS.map(([label, value, helpId, icon]) => (
+            <ToolButton key={value} variant="office" helpId={helpId} label={label} pressed={block?.align === value} onClick={() => dispatch({ type: 'setAlign', align: value })}>
+              {icon}
+            </ToolButton>
+          ))}
+          <MenuButton
+            variant="office"
+            helpId="word.lineHeight"
+            label="Giãn dòng"
+            button={<TextLineSpacing20Regular />}
+            items={SPACINGS.map(([value, text]) => ({
+              value,
+              label: `Giãn dòng ${text}`,
+              content: <span className={block?.lineHeight === value ? 'font-black' : ''}>{text}</span>,
+            }))}
+            onPick={(value) => dispatch({ type: 'setLineHeight', value: value as wordSim.LineHeight })}
+          />
+        </Row>
       </Group>
 
-      <Group title="Kiểu">
-        <Picker
-          helpId="word.heading"
-          label="Kiểu đoạn"
-          value={String(block?.level ?? 0)}
-          options={[
-            { value: '0', label: 'Đoạn thường' },
-            { value: '1', label: 'Heading 1' },
-            { value: '2', label: 'Heading 2' },
-            { value: '3', label: 'Heading 3' },
-          ]}
-          onChange={(value) => dispatch({ type: 'setHeading', level: Number(value) as 0 | 1 | 2 | 3 })}
-        />
+      <Group title="Styles" variant="office">
+        <div className="flex gap-1" data-help-id="word.heading">
+          {STYLES.map(([lv, name, look]) => (
+            <button
+              key={lv}
+              type="button"
+              aria-label={`Kiểu ${name}`}
+              aria-pressed={level === lv}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => dispatch({ type: 'setHeading', level: lv })}
+              className={`flex h-14 w-16 flex-col items-center justify-center gap-0.5 rounded-sm border bg-white ${
+                level === lv ? 'border-neutral-500 bg-neutral-100' : 'border-neutral-300 hover:bg-neutral-100'
+              }`}
+            >
+              <span className={`leading-none ${look}`}>AaBbCc</span>
+              <span className="text-[0.65rem] text-neutral-700">{name}</span>
+            </button>
+          ))}
+        </div>
       </Group>
 
-      <Group title="Sửa">
-        <ToolButton helpId="word.undo" label="Hoàn tác" onClick={() => dispatch({ type: 'undo' })}>
-          ↶
+      <Group title="Editing" variant="office">
+        <ToolButton variant="office" helpId="word.find" label="Tìm và thay thế" onClick={() => dispatch({ type: 'openDialog', dialog: 'find' })}>
+          <span className="flex items-center gap-1 text-[0.75rem]">
+            <ArrowSwap20Regular /> Replace
+          </span>
         </ToolButton>
       </Group>
     </div>

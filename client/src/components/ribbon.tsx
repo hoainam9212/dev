@@ -11,8 +11,8 @@ export type RibbonVariant = 'app' | 'office';
 export function Group({ title, variant = 'app', children }: { title: string; variant?: RibbonVariant; children: ReactNode }) {
   if (variant === 'office') {
     return (
-      <div data-variant="office" className="flex flex-col gap-0.5 border-r border-neutral-300 px-2 last:border-r-0">
-        <div className="flex flex-col gap-1">{children}</div>
+      <div data-variant="office" className="flex flex-col justify-between gap-0.5 border-r border-neutral-300 px-2 last:border-r-0">
+        <div className="flex flex-1 flex-col justify-center gap-1">{children}</div>
         <span className="text-center text-[0.7rem] text-neutral-600">{title}</span>
       </div>
     );
@@ -36,6 +36,7 @@ export function ToolButton({
   label,
   tooltip,
   variant = 'app',
+  large,
   pressed,
   disabled,
   onClick,
@@ -46,14 +47,17 @@ export function ToolButton({
   /** Chữ hiện khi rê chuột; mặc định bằng `label`. */
   tooltip?: string;
   variant?: RibbonVariant;
+  /** Nút lớn của `office`: icon to ở trên, tên ở dưới (Table, Pictures, Table of Contents…). */
+  large?: boolean;
   pressed?: boolean;
   disabled?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) {
+  const officeState = pressed ? 'border border-neutral-400 bg-neutral-300' : 'border border-transparent hover:bg-neutral-200';
   const look =
     variant === 'office'
-      ? `h-7 min-w-7 rounded-sm px-1 text-neutral-800 ${pressed ? 'border border-neutral-400 bg-neutral-300' : 'border border-transparent hover:bg-neutral-200'}`
+      ? `${large ? 'min-h-16 flex-col gap-0.5 px-2 py-1 text-[0.72rem] leading-tight [&>svg]:h-8 [&>svg]:w-8' : 'h-7 min-w-7 px-1'} rounded-sm text-neutral-800 ${officeState}`
       : `h-8 min-w-8 rounded-lg px-2 font-bold ${pressed ? 'bg-rose/25 ring-2 ring-rose' : 'bg-white hover:bg-cream'}`;
   return (
     <button
@@ -123,6 +127,7 @@ export function Picker({
 export function MenuButton({
   helpId,
   label,
+  variant,
   disabled,
   button,
   items,
@@ -130,6 +135,7 @@ export function MenuButton({
 }: {
   helpId: string;
   label: string;
+  variant?: RibbonVariant;
   disabled?: boolean;
   button: ReactNode;
   items: { value: string; label: string; content: ReactNode }[];
@@ -154,7 +160,7 @@ export function MenuButton({
 
   return (
     <div ref={root} className="relative">
-      <ToolButton helpId={helpId} label={label} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+      <ToolButton helpId={helpId} label={label} variant={variant} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
         <span className="flex items-center gap-1">
           {button}
           <span className="text-[0.6rem]">▾</span>

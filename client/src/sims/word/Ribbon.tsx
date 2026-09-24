@@ -1,7 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { wordSim } from '@office-neko/shared';
+import {
+  ArrowSync20Regular,
+  DocumentBulletList20Regular,
+  Image20Regular,
+  Print20Regular,
+  Resize20Regular,
+  Save20Regular,
+  Table20Regular,
+  TableDeleteColumn20Regular,
+  TableDeleteRow20Regular,
+  TableInsertColumn20Regular,
+  TableInsertRow20Regular,
+} from '@fluentui/react-icons';
+import { Group, Row, SoonTab, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
-import { nativeTitle } from '../../help/nativeTitle';
 
 export { WordDialogs } from './dialogs';
 
@@ -11,21 +24,86 @@ interface Props {
 }
 
 const TABS = ['File', 'Home', 'Insert', 'Layout', 'References', 'View'] as const;
-type Tab = (typeof TABS)[number];
+/** Thẻ ngữ cảnh: Word chỉ hiện khi tài liệu có ảnh / có bảng. */
+const CONTEXT_TABS = ['Picture Format', 'Table Layout'] as const;
+type Tab = (typeof TABS)[number] | (typeof CONTEXT_TABS)[number];
 
-function Btn({ helpId, label, onClick, children }: { helpId: string; label: string; onClick: () => void; children: React.ReactNode }) {
+const GRID_ROWS = 6;
+const GRID_COLS = 8;
+
+/** Tài liệu có nút loại `type` (ảnh, bảng) không — để bật thẻ ngữ cảnh như Word. */
+function hasNode(node: unknown, type: string): boolean {
+  if (!node || typeof node !== 'object') return false;
+  const n = node as { type?: string; content?: unknown[] };
+  return n.type === type || (n.content ?? []).some((c) => hasNode(c, type));
+}
+
+/**
+ * Insert › Table như Word: bấm nút mở lưới ô vuông, rê chuột tô vùng, bấm ô thứ (hàng, cột) là
+ * chèn bảng đúng cỡ đó. Menu đặt ngoài mọi khung `overflow` (lỗi 4B).
+ */
+function TableGrid({ onPick }: { onPick: (rows: number, cols: number) => void }) {
+  const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState<[number, number]>([0, 0]);
+  const root = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const away = (e: PointerEvent) => !root.current?.contains(e.target as Node) && setOpen(false);
+    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('pointerdown', away);
+    document.addEventListener('keydown', esc);
+    return () => {
+      document.removeEventListener('pointerdown', away);
+      document.removeEventListener('keydown', esc);
+    };
+  }, [open]);
+
   return (
-    <button
-      type="button"
-      aria-label={label}
-      title={nativeTitle(helpId, label)}
-      data-help-id={helpId}
-      onMouseDown={(e) => e.preventDefault()}
-      onClick={onClick}
-      className="rounded-lg bg-white px-3 py-1.5 text-sm font-bold transition hover:bg-cream"
-    >
-      {children}
-    </button>
+    <div ref={root} className="relative">
+      <ToolButton variant="office" large helpId="word.table" label="Chèn bảng" pressed={open} onClick={() => setOpen((o) => !o)}>
+        <Table20Regular />
+        <span>Table ▾</span>
+      </ToolButton>
+      {open ? (
+        <div role="menu" aria-label="Chọn cỡ bảng" className="absolute left-0 top-full z-30 mt-1 rounded-sm border border-neutral-300 bg-white p-2 shadow-lg">
+          <p className="mb-1 text-xs font-semibold text-neutral-700">
+            {/* Word ghi "3x2 Table" (cột trước), còn đề bài nói "3 hàng × 2 cột": ghi rõ chữ để khỏi ngược. */}
+            {hover[0] ? `${hover[0]} hàng × ${hover[1]} cột` : 'Insert Table'}
+          </p>
+          <div className="grid gap-0.5" style={{ gridTemplateColumns: `repeat(${GRID_COLS}, 1rem)` }} onMouseLeave={() => setHover([0, 0])}>
+            {Array.from({ length: GRID_ROWS * GRID_COLS }, (_, i) => {
+              const r = Math.floor(i / GRID_COLS) + 1;
+              const c = (i % GRID_COLS) + 1;
+              const lit = r <= hover[0] && c <= hover[1];
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Bảng ${r} hàng × ${c} cột`}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onMouseEnter={() => setHover([r, c])}
+                  onFocus={() => setHover([r, c])}
+                  onClick={() => {
+                    setOpen(false);
+                    onPick(r, c);
+                  }}
+                  className={`h-4 w-4 border ${lit ? 'border-orange-500 bg-orange-100' : 'border-neutral-400 bg-white'}`}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function Labeled({ icon, text }: { icon: ReactNode; text: string }) {
+  return (
+    <span className="flex items-center gap-1 text-[0.75rem]">
+      {icon} {text}
+    </span>
   );
 }
 
@@ -34,79 +112,126 @@ function Btn({ helpId, label, onClick, children }: { helpId: string; label: stri
  * mọi thứ làm ĐỔI TÀI LIỆU vẫn phải đi qua `dispatch`.
  */
 export function Ribbon({ state, dispatch }: Props) {
-  const [tab, setTab] = useState<Tab>('Home');
-  const [rows, setRows] = useState(3);
-  const [cols, setCols] = useState(2);
+  const [picked, setTab] = useState<Tab>('Home');
+  const context = CONTEXT_TABS.filter((t) => hasNode(state.doc, t === 'Picture Format' ? 'image' : 'table'));
+  // Thẻ ngữ cảnh biến mất khi xoá ảnh/bảng thì quay về Home, như Word.
+  const tab: Tab = (CONTEXT_TABS as readonly string[]).includes(picked) && !(context as string[]).includes(picked) ? 'Home' : picked;
 
   return (
-    <div className="space-y-2">
-      <div role="tablist" aria-label="Thanh công cụ" className="flex flex-wrap gap-1 border-b border-peach/40 pb-1">
-        {TABS.map((name) => (
-          <button
-            key={name}
-            type="button"
-            role="tab"
-            aria-selected={tab === name}
-            onMouseDown={(e) => e.preventDefault()}
-            onClick={() => setTab(name)}
-            className={`rounded-t-lg px-3 py-1 text-sm font-bold transition ${tab === name ? 'bg-white text-rose-ink shadow-sm' : 'text-muted hover:bg-white/60'}`}
-          >
-            {name}
-          </button>
-        ))}
+    <div className="space-y-1">
+      <div role="tablist" aria-label="Thanh công cụ" className="flex flex-wrap gap-0.5 border-b border-neutral-300">
+        {[...TABS, ...context].map((name) => {
+          const ctx = (CONTEXT_TABS as readonly string[]).includes(name);
+          return (
+            <button
+              key={name}
+              type="button"
+              role="tab"
+              aria-selected={tab === name}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setTab(name)}
+              className={`-mb-px border-b-[3px] px-3 py-1 text-sm transition ${
+                tab === name ? 'border-[#185ABD] font-semibold text-[#185ABD]' : `border-transparent hover:bg-neutral-100 ${ctx ? 'text-[#185ABD]' : 'text-neutral-700'}`
+              }`}
+            >
+              {name}
+            </button>
+          );
+        })}
       </div>
 
+      {/* Ribbon cao cố định như Word: đổi thẻ thì trang giấy bên dưới không nhảy lên nhảy xuống. */}
+      <div className="flex min-h-24 flex-col [&>*]:flex-1">
       {tab === 'Home' && <RibbonHome state={state} dispatch={dispatch} />}
 
       {tab === 'File' && (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          <Btn helpId="word.save" label="Lưu văn bản" onClick={() => dispatch({ type: 'openDialog', dialog: 'save' })}>💾 Lưu</Btn>
-          <Btn helpId="word.print" label="In thử" onClick={() => dispatch({ type: 'openDialog', dialog: 'print' })}>🖨️ In</Btn>
+        <div className="flex flex-wrap items-stretch py-1">
+          <Group title="File" variant="office">
+            <Row>
+              <ToolButton variant="office" large helpId="word.save" label="Lưu văn bản" onClick={() => dispatch({ type: 'openDialog', dialog: 'save' })}>
+                <Save20Regular />
+                <span>Save As</span>
+              </ToolButton>
+              <ToolButton variant="office" large helpId="word.print" label="In thử" onClick={() => dispatch({ type: 'openDialog', dialog: 'print' })}>
+                <Print20Regular />
+                <span>Print</span>
+              </ToolButton>
+            </Row>
+          </Group>
         </div>
       )}
 
       {tab === 'Insert' && (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          <label className="flex items-center gap-1 text-sm font-semibold">
-            Hàng
-            <input aria-label="Số hàng" type="number" min={1} max={8} value={rows} onChange={(e) => setRows(Number(e.target.value))} className="w-14 rounded-lg border-2 border-peach/50 px-2 py-1" />
-          </label>
-          <label className="flex items-center gap-1 text-sm font-semibold">
-            Cột
-            <input aria-label="Số cột" type="number" min={1} max={6} value={cols} onChange={(e) => setCols(Number(e.target.value))} className="w-14 rounded-lg border-2 border-peach/50 px-2 py-1" />
-          </label>
-          <Btn helpId="word.table" label="Chèn bảng" onClick={() => dispatch({ type: 'insertTable', rows, cols })}>▦ Chèn bảng</Btn>
-          <Btn helpId="word.rowAdd" label="Thêm hàng" onClick={() => dispatch({ type: 'tableRow', op: 'add' })}>＋ Hàng</Btn>
-          <Btn helpId="word.rowRemove" label="Xoá hàng" onClick={() => dispatch({ type: 'tableRow', op: 'remove' })}>－ Hàng</Btn>
-          <Btn helpId="word.colAdd" label="Thêm cột" onClick={() => dispatch({ type: 'tableCol', op: 'add' })}>＋ Cột</Btn>
-          <Btn helpId="word.colRemove" label="Xoá cột" onClick={() => dispatch({ type: 'tableCol', op: 'remove' })}>－ Cột</Btn>
-          <Btn helpId="word.image" label="Chèn ảnh" onClick={() => dispatch({ type: 'openDialog', dialog: 'image' })}>🖼️ Ảnh</Btn>
-        </div>
-      )}
-
-      {tab === 'Layout' && (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          <span className="text-sm font-semibold">Độ rộng ảnh:</span>
-          {(['25%', '40%', '60%', '100%'] as const).map((width) => (
-            <Btn key={width} helpId="word.imageWidth" label={`Độ rộng ảnh ${width}`} onClick={() => dispatch({ type: 'setImageWidth', width })}>
-              {width}
-            </Btn>
-          ))}
+        <div className="flex flex-wrap items-stretch py-1">
+          <Group title="Tables" variant="office">
+            <TableGrid onPick={(rows, cols) => dispatch({ type: 'insertTable', rows, cols })} />
+          </Group>
+          <Group title="Illustrations" variant="office">
+            <ToolButton variant="office" large helpId="word.image" label="Chèn ảnh" onClick={() => dispatch({ type: 'openDialog', dialog: 'image' })}>
+              <Image20Regular />
+              <span>Pictures</span>
+            </ToolButton>
+          </Group>
         </div>
       )}
 
       {tab === 'References' && (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          <Btn helpId="word.toc" label="Chèn mục lục" onClick={() => dispatch({ type: 'insertToc' })}>📑 Chèn mục lục</Btn>
-          <Btn helpId="word.tocRefresh" label="Cập nhật mục lục" onClick={() => dispatch({ type: 'refreshToc' })}>🔄 Cập nhật mục lục</Btn>
+        <div className="flex flex-wrap items-stretch py-1">
+          <Group title="Table of Contents" variant="office">
+            <Row>
+              <ToolButton variant="office" large helpId="word.toc" label="Chèn mục lục" onClick={() => dispatch({ type: 'insertToc' })}>
+                <DocumentBulletList20Regular />
+                <span>Table of Contents</span>
+              </ToolButton>
+              <ToolButton variant="office" helpId="word.tocRefresh" label="Cập nhật mục lục" onClick={() => dispatch({ type: 'refreshToc' })}>
+                <Labeled icon={<ArrowSync20Regular />} text="Update Table" />
+              </ToolButton>
+            </Row>
+          </Group>
         </div>
       )}
 
-      {tab === 'View' && (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          <Btn helpId="word.find" label="Tìm và thay thế" onClick={() => dispatch({ type: 'openDialog', dialog: 'find' })}>🔍 Tìm &amp; Thay thế</Btn>
+      {tab === 'Picture Format' && (
+        <div className="flex flex-wrap items-stretch py-1">
+          <Group title="Size" variant="office">
+            <Row>
+              <Resize20Regular aria-hidden />
+              {(['25%', '40%', '60%', '100%'] as const).map((width) => (
+                <ToolButton key={width} variant="office" helpId="word.imageWidth" label={`Độ rộng ảnh ${width}`} onClick={() => dispatch({ type: 'setImageWidth', width })}>
+                  <span className="text-[0.75rem]">{width}</span>
+                </ToolButton>
+              ))}
+            </Row>
+          </Group>
         </div>
       )}
+
+      {tab === 'Table Layout' && (
+        <div className="flex flex-wrap items-stretch py-1">
+          <Group title="Rows & Columns" variant="office">
+            <Row>
+              <ToolButton variant="office" helpId="word.rowAdd" label="Thêm hàng" onClick={() => dispatch({ type: 'tableRow', op: 'add' })}>
+                <Labeled icon={<TableInsertRow20Regular />} text="Insert Below" />
+              </ToolButton>
+              <ToolButton variant="office" helpId="word.colAdd" label="Thêm cột" onClick={() => dispatch({ type: 'tableCol', op: 'add' })}>
+                <Labeled icon={<TableInsertColumn20Regular />} text="Insert Right" />
+              </ToolButton>
+            </Row>
+            <Row>
+              <ToolButton variant="office" helpId="word.rowRemove" label="Xoá hàng" onClick={() => dispatch({ type: 'tableRow', op: 'remove' })}>
+                <Labeled icon={<TableDeleteRow20Regular />} text="Delete Rows" />
+              </ToolButton>
+              <ToolButton variant="office" helpId="word.colRemove" label="Xoá cột" onClick={() => dispatch({ type: 'tableCol', op: 'remove' })}>
+                <Labeled icon={<TableDeleteColumn20Regular />} text="Delete Columns" />
+              </ToolButton>
+            </Row>
+          </Group>
+        </div>
+      )}
+
+      {tab === 'Layout' && <SoonTab what="Thẻ Layout (lề trang, khổ giấy)" />}
+      {tab === 'View' && <SoonTab what="Thẻ View (chế độ xem)" />}
+      </div>
     </div>
   );
 }

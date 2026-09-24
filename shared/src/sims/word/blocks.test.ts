@@ -1,9 +1,25 @@
 import { describe, it, expect } from 'vitest';
 import { plainText } from './schema';
 import { blockOf } from './blocks';
-import { reduceWord, wordInitial, type WordAction, type WordState } from './state';
+import { activeBlock, reduceWord, wordInitial, type WordAction, type WordState } from './state';
 
 const run = (s: WordState, ...as: WordAction[]) => as.reduce(reduceWord, s);
+
+describe('activeBlock at a bare cursor', () => {
+  // Như Word: bấm con trỏ vào một dòng Heading 1 thì ô Heading 1 sáng, không cần bôi đen.
+  it('reports the block that holds the cursor', () => {
+    let s = run(wordInitial({ text: 'Giới thiệu\nTôi tên là Nam' }), { type: 'selectText', text: 'Giới thiệu' }, { type: 'setHeading', level: 1 });
+    s = run(s, { type: 'selectText', text: 'Tôi tên là Nam' }, { type: 'setAlign', align: 'center' });
+    expect(activeBlock(run(s, { type: 'setSelection', from: 3, to: 3 }))).toMatchObject({ level: 1, align: 'left' });
+    expect(activeBlock(run(s, { type: 'setSelection', from: 16, to: 16 }))).toMatchObject({ level: 0, align: 'center' });
+  });
+
+  it('reads the block under the selection, not the first paragraph with the same words', () => {
+    let s = run(wordInitial({ text: 'Mochi\nMochi' }), { type: 'selectText', text: 'Mochi', nth: 2 }, { type: 'setAlign', align: 'right' });
+    s = run(s, { type: 'selectText', text: 'Mochi', nth: 2 });
+    expect(activeBlock(s)?.align).toBe('right');
+  });
+});
 /**
  * Tài liệu ba đoạn: "Tiêu đề", "Đoạn một", "Đoạn hai".
  * `wordInitial` đặt con trỏ ở ĐẦU đoạn, nên phải đưa con trỏ về cuối chữ rồi

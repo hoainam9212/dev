@@ -230,7 +230,7 @@
   {
     "id": "word-muc-luc-khong-doi",
     "q": "Sửa tiêu đề rồi mà mục lục không đổi?",
-    "a": "Mục lục không tự đổi theo. Vào thẻ **References** bấm **Cập nhật mục lục** là khớp lại ngay.",
+    "a": "Mục lục không tự đổi theo. Vào thẻ **References** › nhóm **Table of Contents** bấm **Update Table** là khớp lại ngay.",
     "keywords": [
       "mục lục",
       "table of contents",
@@ -264,7 +264,7 @@
   {
     "id": "word-anh-to-qua",
     "q": "Ảnh chèn vào to quá thì sao?",
-    "a": "Mở thẻ **Layout** rồi chọn độ rộng nhỏ hơn: 25%, 40% hay 60% bề ngang trang.",
+    "a": "Mở thẻ **Picture Format** (chỉ hiện khi bài có ảnh) › nhóm **Size** rồi chọn độ rộng nhỏ hơn: 25%, 40% hay 60% bề ngang trang.",
     "keywords": [
       "ảnh",
       "hình",

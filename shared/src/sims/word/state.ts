@@ -1,6 +1,6 @@
 import { emptyDoc, type WordDoc } from './schema';
 import { setHighlight, setStyle, toggleMark, marksAtCursor, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
-import { setAlign, setHeading, setLineHeight, toggleList, blockOf, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
+import { setAlign, setHeading, setLineHeight, toggleList, blockAt, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
 import { fillCell, insertImage, insertTable, setImageWidth, tableColOp, tableRowOp, type ImageWidth } from './objects';
 import { replaceAll, replaceOne, writeToc } from './doc';
 import {
@@ -87,8 +87,8 @@ export function activeMarks(s: WordState): MarkReport | null {
 
 /** Khối chứa con trỏ — ribbon dùng để hiện kiểu đoạn đang áp dụng. */
 export function activeBlock(s: WordState): BlockReport | null {
-  const text = textInRange(s.doc, s.sel);
-  return text ? blockOf(s.doc, text) : null;
+  // Theo vị trí con trỏ, không dò lại chữ: dò chữ trả về đoạn TRÙNG CHỮ đầu tiên, và rỗng khi không bôi đen.
+  return blockAt(s.doc, s.sel.from);
 }
 
 export function reduceWord(s: WordState, a: WordAction): WordState {

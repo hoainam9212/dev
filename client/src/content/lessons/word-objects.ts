@@ -15,7 +15,7 @@ export const WORD_OBJECTS: Lesson[] = [
   L('word.objects', 'table', 'Chèn bảng và điền nội dung', 8, [
     {
       kind: 'explain',
-      body: 'Có nhiều thứ xếp thành cột thì dùng [[table|bảng]] cho gọn.\n\nBảng gồm [[row|hàng]] (nằm ngang) và [[column|cột]] (nằm dọc). Ô vuông ở chỗ hàng gặp cột gọi là [[cell|ô]]. Bảng nằm ở thẻ **Insert**.',
+      body: 'Có nhiều thứ xếp thành cột thì dùng [[table|bảng]] cho gọn.\n\nBảng gồm [[row|hàng]] (nằm ngang) và [[column|cột]] (nằm dọc). Ô vuông ở chỗ hàng gặp cột gọi là [[cell|ô]]. Bảng nằm ở thẻ **Insert** › nhóm **Tables** › nút **Table**: rê chuột trên lưới ô vuông để chọn số hàng, số cột.',
     },
     {
       kind: 'quiz',
@@ -33,8 +33,8 @@ export const WORD_OBJECTS: Lesson[] = [
         { kind: 'cellText', row: 0, col: 1, text: 'Điểm' },
       ],
       spotlight: { helpId: 'word.table' },
-      hint: 'Mở thẻ Insert, đặt Hàng = 3, Cột = 2 rồi bấm "Chèn bảng". Sau đó bấm vào từng ô để gõ.',
-      steps: ['Mở thẻ Insert.', 'Đặt Hàng 3, Cột 2.', 'Bấm Chèn bảng.', 'Bấm vào ô đầu, gõ: Môn học', 'Bấm ô bên cạnh, gõ: Điểm'],
+      hint: 'Thẻ Insert › nhóm Tables › Table, rê chuột trên lưới tới ô thứ 3 hàng, 2 cột rồi bấm. Sau đó bấm vào từng ô để gõ.',
+      steps: ['Mở thẻ Insert.', 'Bấm nút Table.', 'Rê chuột trên lưới cho sáng 3 hàng × 2 cột rồi bấm.', 'Bấm vào ô đầu, gõ: Môn học', 'Bấm ô bên cạnh, gõ: Điểm'],
       solve: () => [
         { type: 'insertTable', rows: 3, cols: 2 },
         { type: 'fillCell', row: 0, col: 0, text: 'Môn học' },
@@ -46,7 +46,7 @@ export const WORD_OBJECTS: Lesson[] = [
   L('word.objects', 'image', 'Chèn ảnh vào văn bản', 6, [
     {
       kind: 'explain',
-      body: 'Ảnh làm văn bản dễ nhìn hơn, nhưng đừng để ảnh **che mất chữ** hoặc to quá cả trang.\n\nChèn ảnh ở thẻ **Insert** → nút **Ảnh**: chọn một ảnh có sẵn, hoặc lấy ảnh trong máy bạn. Đổi độ rộng ảnh ở thẻ **Layout**.',
+      body: 'Ảnh làm văn bản dễ nhìn hơn, nhưng đừng để ảnh **che mất chữ** hoặc to quá cả trang.\n\nChèn ảnh ở thẻ **Insert** › nhóm **Illustrations** › nút **Pictures**: chọn một ảnh có sẵn, hoặc lấy ảnh trong máy bạn.\n\nCó ảnh rồi, Word hiện thêm thẻ **Picture Format**. Đổi độ rộng ảnh ở nhóm **Size** của thẻ đó.',
     },
     wordPractice({
       text: 'Ảnh của tôi:',
@@ -56,8 +56,8 @@ export const WORD_OBJECTS: Lesson[] = [
         { kind: 'imageWidth', width: '60%' },
       ],
       spotlight: { helpId: 'word.image' },
-      hint: 'Thẻ Insert → Ảnh → bấm một ảnh trong lưới. Rồi mở thẻ Layout, bấm 60%.',
-      steps: ['Mở thẻ Insert.', 'Bấm nút Ảnh.', 'Chọn một ảnh trong lưới.', 'Mở thẻ Layout, bấm 60%.'],
+      hint: 'Thẻ Insert › Pictures › bấm một ảnh trong lưới. Rồi mở thẻ Picture Format › nhóm Size, bấm 60%.',
+      steps: ['Mở thẻ Insert.', 'Bấm nút Pictures.', 'Chọn một ảnh trong lưới.', 'Mở thẻ Picture Format (vừa hiện ra), bấm 60% ở nhóm Size.'],
       solve: () => [
         { type: 'insertImage', src: '/images/word/meo.svg', alt: 'Mèo Mochi' },
         { type: 'setImageWidth', width: '60%' },

@@ -48,15 +48,15 @@ export const WORD_PARA: Lesson[] = [
   L('word.para', 'spacing', 'Giãn dòng cho dễ đọc', 5, [
     {
       kind: 'explain',
-      body: 'Các dòng sát nhau quá thì đọc mỏi mắt. Nút **Giãn dòng** ở thẻ Home cho bạn chọn 1,0 — 1,5 — 2,0.\n\nĐơn từ hay dùng **1,5**: thoáng mà vẫn gọn trong một trang.',
+      body: 'Các dòng sát nhau quá thì đọc mỏi mắt. Nút **Line Spacing** (giãn dòng) ở thẻ **Home** › nhóm **Paragraph** cho bạn chọn 1,0 — 1,5 — 2,0.\n\nĐơn từ hay dùng **1,5**: thoáng mà vẫn gọn trong một trang.',
     },
     wordPractice({
       text: LETTER,
       task: 'Đặt **giãn dòng 1,5** cho dòng "Kính gửi Quý công ty Mochi".',
       checks: [{ kind: 'lineHeight', text: 'Kính gửi Quý công ty Mochi', value: '1.5' }],
       spotlight: { helpId: 'word.lineHeight' },
-      hint: 'Bấm vào dòng đó rồi chọn 1,5 ở ô Giãn dòng.',
-      steps: ['Bấm vào dòng Kính gửi Quý công ty Mochi.', 'Mở ô Giãn dòng.', 'Chọn 1,5.'],
+      hint: 'Bấm vào dòng đó rồi mở nút Line Spacing ở thẻ Home › nhóm Paragraph, chọn 1,5.',
+      steps: ['Bấm vào dòng Kính gửi Quý công ty Mochi.', 'Bấm nút Line Spacing (nhóm Paragraph).', 'Chọn 1,5.'],
       solve: () => [
         { type: 'selectText', text: 'Kính gửi Quý công ty Mochi' },
         { type: 'setLineHeight', value: '1.5' },
