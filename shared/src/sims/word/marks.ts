@@ -80,6 +80,21 @@ export function marksInRange(doc: WordDoc, sel: Range): MarkReport | null {
     if (child.isText) pieces.push([...child.marks]);
     return true;
   });
+  return reportOf(pieces);
+}
+
+/**
+ * Định dạng tại con trỏ không bôi đen, như Word thật: lấy chữ ngay trước con trỏ (đầu dòng thì
+ * chữ ngay sau). Chỉ ribbon dùng; grader vẫn đi qua `marksInRange`/`marksOnText`.
+ */
+export function marksAtCursor(doc: WordDoc, pos: number): MarkReport | null {
+  const node = docFromJSON(doc);
+  const $pos = node.resolve(Math.max(0, Math.min(pos, node.content.size)));
+  if (!$pos.parent.isTextblock || $pos.parent.content.size === 0) return null;
+  return reportOf([[...$pos.marks()]]);
+}
+
+function reportOf(pieces: Mark[][]): MarkReport | null {
   if (pieces.length === 0) return null;
 
   const everyHas = (name: string) => pieces.every((marks) => marks.some((m) => m.type.name === name));

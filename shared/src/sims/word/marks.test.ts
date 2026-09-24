@@ -1,9 +1,36 @@
 import { describe, it, expect } from 'vitest';
 import { marksOnText } from './marks';
-import { reduceWord, wordInitial, type WordAction, type WordState } from './state';
+import { activeMarks, reduceWord, wordInitial, type WordAction, type WordState } from './state';
 
 const run = (s: WordState, ...as: WordAction[]) => as.reduce(reduceWord, s);
 const doc = (t: string) => wordInitial({ text: t });
+
+describe('activeMarks at a bare cursor', () => {
+  // Như Word thật: bấm con trỏ vào giữa chữ Times 16pt thì ô phông/cỡ vẫn hiện Times, 16.
+  const styled = () =>
+    run(doc('ĐƠN XIN VIỆC'),
+      { type: 'selectText', text: 'ĐƠN XIN VIỆC' },
+      { type: 'setStyle', attr: 'fontFamily', value: 'Times New Roman' },
+      { type: 'setStyle', attr: 'fontSize', value: '16pt' },
+      { type: 'toggleMark', mark: 'bold' },
+    );
+
+  it('reports the marks of the text around the cursor', () => {
+    const s = run(styled(), { type: 'setSelection', from: 4, to: 4 });
+    expect(activeMarks(s)).toMatchObject({ fontFamily: 'Times New Roman', fontSize: '16pt', bold: true, italic: false });
+  });
+
+  it('uses the text just before the cursor at the end of a line, and after it at the start', () => {
+    const end = run(styled(), { type: 'setSelection', from: 13, to: 13 });
+    expect(activeMarks(end)?.fontFamily).toBe('Times New Roman');
+    const start = run(styled(), { type: 'setSelection', from: 1, to: 1 });
+    expect(activeMarks(start)?.fontSize).toBe('16pt');
+  });
+
+  it('still reports nothing in an empty paragraph', () => {
+    expect(activeMarks(run(doc(''), { type: 'setSelection', from: 1, to: 1 }))).toBeNull();
+  });
+});
 
 describe('word marks', () => {
   it('bolds the selected phrase only', () => {

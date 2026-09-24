@@ -1,5 +1,5 @@
 import { emptyDoc, type WordDoc } from './schema';
-import { setHighlight, setStyle, toggleMark, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
+import { setHighlight, setStyle, toggleMark, marksAtCursor, marksInRange, type MarkReport, type StyleAttr, type ToggleableMark } from './marks';
 import { setAlign, setHeading, setLineHeight, toggleList, blockOf, type Align, type BlockReport, type LineHeight, type ListKind } from './blocks';
 import { fillCell, insertImage, insertTable, setImageWidth, tableColOp, tableRowOp, type ImageWidth } from './objects';
 import { replaceAll, replaceOne, writeToc } from './doc';
@@ -82,7 +82,7 @@ export { findText };
 
 /** Định dạng của vùng đang chọn — ribbon dùng để tô sáng nút đang bật. */
 export function activeMarks(s: WordState): MarkReport | null {
-  return marksInRange(s.doc, s.sel);
+  return s.sel.from === s.sel.to ? marksAtCursor(s.doc, s.sel.from) : marksInRange(s.doc, s.sel);
 }
 
 /** Khối chứa con trỏ — ribbon dùng để hiện kiểu đoạn đang áp dụng. */
