@@ -1,6 +1,6 @@
 # Giai đoạn 5A (PowerPoint: lõi và soạn slide) – tình trạng
 
-**CHƯA BẮT ĐẦU.** Plan viết ngày 2026-09-22, ngay sau khi 4B xong.
+**XONG toàn bộ 11/11 task, 2026-09-24.** PowerPoint có 6 bài / 2 chương (shared 428 + client 287 test). Giai đoạn kế tiếp là 5B — chưa có plan.
 
 Cập nhật 1 dòng sau mỗi task, trong cùng commit của task đó. Phiên mới đọc file này trước, không đọc lại các file task đã xong.
 
@@ -18,7 +18,16 @@ Nền: 4B đã lên `master`, lộ trình Excel 20 bài / 7 chương, shared 330
 | 8 tab Insert + hộp thoại | ☑ | (commit này) | 9 test (3 RibbonInsert + 5 dialogs + 1 Shape Fill), shared 424 / client 285. Hết phần giao diện 5A. **Thêm ngoài plan:** (a) nút **Shape Fill** (nhóm Drawing ở Home, helpId `ppt.fill`) — plan bảo "chèn ngôi sao, đổi màu" mà Font color chỉ đổi màu CHỮ, không có cách tô hình; (b) `.ppt-canvas` `user-select: none`, `<img draggable={false}>` + `pointer-events: none` — kéo ảnh trên Chrome thật bị tô xanh vùng chọn; (c) placeholder Title Slide `y: 180 → 176` (vi phạm bất biến 6, có từ Task 1) + test mọi chỗ dành sẵn nằm trên lưới 8. `MenuButton`: `▾` rơi xuống dòng riêng vì `ToolButton` là `grid` — đã bọc trong `flex`. **Đã sửa chỗ plan sai:** chỗ nội dung của Tiêu đề và nội dung / Hai cột rút `h: 304 → 208` (dừng ở y=384, spec cập nhật theo), nên hộp chữ mới `(80,400,480,80)` không đè chỗ dành sẵn nào; có test duyệt mọi bố cục. Hình khối mới `(400,216)` thì VẪN nằm trong vùng nội dung — đó là cố ý, như PowerPoint thật. Đã soạn thật trên trình duyệt: tiêu đề → hộp chữ 3 dòng (Shift+Enter) → ngôi sao tô xanh → ảnh Mèo Mochi kéo nhỏ 320×240→280×208 → Lưu; mọi `.ppt-el` trong khung |
 | 9 bài chương 1 | ☑ | (commit này) | 3 bài (`ppt.intro`/`ppt.title`/`ppt.slides`), shared 425 / client 287. Từ điển thêm `cho-danh-san`, `bo-cuc`, `ty-le-16-9`, điền `lessonIds` cho `slide` — không nợ mục nào. **Sửa chỗ plan sai, mắt thấy mới lộ:** (a) `ppt.intro` chỉ check `slideCount: 2` ⇒ **đạt ngay lúc mở bài** (PracticeView chấm liên tục). Thêm check **`activeSlide`** vào grader và **bất biến mới trong `content.test.ts`: không bước thực hành nào được đạt sẵn** (mọi bài cũ đều qua); (b) gợi ý bậc 2 trỏ `ppt.canvas` trong khi đề bảo bấm cột trái ⇒ thêm helpId **`ppt.slideList`** trên cột thumbnail; (c) nút New Slide không có ▾ chọn bố cục như plan tả — lời giải dùng `setLayout`, bước gợi ý chỉ nút Layout (▤); (d) {{Escape}} là **huỷ** sửa, không phải chốt — lời bài nói Enter. Mood `think` không tồn tại, dùng `surprised` |
 | 10 bài chương 2 | ☑ | (commit này) | PowerPoint nay **6 bài / 2 chương**; shared 428 / client 287. Từ điển thêm `hop-chu`, `hinh-khoi`, `tay-nam`. **Sửa chỗ plan sai:** (a) bài ảnh dạy "kéo góc thì không méo" mà `resizeBy` KHÔNG giữ tỉ lệ ⇒ thêm khoá tỉ lệ cho **tay nắm góc của ảnh** (như PowerPoint thật; tay nắm cạnh vẫn bẹp), 3 test mới; đo thật: kéo lệch hướng 320×240 → 224×168; (b) plan bảo đổi màu hình bằng Font color — sai từ Task 8, lời bài và quiz dùng **Shape Fill**; (c) "thu nhỏ còn nửa khung" mơ hồ, đổi thành "nhỏ lại một chút bằng tay nắm góc". Ảnh mẫu lấy từ `wordSim.IMAGE_LIBRARY[0]`. Đã học cả ba bài bằng chuột: kéo hình chữ nhật thứ hai 400→160 để hết đè; bài hai hình đạt ngay khi đủ hai hình, đúng như bước 3 nói trước |
-| 11 từ điển + tổng kết + gộp | ☐ | | |
+| 11 từ điển + tổng kết + gộp | ☑ | (commit này) | Xoá `DevPptPage`, route `/dev/ppt`, mục `office-neko-5a` trong launch.json. 8 câu Hỏi Mèo PowerPoint (keywords có dấu + không dấu). README cập nhật. `npm test && typecheck && build` xanh. **Khung 390px:** cột thumbnail 140px làm slide còn 203px ⇒ dưới `sm` thumbnail nằm **ngang phía trên**, slide rộng 356px, trang không tràn. Build thật (Chrome headless, hồ sơ mới): học `ppt.intro` tới đạt, ngắt mạng tải lại vẫn chạy. **Chưa kiểm:** đổi hồ sơ rồi quay lại (hạ tầng chung, PowerPoint không thêm gì riêng) |
+
+## Lỗi bắt được khi nhìn ảnh chụp / học thật (test không thấy)
+
+- Task 5: `scale(calc(100cqw / 960))` không chạy; `.ppt-stage` thiếu `overflow: hidden` làm tràn ngang.
+- Task 8: kéo ảnh bị Chrome tô vùng chọn; `▾` của `MenuButton` rơi xuống dòng; chỗ nội dung đè hộp chữ mới; không có cách tô màu hình (thêm Shape Fill).
+- Task 9: bài `ppt.intro` **đạt ngay lúc mở** ⇒ check `activeSlide` + bất biến "không đạt sẵn" trong `content.test.ts`; gợi ý bậc 2 trỏ khung slide thay vì cột thumbnail (`ppt.slideList`); lời bài tả nút New Slide có ▾ và Escape là chốt — cả hai sai.
+- Task 10: bài dạy "kéo góc ảnh không méo" mà sim không giữ tỉ lệ ⇒ thêm khoá tỉ lệ; plan bảo đổi màu hình bằng Font color.
+- Task 11: slide chỉ rộng 203px ở màn 390px.
+- Mẹo công cụ: ảnh chụp của pane trong app hay vẽ dở/lệch tỉ lệ — tính toạ độ bấm từ `getBoundingClientRect()` (khung ảnh = viewport / 1.6) và đọc `style` thật thay vì tin ảnh.
 
 ## Quyết định đã chốt
 
@@ -28,7 +37,8 @@ Nền: 4B đã lên `master`, lộ trình Excel 20 bài / 7 chương, shared 330
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
 - Từ 4A: gợi ý bậc 2 trỏ vào một ô cụ thể (`spotlight: { cell }`) chưa thử với lưới cuộn được.
-- Từ 4A: PWA ngoại tuyến chưa kiểm lại từ sau multi-profile (`npm run preview` rồi ngắt mạng).
+- ~~Từ 4A: PWA ngoại tuyến~~ — đã kiểm 2026-09-24 trong Task 11, chạy tốt.
+- Từ 5A: chưa kiểm lại đổi hồ sơ → quay lại với tiến độ PowerPoint; nút "Kiểm tra" ở màn hẹp nằm đè mép dưới khung slide; hình chữ nhật mới chèn là hình vuông 160×160.
 - Từ giai đoạn 3, chưa xếp lịch: bài cho vỏ máy tính (Start/Taskbar/Dock/Spotlight); một lượt rà soát trợ năng cho toàn bộ sim; bàn phím ảo theo HĐH; Shift+click chọn dải trong vùng file.
 - Sau 5A là 5B (theme, chuyển cảnh, trình chiếu, chương 3–5) — chưa có plan.
 - **Cố ý KHÔNG làm ở 5A** (ghi để ai sau khỏi tưởng bỏ sót): Slide Master; animation từng đối tượng; xoay và nhóm đối tượng; bảng/biểu đồ trong slide; ghi chú người trình bày; xuất PDF; chọn nhiều đối tượng một lúc.

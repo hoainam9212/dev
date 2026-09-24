@@ -11,8 +11,6 @@ import { SettingsPage } from './pages/SettingsPage';
 import { TypingHubPage } from './pages/TypingHubPage';
 import { SpeedTestPage } from './pages/SpeedTestPage';
 import { FishGamePage } from './pages/FishGamePage';
-// Trang thử tạm của giai đoạn 5A — Task 11 xoá cả import này lẫn route /dev/ppt.
-import { DevPptPage } from './pages/DevPptPage';
 import { Mochi } from './components/Mochi';
 import { HelpButton } from './help/HelpButton';
 import { HelpDrawer } from './help/HelpDrawer';
@@ -51,7 +49,6 @@ export default function App() {
             <Route path="/typing/fish" element={<FishGamePage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
-          <Route path="/dev/ppt" element={<DevPptPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <HelpButton />
