@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Group, Picker, ToolButton } from '../../components/ribbon';
 import { excelSim, type formula } from '@office-neko/shared';
 
 interface Props {
@@ -29,79 +29,6 @@ const FILLS: [label: string, value: string | null][] = [
   ['Xanh dương', '#C6E7FF'],
   ['Hồng', '#FFD6E5'],
 ];
-
-/** Nhóm nút có nhãn ở dưới, đúng như ribbon Word trong app. */
-export function Group({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="flex flex-col gap-1 border-r border-peach/40 px-3 last:border-r-0">
-      <div className="flex flex-wrap items-center gap-1">{children}</div>
-      <span className="text-center text-[0.65rem] font-bold text-muted">{title}</span>
-    </div>
-  );
-}
-
-/** Nút vuông nhỏ mang một ký hiệu, không phải cả câu tiếng Việt. Câu chữ nằm ở tooltip. */
-export function ToolButton({
-  helpId,
-  label,
-  pressed,
-  onClick,
-  children,
-}: {
-  helpId: string;
-  label: string;
-  pressed?: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      data-help-id={helpId}
-      aria-pressed={pressed ?? false}
-      // Giữ vùng chọn trong lưới khi bấm nút, nếu không định dạng không biết áp vào đâu.
-      onMouseDown={(e) => e.preventDefault()}
-      onClick={onClick}
-      className={`grid h-8 min-w-8 place-items-center rounded-lg px-2 text-sm font-bold transition ${
-        pressed ? 'bg-rose/25 ring-2 ring-rose' : 'bg-white hover:bg-cream'
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-export function Picker({
-  helpId,
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  helpId: string;
-  label: string;
-  value: string;
-  options: { value: string; label: string }[];
-  onChange: (value: string) => void;
-}) {
-  return (
-    <select
-      aria-label={label}
-      title={label}
-      data-help-id={helpId}
-      value={value}
-      onMouseDown={(e) => e.preventDefault()}
-      onChange={(e) => onChange(e.target.value)}
-      className="h-8 rounded-lg border-2 border-peach/50 bg-white px-2 text-sm font-semibold"
-    >
-      {options.map((o) => (
-        <option key={o.value} value={o.value}>{o.label}</option>
-      ))}
-    </select>
-  );
-}
 
 export function RibbonHome({ state, dispatch }: Props) {
   // Nút bật/tắt soi ô ĐANG CHỌN để người học thấy trạng thái hiện tại.

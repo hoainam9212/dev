@@ -28,7 +28,7 @@ describe('theme.css', () => {
   it('keeps component classes inside @layer components so utilities can override them', () => {
     const inLayer = componentsLayer(css);
     expect(inLayer, 'thiếu khối @layer components').not.toBe('');
-    for (const cls of ['.card', '.btn', '.btn-primary', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb']) {
+    for (const cls of ['.card', '.btn', '.btn-primary', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb', '.ribbon-menu', '.ribbon-soon']) {
       expect(inLayer.includes(`${cls} `) || inLayer.includes(`${cls},`) || inLayer.includes(`${cls} {`), `${cls} phải nằm trong @layer components`).toBe(true);
     }
   });
@@ -58,7 +58,7 @@ describe('theme.css', () => {
       }
     }
     const selectors = topLevel.join(' | ');
-    for (const cls of ['.card', '.btn', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb']) {
+    for (const cls of ['.card', '.btn', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb', '.ribbon-menu', '.ribbon-soon']) {
       expect(selectors.includes(cls), `${cls} phải ở cấp đầu của @layer components`).toBe(true);
     }
   });

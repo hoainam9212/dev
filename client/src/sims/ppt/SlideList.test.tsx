@@ -30,7 +30,7 @@ describe('SlideList', () => {
 
   it('bấm nút thêm slide thì số thumbnail tăng 1', async () => {
     setup(['title']);
-    await userEvent.click(screen.getByRole('button', { name: /Slide mới/ }));
+    await userEvent.click(screen.getByRole('button', { name: /^\+ Slide mới/ }));
     expect(screen.getAllByRole('button', { name: /^Slide \d+$/ })).toHaveLength(2);
   });
 

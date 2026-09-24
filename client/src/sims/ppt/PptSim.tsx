@@ -3,6 +3,7 @@ import { pptSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { SlideList } from './SlideList';
 import { Canvas } from './Canvas';
+import { Ribbon } from './Ribbon';
 
 /**
  * Trình chiếu mô phỏng. Trạng thái do `useReducer(reducePpt, initial)` giữ; cột
@@ -14,10 +15,15 @@ export function PptSim({ initial, onState }: SimProps<pptSim.PptState>) {
   useEffect(() => onState(state), [state, onState]);
 
   return (
-    <div className="flex gap-3">
-      <SlideList state={state} dispatch={dispatch} />
-      <div className="min-w-0 flex-1">
-        <Canvas state={state} dispatch={dispatch} />
+    <div className="space-y-3">
+      <div className="card p-2">
+        <Ribbon state={state} dispatch={dispatch} />
+      </div>
+      <div className="flex gap-3">
+        <SlideList state={state} dispatch={dispatch} />
+        <div className="min-w-0 flex-1">
+          <Canvas state={state} dispatch={dispatch} />
+        </div>
       </div>
     </div>
   );

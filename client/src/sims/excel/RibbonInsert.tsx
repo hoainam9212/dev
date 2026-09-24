@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { excelSim } from '@office-neko/shared';
-import { Group, Picker, ToolButton } from './RibbonHome';
+import { Group, Picker, ToolButton } from '../../components/ribbon';
 
 interface Props {
   state: excelSim.WorkbookState;
