@@ -3,6 +3,8 @@ import type { ElKind, Layout, PptState, ShapeKind, Slide } from './state';
 
 export type PptCheck =
   | { kind: 'slideCount'; count: number }
+  /** Chỉ dùng cho bài tập bấm chọn slide: không có nó, đề "mở slide 2" đạt ngay khi vừa mở bài. */
+  | { kind: 'activeSlide'; slide: number }
   | { kind: 'slideLayout'; slide: number; layout: Layout }
   | { kind: 'slideTitle'; slide: number; text?: string; notEmpty?: true }
   | { kind: 'hasElement'; slide: number; el: ElKind; min?: number; shape?: ShapeKind; textContains?: string };
@@ -39,6 +41,10 @@ export function gradePpt(s: PptState, c: PptCheck): CheckResult {
       return s.slides.length === c.count
         ? ok(`Bài trình chiếu có đúng ${c.count} slide.`)
         : no(`Cần ${c.count} slide, hiện có ${s.slides.length}.`);
+    case 'activeSlide':
+      return s.active === c.slide - 1
+        ? ok(`Đang mở slide ${c.slide}.`)
+        : no(`Hãy mở slide ${c.slide} — bạn đang ở slide ${s.active + 1}.`);
     case 'slideLayout': {
       const slide = slideAt(s, c.slide);
       if (!slide) return no(`Chưa có slide ${c.slide}.`);

@@ -11,7 +11,7 @@ export function SlideList({
   dispatch: Dispatch<pptSim.PptAction>;
 }) {
   return (
-    <div className="flex w-[140px] shrink-0 flex-col gap-2 overflow-y-auto pr-1">
+    <div className="flex w-[140px] shrink-0 flex-col gap-2 overflow-y-auto pr-1" data-help-id="ppt.slideList">
       {state.slides.map((slide, i) => (
         <button
           key={slide.id}

@@ -52,6 +52,8 @@ export const TRACKS: Track[] = [
       { id: 'excel.final', title: 'Dự án: Bảng lương', lessonIds: ['excel.project'] },
     ],
   },
-  { id: 'ppt', order: 4, title: 'PowerPoint – Trình chiếu', emoji: '🎞️', color: '#FFA878', blurb: 'Làm slide đẹp và trình bày tự tin.', chapters: [] },
+  { id: 'ppt', order: 4, title: 'PowerPoint – Trình chiếu', emoji: '🎞️', color: '#FFA878', blurb: 'Làm slide đẹp và trình bày tự tin.', chapters: [
+      { id: 'ppt.start', title: 'Slide đầu tiên', lessonIds: ['ppt.intro', 'ppt.title', 'ppt.slides'] },
+    ] },
   { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [] },
 ];

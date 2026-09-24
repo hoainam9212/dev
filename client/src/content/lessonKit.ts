@@ -1,4 +1,4 @@
-import { desktopSim, excelSim, fishGame, fishSim, mouseSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
+import { desktopSim, excelSim, fishGame, fishSim, mouseSim, pptSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
 
 export function keyActions(raw: string, msPerKey = 150, start = 1000): typingSim.TypingAction[] {
   return [...raw].map((key, i) => ({ type: 'key', key, at: start + i * msPerKey }));
@@ -148,6 +148,34 @@ export function excelPractice(o: {
   return {
     kind: 'practice',
     sim: 'excel',
+    task: o.task,
+    initial,
+    checks: o.checks,
+    hints: [o.hint, o.spotlight, o.steps],
+    solution: o.solve(initial),
+  };
+}
+
+/**
+ * Bước thực hành trên PowerPoint. `slides` dựng sẵn các bố cục đầu bài; `setup`
+ * thêm nội dung có sẵn (không tính vào lịch sử hoàn tác); `solve` là lời giải mẫu.
+ */
+export function pptPractice(o: {
+  slides?: pptSim.Layout[];
+  task: string;
+  checks: pptSim.PptCheck[];
+  spotlight: Spotlight;
+  hint: string;
+  steps: string[];
+  setup?: (s0: pptSim.PptState) => pptSim.PptAction[];
+  solve: (s0: pptSim.PptState) => pptSim.PptAction[];
+}): PracticeStep<pptSim.PptState, pptSim.PptCheck, pptSim.PptAction> {
+  const fresh = pptSim.pptInitial({ slides: o.slides });
+  const prepared = (o.setup ? o.setup(fresh) : []).reduce(pptSim.reducePpt, fresh);
+  const initial: pptSim.PptState = { ...prepared, past: [], sel: null, editing: null, editBackup: null };
+  return {
+    kind: 'practice',
+    sim: 'ppt',
     task: o.task,
     initial,
     checks: o.checks,

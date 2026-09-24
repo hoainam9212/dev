@@ -351,7 +351,39 @@
     "say": "x-lai",
     "vi": "Trang chiếu",
     "explain": "Mỗi trang trong bài trình chiếu PowerPoint.",
-    "lessonIds": []
+    "lessonIds": [
+      "ppt.intro"
+    ]
+  },
+  {
+    "id": "cho-danh-san",
+    "term": "Placeholder",
+    "say": "pơ-lết-hôn-đơ",
+    "vi": "Chỗ dành sẵn",
+    "explain": "Khung chữ mờ có sẵn trên slide, kiểu «Bấm để nhập tiêu đề». Nháy đúp vào là gõ được; chưa gõ gì thì lúc trình chiếu nó không hiện ra.",
+    "lessonIds": [
+      "ppt.title"
+    ]
+  },
+  {
+    "id": "bo-cuc",
+    "term": "Layout",
+    "say": "lây-ao",
+    "vi": "Bố cục",
+    "explain": "Cách sắp các chỗ dành sẵn trên một slide: chỉ tiêu đề, tiêu đề kèm nội dung, hai cột, hay để trống.",
+    "lessonIds": [
+      "ppt.slides"
+    ]
+  },
+  {
+    "id": "ty-le-16-9",
+    "term": "16:9",
+    "say": "mười sáu chín",
+    "vi": "Tỉ lệ khung hình 16:9",
+    "explain": "Khung dài 16 phần thì cao 9 phần — đúng hình màn hình tivi và máy chiếu ngày nay. Slide PowerPoint mặc định theo tỉ lệ này.",
+    "lessonIds": [
+      "ppt.intro"
+    ]
   },
   {
     "id": "ai",

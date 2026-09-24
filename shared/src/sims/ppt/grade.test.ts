@@ -34,6 +34,14 @@ describe('gradePpt', () => {
     expect(r.results[0]?.messageVi).toContain('1');
   });
 
+  it('activeSlide đạt khi đang mở đúng slide, trượt thì nói slide đang mở', () => {
+    const two = pptInitial({ slides: ['title', 'titleContent'] });
+    const r = check(two, { kind: 'activeSlide', slide: 2 });
+    expect(r.pass).toBe(false);
+    expect(r.results[0]?.messageVi).toContain('slide 1');
+    expect(check(reducePpt(two, { type: 'gotoSlide', index: 1 }), { kind: 'activeSlide', slide: 2 }).pass).toBe(true);
+  });
+
   it('slide đếm từ 1 trong đề bài', () => {
     const s = run({ type: 'addSlide', layout: 'twoContent' });
     expect(check(s, { kind: 'slideLayout', slide: 2, layout: 'twoContent' }).pass).toBe(true);

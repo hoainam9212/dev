@@ -96,6 +96,7 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'excel.fnText': { label: 'Hàm chữ', vi: 'LEFT, RIGHT, MID, LEN, UPPER, TRIM, CONCAT — xử lý chuỗi chữ.' },
   'excel.fnMisc': { label: 'Hàm khác', vi: 'ROUND làm tròn, ABS bỏ dấu trừ, TODAY lấy ngày hôm nay.' },
   'ppt.canvas': { label: 'Khung slide', vi: 'Mọi thứ bạn thêm sẽ nằm trong khung 16:9 này, đúng như khi chiếu lên máy chiếu.' },
+  'ppt.slideList': { label: 'Danh sách slide', vi: 'Mỗi hình nhỏ là một slide. Bấm vào để mở, kéo lên xuống để đổi thứ tự.' },
   'ppt.newSlide': { label: 'New Slide — Slide mới', vi: 'Thêm một slide ngay sau slide đang mở.' },
   'ppt.layout': { label: 'Layout — Bố cục', vi: 'Chọn cách sắp chỗ cho tiêu đề và nội dung trên slide đang mở.' },
   'ppt.duplicate': { label: 'Duplicate — Nhân đôi slide', vi: 'Tạo một bản sao y hệt slide đang mở, đặt ngay sau nó.' },
