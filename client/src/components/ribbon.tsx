@@ -116,7 +116,10 @@ export function MenuButton({
   return (
     <div ref={root} className="relative">
       <ToolButton helpId={helpId} label={label} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
-        {button} <span className="ml-0.5 text-[0.6rem]">▾</span>
+        <span className="flex items-center gap-1">
+          {button}
+          <span className="text-[0.6rem]">▾</span>
+        </span>
       </ToolButton>
       {open ? (
         <div role="menu" aria-label={label} className="ribbon-menu">

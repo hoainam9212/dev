@@ -3,7 +3,7 @@ import { pptSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { SlideList } from './SlideList';
 import { Canvas } from './Canvas';
-import { Ribbon } from './Ribbon';
+import { PptDialogs, Ribbon } from './Ribbon';
 
 /**
  * Trình chiếu mô phỏng. Trạng thái do `useReducer(reducePpt, initial)` giữ; cột
@@ -25,6 +25,7 @@ export function PptSim({ initial, onState }: SimProps<pptSim.PptState>) {
           <Canvas state={state} dispatch={dispatch} />
         </div>
       </div>
+      <PptDialogs state={state} dispatch={dispatch} now={Date.now()} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import type { El, ElFormat, Layout, Role, Slide } from './state';
 
 export const PLACEHOLDERS: Record<Layout, { role: Role; x: number; y: number; w: number; h: number }[]> = {
-  title: [{ role: 'title', x: 80, y: 180, w: 800, h: 120 }],
+  title: [{ role: 'title', x: 80, y: 176, w: 800, h: 120 }],
   titleContent: [
     { role: 'title', x: 80, y: 56, w: 800, h: 96 },
     { role: 'body', x: 80, y: 176, w: 800, h: 304 },

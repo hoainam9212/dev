@@ -1,7 +1,10 @@
 import { useState, type Dispatch } from 'react';
 import type { pptSim } from '@office-neko/shared';
-import { SoonTab } from '../../components/ribbon';
+import { Group, SoonTab, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
+import { RibbonInsert } from './RibbonInsert';
+
+export { PptDialogs } from './dialogs';
 
 interface Props {
   state: pptSim.PptState;
@@ -34,8 +37,18 @@ export function Ribbon({ state, dispatch }: Props) {
       </div>
 
       {tab === 'Home' && <RibbonHome state={state} dispatch={dispatch} />}
-      {tab === 'File' && <SoonTab what="Lưu và In" />}
-      {tab === 'Insert' && <SoonTab what="Chèn hộp chữ, hình và ảnh" />}
+      {tab === 'File' && (
+        <div className="flex flex-wrap items-start gap-y-2 py-1">
+          <Group title="Tệp">
+            <ToolButton helpId="ppt.save" label="Save — Lưu tệp" onClick={() => dispatch({ type: 'openDialog', dialog: 'save' })}>💾 Lưu</ToolButton>
+            <ToolButton helpId="ppt.print" label="Print — In" onClick={() => dispatch({ type: 'openDialog', dialog: 'print' })}>🖨 In</ToolButton>
+          </Group>
+          {state.saved ? (
+            <p className="self-center px-3 text-sm text-muted">Đã lưu thành <b>{state.saved.name}</b></p>
+          ) : null}
+        </div>
+      )}
+      {tab === 'Insert' && <RibbonInsert state={state} dispatch={dispatch} />}
       {tab === 'Design' && <SoonTab what="Chủ đề trang trí" />}
       {tab === 'Transitions' && <SoonTab what="Hiệu ứng chuyển slide" />}
       {tab === 'Slide Show' && <SoonTab what="Trình chiếu toàn màn hình" />}

@@ -107,5 +107,11 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'ppt.align': { label: 'Căn lề', vi: 'Đưa chữ sang trái, vào giữa hoặc sang phải trong khung của nó.' },
   'ppt.front': { label: 'Bring to Front — Đưa lên trên', vi: 'Đặt đối tượng đang chọn nằm trên mọi thứ khác.' },
   'ppt.back': { label: 'Send to Back — Đưa xuống dưới', vi: 'Đặt đối tượng đang chọn nằm dưới mọi thứ khác, như làm nền.' },
+  'ppt.textBox': { label: 'Text Box — Hộp chữ', vi: 'Thêm một khung chữ mới lên slide. Nháy đúp vào khung để gõ chữ.' },
+  'ppt.shapes': { label: 'Shapes — Hình khối', vi: 'Thêm hình chữ nhật, hình tròn, mũi tên hoặc ngôi sao để trang trí hay chỉ hướng.' },
+  'ppt.pictures': { label: 'Pictures — Ảnh', vi: 'Chèn một ảnh mẫu hoặc ảnh từ máy của bạn lên slide.' },
+  'ppt.save': { label: 'Save — Lưu tệp', vi: 'Đặt tên và lưu bài trình chiếu. Phím tắt: Ctrl + S.' },
+  'ppt.print': { label: 'Print — In', vi: 'In các slide ra giấy. Phím tắt: Ctrl + P.' },
+  'ppt.fill': { label: 'Shape Fill — Màu nền hình', vi: 'Tô màu cho hình khối đang chọn. Màu chữ trong hình thì đổi ở Font color.' },
   'ppt.undo': { label: 'Undo — Hoàn tác', vi: 'Quay lại thao tác vừa làm. Phím tắt: Ctrl + Z.' },
 };

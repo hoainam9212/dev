@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { pptSim } from '@office-neko/shared';
 import { describe, expect, it, vi } from 'vitest';
@@ -56,6 +56,16 @@ describe('RibbonHome', () => {
     await userEvent.click(screen.getByRole('button', { name: /Font color/ }));
     await userEvent.click(screen.getByRole('button', { name: /Cam Mochi/ }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { color: '#D2691E' } });
+  });
+
+  it('Shape Fill chỉ mở khi đang chọn hình khối, chọn thì phát setFmt fill', async () => {
+    setup({ ...pptSim.pptInitial(), sel: pptSim.slideOf(pptSim.pptInitial()).els[0]!.id });
+    expect(screen.getByRole('button', { name: /Shape Fill/ })).toBeDisabled();
+    cleanup();
+    const { dispatch } = setup(withShape);
+    await userEvent.click(screen.getByRole('button', { name: /Shape Fill/ }));
+    await userEvent.click(screen.getByRole('button', { name: /Nền Xanh biển/ }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { fill: '#3B82F6' } });
   });
 
   it('Delete Slide và Undo khoá khi chỉ có một slide và chưa làm gì', () => {

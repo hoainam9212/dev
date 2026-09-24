@@ -81,7 +81,7 @@ export function ElementView({
       {el.kind === 'shape' ? (
         <div className="ppt-shape" data-shape={el.shape} style={{ background: fmt.fill }} />
       ) : null}
-      {el.kind === 'image' ? <img src={el.src} alt={el.alt ?? ''} className="ppt-img" /> : null}
+      {el.kind === 'image' ? <img src={el.src} alt={el.alt ?? ''} draggable={false} className="ppt-img" /> : null}
       {editing && el.kind !== 'image' ? (
         <textarea
           ref={box}

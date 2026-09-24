@@ -9,7 +9,7 @@ describe('applyLayout', () => {
     const { slide, nextId } = applyLayout(blank, 'title', 1);
     expect(slide.layout).toBe('title');
     expect(slide.els).toHaveLength(1);
-    expect(slide.els[0]).toMatchObject({ id: 'e1', kind: 'text', role: 'title', x: 80, y: 180, w: 800, h: 120 });
+    expect(slide.els[0]).toMatchObject({ id: 'e1', kind: 'text', role: 'title', x: 80, y: 176, w: 800, h: 120 });
     expect(nextId).toBe(2);
   });
 
@@ -34,6 +34,13 @@ describe('applyLayout', () => {
       for (const p of list) {
         expect(p.x + p.w).toBeLessThanOrEqual(960);
         expect(p.y + p.h).toBeLessThanOrEqual(540);
+      }
+    }
+  });
+  it('mọi chỗ dành sẵn nằm trên lưới 8px (bất biến 6)', () => {
+    for (const [layout, holders] of Object.entries(PLACEHOLDERS)) {
+      for (const p of holders) {
+        for (const n of [p.x, p.y, p.w, p.h]) expect(n % 8, `${layout}/${p.role}`).toBe(0);
       }
     }
   });

@@ -94,6 +94,26 @@ export function RibbonHome({ state, dispatch }: Props) {
         />
       </Group>
 
+      <Group title="Drawing">
+        <MenuButton
+          helpId="ppt.fill"
+          label="Shape Fill — Màu nền hình"
+          disabled={el?.kind !== 'shape'}
+          button={<span className="inline-block h-4 w-4 rounded border border-black/20" style={{ background: fmt.fill ?? pptSim.SHAPE_FILL }} />}
+          items={pptSim.PPT_COLORS.map((c) => ({
+            value: c.id,
+            label: `Nền ${c.vi}`,
+            content: (
+              <span className="flex items-center gap-2">
+                <span className="inline-block h-4 w-4 rounded border border-black/20" style={{ background: c.id }} />
+                {c.vi}
+              </span>
+            ),
+          }))}
+          onPick={(fill) => set({ fill })}
+        />
+      </Group>
+
       <Group title="Paragraph & Arrange">
         <ToolButton helpId="ppt.align" label="Align left — Căn trái" disabled={none} pressed={fmt.align === 'left'} onClick={() => set({ align: 'left' })}>⬅</ToolButton>
         <ToolButton helpId="ppt.align" label="Center — Căn giữa" disabled={none} pressed={fmt.align === 'center'} onClick={() => set({ align: 'center' })}>↔</ToolButton>
