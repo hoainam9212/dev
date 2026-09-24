@@ -20,6 +20,18 @@ describe('RibbonInsert', () => {
     expect(a.y + a.h).toBeLessThanOrEqual(pptSim.SLIDE_H);
   });
 
+  it('hộp chữ mới không đè chỗ dành sẵn của bất kỳ bố cục nào', async () => {
+    const { dispatch } = setup();
+    await userEvent.click(screen.getByRole('button', { name: /Text Box/ }));
+    const a = dispatch.mock.calls[0]?.[0];
+    for (const [layout, holders] of Object.entries(pptSim.PLACEHOLDERS)) {
+      for (const p of holders) {
+        const apart = a.x + a.w <= p.x || p.x + p.w <= a.x || a.y + a.h <= p.y || p.y + p.h <= a.y;
+        expect(apart, `${layout}/${p.role}`).toBe(true);
+      }
+    }
+  });
+
   it('Shapes mời đủ bốn hình, chọn thì phát addShape', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: /Shapes/ }));

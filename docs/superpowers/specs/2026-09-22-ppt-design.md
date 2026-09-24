@@ -101,8 +101,8 @@ chỗ dư. Đối tượng tự chèn (`role` trống) không bao giờ bị đ�
 | Layout | Chỗ dành sẵn (x, y, w, h) |
 |---|---|
 | `title` | title (80, 180, 800, 120) |
-| `titleContent` | title (80, 56, 800, 96), body (80, 176, 800, 304) |
-| `twoContent` | title (80, 56, 800, 96), body (80, 176, 384, 304), body2 (496, 176, 384, 304) |
+| `titleContent` | title (80, 56, 800, 96), body (80, 176, 800, 208) |
+| `twoContent` | title (80, 56, 800, 96), body (80, 176, 384, 208), body2 (496, 176, 384, 208) |
 | `blank` | — |
 
 Chữ mặc định của chỗ dành sẵn là chuỗi rỗng; giao diện vẽ chữ mờ "Bấm để nhập tiêu

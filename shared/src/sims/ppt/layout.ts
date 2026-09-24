@@ -1,15 +1,19 @@
 import type { El, ElFormat, Layout, Role, Slide } from './state';
 
+/**
+ * Chỗ nội dung dừng ở y = 384 (không kéo tới 480) để dải 400–480 còn trống: hộp chữ
+ * mới của nút Text Box đặt ở đó, không đè lên chỗ dành sẵn nào.
+ */
 export const PLACEHOLDERS: Record<Layout, { role: Role; x: number; y: number; w: number; h: number }[]> = {
   title: [{ role: 'title', x: 80, y: 176, w: 800, h: 120 }],
   titleContent: [
     { role: 'title', x: 80, y: 56, w: 800, h: 96 },
-    { role: 'body', x: 80, y: 176, w: 800, h: 304 },
+    { role: 'body', x: 80, y: 176, w: 800, h: 208 },
   ],
   twoContent: [
     { role: 'title', x: 80, y: 56, w: 800, h: 96 },
-    { role: 'body', x: 80, y: 176, w: 384, h: 304 },
-    { role: 'body2', x: 496, y: 176, w: 384, h: 304 },
+    { role: 'body', x: 80, y: 176, w: 384, h: 208 },
+    { role: 'body2', x: 496, y: 176, w: 384, h: 208 },
   ],
   blank: [],
 };
