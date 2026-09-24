@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { wordSim } from '@office-neko/shared';
 import { RibbonHome } from './RibbonHome';
+import { nativeTitle } from '../../help/nativeTitle';
 
 export { WordDialogs } from './dialogs';
 
@@ -17,7 +18,7 @@ function Btn({ helpId, label, onClick, children }: { helpId: string; label: stri
     <button
       type="button"
       aria-label={label}
-      title={label}
+      title={nativeTitle(helpId, label)}
       data-help-id={helpId}
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}

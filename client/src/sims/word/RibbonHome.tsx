@@ -84,7 +84,7 @@ export function RibbonHome({ state, dispatch }: Props) {
             <TextUnderline20Regular />
           </ToolButton>
           <span className="mx-1 h-5 w-px bg-neutral-300" aria-hidden />
-          <label className="flex items-center" title="Text Highlight Color — Tô nền">
+          <label className="flex items-center">
             <Swatched icon={<Highlight20Regular />} color={marks?.highlight ?? '#FFE600'} />
             <Picker
               variant="office"
@@ -97,7 +97,7 @@ export function RibbonHome({ state, dispatch }: Props) {
               onChange={(value) => dispatch({ type: 'setHighlight', color: value || null })}
             />
           </label>
-          <label className="flex items-center" title="Font Color — Màu chữ">
+          <label className="flex items-center">
             <Swatched icon={<TextColor20Regular />} color={marks?.color ?? '#E00000'} />
             <Picker
               variant="office"

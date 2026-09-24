@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { wordSim } from '@office-neko/shared';
 import { RibbonHome } from './RibbonHome';
+import { HELP_IDS } from '../../content/help-ids';
 
 const withSelection = () =>
   wordSim.reduceWord(wordSim.wordInitial({ text: 'Kính gửi Quý công ty' }), { type: 'selectText', text: 'Quý công ty' });
@@ -43,9 +44,14 @@ describe('RibbonHome', () => {
   it('names the Font group and its buttons the way English Word does', () => {
     render(<RibbonHome state={withSelection()} dispatch={vi.fn()} />);
     expect(screen.getByText('Font')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'In đậm' })).toHaveAttribute('title', 'Bold (Ctrl+B) — In đậm');
-    expect(screen.getByRole('button', { name: 'In nghiêng' })).toHaveAttribute('title', 'Italic (Ctrl+I) — In nghiêng');
-    expect(screen.getByRole('button', { name: 'Gạch chân' })).toHaveAttribute('title', 'Underline (Ctrl+U) — Gạch chân');
+    // Tên tiếng Anh + phím tắt nằm ở gợi ý màu tối của app (HELP_IDS), không ở `title`.
+    for (const [name, en, keys] of [['In đậm', 'Bold', 'Ctrl + B'], ['In nghiêng', 'Italic', 'Ctrl + I'], ['Gạch chân', 'Underline', 'Ctrl + U']] as const) {
+      const btn = screen.getByRole('button', { name });
+      const help = HELP_IDS[btn.getAttribute('data-help-id')!];
+      expect(help?.label).toContain(en);
+      expect(help?.vi).toContain(keys);
+      expect(btn).not.toHaveAttribute('title');
+    }
     expect(screen.getByRole('button', { name: 'In đậm' }).querySelector('svg')).not.toBeNull();
   });
 

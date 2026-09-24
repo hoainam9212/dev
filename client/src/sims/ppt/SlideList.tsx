@@ -1,6 +1,7 @@
 import type { Dispatch } from 'react';
 import { pptSim } from '@office-neko/shared';
 import { ElementView } from './ElementView';
+import { nativeTitle } from '../../help/nativeTitle';
 
 /** Cột thumbnail bên trái: mỗi slide một nút, cuối cột là nút thêm slide. */
 export function SlideList({
@@ -39,7 +40,7 @@ export function SlideList({
         type="button"
         className="btn btn-soft shrink-0 whitespace-nowrap text-sm sm:w-full"
         data-help-id="ppt.newSlide"
-        title="New Slide — thêm slide mới"
+        title={nativeTitle('ppt.newSlide', 'New Slide — thêm slide mới')}
         onClick={() => dispatch({ type: 'addSlide' })}
       >
         + Slide mới

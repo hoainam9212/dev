@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { nativeTitle } from '../help/nativeTitle';
 
 /**
  * `office`: nhóm đã được làm giống Office thật (nút phẳng, vuông, tên nhóm tiếng Anh như ảnh chụp),
@@ -58,7 +59,7 @@ export function ToolButton({
     <button
       type="button"
       aria-label={label}
-      title={tooltip ?? label}
+      title={nativeTitle(helpId, tooltip ?? label)}
       data-help-id={helpId}
       aria-pressed={pressed ?? false}
       disabled={disabled}
@@ -94,7 +95,7 @@ export function Picker({
   return (
     <select
       aria-label={label}
-      title={tooltip ?? label}
+      title={nativeTitle(helpId, tooltip ?? label)}
       data-help-id={helpId}
       value={value}
       style={style}

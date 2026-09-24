@@ -19,7 +19,9 @@ describe('Ribbon Home', () => {
     render(<RibbonHome state={state} dispatch={() => {}} />);
     const bold = screen.getByRole('button', { name: /in đậm/i });
     expect(bold.textContent).toBe('B');
-    expect(bold).toHaveAttribute('title');
+    // Lời tiếng Việt nằm ở gợi ý màu tối của app, không ở `title` (tránh hai chú thích chồng nhau).
+    expect(HELP_IDS[bold.getAttribute('data-help-id')!]?.vi).toBeTruthy();
+    expect(bold).not.toHaveAttribute('title');
   });
 
   it('bấm B phát định dạng đậm', () => {
