@@ -3,7 +3,7 @@
 Ứng dụng web (PWA, chạy offline) dạy tin học văn phòng cho người mới: làm quen máy tính (Windows/Mac),
 gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Mochi.
 
-## Đã có (giai đoạn 1–3)
+## Đã có (giai đoạn 1–5A)
 
 - Làm quen máy tính: phòng tập chuột (5 trò), bàn phím, thư mục & file cho Windows và Mac (dự án "Ảnh du lịch").
 - Gõ phím 10 ngón: 20 bài từ hàng cơ sở tới Telex/VNI, dự án 25 WPM.
@@ -14,6 +14,10 @@ gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Moc
   khi đang gõ, sắp xếp có dịch địa chỉ như Excel thật, AutoFilter ẩn hàng mà không xoá dữ liệu, và bốn loại biểu đồ
   tự vẽ bằng SVG (cột, thanh ngang, đường, tròn). Ribbon sáu thẻ File/Home/Insert/Formulas/Data/View. **20 bài**, từ
   ô/hàng/cột tới VLOOKUP, lọc, biểu đồ, kết thúc bằng dự án Bảng lương 10 nhân viên chia ba chặng.
+- PowerPoint (giai đoạn 5A): trình soạn slide mô phỏng — cột thumbnail, khung 16:9 co giãn theo cửa sổ, bốn bố cục,
+  hộp chữ / hình khối / ảnh kéo–thả và đổi kích thước bằng 8 tay nắm (ảnh giữ tỉ lệ khi kéo góc), định dạng chữ,
+  hoàn tác, lưu/in; ribbon File/Home/Insert. **6 bài / 2 chương**: slide đầu tiên, rồi chữ, hình và ảnh. Theme,
+  chuyển cảnh, trình chiếu toàn màn hình, các bài còn lại và dự án thuộc giai đoạn 5B, chưa làm.
 - Trợ giúp ở mọi màn hình: Từ điển (F1), Hỏi Mèo, chú thích khi rê chuột, gợi ý 3 bậc.
 - Nhiều người học trên một máy: mỗi người một thẻ tên và ảnh mèo riêng, tiến độ – sao – XP – chuỗi ngày – thống kê gõ tách biệt; đổi người ở thanh trên cùng; sao lưu một file cho cả máy (đọc được cả file bản cũ).
 

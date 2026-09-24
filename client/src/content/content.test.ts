@@ -76,6 +76,8 @@ describe('content', () => {
             expect(a.key === 'Backspace' || /^[\x20-\x7e]$/.test(a.key), `${l.id}: untypable key "${a.key}" in solution`).toBe(true);
           }
         }
+        // PracticeView chấm liên tục: đề đạt sẵn thì người học chưa làm gì đã "Giỏi quá!".
+        expect(grade(step.sim, step.initial, step.checks).pass, `${l.id}: passes before the learner does anything`).toBe(false);
         let state = step.initial;
         for (const a of step.solution) state = def!.reduce(state, a);
         expect(grade(step.sim, state, step.checks).pass, `${l.id}: solution does not pass`).toBe(true);

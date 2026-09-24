@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { excelSim } from '@office-neko/shared';
-import { Group, RibbonHome, ToolButton } from './RibbonHome';
+import { Group, ToolButton } from '../../components/ribbon';
+import { RibbonHome } from './RibbonHome';
 import { RibbonFormulas } from './RibbonFormulas';
 import { RibbonData } from './RibbonData';
 import { RibbonInsert } from './RibbonInsert';

@@ -592,5 +592,53 @@
       "bieu do khong hien",
       "chart rong"
     ]
+  },
+  {
+    "id": "ppt.what-slide",
+    "q": "Slide là gì?",
+    "a": "Slide là một trang chiếu trong bài trình chiếu PowerPoint, giống một tờ giấy chiếu lên tường. Cột bên trái liệt kê mọi slide theo thứ tự; bấm vào slide nào thì nó mở ra ở khung lớn giữa màn hình.",
+    "keywords": ["slide", "trang chieu", "trang chiếu", "powerpoint la gi"]
+  },
+  {
+    "id": "ppt.new-slide",
+    "q": "Làm sao thêm một slide mới?",
+    "a": "Bấm **New Slide** (Slide mới) ở tab Home, hoặc nút **+ Slide mới** dưới cột bên trái. Slide mới chen vào ngay sau slide đang mở. Muốn bỏ slide đang mở thì bấm **Delete Slide** (Xoá slide).",
+    "keywords": ["new slide", "them slide", "thêm slide", "slide moi", "xoa slide"]
+  },
+  {
+    "id": "ppt.layout",
+    "q": "Bố cục (Layout) để làm gì?",
+    "a": "Bố cục quyết định trên slide có sẵn những khung nào: chỉ tiêu đề, tiêu đề kèm nội dung, hai cột, hay trang trắng. Mở slide cần đổi rồi bấm nút **Layout** (Bố cục, hình ▤) ở tab Home. Chữ đã gõ vẫn được giữ lại.",
+    "keywords": ["bo cuc", "bố cục", "layout", "hai cot", "doi bo cuc"]
+  },
+  {
+    "id": "ppt.placeholder",
+    "q": "Khung mờ «Bấm để nhập tiêu đề» là gì?",
+    "a": "Đó là chỗ dành sẵn (placeholder) — PowerPoint sắp chỗ trước cho bạn. Nháy đúp vào khung rồi gõ, xong bấm {{Enter}} để chốt. Chưa gõ gì thì lúc trình chiếu nó không hiện ra đâu, đừng lo.",
+    "keywords": ["cho danh san", "chỗ dành sẵn", "khung mo", "khung mờ", "placeholder", "bam de nhap"]
+  },
+  {
+    "id": "ppt.textbox",
+    "q": "Tôi muốn viết chữ ở chỗ khác trên slide thì làm sao?",
+    "a": "Chèn một hộp chữ: tab **Insert** (Chèn) → **Text Box** (Hộp chữ). Hộp mới đang được chọn, kéo viền để dời nó đi đâu cũng được, rồi nháy đúp vào để gõ.",
+    "keywords": ["hop chu", "hộp chữ", "text box", "textbox", "viet chu", "them chu"]
+  },
+  {
+    "id": "ppt.picture",
+    "q": "Chèn ảnh vào slide bằng cách nào?",
+    "a": "Vào tab **Insert** (Chèn), bấm **Pictures** (Ảnh). Chọn một ảnh mẫu của Mochi, hoặc lấy ảnh từ máy của bạn. Ảnh hiện giữa slide, kéo nó tới chỗ bạn muốn.",
+    "keywords": ["chen anh", "chèn ảnh", "pictures", "hinh anh", "hình ảnh", "them anh"]
+  },
+  {
+    "id": "ppt.resize-image",
+    "q": "Kéo ảnh thế nào cho không bị méo?",
+    "a": "Kéo **tay nắm ở góc** (chấm tròn ở bốn góc ảnh): ảnh to nhỏ mà vẫn đúng hình. Tay nắm ở giữa cạnh chỉ kéo dài hoặc bóp bẹp một chiều, nên mặt người trong ảnh sẽ méo.",
+    "keywords": ["keo anh", "meo anh", "méo ảnh", "tay nam", "tay nắm", "doi kich thuoc", "phong to anh"]
+  },
+  {
+    "id": "ppt.undo",
+    "q": "Lỡ tay xoá mất thì làm sao?",
+    "a": "Bấm **Undo** (Hoàn tác, mũi tên ↶ ở tab Home) hoặc nhấn {{mod+z}}. Mỗi lần bấm lùi lại một thao tác, nên cứ bấm tới khi thứ bị mất quay về.",
+    "keywords": ["undo", "hoan tac", "hoàn tác", "xoa nham", "xoá nhầm", "lo tay", "ctrl z"]
   }
 ]

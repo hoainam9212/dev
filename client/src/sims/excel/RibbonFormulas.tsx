@@ -1,6 +1,6 @@
 import type { excelSim } from '@office-neko/shared';
 import { FN_HELP } from '../../content/fnHelp';
-import { Group, ToolButton } from './RibbonHome';
+import { Group, ToolButton } from '../../components/ribbon';
 
 interface Props {
   state: excelSim.WorkbookState;
