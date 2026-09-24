@@ -29,8 +29,16 @@ export function resizeBy(el: El, handle: Handle, dx: number, dy: number): El {
   const east = handle.includes('e');
   const north = handle.startsWith('n');
   const south = handle.startsWith('s');
-  const w = east ? el.w + dx : west ? el.w - dx : el.w;
-  const h = south ? el.h + dy : north ? el.h - dy : el.h;
+  let w = east ? el.w + dx : west ? el.w - dx : el.w;
+  let h = south ? el.h + dy : north ? el.h - dy : el.h;
+  // Như PowerPoint: tay nắm GÓC của ảnh giữ tỉ lệ, theo chiều bị kéo nhiều hơn; tay nắm cạnh thì cứ bẹp.
+  if (el.kind === 'image' && handle.length === 2) {
+    const kw = w / el.w;
+    const kh = h / el.h;
+    const k = Math.abs(kw - 1) >= Math.abs(kh - 1) ? kw : kh;
+    w = el.w * k;
+    h = el.h * k;
+  }
   const cw = Math.max(snap(w), MIN_W8);
   const ch = Math.max(snap(h), MIN_H);
   return clampEl({ ...el, w: cw, h: ch, x: west ? el.x + (el.w - cw) : el.x, y: north ? el.y + (el.h - ch) : el.y });

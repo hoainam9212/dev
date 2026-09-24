@@ -376,6 +376,37 @@
     ]
   },
   {
+    "id": "hop-chu",
+    "term": "Text Box",
+    "say": "tếch-x bốc-x",
+    "vi": "Hộp chữ",
+    "explain": "Khung chứa chữ đặt được ở bất kỳ đâu trên slide. Chèn ở tab Insert, nháy đúp vào để gõ, kéo viền để dời.",
+    "lessonIds": [
+      "ppt.textbox"
+    ]
+  },
+  {
+    "id": "hinh-khoi",
+    "term": "Shape",
+    "say": "sêp",
+    "vi": "Hình khối",
+    "explain": "Hình vẽ sẵn như hình chữ nhật, hình tròn, mũi tên, ngôi sao. Dùng để trang trí hoặc làm nổi một ý; tô màu bằng Shape Fill.",
+    "lessonIds": [
+      "ppt.shape"
+    ]
+  },
+  {
+    "id": "tay-nam",
+    "term": "Handle",
+    "say": "hen-đồ",
+    "vi": "Tay nắm",
+    "explain": "Tám chấm tròn nhỏ quanh viền đối tượng đang chọn. Kéo để đổi kích thước; với ảnh, kéo tay nắm ở góc thì ảnh không bị méo.",
+    "lessonIds": [
+      "ppt.shape",
+      "ppt.image"
+    ]
+  },
+  {
     "id": "ty-le-16-9",
     "term": "16:9",
     "say": "mười sáu chín",

@@ -21,6 +21,28 @@ describe('clampEl', () => {
   });
 });
 
+describe('resizeBy – ảnh', () => {
+  const img: El = { id: 'e8', kind: 'image', src: 'x', alt: 'x', x: 320, y: 152, w: 320, h: 240 };
+
+  it('kéo tay nắm góc thì ảnh giữ tỉ lệ, dù kéo lệch hướng', () => {
+    for (const [handle, dx, dy] of [['se', -80, -10], ['nw', 80, 0], ['ne', 40, 90], ['sw', 0, 60]] as const) {
+      const r = resizeBy(img, handle, dx, dy);
+      expect(Math.abs(r.h - (r.w * 3) / 4), `${handle}`).toBeLessThanOrEqual(8);
+      expect(r.w, `${handle} phải đổi cỡ`).not.toBe(320);
+    }
+  });
+
+  it('kéo tay nắm góc nw thì góc dưới phải đứng yên', () => {
+    const r = resizeBy(img, 'nw', 80, 0);
+    expect(r.x + r.w).toBe(640);
+    expect(r.y + r.h).toBe(392);
+  });
+
+  it('kéo tay nắm cạnh thì ảnh bẹp như PowerPoint thật', () => {
+    expect(resizeBy(img, 'e', -80, 0)).toMatchObject({ w: 240, h: 240 });
+  });
+});
+
 describe('resizeBy', () => {
   it('tay nắm se chỉ đổi kích thước', () => {
     expect(resizeBy(base, 'se', 40, 40)).toMatchObject({ x: 96, y: 96, w: 240, h: 136 });
