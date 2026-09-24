@@ -49,6 +49,14 @@ describe('RibbonHome', () => {
     expect(screen.getByRole('button', { name: 'In đậm' }).querySelector('svg')).not.toBeNull();
   });
 
+  it('lets a mouse press open every drop-down list', () => {
+    // Chặn mousedown trên <select> làm Chrome không mở danh sách: người học bấm mà không chọn được gì.
+    render(<RibbonHome state={withSelection()} dispatch={vi.fn()} />);
+    for (const box of screen.getAllByRole('combobox')) {
+      expect(fireEvent.mouseDown(box), box.getAttribute('aria-label') ?? '').toBe(true);
+    }
+  });
+
   it('gives every control a help id', () => {
     const { container } = render(<RibbonHome state={withSelection()} dispatch={vi.fn()} />);
     const ids = [...container.querySelectorAll('[data-help-id]')].map((e) => e.getAttribute('data-help-id'));

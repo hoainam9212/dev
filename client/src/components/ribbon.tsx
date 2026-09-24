@@ -98,7 +98,8 @@ export function Picker({
       data-help-id={helpId}
       value={value}
       style={style}
-      onMouseDown={(e) => e.preventDefault()}
+      // KHÔNG chặn mousedown ở đây như ToolButton: với <select>, chặn là Chrome không mở danh sách.
+      // Vùng chọn nằm trong state của trình mô phỏng nên mất focus cũng không sao.
       onChange={(e) => onChange(e.target.value)}
       className={
         variant === 'office'
