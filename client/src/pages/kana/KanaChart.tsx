@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { KanaChar } from '@nihongo/shared';
-import { StrokeAnimation } from '../../components/StrokeAnimation';
+import { StrokeAnimation, strokeTimings } from '../../components/StrokeAnimation';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 
 interface Props {
@@ -17,6 +17,20 @@ function groupRows(chars: KanaChar[]): { row: string; items: KanaChar[] }[] {
   return out;
 }
 
+/** One cell per character: yōon like きゃ show き and ゃ side by side instead of stacked in one box. */
+function splitStrokes(c: KanaChar) {
+  const counts = c.strokeSplit ?? [c.strokePaths.length];
+  let start = 0;
+  let startDelay = 0; // the next cell starts once the previous one has finished drawing
+  return counts.map((n) => {
+    const paths = c.strokePaths.slice(start, start + n);
+    const cell = { paths, numbers: c.strokeNumbers?.slice(start, start + n), start, startDelay };
+    start += n;
+    startDelay += strokeTimings(paths).total;
+    return cell;
+  });
+}
+
 export function KanaChart({ chars }: Props) {
   useStopSpeechOnUnmount();
   const [sel, setSel] = useState<KanaChar | null>(null);
@@ -27,7 +41,7 @@ export function KanaChart({ chars }: Props) {
     <div className="grid gap-4 md:grid-cols-[1fr_280px]">
       <div className="space-y-2">
         {rows.map((r) => (
-          <div key={r.row} className="grid grid-cols-5 gap-2">
+          <div key={r.row} className={`grid gap-2 ${r.items[0]!.kana.length > 1 ? 'grid-cols-3' : 'grid-cols-5'}`}>
             {r.items.map((c) => (
               <button
                 key={c.kana}
@@ -41,7 +55,7 @@ export function KanaChart({ chars }: Props) {
                   sel?.kana === c.kana ? 'ring-2 ring-rose' : ''
                 }`}
               >
-                <span className="text-2xl font-black md:text-3xl">{c.kana}</span>
+                <span className="whitespace-nowrap text-2xl font-black md:text-3xl">{c.kana}</span>
                 <span className="text-xs text-muted">{c.romaji}</span>
               </button>
             ))}
@@ -55,7 +69,18 @@ export function KanaChart({ chars }: Props) {
             <span className="text-6xl font-black">{sel.kana}</span>
             <span className="text-xl font-bold text-rose">{sel.romaji}</span>
             {sel.strokePaths.length > 0 ? (
-              <StrokeAnimation paths={sel.strokePaths} playKey={play} size={150} />
+              <div className="flex gap-2">
+                {splitStrokes(sel).map(({ paths, numbers, start, startDelay }) => (
+                  <StrokeAnimation
+                    key={start}
+                    paths={paths}
+                    numbers={numbers}
+                    startDelay={startDelay}
+                    playKey={play}
+                    size={sel.strokeSplit ? 110 : 150}
+                  />
+                ))}
+              </div>
             ) : (
               <p className="text-sm text-muted">Chưa có dữ liệu nét.</p>
             )}

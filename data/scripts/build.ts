@@ -9,6 +9,7 @@ import {
   parseKanjiJson,
   parseGrammarCsv,
   extractStrokes,
+  extractStrokeNumbers,
   kanjivgFilename,
   parseTsvSentences,
   parseLinks,
@@ -58,6 +59,7 @@ async function main() {
   for (const k of kanji) {
     const svg = readSvg(k.char);
     k.strokePaths = svg ? extractStrokes(svg) : [];
+    if (svg && k.strokePaths.length) k.strokeNumbers = extractStrokeNumbers(svg);
   }
   attachVocabToKanji(kanji, vocab);
   const grammar = parseGrammarCsv(read('grammar.csv'));

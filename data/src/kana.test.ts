@@ -20,6 +20,18 @@ it('builds 46 basic + dakuten + yoon rows for both scripts with strokes when ava
   expect(b.katakana[0]!.mnemonic).toBeTruthy();
 });
 
+it('records per-character stroke counts for multi-character kana so each gets its own cell', () => {
+  const svgs: Record<string, string> = {
+    き: '<path id="kvg:0304d-s1" d="M1,1"/><path id="kvg:0304d-s2" d="M2,2"/><path id="kvg:0304d-s3" d="M3,3"/><path id="kvg:0304d-s4" d="M4,4"/>',
+    ゃ: '<path id="kvg:03083-s1" d="M5,5"/><path id="kvg:03083-s2" d="M6,6"/><path id="kvg:03083-s3" d="M7,7"/>',
+  };
+  const b = buildKana((ch) => svgs[ch] ?? null);
+  const kya = b.hiragana.find((k) => k.kana === 'きゃ')!;
+  expect(kya.strokePaths).toEqual(['M1,1', 'M2,2', 'M3,3', 'M4,4', 'M5,5', 'M6,6', 'M7,7']);
+  expect(kya.strokeSplit).toEqual([4, 3]);
+  expect(b.hiragana.find((k) => k.kana === 'き')!.strokeSplit).toBeUndefined();
+});
+
 it('every basic kana has a mnemonic', () => {
   const b = buildKana(() => null);
   for (const list of [b.hiragana, b.katakana]) {

@@ -62,7 +62,7 @@ export function KanjiDetail({ kanji, onClose }: Props) {
         ) : (
           <div className="mt-4 grid gap-5 md:grid-cols-[170px_1fr]">
             <div className="flex flex-col items-center gap-2">
-              {kanji.strokePaths.length ? <StrokeAnimation paths={kanji.strokePaths} playKey={play} size={170} /> : null}
+              {kanji.strokePaths.length ? <StrokeAnimation paths={kanji.strokePaths} numbers={kanji.strokeNumbers} playKey={play} size={170} /> : null}
               <div className="flex gap-2">
                 <button type="button" className="btn-soft text-sm" onClick={() => setPlay((p) => p + 1)}>
                   ▶ Phát lại

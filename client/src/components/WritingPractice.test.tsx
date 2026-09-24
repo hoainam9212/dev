@@ -28,6 +28,26 @@ it('shows progress and accepts a matching stroke drawn on the canvas', () => {
   expect(screen.getByText(/Hoàn thành/)).toBeInTheDocument();
 });
 
+it('gives each character of a split kana its own cell and moves to the next cell when one is done', () => {
+  const onComplete = vi.fn();
+  render(<WritingPractice paths={['M10,50 L100,50', 'M50,10 L50,100']} split={[1, 1]} label="きゃ" onComplete={onComplete} />);
+  const cells = screen.getAllByTestId('draw-canvas');
+  expect(cells).toHaveLength(2);
+  for (const c of cells)
+    Object.defineProperty(c, 'getBoundingClientRect', { value: () => ({ left: 0, top: 0, width: 218, height: 218 }) });
+  // each cell only shows its own character's guide strokes
+  expect(cells[0]!.querySelectorAll('.stroke-guide')).toHaveLength(1);
+  expect(cells[1]!.querySelectorAll('.stroke-guide')).toHaveLength(1);
+  // drawing on the inactive second cell does nothing
+  drawStroke(cells[1]!, [[100, 20], [100, 120], [100, 200]]);
+  expect(screen.getByText(/Nét 1 \/ 2/)).toBeInTheDocument();
+  drawStroke(cells[0]!, [[20, 100], [120, 100], [200, 100]]);
+  expect(screen.getByText(/Nét 2 \/ 2/)).toBeInTheDocument();
+  // second stroke is the vertical one, drawn in the second cell's own 109×109 space
+  drawStroke(cells[1]!, [[100, 20], [100, 120], [100, 200]]);
+  expect(onComplete).toHaveBeenCalled();
+});
+
 it('rejects a wrong stroke and shows the hint after one failure', () => {
   const { canvas, onComplete } = setup(['M10,50 L100,50']);
   drawStroke(canvas, [[100, 20], [100, 200]]); // vertical instead of horizontal

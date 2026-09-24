@@ -7,12 +7,24 @@ const PASS = 0.55;
 
 interface Props {
   paths: string[];
+  /** Strokes per character when `paths` spans several characters (yōon); each character gets its own cell. */
+  split?: number[];
   label: string;
   onComplete?: (r: { score: number }) => void;
 }
 
 /** Stroke-by-stroke handwriting practice with scoring against reference paths. */
-export function WritingPractice({ paths, label, onComplete }: Props) {
+export function WritingPractice({ paths, split, label, onComplete }: Props) {
+  // [start, end) stroke index range of each cell
+  const cells = useMemo(() => {
+    const counts = split && split.reduce((a, b) => a + b, 0) === paths.length ? split : [paths.length];
+    let start = 0;
+    return counts.map((n) => {
+      const range = [start, start + n] as const;
+      start += n;
+      return range;
+    });
+  }, [split, paths.length]);
   const refs = useMemo(() => paths.map((d) => pathToPoints(d)), [paths]);
   const [idx, setIdx] = useState(0);
   const [done, setDone] = useState<Point[][]>([]);
@@ -69,13 +81,23 @@ export function WritingPractice({ paths, label, onComplete }: Props) {
       <p className="text-sm font-bold text-muted" aria-live="polite">
         {finished ? `Hoàn thành! Điểm: ${avg}` : `Nét ${idx + 1} / ${paths.length}`}
       </p>
-      <DrawCanvas
-        guide={showGuide ? paths : []}
-        hint={fails >= 1 && !finished ? paths[idx] : undefined}
-        onStroke={handle}
-        strokes={done}
-        shaking={shake}
-      />
+      <div className="flex gap-2">
+        {cells.map(([start, end]) => {
+          const active = !finished && idx >= start && idx < end;
+          return (
+            <DrawCanvas
+              key={start}
+              size={cells.length > 1 ? 160 : 218}
+              guide={showGuide ? paths.slice(start, end) : []}
+              hint={active && fails >= 1 ? paths[idx] : undefined}
+              active={cells.length === 1 || active}
+              onStroke={handle}
+              strokes={done.slice(start, end)}
+              shaking={active && shake}
+            />
+          );
+        })}
+      </div>
       <div className="flex gap-2">
         <button type="button" className="btn-soft text-sm" onClick={() => setShowGuide((g) => !g)}>
           {showGuide ? 'Ẩn mẫu' : 'Hiện mẫu'}

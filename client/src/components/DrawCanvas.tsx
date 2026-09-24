@@ -8,13 +8,15 @@ interface Props {
   hint?: string;
   strokes?: Point[][];
   shaking?: boolean;
+  /** Inactive canvases ignore input (used for the not-yet-current cells of a multi-character kana). */
+  active?: boolean;
   onStroke: (pts: Point[]) => void;
 }
 
 const toD = (pts: Point[]) => pts.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
 
 /** Pointer drawing surface in KanjiVG 109×109 coordinates. */
-export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking = false, onStroke }: Props) {
+export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking = false, active = true, onStroke }: Props) {
   const ref = useRef<SVGSVGElement>(null);
   // The in-progress stroke lives in a ref (pointermove events are batched by React);
   // `cur` state only mirrors it for rendering.
@@ -42,8 +44,11 @@ export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking
       viewBox="0 0 109 109"
       width={size}
       height={size}
-      className={`touch-none select-none rounded-2xl bg-cream ring-2 ring-sakura/60 dark:bg-bg ${shaking ? 'shake' : ''}`}
+      className={`touch-none select-none rounded-2xl bg-cream dark:bg-bg ${
+        active ? 'ring-2 ring-sakura/60' : 'ring-1 ring-sakura/30 opacity-70'
+      } ${shaking ? 'shake' : ''}`}
       onPointerDown={(e) => {
+        if (!active) return;
         (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
         drawing.current = [toLocal(e)];
         setCur(drawing.current);

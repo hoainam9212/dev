@@ -6,6 +6,7 @@ import {
   parseKanjiJson,
   parseGrammarCsv,
   extractStrokes,
+  extractStrokeNumbers,
   kanjivgFilename,
   parseTsvSentences,
   parseLinks,
@@ -116,6 +117,24 @@ describe('KanjiVG helpers', () => {
     const svg =
       '<svg><g id="kvg:StrokePaths_04e8c"><path id="kvg:04e8c-s1" kvg:type="㇐" d="M1,2 L3,4"/><path id="kvg:04e8c-s2" d="M5,6"/></g><g id="kvg:StrokeNumbers_04e8c"><text>1</text></g></svg>';
     expect(extractStrokes(svg)).toEqual(['M1,2 L3,4', 'M5,6']);
+  });
+  it('takes stroke number positions from KanjiVG and nudges any that would cover each other', () => {
+    const svg =
+      '<path id="kvg:04e8c-s1" d="M10,20 L90,20"/><path id="kvg:04e8c-s2" d="M10,80 L90,80"/><path id="kvg:04e8c-s3" d="m40,40 L50,50"/>' +
+      '<g id="kvg:StrokeNumbers_04e8c" style="font-size:8;fill:#808080">' +
+      '<text transform="matrix(1 0 0 1 5.25 18.50)">1</text><text transform="matrix(1 0 0 1 5.50 78.13)">2</text>' +
+      '<text transform="matrix(1 0 0 1 5.50 78.13)">3</text></g>';
+    const nums = extractStrokeNumbers(svg);
+    expect(nums).toHaveLength(3);
+    expect(nums[0]).toEqual([5.25, 18.5]);
+    expect(nums[1]).toEqual([5.5, 78.13]);
+    expect(nums[2]).not.toEqual([5.5, 78.13]);
+  });
+  it('falls back to the start of each stroke when the SVG has no numbers', () => {
+    expect(extractStrokeNumbers('<path id="kvg:04e8c-s1" d="M10,20 L90,20"/><path id="kvg:04e8c-s2" d="m60,70"/>')).toEqual([
+      [5, 18],
+      [55, 68],
+    ]);
   });
 });
 

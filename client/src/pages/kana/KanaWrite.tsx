@@ -29,6 +29,7 @@ export function KanaWrite({ chars }: { chars: KanaChar[] }) {
       <WritingPractice
         key={`${cur.kana}-${doneKey}`}
         paths={cur.strokePaths}
+        split={cur.strokeSplit}
         label={`${cur.kana} (${cur.romaji})`}
         onComplete={({ score }) => addXp(score >= 80 ? 3 : 1)}
       />

@@ -3,4 +3,5 @@ export * from './srs';
 export * from './kana';
 export * from './scoring';
 export * from './svgpath';
+export * from './strokeNumbers';
 export * from './furigana';

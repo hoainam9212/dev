@@ -1,4 +1,14 @@
-import { LEVELS, hasKanji, type Grammar, type Kanji, type Level, type Vocab } from '@nihongo/shared';
+import {
+  LEVELS,
+  hasKanji,
+  placeStrokeNumbers,
+  strokeStart,
+  type Grammar,
+  type Kanji,
+  type LabelPos,
+  type Level,
+  type Vocab,
+} from '@nihongo/shared';
 
 /** RFC 4180 CSV parser (quotes, escaped quotes, embedded commas/newlines). Skips empty rows. */
 export function parseCsv(text: string): string[][] {
@@ -173,6 +183,23 @@ export function extractStrokes(svg: string): string[] {
   let m: RegExpExecArray | null;
   while ((m = re.exec(svg))) out.push(m[1]!);
   return out;
+}
+
+/**
+ * Stroke number positions, one per stroke: KanjiVG's hand-placed ones when present (else 5 units up-left of the
+ * stroke start), then nudged apart so no two labels cover each other.
+ */
+export function extractStrokeNumbers(svg: string): LabelPos[] {
+  const strokes = extractStrokes(svg);
+  const kvg = [...svg.matchAll(/<text transform="matrix\(1 0 0 1 (-?[\d.]+) (-?[\d.]+)\)">\d+<\/text>/g)].map(
+    (m): LabelPos => [Number(m[1]), Number(m[2])],
+  );
+  const preferred = strokes.map((d, i): LabelPos => {
+    if (kvg.length === strokes.length) return kvg[i]!;
+    const s = strokeStart(d) ?? [0, 0];
+    return [s[0] - 5, s[1] - 2];
+  });
+  return placeStrokeNumbers(preferred);
 }
 
 export function parseTsvSentences(tsv: string): Map<number, string> {

@@ -23,6 +23,8 @@ export interface Kanji {
   grade?: number;
   freq?: number;
   strokePaths: string[];
+  /** Where to draw each stroke's order number, laid out so labels don't cover each other. */
+  strokeNumbers?: [number, number][];
   vocabIds: string[];
 }
 
@@ -157,6 +159,10 @@ export interface KanaChar {
   group: 'basic' | 'dakuten' | 'yoon';
   mnemonic?: string;
   strokePaths: string[];
+  /** Order-number position per stroke, each in its own character's cell. */
+  strokeNumbers?: [number, number][];
+  /** Strokes per character for multi-character kana (yōon), e.g. きゃ → [4, 3]; each character gets its own cell. */
+  strokeSplit?: number[];
 }
 
 export interface KanaBundle {
