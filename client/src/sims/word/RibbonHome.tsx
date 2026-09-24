@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import { wordSim } from '@office-neko/shared';
+import { Highlight20Regular, TextBold20Regular, TextColor20Regular, TextItalic20Regular, TextUnderline20Regular } from '@fluentui/react-icons';
+import { Group, Picker, Row, ToolButton } from '../../components/ribbon';
 
 interface Props {
   state: wordSim.WordState;
@@ -31,79 +33,13 @@ const ALIGNS: [label: string, value: wordSim.Align, helpId: string, icon: string
   ['Căn đều', 'justify', 'word.alignJustify', '☰'],
 ];
 
-function Group({ title, children }: { title: string; children: ReactNode }) {
+/** Icon có vạch màu bên dưới, như chữ A đỏ của Font Color và bút vàng của Highlight trên Word thật. */
+function Swatched({ icon, color }: { icon: ReactNode; color: string }) {
   return (
-    <div className="flex flex-col gap-1 border-r border-peach/40 px-3 last:border-r-0">
-      <div className="flex flex-wrap items-center gap-1">{children}</div>
-      <span className="text-center text-[0.65rem] font-bold text-muted">{title}</span>
-    </div>
-  );
-}
-
-function ToolButton({
-  helpId,
-  label,
-  pressed,
-  onClick,
-  children,
-}: {
-  helpId: string;
-  label: string;
-  pressed?: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      data-help-id={helpId}
-      aria-pressed={pressed ?? false}
-      // Giữ vùng chọn trong trang khi bấm nút, nếu không định dạng sẽ không biết áp vào đâu.
-      onMouseDown={(e) => e.preventDefault()}
-      onClick={onClick}
-      className={`grid h-8 min-w-8 place-items-center rounded-lg px-2 text-sm font-bold transition ${
-        pressed ? 'bg-rose/25 ring-2 ring-rose' : 'bg-white hover:bg-cream'
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function Picker({
-  helpId,
-  label,
-  value,
-  options,
-  onChange,
-  style,
-}: {
-  helpId: string;
-  label: string;
-  value: string;
-  options: { value: string; label: string; style?: React.CSSProperties }[];
-  onChange: (value: string) => void;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <select
-      aria-label={label}
-      title={label}
-      data-help-id={helpId}
-      value={value}
-      style={style}
-      onMouseDown={(e) => e.preventDefault()}
-      onChange={(e) => onChange(e.target.value)}
-      className="h-8 rounded-lg border-2 border-peach/50 bg-white px-2 text-sm font-semibold"
-    >
-      {options.map((o) => (
-        <option key={o.value} value={o.value} style={o.style}>
-          {o.label}
-        </option>
-      ))}
-    </select>
+    <span className="flex flex-col items-center leading-none">
+      {icon}
+      <span className="-mt-0.5 h-1 w-4" style={{ background: color }} />
+    </span>
   );
 }
 
@@ -113,45 +49,68 @@ export function RibbonHome({ state, dispatch }: Props) {
 
   return (
     <div className="flex flex-wrap items-start gap-y-2 overflow-x-auto py-1">
-      <Group title="Phông chữ">
-        <Picker
-          helpId="word.font"
-          label="Phông chữ"
-          value={marks?.fontFamily ?? ''}
-          style={{ fontFamily: marks?.fontFamily ?? undefined }}
-          options={[{ value: '', label: 'Phông chữ' }, ...FONTS.map((f) => ({ value: f, label: f, style: { fontFamily: f } }))]}
-          onChange={(value) => dispatch({ type: 'setStyle', attr: 'fontFamily', value: value || null })}
-        />
-        <Picker
-          helpId="word.size"
-          label="Cỡ chữ"
-          value={marks?.fontSize ?? ''}
-          options={[{ value: '', label: 'Cỡ' }, ...SIZES.map((s) => ({ value: s, label: s.replace('pt', '') }))]}
-          onChange={(value) => dispatch({ type: 'setStyle', attr: 'fontSize', value: value || null })}
-        />
-        <ToolButton helpId="word.bold" label="In đậm" pressed={marks?.bold} onClick={() => dispatch({ type: 'toggleMark', mark: 'bold' })}>
-          <span className="font-black">B</span>
-        </ToolButton>
-        <ToolButton helpId="word.italic" label="In nghiêng" pressed={marks?.italic} onClick={() => dispatch({ type: 'toggleMark', mark: 'italic' })}>
-          <span className="italic">I</span>
-        </ToolButton>
-        <ToolButton helpId="word.underline" label="Gạch chân" pressed={marks?.underline} onClick={() => dispatch({ type: 'toggleMark', mark: 'underline' })}>
-          <span className="underline">U</span>
-        </ToolButton>
-        <Picker
-          helpId="word.color"
-          label="Màu chữ"
-          value={marks?.color ?? ''}
-          options={COLORS.map(([label, value]) => ({ value: value ?? '', label }))}
-          onChange={(value) => dispatch({ type: 'setStyle', attr: 'color', value: value || null })}
-        />
-        <Picker
-          helpId="word.highlight"
-          label="Tô nền"
-          value={marks?.highlight ?? ''}
-          options={HIGHLIGHTS.map(([label, value]) => ({ value: value ?? '', label }))}
-          onChange={(value) => dispatch({ type: 'setHighlight', color: value || null })}
-        />
+      {/* Nhóm Font đã làm giống Word 365 tiếng Anh, khớp ảnh chụp ở cuối bài word.bold. */}
+      <Group title="Font" variant="office">
+        <Row>
+          <Picker
+            variant="office"
+            helpId="word.font"
+            label="Phông chữ"
+            tooltip="Font — Phông chữ"
+            value={marks?.fontFamily ?? ''}
+            style={{ fontFamily: marks?.fontFamily ?? undefined, width: '8.5rem' }}
+            options={[{ value: '', label: 'Phông chữ' }, ...FONTS.map((f) => ({ value: f, label: f, style: { fontFamily: f } }))]}
+            onChange={(value) => dispatch({ type: 'setStyle', attr: 'fontFamily', value: value || null })}
+          />
+          <Picker
+            variant="office"
+            helpId="word.size"
+            label="Cỡ chữ"
+            tooltip="Font Size — Cỡ chữ"
+            value={marks?.fontSize ?? ''}
+            style={{ width: '3.5rem' }}
+            options={[{ value: '', label: 'Cỡ' }, ...SIZES.map((s) => ({ value: s, label: s.replace('pt', '') }))]}
+            onChange={(value) => dispatch({ type: 'setStyle', attr: 'fontSize', value: value || null })}
+          />
+        </Row>
+        <Row>
+          <ToolButton variant="office" helpId="word.bold" label="In đậm" tooltip="Bold (Ctrl+B) — In đậm" pressed={marks?.bold} onClick={() => dispatch({ type: 'toggleMark', mark: 'bold' })}>
+            <TextBold20Regular />
+          </ToolButton>
+          <ToolButton variant="office" helpId="word.italic" label="In nghiêng" tooltip="Italic (Ctrl+I) — In nghiêng" pressed={marks?.italic} onClick={() => dispatch({ type: 'toggleMark', mark: 'italic' })}>
+            <TextItalic20Regular />
+          </ToolButton>
+          <ToolButton variant="office" helpId="word.underline" label="Gạch chân" tooltip="Underline (Ctrl+U) — Gạch chân" pressed={marks?.underline} onClick={() => dispatch({ type: 'toggleMark', mark: 'underline' })}>
+            <TextUnderline20Regular />
+          </ToolButton>
+          <span className="mx-1 h-5 w-px bg-neutral-300" aria-hidden />
+          <label className="flex items-center" title="Text Highlight Color — Tô nền">
+            <Swatched icon={<Highlight20Regular />} color={marks?.highlight ?? '#FFE600'} />
+            <Picker
+              variant="office"
+              helpId="word.highlight"
+              label="Tô nền"
+              tooltip="Text Highlight Color — Tô nền"
+              value={marks?.highlight ?? ''}
+              style={{ width: '1.1rem', border: 'none', background: 'transparent' }}
+              options={HIGHLIGHTS.map(([label, value]) => ({ value: value ?? '', label }))}
+              onChange={(value) => dispatch({ type: 'setHighlight', color: value || null })}
+            />
+          </label>
+          <label className="flex items-center" title="Font Color — Màu chữ">
+            <Swatched icon={<TextColor20Regular />} color={marks?.color ?? '#E00000'} />
+            <Picker
+              variant="office"
+              helpId="word.color"
+              label="Màu chữ"
+              tooltip="Font Color — Màu chữ"
+              value={marks?.color ?? ''}
+              style={{ width: '1.1rem', border: 'none', background: 'transparent' }}
+              options={COLORS.map(([label, value]) => ({ value: value ?? '', label }))}
+              onChange={(value) => dispatch({ type: 'setStyle', attr: 'color', value: value || null })}
+            />
+          </label>
+        </Row>
       </Group>
 
       <Group title="Đoạn văn">

@@ -1,7 +1,21 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+
+/**
+ * `office`: nhóm đã được làm giống Office thật (nút phẳng, vuông, tên nhóm tiếng Anh như ảnh chụp),
+ * để người học mở phần mềm thật vẫn nhận ra. Mặc định là kiểu cũ của app.
+ */
+export type RibbonVariant = 'app' | 'office';
 
 /** Nhóm nút có nhãn ở dưới, đúng như ribbon Word trong app. Excel và PowerPoint dùng chung. */
-export function Group({ title, children }: { title: string; children: ReactNode }) {
+export function Group({ title, variant = 'app', children }: { title: string; variant?: RibbonVariant; children: ReactNode }) {
+  if (variant === 'office') {
+    return (
+      <div data-variant="office" className="flex flex-col gap-0.5 border-r border-neutral-300 px-2 last:border-r-0">
+        <div className="flex flex-col gap-1">{children}</div>
+        <span className="text-center text-[0.7rem] text-neutral-600">{title}</span>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col gap-1 border-r border-peach/40 px-3 last:border-r-0">
       <div className="flex flex-wrap items-center gap-1">{children}</div>
@@ -10,10 +24,17 @@ export function Group({ title, children }: { title: string; children: ReactNode 
   );
 }
 
+/** Một hàng nút trong nhóm `office` (Word xếp nhóm Font thành hai hàng). */
+export function Row({ children }: { children: ReactNode }) {
+  return <div className="flex items-center gap-0.5">{children}</div>;
+}
+
 /** Nút vuông nhỏ mang một ký hiệu, không phải cả câu tiếng Việt. Câu chữ nằm ở tooltip. */
 export function ToolButton({
   helpId,
   label,
+  tooltip,
+  variant = 'app',
   pressed,
   disabled,
   onClick,
@@ -21,25 +42,30 @@ export function ToolButton({
 }: {
   helpId: string;
   label: string;
+  /** Chữ hiện khi rê chuột; mặc định bằng `label`. */
+  tooltip?: string;
+  variant?: RibbonVariant;
   pressed?: boolean;
   disabled?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) {
+  const look =
+    variant === 'office'
+      ? `h-7 min-w-7 rounded-sm px-1 text-neutral-800 ${pressed ? 'border border-neutral-400 bg-neutral-300' : 'border border-transparent hover:bg-neutral-200'}`
+      : `h-8 min-w-8 rounded-lg px-2 font-bold ${pressed ? 'bg-rose/25 ring-2 ring-rose' : 'bg-white hover:bg-cream'}`;
   return (
     <button
       type="button"
       aria-label={label}
-      title={label}
+      title={tooltip ?? label}
       data-help-id={helpId}
       aria-pressed={pressed ?? false}
       disabled={disabled}
       // Giữ vùng chọn khi bấm nút, nếu không định dạng không biết áp vào đâu.
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}
-      className={`grid h-8 min-w-8 place-items-center rounded-lg px-2 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40 ${
-        pressed ? 'bg-rose/25 ring-2 ring-rose' : 'bg-white hover:bg-cream'
-      }`}
+      className={`grid place-items-center text-sm transition disabled:cursor-not-allowed disabled:opacity-40 ${look}`}
     >
       {children}
     </button>
@@ -49,28 +75,39 @@ export function ToolButton({
 export function Picker({
   helpId,
   label,
+  tooltip,
+  variant = 'app',
   value,
   options,
   onChange,
+  style,
 }: {
   helpId: string;
   label: string;
+  tooltip?: string;
+  variant?: RibbonVariant;
   value: string;
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; style?: CSSProperties }[];
   onChange: (value: string) => void;
+  style?: CSSProperties;
 }) {
   return (
     <select
       aria-label={label}
-      title={label}
+      title={tooltip ?? label}
       data-help-id={helpId}
       value={value}
+      style={style}
       onMouseDown={(e) => e.preventDefault()}
       onChange={(e) => onChange(e.target.value)}
-      className="h-8 rounded-lg border-2 border-peach/50 bg-white px-2 text-sm font-semibold"
+      className={
+        variant === 'office'
+          ? 'h-6 rounded-none border border-neutral-400 bg-white px-1 text-[0.8rem] text-neutral-800'
+          : 'h-8 rounded-lg border-2 border-peach/50 bg-white px-2 text-sm font-semibold'
+      }
     >
       {options.map((o) => (
-        <option key={o.value} value={o.value}>{o.label}</option>
+        <option key={o.value} value={o.value} style={o.style}>{o.label}</option>
       ))}
     </select>
   );

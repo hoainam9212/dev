@@ -5,6 +5,7 @@ import { Mochi } from '../components/Mochi';
 import { InlineText } from '../help/RichText';
 import { initPlayer, playerReducer, type HintLevel } from './playerReducer';
 import { ExplainView } from './ExplainView';
+import { RealShot } from './RealShot';
 import { QuizView } from './QuizView';
 import { PracticeView } from './PracticeView';
 
@@ -60,6 +61,8 @@ export function LessonPlayer({ lesson, onFinish, onExit }: { lesson: Lesson; onF
             <ExplainView key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
           ) : step.kind === 'quiz' ? (
             <QuizView key={state.index} step={step} done={state.stepDone} onPick={(correct) => dispatch({ type: 'quizPick', correct })} onNext={() => dispatch({ type: 'next' })} />
+          ) : step.kind === 'realShot' ? (
+            <RealShot key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
           ) : (
             <PracticeView key={state.index} step={step} state={state} dispatch={dispatch} />
           )

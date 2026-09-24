@@ -42,6 +42,16 @@ export const WORD_FORMAT: Lesson[] = [
         { type: 'toggleMark', mark: 'underline' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: '/images/real/word-home.png',
+      caption: 'Trên Word thật: thẻ Home › nhóm Font',
+      marks: [
+        { x: 19.8, y: 67, w: 2.1, h: 13, label: 'Bold (B), phím tắt Ctrl + B: in đậm' },
+        { x: 22.4, y: 67, w: 2.1, h: 13, label: 'Italic (I), phím tắt Ctrl + I: in nghiêng' },
+        { x: 25.0, y: 67, w: 3.2, h: 13, label: 'Underline (U), phím tắt Ctrl + U: gạch chân. Mũi tên ▾ bên cạnh để chọn kiểu gạch' },
+      ],
+    },
   ]),
 
   L('word.format', 'font', 'Phông chữ và cỡ chữ', 6, [

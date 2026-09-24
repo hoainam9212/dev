@@ -2,12 +2,22 @@ import { describe, it, expect } from 'vitest';
 import { extractTermKeys, grade, GRADERS, typingSim, type Lesson, type PracticeStep } from '@office-neko/shared';
 import { FAQ, GLOSSARY, HELP_IDS, LESSONS, TRACKS, findTerm } from './index';
 import { SIMS } from '../sims/registry';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const PUBLIC = join(__dirname, '../../public');
 
 const lessons = Object.values(LESSONS);
 
 function textsOf(l: Lesson): string[] {
   return l.steps.flatMap((s) =>
-    s.kind === 'explain' ? [s.body] : s.kind === 'quiz' ? [s.question, ...s.choices, s.why] : [s.task, s.hints[0], ...s.hints[2]],
+    s.kind === 'explain'
+      ? [s.body]
+      : s.kind === 'quiz'
+        ? [s.question, ...s.choices, s.why]
+        : s.kind === 'realShot'
+          ? [s.caption, ...s.marks.map((m) => m.label)]
+          : [s.task, s.hints[0], ...s.hints[2]],
   ).concat(l.osNote ? [l.osNote.win ?? '', l.osNote.mac ?? ''] : []);
 }
 
@@ -83,5 +93,21 @@ describe('content', () => {
         expect(grade(step.sim, state, step.checks).pass, `${l.id}: solution does not pass`).toBe(true);
       }
     }
+  });
+
+  it('real screenshots exist and their marks stay inside the picture', () => {
+    for (const l of lessons) {
+      for (const s of l.steps) {
+        if (s.kind !== 'realShot') continue;
+        expect(existsSync(join(PUBLIC, s.image)), `${l.id}: missing ${s.image}`).toBe(true);
+        expect(s.marks.length, `${l.id}: no marks`).toBeGreaterThan(0);
+        for (const m of s.marks) {
+          expect(Math.min(m.x, m.y, m.w, m.h), `${l.id}: ${m.label}`).toBeGreaterThanOrEqual(0);
+          expect(m.x + m.w, `${l.id}: ${m.label}`).toBeLessThanOrEqual(100);
+          expect(m.y + m.h, `${l.id}: ${m.label}`).toBeLessThanOrEqual(100);
+        }
+      }
+    }
+    expect(LESSONS['word.bold']?.steps.some((s) => s.kind === 'realShot')).toBe(true);
   });
 });

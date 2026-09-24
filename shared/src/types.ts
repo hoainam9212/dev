@@ -32,7 +32,27 @@ export interface PracticeStep<S = unknown, C = unknown, A = unknown> {
   solution: A[];
 }
 
-export type Step = ExplainStep | QuizStep | PracticeStep;
+/** Một khung đánh dấu trên ảnh chụp thật, mọi số tính theo % kích thước ảnh. */
+export interface RealShotMark {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  label: string;
+}
+
+/** Ảnh chụp phần mềm thật có khoanh nút vừa học, để người học đối chiếu khi mở Office. */
+export interface RealShotStep {
+  kind: 'realShot';
+  /** Đường dẫn trong client/public. */
+  image: string;
+  caption: string;
+  /** Mặc định "Ảnh chụp Microsoft Word". */
+  credit?: string;
+  marks: RealShotMark[];
+}
+
+export type Step = ExplainStep | QuizStep | PracticeStep | RealShotStep;
 
 export interface Lesson {
   id: string;

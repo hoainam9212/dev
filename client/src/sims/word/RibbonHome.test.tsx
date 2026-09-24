@@ -40,6 +40,15 @@ describe('RibbonHome', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'setStyle', attr: 'fontSize', value: '16pt' });
   });
 
+  it('names the Font group and its buttons the way English Word does', () => {
+    render(<RibbonHome state={withSelection()} dispatch={vi.fn()} />);
+    expect(screen.getByText('Font')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'In đậm' })).toHaveAttribute('title', 'Bold (Ctrl+B) — In đậm');
+    expect(screen.getByRole('button', { name: 'In nghiêng' })).toHaveAttribute('title', 'Italic (Ctrl+I) — In nghiêng');
+    expect(screen.getByRole('button', { name: 'Gạch chân' })).toHaveAttribute('title', 'Underline (Ctrl+U) — Gạch chân');
+    expect(screen.getByRole('button', { name: 'In đậm' }).querySelector('svg')).not.toBeNull();
+  });
+
   it('gives every control a help id', () => {
     const { container } = render(<RibbonHome state={withSelection()} dispatch={vi.fn()} />);
     const ids = [...container.querySelectorAll('[data-help-id]')].map((e) => e.getAttribute('data-help-id'));

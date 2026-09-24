@@ -17,7 +17,7 @@ export type PlayerAction =
   | { type: 'checkResult'; pass: boolean; manual: boolean }
   | { type: 'hint' };
 
-const doneOnEnter = (step: Step | undefined) => step?.kind === 'explain';
+const doneOnEnter = (step: Step | undefined) => step?.kind === 'explain' || step?.kind === 'realShot';
 
 export function initPlayer(steps: readonly Step[]): PlayerState {
   return { index: 0, stepDone: doneOnEnter(steps[0]), stepHint: 0, maxHint: 0, failures: 0, finished: steps.length === 0 };

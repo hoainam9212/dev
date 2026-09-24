@@ -42,4 +42,9 @@ describe('playerReducer', () => {
     s = r(s, { type: 'next' });
     expect(s).toMatchObject({ finished: true, maxHint: 3 });
   });
+
+  it('treats a real screenshot step as done on arrival', () => {
+    const shot: Step[] = [{ kind: 'realShot', image: '/x.png', caption: 'c', marks: [{ x: 1, y: 1, w: 1, h: 1, label: 'l' }] }];
+    expect(initPlayer(shot)).toMatchObject({ stepDone: true });
+  });
 });
