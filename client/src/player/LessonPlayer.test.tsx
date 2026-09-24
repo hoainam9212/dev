@@ -110,6 +110,50 @@ describe('LessonPlayer', () => {
     expect(spy.mock.calls.length).toBe(calls);
   });
 
+  it('goes back to a solved practice step exactly as it was, and edits there cost nothing', async () => {
+    setupFakeSim();
+    // Sim nhớ trạng thái được nạp vào: hiện chữ khác khi `initial.clicked` đã bật.
+    SIMS.mouse = {
+      kind: 'mouse',
+      Component: ({ initial, onState }: SimProps<FakeState>) => (
+        <button onClick={() => onState({ clicked: !initial.clicked })}>{initial.clicked ? 'Đã bấm sẵn' : 'Bấm tôi'}</button>
+      ),
+      reduce: (s: FakeState) => s,
+    };
+    const lesson: Lesson = { ...practiceLesson, steps: [...practiceLesson.steps, { kind: 'explain', body: 'Bước cuối' }] };
+    const onFinish = vi.fn();
+    renderWithProfile(<LessonPlayer lesson={lesson} onFinish={onFinish} onExit={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Bấm tôi' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Tiếp tục →' }));
+    fireEvent.click(screen.getByRole('button', { name: '← Quay lại' }));
+    expect(screen.getByRole('button', { name: 'Đã bấm sẵn' })).toBeInTheDocument();
+    expect(screen.getByText(/Giỏi quá/)).toBeInTheDocument();
+    expect(screen.getByText(/Đã bấm nút/)).toBeInTheDocument();
+    expect(screen.getByText(/đang xem lại/)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Kiểm tra' })).toBeNull();
+    // Làm hỏng bài khi xem lại: vẫn qua được, không tính lỗi.
+    fireEvent.click(screen.getByRole('button', { name: 'Đã bấm sẵn' }));
+    await new Promise((r) => setTimeout(r, 400));
+    fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục →' }));
+    await waitFor(() => expect(onFinish).toHaveBeenCalled());
+    expect(onFinish.mock.calls[0]![0]).toMatchObject({ stars: 3, failures: 0 });
+  });
+
+  it('keeps the quiz answer when coming back to it', () => {
+    renderWithProfile(<LessonPlayer lesson={{ ...quizLesson, steps: [...quizLesson.steps, { kind: 'explain', body: 'Hết' }] }} onFinish={() => {}} onExit={() => {}} />);
+    expect(screen.queryByRole('button', { name: '← Quay lại' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'A' }));
+    fireEvent.click(screen.getByRole('button', { name: /A/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'B' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục →' }));
+    fireEvent.click(screen.getByRole('button', { name: '← Quay lại' }));
+    expect(screen.getByText('Vì B đúng')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /❌ A/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /✅ B/ })).toBeInTheDocument();
+  });
+
   it('shows a not-ready card when the grader is missing', () => {
     setupFakeSim();
     delete GRADERS.mouse;
@@ -149,5 +193,18 @@ describe('LessonPlayer keyboard practice', () => {
     await waitFor(async () => expect(await db.typingRuns.count()).toBe(1));
     const rows = await db.typingRuns.toArray();
     expect(rows[0]!.mode).toBe('lesson');
+  });
+
+  it('does not record a second typing run when reviewing a finished typing step', async () => {
+    const lesson: Lesson = { ...keyboardLesson, steps: [...keyboardLesson.steps, { kind: 'explain', body: 'Hết' }] };
+    renderWithProfile(<LessonPlayer lesson={lesson} onFinish={() => {}} onExit={() => {}} />);
+    const box = screen.getByRole('textbox', { name: 'Vùng gõ phím' });
+    fireEvent.keyDown(box, { key: 'o' });
+    fireEvent.keyDown(box, { key: 'k' });
+    await waitFor(async () => expect(await db.typingRuns.count()).toBe(1));
+    fireEvent.click(await screen.findByRole('button', { name: 'Tiếp tục →' }));
+    fireEvent.click(screen.getByRole('button', { name: '← Quay lại' }));
+    await new Promise((r) => setTimeout(r, 400));
+    expect(await db.typingRuns.count()).toBe(1);
   });
 });

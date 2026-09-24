@@ -37,6 +37,7 @@ export function LessonPlayer({ lesson, onFinish, onExit }: { lesson: Lesson; onF
   const total = lesson.steps.length;
   const step = lesson.steps[state.index];
   const note = lesson.osNote?.[os];
+  const back = state.index > 0 ? () => dispatch({ type: 'back' }) : undefined;
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-4 p-4">
@@ -58,11 +59,19 @@ export function LessonPlayer({ lesson, onFinish, onExit }: { lesson: Lesson; onF
       ) : (
         step && (
           step.kind === 'explain' ? (
-            <ExplainView key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
+            <ExplainView key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} onBack={back} />
           ) : step.kind === 'quiz' ? (
-            <QuizView key={state.index} step={step} done={state.stepDone} onPick={(correct) => dispatch({ type: 'quizPick', correct })} onNext={() => dispatch({ type: 'next' })} />
+            <QuizView
+              key={state.index}
+              step={step}
+              done={state.stepDone}
+              savedWrong={state.saved[state.index]?.wrong}
+              onPick={(correct) => dispatch({ type: 'quizPick', correct })}
+              onNext={(wrong) => dispatch({ type: 'next', snapshot: { wrong } })}
+              onBack={back && ((wrong) => dispatch({ type: 'back', snapshot: { wrong } }))}
+            />
           ) : step.kind === 'realShot' ? (
-            <RealShot key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} />
+            <RealShot key={state.index} step={step} onNext={() => dispatch({ type: 'next' })} onBack={back} />
           ) : (
             <PracticeView key={state.index} step={step} state={state} dispatch={dispatch} />
           )

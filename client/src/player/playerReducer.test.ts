@@ -43,6 +43,45 @@ describe('playerReducer', () => {
     expect(s).toMatchObject({ finished: true, maxHint: 3 });
   });
 
+  it('goes back to a finished step as a review that cannot change the score', () => {
+    let s = r(initPlayer(steps), { type: 'next' });
+    s = r(s, { type: 'quizPick', correct: false });
+    s = r(s, { type: 'quizPick', correct: true });
+    s = r(s, { type: 'next', snapshot: { wrong: [0] } });
+    s = r(s, { type: 'hint' });
+    s = r(s, { type: 'back', snapshot: { sim: { half: true } } });
+    expect(s).toMatchObject({ index: 1, stepDone: true, reviewing: true, failures: 1, maxHint: 1 });
+    expect(s.saved[1]).toEqual({ wrong: [0] });
+    s = r(s, { type: 'quizPick', correct: false });
+    s = r(s, { type: 'hint' });
+    expect(s).toMatchObject({ failures: 1, maxHint: 1 });
+  });
+
+  it('returns to the unfinished frontier with its hints and saved work', () => {
+    let s = r(initPlayer(steps), { type: 'next' });
+    s = r(s, { type: 'quizPick', correct: true });
+    s = r(s, { type: 'next' });
+    s = r(s, { type: 'hint' });
+    s = r(s, { type: 'back', snapshot: { sim: { half: true } } });
+    s = r(s, { type: 'next' });
+    expect(s).toMatchObject({ index: 2, stepDone: false, reviewing: false, stepHint: 1 });
+    expect(s.saved[2]).toEqual({ sim: { half: true } });
+    s = r(s, { type: 'checkResult', pass: false, manual: true });
+    expect(s.failures).toBe(1);
+  });
+
+  it('keeps edits made while reviewing and ignores back on the first step', () => {
+    let s = r(initPlayer(steps), { type: 'back' });
+    expect(s.index).toBe(0);
+    s = r(s, { type: 'next' });
+    s = r(s, { type: 'quizPick', correct: true });
+    s = r(s, { type: 'next', snapshot: { wrong: [] } });
+    s = r(s, { type: 'back' });
+    s = r(s, { type: 'next', snapshot: { wrong: [9] } });
+    expect(s.saved[1]).toEqual({ wrong: [9] });
+    expect(s).toMatchObject({ index: 2, reviewing: false, stepDone: false });
+  });
+
   it('treats a real screenshot step as done on arrival', () => {
     const shot: Step[] = [{ kind: 'realShot', image: '/x.png', caption: 'c', marks: [{ x: 1, y: 1, w: 1, h: 1, label: 'l' }] }];
     expect(initPlayer(shot)).toMatchObject({ stepDone: true });

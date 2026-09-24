@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { RealShotStep } from '@office-neko/shared';
 import { Mochi } from '../components/Mochi';
+import { BackButton } from './BackButton';
 
 const NUMS = '①②③④⑤⑥⑦⑧⑨';
 
@@ -29,7 +30,7 @@ function Figure({ step, active }: { step: RealShotStep; active: number | null })
   );
 }
 
-export function RealShot({ step, onNext }: { step: RealShotStep; onNext: () => void }) {
+export function RealShot({ step, onNext, onBack }: { step: RealShotStep; onNext: () => void; onBack?: () => void }) {
   const [active, setActive] = useState<number | null>(null);
   const [zoom, setZoom] = useState(false);
 
@@ -79,7 +80,10 @@ export function RealShot({ step, onNext }: { step: RealShotStep; onNext: () => v
         ))}
       </ol>
 
-      <button type="button" className="btn-primary self-start" onClick={onNext}>Tiếp tục →</button>
+      <div className="flex flex-wrap gap-3">
+        {onBack && <BackButton onClick={onBack} />}
+        <button type="button" className="btn-primary" onClick={onNext}>Tiếp tục →</button>
+      </div>
 
       {zoom ? (
         <div

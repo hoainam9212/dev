@@ -9,6 +9,7 @@ import { useSound } from '../lib/sound';
 import { ErrorBoundary } from '../app/ErrorBoundary';
 import { recordTypingRun } from '../progress/typing';
 import { HintPanel } from './HintPanel';
+import { BackButton } from './BackButton';
 import type { PlayerAction, PlayerState } from './playerReducer';
 
 export function PracticeView({ step, state, dispatch }: { step: PracticeStep; state: PlayerState; dispatch: Dispatch<PlayerAction> }) {
@@ -16,14 +17,20 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const os = useOs();
   const profileId = useProfileId();
   const sound = useSound();
-  const latest = useRef<unknown>(step.initial);
+  const snap = state.saved[state.index];
+  // Quay lại một bước: nạp đúng trạng thái lúc rời đi, không phải đề bài gốc.
+  const [startFrom] = useState<unknown>(() => snap?.sim ?? step.initial);
+  const latest = useRef<unknown>(startFrom);
   const timer = useRef<number | undefined>(undefined);
   const doneRef = useRef(state.stepDone);
   doneRef.current = state.stepDone;
+  const reviewingRef = useRef(state.reviewing);
+  reviewingRef.current = state.reviewing;
   /** Ghi đúng một lần WPM/keyStats của bài gõ phím khi trình mô phỏng báo đã gõ xong,
    * kể cả khi việc chấm điểm chạy lại nhiều lần trên cùng một bước. */
   const typingRecordedRef = useRef(false);
-  const [report, setReport] = useState<GradeReport | null>(null);
+  const [report, setReport] = useState<GradeReport | null>(() => (snap?.report as GradeReport | undefined) ?? null);
+  const leave = (type: 'next' | 'back') => dispatch({ type, snapshot: { sim: latest.current, report } });
   const [root, setRoot] = useState<HTMLDivElement | null>(null);
 
   const runGrade = useCallback(
@@ -40,7 +47,8 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
   const onState = useCallback(
     (s: unknown) => {
       latest.current = s;
-      if (step.sim === 'keyboard' && !typingRecordedRef.current) {
+      // Xem lại bài gõ đã xong thì không ghi thêm một lượt WPM nữa.
+      if (step.sim === 'keyboard' && !typingRecordedRef.current && !reviewingRef.current) {
         const ts = s as typingSim.TypingState;
         if (ts.finished && profileId) {
           typingRecordedRef.current = true;
@@ -69,7 +77,7 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
       </div>
       <div ref={setRoot} className="relative">
         <ErrorBoundary message="Trình mô phỏng gặp lỗi… Hãy thử tải lại trang." key={step.sim}>
-          <Sim initial={step.initial} onState={onState} os={os} spotlight={spotlight} />
+          <Sim initial={startFrom} onState={onState} os={os} spotlight={spotlight} />
         </ErrorBoundary>
       </div>
       <SpotlightOverlay target={spotlight} root={root} />
@@ -81,13 +89,17 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
           ))}
         </ul>
       )}
+      {state.reviewing && (
+        <p className="rounded-2xl bg-sky/30 p-3 text-sm">👀 Bạn đang xem lại bài đã làm xong: cứ bấm thử thoải mái, không ảnh hưởng điểm và sao.</p>
+      )}
       <div className="flex flex-wrap items-center gap-3">
+        {state.index > 0 && <BackButton onClick={() => leave('back')} />}
         {state.stepDone ? (
           <>
             <span className="flex items-center gap-2 font-bold text-excel-ink">
               <Mochi mood="happy" size={48} animated={false} /> Giỏi quá! Bạn làm đúng rồi 🎉
             </span>
-            <button type="button" className="btn-primary" onClick={() => dispatch({ type: 'next' })} autoFocus>Tiếp tục →</button>
+            <button type="button" className="btn-primary" onClick={() => leave('next')} autoFocus>Tiếp tục →</button>
           </>
         ) : (
           <>

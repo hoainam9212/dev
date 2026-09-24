@@ -3,9 +3,25 @@ import type { QuizStep } from '@office-neko/shared';
 import { Mochi } from '../components/Mochi';
 import { InlineText, RichText } from '../help/RichText';
 import { useSound } from '../lib/sound';
+import { BackButton } from './BackButton';
 
-export function QuizView({ step, done, onPick, onNext }: { step: QuizStep; done: boolean; onPick: (correct: boolean) => void; onNext: () => void }) {
-  const [wrong, setWrong] = useState<number[]>([]);
+export function QuizView({
+  step,
+  done,
+  savedWrong,
+  onPick,
+  onNext,
+  onBack,
+}: {
+  step: QuizStep;
+  done: boolean;
+  /** Đáp án sai đã chọn lần trước, để quay lại thấy y như cũ. */
+  savedWrong?: number[];
+  onPick: (correct: boolean) => void;
+  onNext: (wrong: number[]) => void;
+  onBack?: (wrong: number[]) => void;
+}) {
+  const [wrong, setWrong] = useState<number[]>(savedWrong ?? []);
   const sound = useSound();
   const pick = (i: number) => {
     if (done || wrong.includes(i)) return;
@@ -35,14 +51,15 @@ export function QuizView({ step, done, onPick, onNext }: { step: QuizStep; done:
       </div>
       {wrong.length > 0 && !done && <p className="font-semibold text-rose-ink">Chưa đúng rồi, thử lại nhé! 💪</p>}
       {done && (
-        <div className="space-y-3">
-          <div className="flex items-start gap-3 rounded-2xl bg-mint/30 p-3">
-            <Mochi mood="happy" size={56} animated={false} />
-            <RichText text={step.why} />
-          </div>
-          <button type="button" className="btn-primary" onClick={onNext} autoFocus>Tiếp tục →</button>
+        <div className="flex items-start gap-3 rounded-2xl bg-mint/30 p-3">
+          <Mochi mood="happy" size={56} animated={false} />
+          <RichText text={step.why} />
         </div>
       )}
+      <div className="flex flex-wrap gap-3">
+        {onBack && <BackButton onClick={() => onBack(wrong)} />}
+        {done && <button type="button" className="btn-primary" onClick={() => onNext(wrong)} autoFocus>Tiếp tục →</button>}
+      </div>
     </div>
   );
 }
