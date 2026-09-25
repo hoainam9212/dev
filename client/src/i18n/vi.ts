@@ -2,6 +2,7 @@
 export const vi = {
   common: {
     locale: 'vi-VN',
+    shortDate: (d: Date) => `${d.getDate()}/${d.getMonth() + 1}`,
     cards: (n: number) => `${n} thẻ`,
     days: (n: number) => `${n} ngày`,
     close: 'Đóng',

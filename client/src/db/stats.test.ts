@@ -1,6 +1,7 @@
 import type { ProgressItem } from '@nihongo/shared';
 import { xpByDay, statusCounts, dueForecast, todayStats } from './stats';
 import type { SessionLog } from './db';
+import { withLang } from '../test/lang';
 
 const T = new Date(2026, 8, 19, 12, 0, 0); // local 2026-09-19 noon
 const iso = (d: Date) => d.toISOString();
@@ -32,4 +33,13 @@ it('dueForecast buckets by day with overdue on today', () => {
 
 it('todayStats counts only today', () => {
   expect(todayStats([S(0, 4), S(0, 6), S(2, 9)], T)).toEqual({ sessions: 2, xp: 10 });
+});
+
+it('labels chart days in the display language date order', () => {
+  const today = new Date(2026, 8, 19, 12);
+  expect(xpByDay([], 1, today)[0]!.label).toBe('19/9');
+  expect(dueForecast([], 2, today)[1]!.label).toBe('20/9');
+  withLang('en');
+  expect(xpByDay([], 1, today)[0]!.label).toBe('9/19');
+  expect(dueForecast([], 2, today)[1]!.label).toBe('9/20');
 });

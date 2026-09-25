@@ -34,6 +34,10 @@ it('has no Vietnamese literals outside i18n/ (except files still pending migrati
   expect(problems, problems.join('\n')).toEqual([]);
 });
 
+it('has every file migrated (PENDING is empty)', () => {
+  expect(PENDING).toEqual([]);
+});
+
 it('lists only files that exist', () => {
   const files = walk(SRC);
   expect(PENDING.filter((p) => !files.includes(p))).toEqual([]);

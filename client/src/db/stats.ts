@@ -19,7 +19,7 @@ export function xpByDay(sessions: SessionLog[], days: number, today = new Date()
   for (let i = days - 1; i >= 0; i--) {
     const d = new Date(today.getTime() - i * DAY);
     const day = todayStr(d);
-    out.push({ day, label: `${d.getDate()}/${d.getMonth() + 1}`, xp: byDay.get(day) ?? 0 });
+    out.push({ day, label: getT().common.shortDate(d), xp: byDay.get(day) ?? 0 });
   }
   return out;
 }
@@ -53,7 +53,7 @@ export function dueForecast(progress: ProgressItem[], days: number, now = new Da
   start.setHours(0, 0, 0, 0);
   const out = Array.from({ length: days }, (_, i) => {
     const d = new Date(start.getTime() + i * DAY);
-    return { day: todayStr(d), label: i === 0 ? getT().progress.today : `${d.getDate()}/${d.getMonth() + 1}`, count: 0 };
+    return { day: todayStr(d), label: i === 0 ? getT().progress.today : getT().common.shortDate(d), count: 0 };
   });
   for (const p of progress) {
     const due = new Date(p.due).getTime();

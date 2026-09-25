@@ -3,6 +3,7 @@ import type { Dict } from './index';
 export const en: Dict = {
   common: {
     locale: 'en-US',
+    shortDate: (d) => `${d.getMonth() + 1}/${d.getDate()}`,
     cards: (n) => (n === 1 ? '1 card' : `${n} cards`),
     days: (n) => (n === 1 ? '1 day' : `${n} days`),
     close: 'Close',
