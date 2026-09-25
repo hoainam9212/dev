@@ -1,0 +1,1246 @@
+{
+  "type": "grammar",
+  "level": "N4",
+  "entries": {
+    "N4|A とか B とか": {
+      "vi": "A とか B とか (nào là A, nào là B; chẳng hạn như)",
+      "examples": [
+        {
+          "ja": "週末は映画とか買い物とか楽しいことをしたいです。",
+          "vi": "Cuối tuần tôi muốn làm những việc vui như xem phim, mua sắm."
+        }
+      ],
+      "en": "Used to express multiple examples or possibilities; 'such as', 'like', 'for example'."
+    },
+    "N4|A は B ほど～ありません (A wa B hodo ～ arimasen)": {
+      "vi": "A は B ほど～ありません (A không … bằng B)",
+      "examples": [
+        {
+          "ja": "今日は昨日ほど寒くありません。",
+          "vi": "Hôm nay không lạnh bằng hôm qua."
+        }
+      ],
+      "en": "Express that A is not as much as B; 'not as... as', 'not... to the extent of'."
+    },
+    "N4|A は B ほど～ない (A wa B hodo ~ nai)": {
+      "vi": "A は B ほど～ない (A không … bằng B)",
+      "examples": [
+        {
+          "ja": "山田さんは鈴木さんほど背が高くない。",
+          "vi": "Anh Yamada không cao bằng anh Suzuki."
+        }
+      ],
+      "en": "Expressing that A is not as ~ as B; 'not as...as'"
+    },
+    "N4|A より B のほうが〜 (A yori B no hou ga 〜)": {
+      "vi": "A より B のほうが～ (B … hơn A)",
+      "examples": [
+        {
+          "ja": "田中さんより鈴木さんのほうが背が高いです。",
+          "vi": "Anh Suzuki cao hơn anh Tanaka."
+        }
+      ],
+      "en": "Comparing two things; 'B is more ~ than A'."
+    },
+    "N4|い-Adjective く する/なる (i-Adjective kusuru/naru)": {
+      "vi": "Tính từ い bỏ い + く する/なる (làm cho …, trở nên …)",
+      "examples": [
+        {
+          "ja": "部屋を明るくします。",
+          "vi": "Tôi làm cho căn phòng sáng lên."
+        }
+      ],
+      "en": "Express a change happening or making something change."
+    },
+    "N4|な-adjective に する/なる": {
+      "vi": "Tính từ な + に する/なる (làm cho …, trở nên …)",
+      "examples": [
+        {
+          "ja": "部屋をきれいにする。",
+          "vi": "Dọn cho căn phòng sạch sẽ."
+        }
+      ],
+      "en": "Used to indicate change or decision; 'to become' or 'to make' with na-adjectives."
+    },
+    "N4|Noun しか～ない (Noun shika~nai)": {
+      "vi": "Danh từ しか～ない (chỉ … thôi)",
+      "examples": [
+        {
+          "ja": "私はリンゴしか食べない。",
+          "vi": "Tôi chỉ ăn táo thôi."
+        }
+      ],
+      "en": "Expresses 'only', 'nothing but', or 'no other'."
+    },
+    "N4|Noun に する (Noun ni suru)": {
+      "vi": "Danh từ に する (chọn, quyết định lấy …)",
+      "examples": [
+        {
+          "ja": "メニューからピザにしました。",
+          "vi": "Tôi đã chọn pizza trong thực đơn."
+        }
+      ],
+      "en": "Used to indicate a choice or decision, 'to decide on' or 'to choose'."
+    },
+    "N4|Noun に なる (Noun ni naru)": {
+      "vi": "Danh từ に なる (trở thành …)",
+      "examples": [
+        {
+          "ja": "彼は医者になりました。",
+          "vi": "Anh ấy đã trở thành bác sĩ."
+        }
+      ],
+      "en": "To become; to change into; to turn into."
+    },
+    "N4|のために (no tame ni)": {
+      "vi": "Danh từ のために (vì …, để …)",
+      "examples": [
+        {
+          "ja": "勉強のために、図書館で静かな場所を探しています。",
+          "vi": "Tôi đang tìm một chỗ yên tĩnh trong thư viện để học."
+        }
+      ],
+      "en": "Used to express purpose or reason; 'for', 'for the sake of', 'in order to'."
+    },
+    "N4|Noun の 間に (〜no aida ni)": {
+      "vi": "Danh từ の 間に (trong lúc …, trong khoảng …)",
+      "examples": [
+        {
+          "ja": "昼休みの間に銀行に行きます。",
+          "vi": "Tôi đi ngân hàng trong giờ nghỉ trưa."
+        }
+      ],
+      "en": "Expresses 'while' or 'during' a specific period or time."
+    },
+    "N4|Noun ばかり (〜bakari)": {
+      "vi": "Danh từ ばかり (toàn là …, chỉ toàn …)",
+      "examples": [
+        {
+          "ja": "彼はお金ばかり話す。",
+          "vi": "Anh ấy toàn nói chuyện tiền bạc."
+        }
+      ],
+      "en": "Expresses 'only', 'nothing but', 'always', or 'just'"
+    },
+    "N4|Noun を あげる (Noun wo ageru)": {
+      "vi": "Danh từ を あげる (cho, tặng …)",
+      "examples": [
+        {
+          "ja": "プレゼントをあげる。",
+          "vi": "Tặng quà."
+        }
+      ],
+      "en": "To give something to someone; 'give', 'offer', 'present'."
+    },
+    "N4|Nounをいただく (Noun wo itadaku)": {
+      "vi": "Danh từ を いただく (nhận … (khiêm nhường))",
+      "examples": [
+        {
+          "ja": "プレゼントをいただきありがとうございます。",
+          "vi": "Cảm ơn vì đã nhận được món quà."
+        }
+      ],
+      "en": "To receive or accept something politely; 'to receive', 'to get', 'to accept'."
+    },
+    "N4|Nounをくださる": {
+      "vi": "Danh từ を くださる ((người trên) cho tôi … (kính ngữ))",
+      "examples": [
+        {
+          "ja": "先生が資料をくださった。",
+          "vi": "Thầy giáo đã đưa tài liệu cho tôi."
+        }
+      ],
+      "en": "Used to express someone doing something as a favor or for the benefit of the speaker."
+    },
+    "N4|Noun を くれる (Noun wo kureru)": {
+      "vi": "Danh từ を くれる ((ai đó) cho tôi …)",
+      "examples": [
+        {
+          "ja": "友達が私にプレゼントをくれました。",
+          "vi": "Bạn tôi đã tặng quà cho tôi."
+        }
+      ],
+      "en": "Expresses that someone gives a thing to the speaker or someone close to the speaker."
+    },
+    "N4|Noun を さしあげる (Noun wo sashiageru)": {
+      "vi": "Danh từ を さしあげる (biếu, tặng … (khiêm nhường))",
+      "examples": [
+        {
+          "ja": "先生に本をさしあげます。",
+          "vi": "Tôi biếu thầy giáo quyển sách."
+        }
+      ],
+      "en": "A polite way of expressing to give something."
+    },
+    "N4|Noun もらう (Noun wo morau)": {
+      "vi": "Danh từ を もらう (nhận …)",
+      "examples": [
+        {
+          "ja": "友達からプレゼントをもらいました。",
+          "vi": "Tôi đã nhận được quà từ bạn."
+        }
+      ],
+      "en": "To receive or get something from someone; 'to receive', 'to get'."
+    },
+    "N4|Noun + 中 (Noun + ちゅう)": {
+      "vi": "Danh từ + 中 (đang …, trong lúc …)",
+      "examples": [
+        {
+          "ja": "彼は仕事中です。",
+          "vi": "Anh ấy đang làm việc."
+        }
+      ],
+      "en": "Express 'in the middle of', 'during', or 'in the process of'."
+    },
+    "N4|Verb させられる (Verb-saserareru)": {
+      "vi": "Động từ thể sai khiến bị động させられる (bị bắt phải …)",
+      "examples": [
+        {
+          "ja": "子供たちは先生に宿題をやらせられました。",
+          "vi": "Bọn trẻ bị thầy giáo bắt làm bài tập."
+        }
+      ],
+      "en": "Express the passive causative form; 'to be made to', 'to be forced to'."
+    },
+    "N4|Verb させる (Verb-saseru)": {
+      "vi": "Động từ thể sai khiến させる (bắt, cho phép (ai) làm …)",
+      "examples": [
+        {
+          "ja": "先生が生徒に宿題をさせました。",
+          "vi": "Thầy giáo đã bắt học sinh làm bài tập."
+        }
+      ],
+      "en": "Expresses 'to make someone do something', 'to let someone do something', or 'to cause someone to do something'."
+    },
+    "N4|Verb た ことがある (Verb ta koto ga aru)": {
+      "vi": "Động từ thể た + ことがある (đã từng …)",
+      "examples": [
+        {
+          "ja": "日本に行ったことがあります。",
+          "vi": "Tôi đã từng đi Nhật."
+        }
+      ],
+      "en": "Expresses the experience of having done something in the past."
+    },
+    "N4|Verb た ときに (Verb た ときに)": {
+      "vi": "Động từ thể た + ときに (khi đã …, lúc …)",
+      "examples": [
+        {
+          "ja": "映画を見たときに、泣きました。",
+          "vi": "Lúc xem phim, tôi đã khóc."
+        }
+      ],
+      "en": "Express an action or event that occurred at a specific time in the past; 'when', 'at the time'."
+    },
+    "N4|Verb た ところ (Verb ta tokoro)": {
+      "vi": "Động từ thể た + ところ (vừa … xong thì; khi … thì)",
+      "examples": [
+        {
+          "ja": "ドアを開けたところ、猫が飛び出してきた。",
+          "vi": "Vừa mở cửa thì con mèo lao ra."
+        }
+      ],
+      "en": "Expresses the situation right after an action has taken place."
+    },
+    "N4|Verb たほうがいい (〜ta hou ga ii)": {
+      "vi": "Động từ thể た + ほうがいい (nên …)",
+      "examples": [
+        {
+          "ja": "早く寝たほうがいい。",
+          "vi": "Nên đi ngủ sớm."
+        }
+      ],
+      "en": "Used to give advice or make a suggestion to someone - 'it's better if...'"
+    },
+    "N4|Verb ために (tame ni)": {
+      "vi": "Động từ thể từ điển + ために (để …)",
+      "examples": [
+        {
+          "ja": "試験に合格するために、毎日勉強しています。",
+          "vi": "Để đỗ kỳ thi, ngày nào tôi cũng học."
+        }
+      ],
+      "en": "Used to describe the purpose or reason for an action; 'for the sake of', 'in order to', 'because of'."
+    },
+    "N4|Verb つもり (〜tsumori)": {
+      "vi": "Động từ + つもり (định …, có ý định …)",
+      "examples": [
+        {
+          "ja": "明日、友達に会うつもりです。",
+          "vi": "Ngày mai tôi định gặp bạn."
+        }
+      ],
+      "en": "Express the intention, plan, or determination to do something; 'I intend to', 'I plan to', 'I'm determined to'."
+    },
+    "N4|Verb てあげる (Verb te ageru)": {
+      "vi": "Động từ thể て + あげる (làm … cho (ai))",
+      "examples": [
+        {
+          "ja": "友達が疲れていたから、荷物を持ってあげた。",
+          "vi": "Vì bạn tôi mệt nên tôi đã mang hành lý giúp."
+        }
+      ],
+      "en": "Used to express doing something for someone; 'do something for someone'."
+    },
+    "N4|Verb て ある (Verb-te aru)": {
+      "vi": "Tha động từ thể て + ある (… sẵn (kết quả còn lại))",
+      "examples": [
+        {
+          "ja": "窓が開けてある。",
+          "vi": "Cửa sổ đang được mở sẵn."
+        }
+      ],
+      "en": "Indicates that an action has been done and its result is still in effect."
+    },
+    "N4|Verb て いく (Verb-te iku)": {
+      "vi": "Động từ thể て + いく (… dần, tiếp tục … về sau)",
+      "examples": [
+        {
+          "ja": "このまま練習を続けていくと、上達するでしょう。",
+          "vi": "Nếu cứ tiếp tục luyện tập thế này thì chắc sẽ tiến bộ."
+        }
+      ],
+      "en": "Expresses an action that continues on into the future or a change that progresses over time."
+    },
+    "N4|Verb ていただきたい (te itadakitai)": {
+      "vi": "Động từ thể て + いただきたい (mong (ai) làm … giúp (lịch sự))",
+      "examples": [
+        {
+          "ja": "資料をコピーしていただきたいです。",
+          "vi": "Tôi mong anh/chị photo giúp tài liệu."
+        }
+      ],
+      "en": "Express a polite request or desire that someone does something for you."
+    },
+    "N4|Verb ていただく (〜te itadaku)": {
+      "vi": "Động từ thể て + いただく (được (ai) làm … cho (khiêm nhường))",
+      "examples": [
+        {
+          "ja": "メールを送っていただいて、ありがとうございます。",
+          "vi": "Cảm ơn anh/chị đã gửi email cho tôi."
+        }
+      ],
+      "en": "Used to express receiving someone's favor or help; 'to kindly do'."
+    },
+    "N4|Verb て いただけませんか (Verb te itadakemasen ka)": {
+      "vi": "Động từ thể て + いただけませんか (có thể … giúp tôi được không ạ?)",
+      "examples": [
+        {
+          "ja": "この手紙を投函していただけませんか。",
+          "vi": "Anh/chị có thể gửi bức thư này giúp tôi được không ạ?"
+        }
+      ],
+      "en": "A polite request; 'Could you please...', 'Would you mind...'"
+    },
+    "N4|Verb て いる (Verb-te iru)": {
+      "vi": "Động từ thể て + いる (đang …; trạng thái …)",
+      "examples": [
+        {
+          "ja": "今、本を読んでいます。",
+          "vi": "Bây giờ tôi đang đọc sách."
+        }
+      ],
+      "en": "Expresses an ongoing action or a state resulting from a past action."
+    },
+    "N4|Verb て いる ところ (Verb te iru tokoro)": {
+      "vi": "Động từ thể て + いる ところ (đang … dở)",
+      "examples": [
+        {
+          "ja": "彼は宿題をしているところです。",
+          "vi": "Anh ấy đang làm bài tập."
+        }
+      ],
+      "en": "Describes an action that is currently happening; 'in the middle of', 'in the process of'."
+    },
+    "N4|Verb ている間に (te iru aida ni)": {
+      "vi": "Động từ thể て + いる間に (trong lúc đang …)",
+      "examples": [
+        {
+          "ja": "映画を見ている間に、彼は寝てしまった。",
+          "vi": "Trong lúc đang xem phim thì anh ấy ngủ mất."
+        }
+      ],
+      "en": "Expresses 'while' or 'during the time' something is happening."
+    },
+    "N4|Verb ておく (〜te oku)": {
+      "vi": "Động từ thể て + おく (… sẵn, … trước)",
+      "examples": [
+        {
+          "ja": "駅で切符を買っておこう。",
+          "vi": "Mua sẵn vé ở nhà ga đi."
+        }
+      ],
+      "en": "Perform an action in preparation for a future situation; 'to do something in advance'."
+    },
+    "N4|Verb て くださいませんか (Verb-te kudasaimasen ka)": {
+      "vi": "Động từ thể て + くださいませんか (… giúp tôi được không ạ?)",
+      "examples": [
+        {
+          "ja": "コーヒーを飲んでくださいませんか。",
+          "vi": "Anh/chị uống cà phê giúp tôi được không ạ?"
+        }
+      ],
+      "en": "Polite request for asking someone for a favor."
+    },
+    "N4|Verb て くださる (Verb-te kudasaru)": {
+      "vi": "Động từ thể て + くださる ((người trên) làm … cho tôi (kính ngữ))",
+      "examples": [
+        {
+          "ja": "先生が手伝ってくださる。",
+          "vi": "Thầy giáo giúp đỡ tôi."
+        }
+      ],
+      "en": "Expresses gratitude for receiving someone's favor; 'to kindly do'."
+    },
+    "N4|Verb て くる (Verb te kuru)": {
+      "vi": "Động từ thể て + くる (… dần lên; bắt đầu …)",
+      "examples": [
+        {
+          "ja": "最近、日本語が分かってくるようになりました。",
+          "vi": "Gần đây tôi đã dần hiểu được tiếng Nhật."
+        }
+      ],
+      "en": "An action that starts in the past and continues to the present or future; 'come to', 'begin to', 'become'."
+    },
+    "N4|Verb てくれませんか (〜te kuremasen ka)": {
+      "vi": "Động từ thể て + くれませんか (… giúp tôi được không?)",
+      "examples": [
+        {
+          "ja": "ドアを開けてくれませんか。",
+          "vi": "Mở cửa giúp tôi được không?"
+        }
+      ],
+      "en": "A polite way to request someone to do something for you; 'Could you please', 'Would you please', 'Won't you'."
+    },
+    "N4|Verb て くれる (Verb-te kureru)": {
+      "vi": "Động từ thể て + くれる ((ai) làm … cho tôi)",
+      "examples": [
+        {
+          "ja": "友達が宿題を手伝ってくれました。",
+          "vi": "Bạn tôi đã giúp tôi làm bài tập."
+        }
+      ],
+      "en": "Expresses that someone does something for the speaker (or another person in speaker's group); 'to do something for me/us'."
+    },
+    "N4|Verb て + さしあげる (Verb TE sashiageru)": {
+      "vi": "Động từ thể て + さしあげる (làm … cho (người trên) (khiêm nhường))",
+      "examples": [
+        {
+          "ja": "お茶を入れてさしあげます。",
+          "vi": "Tôi xin pha trà mời ạ."
+        }
+      ],
+      "en": "A polite way to express giving or doing something for someone."
+    },
+    "N4|Verb てしまう (〜te shimau)": {
+      "vi": "Động từ thể て + しまう (… mất rồi, lỡ …)",
+      "examples": [
+        {
+          "ja": "ケーキを全部食べてしまった。",
+          "vi": "Tôi lỡ ăn hết cả cái bánh rồi."
+        }
+      ],
+      "en": "Expresses unintentional actions or actions with regrettable outcomes; 'to end up doing', 'to accidentally do'."
+    },
+    "N4|Verb て ほしい (Verb-te hoshii)": {
+      "vi": "Động từ thể て + ほしい (muốn (ai) làm …)",
+      "examples": [
+        {
+          "ja": "子供にもっと勉強してほしい。",
+          "vi": "Tôi muốn con học nhiều hơn nữa."
+        }
+      ],
+      "en": "Express a desire for someone else to do something; 'I want (someone) to'."
+    },
+    "N4|Verb てみる (〜te miru)": {
+      "vi": "Động từ thể て + みる (thử …)",
+      "examples": [
+        {
+          "ja": "この料理を作ってみます。",
+          "vi": "Tôi sẽ thử nấu món này."
+        }
+      ],
+      "en": "Used to express 'try to' or 'attempt to do'"
+    },
+    "N4|Verb てもらいたい (～te moraitai)": {
+      "vi": "Động từ thể て + もらいたい (muốn được (ai) làm … cho)",
+      "examples": [
+        {
+          "ja": "この荷物を運んでもらいたいです。",
+          "vi": "Tôi muốn nhờ (ai đó) chuyển hành lý này giúp."
+        }
+      ],
+      "en": "Express a desire to receive a favor or service from someone else."
+    },
+    "N4|Verb て もらう (Verb-te morau)": {
+      "vi": "Động từ thể て + もらう (được (ai) làm … cho)",
+      "examples": [
+        {
+          "ja": "友達に宿題を手伝ってもらった。",
+          "vi": "Tôi đã được bạn giúp làm bài tập."
+        }
+      ],
+      "en": "Express receiving a favor or action from someone."
+    },
+    "N4|Verb てもらえませんか (～te moraemasen ka)": {
+      "vi": "Động từ thể て + もらえませんか (… giúp tôi được không?)",
+      "examples": [
+        {
+          "ja": "この手紙を見てもらえませんか。",
+          "vi": "Anh/chị xem giúp tôi bức thư này được không?"
+        }
+      ],
+      "en": "A polite way to ask for a favor or request someone to do something."
+    },
+    "N4|Verb ない ことがある (Verb-nai koto ga aru)": {
+      "vi": "Động từ thể ない + ことがある (có khi không …)",
+      "examples": [
+        {
+          "ja": "彼は会議に出席しないことがある。",
+          "vi": "Có khi anh ấy không dự cuộc họp."
+        }
+      ],
+      "en": "Expresses that something doesn't always happen or there are occasions when it doesn't happen."
+    },
+    "N4|Verb ない + ことにする (Verb nai koto ni suru)": {
+      "vi": "Động từ thể ない + ことにする (quyết định không …)",
+      "examples": [
+        {
+          "ja": "明日のパーティーに行かないことにする。",
+          "vi": "Tôi quyết định không đi bữa tiệc ngày mai."
+        }
+      ],
+      "en": "To decide not to do something."
+    },
+    "N4|Verb ない ことになる (Verb nai koto ni naru)": {
+      "vi": "Động từ thể ない + ことになる (thành ra không …; được quyết định là không …)",
+      "examples": [
+        {
+          "ja": "今日彼が来ないことになると、私たちの予定はキャンセルされます。",
+          "vi": "Nếu hôm nay anh ấy không đến thì kế hoạch của chúng ta sẽ bị huỷ."
+        }
+      ],
+      "en": "Expresses a result; 'end up not', 'it will become that', 'it would mean that'."
+    },
+    "N4|Verb ないほうがいい (Verb nai hou ga ii)": {
+      "vi": "Động từ thể ない + ほうがいい (không nên …)",
+      "examples": [
+        {
+          "ja": "この薬は飲まないほうがいいです。",
+          "vi": "Không nên uống thuốc này."
+        }
+      ],
+      "en": "Expresses the idea that it is better not to do something."
+    },
+    "N4|Verb ながら (〜nagara)": {
+      "vi": "Động từ bỏ ます + ながら (vừa … vừa …)",
+      "examples": [
+        {
+          "ja": "テレビを見ながら宿題をしました。",
+          "vi": "Tôi vừa xem tivi vừa làm bài tập."
+        }
+      ],
+      "en": "Expresses 'while' or 'as' in the sense of doing two things simultaneously."
+    },
+    "N4|Verb なさい (〜nasai)": {
+      "vi": "Động từ bỏ ます + なさい (hãy … (mệnh lệnh))",
+      "examples": [
+        {
+          "ja": "部屋を掃除しなさい。",
+          "vi": "Dọn phòng đi."
+        }
+      ],
+      "en": "A command form used to give orders or instructions; 'Please do', 'Do this'."
+    },
+    "N4|Verb にくい (〜nikui)": {
+      "vi": "Động từ bỏ ます + にくい (khó …)",
+      "examples": [
+        {
+          "ja": "この字は読みにくいです。",
+          "vi": "Chữ này khó đọc."
+        }
+      ],
+      "en": "Express difficulty or complexity; 'hard to', 'difficult to', 'not easily'."
+    },
+    "N4|Verb やすい (〜yasui)": {
+      "vi": "Động từ bỏ ます + やすい (dễ …)",
+      "examples": [
+        {
+          "ja": "この本は読みやすいです。",
+          "vi": "Quyển sách này dễ đọc."
+        }
+      ],
+      "en": "Indicates that something is easy to do; 'easy to', 'easy for'."
+    },
+    "N4|Verb ようと思う (Verb-you to omou)": {
+      "vi": "Động từ thể ý chí + と思う (định …)",
+      "examples": [
+        {
+          "ja": "明日、映画を見るようと思います。",
+          "vi": "Ngày mai tôi định đi xem phim."
+        }
+      ],
+      "en": "Express intention or plan to do something; 'I think I will', 'I plan to', 'I intend to'."
+    },
+    "N4|Verb ように (〜you ni)": {
+      "vi": "… ように (như …; để …)",
+      "examples": [
+        {
+          "ja": "彼女は鳥のように軽やかに踊る。",
+          "vi": "Cô ấy nhảy nhẹ nhàng như chim."
+        }
+      ],
+      "en": "Used to express 'like', 'as if', 'in order to', or 'so that'."
+    },
+    "N4|Verb ようにする (Verb ~you ni suru)": {
+      "vi": "Động từ + ようにする (cố gắng …, chú ý để …)",
+      "examples": [
+        {
+          "ja": "毎日運動するようにしています。",
+          "vi": "Tôi cố gắng ngày nào cũng tập thể dục."
+        }
+      ],
+      "en": "Make an effort to; try to; see to it that; ensure that."
+    },
+    "N4|Verb ようになる (〜you ni naru)": {
+      "vi": "Động từ + ようになる (trở nên có thể …, bắt đầu …)",
+      "examples": [
+        {
+          "ja": "日本語が話せるようになりました。",
+          "vi": "Tôi đã nói được tiếng Nhật."
+        }
+      ],
+      "en": "Express a change in ability, situation or state; 'become able to', 'come to', 'begin to'."
+    },
+    "N4|Verb ように言う (Verb-you ni iu)": {
+      "vi": "Động từ + ように言う (bảo (ai) làm …)",
+      "examples": [
+        {
+          "ja": "先生は私たちに宿題をやるように言いました。",
+          "vi": "Thầy giáo bảo chúng tôi làm bài tập."
+        }
+      ],
+      "en": "Tell someone to do something; 'tell to do', 'instruct to do'."
+    },
+    "N4|Verb られる (〜rareru)": {
+      "vi": "Động từ thể bị động / khả năng られる (bị …, được …; có thể …)",
+      "examples": [
+        {
+          "ja": "彼は先生に褒められました。",
+          "vi": "Anh ấy được thầy giáo khen."
+        }
+      ],
+      "en": "Expresses passive voice or potential form for verbs."
+    },
+    "N4|Verb る ことがある (〜ru koto ga aru)": {
+      "vi": "Động từ thể từ điển + ことがある (thỉnh thoảng có khi …)",
+      "examples": [
+        {
+          "ja": "彼は遅刻することがあります。",
+          "vi": "Thỉnh thoảng anh ấy có đi muộn."
+        }
+      ],
+      "en": "Used to express that something happens sometimes or has happened before."
+    },
+    "N4|Verb ることができる (〜ru koto ga dekiru)": {
+      "vi": "Động từ thể từ điển + ことができる (có thể …)",
+      "examples": [
+        {
+          "ja": "私は日本語を話すことができます。",
+          "vi": "Tôi có thể nói tiếng Nhật."
+        }
+      ],
+      "en": "Express ability or possibility of doing an action; 'can', 'be able to', 'is possible'."
+    },
+    "N4|Verb ることにする (〜ru koto ni suru)": {
+      "vi": "Động từ thể từ điển + ことにする (quyết định …)",
+      "examples": [
+        {
+          "ja": "来週、ジムに行くことにしました。",
+          "vi": "Tôi đã quyết định tuần sau đi phòng tập."
+        }
+      ],
+      "en": "Decide to do something, make a decision."
+    },
+    "N4|Verb る ことになる (〜ru koto ni naru)": {
+      "vi": "Động từ thể từ điển + ことになる (được quyết định là …, thành ra …)",
+      "examples": [
+        {
+          "ja": "今日は会議がなくなることになりました。",
+          "vi": "Cuộc họp hôm nay đã bị huỷ."
+        }
+      ],
+      "en": "Indicates that something has been decided or arranged; 'it has been decided that', 'it turns out that'."
+    },
+    "N4|Verb るときに (〜ru toki ni)": {
+      "vi": "Động từ thể từ điển + ときに (khi …)",
+      "examples": [
+        {
+          "ja": "映画を見るときに、ポップコーンを食べます。",
+          "vi": "Khi xem phim, tôi ăn bỏng ngô."
+        }
+      ],
+      "en": "Describes the time when a certain action takes place; 'when', 'at the time'."
+    },
+    "N4|Verb る ところ (Verb-ru to koro)": {
+      "vi": "Động từ thể từ điển + ところ (sắp …, chuẩn bị …)",
+      "examples": [
+        {
+          "ja": "彼は食べるところです。",
+          "vi": "Anh ấy sắp ăn."
+        }
+      ],
+      "en": "Expresses the state or place where an action occurs or is in the process of happening."
+    },
+    "N4|Verb 出す (~dasu)": {
+      "vi": "Động từ bỏ ます + 出す (bắt đầu … (đột ngột); lấy ra)",
+      "examples": [
+        {
+          "ja": "本を棚から出してください。",
+          "vi": "Hãy lấy sách ra khỏi giá."
+        }
+      ],
+      "en": "Express the action of taking something out, starting an action, or emphasizing a verb."
+    },
+    "N4|Verb 方 (〜hou)": {
+      "vi": "Động từ bỏ ます + 方 (cách …)",
+      "examples": [
+        {
+          "ja": "誰かがケーキの作り方を知っていますか？",
+          "vi": "Có ai biết cách làm bánh không?"
+        }
+      ],
+      "en": "Indicates the way or method of doing something; 'how to', 'the way of'."
+    },
+    "N4|Verb 終わる (〜owaru)": {
+      "vi": "Động từ bỏ ます + 終わる (… xong)",
+      "examples": [
+        {
+          "ja": "映画が終わったら、家に帰ります。",
+          "vi": "Xem phim xong, tôi sẽ về nhà."
+        }
+      ],
+      "en": "Verbal action is completed; 'to finish', 'to end'."
+    },
+    "N4|Verb + 続ける (つづける, tsuzukeru)": {
+      "vi": "Động từ bỏ ます + 続ける (tiếp tục …)",
+      "examples": [
+        {
+          "ja": "彼は毎日ジムで運動を続けています。",
+          "vi": "Anh ấy ngày nào cũng tiếp tục tập ở phòng gym."
+        }
+      ],
+      "en": "To continue doing or to keep doing an action."
+    },
+    "N4|～かしら (〜kashira)": {
+      "vi": "～かしら (không biết … nhỉ (nữ))",
+      "examples": [
+        {
+          "ja": "今日は雨が降るかしら？",
+          "vi": "Không biết hôm nay có mưa không nhỉ?"
+        }
+      ],
+      "en": "Indicates uncertainty or doubt; 'I wonder', 'I'm not sure'."
+    },
+    "N4|～かどうか (〜ka dou ka)": {
+      "vi": "～かどうか (… hay không)",
+      "examples": [
+        {
+          "ja": "彼が来るかどうか知りません。",
+          "vi": "Tôi không biết anh ấy có đến hay không."
+        }
+      ],
+      "en": "Used to express 'whether' or 'if' in indirect questions or statements."
+    },
+    "N4|～かなあ (〜kanaa)": {
+      "vi": "～かなあ (không biết … nhỉ)",
+      "examples": [
+        {
+          "ja": "明日雨が降るかなあ。",
+          "vi": "Không biết mai có mưa không nhỉ."
+        }
+      ],
+      "en": "Expresses uncertainty or wonder; 'I wonder', 'I'm not sure'."
+    },
+    "N4|～かもしれない (〜kamoshirenai)": {
+      "vi": "～かもしれない (có lẽ …, không chừng …)",
+      "examples": [
+        {
+          "ja": "明日雨が降るかもしれない。",
+          "vi": "Không chừng ngày mai trời mưa."
+        }
+      ],
+      "en": "Express uncertainty; 'maybe', 'might', 'possibly'."
+    },
+    "N4|～から (〜kara)": {
+      "vi": "～から (vì …)",
+      "examples": [
+        {
+          "ja": "雨が降るから、傘を持って行ってください。",
+          "vi": "Vì trời sẽ mưa nên hãy mang ô theo."
+        }
+      ],
+      "en": "Express a reason or cause; 'because', 'since', 'due to'."
+    },
+    "N4|～けれど (〜keredo)": {
+      "vi": "～けれど (… nhưng …)",
+      "examples": [
+        {
+          "ja": "今日は忙しいけれど、明日はもっと時間がある。",
+          "vi": "Hôm nay tôi bận nhưng ngày mai thì có nhiều thời gian hơn."
+        }
+      ],
+      "en": "Indicate a soft contrast or contradiction; 'but', 'however'."
+    },
+    "N4|～させてください (〜sasete kudasai)": {
+      "vi": "Động từ thể sai khiến て + ください (cho phép tôi …)",
+      "examples": [
+        {
+          "ja": "もう少し考えさせてください。",
+          "vi": "Cho tôi suy nghĩ thêm một chút."
+        }
+      ],
+      "en": "Express a polite request to allow or permit someone to do something"
+    },
+    "N4|～し、～し、～ (〜shi, 〜shi, 〜)": {
+      "vi": "～し、～し (vừa … vừa …; nào là … nào là …)",
+      "examples": [
+        {
+          "ja": "彼は若いし、元気だし、フレンドリーだし、みんなと仲良くなれると思います。",
+          "vi": "Anh ấy vừa trẻ, vừa khoẻ, lại thân thiện nên tôi nghĩ sẽ hoà hợp được với mọi người."
+        }
+      ],
+      "en": "Express multiple reasons or characteristics; 'and', 'because', 'since'."
+    },
+    "N4|～すぎる (〜sugiru)": {
+      "vi": "～すぎる (quá …)",
+      "examples": [
+        {
+          "ja": "この部屋は暑すぎる。",
+          "vi": "Căn phòng này nóng quá."
+        }
+      ],
+      "en": "Expresses that something is excessive or overdone; 'too much', 'too', 'over'."
+    },
+    "N4|～ずつ (〜zutsu)": {
+      "vi": "Số lượng + ずつ (mỗi …, từng …)",
+      "examples": [
+        {
+          "ja": "りんごを2つずつ配ります。",
+          "vi": "Tôi chia mỗi người hai quả táo."
+        }
+      ],
+      "en": "Indicates equal distribution; 'each', 'per', 'apiece'."
+    },
+    "N4|～そうだ (〜sou da)": {
+      "vi": "～そうだ (trông có vẻ …)",
+      "examples": [
+        {
+          "ja": "その花はとてもきれいそうだ。",
+          "vi": "Bông hoa đó trông có vẻ rất đẹp."
+        }
+      ],
+      "en": "Express the appearance, seeming, or feeling of something; 'looks like', 'seems', 'appears'."
+    },
+    "N4|そんな (sonna) + Noun": {
+      "vi": "そんな + danh từ (… như thế)",
+      "examples": [
+        {
+          "ja": "そんな話、信じられない。",
+          "vi": "Chuyện như thế, không thể tin được."
+        }
+      ],
+      "en": "Expresses 'that kind/type of'; referring to something near listener."
+    },
+    "N4|そんなに～ (sonna ni〜)": {
+      "vi": "そんなに～ (… đến thế, … lắm)",
+      "examples": [
+        {
+          "ja": "そんなに急がなくてもいいですよ。",
+          "vi": "Không cần vội đến thế đâu."
+        }
+      ],
+      "en": "Expresses 'not so much', 'not that', or 'not so ~'."
+    },
+    "N4|～たらいい (〜tara ii)": {
+      "vi": "～たらいい (… thì được, nên …)",
+      "examples": [
+        {
+          "ja": "もっと勉強したらいいですよ。",
+          "vi": "Bạn nên học nhiều hơn nữa đấy."
+        }
+      ],
+      "en": "Expressing a desire or suggestion for a particular outcome; 'it would be good if', 'should', 'I hope'."
+    },
+    "N4|～たら いかがですか (〜tara ikaga desu ka)": {
+      "vi": "～たら いかがですか (… thì thế nào ạ?)",
+      "examples": [
+        {
+          "ja": "図書館に行ったらいかがですか。",
+          "vi": "Anh/chị thử đến thư viện thì thế nào ạ?"
+        }
+      ],
+      "en": "Making polite suggestions; 'how about if', 'what if', 'it would be good if'."
+    },
+    "N4|～たら どうですか (〜tara doudesuka)": {
+      "vi": "～たら どうですか (… thì sao?, thử … xem)",
+      "examples": [
+        {
+          "ja": "スキーに行ったらどうですか？",
+          "vi": "Thử đi trượt tuyết xem sao?"
+        }
+      ],
+      "en": "Express a suggestion or advice; 'what if', 'how about', 'why don't you'."
+    },
+    "N4|～たり～たり (〜tari 〜tari)": {
+      "vi": "～たり～たり (lúc thì …, lúc thì …; nào là …)",
+      "examples": [
+        {
+          "ja": "週末は映画を観たり、本を読んだりする。",
+          "vi": "Cuối tuần tôi xem phim, đọc sách."
+        }
+      ],
+      "en": "Used to list multiple actions or states; 'doing things like', 'and so on', 'etc.'"
+    },
+    "N4|～だろう (〜darou)": {
+      "vi": "～だろう (chắc là …)",
+      "examples": [
+        {
+          "ja": "明日は晴れるだろう。",
+          "vi": "Ngày mai chắc trời sẽ nắng."
+        }
+      ],
+      "en": "Express probability, likelihood or certainty; 'probably', 'maybe', 'I think'."
+    },
+    "N4|～っていう (〜tte iu)": {
+      "vi": "～っていう (gọi là …)",
+      "examples": [
+        {
+          "ja": "ピザっていう料理が大好きです。",
+          "vi": "Tôi rất thích món gọi là pizza."
+        }
+      ],
+      "en": "Used to quote, define, or specify a noun."
+    },
+    "N4|～で (〜de)": {
+      "vi": "～で (bằng …; ở …)",
+      "examples": [
+        {
+          "ja": "私は自転車で学校に行きます。",
+          "vi": "Tôi đi học bằng xe đạp."
+        }
+      ],
+      "en": "Indicates the means, method, or place."
+    },
+    "N4|～でしょう (〜deshou)": {
+      "vi": "～でしょう (chắc là …)",
+      "examples": [
+        {
+          "ja": "明日は晴れでしょう。",
+          "vi": "Ngày mai chắc trời nắng."
+        }
+      ],
+      "en": "A conjecture or probability; 'probably', 'I think', 'it seems'."
+    },
+    "N4|～てはいけない (〜te wa ikenai)": {
+      "vi": "～てはいけない (không được …)",
+      "examples": [
+        {
+          "ja": "公園でたばこを吸ってはいけない。",
+          "vi": "Không được hút thuốc ở công viên."
+        }
+      ],
+      "en": "Expresses prohibition; 'must not', 'cannot'."
+    },
+    "N4|～てもいい (〜temo ii)": {
+      "vi": "～てもいい (… cũng được, được phép …)",
+      "examples": [
+        {
+          "ja": "ここで写真を撮ってもいいですか。",
+          "vi": "Tôi chụp ảnh ở đây có được không?"
+        }
+      ],
+      "en": "To give or ask permission; 'it's okay to', 'may', 'can'."
+    },
+    "N4|～ても/でも (〜te mo/demo)": {
+      "vi": "～ても / でも (dù … cũng …)",
+      "examples": [
+        {
+          "ja": "雨が降っても、学校に行きます。",
+          "vi": "Dù trời mưa, tôi vẫn đi học."
+        }
+      ],
+      "en": "Expresses 'even if' or 'even though'; used to convey contradiction or contrast."
+    },
+    "N4|～といい (〜to ii)": {
+      "vi": "～といい (mong là …)",
+      "examples": [
+        {
+          "ja": "明日晴れるといいね。",
+          "vi": "Mong là mai trời nắng nhỉ."
+        }
+      ],
+      "en": "Express a wish or hope; 'I hope', 'it would be good if'."
+    },
+    "N4|～という (〜to iu) Noun": {
+      "vi": "～という + danh từ (… gọi là …, … mà …)",
+      "examples": [
+        {
+          "ja": "彼は日本語が流暢なアメリカ人という人です。",
+          "vi": "Anh ấy là một người Mỹ nói tiếng Nhật trôi chảy."
+        }
+      ],
+      "en": "Used to define or explain a noun more specifically."
+    },
+    "N4|どういう Noun (dou iu Noun)": {
+      "vi": "どういう + danh từ (… như thế nào, loại … gì)",
+      "examples": [
+        {
+          "ja": "どういう仕事をしていますか？",
+          "vi": "Anh/chị đang làm công việc gì?"
+        }
+      ],
+      "en": "Asking for clarification or more information about a noun; 'what kind of', 'what sort of'."
+    },
+    "N4|～と思う (〜to omou)": {
+      "vi": "～と思う (tôi nghĩ là …)",
+      "examples": [
+        {
+          "ja": "明日晴れると思います。",
+          "vi": "Tôi nghĩ mai trời sẽ nắng."
+        }
+      ],
+      "en": "Express one's thoughts or opinions; 'I think', 'I believe'."
+    },
+    "N4|～という (〜to iu)": {
+      "vi": "～と言う (nói rằng …)",
+      "examples": [
+        {
+          "ja": "彼は「好きだ」と言った。",
+          "vi": "Anh ấy đã nói \"Anh thích em\"."
+        }
+      ],
+      "en": "Used to quote, express hearsay or define something."
+    },
+    "N4|～ないといけない (〜nai to ikenai)": {
+      "vi": "～ないといけない (phải …)",
+      "examples": [
+        {
+          "ja": "明日試験があるから、今夜勉強しないといけない。",
+          "vi": "Ngày mai có bài thi nên tối nay phải học."
+        }
+      ],
+      "en": "Express a necessity; 'must', 'have to', 'need to'."
+    },
+    "N4|～なきゃいけない (〜nakya ikenai)": {
+      "vi": "～なきゃいけない (phải … (văn nói))",
+      "examples": [
+        {
+          "ja": "明日までに宿題を終わらなきゃいけない。",
+          "vi": "Phải làm xong bài tập trước ngày mai."
+        }
+      ],
+      "en": "Express a necessity or obligation; 'must', 'have to'."
+    },
+    "N4|～なくちゃいけない (〜naku cha ikenai)": {
+      "vi": "～なくちゃいけない (phải … (văn nói))",
+      "examples": [
+        {
+          "ja": "仕事に行かなくちゃいけないので、早起きしなければなりません。",
+          "vi": "Vì phải đi làm nên tôi phải dậy sớm."
+        }
+      ],
+      "en": "Express the obligation to do something; 'have to', 'must', 'need to'."
+    },
+    "N4|～なくてはいけない (〜nakute wa ikenai)": {
+      "vi": "～なくてはいけない (phải …)",
+      "examples": [
+        {
+          "ja": "宿題をしなくてはいけない。",
+          "vi": "Phải làm bài tập."
+        }
+      ],
+      "en": "Expresses the necessity or obligation; 'must', 'have to'."
+    },
+    "N4|～なくてもいい (〜nakutemo ii)": {
+      "vi": "～なくてもいい (không … cũng được)",
+      "examples": [
+        {
+          "ja": "コーヒーは飲まなくてもいいです。",
+          "vi": "Không uống cà phê cũng được."
+        }
+      ],
+      "en": "Expresses that something is not necessary to do; 'it's okay if not', 'don't have to'."
+    },
+    "N4|～なければ ならない (〜nakereba naranai)": {
+      "vi": "～なければ ならない (phải …)",
+      "examples": [
+        {
+          "ja": "宿題をやらなければならない。",
+          "vi": "Phải làm bài tập."
+        }
+      ],
+      "en": "Express obligation or necessity; 'must', 'have to', 'need to'."
+    },
+    "N4|～に (〜ni)": {
+      "vi": "～に (cho …; đến …; vào lúc …)",
+      "examples": [
+        {
+          "ja": "母は私にケーキを作りました。",
+          "vi": "Mẹ đã làm bánh cho tôi."
+        }
+      ],
+      "en": "Indicates direction, destination, purpose, or time."
+    },
+    "N4|～ので (〜node)": {
+      "vi": "～ので (vì …)",
+      "examples": [
+        {
+          "ja": "明日試験があるので、今晩勉強します。",
+          "vi": "Vì ngày mai có bài thi nên tối nay tôi học."
+        }
+      ],
+      "en": "Express a reason or a cause for something; 'because', 'since', 'so'."
+    },
+    "N4|～のです (〜no desu)": {
+      "vi": "～のです (là vì …, thật ra là …)",
+      "examples": [
+        {
+          "ja": "この本は難しいのです。",
+          "vi": "Quyển sách này khó đấy."
+        }
+      ],
+      "en": "Provides an explanation or gives background information; 'the fact is', 'the reason is', 'actually'."
+    },
+    "N4|～のに (〜no ni)": {
+      "vi": "～のに (vậy mà …; để …)",
+      "examples": [
+        {
+          "ja": "遅刻したのに、先生は怒らなかった。",
+          "vi": "Tôi đi muộn vậy mà thầy giáo không giận."
+        }
+      ],
+      "en": "Used to express contrast between expectation and reality, or to indicate a purpose for doing something"
+    },
+    "N4|～ばいい (〜ba ii)": {
+      "vi": "～ばいい (… là được, nên …)",
+      "examples": [
+        {
+          "ja": "もっと勉強すればいい。",
+          "vi": "Chỉ cần học nhiều hơn là được."
+        }
+      ],
+      "en": "Express a suggestion or advice; 'should', 'it would be good if'."
+    },
+    "N4|～まで (〜made)": {
+      "vi": "～まで (đến …, cho đến khi …)",
+      "examples": [
+        {
+          "ja": "仕事が終わるまで待っています。",
+          "vi": "Tôi sẽ đợi cho đến khi làm xong việc."
+        }
+      ],
+      "en": "Indicates extent, 'until', 'up to', 'as far as', 'even'."
+    },
+    "N4|～までに (〜made ni)": {
+      "vi": "～までに (trước …, muộn nhất là …)",
+      "examples": [
+        {
+          "ja": "明日の朝８時までに起きてください。",
+          "vi": "Hãy dậy trước 8 giờ sáng mai."
+        }
+      ],
+      "en": "Express 'by' or 'before' a certain time or action."
+    },
+    "N4|～まま (〜mama)": {
+      "vi": "～まま (để nguyên …, cứ thế …)",
+      "examples": [
+        {
+          "ja": "ドアを開けたまま出かけてしまった。",
+          "vi": "Tôi lỡ ra ngoài mà để nguyên cửa mở."
+        }
+      ],
+      "en": "Express 'as it is', 'while' or 'unchanged state'."
+    },
+    "N4|～みたいだ (〜mitai da)": {
+      "vi": "～みたいだ (hình như …, giống như …)",
+      "examples": [
+        {
+          "ja": "彼女が病気のみたいだ。",
+          "vi": "Hình như cô ấy bị ốm."
+        }
+      ],
+      "en": "Indicates similarity, resemblance or 'like'; 'it seems', 'appears', 'looks like'."
+    },
+    "N4|～も (〜mo)": {
+      "vi": "～も (cũng …)",
+      "examples": [
+        {
+          "ja": "私もお寿司が好きです。",
+          "vi": "Tôi cũng thích sushi."
+        }
+      ],
+      "en": "Indicates 'also', 'too', or 'as well'."
+    },
+    "N4|～ようだ (〜you da)": {
+      "vi": "～ようだ (hình như …, có vẻ …)",
+      "examples": [
+        {
+          "ja": "彼は元気がないようだ。",
+          "vi": "Hình như anh ấy không được khoẻ."
+        }
+      ],
+      "en": "Expresses appearance, similarity or inference; 'it seems', 'it looks like', 'it appears'."
+    },
+    "N4|～んです (〜n desu)": {
+      "vi": "～んです (là vì …, chuyện là …)",
+      "examples": [
+        {
+          "ja": "遅れたんですが、電車が遅れました。",
+          "vi": "Tôi đến muộn, là vì tàu điện bị trễ."
+        }
+      ],
+      "en": "Provide an explanation or reason; 'it is that', 'the thing is', 'the reason is'."
+    },
+    "N4|文A。そのうえ 文B。": {
+      "vi": "Câu A. そのうえ câu B (hơn nữa, thêm vào đó)",
+      "examples": [
+        {
+          "ja": "このソフトウェアは使いやすい。そのうえ、価格も手ごろだ。",
+          "vi": "Phần mềm này dễ dùng. Hơn nữa, giá cũng phải chăng."
+        }
+      ],
+      "en": "Shows additional information; 'furthermore', 'besides', 'in addition'."
+    },
+    "N4|文A。それで 文B (Bun A. Sorede Bun B)": {
+      "vi": "Câu A. それで câu B (vì thế, cho nên)",
+      "examples": [
+        {
+          "ja": "今日は暑いです。それで、エアコンをつけました。",
+          "vi": "Hôm nay trời nóng. Vì thế tôi đã bật điều hoà."
+        }
+      ],
+      "en": "Used to connect two sentences; 'So', 'That's why', 'Therefore'."
+    },
+    "N4|文A。それに 文B (Bun A. Soreni Bun B)": {
+      "vi": "Câu A. それに câu B (thêm nữa, lại còn)",
+      "examples": [
+        {
+          "ja": "彼は頭がいい。それに、スポーツも得意だ。",
+          "vi": "Anh ấy thông minh. Lại còn giỏi thể thao nữa."
+        }
+      ],
+      "en": "Express 'in addition to; besides,' used to include additional information."
+    },
+    "N4|文A。だから 文B (Bun A. Dakara Bun B)": {
+      "vi": "Câu A. だから câu B (vì vậy, cho nên)",
+      "examples": [
+        {
+          "ja": "明日は試験だ。だから今日勉強しなければならない。",
+          "vi": "Ngày mai có bài thi. Vì vậy hôm nay phải học."
+        }
+      ],
+      "en": "Express reason or cause; 'because', 'so', 'therefore'."
+    }
+  }
+}
