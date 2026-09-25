@@ -190,6 +190,84 @@ export function MenuButton({
   );
 }
 
+export type RibbonApp = 'word' | 'excel' | 'ppt';
+
+/** Màu nhấn của từng app như Office thật: gạch chân thẻ đang mở và chữ thẻ ngữ cảnh. */
+export const RIBBON_ACCENT: Record<RibbonApp, string> = { word: '#185ABD', excel: '#107C41', ppt: '#C43E1C' };
+
+/**
+ * Thanh thẻ kiểu Office, ba app dùng chung. Màu gắn bằng `style` vì Tailwind không sinh lớp
+ * từ chuỗi ghép lúc chạy. Chặn mousedown để bấm thẻ không cướp vùng chọn trong trang/ô.
+ */
+export function RibbonTabs<T extends string>({
+  app,
+  tabs,
+  contextTabs = [],
+  active,
+  onPick,
+}: {
+  app: RibbonApp;
+  tabs: readonly T[];
+  contextTabs?: readonly T[];
+  active: T;
+  onPick: (t: T) => void;
+}) {
+  const accent = RIBBON_ACCENT[app];
+  return (
+    <div role="tablist" aria-label="Thanh công cụ" className="flex flex-wrap gap-0.5 border-b border-neutral-300">
+      {[...tabs, ...contextTabs].map((name) => {
+        const open = active === name;
+        const ctx = contextTabs.includes(name);
+        return (
+          <button
+            key={name}
+            type="button"
+            role="tab"
+            aria-selected={open}
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => onPick(name)}
+            style={open ? { color: accent, borderColor: accent } : ctx ? { color: accent } : undefined}
+            className={`-mb-px border-b-[3px] px-3 py-1 text-sm transition ${
+              open ? 'font-semibold' : `border-transparent hover:bg-neutral-100 ${ctx ? '' : 'text-neutral-700'}`
+            }`}
+          >
+            {name}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Khung nội dung thẻ, cao tối thiểu 96px: đổi thẻ thì phần bên dưới không nhảy lên nhảy xuống. */
+export function RibbonPanel({ children }: { children: ReactNode }) {
+  return <div className="flex min-h-24 flex-col [&>*]:flex-1">{children}</div>;
+}
+
+/** Thẻ ngữ cảnh vừa biến mất (xoá ảnh/bảng) thì quay về `fallback`, như Office. */
+export function activeTab<T extends string>(picked: T, context: readonly T[], visible: readonly T[], fallback: T): T {
+  return context.includes(picked) && !visible.includes(picked) ? fallback : picked;
+}
+
+/** Icon có vạch màu bên dưới, như chữ A đỏ của Font Color và bút vàng của Highlight trên Office thật. */
+export function Swatched({ icon, color }: { icon: ReactNode; color: string }) {
+  return (
+    <span className="flex flex-col items-center leading-none">
+      {icon}
+      <span className="-mt-0.5 h-1 w-4" style={{ background: color }} />
+    </span>
+  );
+}
+
+/** Icon nhỏ kèm chữ bên phải, như Replace, Update Table, Insert Below. */
+export function Labeled({ icon, text }: { icon: ReactNode; text: string }) {
+  return (
+    <span className="flex items-center gap-1 text-[0.75rem]">
+      {icon} {text}
+    </span>
+  );
+}
+
 /** Tab chưa làm tới: nói thẳng là phần sau mới có, thay vì một ribbon trống. */
 export function SoonTab({ what }: { what: string }) {
   return <p className="ribbon-soon">{what} sẽ có ở phần sau của khoá học nhé!</p>;

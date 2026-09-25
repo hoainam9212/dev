@@ -7,7 +7,7 @@ nút ← Quay lại, `nativeTitle`, `realShot` cho 11 bài Word, `real-shots.mjs
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 vỏ ribbon chung | ☐ | | |
+| 1 vỏ ribbon chung | ☑ | (commit này) | 5 test mới, client 314. Word dùng `RibbonTabs`/`RibbonPanel`/`activeTab`, `Swatched`/`Labeled` chỉ còn một bản trong `components/ribbon.tsx`; test Word cũ không đổi. Đã học `word.image` bằng chuột: Picture Format chữ rgb(24,90,189), mọi thẻ cao 102px. Pane trong app dùng được server 5174 của phiên khác qua `preview_start {url}` |
 | 2 Excel Home | ☐ | | |
 | 3 Excel Formulas + File | ☐ | | |
 | 4 Excel Sort & Filter | ☐ | | |

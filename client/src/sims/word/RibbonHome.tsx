@@ -16,7 +16,7 @@ import {
   TextNumberListLtr20Regular,
   TextUnderline20Regular,
 } from '@fluentui/react-icons';
-import { Group, MenuButton, Picker, Row, ToolButton } from '../../components/ribbon';
+import { Group, MenuButton, Picker, Row, Swatched, ToolButton } from '../../components/ribbon';
 
 interface Props {
   state: wordSim.WordState;
@@ -60,15 +60,6 @@ const STYLES: [level: 0 | 1 | 2 | 3, name: string, look: string][] = [
   [3, 'Heading 3', 'text-[0.8rem] text-[#1F3763]'],
 ];
 
-/** Icon có vạch màu bên dưới, như chữ A đỏ của Font Color và bút vàng của Highlight trên Word thật. */
-function Swatched({ icon, color }: { icon: ReactNode; color: string }) {
-  return (
-    <span className="flex flex-col items-center leading-none">
-      {icon}
-      <span className="-mt-0.5 h-1 w-4" style={{ background: color }} />
-    </span>
-  );
-}
 
 const SWATCH_SELECT = { width: '1.1rem', border: 'none', background: 'transparent' } as const;
 

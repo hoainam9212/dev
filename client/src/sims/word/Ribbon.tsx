@@ -13,7 +13,7 @@ import {
   TableInsertColumn20Regular,
   TableInsertRow20Regular,
 } from '@fluentui/react-icons';
-import { Group, Row, SoonTab, ToolButton } from '../../components/ribbon';
+import { activeTab, Group, Labeled, RibbonPanel, RibbonTabs, Row, SoonTab, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
 
 export { WordDialogs } from './dialogs';
@@ -99,14 +99,6 @@ function TableGrid({ onPick }: { onPick: (rows: number, cols: number) => void })
   );
 }
 
-function Labeled({ icon, text }: { icon: ReactNode; text: string }) {
-  return (
-    <span className="flex items-center gap-1 text-[0.75rem]">
-      {icon} {text}
-    </span>
-  );
-}
-
 /**
  * Tab đang mở là trạng thái giao diện thuần tuý nên được phép nằm ngoài reducer;
  * mọi thứ làm ĐỔI TÀI LIỆU vẫn phải đi qua `dispatch`.
@@ -114,34 +106,13 @@ function Labeled({ icon, text }: { icon: ReactNode; text: string }) {
 export function Ribbon({ state, dispatch }: Props) {
   const [picked, setTab] = useState<Tab>('Home');
   const context = CONTEXT_TABS.filter((t) => hasNode(state.doc, t === 'Picture Format' ? 'image' : 'table'));
-  // Thẻ ngữ cảnh biến mất khi xoá ảnh/bảng thì quay về Home, như Word.
-  const tab: Tab = (CONTEXT_TABS as readonly string[]).includes(picked) && !(context as string[]).includes(picked) ? 'Home' : picked;
+  const tab = activeTab<Tab>(picked, CONTEXT_TABS, context, 'Home');
 
   return (
     <div className="space-y-1">
-      <div role="tablist" aria-label="Thanh công cụ" className="flex flex-wrap gap-0.5 border-b border-neutral-300">
-        {[...TABS, ...context].map((name) => {
-          const ctx = (CONTEXT_TABS as readonly string[]).includes(name);
-          return (
-            <button
-              key={name}
-              type="button"
-              role="tab"
-              aria-selected={tab === name}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => setTab(name)}
-              className={`-mb-px border-b-[3px] px-3 py-1 text-sm transition ${
-                tab === name ? 'border-[#185ABD] font-semibold text-[#185ABD]' : `border-transparent hover:bg-neutral-100 ${ctx ? 'text-[#185ABD]' : 'text-neutral-700'}`
-              }`}
-            >
-              {name}
-            </button>
-          );
-        })}
-      </div>
+      <RibbonTabs app="word" tabs={TABS} contextTabs={context} active={tab} onPick={setTab} />
 
-      {/* Ribbon cao cố định như Word: đổi thẻ thì trang giấy bên dưới không nhảy lên nhảy xuống. */}
-      <div className="flex min-h-24 flex-col [&>*]:flex-1">
+      <RibbonPanel>
       {tab === 'Home' && <RibbonHome state={state} dispatch={dispatch} />}
 
       {tab === 'File' && (
@@ -231,7 +202,7 @@ export function Ribbon({ state, dispatch }: Props) {
 
       {tab === 'Layout' && <SoonTab what="Thẻ Layout (lề trang, khổ giấy)" />}
       {tab === 'View' && <SoonTab what="Thẻ View (chế độ xem)" />}
-      </div>
+      </RibbonPanel>
     </div>
   );
 }
