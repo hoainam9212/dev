@@ -1,0 +1,1905 @@
+{
+  "type": "kanji",
+  "level": "N4",
+  "entries": {
+    "会": {
+      "vi": [
+        "gặp",
+        "hội, buổi họp",
+        "hiệp hội"
+      ],
+      "hanViet": "HỘI",
+      "en": [
+        "Meeting",
+        "Meet",
+        "Party",
+        "Association",
+        "Interview",
+        "Join"
+      ]
+    },
+    "同": {
+      "vi": [
+        "giống nhau",
+        "cùng",
+        "đồng ý"
+      ],
+      "en": [
+        "Same",
+        "Agree",
+        "Equal"
+      ]
+    },
+    "事": {
+      "vi": [
+        "việc",
+        "sự việc",
+        "lý do"
+      ],
+      "en": [
+        "Matter",
+        "Thing",
+        "Fact",
+        "Business",
+        "Reason",
+        "Possibly"
+      ]
+    },
+    "自": {
+      "vi": [
+        "tự mình",
+        "bản thân"
+      ],
+      "en": [
+        "Oneself"
+      ]
+    },
+    "社": {
+      "vi": [
+        "công ty",
+        "xã hội",
+        "đền thờ"
+      ],
+      "en": [
+        "Company",
+        "Firm",
+        "Office",
+        "Association",
+        "Shrine"
+      ]
+    },
+    "発": {
+      "vi": [
+        "xuất phát",
+        "phát ra",
+        "công bố",
+        "(đếm phát súng)"
+      ],
+      "hanViet": "PHÁT",
+      "en": [
+        "Departure",
+        "Discharge",
+        "Publish",
+        "Emit",
+        "Start From",
+        "Disclose",
+        "Counter For Gunshots"
+      ]
+    },
+    "者": {
+      "vi": [
+        "người"
+      ],
+      "en": [
+        "Someone",
+        "Person"
+      ]
+    },
+    "地": {
+      "vi": [
+        "đất",
+        "mặt đất",
+        "vùng"
+      ],
+      "en": [
+        "Ground",
+        "Earth"
+      ]
+    },
+    "業": {
+      "vi": [
+        "nghề nghiệp",
+        "công việc kinh doanh",
+        "nghiệp"
+      ],
+      "en": [
+        "Business",
+        "Vocation",
+        "Arts",
+        "Performance"
+      ]
+    },
+    "方": {
+      "vi": [
+        "phương hướng",
+        "người (lịch sự)",
+        "cách"
+      ],
+      "en": [
+        "Direction",
+        "Person",
+        "Alternative"
+      ]
+    },
+    "新": {
+      "vi": [
+        "mới"
+      ],
+      "en": [
+        "New"
+      ]
+    },
+    "場": {
+      "vi": [
+        "nơi",
+        "chỗ",
+        "địa điểm"
+      ],
+      "hanViet": "TRƯỜNG",
+      "en": [
+        "Location",
+        "Place"
+      ]
+    },
+    "員": {
+      "vi": [
+        "nhân viên",
+        "thành viên"
+      ],
+      "en": [
+        "Employee",
+        "Member",
+        "Number",
+        "The One In Charge"
+      ]
+    },
+    "立": {
+      "vi": [
+        "đứng",
+        "dựng lên",
+        "thành lập"
+      ],
+      "en": [
+        "Stand Up",
+        "Rise",
+        "Set Up",
+        "Erect"
+      ]
+    },
+    "開": {
+      "vi": [
+        "mở"
+      ],
+      "en": [
+        "Open",
+        "Unfold",
+        "Unseal"
+      ]
+    },
+    "手": {
+      "vi": [
+        "tay"
+      ],
+      "en": [
+        "Hand"
+      ]
+    },
+    "力": {
+      "vi": [
+        "sức lực",
+        "sức mạnh"
+      ],
+      "en": [
+        "Power",
+        "Strength",
+        "Strong",
+        "Strain",
+        "Bear Up",
+        "Exert"
+      ]
+    },
+    "問": {
+      "vi": [
+        "câu hỏi",
+        "hỏi",
+        "vấn đề"
+      ],
+      "en": [
+        "Question",
+        "Ask",
+        "Problem"
+      ]
+    },
+    "代": {
+      "vi": [
+        "thay thế",
+        "thời đại",
+        "thế hệ",
+        "phí"
+      ],
+      "en": [
+        "Substitute",
+        "Change",
+        "Convert",
+        "Replace",
+        "Period",
+        "Age",
+        "Counter For Decades Of Ages, Eras, Etc.",
+        "Generation",
+        "Charge",
+        "Rate",
+        "Fee"
+      ]
+    },
+    "明": {
+      "vi": [
+        "sáng",
+        "rõ ràng"
+      ],
+      "en": [
+        "Bright",
+        "Light"
+      ]
+    },
+    "動": {
+      "vi": [
+        "chuyển động",
+        "động"
+      ],
+      "en": [
+        "Move",
+        "Motion",
+        "Change",
+        "Confusion",
+        "Shift",
+        "Shake"
+      ]
+    },
+    "京": {
+      "vi": [
+        "thủ đô",
+        "kinh đô"
+      ],
+      "en": [
+        "Capital",
+        "10**16"
+      ]
+    },
+    "目": {
+      "vi": [
+        "mắt",
+        "hạng mục",
+        "thứ (thứ tự)"
+      ],
+      "en": [
+        "Eye",
+        "Class",
+        "Look",
+        "Insight",
+        "Experience",
+        "Care",
+        "Favor"
+      ]
+    },
+    "通": {
+      "vi": [
+        "đi qua",
+        "thông",
+        "đường phố",
+        "(đếm thư, tài liệu)"
+      ],
+      "en": [
+        "Traffic",
+        "Pass Through",
+        "Avenue",
+        "Commute",
+        "Counter For Letters, Notes, Documents, Etc."
+      ]
+    },
+    "言": {
+      "vi": [
+        "nói",
+        "lời"
+      ],
+      "en": [
+        "Say",
+        "Word"
+      ]
+    },
+    "理": {
+      "vi": [
+        "lý lẽ",
+        "đạo lý",
+        "lý"
+      ],
+      "en": [
+        "Logic",
+        "Arrangement",
+        "Reason",
+        "Justice",
+        "Truth"
+      ]
+    },
+    "体": {
+      "vi": [
+        "thân thể",
+        "cơ thể",
+        "vật thể"
+      ],
+      "en": [
+        "Body",
+        "Substance",
+        "Object",
+        "Reality",
+        "Counter For Images"
+      ]
+    },
+    "田": {
+      "vi": [
+        "ruộng lúa"
+      ],
+      "en": [
+        "Rice Field",
+        "Rice Paddy"
+      ]
+    },
+    "主": {
+      "vi": [
+        "chủ",
+        "chính",
+        "người chủ"
+      ],
+      "en": [
+        "Lord",
+        "Chief",
+        "Master",
+        "Main Thing",
+        "Principal"
+      ]
+    },
+    "題": {
+      "vi": [
+        "đề tài",
+        "chủ đề"
+      ],
+      "en": [
+        "Topic",
+        "Subject"
+      ]
+    },
+    "意": {
+      "vi": [
+        "ý",
+        "ý nghĩ",
+        "tâm ý"
+      ],
+      "en": [
+        "Idea",
+        "Mind",
+        "Heart",
+        "Taste",
+        "Thought",
+        "Desire",
+        "Care",
+        "Liking"
+      ]
+    },
+    "不": {
+      "vi": [
+        "không",
+        "bất"
+      ],
+      "en": [
+        "Negative",
+        "Non-",
+        "Bad",
+        "Ugly",
+        "Clumsy"
+      ]
+    },
+    "作": {
+      "vi": [
+        "làm",
+        "chế tác",
+        "tác phẩm"
+      ],
+      "en": [
+        "Make",
+        "Production",
+        "Prepare",
+        "Build"
+      ]
+    },
+    "用": {
+      "vi": [
+        "dùng",
+        "sử dụng",
+        "việc (cần làm)"
+      ],
+      "en": [
+        "Utilize",
+        "Business",
+        "Service",
+        "Use",
+        "Employ"
+      ]
+    },
+    "度": {
+      "vi": [
+        "độ",
+        "lần",
+        "mức độ"
+      ],
+      "en": [
+        "Degrees",
+        "Occurrence",
+        "Time",
+        "Counter For Occurrences",
+        "Consider",
+        "Attitude"
+      ]
+    },
+    "強": {
+      "vi": [
+        "mạnh"
+      ],
+      "en": [
+        "Strong"
+      ]
+    },
+    "公": {
+      "vi": [
+        "công cộng",
+        "chính thức"
+      ],
+      "en": [
+        "Public",
+        "Prince",
+        "Official",
+        "Governmental"
+      ]
+    },
+    "持": {
+      "vi": [
+        "cầm",
+        "có",
+        "mang"
+      ],
+      "en": [
+        "Hold",
+        "Have"
+      ]
+    },
+    "野": {
+      "vi": [
+        "cánh đồng",
+        "hoang dã"
+      ],
+      "en": [
+        "Plains",
+        "Field",
+        "Rustic",
+        "Civilian Life"
+      ]
+    },
+    "以": {
+      "vi": [
+        "bằng",
+        "từ … trở đi",
+        "so với"
+      ],
+      "en": [
+        "By Means Of",
+        "Because",
+        "In View Of",
+        "Compared With"
+      ]
+    },
+    "思": {
+      "vi": [
+        "nghĩ"
+      ],
+      "en": [
+        "Think"
+      ]
+    },
+    "家": {
+      "vi": [
+        "nhà",
+        "gia đình",
+        "chuyên gia (-ka)"
+      ],
+      "en": [
+        "House",
+        "Home",
+        "Family",
+        "Professional",
+        "Expert",
+        "Performer"
+      ]
+    },
+    "世": {
+      "vi": [
+        "đời",
+        "thế giới",
+        "xã hội"
+      ],
+      "en": [
+        "Generation",
+        "World",
+        "Society",
+        "Public"
+      ]
+    },
+    "多": {
+      "vi": [
+        "nhiều"
+      ],
+      "en": [
+        "Many",
+        "Frequent",
+        "Much"
+      ]
+    },
+    "正": {
+      "vi": [
+        "đúng",
+        "chính xác",
+        "ngay thẳng"
+      ],
+      "hanViet": "CHÍNH",
+      "en": [
+        "Correct",
+        "Justice",
+        "Righteous",
+        "10**40"
+      ]
+    },
+    "安": {
+      "vi": [
+        "yên ổn",
+        "rẻ",
+        "an"
+      ],
+      "en": [
+        "Relax",
+        "Cheap",
+        "Low",
+        "Quiet",
+        "Rested",
+        "Contented",
+        "Peaceful"
+      ]
+    },
+    "院": {
+      "vi": [
+        "viện",
+        "học viện",
+        "bệnh viện"
+      ],
+      "en": [
+        "Inst.",
+        "Institution",
+        "Temple",
+        "Mansion",
+        "School"
+      ]
+    },
+    "心": {
+      "vi": [
+        "trái tim",
+        "tâm",
+        "tấm lòng"
+      ],
+      "en": [
+        "Heart",
+        "Mind",
+        "Spirit",
+        "Heart Radical (no. 61)"
+      ]
+    },
+    "界": {
+      "vi": [
+        "thế giới",
+        "ranh giới",
+        "giới"
+      ],
+      "en": [
+        "World",
+        "Boundary"
+      ]
+    },
+    "教": {
+      "vi": [
+        "dạy",
+        "giáo",
+        "tôn giáo"
+      ],
+      "en": [
+        "Teach",
+        "Faith",
+        "Doctrine"
+      ]
+    },
+    "文": {
+      "vi": [
+        "câu văn",
+        "văn",
+        "văn chương"
+      ],
+      "en": [
+        "Sentence",
+        "Literature",
+        "Style",
+        "Art",
+        "Decoration",
+        "Figures",
+        "Plan",
+        "Literary Radical (no. 67)"
+      ]
+    },
+    "元": {
+      "vi": [
+        "gốc",
+        "nguồn",
+        "trước đây"
+      ],
+      "en": [
+        "Beginning",
+        "Former Time",
+        "Origin"
+      ]
+    },
+    "重": {
+      "vi": [
+        "nặng",
+        "quan trọng",
+        "lớp (chồng)"
+      ],
+      "en": [
+        "Heavy",
+        "Important",
+        "Esteem",
+        "Respect",
+        "Heap Up",
+        "Pile Up",
+        "Nest Of Boxes",
+        "-fold"
+      ]
+    },
+    "近": {
+      "vi": [
+        "gần"
+      ],
+      "en": [
+        "Near",
+        "Early",
+        "Akin",
+        "Tantamount"
+      ]
+    },
+    "考": {
+      "vi": [
+        "suy nghĩ",
+        "xem xét"
+      ],
+      "en": [
+        "Consider",
+        "Think Over"
+      ]
+    },
+    "画": {
+      "vi": [
+        "bức tranh",
+        "nét (chữ)"
+      ],
+      "hanViet": "HỌA, HOẠCH",
+      "en": [
+        "Brush-stroke",
+        "Picture"
+      ]
+    },
+    "海": {
+      "vi": [
+        "biển"
+      ],
+      "en": [
+        "Sea",
+        "Ocean"
+      ]
+    },
+    "売": {
+      "vi": [
+        "bán"
+      ],
+      "en": [
+        "Sell"
+      ]
+    },
+    "知": {
+      "vi": [
+        "biết",
+        "trí tuệ"
+      ],
+      "en": [
+        "Know",
+        "Wisdom"
+      ]
+    },
+    "道": {
+      "vi": [
+        "đường",
+        "đạo",
+        "con đường"
+      ],
+      "en": [
+        "Road-way",
+        "Street",
+        "District",
+        "Journey",
+        "Course",
+        "Moral",
+        "Teachings"
+      ]
+    },
+    "集": {
+      "vi": [
+        "tập hợp",
+        "tụ tập"
+      ],
+      "en": [
+        "Gather",
+        "Meet",
+        "Congregate",
+        "Swarm",
+        "Flock"
+      ]
+    },
+    "別": {
+      "vi": [
+        "riêng",
+        "khác",
+        "chia tay"
+      ],
+      "en": [
+        "Separate",
+        "Branch Off",
+        "Diverge",
+        "Fork",
+        "Another",
+        "Extra",
+        "Specially"
+      ]
+    },
+    "物": {
+      "vi": [
+        "vật",
+        "đồ vật"
+      ],
+      "en": [
+        "Thing",
+        "Object",
+        "Matter"
+      ]
+    },
+    "使": {
+      "vi": [
+        "dùng",
+        "sai khiến",
+        "sứ giả"
+      ],
+      "en": [
+        "Use",
+        "Send On A Mission",
+        "Order",
+        "Messenger",
+        "Envoy",
+        "Ambassador",
+        "Cause"
+      ]
+    },
+    "品": {
+      "vi": [
+        "hàng hoá",
+        "phẩm chất",
+        "món (đếm món ăn)"
+      ],
+      "en": [
+        "Goods",
+        "Refinement",
+        "Dignity",
+        "Article",
+        "Counter For Meal Courses"
+      ]
+    },
+    "計": {
+      "vi": [
+        "kế hoạch",
+        "đo",
+        "kế"
+      ],
+      "en": [
+        "Plot",
+        "Plan",
+        "Scheme",
+        "Measure"
+      ]
+    },
+    "死": {
+      "vi": [
+        "chết",
+        "cái chết"
+      ],
+      "en": [
+        "Death",
+        "Die"
+      ]
+    },
+    "特": {
+      "vi": [
+        "đặc biệt"
+      ],
+      "en": [
+        "Special"
+      ]
+    },
+    "私": {
+      "vi": [
+        "riêng tư",
+        "tôi"
+      ],
+      "en": [
+        "Private",
+        "I",
+        "Me"
+      ]
+    },
+    "始": {
+      "vi": [
+        "bắt đầu"
+      ],
+      "en": [
+        "Commence",
+        "Begin"
+      ]
+    },
+    "朝": {
+      "vi": [
+        "buổi sáng",
+        "triều đại",
+        "triều"
+      ],
+      "hanViet": "TRIỀU, TRIÊU",
+      "en": [
+        "Morning",
+        "Dynasty",
+        "Regime",
+        "Epoch",
+        "Period",
+        "(north) Korea"
+      ]
+    },
+    "運": {
+      "vi": [
+        "vận chuyển",
+        "vận may",
+        "số phận"
+      ],
+      "en": [
+        "Carry",
+        "Luck",
+        "Destiny",
+        "Fate",
+        "Lot",
+        "Transport",
+        "Progress",
+        "Advance"
+      ]
+    },
+    "終": {
+      "vi": [
+        "kết thúc",
+        "cuối"
+      ],
+      "en": [
+        "End",
+        "Finish"
+      ]
+    },
+    "台": {
+      "vi": [
+        "bệ",
+        "cái giá",
+        "(đếm máy móc, xe)"
+      ],
+      "hanViet": "ĐÀI",
+      "en": [
+        "Pedestal",
+        "A Stand",
+        "Counter For Machines And Vehicles"
+      ]
+    },
+    "広": {
+      "vi": [
+        "rộng"
+      ],
+      "en": [
+        "Wide",
+        "Broad",
+        "Spacious"
+      ]
+    },
+    "住": {
+      "vi": [
+        "sống",
+        "cư trú"
+      ],
+      "hanViet": "TRÚ, TRỤ",
+      "en": [
+        "Dwell",
+        "Reside",
+        "Live",
+        "Inhabit"
+      ]
+    },
+    "真": {
+      "vi": [
+        "thật",
+        "chân thật"
+      ],
+      "en": [
+        "True",
+        "Reality",
+        "Buddhist Sect"
+      ]
+    },
+    "有": {
+      "vi": [
+        "có",
+        "sở hữu"
+      ],
+      "en": [
+        "Possess",
+        "Have",
+        "Exist",
+        "Happen",
+        "Occur",
+        "Approx"
+      ]
+    },
+    "口": {
+      "vi": [
+        "miệng"
+      ],
+      "en": [
+        "Mouth"
+      ]
+    },
+    "少": {
+      "vi": [
+        "ít"
+      ],
+      "en": [
+        "Few",
+        "Little"
+      ]
+    },
+    "町": {
+      "vi": [
+        "thị trấn",
+        "khu phố"
+      ],
+      "en": [
+        "Town",
+        "Village",
+        "Block",
+        "Street"
+      ]
+    },
+    "料": {
+      "vi": [
+        "phí",
+        "nguyên liệu"
+      ],
+      "hanViet": "LIỆU",
+      "en": [
+        "Fee",
+        "Materials"
+      ]
+    },
+    "工": {
+      "vi": [
+        "thủ công",
+        "công trình",
+        "công"
+      ],
+      "en": [
+        "Craft",
+        "Construction",
+        "Katakana E Radical (no. 48)"
+      ]
+    },
+    "建": {
+      "vi": [
+        "xây dựng"
+      ],
+      "en": [
+        "Build"
+      ]
+    },
+    "空": {
+      "vi": [
+        "trống rỗng",
+        "bầu trời",
+        "không"
+      ],
+      "en": [
+        "Empty",
+        "Sky",
+        "Void",
+        "Vacant",
+        "Vacuum"
+      ]
+    },
+    "急": {
+      "vi": [
+        "vội",
+        "khẩn cấp",
+        "đột ngột",
+        "dốc"
+      ],
+      "en": [
+        "Hurry",
+        "Emergency",
+        "Sudden",
+        "Steep"
+      ]
+    },
+    "止": {
+      "vi": [
+        "dừng"
+      ],
+      "en": [
+        "Stop",
+        "Halt"
+      ]
+    },
+    "送": {
+      "vi": [
+        "gửi",
+        "tiễn"
+      ],
+      "en": [
+        "Escort",
+        "Send"
+      ]
+    },
+    "切": {
+      "vi": [
+        "cắt",
+        "sắc bén"
+      ],
+      "en": [
+        "Cut",
+        "Cutoff",
+        "Be Sharp"
+      ]
+    },
+    "転": {
+      "vi": [
+        "lăn",
+        "xoay",
+        "chuyển"
+      ],
+      "en": [
+        "Revolve",
+        "Turn Around",
+        "Change"
+      ]
+    },
+    "研": {
+      "vi": [
+        "mài",
+        "nghiên cứu"
+      ],
+      "en": [
+        "Polish",
+        "Study Of",
+        "Sharpen"
+      ]
+    },
+    "足": {
+      "vi": [
+        "chân",
+        "đủ",
+        "(đếm đôi giày)"
+      ],
+      "en": [
+        "Leg",
+        "Foot",
+        "Be Sufficient",
+        "Counter For Pairs Of Footwear"
+      ]
+    },
+    "究": {
+      "vi": [
+        "nghiên cứu",
+        "tìm hiểu kỹ"
+      ],
+      "en": [
+        "Research",
+        "Study"
+      ]
+    },
+    "楽": {
+      "vi": [
+        "vui",
+        "thoải mái",
+        "âm nhạc"
+      ],
+      "en": [
+        "Music",
+        "Comfort",
+        "Ease"
+      ]
+    },
+    "起": {
+      "vi": [
+        "thức dậy",
+        "đứng dậy",
+        "khởi"
+      ],
+      "en": [
+        "Rouse",
+        "Wake Up",
+        "Get Up"
+      ]
+    },
+    "着": {
+      "vi": [
+        "mặc",
+        "đến nơi",
+        "(đếm bộ quần áo)"
+      ],
+      "hanViet": "TRƯỚC",
+      "en": [
+        "Don",
+        "Arrive",
+        "Wear",
+        "Counter For Suits Of Clothing"
+      ]
+    },
+    "店": {
+      "vi": [
+        "cửa hàng",
+        "tiệm"
+      ],
+      "en": [
+        "Store",
+        "Shop"
+      ]
+    },
+    "病": {
+      "vi": [
+        "bệnh",
+        "ốm"
+      ],
+      "en": [
+        "Ill",
+        "Sick"
+      ]
+    },
+    "質": {
+      "vi": [
+        "chất",
+        "chất lượng",
+        "tính chất"
+      ],
+      "en": [
+        "Substance",
+        "Quality",
+        "Matter",
+        "Temperament"
+      ]
+    },
+    "待": {
+      "vi": [
+        "chờ",
+        "đợi",
+        "đãi"
+      ],
+      "en": [
+        "Wait",
+        "Depend On"
+      ]
+    },
+    "試": {
+      "vi": [
+        "thử",
+        "thi",
+        "thí nghiệm"
+      ],
+      "en": [
+        "Test",
+        "Try",
+        "Attempt",
+        "Experiment",
+        "Ordeal"
+      ]
+    },
+    "族": {
+      "vi": [
+        "dân tộc",
+        "gia tộc"
+      ],
+      "en": [
+        "Tribe",
+        "Family"
+      ]
+    },
+    "銀": {
+      "vi": [
+        "bạc"
+      ],
+      "en": [
+        "Silver"
+      ]
+    },
+    "早": {
+      "vi": [
+        "sớm",
+        "nhanh"
+      ],
+      "en": [
+        "Early",
+        "Fast"
+      ]
+    },
+    "映": {
+      "vi": [
+        "phản chiếu",
+        "chiếu (phim)"
+      ],
+      "en": [
+        "Reflect",
+        "Reflection",
+        "Projection"
+      ]
+    },
+    "親": {
+      "vi": [
+        "cha mẹ",
+        "thân thiết",
+        "họ hàng"
+      ],
+      "en": [
+        "Parent",
+        "Intimacy",
+        "Relative",
+        "Familiarity",
+        "Dealer (cards)"
+      ]
+    },
+    "験": {
+      "vi": [
+        "thử nghiệm",
+        "hiệu quả",
+        "kinh nghiệm"
+      ],
+      "en": [
+        "Verification",
+        "Effect",
+        "Testing"
+      ]
+    },
+    "英": {
+      "vi": [
+        "nước Anh",
+        "tiếng Anh",
+        "anh hùng"
+      ],
+      "en": [
+        "England",
+        "English",
+        "Hero",
+        "Outstanding",
+        "Calyx"
+      ]
+    },
+    "医": {
+      "vi": [
+        "y",
+        "bác sĩ",
+        "y học"
+      ],
+      "hanViet": "Y",
+      "en": [
+        "Doctor",
+        "Medicine"
+      ]
+    },
+    "仕": {
+      "vi": [
+        "phục vụ",
+        "làm (việc)"
+      ],
+      "en": [
+        "Attend",
+        "Doing",
+        "Official",
+        "Serve"
+      ]
+    },
+    "去": {
+      "vi": [
+        "đi khỏi",
+        "quá khứ",
+        "bỏ đi"
+      ],
+      "en": [
+        "Gone",
+        "Past",
+        "Quit",
+        "Leave",
+        "Elapse",
+        "Eliminate",
+        "Divorce"
+      ]
+    },
+    "味": {
+      "vi": [
+        "vị",
+        "mùi vị"
+      ],
+      "en": [
+        "Flavor",
+        "Taste"
+      ]
+    },
+    "写": {
+      "vi": [
+        "chép",
+        "chụp ảnh",
+        "miêu tả"
+      ],
+      "en": [
+        "Copy",
+        "Be Photographed",
+        "Describe"
+      ]
+    },
+    "字": {
+      "vi": [
+        "chữ",
+        "ký tự"
+      ],
+      "en": [
+        "Character",
+        "Letter",
+        "Word",
+        "Section Of Village"
+      ]
+    },
+    "答": {
+      "vi": [
+        "câu trả lời",
+        "đáp"
+      ],
+      "en": [
+        "Solution",
+        "Answer"
+      ]
+    },
+    "夜": {
+      "vi": [
+        "ban đêm",
+        "đêm"
+      ],
+      "en": [
+        "Night",
+        "Evening"
+      ]
+    },
+    "音": {
+      "vi": [
+        "âm thanh",
+        "tiếng"
+      ],
+      "en": [
+        "Sound",
+        "Noise"
+      ]
+    },
+    "注": {
+      "vi": [
+        "rót",
+        "chú ý",
+        "chú thích"
+      ],
+      "en": [
+        "Pour",
+        "Irrigate",
+        "Shed (tears)",
+        "Flow Into",
+        "Concentrate On",
+        "Notes",
+        "Comment",
+        "Annotate"
+      ]
+    },
+    "帰": {
+      "vi": [
+        "về nhà",
+        "trở về"
+      ],
+      "en": [
+        "Homecoming",
+        "Arrive At",
+        "Lead To",
+        "Result In"
+      ]
+    },
+    "古": {
+      "vi": [
+        "cũ",
+        "xưa"
+      ],
+      "en": [
+        "Old"
+      ]
+    },
+    "歌": {
+      "vi": [
+        "bài hát",
+        "hát"
+      ],
+      "en": [
+        "Song",
+        "Sing"
+      ]
+    },
+    "買": {
+      "vi": [
+        "mua"
+      ],
+      "en": [
+        "Buy"
+      ]
+    },
+    "悪": {
+      "vi": [
+        "xấu",
+        "ác",
+        "sai"
+      ],
+      "en": [
+        "Bad",
+        "Vice",
+        "Rascal",
+        "False",
+        "Evil",
+        "Wrong"
+      ]
+    },
+    "図": {
+      "vi": [
+        "bản đồ",
+        "hình vẽ",
+        "kế hoạch"
+      ],
+      "en": [
+        "Map",
+        "Drawing",
+        "Plan",
+        "Extraordinary",
+        "Audacious"
+      ]
+    },
+    "週": {
+      "vi": [
+        "tuần"
+      ],
+      "en": [
+        "Week"
+      ]
+    },
+    "室": {
+      "vi": [
+        "phòng"
+      ],
+      "en": [
+        "Room",
+        "Apartment",
+        "Chamber",
+        "Greenhouse",
+        "Cellar"
+      ]
+    },
+    "歩": {
+      "vi": [
+        "đi bộ",
+        "bước"
+      ],
+      "en": [
+        "Walk",
+        "Counter For Steps"
+      ]
+    },
+    "風": {
+      "vi": [
+        "gió",
+        "phong cách",
+        "kiểu"
+      ],
+      "en": [
+        "Wind",
+        "Air",
+        "Style",
+        "Manner"
+      ]
+    },
+    "紙": {
+      "vi": [
+        "giấy"
+      ],
+      "en": [
+        "Paper"
+      ]
+    },
+    "黒": {
+      "vi": [
+        "đen"
+      ],
+      "en": [
+        "Black"
+      ]
+    },
+    "花": {
+      "vi": [
+        "hoa"
+      ],
+      "en": [
+        "Flower"
+      ]
+    },
+    "春": {
+      "vi": [
+        "mùa xuân"
+      ],
+      "en": [
+        "Springtime",
+        "Spring (season)"
+      ]
+    },
+    "赤": {
+      "vi": [
+        "đỏ"
+      ],
+      "en": [
+        "Red"
+      ]
+    },
+    "青": {
+      "vi": [
+        "xanh (dương, lá)"
+      ],
+      "en": [
+        "Blue",
+        "Green"
+      ]
+    },
+    "館": {
+      "vi": [
+        "toà nhà",
+        "quán"
+      ],
+      "en": [
+        "Building",
+        "Mansion",
+        "Large Building",
+        "Palace"
+      ]
+    },
+    "屋": {
+      "vi": [
+        "nhà",
+        "mái nhà",
+        "cửa hàng (-ya)"
+      ],
+      "en": [
+        "Roof",
+        "House",
+        "Shop",
+        "Dealer",
+        "Seller"
+      ]
+    },
+    "色": {
+      "vi": [
+        "màu sắc"
+      ],
+      "en": [
+        "Color"
+      ]
+    },
+    "走": {
+      "vi": [
+        "chạy"
+      ],
+      "en": [
+        "Run"
+      ]
+    },
+    "秋": {
+      "vi": [
+        "mùa thu"
+      ],
+      "en": [
+        "Autumn"
+      ]
+    },
+    "夏": {
+      "vi": [
+        "mùa hè"
+      ],
+      "en": [
+        "Summer"
+      ]
+    },
+    "習": {
+      "vi": [
+        "học",
+        "luyện tập"
+      ],
+      "en": [
+        "Learn"
+      ]
+    },
+    "駅": {
+      "vi": [
+        "nhà ga"
+      ],
+      "en": [
+        "Station"
+      ]
+    },
+    "洋": {
+      "vi": [
+        "đại dương",
+        "phương Tây"
+      ],
+      "en": [
+        "Ocean",
+        "Sea",
+        "Foreign",
+        "Western Style"
+      ]
+    },
+    "旅": {
+      "vi": [
+        "du lịch",
+        "chuyến đi"
+      ],
+      "en": [
+        "Trip",
+        "Travel"
+      ]
+    },
+    "服": {
+      "vi": [
+        "quần áo",
+        "phục tùng"
+      ],
+      "en": [
+        "Clothing",
+        "Admit",
+        "Obey",
+        "Discharge"
+      ]
+    },
+    "夕": {
+      "vi": [
+        "buổi chiều tối"
+      ],
+      "en": [
+        "Evening"
+      ]
+    },
+    "借": {
+      "vi": [
+        "mượn",
+        "thuê"
+      ],
+      "en": [
+        "Borrow",
+        "Rent"
+      ]
+    },
+    "曜": {
+      "vi": [
+        "ngày trong tuần"
+      ],
+      "en": [
+        "Weekday"
+      ]
+    },
+    "飲": {
+      "vi": [
+        "uống",
+        "đồ uống"
+      ],
+      "hanViet": "ẨM",
+      "en": [
+        "Drink",
+        "Smoke",
+        "Take"
+      ]
+    },
+    "肉": {
+      "vi": [
+        "thịt"
+      ],
+      "en": [
+        "Meat"
+      ]
+    },
+    "貸": {
+      "vi": [
+        "cho vay",
+        "cho mượn"
+      ],
+      "en": [
+        "Lend"
+      ]
+    },
+    "堂": {
+      "vi": [
+        "hội trường",
+        "nhà (lớn)"
+      ],
+      "en": [
+        "Public Chamber",
+        "Hall"
+      ]
+    },
+    "鳥": {
+      "vi": [
+        "chim",
+        "gà"
+      ],
+      "en": [
+        "Bird",
+        "Chicken"
+      ]
+    },
+    "飯": {
+      "vi": [
+        "cơm",
+        "bữa ăn"
+      ],
+      "en": [
+        "Meal",
+        "Boiled Rice"
+      ]
+    },
+    "勉": {
+      "vi": [
+        "cố gắng",
+        "siêng năng"
+      ],
+      "en": [
+        "Exertion",
+        "Endeavour",
+        "Encourage",
+        "Strive",
+        "Make Effort",
+        "Diligent"
+      ]
+    },
+    "冬": {
+      "vi": [
+        "mùa đông"
+      ],
+      "en": [
+        "Winter"
+      ]
+    },
+    "昼": {
+      "vi": [
+        "ban ngày",
+        "buổi trưa"
+      ],
+      "en": [
+        "Daytime",
+        "Noon"
+      ]
+    },
+    "茶": {
+      "vi": [
+        "trà"
+      ],
+      "en": [
+        "Tea"
+      ]
+    },
+    "弟": {
+      "vi": [
+        "em trai"
+      ],
+      "en": [
+        "Younger Brother",
+        "Faithful Service To Elders"
+      ]
+    },
+    "牛": {
+      "vi": [
+        "bò"
+      ],
+      "en": [
+        "Cow"
+      ]
+    },
+    "魚": {
+      "vi": [
+        "cá"
+      ],
+      "en": [
+        "Fish"
+      ]
+    },
+    "兄": {
+      "vi": [
+        "anh trai"
+      ],
+      "en": [
+        "Elder Brother",
+        "Big Brother"
+      ]
+    },
+    "犬": {
+      "vi": [
+        "chó"
+      ],
+      "en": [
+        "Dog"
+      ]
+    },
+    "妹": {
+      "vi": [
+        "em gái"
+      ],
+      "en": [
+        "Younger Sister"
+      ]
+    },
+    "姉": {
+      "vi": [
+        "chị gái"
+      ],
+      "hanViet": "TỶ",
+      "en": [
+        "Elder Sister"
+      ]
+    },
+    "漢": {
+      "vi": [
+        "Hán",
+        "Trung Quốc"
+      ],
+      "en": [
+        "Sino-",
+        "China"
+      ]
+    }
+  }
+}
