@@ -1,13 +1,34 @@
-import type { Grammar, Kanji, Level, Sentence, Vocab } from '@nihongo/shared';
+import { LEVELS, type Grammar, type Kanji, type Level, type Sentence, type Vocab } from '@nihongo/shared';
 import type { HanVietLookup } from './opendata';
+import { checkTranslations } from './translate-check';
 import {
-  grammarKey, kanjiKey, sentenceKey, toOverlays, vocabKey,
+  grammarKey, kanjiKey, sentenceKey, toOverlays, vocabKey, TR_TYPES,
   type LoadedFile, type Overlays, type Sources, type TrFile, type TrType,
 } from './translate';
 
 type Item = Vocab | Kanji | Grammar | Sentence;
 export interface Batch { writeTo: string; context: Record<string, unknown>; file: TrFile }
 export interface SampleRow { type: TrType; key: string; ja: string; en: string; vi: string }
+
+/** `tr status`: coverage per level, where the non-file translations came from, then every stale entry. */
+export function statusReport(files: LoadedFile[], src: Sources, o: Overlays, only?: Level): string[] {
+  const lines: string[] = [];
+  for (const l of LEVELS.filter((x) => !only || x === only)) {
+    const parts = TR_TYPES.map((t) => {
+      const total = (src[t] as { level: Level }[]).filter((x) => x.level === l).length;
+      return `${t} ${total - pendingItems(t, l, src, o).length}/${total}`;
+    });
+    const tatoeba = src.sentences.filter((s) => s.level === l && s.vi && !o.sentences.has(sentenceKey(s))).length;
+    const open = src.kanji.filter((k) => k.level === l && k.hanViet && !o.kanji.get(kanjiKey(k))?.hanViet).length;
+    lines.push(`${l} ${parts.join(' · ')} · Tatoeba ${tatoeba} · open Hán Việt ${open}`);
+  }
+  const { errors, warnings } = checkTranslations(files, src);
+  for (const w of warnings.filter((x) => x.msg.startsWith('stale'))) {
+    lines.push(`stale ${w.file} ${w.key}: ${w.msg.replace(/^stale: /, '')}`);
+  }
+  lines.push(`${files.length} files · ${errors.length} errors · ${warnings.length} warnings`);
+  return lines;
+}
 
 /** Items of a level still without a translation file entry (sentences: also without a Tatoeba translation). */
 export function pendingItems(type: TrType, level: Level, src: Sources, o: Overlays): Item[] {

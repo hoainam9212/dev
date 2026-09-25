@@ -5,7 +5,7 @@ import { OUT_DIR, RAW_DIR, TRANSLATIONS_DIR } from './sources';
 import { hanVietFor, loadHanVietSources } from '../src/opendata';
 import { loadBuiltSources, readTrFiles, toOverlays, TR_TYPES, type TrType } from '../src/translate';
 import { checkTranslations } from '../src/translate-check';
-import { makeBatch, nextIndex, pendingItems, sampleEntries } from '../src/tr-batch';
+import { makeBatch, nextIndex, pendingItems, sampleEntries, statusReport } from '../src/tr-batch';
 
 const [cmd, ...rest] = process.argv.slice(2);
 const arg = (name: string) => {
@@ -28,16 +28,7 @@ const files = readTrFiles(TRANSLATIONS_DIR);
 const o = toOverlays(files);
 
 if (cmd === 'status') {
-  const only = levelArg();
-  for (const l of LEVELS.filter((x) => !only || x === only)) {
-    const parts = TR_TYPES.map((t) => {
-      const total = (src[t] as { level: Level }[]).filter((x) => x.level === l).length;
-      return `${t} ${total - pendingItems(t, l, src, o).length}/${total}`;
-    });
-    console.log(l, parts.join(' · '));
-  }
-  const { errors, warnings } = checkTranslations(files, src);
-  console.log(`${files.length} files · ${errors.length} errors · ${warnings.length} warnings`);
+  for (const line of statusReport(files, src, o, levelArg())) console.log(line);
 } else if (cmd === 'next') {
   const level = levelArg();
   const type = arg('type') as TrType;

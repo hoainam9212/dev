@@ -22,6 +22,20 @@ export const grammarKey = (g: Pick<Grammar, 'level' | 'title'>) => `${g.level}|$
 export const sentenceKey = (s: Pick<Sentence, 'id'>) => s.id.replace(/^s-/, '');
 
 /** Every `vi/<level>/*.json` under `dir`, sorted by path. A parse error names the file. */
+/** Valid JSON can still be a broken hand edit; fail here so the caller names the file. */
+function assertShape(f: unknown): TrFile {
+  const o = f as Partial<TrFile> | null;
+  if (!o || typeof o !== 'object') throw new Error('not an object');
+  if (!TR_TYPES.includes(o.type as TrType)) throw new Error(`unknown type ${String(o.type)}`);
+  if (typeof o.level !== 'string') throw new Error('missing level');
+  if (!o.entries || typeof o.entries !== 'object') throw new Error('missing entries');
+  for (const [key, e] of Object.entries(o.entries as unknown as Record<string, Record<string, unknown>>)) {
+    if (!e || typeof e !== 'object' || e.vi === undefined) throw new Error(`entry ${key}: missing vi`);
+    if (o.type === 'grammar' && !Array.isArray(e.examples)) throw new Error(`entry ${key}: missing examples`);
+  }
+  return o as TrFile;
+}
+
 export function readTrFiles(dir: string): LoadedFile[] {
   const root = path.join(dir, 'vi');
   if (!fs.existsSync(root)) return [];
@@ -32,7 +46,7 @@ export function readTrFiles(dir: string): LoadedFile[] {
     for (const name of fs.readdirSync(d).filter((n) => n.endsWith('.json')).sort()) {
       const rel = `vi/${lv}/${name}`;
       try {
-        out.push({ path: rel, file: JSON.parse(fs.readFileSync(path.join(d, name), 'utf8')) as TrFile });
+        out.push({ path: rel, file: assertShape(JSON.parse(fs.readFileSync(path.join(d, name), 'utf8'))) });
       } catch (e) {
         throw new Error(`${rel}: ${(e as Error).message}`);
       }
@@ -112,6 +126,12 @@ export function applyKanji(
     if (!same(e.en, k.meanings)) r.stale.push(k.char);
   }
   return r;
+}
+
+/** A level whose kanji meanings are all translated ships only with every Hán Việt too (open sources can drift). */
+export function hanVietGaps(levelKanji: Kanji[]): string[] {
+  if (!levelKanji.length || !levelKanji.every((k) => k.meaningsVi)) return [];
+  return levelKanji.filter((k) => !k.hanViet).map((k) => k.char);
 }
 
 export function applyGrammar(items: Grammar[], o: Overlays['grammar']): ApplyReport {

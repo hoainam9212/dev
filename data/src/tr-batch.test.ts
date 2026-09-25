@@ -1,5 +1,5 @@
 import type { Grammar, Kanji, Sentence, Vocab } from '@nihongo/shared';
-import { makeBatch, nextIndex, pendingItems, sampleEntries } from './tr-batch';
+import { makeBatch, nextIndex, pendingItems, sampleEntries, statusReport } from './tr-batch';
 import { toOverlays, type LoadedFile, type Sources } from './translate';
 
 const S = (id: number, level: 'N5' | 'N4', vi?: string): Sentence => ({ id: `s-${id}`, level, ja: `ja${id}`, en: `en${id}`, ...(vi ? { vi } : {}) });
@@ -56,4 +56,12 @@ it('samples rows across types with the Japanese next to the translation', () => 
     { type: 'vocab', key: '赤い|あかい', ja: '赤い（あかい）', en: 'red', vi: 'đỏ' },
     { type: 'sentences', key: '3', ja: 'ja3', en: 'en3', vi: 'Ba.' },
   ]);
+});
+
+it('status shows coverage, Tatoeba and open Hán Việt counts, and names stale entries', () => {
+  const withStale: LoadedFile[] = [...files, { path: 'vi/n5/vocab-002.json', file: { type: 'vocab', level: 'N5', entries: { '青い|あおい': { vi: ['xanh'], en: ['old blue'] } } } }];
+  const lines = statusReport(withStale, src, toOverlays(withStale), 'N5');
+  expect(lines[0]).toBe('N5 vocab 2/2 · kanji 0/2 · grammar 0/1 · sentences 2/3 · Tatoeba 1 · open Hán Việt 1');
+  expect(lines).toContain('stale vi/n5/vocab-002.json 青い|あおい: the English changed since translation');
+  expect(lines.at(-1)).toMatch(/^3 files · \d+ errors · \d+ warnings$/);
 });

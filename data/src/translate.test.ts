@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { Grammar, Kanji, Sentence, Vocab } from '@nihongo/shared';
 import {
   readTrFiles, toOverlays, applyVocab, applyKanji, applyGrammar, applySentences,
-  vocabKey, grammarKey, sentenceKey, type Overlays,
+  vocabKey, grammarKey, sentenceKey, hanVietGaps, type Overlays,
 } from './translate';
 
 const V = (word: string, reading: string, meanings: string[]): Vocab => ({ id: 'v', level: 'N5', word, reading, meanings, tags: [], kanji: [], sentenceIds: [] });
@@ -57,6 +57,19 @@ it('names the file when a translation file is not valid JSON', () => {
   expect(() => readTrFiles(dir)).toThrow(/vi\/n5\/vocab-002\.json/);
 });
 
+it('names the file when valid JSON has the wrong shape', () => {
+  const cases: [unknown, RegExp][] = [
+    [{ type: 'vocab', entries: {} }, /vi\/n5\/bad\.json: .*level/],
+    [{ type: 'vocab', level: 'N5' }, /vi\/n5\/bad\.json: .*entries/],
+    [{ type: 'nope', level: 'N5', entries: {} }, /vi\/n5\/bad\.json: .*type/],
+    [{ type: 'grammar', level: 'N5', entries: { 'N5|x': { vi: 'a', en: 'b' } } }, /vi\/n5\/bad\.json: .*N5\|x.*examples/],
+    [{ type: 'vocab', level: 'N5', entries: { 'a|a': { en: ['x'] } } }, /vi\/n5\/bad\.json: .*a\|a.*vi/],
+  ];
+  for (const [body, re] of cases) {
+    expect(() => readTrFiles(tmp({ 'vi/n5/bad.json': body }))).toThrow(re);
+  }
+});
+
 it('applies vocab meanings and reports stale English', () => {
   const items = [V('食べる', 'たべる', ['to eat']), V('飲む', 'のむ', ['to drink', 'to swallow']), V('見る', 'みる', ['to see'])];
   const o = empty();
@@ -95,4 +108,13 @@ it('prefers a file sentence over Tatoeba and falls back to Tatoeba', () => {
   const r = applySentences(items, o.sentences, new Map([[1, 'Chào.'], [2, 'Tạm biệt.']]));
   expect(items.map((s) => s.vi)).toEqual(['Xin chào.', 'Tạm biệt.', undefined]);
   expect(r).toEqual({ total: 3, fromFile: 1, fromOpen: 1, stale: [] });
+});
+
+it('lists kanji without Hán Việt once a level has every kanji meaning translated', () => {
+  const a = { ...K('一', ['one']), meaningsVi: ['một'], hanViet: 'NHẤT' };
+  const b = { ...K('二', ['two']), meaningsVi: ['hai'] };
+  const c = K('三', ['three']);
+  expect(hanVietGaps([a, b])).toEqual(['二']);
+  expect(hanVietGaps([a, b, c])).toEqual([]); // level not finished yet — no gate
+  expect(hanVietGaps([])).toEqual([]);
 });

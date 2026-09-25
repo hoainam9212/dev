@@ -4,7 +4,7 @@ import readline from 'node:readline';
 import { LEVELS, type ContentIndex, type Sentence } from '@nihongo/shared';
 import { RAW_DIR, OUT_DIR, TRANSLATIONS_DIR } from './sources';
 import { HANVIET_RAW, loadHanVietSources, hanVietFor, tatoebaVietnamese } from '../src/opendata';
-import { readTrFiles, toOverlays, applyVocab, applyKanji, applyGrammar, applySentences, vocabKey, grammarKey } from '../src/translate';
+import { readTrFiles, toOverlays, applyVocab, applyKanji, applyGrammar, applySentences, vocabKey, grammarKey, hanVietGaps } from '../src/translate';
 import {
   parseVocabCsv,
   dedupeVocab,
@@ -146,6 +146,8 @@ async function main() {
       examples: n(g.flatMap((x) => x.examples), (x) => x.vi),
       sentences: n(s, (x) => x.vi),
     });
+    const gaps = hanVietGaps(k);
+    assert(!gaps.length, `${l}: kanji translated but no Hán Việt for ${gaps.join(' ')} — open data changed? add hanViet in translations/vi/${lv}/kanji-*.json`);
   }
   write('kana.json', buildKana(readSvg));
   write('business/index.json', BUSINESS);
