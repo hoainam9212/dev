@@ -128,6 +128,7 @@ export function MenuButton({
   helpId,
   label,
   variant,
+  large,
   disabled,
   button,
   items,
@@ -136,6 +137,8 @@ export function MenuButton({
   helpId: string;
   label: string;
   variant?: RibbonVariant;
+  /** Nút lớn kiểu Office: `button` là icon + dòng chữ (tự ghi "▾"), xếp dọc như AutoSum, Arrange. */
+  large?: boolean;
   disabled?: boolean;
   button: ReactNode;
   items: { value: string; label: string; content: ReactNode }[];
@@ -160,11 +163,15 @@ export function MenuButton({
 
   return (
     <div ref={root} className="relative">
-      <ToolButton helpId={helpId} label={label} variant={variant} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
-        <span className="flex items-center gap-1">
-          {button}
-          <span className="text-[0.6rem]">▾</span>
-        </span>
+      <ToolButton helpId={helpId} label={label} variant={variant} large={large} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+        {large ? (
+          button
+        ) : (
+          <span className="flex items-center gap-1">
+            {button}
+            <span className="text-[0.6rem]">▾</span>
+          </span>
+        )}
       </ToolButton>
       {open ? (
         <div role="menu" aria-label={label} className="ribbon-menu">
@@ -239,9 +246,12 @@ export function RibbonTabs<T extends string>({
   );
 }
 
-/** Khung nội dung thẻ, cao tối thiểu 96px: đổi thẻ thì phần bên dưới không nhảy lên nhảy xuống. */
+/**
+ * Khung nội dung thẻ, cao tối thiểu 108px: đổi thẻ thì phần bên dưới không nhảy lên nhảy xuống.
+ * 108 chứ không 96 vì nút lớn nhãn hai dòng (Lookup & Reference ▾ của Excel) cao hơn 96px.
+ */
 export function RibbonPanel({ children }: { children: ReactNode }) {
-  return <div className="flex min-h-24 flex-col [&>*]:flex-1">{children}</div>;
+  return <div className="flex min-h-[6.75rem] flex-col [&>*]:flex-1">{children}</div>;
 }
 
 /** Thẻ ngữ cảnh vừa biến mất (xoá ảnh/bảng) thì quay về `fallback`, như Office. */

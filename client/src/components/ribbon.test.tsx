@@ -34,8 +34,9 @@ describe('activeTab', () => {
 });
 
 describe('RibbonPanel', () => {
-  it('keeps a fixed minimum height', () => {
+  it('keeps a fixed minimum height, tall enough for two-line big buttons', () => {
+    // 108px: nút lớn có nhãn hai dòng (Lookup & Reference ▾) cao hơn 96px; mọi thẻ phải bằng nhau.
     render(<RibbonPanel><span>nội dung</span></RibbonPanel>);
-    expect(screen.getByText('nội dung').parentElement).toHaveClass('min-h-24');
+    expect(screen.getByText('nội dung').parentElement).toHaveClass('min-h-[6.75rem]');
   });
 });
