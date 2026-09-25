@@ -45,6 +45,18 @@ it('does not change kanji while a stroke is drawn across the practice canvas', (
   expect(onNext).not.toHaveBeenCalled();
 });
 
+it('is a fixed full-height sheet whose header (with ✕ in the corner) stays put while only the content scrolls', () => {
+  const { dialog } = setup();
+  // same size for every kanji, whatever the amount of content (it used to shrink and jump)
+  expect(dialog.className).toMatch(/\bh-full\b/);
+  expect(dialog.className).toMatch(/overflow-hidden/);
+  const close = screen.getByRole('button', { name: 'Đóng' });
+  const scroller = screen.getByTestId('kanji-detail-scroll');
+  expect(scroller.className).toMatch(/overflow-y-auto/);
+  expect(scroller.contains(close)).toBe(false);
+  expect(scroller.contains(screen.getByRole('heading', { name: '一' }))).toBe(true);
+});
+
 it('shows no navigation when opened without neighbours', () => {
   render(<KanjiDetail kanji={kanji} onClose={vi.fn()} />);
   expect(screen.queryByRole('button', { name: 'Kanji sau' })).not.toBeInTheDocument();

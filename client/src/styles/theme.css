@@ -62,6 +62,10 @@ body {
 .btn-soft { @apply bg-sakura/40 text-text hover:bg-sakura/70; }
 .btn-sky { @apply bg-sky text-text hover:brightness-105; }
 
+/* Android WebView flashes a dark box over whatever is tapped (buttons, the swipe area); buttons already
+   give their own feedback (active:scale-95). */
+* { -webkit-tap-highlight-color: transparent; }
+
 /* Content slides in from the side the learner swiped towards (next = from the right). */
 .slide-from-right { animation: slide-from-right 0.22s ease-out; }
 .slide-from-left { animation: slide-from-left 0.22s ease-out; }

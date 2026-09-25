@@ -49,24 +49,18 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
   }, [onClose, next, prev]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 md:items-center md:p-6" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex justify-center bg-black/40 md:items-center md:p-6" onClick={onClose}>
       <div
-        ref={dialog}
         role="dialog"
         aria-label={`Kanji ${kanji.char}`}
-        className="card max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-5 md:rounded-b-3xl md:p-8"
+        // Same size for every kanji (full screen on phones): sizing it to its content made the sheet grow and
+        // shrink while swiping, flashing the dark backdrop at its top corners. `!` beats the unlayered .card.
+        className="card flex h-full w-full max-w-2xl flex-col overflow-hidden max-md:rounded-none! md:h-[88vh]"
         onClick={(e) => e.stopPropagation()}
         {...swipe}
       >
-        <div
-          key={kanji.id}
-          className={dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : undefined}
-        >
-        <div className="flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold text-muted">{kanji.level} · {kanji.strokes} nét{kanji.grade ? ` · lớp ${kanji.grade}` : ''}</span>
-            <h2 className="text-6xl font-black">{kanji.char}</h2>
-          </div>
+        {/* fixed header: navigation on the left, ✕ in the corner, visible however far the content is scrolled */}
+        <div className="flex shrink-0 items-center justify-between gap-2 border-b border-sakura/30 px-4 py-2">
           <div className="flex items-center gap-1">
             {prev && next && (
               <>
@@ -79,10 +73,20 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
                 </button>
               </>
             )}
-            <button type="button" className="btn-soft px-3!" onClick={onClose} aria-label="Đóng">
-              ✕
-            </button>
           </div>
+          <button type="button" className="btn-soft px-3!" onClick={onClose} aria-label="Đóng">
+            ✕
+          </button>
+        </div>
+
+        <div ref={dialog} data-testid="kanji-detail-scroll" className="flex-1 overflow-y-auto overflow-x-hidden p-5 md:p-8">
+        <div
+          key={kanji.id}
+          className={dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : undefined}
+        >
+        <div>
+          <span className="text-xs font-bold text-muted">{kanji.level} · {kanji.strokes} nét{kanji.grade ? ` · lớp ${kanji.grade}` : ''}</span>
+          <h2 className="text-6xl font-black">{kanji.char}</h2>
         </div>
 
         {writing ? (
@@ -143,6 +147,7 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
             </div>
           </div>
         )}
+        </div>
         </div>
       </div>
     </div>
