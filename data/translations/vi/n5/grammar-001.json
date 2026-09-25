@@ -1,0 +1,1366 @@
+{
+  "type": "grammar",
+  "level": "N5",
+  "entries": {
+    "N5|A が いちばん～ (A ga ichiban～)": {
+      "vi": "A là … nhất (so sánh nhất)",
+      "examples": [
+        {
+          "ja": "この中で、寿司が一番好きです。",
+          "vi": "Trong số này, tôi thích sushi nhất."
+        }
+      ],
+      "en": "Express the superlative degree; 'the most', 'the best', 'the least'."
+    },
+    "N5|A。けれども、～B。(A. Keredomo,~ B.)": {
+      "vi": "A. Tuy nhiên, B (nối hai câu trái ngược)",
+      "examples": [
+        {
+          "ja": "今日は晴れている。けれども、寒いです。",
+          "vi": "Hôm nay trời nắng. Tuy nhiên, trời lạnh."
+        }
+      ],
+      "en": "Used to express a contrast between two statements. It can be translated as 'but' or 'however'."
+    },
+    "N5|A。しかし、～B。 (A. Shikashi, ~B.)": {
+      "vi": "A. Nhưng / tuy nhiên, B",
+      "examples": [
+        {
+          "ja": "今日は忙しい。しかし、時間があるなら、コーヒーを飲もう。",
+          "vi": "Hôm nay tôi bận. Tuy nhiên, nếu có thời gian thì cùng uống cà phê nhé."
+        }
+      ],
+      "en": "Expresses contrast or contradiction between two clauses; 'A, but B', 'A, however B'."
+    },
+    "N5|A。じゃ、～B。(A. Ja, ~B.)": {
+      "vi": "A. Vậy thì, B (quyết định, đề nghị)",
+      "examples": [
+        {
+          "ja": "映画は時間がない。じゃ、また今度行こう。",
+          "vi": "Không có thời gian xem phim. Vậy thì, để lần sau đi nhé."
+        }
+      ],
+      "en": "Indicates a decision or suggestion; 'well then', 'in that case', 'so'."
+    },
+    "N5|A。それじゃ、～B。(A. Soreja,~B.)": {
+      "vi": "A. Thế thì / vậy thì, B",
+      "examples": [
+        {
+          "ja": "今日は休みです。それじゃ、映画を観に行きましょう。",
+          "vi": "Hôm nay là ngày nghỉ. Thế thì, chúng ta đi xem phim đi."
+        }
+      ],
+      "en": "Connect two sentences; 'A, so/in that case, B'"
+    },
+    "N5|A。それでは、～B。(A. Soredewa,~B.)": {
+      "vi": "A. Vậy thì / thế thì, B (chuyển tình huống)",
+      "examples": [
+        {
+          "ja": "今日は休みだ。それでは、映画を見に行こう。",
+          "vi": "Hôm nay là ngày nghỉ. Vậy thì, đi xem phim thôi."
+        }
+      ],
+      "en": "Express a change in situation; 'then', 'in that case', 'so'."
+    },
+    "N5|A。 では、～B。 (A. Dewa, ~B)": {
+      "vi": "Trong (phạm vi) A thì B; (đầu câu) vậy thì",
+      "examples": [
+        {
+          "ja": "果物では、リンゴが一番好きです。",
+          "vi": "Trong các loại trái cây, tôi thích táo nhất."
+        }
+      ],
+      "en": "Indicates a contrast or comparison between A and B; 'As for A, ~B'."
+    },
+    "N5|A。でも、～B。(A. Demo, ~B)": {
+      "vi": "A. Nhưng, B (trái ngược)",
+      "examples": [
+        {
+          "ja": "昨日は寒かった。でも、今日は暖かいです。",
+          "vi": "Hôm qua trời lạnh. Nhưng hôm nay trời ấm."
+        }
+      ],
+      "en": "Express contrast or a change of situation; 'even though A, B', 'although A, B'."
+    },
+    "N5|Aと Bと どちら～ (A to B to dochira~)": {
+      "vi": "A và B, cái nào … hơn? (hỏi chọn một trong hai)",
+      "examples": [
+        {
+          "ja": "りんごとみかんとどちらが好きですか。",
+          "vi": "Táo và quýt, bạn thích cái nào hơn?"
+        }
+      ],
+      "en": "Used to ask which of two alternatives is preferred or to compare two things"
+    },
+    "N5|AとBと どっち〜 (A to B to docchi〜)": {
+      "vi": "A và B, cái nào …? (văn nói)",
+      "examples": [
+        {
+          "ja": "コーヒーと紅茶とどっちが好き？",
+          "vi": "Cà phê và hồng trà, bạn thích cái nào?"
+        }
+      ],
+      "en": "Asking which one; 'which', 'A or B'."
+    },
+    "N5|A は B が〜 (A wa B ga〜)": {
+      "vi": "A thì B … (nói về đặc điểm của A)",
+      "examples": [
+        {
+          "ja": "彼女は髪が長いです。",
+          "vi": "Cô ấy có mái tóc dài."
+        }
+      ],
+      "en": "Indicates that there is something unique or different about A and describes what is special about it."
+    },
+    "N5|A は B より～ (A wa B yori～)": {
+      "vi": "A … hơn B (so sánh hơn)",
+      "examples": [
+        {
+          "ja": "このジュースはあのジュースより甘いです。",
+          "vi": "Nước ép này ngọt hơn nước ép kia."
+        }
+      ],
+      "en": "Express a comparison between A and B; 'A is more/less than B'."
+    },
+    "N5|A より B のほうが～ (A yori B no hou ga ～)": {
+      "vi": "So với A thì B … hơn",
+      "examples": [
+        {
+          "ja": "ピザよりハンバーガーのほうが美味しい。",
+          "vi": "Bánh hamburger ngon hơn pizza."
+        }
+      ],
+      "en": "Used to compare two items; 'B is more ～ than A'."
+    },
+    "N5|い-Adjective く + Verb (i-Adjective + ku + Verb)": {
+      "vi": "Tính từ đuôi い → く + động từ (làm gì một cách …)",
+      "examples": [
+        {
+          "ja": "彼は速く走りました。",
+          "vi": "Anh ấy đã chạy nhanh."
+        }
+      ],
+      "en": "Used to connect an い-adjective to a verb, modifying the verb."
+    },
+    "N5|い-Adjective く します (i-Adjective ku shimasu)": {
+      "vi": "Tính từ đuôi い → く します (làm cho …)",
+      "examples": [
+        {
+          "ja": "部屋を明るくします。",
+          "vi": "Tôi sẽ làm cho căn phòng sáng hơn."
+        }
+      ],
+      "en": "Change an い-adjective into a verb; 'to make', 'to become'."
+    },
+    "N5|い-Adjective く ないます (i-Adjective ku naimasu)": {
+      "vi": "Tính từ đuôi い → く ないです (thể phủ định lịch sự)",
+      "examples": [
+        {
+          "ja": "このピザは美味しくないです。",
+          "vi": "Cái pizza này không ngon."
+        }
+      ],
+      "en": "Change an い-adjective into a negative polite form."
+    },
+    "N5|い-Adjective て (i-Adjective + te~)": {
+      "vi": "Tính từ đuôi い → くて (nối các tính từ: … và …)",
+      "examples": [
+        {
+          "ja": "このリンゴは甘くて美味しいです。",
+          "vi": "Quả táo này vừa ngọt vừa ngon."
+        }
+      ],
+      "en": "Used to connect two or more い-adjectives to describe something."
+    },
+    "N5|な-Adjective く Verb (na-Adjective + ku + Verb)": {
+      "vi": "Tính từ đuôi な + に + động từ (làm gì một cách …)",
+      "examples": [
+        {
+          "ja": "彼は静かく話す。",
+          "vi": "Anh ấy nói chuyện nhỏ nhẹ."
+        }
+      ],
+      "en": "Turn a な-adjective into an adverb to modify a verb."
+    },
+    "N5|な-Adjective で～ (na-Adjective de~)": {
+      "vi": "Tính từ đuôi な + で (nối: … và …)",
+      "examples": [
+        {
+          "ja": "彼は綺麗で優しい女性が好きです。",
+          "vi": "Anh ấy thích người phụ nữ xinh đẹp và hiền lành."
+        }
+      ],
+      "en": "Usage of で particle along with a な-adjective"
+    },
+    "N5|な-Adjective に します (na-Adjective ni shimasu)": {
+      "vi": "Tính từ đuôi な + に します (làm cho …, giữ cho …)",
+      "examples": [
+        {
+          "ja": "静かにします。",
+          "vi": "Tôi sẽ giữ yên lặng."
+        }
+      ],
+      "en": "Expressing a decision or preference with a な-adjective."
+    },
+    "N5|な-Adjective に なります (na-Adjective ni narimasu)": {
+      "vi": "Tính từ đuôi な + に なります (trở nên …)",
+      "examples": [
+        {
+          "ja": "暑い日は部屋が暑苦しくなります。",
+          "vi": "Vào những ngày nóng, căn phòng trở nên ngột ngạt."
+        }
+      ],
+      "en": "Express a change or transformation into a state described by the な-adjective."
+    },
+    "N5|Noun か Noun か～ (Noun ka Noun ka～)": {
+      "vi": "Danh từ か Danh từ か (… hay …, hoặc … hoặc …)",
+      "examples": [
+        {
+          "ja": "今日、映画を見るか、散歩するかどちらにしますか？",
+          "vi": "Hôm nay bạn sẽ xem phim hay đi dạo?"
+        }
+      ],
+      "en": "Expresses choice or alternatives; 'either', 'or'."
+    },
+    "N5|Noun が できます (Noun ga dekimasu)": {
+      "vi": "Danh từ が できます (biết, có thể làm …)",
+      "examples": [
+        {
+          "ja": "英語ができます。",
+          "vi": "Tôi biết tiếng Anh."
+        }
+      ],
+      "en": "Express the ability to do something."
+    },
+    "N5|Noun がほしいです (〜ga hoshii desu)": {
+      "vi": "Danh từ が ほしいです (muốn có …)",
+      "examples": [
+        {
+          "ja": "新しい車がほしいです。",
+          "vi": "Tôi muốn có một chiếc ô tô mới."
+        }
+      ],
+      "en": "Express a desire or wanting something; 'I want', 'I would like'."
+    },
+    "N5|Noun から Noun まで (Noun kara Noun made)": {
+      "vi": "Danh từ から Danh từ まで (từ … đến …)",
+      "examples": [
+        {
+          "ja": "朝9時から午後5時まで働きます。",
+          "vi": "Tôi làm việc từ 9 giờ sáng đến 5 giờ chiều."
+        }
+      ],
+      "en": "Expresses a range; 'from...to', 'between...and'."
+    },
+    "N5|Noun くらい～ (Noun kurai～)": {
+      "vi": "Danh từ くらい (khoảng, chừng)",
+      "examples": [
+        {
+          "ja": "この本は三百ページくらいあります。",
+          "vi": "Cuốn sách này có khoảng 300 trang."
+        }
+      ],
+      "en": "Express the extent or degree of something; 'about', 'approximately', 'at least'."
+    },
+    "N5|Noun ぐらい～ (Noun gurai～)": {
+      "vi": "Danh từ ぐらい (khoảng, chừng)",
+      "examples": [
+        {
+          "ja": "一日中勉強したので、１０時間ぐらい勉強しました。",
+          "vi": "Vì học cả ngày nên tôi đã học khoảng 10 tiếng."
+        }
+      ],
+      "en": "Express an approximate amount or degree; 'about', 'approximately'."
+    },
+    "N5|Noun ごろ～ (Noun + goro～)": {
+      "vi": "Danh từ ごろ (khoảng, vào lúc (thời điểm))",
+      "examples": [
+        {
+          "ja": "昼ごろに電話してください。",
+          "vi": "Hãy gọi điện cho tôi vào khoảng buổi trưa."
+        }
+      ],
+      "en": "Expresses 'around' or 'about' a certain time or age."
+    },
+    "N5|Noun だけ〜 (〜dake)": {
+      "vi": "Danh từ だけ (chỉ)",
+      "examples": [
+        {
+          "ja": "コーヒーだけ飲んで、帰りました。",
+          "vi": "Tôi chỉ uống cà phê rồi về."
+        }
+      ],
+      "en": "Indicates 'only', 'just', or 'merely'."
+    },
+    "N5|Nounで～ (Noun de ~)": {
+      "vi": "Danh từ で (ở, tại; bằng (phương tiện))",
+      "examples": [
+        {
+          "ja": "図書館で勉強します。",
+          "vi": "Tôi học ở thư viện."
+        }
+      ],
+      "en": "Indicate a place or means for an action or situation; 'at, in, on', 'using', or 'by means of'."
+    },
+    "N5|Noun と～ (Noun to～)": {
+      "vi": "Danh từ と (và, cùng với)",
+      "examples": [
+        {
+          "ja": "リンゴとバナナを買いました。",
+          "vi": "Tôi đã mua táo và chuối."
+        }
+      ],
+      "en": "Express 'with', 'and' or 'together with' when connecting nouns."
+    },
+    "N5|Noun に～ (Noun ni～)": {
+      "vi": "Danh từ に (đến, cho (đối tượng, đích))",
+      "examples": [
+        {
+          "ja": "彼女にプレゼントをあげました。",
+          "vi": "Tôi đã tặng quà cho cô ấy."
+        }
+      ],
+      "en": "Express a specific direction, target or purpose; 'to', 'toward', 'for'"
+    },
+    "N5|Noun に かえります (Noun ni kaerimasu)": {
+      "vi": "Danh từ に かえります (trở lại (trạng thái) …)",
+      "examples": [
+        {
+          "ja": "来週、部屋をきれいにかえります。",
+          "vi": "Tuần sau, tôi sẽ làm cho căn phòng sạch lại."
+        }
+      ],
+      "en": "Expresses returning something to its original state, 'to return to', 'to go back to'."
+    },
+    "N5|Noun に します (Noun ni shimasu)": {
+      "vi": "Danh từ に します (chọn, quyết định …)",
+      "examples": [
+        {
+          "ja": "今日の昼ご飯は寿司にします。",
+          "vi": "Bữa trưa hôm nay tôi chọn sushi."
+        }
+      ],
+      "en": "Express a choice or decision; 'choose', 'decide on'."
+    },
+    "N5|Noun に なります (Noun ni narimasu)": {
+      "vi": "Danh từ に なります (trở thành …)",
+      "examples": [
+        {
+          "ja": "彼は医者になります。",
+          "vi": "Anh ấy sẽ trở thành bác sĩ."
+        }
+      ],
+      "en": "Expresses change or becoming something; 'to become', 'to turn into', 'to be'"
+    },
+    "N5|Noun に 来ます (ni kimasu)": {
+      "vi": "Danh từ に 来ます / 行きます (đến / đi đến (nơi nào))",
+      "examples": [
+        {
+          "ja": "私は明日図書館に行きます。",
+          "vi": "Ngày mai tôi sẽ đi đến thư viện."
+        }
+      ],
+      "en": "Used to express going to a place for a specific purpose."
+    },
+    "N5|Noun に 行きます (Noun ni ikimasu)": {
+      "vi": "Danh từ に 行きます (đi đến (nơi nào))",
+      "examples": [
+        {
+          "ja": "学校に行きます。",
+          "vi": "Tôi đi đến trường."
+        }
+      ],
+      "en": "Used to express going to a location."
+    },
+    "N5|Noun の あとで (Noun no atode)": {
+      "vi": "Danh từ の あとで (sau …)",
+      "examples": [
+        {
+          "ja": "朝ご飯のあとで、歯を磨きます。",
+          "vi": "Sau bữa sáng, tôi đánh răng."
+        }
+      ],
+      "en": "Expresses the order of events; 'after', 'later than'."
+    },
+    "N5|Noun の 前に (Noun no mae ni)": {
+      "vi": "Danh từ の 前に (phía trước …; trước …)",
+      "examples": [
+        {
+          "ja": "駅の前にコンビニがあります。",
+          "vi": "Phía trước nhà ga có một cửa hàng tiện lợi."
+        }
+      ],
+      "en": "Used to describe a location or position 'in front of' a noun"
+    },
+    "N5|Noun は～ (Noun wa〜)": {
+      "vi": "Danh từ は (đánh dấu chủ đề: còn …, về …)",
+      "examples": [
+        {
+          "ja": "私は日本の料理が好きです。",
+          "vi": "Tôi thì thích món ăn Nhật Bản."
+        }
+      ],
+      "en": "Used to mark the topic of a sentence; 'as for', 'speaking of'."
+    },
+    "N5|Noun も〜 (Noun mo~)": {
+      "vi": "Danh từ も (cũng)",
+      "examples": [
+        {
+          "ja": "私も日本語を勉強しています。",
+          "vi": "Tôi cũng đang học tiếng Nhật."
+        }
+      ],
+      "en": "Indicates that the action or state is the same for multiple items or people; 'also', 'as well'."
+    },
+    "N5|Noun や Noun など～ (Noun ya Noun nado)": {
+      "vi": "Danh từ や Danh từ など (… và …, v.v. (liệt kê không hết))",
+      "examples": [
+        {
+          "ja": "彼は野菜や果物などを食べるのが好きです。",
+          "vi": "Anh ấy thích ăn những thứ như rau và trái cây."
+        }
+      ],
+      "en": "Lists items or examples but not exhaustive; 'such as', 'like', 'and so on'."
+    },
+    "N5|Noun を〜 (Noun wo〜)": {
+      "vi": "Danh từ を (đánh dấu tân ngữ của động từ)",
+      "examples": [
+        {
+          "ja": "私は本を読みます。",
+          "vi": "Tôi đọc sách."
+        }
+      ],
+      "en": "The particle を (wo) indicates the direct object of an action (verb) which performs the action on the noun."
+    },
+    "N5|Verb た あとで (ta ato de)": {
+      "vi": "Động từ thể た + あとで (sau khi làm …)",
+      "examples": [
+        {
+          "ja": "宿題をしたあとで、テレビを見ました。",
+          "vi": "Sau khi làm bài tập, tôi đã xem tivi."
+        }
+      ],
+      "en": "Used to indicate an action that takes place after another action."
+    },
+    "N5|Verb たいです (taidesu)": {
+      "vi": "Động từ bỏ ます + たいです (muốn (làm gì))",
+      "examples": [
+        {
+          "ja": "私は寿司を食べたいです。",
+          "vi": "Tôi muốn ăn sushi."
+        }
+      ],
+      "en": "Express desire or want to do something; 'I want to', 'I would like to'."
+    },
+    "N5|Verb て～ (Verb + te～)": {
+      "vi": "Động từ thể て (nối các hành động: làm … rồi …)",
+      "examples": [
+        {
+          "ja": "コーヒーを飲んで、出かけます。",
+          "vi": "Tôi uống cà phê rồi ra ngoài."
+        }
+      ],
+      "en": "A verb conjugation that connects actions or states."
+    },
+    "N5|Verb て います (Verb te imasu)": {
+      "vi": "Động từ thể て + います (đang (làm gì))",
+      "examples": [
+        {
+          "ja": "彼女は今ピアノを弾いています。",
+          "vi": "Bây giờ cô ấy đang chơi piano."
+        }
+      ],
+      "en": "Express ongoing action or state; 'is doing', 'is doing (continuous)', 'has been doing'."
+    },
+    "N5|Verb てから～ (〜te kara)": {
+      "vi": "Động từ thể て + から (sau khi (làm gì) thì …)",
+      "examples": [
+        {
+          "ja": "宿題をしてから、テレビを見ました。",
+          "vi": "Sau khi làm bài tập xong, tôi đã xem tivi."
+        }
+      ],
+      "en": "Express a sequence of actions or events; 'after', 'since', 'once'."
+    },
+    "N5|Verb て ください (Verb-te kudasai)": {
+      "vi": "Động từ thể て + ください (hãy (làm gì))",
+      "examples": [
+        {
+          "ja": "ドアを開けてください。",
+          "vi": "Hãy mở cửa ra."
+        }
+      ],
+      "en": "A request or command; 'please do'."
+    },
+    "N5|Verb ないで ください (〜naide kudasai)": {
+      "vi": "Động từ thể ない + で ください (xin đừng (làm gì))",
+      "examples": [
+        {
+          "ja": "タバコを吸わないでください。",
+          "vi": "Xin đừng hút thuốc."
+        }
+      ],
+      "en": "Used to make a polite request for someone not to do something; 'please don't'."
+    },
+    "N5|Verb に かえります (〜ni kaerimasu)": {
+      "vi": "Động từ + に かえります (trở lại (trạng thái) …)",
+      "examples": [
+        {
+          "ja": "冷蔵庫に入れると、溶けたアイスクリームは固まるにかえります。",
+          "vi": "Khi cho lại vào tủ lạnh, kem đã tan sẽ đông cứng trở lại."
+        }
+      ],
+      "en": "Expresses the action of returning to a previous state or condition."
+    },
+    "N5|Verb に 来ます (Verb ni kimasu)": {
+      "vi": "Động từ bỏ ます + に 来ます (đến để (làm gì))",
+      "examples": [
+        {
+          "ja": "友達に会いに来ました。",
+          "vi": "Tôi đã đến để gặp bạn."
+        }
+      ],
+      "en": "Expresses the purpose of coming to a place; 'come to (do something)'."
+    },
+    "N5|Verb に 行きます (Verb ni ikimasu)": {
+      "vi": "Động từ bỏ ます + に 行きます (đi để (làm gì))",
+      "examples": [
+        {
+          "ja": "公園に遊びに行きます。",
+          "vi": "Tôi đi công viên để chơi."
+        }
+      ],
+      "en": "To go (somewhere) for the purpose of doing an action."
+    },
+    "N5|Verb ましょう (mashou)": {
+      "vi": "Động từ bỏ ます + ましょう (cùng (làm gì) nào)",
+      "examples": [
+        {
+          "ja": "一緒に映画を見ましょう。",
+          "vi": "Chúng ta cùng xem phim nào."
+        }
+      ],
+      "en": "Making a suggestion or invitation; 'let's' or 'shall we'."
+    },
+    "N5|Verb ましょうか。 (〜mashou ka.)": {
+      "vi": "Động từ bỏ ます + ましょうか (… nhé?; để tôi … nhé?)",
+      "examples": [
+        {
+          "ja": "一緒に映画を見に行きましょうか。",
+          "vi": "Chúng ta cùng đi xem phim nhé?"
+        }
+      ],
+      "en": "Used to make a polite suggestion or offer help; 'shall we', 'should we', 'do you want me to'."
+    },
+    "N5|Verb ませんか。 (Verb-masenka)": {
+      "vi": "Động từ bỏ ます + ませんか (… cùng không?; mời rủ)",
+      "examples": [
+        {
+          "ja": "一緒に映画を見ませんか。",
+          "vi": "Bạn có muốn cùng xem phim không?"
+        }
+      ],
+      "en": "An invitation or suggestion; 'won't you', 'why don't you', 'shall we'."
+    },
+    "N5|Verb ること～ (〜ru koto)": {
+      "vi": "Động từ thể từ điển + こと (việc (làm gì), danh từ hoá)",
+      "examples": [
+        {
+          "ja": "泳ぐことが大好きです。",
+          "vi": "Tôi rất thích bơi."
+        }
+      ],
+      "en": "Express an action or event as a noun; 'the act of', 'doing'."
+    },
+    "N5|Verb る こと が できます (ru koto ga dekimasu)": {
+      "vi": "Động từ thể từ điển + ことが できます (có thể (làm gì))",
+      "examples": [
+        {
+          "ja": "この問題を解くことができます。",
+          "vi": "Tôi có thể giải được bài này."
+        }
+      ],
+      "en": "Express the potential form, or the ability to do something."
+    },
+    "N5|Verb る こと ができる (ru koto ga dekiru)": {
+      "vi": "Động từ thể từ điển + ことが できる (có thể (làm gì), thể thường)",
+      "examples": [
+        {
+          "ja": "この問題を解くことができる？",
+          "vi": "Bạn có thể giải được bài này không?"
+        }
+      ],
+      "en": "Expresses the potential form; 'can', 'be able to', 'is possible'."
+    },
+    "N5|Verb る の～ (Verb + ru + no~)": {
+      "vi": "Động từ thể từ điển + の (danh từ hoá; cuối câu: giải thích)",
+      "examples": [
+        {
+          "ja": "買い物をするために、銀行でお金をおろすの。",
+          "vi": "Tôi sẽ rút tiền ở ngân hàng để đi mua sắm."
+        }
+      ],
+      "en": "Used to express the purpose or reason for doing an action."
+    },
+    "N5|Verb る 前に (ru mae ni)": {
+      "vi": "Động từ thể từ điển + 前に (trước khi (làm gì))",
+      "examples": [
+        {
+          "ja": "出かける前に、部屋を掃除してください。",
+          "vi": "Trước khi ra ngoài, hãy dọn phòng."
+        }
+      ],
+      "en": "Used to express 'before' in a sense of an action must be done before another action happens or 'before' something happens."
+    },
+    "N5|あまり～ありません (amari ~ arimasen)": {
+      "vi": "あまり + phủ định (không … lắm)",
+      "examples": [
+        {
+          "ja": "彼はあまり疲れていません。",
+          "vi": "Anh ấy không mệt lắm."
+        }
+      ],
+      "en": "Express 'not very', 'not much', or 'not really' when describing a negative state or situation."
+    },
+    "N5|あまり～ないです (amari ~ nai desu)": {
+      "vi": "あまり + ないです (không … lắm)",
+      "examples": [
+        {
+          "ja": "あまり食べないです。",
+          "vi": "Tôi không ăn nhiều lắm."
+        }
+      ],
+      "en": "Express 'not really' or 'not very'; used to soften a negative statement."
+    },
+    "N5|～あります (〜arimasu)": {
+      "vi": "… があります (có (đồ vật, sự việc))",
+      "examples": [
+        {
+          "ja": "教室に机があります。",
+          "vi": "Trong lớp học có cái bàn."
+        }
+      ],
+      "en": "Indicate possession or existence of inanimate objects or animals; 'there is', 'there are'."
+    },
+    "N5|～いかがですか。 (〜ikaga desu ka.)": {
+      "vi": "… は いかがですか (… thì thế nào ạ?; mời lịch sự)",
+      "examples": [
+        {
+          "ja": "お茶はいかがですか？",
+          "vi": "Anh/chị dùng trà không ạ?"
+        }
+      ],
+      "en": "A polite way to ask someone's thoughts, opinions, or preferences; 'how about', 'how is'."
+    },
+    "N5|いくつ～ (ikutsu~": {
+      "vi": "いくつ (bao nhiêu (cái); mấy tuổi)",
+      "examples": [
+        {
+          "ja": "いくつリンゴがありますか？",
+          "vi": "Có bao nhiêu quả táo?"
+        }
+      ],
+      "en": "Used to express 'how many' or ask for the number of something."
+    },
+    "N5|いつか～ (itsuka～)": {
+      "vi": "いつか (một lúc nào đó, một ngày nào đó)",
+      "examples": [
+        {
+          "ja": "いつか日本に行きたいです。",
+          "vi": "Một ngày nào đó tôi muốn đến Nhật Bản."
+        }
+      ],
+      "en": "Indicates an unspecified point in time; 'someday', 'one day', 'at some point'."
+    },
+    "N5|いつでも～ (itsudemo～)": {
+      "vi": "いつでも (bất cứ lúc nào)",
+      "examples": [
+        {
+          "ja": "いつでも遊びに来てください。",
+          "vi": "Bất cứ lúc nào cũng hãy đến chơi nhé."
+        }
+      ],
+      "en": "Expresses 'anytime', 'always', or 'whenever'."
+    },
+    "N5|いつも～ (itsumo～)": {
+      "vi": "いつも (lúc nào cũng, luôn luôn)",
+      "examples": [
+        {
+          "ja": "彼はいつも遅刻します。",
+          "vi": "Anh ấy lúc nào cũng đi trễ."
+        }
+      ],
+      "en": "Expressing 'always' or 'usually' in a sentence."
+    },
+    "N5|～います (〜imasu)": {
+      "vi": "… ています (đang (làm gì))",
+      "examples": [
+        {
+          "ja": "今、音楽を聞いています。",
+          "vi": "Bây giờ tôi đang nghe nhạc."
+        }
+      ],
+      "en": "Expresses the present continuous or ongoing action; 'to be doing', 'currently doing'."
+    },
+    "N5|～が (〜ga)": {
+      "vi": "… が (trợ từ chủ ngữ; nhưng)",
+      "examples": [
+        {
+          "ja": "私が学生です。",
+          "vi": "Tôi là sinh viên."
+        }
+      ],
+      "en": "Particle indicating the subject of a sentence or expressing 'but'."
+    },
+    "N5|～が、～ (〜ga, 〜)": {
+      "vi": "…が、… (…, nhưng …)",
+      "examples": [
+        {
+          "ja": "デザートは美味しいが、カロリーが高い。",
+          "vi": "Món tráng miệng thì ngon, nhưng nhiều calo."
+        }
+      ],
+      "en": "Express a contrast between two sentences; 'but', 'however'."
+    },
+    "N5|～から、～ (〜kara、～)": {
+      "vi": "…から、… (vì … nên …)",
+      "examples": [
+        {
+          "ja": "明日は試験があるから、今晩勉強しなければなりません。",
+          "vi": "Vì ngày mai có bài thi nên tối nay tôi phải học."
+        }
+      ],
+      "en": "Expresses reason or cause; 'because', 'since', 'so'."
+    },
+    "N5|～からです (〜kara desu)": {
+      "vi": "…からです (là vì …)",
+      "examples": [
+        {
+          "ja": "寒いからです、コートを着ています。",
+          "vi": "Tôi mặc áo khoác là vì trời lạnh."
+        }
+      ],
+      "en": "Express the reason or cause; 'because', 'since', 'due to'."
+    },
+    "N5|～から もらいます (〜kara moraimasu)": {
+      "vi": "… から もらいます (nhận … từ (ai))",
+      "examples": [
+        {
+          "ja": "友達からプレゼントをもらいました。",
+          "vi": "Tôi đã nhận quà từ bạn."
+        }
+      ],
+      "en": "To receive something or get someone to do something."
+    },
+    "N5|～が 私に くれます (〜ga watashi ni kuremasu)": {
+      "vi": "(Ai) が 私に くれます ((ai đó) cho tôi …)",
+      "examples": [
+        {
+          "ja": "彼がプレゼントを私にくれました。",
+          "vi": "Anh ấy đã tặng quà cho tôi."
+        }
+      ],
+      "en": "Used to express that someone gives a gift or favor to 'me'; 'someone gives me'."
+    },
+    "N5|～けど、～ (〜kedo、～)": {
+      "vi": "…けど、… (…, nhưng …; văn nói)",
+      "examples": [
+        {
+          "ja": "授業に出たけど、まだ宿題をしないと。",
+          "vi": "Tôi đã đi học rồi, nhưng vẫn còn phải làm bài tập."
+        }
+      ],
+      "en": "Used to connect two clauses; 'but', 'however', 'although'"
+    },
+    "N5|～けれど、～ (〜keredo、～)": {
+      "vi": "…けれど、… (…, nhưng …; mặc dù …)",
+      "examples": [
+        {
+          "ja": "今日は寒いけれど、散歩に行きます。",
+          "vi": "Hôm nay trời lạnh nhưng tôi vẫn đi dạo."
+        }
+      ],
+      "en": "Expresses a contrast or contradiction; 'but', 'however', 'even though'."
+    },
+    "N5|こちら～ (kochira～)": {
+      "vi": "こちら (đây, phía này, vị này (lịch sự))",
+      "examples": [
+        {
+          "ja": "こちらは田中さんです。",
+          "vi": "Đây là anh/chị Tanaka."
+        }
+      ],
+      "en": "Refers to a person, place or thing; 'this', 'this one', 'this way', 'here'."
+    },
+    "N5|さっき～ (sakki～)": {
+      "vi": "さっき (lúc nãy, vừa nãy)",
+      "examples": [
+        {
+          "ja": "さっき電話がありました。",
+          "vi": "Lúc nãy có điện thoại."
+        }
+      ],
+      "en": "Refers to a short time ago or just now."
+    },
+    "N5|すぐに～ (sugu ni～)": {
+      "vi": "すぐに (ngay, ngay lập tức)",
+      "examples": [
+        {
+          "ja": "友達が来たら、すぐに電話をかけてください。",
+          "vi": "Khi bạn tôi đến, hãy gọi điện cho tôi ngay nhé."
+        }
+      ],
+      "en": "Immediately or right away; used to express promptness or quickness."
+    },
+    "N5|ぜんぜん～ (zenzen～)": {
+      "vi": "ぜんぜん + phủ định (hoàn toàn không)",
+      "examples": [
+        {
+          "ja": "彼はぜんぜん話さない。",
+          "vi": "Anh ấy hoàn toàn không nói gì."
+        }
+      ],
+      "en": "Used to express 'not at all' or 'completely' in negative sentences."
+    },
+    "N5|そして、～ (soshite、～)": {
+      "vi": "そして、… (và, rồi thì)",
+      "examples": [
+        {
+          "ja": "朝起きて、そして宿題をしました。",
+          "vi": "Buổi sáng tôi thức dậy, rồi làm bài tập."
+        }
+      ],
+      "en": "Used to connect two sentences; 'and then', 'and'."
+    },
+    "N5|そちら～ (sochira～)": {
+      "vi": "そちら (đó, phía đó, vị đó (lịch sự))",
+      "examples": [
+        {
+          "ja": "そちらのレストランはどうですか？",
+          "vi": "Nhà hàng đó thế nào?"
+        }
+      ],
+      "en": "Indicates a direction or a person further away from both the speaker and listener; 'that way', 'that person'."
+    },
+    "N5|それから、～ (sorekara、～)": {
+      "vi": "それから、… (sau đó, rồi thì)",
+      "examples": [
+        {
+          "ja": "コーヒーを飲んで、それから家を出ました。",
+          "vi": "Tôi uống cà phê, sau đó ra khỏi nhà."
+        }
+      ],
+      "en": "Meaning 'after that', 'and then' or 'then', indicating sequence of events."
+    },
+    "N5|だいたい〜 (daitai〜)": {
+      "vi": "だいたい (khoảng, đại khái)",
+      "examples": [
+        {
+          "ja": "だいたい１００人がパーティーに参加しました。",
+          "vi": "Khoảng 100 người đã tham gia bữa tiệc."
+        }
+      ],
+      "en": "Expresses 'roughly', 'approximately', or 'almost'."
+    },
+    "N5|たいてい～ (taitei～)": {
+      "vi": "たいてい (thường thì, phần lớn)",
+      "examples": [
+        {
+          "ja": "たいてい朝８時に起きます。",
+          "vi": "Tôi thường thức dậy lúc 8 giờ sáng."
+        }
+      ],
+      "en": "Used for expressing 'usually', 'mostly', or 'generally'."
+    },
+    "N5|だから、～ (dakara、～)": {
+      "vi": "だから、… (vì vậy, cho nên)",
+      "examples": [
+        {
+          "ja": "雨が降っているだから、傘を持って行きましょう。",
+          "vi": "Vì trời đang mưa nên chúng ta mang ô đi nhé."
+        }
+      ],
+      "en": "Expresses a reason or cause; 'because', 'so', 'therefore'."
+    },
+    "N5|～たり、～たり します (〜tari, 〜tari shimasu)": {
+      "vi": "…たり、…たり します (lúc thì … lúc thì …; làm những việc như …)",
+      "examples": [
+        {
+          "ja": "休日には、映画を見たり、友達と遊んだりします。",
+          "vi": "Vào ngày nghỉ, tôi làm những việc như xem phim, đi chơi với bạn."
+        }
+      ],
+      "en": "Used to list multiple actions or states; 'do things like', 'and'."
+    },
+    "N5|だれ～ (dare～)": {
+      "vi": "だれ (ai)",
+      "examples": [
+        {
+          "ja": "だれがその本を買いましたか。",
+          "vi": "Ai đã mua cuốn sách đó?"
+        }
+      ],
+      "en": "Asking 'who' in a sentence, used to inquire about someone's identity or to clarify who is being referred to."
+    },
+    "N5|だれか〜 (dareka〜)": {
+      "vi": "だれか (ai đó)",
+      "examples": [
+        {
+          "ja": "だれかがドアをノックしました。",
+          "vi": "Ai đó đã gõ cửa."
+        }
+      ],
+      "en": "Indicates 'someone' or something done or possessed by 'someone'."
+    },
+    "N5|だれでも～ (dare demo～)": {
+      "vi": "だれでも (bất cứ ai)",
+      "examples": [
+        {
+          "ja": "だれでもこのゲームができます。",
+          "vi": "Bất cứ ai cũng có thể chơi trò chơi này."
+        }
+      ],
+      "en": "Used to express 'anyone' or 'everyone'; 'no matter who'."
+    },
+    "N5|だれも～ないです (dare mo ~ nai desu)": {
+      "vi": "だれも + ないです (không ai …)",
+      "examples": [
+        {
+          "ja": "だれも知らないです。",
+          "vi": "Không ai biết cả."
+        }
+      ],
+      "en": "Express 'nobody' or 'no one' in a negative sentence."
+    },
+    "N5|だれも～ません (daremo ~masen)": {
+      "vi": "だれも + ません (không ai …)",
+      "examples": [
+        {
+          "ja": "だれも秘密を知りません。",
+          "vi": "Không ai biết bí mật đó."
+        }
+      ],
+      "en": "Express 'nobody' or 'no one' in negative sentences."
+    },
+    "N5|～どう しますか。 (～dou shimasu ka.)": {
+      "vi": "… どう しますか (sẽ làm thế nào?)",
+      "examples": [
+        {
+          "ja": "雨が降っているので、どうしますか？",
+          "vi": "Trời đang mưa, bạn sẽ làm thế nào?"
+        }
+      ],
+      "en": "Asking for someone's opinion or decision; 'what will you do?', 'how will you handle it?'."
+    },
+    "N5|～どうですか。 (〜dou desu ka.)": {
+      "vi": "… どうですか (… thế nào?)",
+      "examples": [
+        {
+          "ja": "この映画はどうですか？",
+          "vi": "Bộ phim này thế nào?"
+        }
+      ],
+      "en": "Asking for opinions or suggestions; 'how about', 'what do you think of'."
+    },
+    "N5|どうやって～ (douyatte～)": {
+      "vi": "どうやって (làm thế nào, bằng cách nào)",
+      "examples": [
+        {
+          "ja": "どうやってお寿司を作りますか？",
+          "vi": "Làm sushi thế nào vậy?"
+        }
+      ],
+      "en": "Ask 'how' something is done or how to do something."
+    },
+    "N5|～どう 言いますか。 (〜dou iimasu ka.)": {
+      "vi": "… どう 言いますか (nói thế nào?)",
+      "examples": [
+        {
+          "ja": "「ありがとう」は英語でどう言いますか。",
+          "vi": "\"Arigatou\" trong tiếng Anh nói thế nào?"
+        }
+      ],
+      "en": "Asking for the way to say something; 'how do you say'."
+    },
+    "N5|～とき (〜toki)": {
+      "vi": "… とき (khi …)",
+      "examples": [
+        {
+          "ja": "公園で遊ぶとき、帽子をかぶりましょう。",
+          "vi": "Khi chơi ở công viên, hãy đội mũ nhé."
+        }
+      ],
+      "en": "Expresses the time when something happens, 'when', 'at the time'."
+    },
+    "N5|ときどき～ (tokidoki～)": {
+      "vi": "ときどき (thỉnh thoảng)",
+      "examples": [
+        {
+          "ja": "彼はときどきケーキを作ります。",
+          "vi": "Thỉnh thoảng anh ấy làm bánh ngọt."
+        }
+      ],
+      "en": "Used to indicate the frequency of an event; 'sometimes', 'occasionally', 'now and then'."
+    },
+    "N5|どこ～ (doko～)": {
+      "vi": "どこ (ở đâu)",
+      "examples": [
+        {
+          "ja": "駅はどこですか？",
+          "vi": "Nhà ga ở đâu?"
+        }
+      ],
+      "en": "Express 'where', used with question words for asking about locations."
+    },
+    "N5|どこか～ (dokoka～)": {
+      "vi": "どこか (ở đâu đó)",
+      "examples": [
+        {
+          "ja": "どこかで財布をなくしました。",
+          "vi": "Tôi đã làm mất ví ở đâu đó."
+        }
+      ],
+      "en": "Expresses 'somewhere', used when the specific location is unknown or uncertain."
+    },
+    "N5|どこでも～ (dokodemo～)": {
+      "vi": "どこでも (bất cứ đâu)",
+      "examples": [
+        {
+          "ja": "どこでも好きな場所で勉強できます。",
+          "vi": "Bạn có thể học ở bất cứ đâu bạn thích."
+        }
+      ],
+      "en": "Express 'anywhere' or 'everywhere' in Japanese."
+    },
+    "N5|どこにも + Verb + ないです (doko ni mo + Verb + nai desu)": {
+      "vi": "どこにも + động từ ないです (không … ở đâu cả)",
+      "examples": [
+        {
+          "ja": "どこにも傘が売ってないです。",
+          "vi": "Không ở đâu bán ô cả."
+        }
+      ],
+      "en": "Express that an action cannot be performed anywhere or something cannot be found anywhere."
+    },
+    "N5|どこにも + Verb + ません (doko ni mo + Verb + masen)": {
+      "vi": "どこにも + động từ ません (không … ở đâu cả)",
+      "examples": [
+        {
+          "ja": "どこにもあの猫がいません。",
+          "vi": "Con mèo đó không có ở đâu cả."
+        }
+      ],
+      "en": "Express 'not anywhere' or 'nowhere' with a negative verb."
+    },
+    "N5|どこへも Verb ないです (doko e mo + Verb + nai desu)": {
+      "vi": "どこへも + động từ ないです (không đi đâu cả)",
+      "examples": [
+        {
+          "ja": "今週末どこへも行かないです。",
+          "vi": "Cuối tuần này tôi không đi đâu cả."
+        }
+      ],
+      "en": "Express that an action doesn't take place anywhere; 'nowhere', 'not anywhere'."
+    },
+    "N5|どこへも Verb ません (doko e mo + Verb + masen)": {
+      "vi": "どこへも + động từ ません (không đi đâu cả)",
+      "examples": [
+        {
+          "ja": "今日はどこへも行きません。",
+          "vi": "Hôm nay tôi không đi đâu cả."
+        }
+      ],
+      "en": "Nowhere; Not to any place"
+    },
+    "N5|どこも Verb ないです (dokomo + Verb + naidesu)": {
+      "vi": "どこも + phủ định ないです (không chỗ nào …)",
+      "examples": [
+        {
+          "ja": "どこもうちわがないです。",
+          "vi": "Không chỗ nào có quạt giấy cả."
+        }
+      ],
+      "en": "Express that something cannot be found anywhere or in any place; 'nowhere', 'in no place'."
+    },
+    "N5|どこも Verb ません (dokomo + Verb + masen)": {
+      "vi": "どこも + phủ định ません (không chỗ nào …)",
+      "examples": [
+        {
+          "ja": "どこも静かじゃありません。",
+          "vi": "Không chỗ nào yên tĩnh cả."
+        }
+      ],
+      "en": "Express that 'nowhere' meets the verb action; 'nowhere does/can'."
+    },
+    "N5|どちら～ (dochira～)": {
+      "vi": "どちら (cái nào (trong hai); phía nào; lịch sự)",
+      "examples": [
+        {
+          "ja": "この二つのリンゴ、どちらが美味しいですか？",
+          "vi": "Trong hai quả táo này, quả nào ngon hơn?"
+        }
+      ],
+      "en": "Used to ask about two choices or options."
+    },
+    "N5|どなた～ (donata～)": {
+      "vi": "どなた (vị nào, ai (lịch sự))",
+      "examples": [
+        {
+          "ja": "すみません、どなたが山田さんですか？",
+          "vi": "Xin lỗi, vị nào là anh Yamada ạ?"
+        }
+      ],
+      "en": "A polite way to ask 'who', used for asking about someone's identity or when seeking information about an unknown person."
+    },
+    "N5|どの Noun (dono Noun)": {
+      "vi": "どの + danh từ (… nào)",
+      "examples": [
+        {
+          "ja": "どの本が一番面白いですか。",
+          "vi": "Cuốn sách nào thú vị nhất?"
+        }
+      ],
+      "en": "Expresses 'which'; used to ask about specific items within a group."
+    },
+    "N5|どれでも～ (dore demo～)": {
+      "vi": "どれでも (cái nào cũng được)",
+      "examples": [
+        {
+          "ja": "どれでもいいですか？",
+          "vi": "Cái nào cũng được phải không?"
+        }
+      ],
+      "en": "Indicates 'any' or 'whichever' when referring to multiple items."
+    },
+    "N5|どんな Noun (donna)": {
+      "vi": "どんな + danh từ (… như thế nào, loại … gì)",
+      "examples": [
+        {
+          "ja": "どんな音楽が好きですか？",
+          "vi": "Bạn thích loại nhạc gì?"
+        }
+      ],
+      "en": "Used to ask or describe 'what kind' or 'what type' of something."
+    },
+    "N5|なに～ (nani~)": {
+      "vi": "なに (cái gì)",
+      "examples": [
+        {
+          "ja": "これはなにですか。",
+          "vi": "Đây là cái gì?"
+        }
+      ],
+      "en": "Asking about 'what' or 'which' in Japanese"
+    },
+    "N5|なにか～ (nanika～)": {
+      "vi": "なにか (cái gì đó)",
+      "examples": [
+        {
+          "ja": "なにか飲み物を持ってきてください。",
+          "vi": "Hãy mang cho tôi thứ gì đó để uống."
+        }
+      ],
+      "en": "Indicates 'something' or 'some kind of'."
+    },
+    "N5|なにも～ないです (nani mo~nai desu)": {
+      "vi": "なにも + ないです (không … gì cả)",
+      "examples": [
+        {
+          "ja": "彼はなにも言わなかったです。",
+          "vi": "Anh ấy đã không nói gì cả."
+        }
+      ],
+      "en": "Used to express 'not any' or 'nothing' in a negative sentence."
+    },
+    "N5|なにも～ません (nanimo~masen)": {
+      "vi": "なにも + ません (không … gì cả)",
+      "examples": [
+        {
+          "ja": "昨日はなにも食べませんでした。",
+          "vi": "Hôm qua tôi không ăn gì cả."
+        }
+      ],
+      "en": "Used to express 'not anything', 'nothing'."
+    },
+    "N5|なん～ (nan~)": {
+      "vi": "なん + từ đếm (mấy, bao nhiêu; gì)",
+      "examples": [
+        {
+          "ja": "あなたはなん歳ですか？",
+          "vi": "Bạn bao nhiêu tuổi?"
+        }
+      ],
+      "en": "Used to form interrogative questions and emphasize the question word for 'what', 'how'."
+    },
+    "N5|なんで～ (nande～)": {
+      "vi": "なんで (tại sao; văn nói)",
+      "examples": [
+        {
+          "ja": "なんで遅れたの？",
+          "vi": "Tại sao bạn đến muộn?"
+        }
+      ],
+      "en": "Asking the reason or cause; 'why', 'how come'."
+    },
+    "N5|なんでも～ (nandemo～)": {
+      "vi": "なんでも (bất cứ cái gì)",
+      "examples": [
+        {
+          "ja": "なんでも食べられるから、何を頼んでも大丈夫です。",
+          "vi": "Tôi ăn được mọi thứ nên gọi món gì cũng được."
+        }
+      ],
+      "en": "Means 'any', 'anything', 'anyone'."
+    },
+    "N5|～なんと 言いますか。 (〜nan to iimasu ka.)": {
+      "vi": "… なんと 言いますか (gọi là gì?)",
+      "examples": [
+        {
+          "ja": "この花はなんと言いますか。",
+          "vi": "Hoa này gọi là gì?"
+        }
+      ],
+      "en": "Asking how something is called or referred to; 'how do you say'"
+    },
+    "N5|～に あげます (〜 ni agemasu)": {
+      "vi": "(Ai) に あげます (cho, tặng (ai))",
+      "examples": [
+        {
+          "ja": "私は友達に本をあげました。",
+          "vi": "Tôi đã tặng sách cho bạn."
+        }
+      ],
+      "en": "Used to express giving something to someone; 'give', 'offer'."
+    },
+    "N5|～に もらいます (〜ni moraimasu)": {
+      "vi": "(Ai) に もらいます (nhận từ (ai))",
+      "examples": [
+        {
+          "ja": "友達にプレゼントをもらいました。",
+          "vi": "Tôi đã nhận quà từ bạn."
+        }
+      ],
+      "en": "To receive something or some action from someone; 'to get', 'to receive'."
+    },
+    "N5|～の (〜no)": {
+      "vi": "… の (của; danh từ bổ nghĩa cho danh từ)",
+      "examples": [
+        {
+          "ja": "これは私の鞄です。",
+          "vi": "Đây là cặp của tôi."
+        }
+      ],
+      "en": "Express possession, apposition, or description using 'of' or 'or'."
+    },
+    "N5|～はたいへんです (〜wa taihen desu)": {
+      "vi": "… は たいへんです (… thật vất vả, khó khăn)",
+      "examples": [
+        {
+          "ja": "漢字を覚えるのはたいへんです。",
+          "vi": "Nhớ chữ kanji thật vất vả."
+        }
+      ],
+      "en": "Express that something is difficult or tough."
+    },
+    "N5|ほとんど〜 (hotondo〜)": {
+      "vi": "ほとんど (hầu hết, gần như; + phủ định: hầu như không)",
+      "examples": [
+        {
+          "ja": "彼女はほとんど英語を話せません。",
+          "vi": "Cô ấy hầu như không nói được tiếng Anh."
+        }
+      ],
+      "en": "Used to express 'almost', 'nearly', or 'most'."
+    },
+    "N5|まあまあ～ (maa maa～)": {
+      "vi": "まあまあ (tàm tạm, tạm được)",
+      "examples": [
+        {
+          "ja": "彼の料理の腕前はまあまあです。",
+          "vi": "Tay nghề nấu ăn của anh ấy tàm tạm."
+        }
+      ],
+      "en": "Expresses something as 'so-so', 'not bad', or 'average'."
+    },
+    "N5|まだ〜 (mada〜)": {
+      "vi": "まだ (vẫn còn; + phủ định: vẫn chưa)",
+      "examples": [
+        {
+          "ja": "昼ご飯はまだ食べていません。",
+          "vi": "Tôi vẫn chưa ăn trưa."
+        }
+      ],
+      "en": "Indicates something has not yet happened or is still happening; 'still', 'not yet'."
+    },
+    "N5|まだ〜ないです (mada 〜 nai desu)": {
+      "vi": "まだ + ないです (vẫn chưa …)",
+      "examples": [
+        {
+          "ja": "まだ宿題をしていないです。",
+          "vi": "Tôi vẫn chưa làm bài tập."
+        }
+      ],
+      "en": "Expresses that something has not happened or been done yet."
+    },
+    "N5|まだ～ません (mada ~masen)": {
+      "vi": "まだ + ません (vẫn chưa …)",
+      "examples": [
+        {
+          "ja": "昼ご飯をまだ食べていません。",
+          "vi": "Tôi vẫn chưa ăn trưa."
+        }
+      ],
+      "en": "Expresses that something has not happened or been done yet."
+    },
+    "N5|もう～ (mou～)": {
+      "vi": "もう (đã … rồi; + phủ định: không … nữa)",
+      "examples": [
+        {
+          "ja": "もう昼ごはんを食べました。",
+          "vi": "Tôi đã ăn trưa rồi."
+        }
+      ],
+      "en": "Expresses 'already', 'anymore', or 'soon'."
+    },
+    "N5|もうすぐ〜 (mou sugu~)": {
+      "vi": "もうすぐ (sắp, sắp sửa)",
+      "examples": [
+        {
+          "ja": "もうすぐ春が来ます。",
+          "vi": "Mùa xuân sắp đến rồi."
+        }
+      ],
+      "en": "Express an action or event happening soon; 'soon', 'in a short while', 'almost'."
+    },
+    "N5|もっと〜 (motto〜)": {
+      "vi": "もっと (hơn nữa, … hơn)",
+      "examples": [
+        {
+          "ja": "もっと勉強しなければなりません。",
+          "vi": "Tôi phải học nhiều hơn nữa."
+        }
+      ],
+      "en": "Expresses 'more' or 'even more' when describing a quantity, frequency, or degree."
+    },
+    "N5|よく～ (yoku ~)": {
+      "vi": "よく (thường, hay; giỏi, kỹ)",
+      "examples": [
+        {
+          "ja": "彼はよく勉強します。",
+          "vi": "Anh ấy hay học bài."
+        }
+      ],
+      "en": "Often used to express 'doing something well' or 'often'"
+    },
+    "N5|～（場所）に～があります (〜basho ni 〜 ga arimasu)": {
+      "vi": "(Địa điểm) に … が あります (ở … có …)",
+      "examples": [
+        {
+          "ja": "図書館にたくさんの本があります。",
+          "vi": "Ở thư viện có rất nhiều sách."
+        }
+      ],
+      "en": "Express the existence or presence of something in a place."
+    }
+  }
+}
