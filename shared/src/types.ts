@@ -65,6 +65,7 @@ export interface Question {
   choices: string[];
   answer: number;
   explain?: string;
+  explainEn?: string;
 }
 
 export interface ReadingLesson {
@@ -75,7 +76,6 @@ export interface ReadingLesson {
   topic?: string;
   body: string;
   vocab: { word: string; reading: string; vi: string; en?: string }[];
-  explainEn?: string;
   questions: Question[];
 }
 

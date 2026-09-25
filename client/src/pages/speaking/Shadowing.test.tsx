@@ -3,6 +3,7 @@ import { Shadowing, pickShadowing, moodForScore } from './Shadowing';
 import { xpForScore } from '../../components/SpeakButton';
 import { clearContentCache } from '../../content/loader';
 import { useProgress } from '../../store/progress';
+import { withLang } from '../../test/lang';
 
 const sentences = [
   { id: 's-1', level: 'N5', ja: '猫が好きです。', en: 'I like cats.' },
@@ -32,5 +33,35 @@ it('falls back to self-assessment without speech recognition and scores the sess
   fireEvent.click(screen.getByRole('button', { name: /Câu tiếp/ }));
   expect(screen.getByTestId('shadowing-result')).toHaveTextContent('65');
   expect(useProgress.getState().xp).toBe(3);
+  vi.restoreAllMocks();
+});
+
+it('shows the Vietnamese translation when present, else English', async () => {
+  clearContentCache();
+  const one = [{ id: 's-1', level: 'N5', ja: '猫が好きです。', en: 'I like cats.', vi: 'Tôi thích mèo.' }];
+  vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify(one)));
+  const { unmount } = render(<Shadowing level="N5" total={1} />);
+  expect(await screen.findByText('Tôi thích mèo.')).toBeInTheDocument();
+  expect(screen.queryByText('I like cats.')).not.toBeInTheDocument();
+  unmount();
+  vi.restoreAllMocks();
+
+  clearContentCache();
+  vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify([sentences[0]])));
+  render(<Shadowing level="N5" total={1} />);
+  expect(await screen.findByText('I like cats.')).toBeInTheDocument();
+  vi.restoreAllMocks();
+});
+
+it('shows shadowing controls in English', async () => {
+  withLang('en');
+  clearContentCache();
+  vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify(sentences)));
+  render(<Shadowing level="N5" total={1} />);
+  expect(await screen.findByText('Sentence 1 / 1')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /Listen to model/ })).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: /Got it/ }));
+  expect(screen.getByText('100 points')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Say it again' })).toBeInTheDocument();
   vi.restoreAllMocks();
 });

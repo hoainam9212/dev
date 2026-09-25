@@ -5,10 +5,13 @@ import { useLevel } from '../../store/level';
 import { LevelPicker } from '../../components/LevelPicker';
 import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
 import { ReadingLessonView } from './ReadingLessonView';
+import { useT } from '../../i18n';
 
-const ALL = 'Tất cả';
+// Sentinel for "no topic filter"; topics are authored strings, so it must not collide with one.
+const ALL = '\0all';
 
 export function ReadingPage() {
+  const t = useT();
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useJson<ReadingLesson[]>(`reading/${level.toLowerCase()}.json`);
   const [sel, setSel] = useState<ReadingLesson | null>(null);
@@ -29,7 +32,7 @@ export function ReadingPage() {
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-black text-rose">Đọc hiểu</h1>
+        <h1 className="text-2xl font-black text-rose">{t.reading.title}</h1>
         <LevelPicker />
       </header>
       <section className="card p-4 md:p-6">
@@ -38,16 +41,16 @@ export function ReadingPage() {
         {data && !sel && (
           <div className="space-y-4">
             {topics.length > 1 && (
-              <div className="flex flex-wrap gap-2" role="group" aria-label="Lọc theo chủ đề">
-                {[[ALL, data.length] as const, ...topics].map(([t, n]) => (
+              <div className="flex flex-wrap gap-2" role="group" aria-label={t.reading.topicFilter}>
+                {[[ALL, data.length] as const, ...topics].map(([tp, n]) => (
                   <button
-                    key={t}
+                    key={tp}
                     type="button"
-                    aria-pressed={topic === t}
-                    onClick={() => setTopic(t)}
-                    className={`rounded-full px-3 py-1 text-xs font-bold transition ${topic === t ? 'bg-rose text-white shadow' : 'bg-sakura/25 hover:bg-sakura/50'}`}
+                    aria-pressed={topic === tp}
+                    onClick={() => setTopic(tp)}
+                    className={`rounded-full px-3 py-1 text-xs font-bold transition ${topic === tp ? 'bg-rose text-white shadow' : 'bg-sakura/25 hover:bg-sakura/50'}`}
                   >
-                    {t} · {n}
+                    {tp === ALL ? t.reading.all : tp} · {n}
                   </button>
                 ))}
               </div>
@@ -60,7 +63,7 @@ export function ReadingPage() {
                     {l.title}
                   </p>
                   <p className="text-sm text-muted">
-                    {l.vocab.length} từ mới · {l.questions.length} câu hỏi
+                    {t.reading.lessonStats(l.vocab.length, l.questions.length)}
                   </p>
                 </button>
               ))}

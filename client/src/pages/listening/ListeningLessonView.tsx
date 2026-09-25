@@ -7,12 +7,16 @@ import { Mascot } from '../../components/Mascot';
 import { speak, speakSequence, stopSpeaking, canSpeak, type Sequence, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
+import { pickText } from '@nihongo/shared';
+import { useLang, useT } from '../../i18n';
 
 type Mode = 'listen' | 'questions' | 'dictation';
 const XP_DICTATION = 2;
 
 export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesson; onBack: () => void }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [mode, setMode] = useState<Mode>('listen');
   const [rate, setRate] = useState(0.9);
   const [showScript, setShowScript] = useState(false);
@@ -45,47 +49,47 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <button type="button" className="btn-soft text-sm" onClick={onBack}>
-          ← Danh sách
+          {t.common.backToList}
         </button>
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={(m) => {
             stop();
             setMode(m);
           }}
           options={[
-            { value: 'listen', label: 'Nghe' },
-            { value: 'questions', label: 'Câu hỏi' },
-            { value: 'dictation', label: 'Chép chính tả' },
+            { value: 'listen', label: t.listening.modes.listen },
+            { value: 'questions', label: t.listening.modes.questions },
+            { value: 'dictation', label: t.listening.modes.dictation },
           ]}
         />
       </div>
       <h2 className="text-2xl font-black">{lesson.title}</h2>
-      {!canSpeak() && <p className="text-sm text-rose">Thiết bị này không hỗ trợ đọc văn bản. Trên máy tính hãy dùng Chrome hoặc Edge.</p>}
+      {!canSpeak() && <p className="text-sm text-rose">{t.listening.noTts}</p>}
 
       {mode === 'listen' && (
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
             <button type="button" className="btn-primary" onClick={playAll}>
-              ▶ Phát cả đoạn
+              {t.listening.playAll}
             </button>
             <button type="button" className="btn-soft" onClick={stop}>
-              ⏹ Dừng
+              {t.listening.stop}
             </button>
             <label className="flex items-center gap-1 text-xs text-muted">
-              Tốc độ
-              <input type="range" min={0.6} max={1.2} step={0.1} value={rate} onChange={(e) => setRate(Number(e.target.value))} aria-label="Tốc độ đọc" />
+              {t.common.speed}
+              <input type="range" min={0.6} max={1.2} step={0.1} value={rate} onChange={(e) => setRate(Number(e.target.value))} aria-label={t.common.speedAria} />
               {rate.toFixed(1)}
             </label>
             <button type="button" className="btn-sky text-sm" onClick={() => setShowScript((s) => !s)}>
-              {showScript ? 'Ẩn lời thoại' : 'Hiện lời thoại'}
+              {showScript ? t.listening.hideScript : t.listening.showScript}
             </button>
           </div>
           <ol className="space-y-2">
             {lesson.script.map((line, i) => (
               <li key={i} className={`flex items-start gap-3 rounded-2xl p-3 ${playing === i ? 'bg-sakura/40' : 'bg-cream dark:bg-bg'}`}>
-                <button type="button" className="text-rose" onClick={() => speak(line.ja, { rate })} aria-label={`Nghe câu ${i + 1}`}>
+                <button type="button" className="text-rose" onClick={() => speak(line.ja, { rate })} aria-label={t.listening.listenLine(i + 1)}>
                   🔊
                 </button>
                 <div className="flex-1">
@@ -93,7 +97,7 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
                   {showScript ? (
                     <>
                       <p className="text-lg font-bold">{line.ja}</p>
-                      <p className="text-sm text-muted">{line.vi}</p>
+                      <p className="text-sm text-muted">{pickText(line.vi, line.en, lang)}</p>
                     </>
                   ) : (
                     <p className="text-lg tracking-widest text-muted">••••••</p>
@@ -118,6 +122,7 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
 
 function Dictation({ lesson, rate }: { lesson: ListeningLesson; rate: number }) {
   useStopSpeechOnUnmount();
+  const t = useT();
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
   const addXp = useProgress((s) => s.addXp);
@@ -134,7 +139,7 @@ function Dictation({ lesson, rate }: { lesson: ListeningLesson; rate: number }) 
       <div className="flex flex-col items-center gap-3 py-6" data-testid="dictation-result">
         <Mascot mood={correct === lesson.dictation.length ? 'happy' : 'neutral'} size={120} />
         <p className="text-xl font-black text-rose">
-          Chép đúng {correct} / {lesson.dictation.length}
+          {t.listening.dictationScore(correct, lesson.dictation.length)}
         </p>
         <button
           type="button"
@@ -144,7 +149,7 @@ function Dictation({ lesson, rate }: { lesson: ListeningLesson; rate: number }) 
             setCorrect(0);
           }}
         >
-          Làm lại
+          {t.common.retry}
         </button>
       </div>
     );
@@ -153,16 +158,16 @@ function Dictation({ lesson, rate }: { lesson: ListeningLesson; rate: number }) 
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {lesson.dictation.length}
+        {t.common.sentenceOf(i + 1, lesson.dictation.length)}
       </p>
       <button type="button" className="btn-sky" onClick={() => speak(line, { rate })}>
-        🔊 Nghe lại
+        {t.common.listenAgain}
       </button>
-      <p className="text-xs text-muted">Gõ lại câu vừa nghe bằng kana (hoặc romaji).</p>
+      <p className="text-xs text-muted">{t.listening.dictationHint}</p>
       <TypingAnswer
         key={i}
         expected={line}
-        placeholder="Gõ câu bạn nghe được…"
+        placeholder={t.listening.dictationPlaceholder}
         onResult={(ok) => {
           const c = ok ? correct + 1 : correct;
           if (ok) addXp(XP_DICTATION);

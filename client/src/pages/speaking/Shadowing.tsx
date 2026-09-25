@@ -7,6 +7,8 @@ import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { shuffle } from '../../lib/quiz';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
+import { sentenceTranslation } from '@nihongo/shared';
+import { useLang, useT } from '../../i18n';
 
 export function pickShadowing(sentences: Sentence[], total: number, rng: () => number = Math.random): Sentence[] {
   const short = sentences.filter((s) => [...s.ja].length <= 25 && [...s.ja].length >= 4);
@@ -19,6 +21,8 @@ export function moodForScore(score: number): Mood {
 
 export function Shadowing({ level, total = 10 }: { level: Level; total?: number }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const { data, error, loading } = useSentences(level);
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,14 +39,14 @@ export function Shadowing({ level, total = 10 }: { level: Level; total?: number 
 
   if (loading) return <LoadingCat />;
   if (error) return <ErrorCat text={error} />;
-  if (items.length === 0) return <p className="text-center text-muted">Chưa có câu mẫu cho cấp này.</p>;
+  if (items.length === 0) return <p className="text-center text-muted">{t.speaking.noSentences}</p>;
 
   if (!cur) {
     const avg = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
     return (
       <div className="flex flex-col items-center gap-3 py-6" data-testid="shadowing-result">
         <Mascot mood={moodForScore(avg)} size={120} />
-        <p className="text-xl font-black text-rose">Điểm trung bình: {avg}</p>
+        <p className="text-xl font-black text-rose">{t.speaking.average(avg)}</p>
         <button
           type="button"
           className="btn-primary"
@@ -53,7 +57,7 @@ export function Shadowing({ level, total = 10 }: { level: Level; total?: number 
             setResult(null);
           }}
         >
-          Làm lại
+          {t.common.retry}
         </button>
       </div>
     );
@@ -62,15 +66,15 @@ export function Shadowing({ level, total = 10 }: { level: Level; total?: number 
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {items.length}
+        {t.common.sentenceOf(i + 1, items.length)}
       </p>
       <div className="card w-full max-w-lg p-5 text-center">
         <p className="text-2xl font-black" lang="ja">
           {cur.ja}
         </p>
-        <p className="mt-1 text-sm text-muted">{cur.en}</p>
+        <p className="mt-1 text-sm text-muted">{sentenceTranslation(cur, lang)}</p>
         <button type="button" className="btn-sky mt-3 text-sm" onClick={() => speak(cur.ja)}>
-          🔊 Nghe mẫu
+          {t.speaking.listenModel}
         </button>
       </div>
       {!result ? (
@@ -78,15 +82,15 @@ export function Shadowing({ level, total = 10 }: { level: Level; total?: number 
       ) : (
         <div className="flex flex-col items-center gap-2" data-testid="speak-result">
           <Mascot mood={moodForScore(result.score)} size={80} />
-          <p className="text-3xl font-black text-rose">{result.score} điểm</p>
+          <p className="text-3xl font-black text-rose">{t.speaking.points(result.score)}</p>
           {result.heard && (
             <p className="text-sm text-muted">
-              Máy nghe được: <span className="font-bold text-text">{result.heard}</span>
+              {t.speaking.heard} <span className="font-bold text-text">{result.heard}</span>
             </p>
           )}
           <div className="flex gap-2">
             <button type="button" className="btn-soft" onClick={() => setResult(null)}>
-              Nói lại
+              {t.speaking.sayAgain}
             </button>
             <button
               type="button"
@@ -109,7 +113,7 @@ export function Shadowing({ level, total = 10 }: { level: Level; total?: number 
                 }
               }}
             >
-              Câu tiếp →
+              {t.speaking.nextSentence}
             </button>
           </div>
         </div>

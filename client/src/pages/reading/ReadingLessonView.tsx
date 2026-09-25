@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import { stripFurigana, type ReadingLesson } from '@nihongo/shared';
+import { pickText, stripFurigana, type ReadingLesson } from '@nihongo/shared';
 import { Furigana } from '../../components/Furigana';
 import { QuizRunner, type QuizQuestion } from '../../components/QuizRunner';
 import { speak, stopSpeaking, useStopSpeechOnUnmount } from '../../lib/tts';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   lesson: ReadingLesson;
@@ -11,6 +12,8 @@ interface Props {
 
 export function ReadingLessonView({ lesson, onBack }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [showFuri, setShowFuri] = useState(true);
   const [rate, setRate] = useState(0.9);
   const [popover, setPopover] = useState<ReadingLesson['vocab'][number] | null>(null);
@@ -25,9 +28,9 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
         promptClassName: 'text-xl',
         choices: q.choices,
         answer: q.answer,
-        explain: q.explain,
+        explain: q.explain || q.explainEn ? pickText(q.explain, q.explainEn, lang) : undefined,
       })),
-    [lesson],
+    [lesson, lang],
   );
 
   const onWordTap = (base: string) => {
@@ -42,21 +45,21 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <button type="button" className="btn-soft text-sm" onClick={onBack}>
-          ← Danh sách
+          {t.common.backToList}
         </button>
         <div className="flex flex-wrap items-center gap-2">
           <button type="button" className="btn-soft text-sm" onClick={() => setShowFuri((f) => !f)}>
-            {showFuri ? 'Ẩn furigana' : 'Hiện furigana'}
+            {showFuri ? t.reading.hideFurigana : t.reading.showFurigana}
           </button>
           <button type="button" className="btn-sky text-sm" onClick={() => speak(plain, { rate })}>
-            🔊 Đọc cả bài
+            {t.reading.readAll}
           </button>
-          <button type="button" className="btn-soft text-sm" onClick={stopSpeaking} aria-label="Dừng đọc">
+          <button type="button" className="btn-soft text-sm" onClick={stopSpeaking} aria-label={t.reading.stopReading}>
             ⏹
           </button>
           <label className="flex items-center gap-1 text-xs text-muted">
-            Tốc độ
-            <input type="range" min={0.6} max={1.2} step={0.1} value={rate} onChange={(e) => setRate(Number(e.target.value))} aria-label="Tốc độ đọc" />
+            {t.common.speed}
+            <input type="range" min={0.6} max={1.2} step={0.1} value={rate} onChange={(e) => setRate(Number(e.target.value))} aria-label={t.common.speedAria} />
             {rate.toFixed(1)}
           </label>
         </div>
@@ -69,32 +72,32 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
 
       {popover && (
         <div className="card flex items-start gap-3 p-4" role="status">
-          <button type="button" className="text-rose" onClick={() => speak(popover.word)} aria-label="Nghe từ">
+          <button type="button" className="text-rose" onClick={() => speak(popover.word)} aria-label={t.reading.listenWord}>
             🔊
           </button>
           <div className="flex-1">
             <p className="text-xl font-black">
               {popover.word} <span className="text-base text-muted">{popover.reading}</span>
             </p>
-            <p>{popover.vi}</p>
+            <p>{pickText(popover.vi, popover.en, lang)}</p>
           </div>
-          <button type="button" className="btn-soft text-xs" onClick={() => setPopover(null)} aria-label="Đóng">
+          <button type="button" className="btn-soft text-xs" onClick={() => setPopover(null)} aria-label={t.common.close}>
             ✕
           </button>
         </div>
       )}
 
       <details className="card p-4">
-        <summary className="cursor-pointer font-bold">Từ vựng trong bài ({lesson.vocab.length})</summary>
+        <summary className="cursor-pointer font-bold">{t.reading.vocabInText(lesson.vocab.length)}</summary>
         <ul className="mt-2 grid gap-1 sm:grid-cols-2">
           {lesson.vocab.map((v) => (
             <li key={v.word} className="flex items-baseline gap-2 text-sm">
-              <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={`Nghe ${v.word}`}>
+              <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={t.reading.listenTo(v.word)}>
                 🔊
               </button>
               <span className="font-bold">{v.word}</span>
               <span className="text-muted">{v.reading}</span>
-              <span>{v.vi}</span>
+              <span>{pickText(v.vi, v.en, lang)}</span>
             </li>
           ))}
         </ul>
@@ -103,7 +106,7 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
       {!quiz ? (
         <div className="flex justify-center">
           <button type="button" className="btn-primary" onClick={() => setQuiz(true)}>
-            Trả lời câu hỏi ({lesson.questions.length})
+            {t.reading.answerQuestions(lesson.questions.length)}
           </button>
         </div>
       ) : (
@@ -112,7 +115,7 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
           {result && (
             <div className="mt-3 flex justify-center gap-2">
               <button type="button" className="btn-soft" onClick={onBack}>
-                Bài khác
+                {t.common.otherLesson}
               </button>
             </div>
           )}
