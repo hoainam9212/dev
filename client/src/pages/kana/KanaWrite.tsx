@@ -3,8 +3,10 @@ import type { KanaChar } from '@nihongo/shared';
 import { WritingPractice } from '../../components/WritingPractice';
 import { useProgress } from '../../store/progress';
 import { useSwipe } from '../../lib/useSwipe';
+import { useT } from '../../i18n';
 
 export function KanaWrite({ chars }: { chars: KanaChar[] }) {
+  const t = useT();
   const writable = chars.filter((c) => c.strokePaths.length > 0);
   const [i, setI] = useState(0);
   const [doneKey, setDoneKey] = useState(0);
@@ -19,7 +21,7 @@ export function KanaWrite({ chars }: { chars: KanaChar[] }) {
   const swipe = useSwipe({ onNext: () => go(1), onPrev: () => go(-1) });
   const cur = writable[i];
 
-  if (!cur) return <p className="text-center text-muted">Chưa có dữ liệu nét cho nhóm này.</p>;
+  if (!cur) return <p className="text-center text-muted">{t.kana.noStrokesGroup}</p>;
 
   return (
     <div data-testid="kana-write" className="flex flex-col items-center gap-4" {...swipe}>
@@ -50,7 +52,7 @@ export function KanaWrite({ chars }: { chars: KanaChar[] }) {
         />
       </div>
       <button type="button" className="btn-primary" onClick={() => go(1)}>
-        Chữ tiếp theo →
+        {t.kana.nextChar}
       </button>
     </div>
   );

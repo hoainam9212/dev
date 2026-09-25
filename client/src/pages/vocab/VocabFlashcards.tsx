@@ -1,8 +1,17 @@
 import { useMemo, useState } from 'react';
-import { buildQueue, type Level, type ProgressItem, type Vocab } from '@nihongo/shared';
+import {
+  buildQueue,
+  sentenceTranslation,
+  vocabMeanings,
+  type Level,
+  type ProgressItem,
+  type Sentence,
+  type Vocab,
+} from '@nihongo/shared';
 import { FlashcardSession, type CardItem } from '../../components/FlashcardSession';
 import { toState } from '../../db/srs';
 import { useSentenceMap } from '../../content/useSentenceMap';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   vocab: Vocab[];
@@ -11,7 +20,26 @@ interface Props {
   newLimit?: number;
 }
 
+/** A component, not JSX built in the queue memo: it reads the language at render, so a switch re-translates it. */
+function VocabBack({ v, ex }: { v: Vocab; ex?: Sentence }) {
+  const lang = useLang();
+  return (
+    <div className="space-y-1">
+      <p className="text-2xl font-black text-rose">{v.reading}</p>
+      <p className="text-lg">{vocabMeanings(v, lang).join(', ')}</p>
+      {ex && (
+        <p className="pt-2 text-sm text-muted">
+          {ex.ja}
+          <br />
+          {sentenceTranslation(ex, lang)}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function VocabFlashcards({ vocab, level, progress, newLimit = 20 }: Props) {
+  const t = useT();
   const sentences = useSentenceMap(level);
   const [seed, setSeed] = useState(0);
   const [done, setDone] = useState(false);
@@ -34,19 +62,7 @@ export function VocabFlashcards({ vocab, level, progress, newLimit = 20 }: Props
         type: 'vocab' as const,
         speakText: v.word,
         front: <span className="text-4xl font-black">{v.word}</span>,
-        back: (
-          <div className="space-y-1">
-            <p className="text-2xl font-black text-rose">{v.reading}</p>
-            <p className="text-lg">{v.meanings.join(', ')}</p>
-            {ex && (
-              <p className="pt-2 text-sm text-muted">
-                {ex.ja}
-                <br />
-                {ex.en}
-              </p>
-            )}
-          </div>
-        ),
+        back: <VocabBack v={v} ex={ex} />,
       };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +81,7 @@ export function VocabFlashcards({ vocab, level, progress, newLimit = 20 }: Props
               setSeed((s) => s + 1);
             }}
           >
-            Phiên mới
+            {t.common.newSession}
           </button>
         </div>
       )}

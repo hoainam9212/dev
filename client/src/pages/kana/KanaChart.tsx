@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { KanaChar } from '@nihongo/shared';
+import { kanaMnemonic, type KanaChar } from '@nihongo/shared';
 import { StrokeAnimation, strokeTimings } from '../../components/StrokeAnimation';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { useSwipe } from '../../lib/useSwipe';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   chars: KanaChar[];
@@ -34,6 +35,8 @@ function splitStrokes(c: KanaChar) {
 
 export function KanaChart({ chars }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [sel, setSel] = useState<KanaChar | null>(null);
   const [play, setPlay] = useState(0);
   const [dir, setDir] = useState<'next' | 'prev' | null>(null);
@@ -89,7 +92,7 @@ export function KanaChart({ chars }: Props) {
       {/* Phones: a bottom sheet over the page, so the stroke animation plays where the learner is looking
           (a panel after the grid would animate off-screen). Desktop: sticky side column. */}
       <aside
-        aria-label="Chi tiết chữ"
+        aria-label={t.kana.detail}
         className={`card h-fit p-4 md:sticky md:top-4 ${
           sel
             ? // `!` because the unlayered .card rule would otherwise win over these utilities
@@ -109,7 +112,7 @@ export function KanaChart({ chars }: Props) {
               type="button"
               className="btn-soft absolute right-0 top-0 md:hidden!"
               onClick={() => setSel(null)}
-              aria-label="Đóng"
+              aria-label={t.common.close}
             >
               ✕
             </button>
@@ -129,20 +132,20 @@ export function KanaChart({ chars }: Props) {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-muted">Chưa có dữ liệu nét.</p>
+              <p className="text-sm text-muted">{t.kana.noStrokes}</p>
             )}
-            {sel.mnemonic && <p className="text-center text-sm text-muted">💡 {sel.mnemonic}</p>}
+            {kanaMnemonic(sel, lang) && <p className="text-center text-sm text-muted">💡 {kanaMnemonic(sel, lang)}</p>}
             <div className="flex gap-2">
               <button type="button" className="btn-sky text-sm" onClick={() => speak(sel.kana)}>
-                🔊 Nghe
+                {t.common.listen}
               </button>
               <button type="button" className="btn-soft text-sm" onClick={() => setPlay((p) => p + 1)}>
-                ▶ Phát lại
+                {t.kana.replay}
               </button>
             </div>
           </div>
         ) : (
-          <p className="text-center text-sm text-muted">Chạm một chữ để xem thứ tự nét và mẹo nhớ.</p>
+          <p className="text-center text-sm text-muted">{t.kana.tapHint}</p>
         )}
       </aside>
     </div>

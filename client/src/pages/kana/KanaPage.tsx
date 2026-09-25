@@ -6,12 +6,14 @@ import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
 import { KanaChart } from './KanaChart';
 import { KanaQuiz, type KanaQuizMode } from './KanaQuiz';
 import { KanaWrite } from './KanaWrite';
+import { useT } from '../../i18n';
 
 type Script = 'hiragana' | 'katakana';
 type Group = 'basic' | 'dakuten' | 'yoon' | 'all';
 type Tab = 'chart' | 'quiz' | 'write';
 
 export function KanaPage() {
+  const t = useT();
   const { data, error, loading } = useKana();
   const [script, setScript] = useState<Script>('hiragana');
   const [group, setGroup] = useState<Group>('basic');
@@ -21,7 +23,7 @@ export function KanaPage() {
   const [result, setResult] = useState<{ correct: number; total: number } | null>(null);
 
   if (loading) return <LoadingCat />;
-  if (error || !data) return <ErrorCat text={error ?? 'Không có dữ liệu kana'} />;
+  if (error || !data) return <ErrorCat text={error ?? t.kana.noData} />;
 
   const all: KanaChar[] = data[script];
   const chars = group === 'all' ? all : all.filter((c) => c.group === group);
@@ -31,7 +33,7 @@ export function KanaPage() {
       <header className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-black text-rose">Kana</h1>
         <Segmented
-          ariaLabel="Bảng chữ"
+          ariaLabel={t.kana.script}
           value={script}
           onChange={setScript}
           options={[
@@ -43,7 +45,7 @@ export function KanaPage() {
 
       <div className="flex flex-wrap items-center gap-3">
         <Segmented
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={tab}
           onChange={(t) => {
             setTab(t);
@@ -51,13 +53,13 @@ export function KanaPage() {
             setQuizKey((k) => k + 1);
           }}
           options={[
-            { value: 'chart', label: 'Bảng chữ' },
-            { value: 'quiz', label: 'Nhận diện' },
-            { value: 'write', label: 'Luyện viết' },
+            { value: 'chart', label: t.kana.tabs.chart },
+            { value: 'quiz', label: t.kana.tabs.quiz },
+            { value: 'write', label: t.kana.tabs.write },
           ]}
         />
         <Segmented
-          ariaLabel="Nhóm"
+          ariaLabel={t.kana.group}
           value={group}
           onChange={(g) => {
             setGroup(g);
@@ -65,10 +67,10 @@ export function KanaPage() {
             setQuizKey((k) => k + 1);
           }}
           options={[
-            { value: 'basic', label: 'Cơ bản' },
-            { value: 'dakuten', label: 'Dakuten' },
-            { value: 'yoon', label: 'Yōon' },
-            { value: 'all', label: 'Tất cả' },
+            { value: 'basic', label: t.kana.groups.basic },
+            { value: 'dakuten', label: t.kana.groups.dakuten },
+            { value: 'yoon', label: t.kana.groups.yoon },
+            { value: 'all', label: t.kana.groups.all },
           ]}
         />
       </div>
@@ -80,7 +82,7 @@ export function KanaPage() {
           <div className="space-y-4">
             <div className="flex justify-center">
               <Segmented
-                ariaLabel="Kiểu câu hỏi"
+                ariaLabel={t.kana.questionType}
                 value={mode}
                 onChange={(m) => {
                   setMode(m);
@@ -104,10 +106,10 @@ export function KanaPage() {
                     setQuizKey((k) => k + 1);
                   }}
                 >
-                  Làm lại
+                  {t.common.retry}
                 </button>
                 <button type="button" className="btn-soft" onClick={() => setTab('chart')}>
-                  Về bảng chữ
+                  {t.kana.backToChart}
                 </button>
               </div>
             )}

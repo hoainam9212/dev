@@ -11,10 +11,12 @@ import { VocabFlashcards } from './VocabFlashcards';
 import { VocabQuiz } from './VocabQuiz';
 import { VocabTyping } from './VocabTyping';
 import { VocabListening } from './VocabListening';
+import { useT } from '../../i18n';
 
 type Mode = 'list' | 'cards' | 'quiz' | 'typing' | 'listening';
 
 export function VocabPage() {
+  const t = useT();
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useVocab(level);
   const progress = useProgressMap('vocab');
@@ -27,27 +29,17 @@ export function VocabPage() {
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-black text-rose">Từ vựng</h1>
+        <h1 className="text-2xl font-black text-rose">{t.vocab.title}</h1>
         <LevelPicker />
       </header>
       <div className="flex flex-wrap items-center gap-3">
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={setMode}
-          options={[
-            { value: 'list', label: 'Danh sách' },
-            { value: 'cards', label: 'Thẻ ghi nhớ' },
-            { value: 'quiz', label: 'Trắc nghiệm' },
-            { value: 'typing', label: 'Gõ đáp án' },
-            { value: 'listening', label: 'Nghe' },
-          ]}
+          options={(['list', 'cards', 'quiz', 'typing', 'listening'] as const).map((m) => ({ value: m, label: t.vocab.modes[m] }))}
         />
-        {data && (
-          <span className="text-sm text-muted">
-            {data.length} từ · đã học {learned} · đến hạn {dueCount}
-          </span>
-        )}
+        {data && <span className="text-sm text-muted">{t.vocab.stats(data.length, learned, dueCount)}</span>}
       </div>
 
       <section className="card p-4 md:p-6">

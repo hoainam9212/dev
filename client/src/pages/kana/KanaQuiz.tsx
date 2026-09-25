@@ -5,6 +5,7 @@ import { Mascot } from '../../components/Mascot';
 import { makeChoices, shuffle } from '../../lib/quiz';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { useProgress } from '../../store/progress';
+import { useT } from '../../i18n';
 
 export type KanaQuizMode = 'kana→romaji' | 'romaji→kana';
 
@@ -34,6 +35,7 @@ function buildQuestions(chars: KanaChar[], mode: KanaQuizMode, total: number): Q
 
 export function KanaQuiz({ chars, mode, total = 10, onFinish }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
   const questions = useMemo(() => buildQuestions(chars, mode, total), [chars, mode, total]);
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
@@ -44,18 +46,14 @@ export function KanaQuiz({ chars, mode, total = 10, onFinish }: Props) {
     return (
       <div className="flex flex-col items-center gap-3 py-6">
         <Mascot mood={correct / questions.length >= 0.8 ? 'happy' : 'neutral'} size={120} />
-        <p className="text-xl font-black text-rose">
-          Kết quả: {correct} / {questions.length}
-        </p>
+        <p className="text-xl font-black text-rose">{t.quiz.result(correct, questions.length)}</p>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {questions.length} · Đúng: {correct}
-      </p>
+      <p className="text-sm font-bold text-muted">{t.quiz.position(i + 1, questions.length, correct)}</p>
       <QuizChoice
         key={i}
         prompt={mode === 'kana→romaji' ? q.target.kana : q.target.romaji}

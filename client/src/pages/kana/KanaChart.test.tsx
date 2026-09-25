@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { KanaChart } from './KanaChart';
 import { swipeLeft, swipeRight } from '../../test/swipe';
+import { withLang } from '../../test/lang';
 
 vi.mock('../../lib/tts', () => ({ speak: vi.fn(), useStopSpeechOnUnmount: vi.fn() }));
 
@@ -36,6 +37,16 @@ it('swipes the sheet to the next and previous character, wrapping around', () =>
   expect(within(panel).getByText('a')).toBeInTheDocument();
   swipeRight(panel);
   expect(within(panel).getByText('i')).toBeInTheDocument();
+});
+
+it('shows the sheet in English: hint, close button and English mnemonic', () => {
+  withLang('en');
+  render(<KanaChart chars={[{ ...chars[0]!, mnemonic: 'mẹo nhớ', mnemonicEn: 'memory tip' }]} />);
+  expect(screen.getByText('Tap a character to see its stroke order and memory tip.')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: /あ/ }));
+  expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument();
+  expect(screen.getByLabelText('Character detail')).toBeInTheDocument();
+  expect(screen.getByText(/memory tip/)).toBeInTheDocument();
 });
 
 it('closes the sheet with Escape', () => {
