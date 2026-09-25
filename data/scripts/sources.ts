@@ -9,7 +9,7 @@ export const KANJIVG_TAG = 'r20250816';
 export interface Source {
   url: string;
   file: string;
-  kind: 'plain' | 'bz2' | 'zip-kanjivg';
+  kind: 'plain' | 'bz2' | 'zip-kanjivg' | 'zip-unihan';
 }
 
 export const SOURCES: Source[] = [
@@ -47,5 +47,20 @@ export const SOURCES: Source[] = [
     url: `https://github.com/KanjiVG/kanjivg/releases/download/${KANJIVG_TAG}/kanjivg-${KANJIVG_TAG.slice(1)}-main.zip`,
     file: 'kanjivg/.done',
     kind: 'zip-kanjivg',
+  },
+  {
+    url: 'https://downloads.tatoeba.org/exports/per_language/vie/vie_sentences.tsv.bz2',
+    file: 'tatoeba/vie_sentences.tsv',
+    kind: 'bz2',
+  },
+  {
+    url: 'https://downloads.tatoeba.org/exports/per_language/jpn/jpn-vie_links.tsv.bz2',
+    file: 'tatoeba/jpn-vie_links.tsv',
+    kind: 'bz2',
+  },
+  {
+    url: 'https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip',
+    file: 'unihan/.done',
+    kind: 'zip-unihan',
   },
 ];

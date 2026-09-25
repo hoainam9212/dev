@@ -27,7 +27,7 @@ async function main() {
     } else if (s.kind === 'bz2') {
       await pipeline(await download(s.url), unbzip2(), fs.createWriteStream(target + '.part'));
       fs.renameSync(target + '.part', target);
-    } else {
+    } else if (s.kind === 'zip-kanjivg') {
       const zipPath = target + '.zip';
       await pipeline(await download(s.url), fs.createWriteStream(zipPath));
       const zip = new AdmZip(zipPath);
@@ -42,6 +42,19 @@ async function main() {
       fs.unlinkSync(zipPath);
       fs.writeFileSync(target, `${n} files\n`);
       console.log('extracted', n, 'svg');
+    } else {
+      const zipPath = target + '.zip';
+      await pipeline(await download(s.url), fs.createWriteStream(zipPath));
+      const zip = new AdmZip(zipPath);
+      const outDir = path.dirname(target);
+      for (const name of ['Unihan_Readings.txt', 'Unihan_Variants.txt']) {
+        const e = zip.getEntry(name);
+        if (!e) throw new Error(`${name} missing in ${s.url}`);
+        fs.writeFileSync(path.join(outDir, name), e.getData());
+      }
+      fs.unlinkSync(zipPath);
+      fs.writeFileSync(target, 'ok\n');
+      console.log('extracted Unihan readings + variants');
     }
   }
   console.log('done');
