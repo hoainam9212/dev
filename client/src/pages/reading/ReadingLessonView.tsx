@@ -92,7 +92,7 @@ export function ReadingLessonView({ lesson, onBack }: Props) {
         <ul className="mt-2 grid gap-1 sm:grid-cols-2">
           {lesson.vocab.map((v) => (
             <li key={v.word} className="flex items-baseline gap-2 text-sm">
-              <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={t.reading.listenTo(v.word)}>
+              <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={t.common.listenTo(v.word)}>
                 🔊
               </button>
               <span className="font-bold">{v.word}</span>

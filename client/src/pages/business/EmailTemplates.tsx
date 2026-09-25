@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import type { BusinessItem } from '@nihongo/shared';
+import { pickText, type BusinessItem } from '@nihongo/shared';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
+import { useLang, useT } from '../../i18n';
 
 export function EmailTemplates({ items }: { items: BusinessItem[] }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [open, setOpen] = useState<string | null>(items[0]?.id ?? null);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -38,13 +41,13 @@ export function EmailTemplates({ items }: { items: BusinessItem[] }) {
                 <pre className="whitespace-pre-wrap rounded-2xl bg-surface p-3 font-sans text-sm leading-relaxed" lang="ja">
                   {i.note}
                 </pre>
-                <p className="text-sm text-muted">📝 {i.vi}</p>
+                <p className="text-sm text-muted">📝 {pickText(i.vi, i.en, lang)}</p>
                 <div className="flex gap-2">
                   <button type="button" className="btn-sky text-sm" onClick={() => speak(i.note ?? i.ja)}>
-                    🔊 Nghe
+                    {t.common.listen}
                   </button>
                   <button type="button" className="btn-soft text-sm" onClick={() => void copy(i)}>
-                    {copied === i.id ? '✓ Đã sao chép' : '📋 Sao chép'}
+                    {copied === i.id ? t.business.copied : t.business.copy}
                   </button>
                 </div>
               </div>

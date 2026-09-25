@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import type { BusinessItem } from '@nihongo/shared';
+import { pickText, type BusinessItem } from '@nihongo/shared';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
+import { useLang, useT } from '../../i18n';
 
 export function RephraseList({ items }: { items: BusinessItem[] }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [hideOk, setHideOk] = useState(false);
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
 
@@ -18,14 +21,14 @@ export function RephraseList({ items }: { items: BusinessItem[] }) {
             setRevealed(new Set());
           }}
         />
-        Tự luyện: che câu nên nói
+        {t.business.selfPractice}
       </label>
       <ul className="space-y-2">
         {items.map((i) => {
           const show = !hideOk || revealed.has(i.id);
           return (
             <li key={i.id} className="rounded-2xl bg-cream p-3 dark:bg-bg">
-              <p className="text-xs font-bold text-muted">{i.vi}</p>
+              <p className="text-xs font-bold text-muted">{pickText(i.vi, i.en, lang)}</p>
               <p className="mt-1 text-base" lang="ja">
                 <span className="mr-2 rounded bg-rose/20 px-1.5 text-xs font-black text-rose">NG</span>
                 <span className="text-muted line-through decoration-rose/60">{i.ng}</span>
@@ -33,7 +36,7 @@ export function RephraseList({ items }: { items: BusinessItem[] }) {
               {show ? (
                 <div className="mt-1 flex items-start gap-2">
                   <span className="rounded bg-emerald-100 px-1.5 text-xs font-black text-emerald-700">OK</span>
-                  <button type="button" className="text-left" onClick={() => speak(i.ja)} aria-label={`Nghe ${i.ja}`}>
+                  <button type="button" className="text-left" onClick={() => speak(i.ja)} aria-label={t.common.listenTo(i.ja)}>
                     <span className="text-lg font-bold" lang="ja">
                       {i.ja}
                     </span>
@@ -42,7 +45,7 @@ export function RephraseList({ items }: { items: BusinessItem[] }) {
                 </div>
               ) : (
                 <button type="button" className="btn-soft mt-2 px-3 py-1 text-sm" onClick={() => setRevealed((r) => new Set(r).add(i.id))}>
-                  Xem câu nên nói
+                  {t.business.revealOk}
                 </button>
               )}
               {show && i.note && <p className="mt-1 text-xs text-muted">💡 {i.note}</p>}

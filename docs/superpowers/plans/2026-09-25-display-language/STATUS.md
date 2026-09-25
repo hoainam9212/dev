@@ -8,6 +8,6 @@ Update the line for your task inside the task's own commit (`todo` → `done <sh
 - 04 kana, vocab — done a100c46 2026-09-25 (vocabMeanings/kanaMnemonic/sentenceTranslation; quizzes seeded per session so a language flip re-translates in place; EN mode labels shortened to fit 360px; 33 files pending)
 - 05 kanji, grammar — done 2b8da39 2026-09-25 (kanjiMeanings/grammarMeaning/exampleTranslation; Hán Việt row when hanViet is set; shared labels moved to common; 21 files pending)
 - 06 reading, listening, speaking — done ad6cb42 2026-09-25 (reading vocab/explain, listening + roleplay script via pickText; Shadowing via sentenceTranslation; Question.explainEn; 14 files pending)
-- 07 writing, review, auth — done (sha in task 08 commit) 2026-09-25 (SentenceBuilder prompt via exampleTranslation, saved sentences keep prompt + promptVi, log dates per locale, review back = VocabBack; 9 files pending)
-- 08 business — todo
+- 07 writing, review, auth — done 2a531c9 2026-09-25 (SentenceBuilder prompt via exampleTranslation, saved sentences keep prompt + promptVi, log dates per locale, review back = VocabBack; 9 files pending)
+- 08 business — done (sha in task 09 commit) 2026-09-25 (business content via pickText, quiz builders take lang + session seed, prompt labels are components; speaking/reading labels shared with business moved to common; 0 files pending)
 - 09 final + release — todo

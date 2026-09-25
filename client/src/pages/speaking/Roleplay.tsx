@@ -83,7 +83,7 @@ export function Roleplay({ level }: { level: Level }) {
     return (
       <div className="flex flex-col items-center gap-3 py-6" data-testid="roleplay-result">
         <Mascot mood={moodForScore(avg)} size={120} />
-        <p className="text-xl font-black text-rose">{t.speaking.average(avg)}</p>
+        <p className="text-xl font-black text-rose">{t.common.average(avg)}</p>
         <div className="flex gap-2">
           <button
             type="button"
@@ -94,7 +94,7 @@ export function Roleplay({ level }: { level: Level }) {
               setResult(null);
             }}
           >
-            {t.speaking.playAgain}
+            {t.common.playAgain}
           </button>
           <button
             type="button"
@@ -120,7 +120,7 @@ export function Roleplay({ level }: { level: Level }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-bold text-muted">
-        {lesson.title} · {t.speaking.turn(i + 1, lesson.script.length)} · {t.speaking.youAre} <span className="text-rose">{role}</span>
+        {lesson.title} · {t.common.turn(i + 1, lesson.script.length)} · {t.speaking.youAre} <span className="text-rose">{role}</span>
       </p>
       <div className="flex w-full max-w-lg items-start gap-3">
         {!mine && <Mascot mood="happy" size={70} />}
@@ -146,21 +146,21 @@ export function Roleplay({ level }: { level: Level }) {
       ) : !result ? (
         <div className="flex flex-col items-center gap-2">
           <button type="button" className="btn-soft text-sm" onClick={() => speak(line.ja)}>
-            {t.speaking.listenModel}
+            {t.common.listenModel}
           </button>
           <SpeakButton expected={line.ja} onResult={setResult} />
         </div>
       ) : (
         <div className="flex flex-col items-center gap-2" data-testid="speak-result">
-          <p className="text-3xl font-black text-rose">{t.speaking.points(result.score)}</p>
+          <p className="text-3xl font-black text-rose">{t.common.points(result.score)}</p>
           {result.heard && (
             <p className="text-sm text-muted">
-              {t.speaking.heard} {result.heard}
+              {t.common.heard} {result.heard}
             </p>
           )}
           <div className="flex gap-2">
             <button type="button" className="btn-soft" onClick={() => setResult(null)}>
-              {t.speaking.sayAgain}
+              {t.common.sayAgain}
             </button>
             <button
               type="button"

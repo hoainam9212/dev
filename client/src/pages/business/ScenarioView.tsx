@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
-import type { BusinessScenario } from '@nihongo/shared';
+import { pickText, type BusinessScenario } from '@nihongo/shared';
 import { speak, speakSequence, stopSpeaking, type Sequence, useStopSpeechOnUnmount } from '../../lib/tts';
 import { Mascot } from '../../components/Mascot';
 import { SpeakButton, type SpeakResult } from '../../components/SpeakButton';
 import { moodForScore } from '../speaking/Shadowing';
+import { useLang, useT } from '../../i18n';
 
 export function ScenarioList({ scenarios, onPick }: { scenarios: BusinessScenario[]; onPick: (s: BusinessScenario) => void }) {
+  const t = useT();
   return (
     <div className="grid gap-3 md:grid-cols-2">
       {scenarios.map((s, i) => (
         <button key={s.id} type="button" onClick={() => onPick(s)} className="card p-4 text-left transition hover:-translate-y-0.5">
-          <p className="text-xs font-bold text-muted">Tình huống {i + 1}</p>
+          <p className="text-xs font-bold text-muted">{t.business.scenarioN(i + 1)}</p>
           <p className="text-lg font-black">{s.title}</p>
           <p className="mt-1 line-clamp-2 text-sm text-muted">{s.situation}</p>
           <p className="mt-2 text-xs text-muted">
-            {s.lines.length} lượt thoại · {s.lines.filter((l) => l.me).length} lượt của bạn
+            {t.business.scenarioStats(s.lines.length, s.lines.filter((l) => l.me).length)}
           </p>
         </button>
       ))}
@@ -24,6 +26,8 @@ export function ScenarioList({ scenarios, onPick }: { scenarios: BusinessScenari
 
 export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario; onBack: () => void }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [mode, setMode] = useState<'read' | 'roleplay'>('read');
   const [showVi, setShowVi] = useState(true);
   const [playing, setPlaying] = useState<number | null>(null);
@@ -50,11 +54,11 @@ export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario;
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <button type="button" className="btn-soft text-sm" onClick={onBack}>
-          ← Danh sách tình huống
+          {t.business.backToScenarios}
         </button>
         <div className="flex gap-2">
           <button type="button" className={mode === 'read' ? 'btn-primary text-sm' : 'btn-soft text-sm'} onClick={() => setMode('read')}>
-            📖 Đọc hội thoại
+            {t.business.readDialogue}
           </button>
           <button
             type="button"
@@ -64,7 +68,7 @@ export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario;
               setMode('roleplay');
             }}
           >
-            🎭 Luyện đóng vai
+            {t.business.practiceRoleplay}
           </button>
         </div>
       </div>
@@ -81,13 +85,13 @@ export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario;
         <>
           <div className="flex flex-wrap gap-2">
             <button type="button" className="btn-sky text-sm" onClick={playAll}>
-              ▶ Nghe cả hội thoại
+              {t.business.playDialogue}
             </button>
             <button type="button" className="btn-soft text-sm" onClick={stop}>
-              ⏹ Dừng
+              {t.common.stop}
             </button>
             <button type="button" className="btn-soft text-sm" onClick={() => setShowVi((v) => !v)}>
-              {showVi ? 'Ẩn bản dịch' : 'Hiện bản dịch'}
+              {showVi ? t.business.hideTranslation : t.business.showTranslation}
             </button>
           </div>
           <ol className="space-y-2" data-testid="scenario-lines">
@@ -104,7 +108,7 @@ export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario;
                   <span className="block font-bold" lang="ja">
                     {l.ja}
                   </span>
-                  {showVi && <span className="block text-xs text-muted">{l.vi}</span>}
+                  {showVi && <span className="block text-xs text-muted">{pickText(l.vi, l.en, lang)}</span>}
                 </button>
               </li>
             ))}
@@ -119,9 +123,10 @@ export function ScenarioView({ scenario, onBack }: { scenario: BusinessScenario;
 }
 
 function Points({ points }: { points: string[] }) {
+  const t = useT();
   return (
     <div className="rounded-2xl bg-lavender/25 p-4">
-      <p className="mb-1 font-black">💡 Lưu ý</p>
+      <p className="mb-1 font-black">{t.business.notes}</p>
       <ul className="list-disc space-y-1 pl-5 text-sm">
         {points.map((p, i) => (
           <li key={i}>{p}</li>
@@ -133,6 +138,8 @@ function Points({ points }: { points: string[] }) {
 
 function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [i, setI] = useState(0);
   const [hint, setHint] = useState(false);
   const [result, setResult] = useState<SpeakResult | null>(null);
@@ -154,7 +161,7 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
     return (
       <div className="flex flex-col items-center gap-3 py-4" data-testid="scenario-roleplay-result">
         <Mascot mood={moodForScore(avg)} size={110} />
-        <p className="text-xl font-black text-rose">Điểm trung bình: {avg}</p>
+        <p className="text-xl font-black text-rose">{t.common.average(avg)}</p>
         <button
           type="button"
           className="btn-primary"
@@ -163,7 +170,7 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
             setScores([]);
           }}
         >
-          Diễn lại
+          {t.common.playAgain}
         </button>
         <div className="w-full">
           <Points points={scenario.points} />
@@ -175,7 +182,7 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-bold text-muted">
-        Lượt {i + 1} / {scenario.lines.length}
+        {t.common.turn(i + 1, scenario.lines.length)}
       </p>
       {!line.me ? (
         <>
@@ -186,23 +193,23 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
               <p className="font-bold" lang="ja">
                 {line.ja}
               </p>
-              <p className="text-xs text-muted">{line.vi}</p>
+              <p className="text-xs text-muted">{pickText(line.vi, line.en, lang)}</p>
             </div>
           </div>
           <div className="flex gap-2">
             <button type="button" className="btn-sky" onClick={() => speak(line.ja)}>
-              🔊 Nghe lại
+              {t.common.listenAgain}
             </button>
             <button type="button" className="btn-primary" onClick={next}>
-              Tiếp →
+              {t.common.next}
             </button>
           </div>
         </>
       ) : (
         <>
           <div className="w-full max-w-lg rounded-3xl rounded-br-md bg-rose/15 p-3 ring-1 ring-rose/40">
-            <p className="text-[11px] font-bold text-rose">Đến lượt bạn nói:</p>
-            <p className="font-bold">{line.vi}</p>
+            <p className="text-[11px] font-bold text-rose">{t.business.yourTurn}</p>
+            <p className="font-bold">{pickText(line.vi, line.en, lang)}</p>
             {(hint || result) && (
               <p className="mt-1 font-bold text-rose" lang="ja">
                 {line.ja}
@@ -213,21 +220,25 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
             <div className="flex flex-col items-center gap-2">
               <div className="flex gap-2">
                 <button type="button" className="btn-soft text-sm" onClick={() => setHint((h) => !h)}>
-                  {hint ? 'Ẩn gợi ý' : '💡 Gợi ý'}
+                  {hint ? t.common.hideHint : t.common.hint}
                 </button>
                 <button type="button" className="btn-sky text-sm" onClick={() => speak(line.ja)}>
-                  🔊 Nghe mẫu
+                  {t.common.listenModel}
                 </button>
               </div>
               <SpeakButton expected={line.ja} onResult={setResult} />
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2" data-testid="speak-result">
-              <p className="text-3xl font-black text-rose">{result.score} điểm</p>
-              {result.heard && <p className="text-sm text-muted">Máy nghe được: {result.heard}</p>}
+              <p className="text-3xl font-black text-rose">{t.common.points(result.score)}</p>
+              {result.heard && (
+                <p className="text-sm text-muted">
+                  {t.common.heard} {result.heard}
+                </p>
+              )}
               <div className="flex gap-2">
                 <button type="button" className="btn-soft" onClick={() => setResult(null)}>
-                  Nói lại
+                  {t.common.sayAgain}
                 </button>
                 <button
                   type="button"
@@ -237,7 +248,7 @@ function ScenarioRoleplay({ scenario }: { scenario: BusinessScenario }) {
                     next();
                   }}
                 >
-                  Tiếp →
+                  {t.common.next}
                 </button>
               </div>
             </div>

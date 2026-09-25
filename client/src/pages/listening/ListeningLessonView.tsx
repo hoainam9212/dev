@@ -75,7 +75,7 @@ export function ListeningLessonView({ lesson, onBack }: { lesson: ListeningLesso
               {t.listening.playAll}
             </button>
             <button type="button" className="btn-soft" onClick={stop}>
-              {t.listening.stop}
+              {t.common.stop}
             </button>
             <label className="flex items-center gap-1 text-xs text-muted">
               {t.common.speed}

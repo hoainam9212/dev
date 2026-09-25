@@ -50,7 +50,7 @@ export function ReadingPage() {
                     onClick={() => setTopic(tp)}
                     className={`rounded-full px-3 py-1 text-xs font-bold transition ${topic === tp ? 'bg-rose text-white shadow' : 'bg-sakura/25 hover:bg-sakura/50'}`}
                   >
-                    {tp === ALL ? t.reading.all : tp} · {n}
+                    {tp === ALL ? t.common.all : tp} · {n}
                   </button>
                 ))}
               </div>

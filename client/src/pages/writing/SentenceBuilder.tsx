@@ -122,7 +122,7 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
         <p className="text-xs font-bold text-muted">{t.writing.pattern(item.grammar.title)}</p>
         <p className="text-lg font-bold">{exampleTranslation(item.example, lang)}</p>
         <button type="button" className="mt-2 text-xs text-rose underline" onClick={() => setHint((h) => !h)}>
-          {hint ? t.writing.hideHint : t.writing.showHint}
+          {hint ? t.common.hideHint : t.writing.showHint}
         </button>
         {hint && <p className="mt-1 font-mono text-sm">{item.grammar.formation}</p>}
       </div>

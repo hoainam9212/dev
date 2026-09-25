@@ -1,15 +1,28 @@
 import { useMemo, useState } from 'react';
-import { topicKind, type BusinessItem, type BusinessKind, type BusinessTopic } from '@nihongo/shared';
+import { pickText, topicKind, type BusinessItem, type BusinessKind, type BusinessTopic, type Lang } from '@nihongo/shared';
 import { QuizRunner, type QuizQuestion } from '../../components/QuizRunner';
 import { Segmented } from '../../components/Segmented';
-import { makeChoices, shuffle } from '../../lib/quiz';
+import { makeChoices, mulberry32, shuffle } from '../../lib/quiz';
+import { useSessionSeed } from '../../lib/useSessionSeed';
+import { useLang, useT } from '../../i18n';
 import { firstForm } from './KeigoTable';
 
 export type KeigoForm = 'sonkei' | 'kenjou';
 
-const FORM_LABEL: Record<KeigoForm, string> = { sonkei: '尊敬語 (tôn kính)', kenjou: '謙譲語 (khiêm nhường)' };
+const meaning = (i: BusinessItem, lang: Lang) => pickText(i.vi, i.en, lang);
 
-export function buildKeigoQuestions(items: BusinessItem[], form: KeigoForm, total: number, rng: () => number = Math.random): QuizQuestion[] {
+// Labels inside prompts are components, so they follow the display language at render.
+function KeigoOf({ form }: { form: KeigoForm }) {
+  return <span className="block text-sm font-bold text-muted">{useT().business.keigoOf[form]}</span>;
+}
+function InsteadOf() {
+  return <span className="block text-sm font-bold text-muted">{useT().business.insteadOf}</span>;
+}
+function HowToSay({ situation }: { situation: string }) {
+  return <span className="block text-sm font-bold text-muted">{useT().business.howToSay(situation)}</span>;
+}
+
+export function buildKeigoQuestions(items: BusinessItem[], form: KeigoForm, total: number, rng: () => number = Math.random, lang: Lang = 'vi'): QuizQuestion[] {
   const pool = items.filter((i) => i.keigo?.[form] && i.keigo[form] !== '—');
   const picked = shuffle(pool, rng).slice(0, Math.min(total, pool.length));
   return picked.map((target) => {
@@ -18,8 +31,8 @@ export function buildKeigoQuestions(items: BusinessItem[], form: KeigoForm, tota
     return {
       prompt: (
         <span>
-          <span className="block text-sm font-bold text-muted">{FORM_LABEL[form]} của</span>
-          {target.ja} <span className="text-lg text-muted">({target.vi})</span>
+          <KeigoOf form={form} />
+          {target.ja} <span className="text-lg text-muted">({meaning(target, lang)})</span>
         </span>
       ),
       promptClassName: 'text-4xl',
@@ -31,13 +44,13 @@ export function buildKeigoQuestions(items: BusinessItem[], form: KeigoForm, tota
   });
 }
 
-export function buildPhraseQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random): QuizQuestion[] {
+export function buildPhraseQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random, lang: Lang = 'vi'): QuizQuestion[] {
   const pool = items.filter((i) => i.category !== 'keigo' && i.category !== 'email' && !i.keigo && !i.ng && !i.example);
   const picked = shuffle(pool, rng).slice(0, Math.min(total, pool.length));
   return picked.map((target) => {
     const options = makeChoices(target, pool, 4, (i) => i.ja, rng);
     return {
-      prompt: <span className="text-xl">{target.vi}</span>,
+      prompt: <span className="text-xl">{meaning(target, lang)}</span>,
       promptClassName: 'text-xl',
       choices: options.map((o) => o.ja),
       answer: options.indexOf(target),
@@ -47,13 +60,13 @@ export function buildPhraseQuestions(items: BusinessItem[], total: number, rng: 
   });
 }
 
-/** Glossary: term → Vietnamese meaning, or meaning → term (alternating). */
-export function buildTermQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random): QuizQuestion[] {
+/** Glossary: term → meaning, or meaning → term (alternating). */
+export function buildTermQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random, lang: Lang = 'vi'): QuizQuestion[] {
   const pool = items.filter((i) => i.example);
   const picked = shuffle(pool, rng).slice(0, Math.min(total, pool.length));
   return picked.map((target, n) => {
     const toMeaning = n % 2 === 0;
-    const options = makeChoices(target, pool, 4, (i) => (toMeaning ? i.vi : i.ja), rng);
+    const options = makeChoices(target, pool, 4, (i) => (toMeaning ? meaning(i, lang) : i.ja), rng);
     return {
       prompt: toMeaning ? (
         <span>
@@ -61,19 +74,19 @@ export function buildTermQuestions(items: BusinessItem[], total: number, rng: ()
           <span className="block text-base text-muted">{target.reading}</span>
         </span>
       ) : (
-        <span className="text-2xl">{target.vi}</span>
+        <span className="text-2xl">{meaning(target, lang)}</span>
       ),
       promptClassName: toMeaning ? 'text-4xl' : 'text-2xl',
-      choices: options.map((o) => (toMeaning ? o.vi : o.ja)),
+      choices: options.map((o) => (toMeaning ? meaning(o, lang) : o.ja)),
       answer: options.indexOf(target),
       speakText: target.ja,
-      explain: target.example ? `${target.example.ja} — ${target.example.vi}` : undefined,
+      explain: target.example ? `${target.example.ja} — ${pickText(target.example.vi, target.example.en, lang)}` : undefined,
     };
   });
 }
 
 /** Rephrase: given the blunt (NG) wording, pick the appropriate business wording. */
-export function buildRephraseQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random): QuizQuestion[] {
+export function buildRephraseQuestions(items: BusinessItem[], total: number, rng: () => number = Math.random, lang: Lang = 'vi'): QuizQuestion[] {
   const pool = items.filter((i) => i.ng);
   const picked = shuffle(pool, rng).slice(0, Math.min(total, pool.length));
   return picked.map((target) => {
@@ -81,9 +94,9 @@ export function buildRephraseQuestions(items: BusinessItem[], total: number, rng
     return {
       prompt: (
         <span>
-          <span className="block text-sm font-bold text-muted">Thay vì nói thẳng:</span>
+          <InsteadOf />
           <span className="text-rose line-through decoration-rose/50">{target.ng}</span>
-          <span className="block text-sm font-bold text-muted">nên nói thế nào? ({target.vi})</span>
+          <HowToSay situation={meaning(target, lang)} />
         </span>
       ),
       promptClassName: 'text-2xl',
@@ -101,23 +114,26 @@ const itemsOfKind = (topics: BusinessTopic[], kinds: BusinessKind[]) =>
   topics.filter((t) => kinds.includes(topicKind(t))).flatMap((t) => t.items);
 
 export function BusinessQuiz({ topics, total = 10 }: { topics: BusinessTopic[]; total?: number }) {
+  const t = useT();
+  const lang = useLang();
   const [kind, setKind] = useState<Kind>('sonkei');
   const [seed, setSeed] = useState(0);
   const [done, setDone] = useState(false);
-  const hasIt = topics.some((t) => t.group === 'it');
+  const rngSeed = useSessionSeed(seed);
+  const hasIt = topics.some((tp) => tp.group === 'it');
   const questions = useMemo(() => {
+    const rng = mulberry32(rngSeed);
     switch (kind) {
       case 'phrase':
-        return buildPhraseQuestions(itemsOfKind(topics, ['phrases']), total);
+        return buildPhraseQuestions(itemsOfKind(topics, ['phrases']), total, rng, lang);
       case 'term':
-        return buildTermQuestions(itemsOfKind(topics, ['glossary']), total);
+        return buildTermQuestions(itemsOfKind(topics, ['glossary']), total, rng, lang);
       case 'rephrase':
-        return buildRephraseQuestions(itemsOfKind(topics, ['rephrase']), total);
+        return buildRephraseQuestions(itemsOfKind(topics, ['rephrase']), total, rng, lang);
       default:
-        return buildKeigoQuestions(itemsOfKind(topics, ['keigo']), kind, total);
+        return buildKeigoQuestions(itemsOfKind(topics, ['keigo']), kind, total, rng, lang);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topics, kind, total, seed]);
+  }, [topics, kind, total, rngSeed, lang]);
   const restart = () => {
     setDone(false);
     setSeed((s) => s + 1);
@@ -126,7 +142,7 @@ export function BusinessQuiz({ topics, total = 10 }: { topics: BusinessTopic[]; 
     <div className="space-y-4">
       <div className="flex justify-center overflow-x-auto">
         <Segmented<Kind>
-          ariaLabel="Kiểu câu hỏi"
+          ariaLabel={t.common.questionType}
           value={kind}
           onChange={(k) => {
             setKind(k);
@@ -135,11 +151,11 @@ export function BusinessQuiz({ topics, total = 10 }: { topics: BusinessTopic[]; 
           options={[
             { value: 'sonkei', label: '尊敬語' },
             { value: 'kenjou', label: '謙譲語' },
-            { value: 'phrase', label: 'Tình huống' },
+            { value: 'phrase', label: t.business.quizKinds.phrase },
             ...(hasIt
               ? [
-                  { value: 'term' as const, label: 'Thuật ngữ IT' },
-                  { value: 'rephrase' as const, label: 'Nói mềm mỏng' },
+                  { value: 'term' as const, label: t.business.quizKinds.term },
+                  { value: 'rephrase' as const, label: t.business.quizKinds.rephrase },
                 ]
               : []),
           ]}
@@ -149,7 +165,7 @@ export function BusinessQuiz({ topics, total = 10 }: { topics: BusinessTopic[]; 
       {done && (
         <div className="flex justify-center">
           <button type="button" className="btn-primary" onClick={restart}>
-            Làm lại
+            {t.common.retry}
           </button>
         </div>
       )}

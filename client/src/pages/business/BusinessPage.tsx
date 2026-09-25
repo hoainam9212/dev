@@ -11,13 +11,9 @@ import { RephraseList } from './RephraseList';
 import { ScenarioList, ScenarioView } from './ScenarioView';
 import { BusinessQuiz } from './BusinessQuiz';
 import { BusinessRoleplay } from './BusinessRoleplay';
+import { useT } from '../../i18n';
 
 type Mode = 'learn' | 'quiz' | 'roleplay';
-
-const GROUPS: { value: BusinessGroup; label: string }[] = [
-  { value: 'it', label: '💻 IT & BrSE' },
-  { value: 'basic', label: '🏢 Cơ bản' },
-];
 
 export const groupOf = (t: BusinessTopic): BusinessGroup => t.group ?? 'basic';
 
@@ -45,28 +41,29 @@ function TopicBody({ topic }: { topic: BusinessTopic }) {
 }
 
 export function BusinessPage() {
+  const t = useT();
   const { data, error, loading } = useJson<BusinessTopic[]>('business/index.json');
   const [mode, setMode] = useState<Mode>('learn');
   const [group, setGroup] = useState<BusinessGroup>('it');
   const [topicId, setTopicId] = useState<string | null>(null);
 
-  const hasIt = !!data?.some((t) => groupOf(t) === 'it');
+  const hasIt = !!data?.some((tp) => groupOf(tp) === 'it');
   const activeGroup: BusinessGroup = hasIt ? group : 'basic';
-  const topics = data?.filter((t) => groupOf(t) === activeGroup) ?? [];
-  const topic = topics.find((t) => t.id === topicId) ?? topics[0];
+  const topics = data?.filter((tp) => groupOf(tp) === activeGroup) ?? [];
+  const topic = topics.find((tp) => tp.id === topicId) ?? topics[0];
 
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-black text-rose">Tiếng Nhật business</h1>
+        <h1 className="text-2xl font-black text-rose">{t.business.title}</h1>
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={setMode}
           options={[
-            { value: 'learn', label: 'Học' },
-            { value: 'quiz', label: 'Trắc nghiệm' },
-            { value: 'roleplay', label: 'Đóng vai' },
+            { value: 'learn', label: t.business.modes.learn },
+            { value: 'quiz', label: t.business.modes.quiz },
+            { value: 'roleplay', label: t.business.modes.roleplay },
           ]}
         />
       </header>
@@ -76,24 +73,27 @@ export function BusinessPage() {
         <>
           {hasIt && (
             <Segmented<BusinessGroup>
-              ariaLabel="Nhóm chủ đề"
+              ariaLabel={t.business.groupAria}
               value={activeGroup}
               onChange={(g) => {
                 setGroup(g);
                 setTopicId(null);
               }}
-              options={GROUPS}
+              options={[
+                { value: 'it', label: t.business.groups.it },
+                { value: 'basic', label: t.business.groups.basic },
+              ]}
             />
           )}
           <div className="flex flex-wrap gap-2">
-            {topics.map((t) => (
+            {topics.map((tp) => (
               <button
-                key={t.id}
+                key={tp.id}
                 type="button"
-                onClick={() => setTopicId(t.id)}
-                className={`rounded-full px-4 py-1.5 text-sm font-bold transition ${topic?.id === t.id ? 'bg-rose text-white shadow' : 'bg-sakura/30 hover:bg-sakura/50'}`}
+                onClick={() => setTopicId(tp.id)}
+                className={`rounded-full px-4 py-1.5 text-sm font-bold transition ${topic?.id === tp.id ? 'bg-rose text-white shadow' : 'bg-sakura/30 hover:bg-sakura/50'}`}
               >
-                {t.title}
+                {tp.title}
               </button>
             ))}
           </div>
