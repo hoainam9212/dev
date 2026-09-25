@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { KanaChar } from '@nihongo/shared';
 import { StrokeAnimation, strokeTimings } from '../../components/StrokeAnimation';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
@@ -37,9 +37,17 @@ export function KanaChart({ chars }: Props) {
   const [play, setPlay] = useState(0);
   const rows = groupRows(chars);
 
+  useEffect(() => {
+    if (!sel) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setSel(null);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [sel]);
+
   return (
     <div className="grid gap-4 md:grid-cols-[1fr_280px]">
-      <div className="space-y-2">
+      {/* on phones the open sheet covers the bottom of the page; leave room to reach the last rows */}
+      <div className={`space-y-2 ${sel ? 'pb-80 md:pb-0' : ''}`}>
         {rows.map((r) => (
           <div key={r.row} className={`grid gap-2 ${r.items[0]!.kana.length > 1 ? 'grid-cols-3' : 'grid-cols-5'}`}>
             {r.items.map((c) => (
@@ -63,9 +71,27 @@ export function KanaChart({ chars }: Props) {
         ))}
       </div>
 
-      <aside className="card sticky top-4 h-fit p-4">
+      {/* Phones: a bottom sheet over the page, so the stroke animation plays where the learner is looking
+          (a panel after the grid would animate off-screen). Desktop: sticky side column. */}
+      <aside
+        aria-label="Chi tiết chữ"
+        className={`card h-fit p-4 md:sticky md:top-4 ${
+          sel
+            ? // `!` because the unlayered .card rule would otherwise win over these utilities
+              'fixed inset-x-0 bottom-0 z-50 max-h-[75vh] overflow-y-auto max-md:rounded-b-none! max-md:shadow-2xl! md:inset-auto md:z-auto md:max-h-none'
+            : 'hidden md:block'
+        }`}
+      >
         {sel ? (
-          <div className="flex flex-col items-center gap-3">
+          <div className="relative flex flex-col items-center gap-3">
+            <button
+              type="button"
+              className="btn-soft absolute right-0 top-0 md:hidden!"
+              onClick={() => setSel(null)}
+              aria-label="Đóng"
+            >
+              ✕
+            </button>
             <span className="text-6xl font-black">{sel.kana}</span>
             <span className="text-xl font-bold text-rose">{sel.romaji}</span>
             {sel.strokePaths.length > 0 ? (
