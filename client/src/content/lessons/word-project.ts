@@ -92,6 +92,16 @@ export const WORD_PROJECT: Lesson[] = [
       }),
 
       {
+        kind: 'realShot',
+        image: '/images/real/word-09-save-as.png',
+        caption: 'Trên Word thật: thẻ File › Save As',
+        marks: [
+          { x: 0.3, y: 29, w: 14.3, h: 3.8, label: 'Save As: lưu tài liệu với một tên mới' },
+          { x: 19.1, y: 46.8, w: 28.8, h: 3.4, label: 'Browse: chọn thư mục trong máy, gõ tên don-xin-viec.docx rồi bấm Save' },
+        ],
+      },
+
+      {
         kind: 'explain',
         mood: 'happy',
         body: 'Xong rồi! Bạn vừa tự tay soạn một lá đơn hoàn chỉnh: gõ chữ, trình bày, danh sách, ảnh và lưu lại. 🎉\n\nNhững thứ này dùng được cho mọi văn bản khác: đơn từ, báo cáo, thư mời. Mochi tự hào về bạn!',

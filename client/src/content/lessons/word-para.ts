@@ -10,7 +10,10 @@ const L = (chapterId: string, id: string, title: string, minutes: number, steps:
   steps,
 });
 
-const LETTER = ['ĐƠN XIN VIỆC', 'Hà Nội, ngày 20 tháng 9', 'Kính gửi Quý công ty Mochi'].join('\n');
+/** Ribbon thẻ Home của Word thật, đủ từ Undo tới Editing. */
+const HOME_SHOT = '/images/real/word-02-home.png';
+
+const LETTER =['ĐƠN XIN VIỆC', 'Hà Nội, ngày 20 tháng 9', 'Kính gửi Quý công ty Mochi'].join('\n');
 
 /** Chương 3 — Đoạn văn cho đẹp. */
 export const WORD_PARA: Lesson[] = [
@@ -43,6 +46,17 @@ export const WORD_PARA: Lesson[] = [
         { type: 'setAlign', align: 'right' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: HOME_SHOT,
+      caption: 'Trên Word thật: thẻ Home › nhóm Paragraph',
+      marks: [
+        { x: 35.5, y: 68.8, w: 1.6, h: 13, label: 'Căn trái (Align Left), phím tắt Ctrl + L' },
+        { x: 37.5, y: 68.8, w: 1.6, h: 13, label: 'Căn giữa (Center), phím tắt Ctrl + E' },
+        { x: 39.5, y: 68.8, w: 1.6, h: 13, label: 'Căn phải (Align Right), phím tắt Ctrl + R' },
+        { x: 41.4, y: 68.8, w: 1.6, h: 13, label: 'Căn đều (Justify), phím tắt Ctrl + J' },
+      ],
+    },
   ]),
 
   L('word.para', 'spacing', 'Giãn dòng cho dễ đọc', 5, [
@@ -62,6 +76,15 @@ export const WORD_PARA: Lesson[] = [
         { type: 'setLineHeight', value: '1.5' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: '/images/real/word-03-line-spacing.png',
+      caption: 'Trên Word thật: thẻ Home › nhóm Paragraph › nút Line and Paragraph Spacing',
+      marks: [
+        { x: 51.4, y: 24.2, w: 3.9, h: 6.2, label: 'Nút Line and Paragraph Spacing (giãn dòng): bấm để mở danh sách' },
+        { x: 51.6, y: 44.8, w: 19.6, h: 6.3, label: 'Chọn 1.5 là giãn dòng 1,5. Word thật viết dấu chấm, bài học viết dấu phẩy' },
+      ],
+    },
   ]),
 
   L('word.para', 'list', 'Danh sách chấm và danh sách số', 6, [
@@ -96,5 +119,14 @@ export const WORD_PARA: Lesson[] = [
         { type: 'toggleList', list: 'bullet' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: HOME_SHOT,
+      caption: 'Trên Word thật: thẻ Home › nhóm Paragraph',
+      marks: [
+        { x: 35.5, y: 47.5, w: 2.3, h: 13.5, label: 'Danh sách chấm (Bullets). Mũi tên ▾ bên cạnh để chọn kiểu dấu chấm' },
+        { x: 38.4, y: 47.5, w: 2.4, h: 13.5, label: 'Danh sách số (Numbering). Mũi tên ▾ bên cạnh để chọn kiểu số' },
+      ],
+    },
   ]),
 ];

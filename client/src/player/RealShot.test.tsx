@@ -5,7 +5,7 @@ import { RealShot } from './RealShot';
 
 const step: RealShotStep = {
   kind: 'realShot',
-  image: '/images/real/word-home.png',
+  image: '/images/real/word-02-home.png',
   caption: 'Trên Word thật: tab Home › nhóm Font',
   marks: [
     { x: 20, y: 68, w: 2, h: 12, label: 'Bold (B)' },

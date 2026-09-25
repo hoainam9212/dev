@@ -2,7 +2,9 @@
 
 Word 365 **tiếng Anh**, cửa sổ phóng to hết màn hình, chụp bằng Win + Shift + S rồi dán vào Excel:
 **mỗi ảnh một sheet, đúng thứ tự dưới đây** (Sheet1 = ảnh 1…). Tên sheet không quan trọng, thứ tự thì có.
-Nhận file xong chạy: `node client/scripts/real-shots.mjs "<file>.xlsx"` → ảnh vào `client/public/images/real/`.
+Nhận file xong chạy: `node client/scripts/real-shots.mjs "<file>.xlsx"` → ảnh vào `client/public/images/real/`
+(sheet trống bị bỏ qua). Rồi **bắt buộc** chạy `powershell -File client/scripts/blur-names.ps1` để làm mờ tên
+tài khoản trên thanh tiêu đề và email trên màn hình Save As; chụp lại ảnh nào thì xem lại khung mờ của ảnh đó.
 
 | Sheet | Chụp gì | Cách mở trên Word | Dùng cho bài |
 |---|---|---|---|

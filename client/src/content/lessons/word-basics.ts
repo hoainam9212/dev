@@ -41,6 +41,16 @@ export const WORD_BASICS: Lesson[] = [
       steps: ['Bấm chuột vào trang giấy.', 'Gõ: Kính gửi Quý công ty', 'Gõ sai thì bấm Backspace xoá rồi gõ lại.'],
       solve: () => [{ type: 'insertText', text: 'Kính gửi Quý công ty' }],
     }),
+    {
+      kind: 'realShot',
+      image: '/images/real/word-01-window.png',
+      caption: 'Trên Word thật: cửa sổ Word với một tài liệu trống',
+      marks: [
+        { x: 0.3, y: 3.4, w: 72.5, h: 2.7, label: 'Các thẻ: File, Home, Insert… Bấm một thẻ để đổi hàng nút bên dưới' },
+        { x: 0.3, y: 6.2, w: 99.2, h: 9, label: 'Ribbon: hàng nút của thẻ đang mở, ở đây là thẻ Home' },
+        { x: 0.3, y: 16, w: 99.2, h: 81.5, label: 'Trang giấy: bấm vào đây rồi gõ chữ' },
+      ],
+    },
   ]),
 
   L('word.start', 'edit', 'Gõ, xuống dòng và sửa sai', 5, [

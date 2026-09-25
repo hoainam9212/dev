@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { wordPractice } from '../lessonKit';
 
+/** Ribbon thẻ Home của Word thật, đủ từ Undo tới Editing. */
+const HOME_SHOT = '/images/real/word-02-home.png';
+
 const L = (chapterId: string, id: string, title: string, minutes: number, steps: Lesson['steps']): Lesson => ({
   trackId: 'word',
   chapterId,
@@ -44,12 +47,12 @@ export const WORD_FORMAT: Lesson[] = [
     }),
     {
       kind: 'realShot',
-      image: '/images/real/word-home.png',
+      image: HOME_SHOT,
       caption: 'Trên Word thật: thẻ Home › nhóm Font',
       marks: [
-        { x: 19.8, y: 67, w: 2.1, h: 13, label: 'Bold (B), phím tắt Ctrl + B: in đậm' },
-        { x: 22.4, y: 67, w: 2.1, h: 13, label: 'Italic (I), phím tắt Ctrl + I: in nghiêng' },
-        { x: 25.0, y: 67, w: 3.2, h: 13, label: 'Underline (U), phím tắt Ctrl + U: gạch chân. Mũi tên ▾ bên cạnh để chọn kiểu gạch' },
+        { x: 7.3, y: 68.8, w: 1.7, h: 13, label: 'Bold (B), phím tắt Ctrl + B: in đậm' },
+        { x: 9.1, y: 68.8, w: 1.7, h: 13, label: 'Italic (I), phím tắt Ctrl + I: in nghiêng' },
+        { x: 10.9, y: 68.8, w: 2.6, h: 13, label: 'Underline (U), phím tắt Ctrl + U: gạch chân. Mũi tên ▾ bên cạnh để chọn kiểu gạch' },
       ],
     },
   ]),
@@ -75,6 +78,15 @@ export const WORD_FORMAT: Lesson[] = [
         { type: 'setStyle', attr: 'fontSize', value: '16pt' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: HOME_SHOT,
+      caption: 'Trên Word thật: thẻ Home › nhóm Font',
+      marks: [
+        { x: 7.1, y: 47.5, w: 8.7, h: 13.5, label: 'Ô phông chữ (Font): bấm ▾ rồi chọn Times New Roman. Tên phông đang hiện tuỳ từng máy' },
+        { x: 15.8, y: 47.5, w: 4.2, h: 13.5, label: 'Ô cỡ chữ (Font Size): bấm ▾ rồi chọn 16' },
+      ],
+    },
   ]),
 
   L('word.format', 'color', 'Màu chữ và tô nền', 5, [
@@ -99,5 +111,14 @@ export const WORD_FORMAT: Lesson[] = [
         { type: 'setStyle', attr: 'color', value: '#C2185B' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: HOME_SHOT,
+      caption: 'Trên Word thật: thẻ Home › nhóm Font',
+      marks: [
+        { x: 23.9, y: 68.8, w: 2.4, h: 13, label: 'Tô nền (Text Highlight Color), hình cây bút dạ: bấm ▾ để chọn màu vàng' },
+        { x: 27.1, y: 68.8, w: 2.2, h: 13, label: 'Màu chữ (Font Color), chữ A có vạch màu: bấm ▾ để chọn màu' },
+      ],
+    },
   ]),
 ];

@@ -41,6 +41,15 @@ export const WORD_OBJECTS: Lesson[] = [
         { type: 'fillCell', row: 0, col: 1, text: 'Điểm' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: '/images/real/word-06-insert-table.png',
+      caption: 'Trên Word thật: thẻ Insert › nhóm Tables › nút Table',
+      marks: [
+        { x: 6.5, y: 14.1, w: 4.7, h: 14.7, label: 'Nút Table: bấm để mở lưới ô vuông' },
+        { x: 6.9, y: 29.6, w: 6.1, h: 22.2, label: 'Rê chuột cho sáng 2 cột, 3 hàng rồi bấm. Word ghi "2x3 Table": số CỘT trước, số hàng sau' },
+      ],
+    },
   ]),
 
   L('word.objects', 'image', 'Chèn ảnh vào văn bản', 6, [
@@ -63,5 +72,20 @@ export const WORD_OBJECTS: Lesson[] = [
         { type: 'setImageWidth', width: '60%' },
       ],
     }),
+    {
+      kind: 'realShot',
+      image: '/images/real/word-05-insert.png',
+      caption: 'Trên Word thật: thẻ Insert › nhóm Illustrations › nút Pictures',
+      marks: [{ x: 12.6, y: 43, w: 5.1, h: 44, label: 'Nút Pictures: bấm rồi chọn This Device để lấy ảnh trong máy' }],
+    },
+    {
+      kind: 'realShot',
+      image: '/images/real/word-07-picture-format.png',
+      caption: 'Trên Word thật: thẻ Picture Format › nhóm Size',
+      marks: [
+        { x: 69.6, y: 6.9, w: 10.6, h: 4.6, label: 'Thẻ Picture Format: chỉ hiện khi bạn bấm chọn một ảnh' },
+        { x: 81.7, y: 12.5, w: 15.9, h: 16.2, label: 'Nhóm Size: ô trên là chiều cao, ô dưới là chiều rộng. Word thật ghi số đo (mm), bài học bấm 60% cho dễ' },
+      ],
+    },
   ]),
 ];

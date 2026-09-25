@@ -100,15 +100,20 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   }
   const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'images', 'real');
   mkdirSync(outDir, { recursive: true });
-  const sheets = imagesBySheet(readFileSync(xlsx));
+  // Sheet trống (người dùng lỡ để thừa) bị bỏ qua, không được chiếm một số thứ tự — nếu không
+  // mọi ảnh sau nó đều mang nhầm tên.
+  const sheets = imagesBySheet(readFileSync(xlsx)).filter((sheet) => {
+    if (sheet.images.length) return true;
+    console.warn(`⚠ Sheet "${sheet.name}": không có ảnh, bỏ qua`);
+    return false;
+  });
   sheets.forEach((sheet, i) => {
     const base = SHOTS[i] ?? `extra-${String(i + 1).padStart(2, '0')}`;
-    if (sheet.images.length === 0) return console.warn(`⚠ Sheet ${i + 1} "${sheet.name}": không có ảnh`);
     sheet.images.forEach((img, j) => {
       const file = `${base}${j ? `-${j + 1}` : ''}${img.ext}`;
       writeFileSync(join(outDir, file), img.data);
-      console.log(`Sheet ${i + 1} "${sheet.name}" → ${file} (${pngSize(img.data)})`);
+      console.log(`Sheet "${sheet.name}" → ${file} (${pngSize(img.data)})`);
     });
   });
-  if (sheets.length !== SHOTS.length) console.warn(`⚠ File có ${sheets.length} sheet, danh sách chụp có ${SHOTS.length}.`);
+  if (sheets.length !== SHOTS.length) console.warn(`⚠ File có ${sheets.length} sheet có ảnh, danh sách chụp có ${SHOTS.length}.`);
 }
