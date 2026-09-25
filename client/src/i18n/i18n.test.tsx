@@ -68,3 +68,10 @@ it('counts cards with English plurals', () => {
   expect(en.common.cards(2)).toBe('2 cards');
   expect(viDict.common.cards(2)).toBe('2 thẻ');
 });
+
+it('pluralizes the listening and scenario counts in English', () => {
+  expect(en.listening.lessonStats(1, 1, 1)).toBe('1 line · 1 question · 1 dictation sentence');
+  expect(en.listening.lessonStats(5, 2, 2)).toBe('5 lines · 2 questions · 2 dictation sentences');
+  expect(en.business.scenarioStats(1, 1)).toBe('1 line · 1 is yours');
+  expect(en.business.scenarioStats(6, 3)).toBe('6 lines · 3 are yours');
+});

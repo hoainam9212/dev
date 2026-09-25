@@ -281,7 +281,7 @@ export const en: Dict = {
   listening: {
     title: 'Listening',
     lessonStats: (lines, questions, dictation) =>
-      `${lines === 1 ? '1 line' : `${lines} lines`} · ${questions === 1 ? '1 question' : `${questions} questions`} · ${dictation} dictation`,
+      `${lines === 1 ? '1 line' : `${lines} lines`} · ${questions === 1 ? '1 question' : `${questions} questions`} · ${dictation === 1 ? '1 dictation sentence' : `${dictation} dictation sentences`}`,
     modes: { listen: 'Listen', questions: 'Questions', dictation: 'Dictation' },
     noTts: 'This device cannot read text aloud. On a computer, use Chrome or Edge.',
     playAll: '▶ Play all',
@@ -356,7 +356,7 @@ export const en: Dict = {
     howToSay: (situation) => `what should you say? (${situation})`,
     quizKinds: { phrase: 'Phrases', term: 'IT terms', rephrase: 'Soften' },
     scenarioN: (n) => `Scenario ${n}`,
-    scenarioStats: (lines, mine) => `${lines === 1 ? '1 line' : `${lines} lines`} · ${mine} yours`,
+    scenarioStats: (lines, mine) => `${lines === 1 ? '1 line' : `${lines} lines`} · ${mine === 1 ? '1 is yours' : `${mine} are yours`}`,
     backToScenarios: '← Scenarios',
     readDialogue: '📖 Read dialogue',
     practiceRoleplay: '🎭 Practice roleplay',
@@ -402,6 +402,13 @@ export const en: Dict = {
   errors: {
     noServer: "Can't reach the server.",
     http: (status) => `Error ${status}`,
+    server: {
+      badCredentials: 'Wrong email or password.',
+      notSignedIn: 'Not signed in, or your session has expired.',
+      emailTaken: 'This email is already registered.',
+      invalid: 'Invalid data.',
+      failure: 'Server error.',
+    },
     loadFailed: (path, status) => `Couldn't load ${path} (${status})`,
     stt: {
       unsupported: "This device doesn't support speech recognition. Use Chrome/Edge, or enable the Google app on Android.",

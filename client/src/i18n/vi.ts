@@ -397,6 +397,14 @@ export const vi = {
   errors: {
     noServer: 'Không kết nối được máy chủ.',
     http: (status: number) => `Lỗi ${status}`,
+    // Same wording as the server; used when the server sends no message.
+    server: {
+      badCredentials: 'Email hoặc mật khẩu không đúng.',
+      notSignedIn: 'Chưa đăng nhập hoặc phiên đã hết hạn.',
+      emailTaken: 'Email này đã được đăng ký.',
+      invalid: 'Dữ liệu không hợp lệ.',
+      failure: 'Lỗi máy chủ.',
+    },
     loadFailed: (path: string, status: number) => `Không tải được ${path} (${status})`,
     stt: {
       unsupported: 'Thiết bị này không hỗ trợ nhận dạng giọng nói. Hãy dùng Chrome/Edge hoặc bật Google app trên Android.',

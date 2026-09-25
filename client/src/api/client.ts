@@ -1,4 +1,5 @@
 import { getT } from '../i18n';
+import { useSettings } from '../store/settings';
 
 export class ApiError extends Error {
   status: number;
@@ -40,14 +41,30 @@ export async function api<T>(path: string, opts: { method?: string; body?: unkno
     throw new ApiError(0, getT().errors.noServer);
   }
   if (!res.ok) {
-    let msg = getT().errors.http(res.status);
+    let serverText: string | undefined;
     try {
-      const j = (await res.json()) as { error?: string };
-      if (j.error) msg = j.error;
+      serverText = ((await res.json()) as { error?: string }).error;
     } catch {
       /* non-json */
     }
-    throw new ApiError(res.status, msg);
+    throw new ApiError(res.status, errorMessage(res.status, path, serverText));
   }
   return (await res.json()) as T;
+}
+
+/**
+ * The server writes its errors in Vietnamese. In Vietnamese mode its text wins; otherwise known statuses
+ * get a dictionary message and anything else the generic "Error N".
+ */
+function errorMessage(status: number, path: string, serverText: string | undefined): string {
+  const t = getT();
+  const s = t.errors.server;
+  const known =
+    status === 401 ? (path.startsWith('/auth/login') ? s.badCredentials : s.notSignedIn)
+    : status === 409 ? s.emailTaken
+    : status === 400 ? s.invalid
+    : status >= 500 ? s.failure
+    : undefined;
+  if (useSettings.getState().lang === 'vi') return serverText || known || t.errors.http(status);
+  return known ?? t.errors.http(status);
 }
