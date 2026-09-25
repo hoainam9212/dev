@@ -9,5 +9,5 @@ Update the line for your task inside the task's own commit (`todo` → `done <sh
 - 05 kanji, grammar — done 2b8da39 2026-09-25 (kanjiMeanings/grammarMeaning/exampleTranslation; Hán Việt row when hanViet is set; shared labels moved to common; 21 files pending)
 - 06 reading, listening, speaking — done ad6cb42 2026-09-25 (reading vocab/explain, listening + roleplay script via pickText; Shadowing via sentenceTranslation; Question.explainEn; 14 files pending)
 - 07 writing, review, auth — done 2a531c9 2026-09-25 (SentenceBuilder prompt via exampleTranslation, saved sentences keep prompt + promptVi, log dates per locale, review back = VocabBack; 9 files pending)
-- 08 business — done (sha in task 09 commit) 2026-09-25 (business content via pickText, quiz builders take lang + session seed, prompt labels are components; speaking/reading labels shared with business moved to common; 0 files pending)
-- 09 final + release — todo
+- 08 business — done 2d3667a 2026-09-25 (business content via pickText, quiz builders take lang + session seed, prompt labels are components; speaking/reading labels shared with business moved to common; 0 files pending)
+- 09 final + release — done 2026-09-25 (PENDING-empty guard, chart dates per language, final review: English server errors + 2 plurals fixed; released 1.0.11)
