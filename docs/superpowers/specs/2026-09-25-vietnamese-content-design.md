@@ -1,6 +1,7 @@
 # Vietnamese content translation — design
 
 Date: 2026-09-25 · Status: approved in chat, awaiting spec review · App version at start: 1.0.11
+Revised 2026-09-25 (after task 01's audit): Hán Việt source changed from Unihan `kVietnamese` to the two-source rule.
 
 ## Goal
 
@@ -36,7 +37,8 @@ the opposite direction, a separate project if wanted. No UI change to show both 
 ## Decisions (from the brainstorm)
 
 - **Translator:** Claude translates in working sessions; translations are committed JSON files. No API script, no
-  paid service. Open data is used where it exists (Hán Việt from Unihan, Vietnamese sentences from Tatoeba).
+  paid service. Open data is used where it exists (Hán Việt where two open sources agree, Vietnamese sentences
+  from Tatoeba).
 - **Waves by JLPT level:** N5 → N4 → N3 → N2 → N1, each shipped as its own APK. Large levels (N3, N2, N1) are
   split into sub-waves that each ship when done (e.g. N3a vocab + kanji, N3b grammar, N3c/N3d sentences in halves).
 - **Display:** VI mode shows Vietnamese where a translation exists, English otherwise (already built).
@@ -77,9 +79,28 @@ The `en` snapshot records what was translated. When the source English no longer
 
 ### Sources and precedence
 
-- **Hán Việt:** Unihan `kVietnamese` (Unicode License). Japanese shinjitai often lack the field, so the build tries
-  the character, then its `kTraditionalVariant`/`kZVariant` forms. Characters still missing get `hanViet` from a
-  kanji translation file (marked by being present there). Stored uppercase; multiple readings joined with `, `.
+- **Hán Việt** must be the reading of the character *as Japanese uses it*, never a Nôm (native Vietnamese) reading
+  and never the reading of an unrelated Chinese character that shares the shape. Two open sources, used together:
+  - KANJIDIC2 `reading r_type="vietnam"` (EDRDG, CC BY-SA 4.0) — keyed by the Japanese character and covers every
+    JLPT kanji, but lists readings unordered and mixes in Nôm (滝 "Sông") and a few Chinese-sense readings (芸 "Vân").
+  - `hanviet.csv` from ph0ngp/hanviet-pinyin-wordlist (MIT; compiled from Thiều Chửu, Trần Văn Chánh and other
+    Hán Việt dictionaries) — Hán Việt only, in a sensible order, but keyed by the **traditional** character. A
+    shinjitai is looked up through its Unihan `kJapaneseOldVariant` form first (芸 → 藝 "nghệ", 気 → 氣 "khí"), then
+    as itself. Chinese simplified↔traditional links (`kTraditionalVariant`) are not used: they map Japanese kanji
+    to unrelated characters (叶 → 葉, 机 → 機).
+  - `hanviet.csv` has one row per Mandarin reading (行: `hang2` → hàng, hạng; `xing2` → hành, hạnh). Rows are
+    ordered with the row matching the character's Unihan `kMandarin` (its most common reading) first, the rest in
+    file order — this puts 読/讀 `du2` "đọc, độc" before `dou4` "đậu".
+  - **Rule:** when the first readings of both sources agree (compared independent of tone-mark placement, so
+    "thuỷ" = "Thủy"), the kanji gets the `hanviet.csv` readings that KANJIDIC2 also lists, at most 3, spelled as
+    KANJIDIC2 spells them (old-style tone placement: HÓA, THỦY). Otherwise it gets none from open data and the
+    kanji batch shows both candidate lists for the translator to decide.
+  - Measured 2026-09-25 (task 01 records the final numbers): the sources agree on ≈1,930 of 2,211 JLPT kanji; on
+    95 hand-checked hard characters no agreed value was wrong. Agreement is still not proof, so kanji batches
+    show the agreed value for review and a translation file `hanViet` overrides it.
+  - Rejected: Unihan `kVietnamese` — it mixes Nôm readings into the field (渡 "đò", 低 "đây", 校 "chò giâu hiệu",
+    about 15–20% of JLPT kanji wrong). Sources built on hvdic.thivien.net (KanjiDictVN) — not openly licensed.
+  Stored uppercase; multiple readings joined with `, `.
 - **Sentences:** Tatoeba Vietnamese translations linked to the Japanese sentence (`vie_sentences.tsv`,
   `jpn-vie_links.tsv`, CC BY 2.0 FR) are used first; the rest are translated from the Japanese with the English as
   a reference.
@@ -91,12 +112,13 @@ The `en` snapshot records what was translated. When the source English no longer
 
 A pure `applyVietnamese(bundle, overlays, openData)` step per type after the existing build, writing
 `meaningsVi` (vocab, kanji), `hanViet` (kanji), `meaningVi` + `examples[].vi` (grammar), `vi` (sentences). The build
-logs per level, e.g. `n5 vocab vi 718/718 · kanji hanViet 79/79 (unihan 76, file 3) · stale 0`.
-`fetch.ts`/`sources.ts` gain Unihan.zip and the two Tatoeba files (into `raw/`, git-ignored, like today).
+logs per level, e.g. `n5 vocab vi 718/718 · kanji hanViet 79/79 (open 70, file 9) · stale 0`.
+`fetch.ts`/`sources.ts` gain KANJIDIC2, `hanviet.csv` (pinned commit), Unihan.zip (`Unihan_Variants.txt` and
+`Unihan_Readings.txt`, the latter for `kMandarin`) and the two Tatoeba files (into `raw/`, git-ignored, like today).
 
 ### Tooling (`npm run tr -w data -- <command>`)
 
-- `status [--level n5]` — coverage per level × type, Tatoeba/Unihan counts, stale entries.
+- `status [--level n5]` — coverage per level × type, Tatoeba/open Hán Việt counts, stale entries.
 - `next --level n5 --type vocab [--size 250]` — writes the next batch of untranslated items to `_work/` with the
   key, Japanese, reading, English and context (tags, component kanji, an example sentence) and the file name to
   write the translation to.
@@ -123,21 +145,23 @@ logs per level, e.g. `n5 vocab vi 718/718 · kanji hanViet 79/79 (unihan 76, fil
 
 ### Testing
 
-- `data`: unit tests for `applyVietnamese` (key match, stale detection, precedence, Unihan variant fallback,
-  uppercase Hán Việt), for `check`, and a test that runs `check` over all of `translations/vi`.
+- `data`: unit tests for `applyVietnamese` (key match, stale detection, precedence, uppercase Hán Việt), for the
+  Hán Việt rule (agreement, Japanese old-variant lookup, tone-placement-independent match, no value on
+  disagreement), for `check`, and a test that runs `check` over all of `translations/vi`.
 - `client`: one test rendering kanji detail and a vocab card from a fixture with `hanViet` + `meaningsVi` in VI mode.
 - Release check: `unzip -p <apk> assets/public/content/vocab/n5.json | grep meaningsVi`.
 
 ### Attribution
 
-Settings › Data sources gains Unihan (Unicode License) and "Tatoeba (Vietnamese translations)" plus a line
+Settings › Data sources gains KANJIDIC2 Vietnamese readings (CC BY-SA 4.0), hanviet-pinyin-wordlist (MIT),
+Unihan variants (Unicode License) and "Tatoeba (Vietnamese translations)" plus a line
 "Vietnamese translations: written by Nihongo Sensei (AI-assisted)" (dictionary text in both languages).
 
 ## Roadmap
 
 | Wave | Content | Items | APK |
 |---|---|---|---|
-| 0 | Tooling: fetch Unihan + Tatoeba VI, overlay build, `tr status/next/check`, STYLE.md, attribution | — | no |
+| 0 | Tooling: fetch Hán Việt sources + Tatoeba VI, overlay build, `tr status/next/check`, STYLE.md, attribution | — | no |
 | 1 | N5 (all types) | ~2,900 | 1.1.0 |
 | 2 | N4 (all types) | ~2,900 | 1.1.1 |
 | 3 | N3, split into sub-waves | ~8,300 | one per sub-wave |
@@ -151,6 +175,7 @@ checklist file (same steps, different level) written when it starts.
 
 - **Translation quality at scale:** mitigated by STYLE.md, the automated check, the 20-item self review per batch
   and the user's 40-item sample per level.
-- **Unihan coverage for shinjitai:** variant lookup plus manual fill; the build reports how many came from each.
+- **Hán Việt correctness:** open data only where two sources agree; disagreements (~280 of 2,211) and a review
+  of agreed values go through the kanji batches; the build reports how many came from open data and from files.
 - **Tatoeba Vietnamese quality varies:** a translation-file entry overrides it; the sample review includes some.
 - **Source drift:** natural keys + English snapshot → stale warnings, not silent mismatches.

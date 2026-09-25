@@ -7,7 +7,7 @@ Branch `vi/task-05`. Read `00-overview.md` and `data/translations/STYLE.md` firs
 
 **Interfaces**
 - Consumes: `npm run tr -w data -- next | check | sample` (task 03), STYLE.md (task 04).
-- Produces: N5 kanji `meaningsVi` (+ manual `hanViet` where Unihan had none), N5 grammar `meaningVi` +
+- Produces: N5 kanji `meaningsVi` (+ `hanViet` where the open sources disagreed or were wrong), N5 grammar `meaningVi` +
   `examples[].vi` after `data:build`.
 
 **Batch procedure (repeat per batch)**
@@ -23,8 +23,10 @@ Branch `vi/task-05`. Read `00-overview.md` and `data/translations/STYLE.md` firs
 7. Check command (`npm run typecheck && npm test`) → green (it runs the translations test).
 8. Commit `feat(vi): N5 <type> translations (<n> entries)` with a body noting any manual Hán Việt and style calls.
 
-- [ ] **Step 1: Kanji batch** (`--type kanji`, all 79). Expected after step 6: `hanViet 79/79`, `kanji 79/79`.
-  In the commit body list the characters whose `hanViet` was written by hand (the skeleton had `"hanViet": ""`).
+- [ ] **Step 1: Kanji batch** (`--type kanji`, all 79). Follow STYLE.md › Hán Việt: fill every empty `hanViet` from
+  `context.hanVietCandidates` (Japanese sense, never Nôm), and re-read every `context.hanVietOpen` — add `hanViet`
+  to correct a wrong one. Expected after step 6: `hanViet 79/79`, `kanji 79/79`. In the commit body list the
+  characters whose `hanViet` was written by hand, split into "sources disagreed" and "corrected agreed value".
 - [ ] **Step 2: Grammar batch** (`--type grammar`, all 136). Expected after step 6: `grammar 136/136`,
   `examples 136/136`. Grammar `vi` follows STYLE.md (slot in brackets); examples are full sentences.
 - [ ] **Step 3: STATUS** — line 05 `done … (kanji 79, grammar 136, manual hanViet: <n>)` in the second commit

@@ -9,8 +9,8 @@ Branch `vi/task-03`. Read `00-overview.md` first.
 
 **Interfaces**
 - Consumes (task 02): `LoadedFile`, `TrFile`, `TrType`, `TR_TYPES`, `Overlays`, `Sources`, `readTrFiles`,
-  `toOverlays`, `loadBuiltSources`, `vocabKey`, `kanjiKey`, `grammarKey`, `sentenceKey`; `OUT_DIR`,
-  `TRANSLATIONS_DIR` from `scripts/sources.ts`.
+  `toOverlays`, `loadBuiltSources`, `vocabKey`, `kanjiKey`, `grammarKey`, `sentenceKey`; `OUT_DIR`, `RAW_DIR`,
+  `TRANSLATIONS_DIR` from `scripts/sources.ts`; (task 01) `HanVietLookup`, `hanVietFor`, `loadHanVietSources`.
 - Produces: `Issue`, `looksVietnamese`, `checkTranslations`; `Batch`, `pendingItems`, `nextIndex`, `makeBatch`,
   `SampleRow`, `sampleEntries`; the CLI commands in the overview.
 
@@ -156,8 +156,11 @@ it('makes skeletons with English snapshots and context', () => {
   expect(v.writeTo).toBe('vi/n5/vocab-002.json');
   expect(v.file).toEqual({ type: 'vocab', level: 'N5', entries: { '赤い|あかい': { vi: [], en: ['red'] } } });
   expect(v.context['赤い|あかい']).toEqual({ reading: 'あかい', example: { ja: 'ja1', en: 'en1' } });
-  const k = makeBatch('kanji', 'N5', src.kanji, 1);
+  const hint = (ch: string) => (ch === '一' ? { value: 'NHẤT', kanjidic: ['Nhất'], hanviet: ['nhất'] } : { kanjidic: ['Sông'], hanviet: [] });
+  const k = makeBatch('kanji', 'N5', src.kanji, 1, undefined, hint);
   expect(k.file.entries).toEqual({ 一: { vi: [], en: ['one'] }, '々': { vi: [], hanViet: '', en: ['repeat'] } });
+  expect(k.context['一']).toEqual({ on: ['イチ'], kun: [], hanVietOpen: 'NHẤT' });
+  expect(k.context['々']).toEqual({ on: [], kun: [], hanVietCandidates: { kanjidic: ['Sông'], hanviet: [] } });
   const g = makeBatch('grammar', 'N5', src.grammar, 1);
   expect(g.file.entries['N5|〜たい']).toEqual({ vi: '', examples: [{ ja: '行きたい。', vi: '' }], en: 'want to' });
   const s = makeBatch('sentences', 'N5', [src.sentences[0]!], 1);
@@ -290,6 +293,7 @@ export function checkTranslations(files: LoadedFile[], src: Sources): { errors: 
 
 ```ts
 import type { Grammar, Kanji, Level, Sentence, Vocab } from '@nihongo/shared';
+import type { HanVietLookup } from './opendata';
 import {
   grammarKey, kanjiKey, sentenceKey, toOverlays, vocabKey,
   type LoadedFile, type Overlays, type Sources, type TrFile, type TrType,
@@ -321,7 +325,10 @@ export function nextIndex(existing: string[], type: TrType): number {
   return (nums.length ? Math.max(...nums) : 0) + 1;
 }
 
-export function makeBatch(type: TrType, level: Level, items: Item[], index: number, sentencesById?: Map<string, Sentence>): Batch {
+export function makeBatch(
+  type: TrType, level: Level, items: Item[], index: number,
+  sentencesById?: Map<string, Sentence>, hanVietHint?: (ch: string) => HanVietLookup,
+): Batch {
   const entries: Record<string, unknown> = {};
   const context: Record<string, unknown> = {};
   for (const item of items) {
@@ -333,7 +340,13 @@ export function makeBatch(type: TrType, level: Level, items: Item[], index: numb
     } else if (type === 'kanji') {
       const k = item as Kanji;
       entries[kanjiKey(k)] = { vi: [], ...(k.hanViet ? {} : { hanViet: '' }), en: k.meanings };
-      context[kanjiKey(k)] = { on: k.on, kun: k.kun, ...(k.hanViet ? { hanVietOpen: k.hanViet } : {}) };
+      // Agreed open value to review, or both sources' candidates when they disagree (spec › Sources and precedence).
+      const hint = k.hanViet ? undefined : hanVietHint?.(k.char);
+      context[kanjiKey(k)] = {
+        on: k.on, kun: k.kun,
+        ...(k.hanViet ? { hanVietOpen: k.hanViet } : {}),
+        ...(hint ? { hanVietCandidates: { kanjidic: hint.kanjidic, hanviet: hint.hanviet } } : {}),
+      };
     } else if (type === 'grammar') {
       const g = item as Grammar;
       entries[grammarKey(g)] = { vi: '', examples: g.examples.map((e) => ({ ja: e.ja, vi: '' })), en: g.meaning };
@@ -384,7 +397,8 @@ export function sampleEntries(files: LoadedFile[], src: Sources, n: number, rng:
 import fs from 'node:fs';
 import path from 'node:path';
 import { LEVELS, type Level } from '@nihongo/shared';
-import { OUT_DIR, TRANSLATIONS_DIR } from './sources';
+import { OUT_DIR, RAW_DIR, TRANSLATIONS_DIR } from './sources';
+import { hanVietFor, loadHanVietSources } from '../src/opendata';
 import { loadBuiltSources, readTrFiles, toOverlays, TR_TYPES, type TrType } from '../src/translate';
 import { checkTranslations } from '../src/translate-check';
 import { makeBatch, nextIndex, pendingItems, sampleEntries } from '../src/tr-batch';
@@ -430,12 +444,15 @@ if (cmd === 'status') {
     console.log(`nothing pending for ${level} ${type}`);
   } else {
     const byId = new Map(src.sentences.map((s) => [s.id, s]));
-    const batch = makeBatch(type, level, items, nextIndex(files.map((f) => f.path).filter((p) => p.startsWith(`vi/${level.toLowerCase()}/`)), type), byId);
+    const hv = type === 'kanji' ? loadHanVietSources(RAW_DIR) : undefined;
+    const hint = hv && ((ch: string) => hanVietFor(ch, hv));
+    const batch = makeBatch(type, level, items, nextIndex(files.map((f) => f.path).filter((p) => p.startsWith(`vi/${level.toLowerCase()}/`)), type), byId, hint);
     const out = path.join(TRANSLATIONS_DIR, '_work', batch.writeTo.replace(/\//g, '_'));
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, JSON.stringify(batch, null, 2));
     console.log(`${items.length} ${type} → ${path.relative(process.cwd(), out)}`);
-    console.log(`fill "vi" (and empty "hanViet"), then write the "file" object to translations/${batch.writeTo}`);
+    console.log(`fill "vi" and every empty "hanViet" (context.hanVietCandidates); check context.hanVietOpen and add "hanViet" to override a wrong one`);
+    console.log(`then write the "file" object to translations/${batch.writeTo}`);
   }
 } else if (cmd === 'check') {
   const { errors, warnings } = checkTranslations(files, src);

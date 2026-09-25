@@ -29,8 +29,10 @@ already reads `meaningsVi` / `hanViet` / `meaningVi` / `examples[].vi` / `vi` th
 - Entries: vocab `{ vi: string[], en: string[] }`; kanji `{ vi: string[], hanViet?: string, en: string[] }`;
   grammar `{ vi: string, examples: { ja: string, vi: string }[], en: string }`; sentence `{ vi: string, en: string }`.
   `en` is the English snapshot at translation time (copied from the batch skeleton, never edited by hand).
-- Precedence: translation file → open data (Unihan Hán Việt, Tatoeba Vietnamese) → nothing (English shown).
-- Hán Việt uppercase (`toLocaleUpperCase('vi')`), up to 3 readings joined with `, `.
+- Precedence: translation file → open data (agreed Hán Việt, Tatoeba Vietnamese) → nothing (English shown).
+- Hán Việt uppercase (`toLocaleUpperCase('vi')`), up to 3 readings joined with `, `. Open-data Hán Việt only where
+  KANJIDIC2 and `hanviet.csv` agree on the first reading (spec › Sources and precedence); Unihan is used only for
+  `kJapaneseOldVariant` and `kMandarin` (row order), never `kVietnamese`, never `kTraditionalVariant`.
 - Raw open data goes to `data/raw/` (git-ignored); `data/translations/_work/` is git-ignored.
 - `STYLE.md` (task 04) governs every translation batch.
 - Commit messages in English with a body; end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
@@ -41,9 +43,19 @@ already reads `meaningsVi` / `hanViet` / `meaningVi` / `examples[].vi` / `vi` th
 
 ```ts
 // data/src/opendata.ts (task 01)
-export function parseUnihanField(txt: string, field: string): Map<string, string>;   // char → value
-export function parseUnihanVariants(txt: string): Map<string, string[]>;             // char → variants
-export function hanVietFor(ch: string, readings: Map<string, string>, variants: Map<string, string[]>): string | undefined;
+export function parseUnihanField(txt: string, field: string): Map<string, string>;  // used for kMandarin only
+export function parseJapaneseOldVariants(txt: string): Map<string, string[]>;  // Unihan kJapaneseOldVariant: 気 → ['氣']
+export function parseKanjidicVietnamese(xml: string): Map<string, string[]>;   // KANJIDIC2 r_type="vietnam", NFC
+export interface HanVietRow { readings: string[]; pinyin: string }           // pinyin like 'xing2', 'lu:4' or '*'
+export function parseHanVietCsv(csv: string): Map<string, HanVietRow[]>;       // hanviet.csv: trad char → rows, NFC
+export function pinyinNumbered(p: string): string;                            // 'xíng' → 'xing2', 'lǜ' → 'lu:4'
+export function toneKey(s: string): string;                                   // 'thuỷ' and 'Thủy' → same key
+export interface HanVietSources { kanjidic: Map<string, string[]>; hanviet: Map<string, HanVietRow[]>;
+  oldVariants: Map<string, string[]>; mandarin: Map<string, string> }
+export interface HanVietLookup { value?: string; kanjidic: string[]; hanviet: string[] }  // value only when agreed
+export function hanVietFor(ch: string, s: HanVietSources): HanVietLookup;
+export const HANVIET_RAW: string[];                                           // raw files the lookup needs
+export function loadHanVietSources(rawDir: string): HanVietSources;
 export function tatoebaVietnamese(links: Map<number, number[]>, vie: Map<number, string>): Map<number, string>;
 
 // data/src/translate.ts (task 02)
@@ -79,7 +91,7 @@ export interface Batch { writeTo: string; context: Record<string, unknown>; file
 export function pendingItems(type: TrType, level: Level, src: Sources, o: Overlays): (Vocab | Kanji | Grammar | Sentence)[];
 export function nextIndex(existing: string[], type: TrType): number;
 export function makeBatch(type: TrType, level: Level, items: (Vocab | Kanji | Grammar | Sentence)[], index: number,
-  sentencesById?: Map<string, Sentence>): Batch;
+  sentencesById?: Map<string, Sentence>, hanVietHint?: (ch: string) => HanVietLookup): Batch;
 export interface SampleRow { type: TrType; key: string; ja: string; en: string; vi: string }
 export function sampleEntries(files: LoadedFile[], src: Sources, n: number, rng?: () => number): SampleRow[];
 
@@ -98,12 +110,13 @@ CLI (task 03): `npm run tr -w data -- status [--level n5]` · `next --level n5 -
 
 ## Review Focus
 
-1. A `data/raw/` from before this plan (no Unihan / Tatoeba-vie files) → `data:fetch` downloads only the new files
-   and `data:build` stops with "missing raw/unihan … run npm run data:fetch" instead of a stack trace (task 04).
+1. A `data/raw/` from before this plan (no Hán Việt / Tatoeba-vie files) → `data:fetch` downloads only the new files
+   and `data:build` stops with "missing raw/… run npm run data:fetch" instead of a stack trace (task 04).
 2. A sentence used by two levels (same Tatoeba id in N5 and N4 bundles) → translated once, applied to both,
    never offered again by `next` for the other level, and accepted by `check` in either level folder (task 03).
-3. Shinjitai kanji with no `kVietnamese` of its own (学, 気) → Hán Việt from its traditional variant, uppercase;
-   kanji with several readings → at most 3 (task 01).
+3. Hán Việt is the Japanese sense, not Nôm or a same-shape Chinese character: shinjitai (学, 気, 芸) are looked up
+   through `kJapaneseOldVariant` before themselves (芸 → NGHỆ, not VÂN); a Nôm-only or disagreeing kanji gets no
+   open value and reaches the kanji batch with both candidate lists; at most 3 readings (tasks 01, 03).
 4. The source changes a grammar example after it was translated → `check` reports it; the build applies the
    meaning and the still-matching examples without crashing (tasks 02, 03).
 5. A hand-edited translation file with a JSON syntax error → the build/CLI error names the file (task 02).
@@ -112,7 +125,7 @@ CLI (task 03): `npm run tr -w data -- status [--level n5]` · `next --level n5 -
 
 | # | File | Scope |
 |---|------|-------|
-| 01 | task-01-open-data.md | fetch Unihan + Tatoeba VI; parsers; Hán Việt with variant fallback |
+| 01 | task-01-open-data.md | fetch KANJIDIC2 + hanviet.csv + Unihan variants + Tatoeba VI; two-source Hán Việt |
 | 02 | task-02-overlays.md | translation file format, keys, loading, apply* merge functions |
 | 03 | task-03-check-and-cli.md | checkTranslations, batching, `tr status/next/check/sample` |
 | 04 | task-04-build-style-attribution.md | build integration, STYLE.md, Settings attribution, gitignore |
