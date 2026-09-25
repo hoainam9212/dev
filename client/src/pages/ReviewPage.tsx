@@ -8,6 +8,8 @@ import { FlashcardSession, type CardItem } from '../components/FlashcardSession'
 import { LoadingCat } from '../components/LoadingCat';
 import { Mascot } from '../components/Mascot';
 import { kanjiCard } from './kanji/KanjiFlashcards';
+import { VocabBack } from './vocab/VocabFlashcards';
+import { useT } from '../i18n';
 
 /** Resolve due progress rows to flashcards (vocab + kanji), keeping due order. */
 export async function buildReviewCards(due: ProgressItem[]): Promise<CardItem[]> {
@@ -24,12 +26,7 @@ export async function buildReviewCards(due: ProgressItem[]): Promise<CardItem[]>
       type: 'vocab',
       speakText: v.word,
       front: <span className="text-4xl font-black">{v.word}</span>,
-      back: (
-        <div className="space-y-1">
-          <p className="text-2xl font-black text-rose">{v.reading}</p>
-          <p className="text-lg">{v.meanings.join(', ')}</p>
-        </div>
-      ),
+      back: <VocabBack v={v} />,
     });
   }
   for (const bundle of kanjiBundles) for (const k of bundle) if (kanjiIds.has(k.id)) cards.set(k.id, kanjiCard(k));
@@ -37,6 +34,7 @@ export async function buildReviewCards(due: ProgressItem[]): Promise<CardItem[]>
 }
 
 export function ReviewPage() {
+  const t = useT();
   const [cards, setCards] = useState<CardItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [round, setRound] = useState(0);
@@ -56,32 +54,32 @@ export function ReviewPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-black text-rose">Ôn tập</h1>
+      <h1 className="text-2xl font-black text-rose">{t.review.title}</h1>
       <section className="card p-4 md:p-6">
         {error && <p className="text-center text-rose">{error}</p>}
-        {!error && cards === null && <LoadingCat text="Đang gom thẻ đến hạn…" />}
+        {!error && cards === null && <LoadingCat text={t.review.loading} />}
         {cards && cards.length === 0 && (
           <div className="flex flex-col items-center gap-3 py-6" data-testid="review-empty">
             <Mascot mood="happy" size={120} />
-            <p className="font-bold">Không có thẻ đến hạn. Học bài mới nhé!</p>
+            <p className="font-bold">{t.review.empty}</p>
             <div className="flex gap-2">
               <Link to="/vocab" className="btn-primary">
-                Từ vựng
+                {t.nav.vocab.label}
               </Link>
               <Link to="/kanji" className="btn-sky">
-                Kanji
+                {t.nav.kanji.label}
               </Link>
             </div>
           </div>
         )}
         {cards && cards.length > 0 && (
           <>
-            <p className="mb-3 text-center text-sm text-muted">{cards.length} thẻ đến hạn</p>
+            <p className="mb-3 text-center text-sm text-muted">{t.review.due(cards.length)}</p>
             <FlashcardSession items={cards} onFinish={setDone} />
             {done && (
               <div className="mt-4 flex justify-center">
                 <button type="button" className="btn-primary" onClick={() => setRound((r) => r + 1)}>
-                  Kiểm tra lại thẻ đến hạn
+                  {t.review.again}
                 </button>
               </div>
             )}

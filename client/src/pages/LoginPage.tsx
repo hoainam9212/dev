@@ -4,8 +4,10 @@ import { useAuth } from '../store/auth';
 import { fullSync } from '../sync/sync';
 import { Mascot } from '../components/Mascot';
 import { SpeechBubble } from '../components/SpeechBubble';
+import { useT } from '../i18n';
 
 export function LoginPage({ mode = 'login' }: { mode?: 'login' | 'register' }) {
+  const t = useT();
   const nav = useNavigate();
   const login = useAuth((s) => s.login);
   const register = useAuth((s) => s.register);
@@ -41,24 +43,24 @@ export function LoginPage({ mode = 'login' }: { mode?: 'login' | 'register' }) {
       <div className="flex items-end gap-3">
         <Mascot mood="happy" size={90} />
         <SpeechBubble>
-          <p className="font-bold">{isRegister ? 'Tạo tài khoản để đồng bộ tiến độ nhé!' : 'Chào mừng trở lại!'}</p>
-          <p className="text-xs text-muted">Không có tài khoản vẫn học được, tiến độ lưu trên máy này.</p>
+          <p className="font-bold">{isRegister ? t.auth.registerGreeting : t.auth.loginGreeting}</p>
+          <p className="text-xs text-muted">{t.auth.optional}</p>
         </SpeechBubble>
       </div>
       <form onSubmit={submit} className="card space-y-3 p-6">
-        <h1 className="text-2xl font-black text-rose">{isRegister ? 'Đăng ký' : 'Đăng nhập'}</h1>
+        <h1 className="text-2xl font-black text-rose">{isRegister ? t.account.register : t.account.login}</h1>
         {isRegister && (
           <label className="block text-sm font-bold">
-            Tên hiển thị
+            {t.auth.displayName}
             <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} className="mt-1 w-full rounded-full bg-cream px-4 py-2 ring-2 ring-sakura/50 focus:outline-none focus:ring-rose dark:bg-bg" />
           </label>
         )}
         <label className="block text-sm font-bold">
-          Email
+          {t.auth.email}
           <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className="mt-1 w-full rounded-full bg-cream px-4 py-2 ring-2 ring-sakura/50 focus:outline-none focus:ring-rose dark:bg-bg" />
         </label>
         <label className="block text-sm font-bold">
-          Mật khẩu {isRegister && <span className="font-normal text-muted">(ít nhất 8 ký tự)</span>}
+          {t.auth.password} {isRegister && <span className="font-normal text-muted">{t.auth.passwordRule}</span>}
           <input
             type="password"
             required
@@ -75,21 +77,21 @@ export function LoginPage({ mode = 'login' }: { mode?: 'login' | 'register' }) {
           </p>
         )}
         <button type="submit" className="btn-primary w-full" disabled={busy}>
-          {busy ? 'Đang xử lý…' : isRegister ? 'Tạo tài khoản' : 'Đăng nhập'}
+          {busy ? t.auth.busy : isRegister ? t.auth.createAccount : t.account.login}
         </button>
         <p className="text-center text-sm text-muted">
           {isRegister ? (
             <>
-              Đã có tài khoản?{' '}
+              {t.auth.haveAccount}{' '}
               <Link to="/login" className="font-bold text-rose underline">
-                Đăng nhập
+                {t.account.login}
               </Link>
             </>
           ) : (
             <>
-              Chưa có tài khoản?{' '}
+              {t.auth.noAccount}{' '}
               <Link to="/register" className="font-bold text-rose underline">
-                Đăng ký
+                {t.account.register}
               </Link>
             </>
           )}

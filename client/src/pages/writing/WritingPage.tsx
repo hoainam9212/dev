@@ -9,11 +9,13 @@ import { KanjiWrite } from '../kanji/KanjiWrite';
 import { SentenceBuilder } from './SentenceBuilder';
 import { WritingLog } from './WritingLog';
 import { useWritingCount } from '../../db/writings';
+import { useT } from '../../i18n';
 
 type Mode = 'kana' | 'kanji' | 'sentence' | 'log';
 type Script = 'hiragana' | 'katakana';
 
 export function WritingPage() {
+  const t = useT();
   const level = useLevel((s) => s.level);
   const [mode, setMode] = useState<Mode>('kana');
   const [script, setScript] = useState<Script>('hiragana');
@@ -25,24 +27,24 @@ export function WritingPage() {
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-black text-rose">Viết</h1>
+        <h1 className="text-2xl font-black text-rose">{t.writing.title}</h1>
         {mode !== 'kana' && mode !== 'log' && <LevelPicker />}
       </header>
       <div className="flex flex-wrap items-center gap-3">
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={setMode}
           options={[
-            { value: 'kana', label: 'Kana' },
-            { value: 'kanji', label: 'Kanji' },
-            { value: 'sentence', label: 'Đặt câu' },
-            { value: 'log', label: savedCount ? `Câu đã đặt · ${savedCount}` : 'Câu đã đặt' },
+            { value: 'kana', label: t.writing.modes.kana },
+            { value: 'kanji', label: t.writing.modes.kanji },
+            { value: 'sentence', label: t.writing.modes.sentence },
+            { value: 'log', label: savedCount ? `${t.writing.modes.log} · ${savedCount}` : t.writing.modes.log },
           ]}
         />
         {mode === 'kana' && (
           <Segmented<Script>
-            ariaLabel="Bảng chữ"
+            ariaLabel={t.writing.script}
             value={script}
             onChange={setScript}
             options={[
@@ -54,15 +56,15 @@ export function WritingPage() {
       </div>
       <section className="card p-4 md:p-6">
         {mode === 'kana' &&
-          (kana.loading ? <LoadingCat /> : kana.error || !kana.data ? <ErrorCat text={kana.error ?? 'Không có dữ liệu'} /> : <KanaWrite key={script} chars={kana.data[script]} />)}
+          (kana.loading ? <LoadingCat /> : kana.error || !kana.data ? <ErrorCat text={kana.error ?? t.writing.noData} /> : <KanaWrite key={script} chars={kana.data[script]} />)}
         {mode === 'kanji' &&
-          (kanji.loading ? <LoadingCat /> : kanji.error || !kanji.data ? <ErrorCat text={kanji.error ?? 'Không có dữ liệu'} /> : <KanjiWrite key={level} kanji={kanji.data} />)}
+          (kanji.loading ? <LoadingCat /> : kanji.error || !kanji.data ? <ErrorCat text={kanji.error ?? t.writing.noData} /> : <KanjiWrite key={level} kanji={kanji.data} />)}
         {mode === 'log' && <WritingLog />}
         {mode === 'sentence' &&
           (grammar.loading ? (
             <LoadingCat />
           ) : grammar.error || !grammar.data ? (
-            <ErrorCat text={grammar.error ?? 'Không có dữ liệu'} />
+            <ErrorCat text={grammar.error ?? t.writing.noData} />
           ) : (
             <SentenceBuilder key={level} grammar={grammar.data} />
           ))}

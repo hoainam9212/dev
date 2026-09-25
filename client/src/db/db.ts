@@ -19,6 +19,8 @@ export interface Writing {
   level: Level;
   /** English prompt shown for the sentence. */
   prompt: string;
+  /** Vietnamese prompt, when the example had one; the log picks by display language. */
+  promptVi?: string;
   /** The sample Japanese sentence. */
   expected: string;
   /** What the learner typed. */

@@ -1,11 +1,12 @@
 import { useMemo, useRef, useState } from 'react';
-import { diffChars, similarity, type Grammar } from '@nihongo/shared';
+import { diffChars, exampleTranslation, similarity, type Grammar, type GrammarExample } from '@nihongo/shared';
 import { shuffle } from '../../lib/quiz';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { saveWriting, useWritingsFor } from '../../db/writings';
 import { useProgress } from '../../store/progress';
 import { Mascot } from '../../components/Mascot';
+import { useLang, useT } from '../../i18n';
 
 const XP = 2;
 const PASS = 0.8;
@@ -22,18 +23,21 @@ export function checkSentence(typed: string, expected: string): { ok: boolean; s
 interface Item {
   grammar: Grammar;
   ja: string;
-  en: string;
+  /** Kept whole so the prompt is translated at render. */
+  example: GrammarExample;
 }
 
 export function pickSentenceItems(grammar: Grammar[], total: number, rng: () => number = Math.random): Item[] {
   const withEx = grammar.filter((g) => g.examples.length > 0 && [...g.examples[0]!.ja].length <= 30);
   return shuffle(withEx, rng)
     .slice(0, Math.min(total, withEx.length))
-    .map((g) => ({ grammar: g, ja: g.examples[0]!.ja, en: g.examples[0]!.en }));
+    .map((g) => ({ grammar: g, ja: g.examples[0]!.ja, example: g.examples[0]! }));
 }
 
 export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; total?: number }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const items = useMemo(() => pickSentenceItems(grammar, total), [grammar, total, seed]);
@@ -56,16 +60,16 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
     setHint(false);
   };
 
-  if (items.length === 0) return <p className="text-center text-muted">Chưa có ví dụ cho cấp này.</p>;
+  if (items.length === 0) return <p className="text-center text-muted">{t.writing.noExamples}</p>;
   if (!item) {
     return (
       <div className="flex flex-col items-center gap-3 py-6" data-testid="sentence-result">
         <Mascot mood={correct / items.length >= 0.8 ? 'happy' : 'neutral'} size={120} />
         <p className="text-xl font-black text-rose">
-          Kết quả: {correct} / {items.length}
+          {t.writing.result(correct, items.length)}
         </p>
         <button type="button" className="btn-primary" onClick={restart}>
-          Làm lại
+          {t.common.retry}
         </button>
       </div>
     );
@@ -91,7 +95,8 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
             grammarId: item.grammar.id,
             grammarTitle: item.grammar.title,
             level: item.grammar.level,
-            prompt: item.en,
+            prompt: item.example.en,
+            ...(item.example.vi ? { promptVi: item.example.vi } : {}),
             expected: item.ja,
             typed: typed.trim(),
             score: r.score,
@@ -111,20 +116,20 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
       }}
     >
       <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {items.length} · Đúng: {correct}
+        {t.writing.position(i + 1, items.length, correct)}
       </p>
       <div className="card w-full max-w-lg p-4 text-center">
-        <p className="text-xs font-bold text-muted">Mẫu ngữ pháp: {item.grammar.title}</p>
-        <p className="text-lg font-bold">{item.en}</p>
+        <p className="text-xs font-bold text-muted">{t.writing.pattern(item.grammar.title)}</p>
+        <p className="text-lg font-bold">{exampleTranslation(item.example, lang)}</p>
         <button type="button" className="mt-2 text-xs text-rose underline" onClick={() => setHint((h) => !h)}>
-          {hint ? 'Ẩn gợi ý' : 'Gợi ý cấu trúc'}
+          {hint ? t.writing.hideHint : t.writing.showHint}
         </button>
         {hint && <p className="mt-1 font-mono text-sm">{item.grammar.formation}</p>}
       </div>
       {previous && previous.length > 0 && (
         <details className="w-full max-w-lg rounded-2xl bg-lavender/20 p-3 text-sm" data-testid="previous-writing">
           <summary className="cursor-pointer font-bold">
-            Lần trước bạn viết ({previous.length})
+            {t.writing.previous(previous.length)}
           </summary>
           <ul className="mt-2 space-y-1">
             {previous.map((w) => (
@@ -133,7 +138,7 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
                 <span className="font-bold" lang="ja">
                   {w.typed}
                 </span>
-                <span className="ml-auto text-xs text-muted">{new Date(w.createdAt).toLocaleDateString('vi-VN')}</span>
+                <span className="ml-auto text-xs text-muted">{new Date(w.createdAt).toLocaleDateString(t.common.locale)}</span>
               </li>
             ))}
           </ul>
@@ -145,18 +150,18 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
         disabled={!!checked}
         rows={2}
         lang="ja"
-        placeholder="Viết câu tiếng Nhật ở đây…"
-        aria-label="Câu tiếng Nhật"
+        placeholder={t.writing.placeholder}
+        aria-label={t.writing.inputAria}
         className="w-full max-w-lg rounded-2xl bg-cream px-4 py-3 text-xl font-bold ring-2 ring-sakura/60 focus:outline-none focus:ring-rose dark:bg-bg"
       />
       {!checked ? (
         <button type="submit" className="btn-primary">
-          Kiểm tra
+          {t.common.check}
         </button>
       ) : (
         <div className="flex flex-col items-center gap-2" data-testid="sentence-check">
           <p className={`font-bold ${checked.ok ? 'text-emerald-500' : 'text-rose'}`}>
-            {checked.ok ? `正解！ Chính xác (${Math.round(checked.score * 100)}%)` : `Chưa khớp (${Math.round(checked.score * 100)}%). Câu mẫu:`}
+            {checked.ok ? t.writing.match(Math.round(checked.score * 100)) : t.writing.noMatch(Math.round(checked.score * 100))}
           </p>
           <p className="text-xl font-black" lang="ja">
             {diff.map((d, k) => (
@@ -166,7 +171,7 @@ export function SentenceBuilder({ grammar, total = 8 }: { grammar: Grammar[]; to
             ))}
           </p>
           <button type="submit" className="btn-primary" autoFocus>
-            Tiếp →
+            {t.common.next}
           </button>
         </div>
       )}

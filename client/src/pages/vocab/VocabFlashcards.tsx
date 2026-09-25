@@ -21,7 +21,7 @@ interface Props {
 }
 
 /** A component, not JSX built in the queue memo: it reads the language at render, so a switch re-translates it. */
-function VocabBack({ v, ex }: { v: Vocab; ex?: Sentence }) {
+export function VocabBack({ v, ex }: { v: Vocab; ex?: Sentence }) {
   const lang = useLang();
   return (
     <div className="space-y-1">
