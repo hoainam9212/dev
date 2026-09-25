@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
 import unbzip2 from 'unbzip2-stream';
@@ -26,6 +27,9 @@ async function main() {
       fs.renameSync(target + '.part', target);
     } else if (s.kind === 'bz2') {
       await pipeline(await download(s.url), unbzip2(), fs.createWriteStream(target + '.part'));
+      fs.renameSync(target + '.part', target);
+    } else if (s.kind === 'gz') {
+      await pipeline(await download(s.url), zlib.createGunzip(), fs.createWriteStream(target + '.part'));
       fs.renameSync(target + '.part', target);
     } else if (s.kind === 'zip-kanjivg') {
       const zipPath = target + '.zip';

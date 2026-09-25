@@ -5,11 +5,12 @@ export const DATA_DIR = path.dirname(fileURLToPath(new URL('../package.json', im
 export const RAW_DIR = path.join(DATA_DIR, 'raw');
 export const OUT_DIR = path.resolve(DATA_DIR, '..', 'client', 'public', 'content');
 export const KANJIVG_TAG = 'r20250816';
+export const HANVIET_COMMIT = 'b9923df92c8b55f013001390e37cddd35e986dc1';
 
 export interface Source {
   url: string;
   file: string;
-  kind: 'plain' | 'bz2' | 'zip-kanjivg' | 'zip-unihan';
+  kind: 'plain' | 'bz2' | 'gz' | 'zip-kanjivg' | 'zip-unihan';
 }
 
 export const SOURCES: Source[] = [
@@ -62,5 +63,15 @@ export const SOURCES: Source[] = [
     url: 'https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip',
     file: 'unihan/.done',
     kind: 'zip-unihan',
+  },
+  {
+    url: 'https://www.edrdg.org/kanjidic/kanjidic2.xml.gz',
+    file: 'kanjidic2.xml',
+    kind: 'gz',
+  },
+  {
+    url: `https://raw.githubusercontent.com/ph0ngp/hanviet-pinyin-wordlist/${HANVIET_COMMIT}/hanviet.csv`,
+    file: 'hanviet.csv',
+    kind: 'plain',
   },
 ];
