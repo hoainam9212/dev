@@ -1,0 +1,514 @@
+{
+  "type": "sentences",
+  "level": "N4",
+  "entries": {
+    "86846": {
+      "vi": "Cô ấy đeo đồ trang sức trên áo.",
+      "en": "She is wearing accessories."
+    },
+    "86979": {
+      "vi": "Cô ấy là nhân viên bất động sản.",
+      "en": "She is an estate agent."
+    },
+    "87867": {
+      "vi": "Cô ấy hay ngủ dậy muộn.",
+      "en": "She is a late riser."
+    },
+    "87930": {
+      "vi": "Cô ấy là công chức địa phương.",
+      "en": "She is a local government officer."
+    },
+    "90655": {
+      "vi": "Cô ấy là y tá.",
+      "en": "She's a nurse."
+    },
+    "92767": {
+      "vi": "Cô ấy nhờ Shinji ngày mai mang thẻ căn cước đến cho Rei.",
+      "en": "She asked Shinji to take Rei's ID-card to her the next day."
+    },
+    "93076": {
+      "vi": "Cô ấy đợi nước sôi rồi mới pha trà.",
+      "en": "She waited until the water boiled before making the tea with it."
+    },
+    "93372": {
+      "vi": "Cô ấy nghiện rượu.",
+      "en": "She's an alcoholic."
+    },
+    "93708": {
+      "vi": "Cô ấy dự định đi Oita.",
+      "en": "She's going to Ooita."
+    },
+    "94604": {
+      "vi": "Nhà cô ấy ở ngoại ô.",
+      "en": "Her home is in the suburbs."
+    },
+    "94734": {
+      "vi": "Chúng mình đi thăm cô ấy ở bệnh viện đi.",
+      "en": "Why don't we go and see her in the hospital?"
+    },
+    "94801": {
+      "vi": "Cậu có dám hỏi cô ấy không?",
+      "en": "Dare you ask her?"
+    },
+    "95714": {
+      "vi": "Cô ấy khi nào lấy chồng thì kệ cô ấy.",
+      "en": "Who cares when she will marry?"
+    },
+    "96501": {
+      "vi": "Họ cầu cho kẻ thù bị trời phạt.",
+      "en": "They called down the wrath of God upon the heads of their enemies."
+    },
+    "96600": {
+      "vi": "Họ đã vượt Đại Tây Dương.",
+      "en": "They crossed the Atlantic Ocean."
+    },
+    "96847": {
+      "vi": "Vì nữ hoàng đến nên họ đã treo cờ.",
+      "en": "They hung out the flag for the Queen's visit."
+    },
+    "96920": {
+      "vi": "Họ tự xây nhà cho mình.",
+      "en": "They build their house for themselves."
+    },
+    "97424": {
+      "vi": "Hễ gặp nhau là họ cãi nhau.",
+      "en": "Whenever they meet, they quarrel."
+    },
+    "97644": {
+      "vi": "Tất cả bọn họ ăn mặc như những chú hề.",
+      "en": "They were all done up like clowns."
+    },
+    "98294": {
+      "vi": "Họ đi bộ với tốc độ ba dặm một giờ.",
+      "en": "They walked at the rate of three miles an hour."
+    },
+    "98482": {
+      "vi": "Mặt hàng xuất khẩu chính của họ là hàng dệt, nhất là lụa và vải bông.",
+      "en": "Their main exports are textiles, especially silk and cotton."
+    },
+    "98540": {
+      "vi": "Cuộc trò chuyện của họ vẫn tiếp tục.",
+      "en": "Their conversation went on."
+    },
+    "99068": {
+      "vi": "Anh ta vào trường bằng cửa sau.",
+      "en": "He bought his way into college."
+    },
+    "99185": {
+      "vi": "Anh ấy ra ngoài có việc.",
+      "en": "He went to run errands."
+    },
+    "99201": {
+      "vi": "Anh ấy đã chuẩn bị bài trước.",
+      "en": "He prepared his lessons."
+    },
+    "99285": {
+      "vi": "Anh ấy bận chép vở của bạn.",
+      "en": "He was busy copying his friend's notebook."
+    },
+    "99977": {
+      "vi": "Ông ấy làm giàu nhờ buôn bán.",
+      "en": "He made his fortune from commerce."
+    },
+    "867807": {
+      "vi": "Ăn nhiều thế là béo đấy.",
+      "en": "If you eat that much, you'll get fat."
+    },
+    "945909": {
+      "vi": "Bắt đầu lại từ đầu.",
+      "en": "I will begin anew."
+    },
+    "959749": {
+      "vi": "Đừng khóc.",
+      "en": "Don't cry."
+    },
+    "8666153": {
+      "vi": "Sương mù dày đặc.",
+      "en": "The fog is dense."
+    },
+    "8672817": {
+      "vi": "Cho tôi một hoặc hai ngày.",
+      "en": "Give me a day or two."
+    },
+    "8688638": {
+      "vi": "Khát nước không?",
+      "en": "Are you thirsty?"
+    },
+    "8688914": {
+      "vi": "Cậu cô đơn à?",
+      "en": "Are you lonely?"
+    },
+    "8692226": {
+      "vi": "Thế này có đủ không?",
+      "en": "Is this enough?"
+    },
+    "8699807": {
+      "vi": "Có động đất à?",
+      "en": "Was there an earthquake?"
+    },
+    "8701352": {
+      "vi": "Cậu sợ à?",
+      "en": "Are you scared?"
+    },
+    "8705959": {
+      "vi": "Cậu được mời à?",
+      "en": "Were you invited?"
+    },
+    "8706037": {
+      "vi": "Vừa rồi là động đất à?",
+      "en": "Was it an earthquake?"
+    },
+    "8714261": {
+      "vi": "Em bé có sao không?",
+      "en": "Is the baby OK?"
+    },
+    "8719362": {
+      "vi": "Thế có đủ không?",
+      "en": "Is it enough?"
+    },
+    "8724184": {
+      "vi": "Thời tiết tệ quá.",
+      "en": "The weather's terrible."
+    },
+    "8724557": {
+      "vi": "Có lẽ tôi sẽ đến muộn.",
+      "en": "I may be late."
+    },
+    "8727066": {
+      "vi": "Cậu gần xong chưa?",
+      "en": "Are you almost done?"
+    },
+    "8731209": {
+      "vi": "30 đô có đủ không?",
+      "en": "Is thirty dollars enough?"
+    },
+    "8736697": {
+      "vi": "Anh có biết chuyện này không ạ?",
+      "en": "Were you aware of this?"
+    },
+    "8747270": {
+      "vi": "Cậu có giỏi tennis không?",
+      "en": "Are you good at tennis?"
+    },
+    "8755650": {
+      "vi": "Cậu đi xem hoà nhạc à?",
+      "en": "Are you going to the concert?"
+    },
+    "8762437": {
+      "vi": "Cậu chia tay với Tom à?",
+      "en": "Are you breaking up with Tom?"
+    },
+    "8774841": {
+      "vi": "Trường cấp hai có xa nhà cậu không?",
+      "en": "Was your junior high school far from your home?"
+    },
+    "8781726": {
+      "vi": "Cậu đang trên đường về nhà à?",
+      "en": "Are you on your way home?"
+    },
+    "8788713": {
+      "vi": "Cậu xong gần hết chưa?",
+      "en": "Are you about done?"
+    },
+    "8817030": {
+      "vi": "Tôi muốn cái khác.",
+      "en": "I want another."
+    },
+    "8825901": {
+      "vi": "Cậu sẽ giúp tôi tìm à?",
+      "en": "Are you going to help me find it?"
+    },
+    "8828100": {
+      "vi": "Cậu chuẩn bị gần xong chưa?",
+      "en": "Are you about ready?"
+    },
+    "8845072": {
+      "vi": "Cuộc họp chắc sẽ bị huỷ đấy.",
+      "en": "The meeting will probably be canceled."
+    },
+    "8847648": {
+      "vi": "Cậu có đeo găng tay không?",
+      "en": "Are you wearing gloves?"
+    },
+    "8853363": {
+      "vi": "Phải mua thực phẩm thôi.",
+      "en": "I need to buy some groceries."
+    },
+    "8858169": {
+      "vi": "Tôi chạy trốn đây.",
+      "en": "I'll run away."
+    },
+    "8863427": {
+      "vi": "Tôi thích cô gái mèo.",
+      "en": "I like catgirls."
+    },
+    "8920182": {
+      "vi": "Tôi sẽ ở lại đây với cậu.",
+      "en": "I'll stay here with you."
+    },
+    "8935259": {
+      "vi": "Tôi đã quyết định ở lại.",
+      "en": "I've decided to stay."
+    },
+    "8978334": {
+      "vi": "Tôi thích nhảy lắm.",
+      "en": "I like dancing."
+    },
+    "8985124": {
+      "vi": "Tôi được nhờ mang cái này đến.",
+      "en": "I was asked to deliver this."
+    },
+    "8993674": {
+      "vi": "Tôi sẽ cố về nhà sớm nhất có thể.",
+      "en": "I'll come back home as soon as I can."
+    },
+    "9008561": {
+      "vi": "Tôi lái xe được đấy.",
+      "en": "I can drive."
+    },
+    "9011993": {
+      "vi": "Đọc bầu không khí đi chứ.",
+      "en": "Read between the lines."
+    },
+    "9018757": {
+      "vi": "Tôi thường đi ngủ lúc 10 giờ.",
+      "en": "I go to bed at ten as a rule."
+    },
+    "9025165": {
+      "vi": "Hết chịu nổi rồi.",
+      "en": "I can't stand it."
+    },
+    "9029275": {
+      "vi": "Tôi đã mua dép xăng đan.",
+      "en": "I bought sandals."
+    },
+    "9029276": {
+      "vi": "Tôi đã mua đôi dép giống của anh ấy.",
+      "en": "I bought a pair of sandals that match him."
+    },
+    "9030248": {
+      "vi": "Vặn nhỏ dàn âm thanh xuống đi.",
+      "en": "Turn down the stereo."
+    },
+    "9042357": {
+      "vi": "Người cậu dẻo nhỉ.",
+      "en": "Your body is soft."
+    },
+    "9089152": {
+      "vi": "Em đang học tiểu học à?",
+      "en": "Do you go to an elementary school?"
+    },
+    "9120405": {
+      "vi": "Anh chị có con không ạ?",
+      "en": "Do you have any kids?"
+    },
+    "9143015": {
+      "vi": "Đừng đọc nhật ký của tao!",
+      "en": "Don't read my diary!"
+    },
+    "9183097": {
+      "vi": "Mẹ chồng tôi hiền lắm.",
+      "en": "My mother-in-law is kind."
+    },
+    "9183237": {
+      "vi": "Trận đấu đã kết thúc.",
+      "en": "The game is over."
+    },
+    "9203469": {
+      "vi": "Hết cách thật rồi.",
+      "en": "There's nothing to be done about it."
+    },
+    "9203565": {
+      "vi": "Tôi đã nhận được tin nhắn từ Tom.",
+      "en": "I got a text from Tom."
+    },
+    "9203576": {
+      "vi": "Tôi cũng cất bút vào ngăn kéo rồi.",
+      "en": "I put my pens in my drawer, too."
+    },
+    "9236760": {
+      "vi": "Tôi sẽ mua xe máy.",
+      "en": "I going to buy a motorcycle."
+    },
+    "9238000": {
+      "vi": "Yanni quyết định kiểm tra Facebook.",
+      "en": "Yanni decided to check Facebook."
+    },
+    "9281074": {
+      "vi": "Tôi đang trên đường ra ga.",
+      "en": "I'm on my way to the station."
+    },
+    "9314806": {
+      "vi": "Phơi chăn futon giúp tôi nhé.",
+      "en": "Air the futon."
+    },
+    "9314831": {
+      "vi": "Ra ngoài đây.",
+      "en": "Step outside."
+    },
+    "9314854": {
+      "vi": "Phải ngăn Tom lại.",
+      "en": "Stop Tom."
+    },
+    "9463886": {
+      "vi": "Cậu thật đặc biệt.",
+      "en": "You're special."
+    },
+    "9471582": {
+      "vi": "Cậu có chơi tennis không?",
+      "en": "Do you play tennis?"
+    },
+    "9475751": {
+      "vi": "Tôi muốn trở thành chính trị gia.",
+      "en": "I want to be a politician."
+    },
+    "9518005": {
+      "vi": "Cảm ơn chuyện hôm trước.",
+      "en": "Thanks for the other day."
+    },
+    "9529097": {
+      "vi": "Phòng họp ở đâu ạ?",
+      "en": "Where's the conference room?"
+    },
+    "9540641": {
+      "vi": "Đi sở thú đi.",
+      "en": "Let's go to the zoo."
+    },
+    "9547366": {
+      "vi": "Triển lãm hiện đang được tổ chức.",
+      "en": "The exhibition is now open."
+    },
+    "9553758": {
+      "vi": "Rượu là một loại ma tuý đấy.",
+      "en": "Alcohol is a drug."
+    },
+    "9595400": {
+      "vi": "Tôi ghét ngữ pháp.",
+      "en": "I hate grammar."
+    },
+    "9632876": {
+      "vi": "Phát âm của anh hay quá.",
+      "en": "You have good pronunciation."
+    },
+    "9632877": {
+      "vi": "Phát âm hay nhỉ.",
+      "en": "You have good pronunciation."
+    },
+    "9640768": {
+      "vi": "Cậu có thích piano không?",
+      "en": "Do you like the piano?"
+    },
+    "9678854": {
+      "vi": "Có ai có đèn pin không?",
+      "en": "Does anyone have a flashlight?"
+    },
+    "9678873": {
+      "vi": "Quầy bán đĩa CD ở đâu ạ?",
+      "en": "Where can I buy a CD?"
+    },
+    "9689437": {
+      "vi": "Nổi giận chỉ thiệt thân thôi.",
+      "en": "It doesn't pay to lose your temper."
+    },
+    "9702647": {
+      "vi": "Tôi muốn trở nên giàu có.",
+      "en": "I want to become rich."
+    },
+    "9740184": {
+      "vi": "Tôi sợ nha sĩ.",
+      "en": "I'm afraid of dentists."
+    },
+    "9748146": {
+      "vi": "Đến lúc đó tôi sẽ nghĩ.",
+      "en": "I'll think about it then."
+    },
+    "9777014": {
+      "vi": "Anh dùng bánh mì kẹp nhé?",
+      "en": "How about a sandwich?"
+    },
+    "9795520": {
+      "vi": "May là không ai bị ướt cả.",
+      "en": "Luckily nobody got wet."
+    },
+    "9819836": {
+      "vi": "Trên biển có các hòn đảo.",
+      "en": "There are islands on the sea."
+    },
+    "9840950": {
+      "vi": "Hỏi ý kiến bác sĩ đi.",
+      "en": "Consult a doctor."
+    },
+    "9853716": {
+      "vi": "Chỉ kẻ mạnh mới sống sót.",
+      "en": "Only the strong survive."
+    },
+    "9853730": {
+      "vi": "Tôi đã ngủ một giấc ngon lành.",
+      "en": "I had a good sleep."
+    },
+    "9853872": {
+      "vi": "Cười chết mất!",
+      "en": "LOLOLOLOL!"
+    },
+    "9858909": {
+      "vi": "Anh có bị ợ nóng sau khi ăn một số món nhất định không?",
+      "en": "Do you get heartburn after eating certain foods?"
+    },
+    "9859643": {
+      "vi": "Đến giờ tiêm rồi.",
+      "en": "It's time for your shot."
+    },
+    "9941610": {
+      "vi": "Tôi hay nhầm lắm.",
+      "en": "I often make mistakes."
+    },
+    "9963895": {
+      "vi": "Thỉnh thoảng gọi điện cho tôi nhé.",
+      "en": "Call me once in a while."
+    },
+    "9963913": {
+      "vi": "Tôi quên béng mất.",
+      "en": "I completely forgot it."
+    },
+    "9964204": {
+      "vi": "Tôi muốn ăn táo.",
+      "en": "I want an apple."
+    },
+    "9964486": {
+      "vi": "Dâu tây làm mứt được đấy.",
+      "en": "Strawberries can be made into jam."
+    },
+    "9972334": {
+      "vi": "Địa điểm nghe nhạc cậu thích nhất là ở đâu?",
+      "en": "What's your favourite music venue?"
+    },
+    "9974798": {
+      "vi": "Nếu anh đã nói đến thế thì.",
+      "en": "If you insist."
+    },
+    "9974919": {
+      "vi": "Kệ trống trơn.",
+      "en": "The shelves are empty."
+    },
+    "9974921": {
+      "vi": "Trên kệ chẳng có gì.",
+      "en": "The shelves are empty."
+    },
+    "9977597": {
+      "vi": "Cậu có nhìn thấy xa không?",
+      "en": "Can you see far?"
+    },
+    "9979575": {
+      "vi": "Cậu có nghe thấy gì không?",
+      "en": "Do you hear any sound?"
+    },
+    "9986912": {
+      "vi": "Cậu có muốn xem chương trình này không?",
+      "en": "Do you want to watch this program?"
+    },
+    "9997258": {
+      "vi": "Tôi ghét loại đàn ông như thế.",
+      "en": "I can't stand that man."
+    }
+  }
+}
