@@ -10,5 +10,5 @@ Translation tasks list batch progress on their line (e.g. `vocab 2/3 batches`).
 - 04 build, style, attribution — done d605624 2026-09-25 · build: hanViet open 1952 (N5 72/79), Tatoeba sentences 5742 in pool (N5 bundle 89/1833 → task 07 translates ~1744); missing-raw guard verified; Settings lists 4 new sources, 375px no overflow
 - 05 N5 kanji + grammar — done cf55e4c 2026-09-25 (kanji 79 in ca38a2e, grammar 136, manual hanViet: 7 disagreed, 0 corrected); N5 now kanji 79/79 · hanViet 79/79 · grammar 136/136 · examples 136/136
 - 06 N5 vocab — done f9ffc08 2026-09-25 (718 words, 3/3 batches: 96cb9a6, c138c63, this); N5 vocab 718/718, tr next → nothing pending
-- 07 N5 sentences — in progress: sentences 3/6 batches (914bd49, 5ca0f2d, batch 3 commit); Tatoeba spot check OK (89 kept); next batch 4 on branch vi/task-07
+- 07 N5 sentences — done (sha in task 08 commit) 2026-09-25 (1744 by hand in 6 files: 914bd49, 5ca0f2d, 1207093, 55fb761, ce901ac, this; 89 from Tatoeba, spot check OK); N5 all types 100%, tr next → nothing pending
 - 08 N5 release (1.1.0) — todo
