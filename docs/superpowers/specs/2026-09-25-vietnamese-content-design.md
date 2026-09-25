@@ -100,10 +100,15 @@ logs per level, e.g. `n5 vocab vi 718/718 · kanji hanViet 79/79 (unihan 76, fil
 - `next --level n5 --type vocab [--size 250]` — writes the next batch of untranslated items to `_work/` with the
   key, Japanese, reading, English and context (tags, component kanji, an example sentence) and the file name to
   write the translation to.
-- `check` — validates every translation file (also run as a vitest test, so `npm test` fails on bad data):
-  known key for its type/level; no duplicate key across files; non-empty strings; not identical to the English;
-  looks Vietnamese (contains a Vietnamese letter/diacritic, or is on a short allow-list of loanwords such as
-  "tivi", "email", "OK"); length within a sane ratio of the English; grammar example count matches the source.
+- `check` — validates every translation file (also run as a vitest test, so `npm test` fails on bad data).
+  **Errors** (fail the test): unknown key for its type/level; file in the wrong level folder or with the wrong
+  type prefix; duplicate key across files; empty strings; identical to the English; missing English snapshot;
+  grammar examples not matching the source (count and Japanese); Hán Việt not uppercase.
+  **Warnings** (printed, reviewed by eye after each batch): stale English snapshot; text with no Vietnamese letter
+  that is not made of allow-listed loanwords ("tivi", "email", "OK"…) — a warning, not an error, because many
+  Vietnamese words have no diacritics ("hai", "ba", "con"); translation much longer than the English.
+- `sample` — prints N random entries (Japanese / English / Vietnamese) from a file or a level, spread across
+  types, for the 20-item self review and the 40-item user sample.
 
 ### Batches and quality
 
