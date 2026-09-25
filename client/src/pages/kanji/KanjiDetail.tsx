@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Kanji } from '@nihongo/shared';
 import { StrokeAnimation } from '../../components/StrokeAnimation';
 import { WritingPractice } from '../../components/WritingPractice';
@@ -6,48 +6,83 @@ import { useVocabByIds } from '../../content/useVocabByIds';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { recordReview } from '../../db/srs';
 import { useProgress } from '../../store/progress';
+import { useSwipe } from '../../lib/useSwipe';
 
 interface Props {
   kanji: Kanji;
   onClose: () => void;
+  /** Neighbours in the list the kanji was opened from; enable swipe, arrow keys and ‹ › buttons. */
+  onNext?: () => void;
+  onPrev?: () => void;
+  /** e.g. "3 / 79" */
+  position?: string;
 }
 
-export function KanjiDetail({ kanji, onClose }: Props) {
+export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props) {
   useStopSpeechOnUnmount();
   const [play, setPlay] = useState(0);
   const [writing, setWriting] = useState(false);
   const [marked, setMarked] = useState(false);
+  const [dir, setDir] = useState<'next' | 'prev' | null>(null);
   const { data: vocab } = useVocabByIds(kanji.vocabIds);
   const addXp = useProgress((s) => s.addXp);
+  const next = onNext && (() => (setDir('next'), onNext()));
+  const prev = onPrev && (() => (setDir('prev'), onPrev()));
+  const swipe = useSwipe({ onNext: () => next?.(), onPrev: () => prev?.() });
 
+  const dialog = useRef<HTMLDivElement>(null);
+  // Writing mode stays on while moving between kanji, so a learner can practise several in a row.
   useEffect(() => {
-    setWriting(false);
     setMarked(false);
     setPlay((p) => p + 1);
+    dialog.current?.scrollTo?.({ top: 0 }); // a swipe from lower down would otherwise hide the new kanji
   }, [kanji.id]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowRight') next?.();
+      else if (e.key === 'ArrowLeft') prev?.();
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [onClose, next, prev]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 md:items-center md:p-6" onClick={onClose}>
       <div
+        ref={dialog}
         role="dialog"
         aria-label={`Kanji ${kanji.char}`}
         className="card max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-5 md:rounded-b-3xl md:p-8"
         onClick={(e) => e.stopPropagation()}
+        {...swipe}
       >
+        <div
+          key={kanji.id}
+          className={dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : undefined}
+        >
         <div className="flex items-start justify-between">
           <div>
             <span className="text-xs font-bold text-muted">{kanji.level} · {kanji.strokes} nét{kanji.grade ? ` · lớp ${kanji.grade}` : ''}</span>
             <h2 className="text-6xl font-black">{kanji.char}</h2>
           </div>
-          <button type="button" className="btn-soft" onClick={onClose} aria-label="Đóng">
-            ✕
-          </button>
+          <div className="flex items-center gap-1">
+            {prev && next && (
+              <>
+                <button type="button" className="btn-soft px-3!" onClick={prev} aria-label="Kanji trước">
+                  ‹
+                </button>
+                {position && <span className="px-1 text-xs font-bold text-muted">{position}</span>}
+                <button type="button" className="btn-soft px-3!" onClick={next} aria-label="Kanji sau">
+                  ›
+                </button>
+              </>
+            )}
+            <button type="button" className="btn-soft px-3!" onClick={onClose} aria-label="Đóng">
+              ✕
+            </button>
+          </div>
         </div>
 
         {writing ? (
@@ -108,6 +143,7 @@ export function KanjiDetail({ kanji, onClose }: Props) {
             </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,8 @@ import { srsStatus } from '../../components/SrsBadge';
 interface Props {
   kanji: Kanji[];
   progress?: Map<string, ProgressItem>;
-  onPick: (k: Kanji) => void;
+  /** Also passes the list as currently shown (after search), so the detail can step through it. */
+  onPick: (k: Kanji, shown: Kanji[]) => void;
 }
 
 const DOT: Record<ReturnType<typeof srsStatus>, string> = {
@@ -43,7 +44,7 @@ export function KanjiGrid({ kanji, progress, onPick }: Props) {
           <button
             key={k.id}
             type="button"
-            onClick={() => onPick(k)}
+            onClick={() => onPick(k, filtered)}
             className="card relative flex flex-col items-center py-2 transition hover:-translate-y-0.5"
             aria-label={`${k.char} ${k.meanings[0] ?? ''}`}
           >

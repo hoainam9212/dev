@@ -41,6 +41,8 @@ export function DrawCanvas({ size = 218, guide = [], hint, strokes = [], shaking
     <svg
       ref={ref}
       data-testid="draw-canvas"
+      // strokes are often horizontal: never let a surrounding swipe handler read them as "next"
+      data-no-swipe
       viewBox="0 0 109 109"
       width={size}
       height={size}

@@ -62,6 +62,12 @@ body {
 .btn-soft { @apply bg-sakura/40 text-text hover:bg-sakura/70; }
 .btn-sky { @apply bg-sky text-text hover:brightness-105; }
 
+/* Content slides in from the side the learner swiped towards (next = from the right). */
+.slide-from-right { animation: slide-from-right 0.22s ease-out; }
+.slide-from-left { animation: slide-from-left 0.22s ease-out; }
+@keyframes slide-from-right { from { opacity: 0; transform: translateX(40px); } }
+@keyframes slide-from-left { from { opacity: 0; transform: translateX(-40px); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }

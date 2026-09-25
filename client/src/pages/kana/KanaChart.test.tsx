@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { KanaChart } from './KanaChart';
+import { swipeLeft, swipeRight } from '../../test/swipe';
 
 vi.mock('../../lib/tts', () => ({ speak: vi.fn(), useStopSpeechOnUnmount: vi.fn() }));
 
@@ -23,6 +24,18 @@ it('opens the stroke panel as a bottom sheet on phones so the animation plays in
   fireEvent.click(screen.getByRole('button', { name: 'Đóng' }));
   expect(screen.queryByRole('img', { name: 'Thứ tự nét' })).not.toBeInTheDocument();
   expect(panel.className).toMatch(/hidden md:block/);
+});
+
+it('swipes the sheet to the next and previous character, wrapping around', () => {
+  render(<KanaChart chars={chars} />);
+  fireEvent.click(screen.getByRole('button', { name: /あ/ }));
+  const panel = screen.getByLabelText('Chi tiết chữ');
+  swipeLeft(panel);
+  expect(within(panel).getByText('i')).toBeInTheDocument();
+  swipeLeft(panel); // past the end → back to the first
+  expect(within(panel).getByText('a')).toBeInTheDocument();
+  swipeRight(panel);
+  expect(within(panel).getByText('i')).toBeInTheDocument();
 });
 
 it('closes the sheet with Escape', () => {

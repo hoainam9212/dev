@@ -21,7 +21,9 @@ export function KanjiPage() {
   const progress = useProgressMap('kanji');
   const newLimit = useSettings((s) => s.newLimit);
   const [mode, setMode] = useState<Mode>('grid');
-  const [sel, setSel] = useState<Kanji | null>(null);
+  // the open kanji, as an index into the list it was picked from (the grid after search)
+  const [sel, setSel] = useState<{ list: Kanji[]; i: number } | null>(null);
+  const step = (d: number) => setSel((s) => s && { ...s, i: (s.i + d + s.list.length) % s.list.length });
 
   const learned = data && progress ? data.filter((k) => progress.has(k.id)).length : 0;
 
@@ -55,14 +57,24 @@ export function KanjiPage() {
         {error && <ErrorCat text={error} />}
         {data && progress && (
           <>
-            {mode === 'grid' && <KanjiGrid kanji={data} progress={progress} onPick={setSel} />}
+            {mode === 'grid' && <KanjiGrid kanji={data} progress={progress} onPick={(k, list) => setSel({ list, i: list.indexOf(k) })} />}
             {mode === 'cards' && <KanjiFlashcards key={level} kanji={data} progress={progress} newLimit={newLimit} />}
             {mode === 'quiz' && <KanjiQuiz key={level} kanji={data} />}
             {mode === 'write' && <KanjiWrite key={level} kanji={data} />}
           </>
         )}
       </section>
-      {sel && <KanjiDetail kanji={sel} onClose={() => setSel(null)} />}
+      {sel && (
+        <KanjiDetail
+          kanji={sel.list[sel.i]!}
+          onClose={() => setSel(null)}
+          {...(sel.list.length > 1 && {
+            onNext: () => step(1),
+            onPrev: () => step(-1),
+            position: `${sel.i + 1} / ${sel.list.length}`,
+          })}
+        />
+      )}
     </div>
   );
 }

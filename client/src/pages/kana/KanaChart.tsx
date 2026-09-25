@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { KanaChar } from '@nihongo/shared';
 import { StrokeAnimation, strokeTimings } from '../../components/StrokeAnimation';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
+import { useSwipe } from '../../lib/useSwipe';
 
 interface Props {
   chars: KanaChar[];
@@ -35,14 +36,32 @@ export function KanaChart({ chars }: Props) {
   useStopSpeechOnUnmount();
   const [sel, setSel] = useState<KanaChar | null>(null);
   const [play, setPlay] = useState(0);
+  const [dir, setDir] = useState<'next' | 'prev' | null>(null);
   const rows = groupRows(chars);
+
+  const open = (c: KanaChar, d: 'next' | 'prev' | null = null) => {
+    setSel(c);
+    setDir(d);
+    setPlay((p) => p + 1);
+    speak(c.kana);
+  };
+  const step = (d: 1 | -1) => {
+    if (!sel || !chars.length) return;
+    const i = chars.indexOf(sel);
+    open(chars[(i + d + chars.length) % chars.length]!, d > 0 ? 'next' : 'prev');
+  };
+  const swipe = useSwipe({ onNext: () => step(1), onPrev: () => step(-1) });
 
   useEffect(() => {
     if (!sel) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setSel(null);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSel(null);
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [sel]);
+  });
 
   return (
     <div className="grid gap-4 md:grid-cols-[1fr_280px]">
@@ -54,11 +73,7 @@ export function KanaChart({ chars }: Props) {
               <button
                 key={c.kana}
                 type="button"
-                onClick={() => {
-                  setSel(c);
-                  setPlay((p) => p + 1);
-                  speak(c.kana);
-                }}
+                onClick={() => open(c)}
                 className={`card flex flex-col items-center py-2 transition hover:-translate-y-0.5 ${
                   sel?.kana === c.kana ? 'ring-2 ring-rose' : ''
                 }`}
@@ -81,9 +96,15 @@ export function KanaChart({ chars }: Props) {
               'fixed inset-x-0 bottom-0 z-50 max-h-[75vh] overflow-y-auto max-md:rounded-b-none! max-md:shadow-2xl! md:inset-auto md:z-auto md:max-h-none'
             : 'hidden md:block'
         }`}
+        {...swipe}
       >
         {sel ? (
-          <div className="relative flex flex-col items-center gap-3">
+          <div
+            key={sel.kana}
+            className={`relative flex flex-col items-center gap-3 ${
+              dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : ''
+            }`}
+          >
             <button
               type="button"
               className="btn-soft absolute right-0 top-0 md:hidden!"
