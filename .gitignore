@@ -1,6 +1,7 @@
 node_modules/
 dist/
 data/raw/
+data/translations/_work/
 client/public/content/
 *.db
 *.db-wal

@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
 import { LEVELS, type ContentIndex, type Sentence } from '@nihongo/shared';
-import { RAW_DIR, OUT_DIR } from './sources';
+import { RAW_DIR, OUT_DIR, TRANSLATIONS_DIR } from './sources';
+import { HANVIET_RAW, loadHanVietSources, hanVietFor, tatoebaVietnamese } from '../src/opendata';
+import { readTrFiles, toOverlays, applyVocab, applyKanji, applyGrammar, applySentences, vocabKey, grammarKey } from '../src/translate';
 import {
   parseVocabCsv,
   dedupeVocab,
@@ -85,6 +87,31 @@ async function main() {
   console.log('sentences assigned in', Date.now() - t0, 'ms');
   const byId = new Map(pool.map((s) => [s.id, s]));
 
+  for (const f of [...HANVIET_RAW, 'tatoeba/vie_sentences.tsv', 'tatoeba/jpn-vie_links.tsv']) {
+    assert(fs.existsSync(path.join(RAW_DIR, f)), `missing raw/${f} — run npm run data:fetch`);
+  }
+  const dupes = (keys: string[]) => keys.filter((k, i, all) => all.indexOf(k) !== i);
+  const seenV = new Set<string>();
+  const dupV = vocab.map(vocabKey).filter((k) => (seenV.has(k) ? true : (seenV.add(k), false)));
+  assert(dupV.length === 0, `duplicate vocab keys: ${dupV.slice(0, 5).join(', ')}`);
+  const dupG = dupes(grammar.map(grammarKey));
+  assert(dupG.length === 0, `duplicate grammar keys: ${dupG.slice(0, 5).join(', ')}`);
+
+  const overlays = toOverlays(readTrFiles(TRANSLATIONS_DIR));
+  const hanVietSources = loadHanVietSources(RAW_DIR);
+  const vieByJpn = tatoebaVietnamese(parseLinks(read('tatoeba/jpn-vie_links.tsv')), parseTsvSentences(read('tatoeba/vie_sentences.tsv')));
+  const reports = {
+    vocab: applyVocab(vocab, overlays.vocab),
+    kanji: applyKanji(kanji, overlays.kanji, (ch) => hanVietFor(ch, hanVietSources).value),
+    grammar: applyGrammar(grammar, overlays.grammar),
+    sentences: applySentences(pool, overlays.sentences, vieByJpn),
+  };
+  console.log('vi: hanViet open', reports.kanji.hanVietOpen, '· file', reports.kanji.hanVietFile, '· missing', reports.kanji.hanVietMissing.length,
+    '· sentences tatoeba', reports.sentences.fromOpen, '· file', reports.sentences.fromFile);
+  for (const [type, r] of Object.entries(reports)) {
+    if (r.stale.length) console.warn(`STALE ${type} (${r.stale.length}): ${r.stale.slice(0, 10).join(', ')} — re-translate; see npm run tr -w data -- check`);
+  }
+
   const counts: ContentIndex['counts'] = { vocab: {}, kanji: {}, grammar: {}, sentences: {}, reading: {}, listening: {} };
   for (const l of LEVELS) {
     const lv = l.toLowerCase();
@@ -110,6 +137,15 @@ async function main() {
     counts.grammar![l] = g.length;
     counts.sentences![l] = s.length;
     console.log(l, { vocab: v.length, kanji: k.length, grammar: g.length, sentences: s.length, reading: rd.length, listening: ls.length });
+    const n = <T>(xs: T[], has: (x: T) => unknown) => `${xs.filter(has).length}/${xs.length}`;
+    console.log(l, 'vi', {
+      vocab: n(v, (x) => x.meaningsVi),
+      kanji: n(k, (x) => x.meaningsVi),
+      hanViet: n(k, (x) => x.hanViet),
+      grammar: n(g, (x) => x.meaningVi),
+      examples: n(g.flatMap((x) => x.examples), (x) => x.vi),
+      sentences: n(s, (x) => x.vi),
+    });
   }
   write('kana.json', buildKana(readSvg));
   write('business/index.json', BUSINESS);

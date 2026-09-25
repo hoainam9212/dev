@@ -20,6 +20,10 @@ const SOURCES = [
   { name: 'KanjiVG', url: 'https://kanjivg.tagaini.net', license: 'CC BY-SA 3.0' },
   { name: 'Hanabira grammar', url: 'https://hanabira.org', license: 'Creative Commons' },
   { name: 'Tatoeba', url: 'https://tatoeba.org', license: 'CC BY 2.0 FR' },
+  { name: 'KANJIDIC2 (vietnam readings)', url: 'https://www.edrdg.org/wiki/index.php/KANJIDIC_Project', license: 'CC BY-SA 4.0' },
+  { name: 'hanviet-pinyin-wordlist', url: 'https://github.com/ph0ngp/hanviet-pinyin-wordlist', license: 'MIT' },
+  { name: 'Unihan (variants)', url: 'https://www.unicode.org/charts/unihan.html', license: 'Unicode License' },
+  { name: 'Tatoeba (vie)', url: 'https://tatoeba.org/vie', license: 'CC BY 2.0 FR' },
 ];
 
 export function SettingsPage() {
@@ -175,7 +179,7 @@ export function SettingsPage() {
         <h2 className="font-black">{t.settings.sources}</h2>
         <ul className="text-sm">
           {SOURCES.map((s) => (
-            <li key={s.url} className="flex flex-wrap justify-between gap-2 py-1">
+            <li key={s.name} className="flex flex-wrap justify-between gap-2 py-1">
               <a href={s.url} target="_blank" rel="noreferrer" className="font-bold text-rose underline">
                 {s.name}
               </a>
@@ -184,6 +188,7 @@ export function SettingsPage() {
           ))}
         </ul>
         <p className="text-xs text-muted">{t.settings.authored}</p>
+        <p className="text-xs text-muted">{t.settings.viTranslations}</p>
       </section>
     </div>
   );

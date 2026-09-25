@@ -199,6 +199,7 @@ export const en: Dict = {
     cancel: 'Cancel',
     sources: 'Data sources',
     authored: 'Kana mnemonics, business content, reading and listening lessons are written by Nihongo Sensei.',
+    viTranslations: 'Vietnamese translations (meanings, kanji, grammar, example sentences) are written by Nihongo Sensei with AI assistance; Hán Việt taken where KANJIDIC2 and hanviet-pinyin-wordlist agree, the rest reviewed by Nihongo Sensei.',
     exported: 'Backup file exported.',
     imported: (cards, writings) =>
       `Imported ${cards === 1 ? '1 progress card' : `${cards} progress cards`} and ${writings === 1 ? '1 sentence' : `${writings} sentences`}.`,

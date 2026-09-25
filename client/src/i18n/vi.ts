@@ -198,6 +198,7 @@ export const vi = {
     cancel: 'Hủy',
     sources: 'Nguồn dữ liệu',
     authored: 'Nội dung kana mnemonics, business, bài đọc và bài nghe do Nihongo Sensei biên soạn.',
+    viTranslations: 'Bản dịch tiếng Việt (nghĩa từ, kanji, ngữ pháp, câu ví dụ) do Nihongo Sensei biên soạn, có hỗ trợ AI; âm Hán Việt lấy nơi KANJIDIC2 và hanviet-pinyin-wordlist khớp nhau, phần còn lại do Nihongo Sensei soát.',
     exported: 'Đã xuất file sao lưu.',
     imported: (cards: number, writings: number) => `Đã nhập ${cards} thẻ tiến độ và ${writings} câu đã đặt.`,
     invalidFile: 'File không hợp lệ.',
