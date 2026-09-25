@@ -69,6 +69,9 @@ source changes):
 
 Each file: `{ "type": "vocab", "level": "N5", "entries": { "<key>": { … } } }`.
 
+Keys were checked unique on 2026-09-25 (vocab `word|reading` and grammar titles per level, all levels). The build
+asserts uniqueness of the source keys, so a future duplicate fails the build instead of mis-assigning a translation.
+
 The `en` snapshot records what was translated. When the source English no longer matches, the build warns
 "stale" and still applies the translation; `tr status` lists stale entries for re-translation.
 
