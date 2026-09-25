@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { withLang } from '../test/lang';
 import { WritingPractice } from './WritingPractice';
 
 function drawStroke(canvas: Element, pts: [number, number][]) {
@@ -54,4 +55,12 @@ it('rejects a wrong stroke and shows the hint after one failure', () => {
   expect(onComplete).not.toHaveBeenCalled();
   expect(screen.getByText(/Nét 1 \/ 1/)).toBeInTheDocument();
   expect(screen.getByTestId('stroke-hint')).toBeInTheDocument();
+});
+
+it('shows stroke progress and the final score in English', () => {
+  withLang('en');
+  const { canvas } = setup(['M10,50 L100,50']);
+  expect(screen.getByText('Stroke 1 / 1')).toBeInTheDocument();
+  drawStroke(canvas, [[20, 100], [120, 100], [200, 100]]);
+  expect(screen.getByText(/^Done! Score: \d+$/)).toBeInTheDocument();
 });

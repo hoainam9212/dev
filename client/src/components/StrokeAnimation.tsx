@@ -1,4 +1,5 @@
 import { pathToPoints, strokeStart } from '@nihongo/shared';
+import { useT } from '../i18n';
 import './strokes.css';
 
 /** Pen speed in KanjiVG units per second, and the pause between strokes (s). */
@@ -33,6 +34,7 @@ interface Props {
 
 /** Animated stroke order (KanjiVG 109×109 space). Change `playKey` to replay. */
 export function StrokeAnimation({ paths, numbers, size = 160, playKey = 0, showNumbers = true, startDelay = 0 }: Props) {
+  const t = useT();
   const { delays, durations } = strokeTimings(paths);
   const pos = (d: string, i: number): [number, number] | null => {
     const n = numbers?.length === paths.length ? numbers[i] : undefined;
@@ -48,7 +50,7 @@ export function StrokeAnimation({ paths, numbers, size = 160, playKey = 0, showN
       height={size}
       className="rounded-2xl bg-cream ring-2 ring-sakura/40 dark:bg-bg"
       role="img"
-      aria-label="Thứ tự nét"
+      aria-label={t.common.strokeOrder}
     >
       <g stroke="#FFB7C5" strokeWidth="0.8" strokeDasharray="3 3">
         <line x1="54.5" y1="0" x2="54.5" y2="109" />

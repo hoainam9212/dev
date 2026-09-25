@@ -1,3 +1,5 @@
+import { useT } from '../i18n';
+
 interface Props {
   data: { label: string; value: number }[];
   height?: number;
@@ -9,6 +11,7 @@ const W = 320;
 
 /** Minimal SVG bar chart with value labels; no external library. */
 export function BarChart({ data, height = 140, color = 'var(--color-rose)', unit = '' }: Props) {
+  const t = useT();
   const max = Math.max(1, ...data.map((d) => d.value));
   const w = W / Math.max(1, data.length);
   const barW = w * 0.6;
@@ -16,7 +19,7 @@ export function BarChart({ data, height = 140, color = 'var(--color-rose)', unit
   const bottom = 16;
   const inner = height - top - bottom;
   return (
-    <svg viewBox={`0 0 ${W} ${height}`} className="h-auto w-full" style={{ maxHeight: height * 1.6 }} role="img" aria-label="Biểu đồ">
+    <svg viewBox={`0 0 ${W} ${height}`} className="h-auto w-full" style={{ maxHeight: height * 1.6 }} role="img" aria-label={t.common.chart}>
       <line x1="0" x2={W} y1={top + inner} y2={top + inner} stroke="var(--color-sakura)" strokeWidth="1" />
       {data.map((d, i) => {
         const h = (d.value / max) * inner;

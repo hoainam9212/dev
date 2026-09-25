@@ -4,14 +4,14 @@ import { levelFromXp } from '../store/streak';
 import { levelName, STREAK_MILESTONES } from '../lib/mascot';
 import { Confetti } from '../components/Confetti';
 import { Mascot } from '../components/Mascot';
+import { useT } from '../i18n';
 
-interface Toast {
-  title: string;
-  body: string;
-}
+/** What to celebrate; translated at render so a language switch re-translates an open toast. */
+type Toast = { kind: 'level'; level: number } | { kind: 'streak'; days: number };
 
 /** Watches XP/streak and shows a toast + confetti on level-up or streak milestones. */
 export function Celebration() {
+  const t = useT();
   const xp = useProgress((s) => s.xp);
   const streak = useProgress((s) => s.streak);
   const prevLevel = useRef(levelFromXp(xp).level);
@@ -22,7 +22,7 @@ export function Celebration() {
   useEffect(() => {
     const level = levelFromXp(xp).level;
     if (level > prevLevel.current) {
-      setToast({ title: `Lên cấp ${level}! 🎉`, body: `Bạn là ${levelName(level)}` });
+      setToast({ kind: 'level', level });
       setConfetti(true);
     }
     prevLevel.current = level;
@@ -30,7 +30,7 @@ export function Celebration() {
 
   useEffect(() => {
     if (streak > prevStreak.current && STREAK_MILESTONES.includes(streak)) {
-      setToast({ title: `Chuỗi ${streak} ngày! 🔥`, body: 'Sakura tự hào về bạn lắm!' });
+      setToast({ kind: 'streak', days: streak });
       setConfetti(true);
     }
     prevStreak.current = streak;
@@ -38,8 +38,8 @@ export function Celebration() {
 
   useEffect(() => {
     if (!toast) return;
-    const t = setTimeout(() => setToast(null), 4000);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(timer);
   }, [toast]);
 
   return (
@@ -50,8 +50,12 @@ export function Celebration() {
           <div className="card flex items-center gap-3 px-5 py-3 ring-2 ring-rose">
             <Mascot mood="happy" size={48} />
             <div>
-              <p className="font-black text-rose">{toast.title}</p>
-              <p className="text-sm text-muted">{toast.body}</p>
+              <p className="font-black text-rose">
+                {toast.kind === 'level' ? t.app.levelUp(toast.level) : t.app.streakTitle(toast.days)}
+              </p>
+              <p className="text-sm text-muted">
+                {toast.kind === 'level' ? t.app.youAre(levelName(toast.level)) : t.app.streakBody}
+              </p>
             </div>
           </div>
         </div>

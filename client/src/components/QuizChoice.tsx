@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react';
+import { useT } from '../i18n';
 
 interface Props {
   prompt: ReactNode;
@@ -11,6 +12,7 @@ interface Props {
 
 /** Four-choice question. After a pick, highlights correct/wrong and shows a "Tiếp" button. */
 export function QuizChoice({ prompt, choices, answer, onAnswer, explain, promptClassName = '' }: Props) {
+  const t = useT();
   const [picked, setPicked] = useState<number | null>(null);
   const state = (i: number) => {
     if (picked === null) return 'idle';
@@ -45,11 +47,11 @@ export function QuizChoice({ prompt, choices, answer, onAnswer, explain, promptC
       {picked !== null && (
         <div className="flex flex-col items-center gap-2">
           <p className={`font-bold ${picked === answer ? 'text-emerald-500' : 'text-rose'}`}>
-            {picked === answer ? '正解！ Chính xác!' : `残念… Đáp án: ${choices[answer]}`}
+            {picked === answer ? t.common.correct : t.common.wrongAnswer(choices[answer]!)}
           </p>
           {explain && <p className="text-sm text-muted">{explain}</p>}
           <button type="button" className="btn-primary" onClick={() => onAnswer(picked === answer)} autoFocus>
-            Tiếp →
+            {t.common.next}
           </button>
         </div>
       )}

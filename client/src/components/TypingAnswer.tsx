@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { normalizeKana, diffChars } from '@nihongo/shared';
+import { useT } from '../i18n';
 
 interface Props {
   expected: string;
@@ -8,7 +9,8 @@ interface Props {
 }
 
 /** Text answer compared after kana normalization (accepts romaji, katakana, spaces). */
-export function TypingAnswer({ expected, onResult, placeholder = 'Gõ cách đọc (kana hoặc romaji)' }: Props) {
+export function TypingAnswer({ expected, onResult, placeholder }: Props) {
+  const t = useT();
   const [typed, setTyped] = useState('');
   const [checked, setChecked] = useState<boolean | null>(null);
   const check = () => {
@@ -31,18 +33,18 @@ export function TypingAnswer({ expected, onResult, placeholder = 'Gõ cách đ�
         value={typed}
         onChange={(e) => setTyped(e.target.value)}
         disabled={checked !== null}
-        placeholder={placeholder}
-        aria-label="Câu trả lời"
+        placeholder={placeholder ?? t.quiz.typingPlaceholder}
+        aria-label={t.common.answer}
         className="w-full rounded-full bg-cream px-5 py-3 text-center text-xl font-bold ring-2 ring-sakura/60 focus:outline-none focus:ring-rose dark:bg-bg"
       />
       {checked === null ? (
         <button type="submit" className="btn-primary">
-          Kiểm tra
+          {t.common.check}
         </button>
       ) : (
         <div className="flex flex-col items-center gap-2">
           <p className={`font-bold ${checked ? 'text-emerald-500' : 'text-rose'}`}>
-            {checked ? '正解！ Chính xác!' : 'Chưa đúng. Đáp án:'}
+            {checked ? t.common.correct : t.quiz.notQuite}
           </p>
           <p className="text-2xl font-black" data-testid="typing-diff">
             {diff.map((d, i) => (
@@ -52,7 +54,7 @@ export function TypingAnswer({ expected, onResult, placeholder = 'Gõ cách đ�
             ))}
           </p>
           <button type="submit" className="btn-primary" autoFocus>
-            Tiếp →
+            {t.common.next}
           </button>
         </div>
       )}

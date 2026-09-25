@@ -1,14 +1,16 @@
 import { useProgress } from '../store/progress';
 import { levelFromXp } from '../store/streak';
+import { useT } from '../i18n';
 
 export function XpBar() {
+  const t = useT();
   const xp = useProgress((s) => s.xp);
   const { level, into, need } = levelFromXp(xp);
   const pct = Math.round((into / need) * 100);
   return (
     <div>
       <div className="flex items-baseline justify-between text-sm font-bold">
-        <span className="text-rose">Cấp {level}</span>
+        <span className="text-rose">{t.common.level(level)}</span>
         <span className="text-muted">
           {into} / {need} XP
         </span>

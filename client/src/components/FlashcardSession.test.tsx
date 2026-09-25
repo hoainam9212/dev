@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { withLang } from '../test/lang';
 import { FlashcardSession, type CardItem } from './FlashcardSession';
 import { db } from '../db/db';
 import { useProgress } from '../store/progress';
@@ -38,4 +39,12 @@ it('flips, grades, re-queues forgotten cards and finishes', async () => {
 it('shows an empty state without items', () => {
   render(<FlashcardSession items={[]} onFinish={vi.fn()} />);
   expect(screen.getByText(/Không có thẻ nào/)).toBeInTheDocument();
+});
+
+it('shows the flip hint and grade buttons in English', () => {
+  withLang('en');
+  render(<FlashcardSession items={items} onFinish={() => {}} />);
+  expect(screen.getByText('Tap to flip')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Flip' }));
+  for (const g of ['Again', 'Hard', 'Good', 'Easy']) expect(screen.getByRole('button', { name: new RegExp(g) })).toBeInTheDocument();
 });

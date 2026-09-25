@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/login" element={<LoginPage mode="login" />} />
         <Route path="/register" element={<LoginPage mode="register" />} />
-        <Route path="*" element={<Placeholder title="Không tìm thấy trang" />} />
+        <Route path="*" element={<Placeholder />} />
       </Route>
     </Routes>
   );

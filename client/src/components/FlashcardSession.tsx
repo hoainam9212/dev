@@ -4,6 +4,7 @@ import { recordReview, logSession } from '../db/srs';
 import { useProgress } from '../store/progress';
 import { speak, useStopSpeechOnUnmount } from '../lib/tts';
 import { Mascot } from './Mascot';
+import { useT } from '../i18n';
 
 export interface CardItem {
   id: string;
@@ -18,16 +19,17 @@ interface Props {
   onFinish: (r: { reviewed: number; correct: number }) => void;
 }
 
-const GRADES: { g: Grade; label: string; cls: string; hint: string }[] = [
-  { g: 0, label: 'Quên', cls: 'bg-rose text-white', hint: '10 phút' },
-  { g: 1, label: 'Khó', cls: 'bg-lavender text-text', hint: 'ngắn' },
-  { g: 2, label: 'Tốt', cls: 'bg-sky text-text', hint: 'bình thường' },
-  { g: 3, label: 'Dễ', cls: 'bg-emerald-300 text-emerald-900', hint: 'dài' },
+const GRADES: { g: Grade; key: 'again' | 'hard' | 'good' | 'easy'; cls: string }[] = [
+  { g: 0, key: 'again', cls: 'bg-rose text-white' },
+  { g: 1, key: 'hard', cls: 'bg-lavender text-text' },
+  { g: 2, key: 'good', cls: 'bg-sky text-text' },
+  { g: 3, key: 'easy', cls: 'bg-emerald-300 text-emerald-900' },
 ];
 
 /** Generic SRS flashcard runner. Grade 0 re-queues the card once at the end. */
 export function FlashcardSession({ items, onFinish }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
   const [queue, setQueue] = useState<CardItem[]>(items);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -63,7 +65,7 @@ export function FlashcardSession({ items, onFinish }: Props) {
     return (
       <div className="flex flex-col items-center gap-2 py-8">
         <Mascot mood="happy" size={110} />
-        <p className="font-bold text-muted">Không có thẻ nào để học. Tuyệt vời!</p>
+        <p className="font-bold text-muted">{t.flashcards.empty}</p>
       </div>
     );
   }
@@ -73,9 +75,9 @@ export function FlashcardSession({ items, onFinish }: Props) {
     return (
       <div className="flex flex-col items-center gap-2 py-6" data-testid="session-summary">
         <Mascot mood={pct >= 80 ? 'happy' : 'neutral'} size={120} />
-        <p className="text-xl font-black text-rose">Xong phiên học!</p>
+        <p className="text-xl font-black text-rose">{t.flashcards.done}</p>
         <p className="font-bold text-muted">
-          Đã ôn {reviewed} thẻ · Nhớ {correct}
+          {t.flashcards.summary(reviewed, correct)}
         </p>
       </div>
     );
@@ -98,21 +100,21 @@ export function FlashcardSession({ items, onFinish }: Props) {
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-bold text-muted">
-        Thẻ {idx + 1} / {queue.length}
+        {t.flashcards.position(idx + 1, queue.length)}
       </p>
       <button
         type="button"
         onClick={() => setFlipped((f) => !f)}
         className="card flex min-h-56 w-full max-w-md flex-col items-center justify-center gap-2 p-6 text-center transition hover:-translate-y-0.5"
-        aria-label={flipped ? 'Mặt sau' : 'Mặt trước, chạm để lật'}
+        aria-label={flipped ? t.flashcards.backAria : t.flashcards.frontAria}
         data-testid="flashcard"
       >
         {flipped ? card.back : card.front}
-        {!flipped && <span className="mt-2 text-xs text-muted">Chạm để lật</span>}
+        {!flipped && <span className="mt-2 text-xs text-muted">{t.flashcards.tapToFlip}</span>}
       </button>
       {card.speakText && (
         <button type="button" className="btn-sky text-sm" onClick={() => speak(card.speakText!)}>
-          🔊 Nghe
+          {t.common.listen}
         </button>
       )}
       {flipped ? (
@@ -124,14 +126,14 @@ export function FlashcardSession({ items, onFinish }: Props) {
               onClick={() => void grade(x.g)}
               className={`flex flex-col items-center rounded-2xl px-2 py-2 font-bold transition active:scale-95 ${x.cls}`}
             >
-              <span>{x.label}</span>
-              <span className="text-[10px] opacity-80">{x.hint}</span>
+              <span>{t.flashcards.grades[x.key].label}</span>
+              <span className="text-[10px] opacity-80">{t.flashcards.grades[x.key].hint}</span>
             </button>
           ))}
         </div>
       ) : (
         <button type="button" className="btn-primary" onClick={() => setFlipped(true)}>
-          Lật thẻ
+          {t.flashcards.flip}
         </button>
       )}
     </div>

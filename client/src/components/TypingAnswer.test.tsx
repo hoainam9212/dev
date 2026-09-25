@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { withLang } from '../test/lang';
 import { TypingAnswer } from './TypingAnswer';
 
 it('accepts romaji for a kana answer', () => {
@@ -20,4 +21,17 @@ it('shows the diff for a wrong answer', () => {
   expect(screen.getByTestId('typing-diff').textContent).toBe('さくら');
   fireEvent.click(screen.getByRole('button', { name: /Tiếp/ }));
   expect(onResult).toHaveBeenCalledWith(false, 'さら');
+});
+
+it('gives correct and wrong feedback in English', () => {
+  withLang('en');
+  const { unmount } = render(<TypingAnswer expected="さくら" onResult={() => {}} />);
+  fireEvent.change(screen.getByLabelText('Answer'), { target: { value: 'sakura' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+  expect(screen.getByText(/Correct!/)).toBeInTheDocument();
+  unmount();
+  render(<TypingAnswer expected="さくら" onResult={() => {}} />);
+  fireEvent.change(screen.getByLabelText('Answer'), { target: { value: 'さら' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+  expect(screen.getByText(/Not quite/)).toBeInTheDocument();
 });

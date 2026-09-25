@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { pronunciationScore } from '@nihongo/shared';
 import { canRecognize, recognizeOnce, STT_MESSAGES, type SttError } from '../lib/stt';
 import { useProgress } from '../store/progress';
+import { useT } from '../i18n';
 
 export interface SpeakResult {
   heard: string;
@@ -20,6 +21,7 @@ export function xpForScore(score: number): number {
 
 /** 🎤 button: records once, scores against `expected`, awards XP. Falls back to self-assessment when unsupported. */
 export function SpeakButton({ expected, onResult, disabled }: Props) {
+  const t = useT();
   const [state, setState] = useState<'idle' | 'listening' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
   const addXp = useProgress((s) => s.addXp);
@@ -33,13 +35,13 @@ export function SpeakButton({ expected, onResult, disabled }: Props) {
   if (!canRecognize()) {
     return (
       <div className="flex flex-col items-center gap-2" data-testid="self-assess">
-        <p className="text-center text-xs text-muted">{STT_MESSAGES.unsupported} Hãy tự đánh giá:</p>
+        <p className="text-center text-xs text-muted">{STT_MESSAGES.unsupported} {t.quiz.selfAssess}</p>
         <div className="flex gap-2">
           <button type="button" className="btn-primary" disabled={disabled} onClick={() => finish('', 100)}>
-            Nói được 👍
+            {t.quiz.saidIt}
           </button>
           <button type="button" className="btn-soft" disabled={disabled} onClick={() => finish('', 30)}>
-            Chưa được 🙈
+            {t.quiz.notYet}
           </button>
         </div>
       </div>
@@ -65,7 +67,7 @@ export function SpeakButton({ expected, onResult, disabled }: Props) {
           }
         }}
       >
-        {state === 'listening' ? '🎙️ Đang nghe…' : '🎤 Nói'}
+        {state === 'listening' ? t.quiz.listening : t.quiz.speak}
       </button>
       {error && <p className="text-xs text-rose">{error}</p>}
     </div>

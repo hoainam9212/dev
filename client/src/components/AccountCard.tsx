@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../store/auth';
 import { fullSync, getLastSync, getSyncStatus, onSyncStatus, type SyncStatus } from '../sync/sync';
 import { getApiBase, setApiBase } from '../api/client';
+import { useT } from '../i18n';
 
-const STATUS_LABEL: Record<SyncStatus, string> = {
-  idle: 'Chưa đồng bộ',
-  syncing: 'Đang đồng bộ…',
-  ok: 'Đã đồng bộ',
-  error: 'Lỗi đồng bộ',
-  offline: 'Ngoại tuyến',
-};
 
 export function useSyncStatus(): { status: SyncStatus; detail?: string } {
   const [s, setS] = useState<{ status: SyncStatus; detail?: string }>({ status: getSyncStatus() });
@@ -19,22 +13,23 @@ export function useSyncStatus(): { status: SyncStatus; detail?: string } {
 }
 
 export function AccountCard() {
+  const t = useT();
   const user = useAuth((s) => s.user);
   const logout = useAuth((s) => s.logout);
   const { status, detail } = useSyncStatus();
-  const [msg, setMsg] = useState<string | null>(null);
+  const [synced, setSynced] = useState<{ pulled: number; pushed: number; sessions: number } | null>(null);
   const [apiBase, setApiBaseState] = useState(getApiBase());
 
   const serverField = (
     <label className="block text-sm">
-      <span className="font-bold">Địa chỉ máy chủ đồng bộ</span>
-      <span className="block text-xs text-muted">Để trống khi dùng bản web cùng máy chủ. Trên Android hãy nhập, ví dụ https://nihongo.example.com</span>
+      <span className="font-bold">{t.account.serverLabel}</span>
+      <span className="block text-xs text-muted">{t.account.serverHint}</span>
       <input
         value={apiBase}
         onChange={(e) => setApiBaseState(e.target.value)}
         onBlur={() => setApiBase(apiBase)}
         placeholder="https://…"
-        aria-label="Địa chỉ máy chủ"
+        aria-label={t.account.serverAria}
         className="mt-1 w-full rounded-full bg-cream px-4 py-2 ring-2 ring-sakura/50 focus:outline-none focus:ring-rose dark:bg-bg"
       />
     </label>
@@ -43,15 +38,15 @@ export function AccountCard() {
   if (!user) {
     return (
       <section className="card space-y-3 p-4 md:p-6">
-        <h2 className="font-black">Tài khoản</h2>
-        <p className="text-sm text-muted">Đăng nhập để đồng bộ tiến độ giữa các thiết bị. Không bắt buộc.</p>
+        <h2 className="font-black">{t.account.title}</h2>
+        <p className="text-sm text-muted">{t.account.signedOutCta}</p>
         {serverField}
         <div className="flex gap-2">
           <Link to="/login" className="btn-primary">
-            Đăng nhập
+            {t.account.login}
           </Link>
           <Link to="/register" className="btn-soft">
-            Đăng ký
+            {t.account.register}
           </Link>
         </div>
       </section>
@@ -61,35 +56,37 @@ export function AccountCard() {
   const last = getLastSync();
   return (
     <section className="card space-y-3 p-4 md:p-6">
-      <h2 className="font-black">Tài khoản</h2>
+      <h2 className="font-black">{t.account.title}</h2>
       <p className="text-sm">
         <span className="font-bold">{user.displayName}</span> <span className="text-muted">· {user.email}</span>
       </p>
       <p className="text-sm text-muted" data-testid="sync-status">
-        {STATUS_LABEL[status]}
+        {t.account.status[status]}
         {detail ? ` · ${detail}` : ''}
-        {last !== '1970-01-01T00:00:00.000Z' && ` · lần cuối ${new Date(last).toLocaleString('vi-VN')}`}
+        {last !== '1970-01-01T00:00:00.000Z' && t.account.lastSync(new Date(last).toLocaleString(t.common.locale))}
       </p>
-      {msg && <p className="text-sm font-bold text-emerald-600">{msg}</p>}
+      {synced && (
+        <p className="text-sm font-bold text-emerald-600">{t.account.synced(synced.pulled, synced.pushed, synced.sessions)}</p>
+      )}
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
           className="btn-primary"
           disabled={status === 'syncing'}
           onClick={async () => {
-            setMsg(null);
+            setSynced(null);
             try {
               const r = await fullSync();
-              if (r) setMsg(`Đã nhận ${r.pulled} · gửi ${r.pushed} thẻ · ${r.sessions} phiên học.`);
+              if (r) setSynced(r);
             } catch {
               /* status shows the error */
             }
           }}
         >
-          🔄 Đồng bộ ngay
+          {t.account.syncNow}
         </button>
         <button type="button" className="btn-soft" onClick={logout}>
-          Đăng xuất
+          {t.account.logout}
         </button>
       </div>
     </section>

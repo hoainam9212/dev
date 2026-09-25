@@ -4,6 +4,7 @@ import { Mascot } from './Mascot';
 import { logSession, type SessionLog } from '../db';
 import { useProgress } from '../store/progress';
 import { speak, useStopSpeechOnUnmount } from '../lib/tts';
+import { useT } from '../i18n';
 
 export interface QuizQuestion {
   prompt: ReactNode;
@@ -11,7 +12,7 @@ export interface QuizQuestion {
   choices: string[];
   answer: number;
   explain?: string;
-  speakText?: string; // spoken after answering (and on "Nghe lại" when `listenFirst`)
+  speakText?: string; // spoken after answering (and on "listen again" when `listenFirst`)
 }
 
 interface Props {
@@ -26,6 +27,7 @@ interface Props {
 /** Runs a list of multiple-choice questions, awards XP, logs the session and shows a result screen. */
 export function QuizRunner({ questions, kind, type, xpPerCorrect = 2, listenFirst = false, onFinish }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
   const [i, setI] = useState(0);
   const [correct, setCorrect] = useState(0);
   const addXp = useProgress((s) => s.addXp);
@@ -36,7 +38,7 @@ export function QuizRunner({ questions, kind, type, xpPerCorrect = 2, listenFirs
     if (listenFirst && q?.speakText) speak(q.speakText);
   }, [i, listenFirst, q]);
 
-  if (questions.length === 0) return <p className="text-center text-muted">Chưa đủ dữ liệu để tạo câu hỏi.</p>;
+  if (questions.length === 0) return <p className="text-center text-muted">{t.quiz.notEnough}</p>;
 
   if (!q) {
     const pct = Math.round((correct / questions.length) * 100);
@@ -44,7 +46,7 @@ export function QuizRunner({ questions, kind, type, xpPerCorrect = 2, listenFirs
       <div className="flex flex-col items-center gap-3 py-6" data-testid="quiz-result">
         <Mascot mood={pct >= 80 ? 'happy' : pct >= 50 ? 'neutral' : 'sad'} size={120} />
         <p className="text-xl font-black text-rose">
-          Kết quả: {correct} / {questions.length}
+          {t.quiz.result(correct, questions.length)}
         </p>
         <p className="text-sm text-muted">+{correct * xpPerCorrect} XP</p>
       </div>
@@ -54,11 +56,11 @@ export function QuizRunner({ questions, kind, type, xpPerCorrect = 2, listenFirs
   return (
     <div className="flex flex-col items-center gap-3">
       <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {questions.length} · Đúng: {correct}
+        {t.quiz.position(i + 1, questions.length, correct)}
       </p>
       {listenFirst && q.speakText && (
         <button type="button" className="btn-sky" onClick={() => speak(q.speakText!)}>
-          🔊 Nghe lại
+          {t.common.listenAgain}
         </button>
       )}
       <QuizChoice
