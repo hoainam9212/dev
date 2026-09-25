@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import { withLang } from '../../test/lang';
 import type { Grammar } from '@nihongo/shared';
 import { buildGrammarQuestions } from './GrammarQuiz';
 import { buildScrambleItems, SentenceScramble } from './SentenceScramble';
@@ -22,6 +23,28 @@ it('buildGrammarQuestions gives 4 unique titles per question', () => {
     expect(qs).toHaveLength(3);
     for (const q of qs) expect(new Set(q.choices).size).toBe(4);
   }
+});
+
+const viGrammar = grammar.map((g, i) => ({
+  ...g,
+  meaningVi: `nghĩa ${i}`,
+  examples: g.examples.map((e) => ({ ...e, vi: `câu ${i}` })),
+}));
+
+it('buildGrammarQuestions prompts with the meaning and example in the display language', () => {
+  const [m] = buildGrammarQuestions(viGrammar, 'meaning→title', 1, mulberry32(2), 'vi');
+  render(<>{m!.prompt}</>);
+  expect(screen.getByText(/^nghĩa \d$/)).toBeInTheDocument();
+  const [e] = buildGrammarQuestions(viGrammar, 'example→title', 1, mulberry32(2), 'en');
+  render(<>{e!.prompt}</>);
+  expect(screen.queryByText(/^câu \d$/)).not.toBeInTheDocument();
+});
+
+it('SentenceScramble prompts with the Vietnamese example translation in Vietnamese', () => {
+  render(<SentenceScramble grammar={viGrammar.slice(0, 1)} total={1} />);
+  expect(screen.getByText('câu 0')).toBeInTheDocument();
+  act(() => withLang('en'));
+  expect(screen.getByText('I want to go to Japan.')).toBeInTheDocument();
 });
 
 it('buildScrambleItems shuffles chunks that rebuild the sentence', () => {

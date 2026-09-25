@@ -132,7 +132,7 @@ export function KanaChart({ chars }: Props) {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-muted">{t.kana.noStrokes}</p>
+              <p className="text-sm text-muted">{t.common.noStrokes}</p>
             )}
             {kanaMnemonic(sel, lang) && <p className="text-center text-sm text-muted">💡 {kanaMnemonic(sel, lang)}</p>}
             <div className="flex gap-2">
@@ -140,7 +140,7 @@ export function KanaChart({ chars }: Props) {
                 {t.common.listen}
               </button>
               <button type="button" className="btn-soft text-sm" onClick={() => setPlay((p) => p + 1)}>
-                {t.kana.replay}
+                {t.common.replay}
               </button>
             </div>
           </div>

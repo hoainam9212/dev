@@ -1,13 +1,22 @@
 import { useMemo, useState } from 'react';
-import type { Grammar } from '@nihongo/shared';
+import { exampleTranslation, grammarMeaning, type Grammar, type Lang } from '@nihongo/shared';
 import { QuizRunner, type QuizQuestion } from '../../components/QuizRunner';
 import { Segmented } from '../../components/Segmented';
-import { makeChoices, shuffle } from '../../lib/quiz';
+import { makeChoices, mulberry32, shuffle } from '../../lib/quiz';
+import { useSessionSeed } from '../../lib/useSessionSeed';
+import { useLang, useT } from '../../i18n';
 
 export type GrammarDir = 'meaning→title' | 'example→title';
 
-export function buildGrammarQuestions(grammar: Grammar[], dir: GrammarDir, total: number, rng: () => number = Math.random): QuizQuestion[] {
-  const pool = grammar.filter((g) => g.meaning && (dir === 'meaning→title' || g.examples.length > 0));
+export function buildGrammarQuestions(
+  grammar: Grammar[],
+  dir: GrammarDir,
+  total: number,
+  rng: () => number = Math.random,
+  lang: Lang = 'vi',
+): QuizQuestion[] {
+  const meaning = (g: Grammar) => grammarMeaning(g, lang);
+  const pool = grammar.filter((g) => meaning(g) && (dir === 'meaning→title' || g.examples.length > 0));
   const picked = shuffle(pool, rng).slice(0, Math.min(total, pool.length));
   return picked.map((target) => {
     const options = makeChoices(target, pool, 4, (g) => g.title, rng);
@@ -15,28 +24,33 @@ export function buildGrammarQuestions(grammar: Grammar[], dir: GrammarDir, total
     return {
       prompt:
         dir === 'meaning→title' ? (
-          <span className="text-2xl">{target.meaning}</span>
+          <span className="text-2xl">{meaning(target)}</span>
         ) : (
           <span className="text-2xl">
             {ex?.ja}
-            <span className="block text-base text-muted">{ex?.en}</span>
+            <span className="block text-base text-muted">{ex && exampleTranslation(ex, lang)}</span>
           </span>
         ),
       promptClassName: 'text-2xl',
       choices: options.map((o) => o.title),
       answer: options.indexOf(target),
-      explain: dir === 'meaning→title' ? ex?.ja : target.meaning,
+      explain: dir === 'meaning→title' ? ex?.ja : meaning(target),
       speakText: ex?.ja,
     };
   });
 }
 
 export function GrammarQuiz({ grammar, total = 10 }: { grammar: Grammar[]; total?: number }) {
+  const t = useT();
+  const lang = useLang();
   const [dir, setDir] = useState<GrammarDir>('meaning→title');
   const [seed, setSeed] = useState(0);
   const [done, setDone] = useState(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const questions = useMemo(() => buildGrammarQuestions(grammar, dir, total), [grammar, dir, total, seed]);
+  const rngSeed = useSessionSeed(seed);
+  const questions = useMemo(
+    () => buildGrammarQuestions(grammar, dir, total, mulberry32(rngSeed), lang),
+    [grammar, dir, total, rngSeed, lang],
+  );
   const restart = () => {
     setDone(false);
     setSeed((s) => s + 1);
@@ -45,15 +59,15 @@ export function GrammarQuiz({ grammar, total = 10 }: { grammar: Grammar[]; total
     <div className="space-y-4">
       <div className="flex justify-center">
         <Segmented<GrammarDir>
-          ariaLabel="Kiểu câu hỏi"
+          ariaLabel={t.common.questionType}
           value={dir}
           onChange={(d) => {
             setDir(d);
             restart();
           }}
           options={[
-            { value: 'meaning→title', label: 'Nghĩa → Mẫu' },
-            { value: 'example→title', label: 'Ví dụ → Mẫu' },
+            { value: 'meaning→title', label: t.grammar.dirs.meaningToTitle },
+            { value: 'example→title', label: t.grammar.dirs.exampleToTitle },
           ]}
         />
       </div>
@@ -61,7 +75,7 @@ export function GrammarQuiz({ grammar, total = 10 }: { grammar: Grammar[]; total
       {done && (
         <div className="flex justify-center">
           <button type="button" className="btn-primary" onClick={restart}>
-            Làm lại
+            {t.common.retry}
           </button>
         </div>
       )}

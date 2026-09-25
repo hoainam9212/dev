@@ -82,7 +82,7 @@ export function KanaPage() {
           <div className="space-y-4">
             <div className="flex justify-center">
               <Segmented
-                ariaLabel={t.kana.questionType}
+                ariaLabel={t.common.questionType}
                 value={mode}
                 onChange={(m) => {
                   setMode(m);

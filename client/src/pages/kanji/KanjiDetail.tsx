@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Kanji } from '@nihongo/shared';
+import { kanjiMeanings, vocabMeanings, type Kanji } from '@nihongo/shared';
 import { StrokeAnimation } from '../../components/StrokeAnimation';
 import { WritingPractice } from '../../components/WritingPractice';
 import { useVocabByIds } from '../../content/useVocabByIds';
@@ -7,6 +7,7 @@ import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { recordReview } from '../../db/srs';
 import { useProgress } from '../../store/progress';
 import { useSwipe } from '../../lib/useSwipe';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   kanji: Kanji;
@@ -20,6 +21,8 @@ interface Props {
 
 export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [play, setPlay] = useState(0);
   const [writing, setWriting] = useState(false);
   const [marked, setMarked] = useState(false);
@@ -64,17 +67,17 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
           <div className="flex items-center gap-1">
             {prev && next && (
               <>
-                <button type="button" className="btn-soft px-3!" onClick={prev} aria-label="Kanji trước">
+                <button type="button" className="btn-soft px-3!" onClick={prev} aria-label={t.kanji.prev}>
                   ‹
                 </button>
                 {position && <span className="px-1 text-xs font-bold text-muted">{position}</span>}
-                <button type="button" className="btn-soft px-3!" onClick={next} aria-label="Kanji sau">
+                <button type="button" className="btn-soft px-3!" onClick={next} aria-label={t.kanji.next}>
                   ›
                 </button>
               </>
             )}
           </div>
-          <button type="button" className="btn-soft px-3!" onClick={onClose} aria-label="Đóng">
+          <button type="button" className="btn-soft px-3!" onClick={onClose} aria-label={t.common.close}>
             ✕
           </button>
         </div>
@@ -85,7 +88,7 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
           className={dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : undefined}
         >
         <div>
-          <span className="text-xs font-bold text-muted">{kanji.level} · {kanji.strokes} nét{kanji.grade ? ` · lớp ${kanji.grade}` : ''}</span>
+          <span className="text-xs font-bold text-muted">{t.kanji.meta(kanji.level, kanji.strokes, kanji.grade)}</span>
           <h2 className="text-6xl font-black">{kanji.char}</h2>
         </div>
 
@@ -94,7 +97,7 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
             <WritingPractice paths={kanji.strokePaths} label={kanji.char} onComplete={({ score }) => addXp(score >= 80 ? 3 : 1)} />
             <div className="mt-3 flex justify-center">
               <button type="button" className="btn-soft" onClick={() => setWriting(false)}>
-                ← Quay lại
+                {t.common.back}
               </button>
             </div>
           </div>
@@ -104,32 +107,38 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
               {kanji.strokePaths.length ? <StrokeAnimation paths={kanji.strokePaths} numbers={kanji.strokeNumbers} playKey={play} size={170} /> : null}
               <div className="flex gap-2">
                 <button type="button" className="btn-soft text-sm" onClick={() => setPlay((p) => p + 1)}>
-                  ▶ Phát lại
+                  {t.common.replay}
                 </button>
                 <button type="button" className="btn-sky text-sm" onClick={() => setWriting(true)} disabled={!kanji.strokePaths.length}>
-                  ✍️ Luyện viết
+                  {t.kanji.practiseWriting}
                 </button>
               </div>
             </div>
             <div className="space-y-3">
-              <p className="text-lg font-bold">{kanji.meanings.join(', ')}</p>
+              <p className="text-lg font-bold">{kanjiMeanings(kanji, lang).join(', ')}</p>
               <Readings label="音 On" items={kanji.on} />
               <Readings label="訓 Kun" items={kanji.kun} />
+              {kanji.hanViet && (
+                <div>
+                  <p className="text-xs font-bold text-muted">{t.kanji.hanViet}</p>
+                  <p className="mt-1 font-bold">{kanji.hanViet}</p>
+                </div>
+              )}
               <div>
-                <p className="text-xs font-bold text-muted">Từ vựng chứa {kanji.char}</p>
+                <p className="text-xs font-bold text-muted">{t.kanji.vocabWith(kanji.char)}</p>
                 <ul className="mt-1 space-y-1">
                   {vocab.map((v) => (
                     <li key={v.id} className="flex items-baseline gap-2 text-sm">
-                      <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={`Nghe ${v.word}`}>
+                      <button type="button" className="text-rose" onClick={() => speak(v.word)} aria-label={t.vocab.listenWord(v.word)}>
                         🔊
                       </button>
                       <span className="font-bold">{v.word}</span>
                       <span className="text-muted">{v.reading}</span>
-                      <span>{v.meanings.slice(0, 2).join(', ')}</span>
+                      <span>{vocabMeanings(v, lang).slice(0, 2).join(', ')}</span>
                       <span className="ml-auto text-xs text-muted">{v.level}</span>
                     </li>
                   ))}
-                  {vocab.length === 0 && <li className="text-sm text-muted">Chưa có từ ví dụ.</li>}
+                  {vocab.length === 0 && <li className="text-sm text-muted">{t.kanji.noVocab}</li>}
                 </ul>
               </div>
               <button
@@ -142,7 +151,7 @@ export function KanjiDetail({ kanji, onClose, onNext, onPrev, position }: Props)
                   setMarked(true);
                 }}
               >
-                {marked ? '✓ Đã thêm vào ôn tập' : '＋ Đánh dấu đã học'}
+                {marked ? t.common.addedToReview : t.common.markLearned}
               </button>
             </div>
           </div>

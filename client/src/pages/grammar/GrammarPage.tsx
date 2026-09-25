@@ -12,10 +12,12 @@ import { GrammarLesson } from './GrammarLesson';
 import { GrammarFlashcards } from './GrammarFlashcards';
 import { GrammarQuiz } from './GrammarQuiz';
 import { SentenceScramble } from './SentenceScramble';
+import { useT } from '../../i18n';
 
 type Mode = 'list' | 'cards' | 'quiz' | 'scramble';
 
 export function GrammarPage() {
+  const t = useT();
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useGrammar(level);
   const progress = useProgressMap('grammar');
@@ -27,26 +29,17 @@ export function GrammarPage() {
   return (
     <div className="space-y-4">
       <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-black text-rose">Ngữ pháp</h1>
+        <h1 className="text-2xl font-black text-rose">{t.grammar.title}</h1>
         <LevelPicker />
       </header>
       <div className="flex flex-wrap items-center gap-3">
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={setMode}
-          options={[
-            { value: 'list', label: 'Bài học' },
-            { value: 'cards', label: 'Thẻ ghi nhớ' },
-            { value: 'quiz', label: 'Trắc nghiệm' },
-            { value: 'scramble', label: 'Sắp xếp câu' },
-          ]}
+          options={(['list', 'cards', 'quiz', 'scramble'] as const).map((m) => ({ value: m, label: t.grammar.modes[m] }))}
         />
-        {data && (
-          <span className="text-sm text-muted">
-            {data.length} mẫu · đã học {learned}
-          </span>
-        )}
+        {data && <span className="text-sm text-muted">{t.grammar.stats(data.length, learned)}</span>}
       </div>
       <section className="card p-4 md:p-6">
         {loading && <LoadingCat />}

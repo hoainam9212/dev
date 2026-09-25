@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import type { Kanji } from '@nihongo/shared';
+import { kanjiMeanings, type Kanji } from '@nihongo/shared';
 import { WritingPractice } from '../../components/WritingPractice';
 import { useProgress } from '../../store/progress';
 import { useSwipe } from '../../lib/useSwipe';
+import { useLang, useT } from '../../i18n';
 
 export function KanjiWrite({ kanji }: { kanji: Kanji[] }) {
+  const t = useT();
+  const lang = useLang();
   const writable = kanji.filter((k) => k.strokePaths.length > 0);
   const [i, setI] = useState(0);
   const [round, setRound] = useState(0);
@@ -18,16 +21,16 @@ export function KanjiWrite({ kanji }: { kanji: Kanji[] }) {
   };
   const swipe = useSwipe({ onNext: () => go(1), onPrev: () => go(-1) });
   const cur = writable[i];
-  if (!cur) return <p className="text-center text-muted">Chưa có dữ liệu nét.</p>;
+  if (!cur) return <p className="text-center text-muted">{t.common.noStrokes}</p>;
 
   return (
     <div data-testid="kanji-write" className="flex flex-col items-center gap-4" {...swipe}>
       <div className="flex w-full items-center gap-2">
-        <button type="button" className="btn-soft" onClick={() => go(-1)} aria-label="Trước">
+        <button type="button" className="btn-soft" onClick={() => go(-1)} aria-label={t.common.prev}>
           ←
         </button>
         <select
-          aria-label="Chọn kanji"
+          aria-label={t.kanji.pick}
           value={i}
           onChange={(e) => {
             setI(Number(e.target.value));
@@ -38,11 +41,11 @@ export function KanjiWrite({ kanji }: { kanji: Kanji[] }) {
         >
           {writable.map((k, idx) => (
             <option key={k.id} value={idx}>
-              {k.char} · {k.meanings[0]}
+              {k.char} · {kanjiMeanings(k, lang)[0]}
             </option>
           ))}
         </select>
-        <button type="button" className="btn-soft" onClick={() => go(1)} aria-label="Sau">
+        <button type="button" className="btn-soft" onClick={() => go(1)} aria-label={t.common.following}>
           →
         </button>
       </div>
@@ -52,11 +55,11 @@ export function KanjiWrite({ kanji }: { kanji: Kanji[] }) {
           dir === 'next' ? 'slide-from-right' : dir === 'prev' ? 'slide-from-left' : ''
         }`}
       >
-        <p className="text-sm text-muted">{cur.meanings.slice(0, 3).join(', ')}</p>
+        <p className="text-sm text-muted">{kanjiMeanings(cur, lang).slice(0, 3).join(', ')}</p>
         <WritingPractice paths={cur.strokePaths} label={cur.char} onComplete={({ score }) => addXp(score >= 80 ? 3 : 1)} />
       </div>
       <button type="button" className="btn-primary" onClick={() => go(1)}>
-        Kanji tiếp theo →
+        {t.kanji.nextKanji}
       </button>
     </div>
   );

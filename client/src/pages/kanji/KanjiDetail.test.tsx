@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import type { Kanji } from '@nihongo/shared';
 import { KanjiDetail } from './KanjiDetail';
 import { swipe, swipeLeft, swipeRight } from '../../test/swipe';
+import { withLang } from '../../test/lang';
 
 vi.mock('../../content/useVocabByIds', () => ({ useVocabByIds: () => ({ data: [] }) }));
 vi.mock('../../lib/tts', () => ({ speak: vi.fn(), useStopSpeechOnUnmount: vi.fn() }));
@@ -11,6 +12,35 @@ const kanji: Kanji = {
   id: 'k-一', char: '一', level: 'N5', strokes: 1, meanings: ['One'], on: ['イチ'], kun: [],
   strokePaths: ['M10,50 L100,50'], vocabIds: [],
 };
+
+it('labels the header and the stroke count in English (1 stroke vs 8 strokes)', () => {
+  withLang('en');
+  const { unmount } = render(<KanjiDetail kanji={kanji} onClose={vi.fn()} onNext={vi.fn()} onPrev={vi.fn()} position="3 / 79" />);
+  for (const name of ['Previous kanji', 'Next kanji', 'Close']) expect(screen.getByRole('button', { name })).toBeInTheDocument();
+  expect(screen.getByText('N5 · 1 stroke')).toBeInTheDocument();
+  unmount();
+  render(<KanjiDetail kanji={{ ...kanji, strokes: 8, grade: 2 }} onClose={vi.fn()} />);
+  expect(screen.getByText('N5 · 8 strokes · grade 2')).toBeInTheDocument();
+});
+
+it('shows a Hán Việt row only when the kanji has one', () => {
+  const { unmount } = render(<KanjiDetail kanji={kanji} onClose={vi.fn()} />);
+  expect(screen.queryByText('Hán Việt')).not.toBeInTheDocument();
+  unmount();
+  render(<KanjiDetail kanji={{ ...kanji, hanViet: 'Nhất' }} onClose={vi.fn()} />);
+  expect(screen.getByText('Hán Việt')).toBeInTheDocument();
+  expect(screen.getByText('Nhất')).toBeInTheDocument();
+});
+
+it('shows Vietnamese kanji meanings in Vietnamese and English ones in English', () => {
+  const k = { ...kanji, meaningsVi: ['một'] };
+  const { unmount } = render(<KanjiDetail kanji={k} onClose={vi.fn()} />);
+  expect(screen.getByText('một')).toBeInTheDocument();
+  unmount();
+  withLang('en');
+  render(<KanjiDetail kanji={k} onClose={vi.fn()} />);
+  expect(screen.getByText('One')).toBeInTheDocument();
+});
 
 function setup() {
   const onNext = vi.fn();

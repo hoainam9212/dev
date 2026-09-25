@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { Grammar } from '@nihongo/shared';
+import { exampleTranslation, grammarMeaning, type Grammar } from '@nihongo/shared';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { recordReview } from '../../db/srs';
 import { useProgress } from '../../store/progress';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   grammar: Grammar;
@@ -11,6 +12,8 @@ interface Props {
 
 export function GrammarLesson({ grammar, onClose }: Props) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [marked, setMarked] = useState(false);
   const addXp = useProgress((s) => s.addXp);
 
@@ -25,7 +28,7 @@ export function GrammarLesson({ grammar, onClose }: Props) {
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 md:items-center md:p-6" onClick={onClose}>
       <div
         role="dialog"
-        aria-label={`Ngữ pháp ${grammar.title}`}
+        aria-label={t.grammar.dialog(grammar.title)}
         className="card max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-5 md:rounded-b-3xl md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
@@ -34,32 +37,32 @@ export function GrammarLesson({ grammar, onClose }: Props) {
             <span className="text-xs font-bold text-muted">{grammar.level}</span>
             <h2 className="text-2xl font-black">{grammar.title}</h2>
           </div>
-          <button type="button" className="btn-soft" onClick={onClose} aria-label="Đóng">
+          <button type="button" className="btn-soft" onClick={onClose} aria-label={t.common.close}>
             ✕
           </button>
         </div>
         <div className="mt-4 space-y-4">
           <section>
-            <p className="text-xs font-bold text-muted">Ý nghĩa</p>
-            <p className="font-bold">{grammar.meaning}</p>
+            <p className="text-xs font-bold text-muted">{t.grammar.meaning}</p>
+            <p className="font-bold">{grammarMeaning(grammar, lang)}</p>
           </section>
           <section>
-            <p className="text-xs font-bold text-muted">Cấu trúc</p>
+            <p className="text-xs font-bold text-muted">{t.grammar.formation}</p>
             <p className="rounded-2xl bg-lavender/30 px-4 py-2 font-mono text-sm">{grammar.formation}</p>
           </section>
           <section>
-            <p className="text-xs font-bold text-muted">Ví dụ</p>
+            <p className="text-xs font-bold text-muted">{t.grammar.examples}</p>
             <ul className="mt-1 space-y-2">
               {grammar.examples.map((ex, i) => (
                 <li key={i} className="rounded-2xl bg-cream p-3 dark:bg-bg">
                   <div className="flex items-start gap-2">
-                    <button type="button" className="text-rose" onClick={() => speak(ex.ja)} aria-label="Nghe ví dụ">
+                    <button type="button" className="text-rose" onClick={() => speak(ex.ja)} aria-label={t.grammar.listenExample}>
                       🔊
                     </button>
                     <div>
                       <p className="text-lg font-bold">{ex.ja}</p>
                       <p className="text-xs text-muted">{ex.romaji}</p>
-                      <p className="text-sm">{ex.en}</p>
+                      <p className="text-sm">{exampleTranslation(ex, lang)}</p>
                     </div>
                   </div>
                 </li>
@@ -76,7 +79,7 @@ export function GrammarLesson({ grammar, onClose }: Props) {
               setMarked(true);
             }}
           >
-            {marked ? '✓ Đã thêm vào ôn tập' : '＋ Đánh dấu đã học'}
+            {marked ? t.common.addedToReview : t.common.markLearned}
           </button>
         </div>
       </div>

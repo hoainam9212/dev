@@ -1,18 +1,19 @@
 import { useMemo, useRef, useState } from 'react';
-import type { Grammar } from '@nihongo/shared';
+import { exampleTranslation, type Grammar, type GrammarExample } from '@nihongo/shared';
 import { chunkSentence } from '../../lib/chunk';
 import { shuffle } from '../../lib/quiz';
 import { speak, useStopSpeechOnUnmount } from '../../lib/tts';
 import { logSession } from '../../db';
 import { useProgress } from '../../store/progress';
 import { Mascot } from '../../components/Mascot';
+import { useLang, useT } from '../../i18n';
 
 const XP = 2;
 
 interface Item {
   grammar: Grammar;
   ja: string;
-  en: string;
+  example: GrammarExample; // translated at render, so a language switch updates the prompt in place
   chunks: string[];
   shuffled: string[];
 }
@@ -26,12 +27,14 @@ export function buildScrambleItems(grammar: Grammar[], total: number, rng: () =>
       const chunks = chunkSentence(ex.ja, 4);
       let shuffled = shuffle(chunks, rng);
       if (shuffled.join('') === ex.ja && chunks.length > 1) shuffled = [...chunks].reverse();
-      return { grammar: g, ja: ex.ja, en: ex.en, chunks, shuffled };
+      return { grammar: g, ja: ex.ja, example: ex, chunks, shuffled };
     });
 }
 
 export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; total?: number }) {
   useStopSpeechOnUnmount();
+  const t = useT();
+  const lang = useLang();
   const [seed, setSeed] = useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const items = useMemo(() => buildScrambleItems(grammar, total), [grammar, total, seed]);
@@ -51,17 +54,15 @@ export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; t
     setCorrect(0);
   };
 
-  if (items.length === 0) return <p className="text-center text-muted">Chưa đủ ví dụ để tạo bài.</p>;
+  if (items.length === 0) return <p className="text-center text-muted">{t.grammar.notEnoughExamples}</p>;
 
   if (!item) {
     return (
       <div className="flex flex-col items-center gap-3 py-6" data-testid="scramble-result">
         <Mascot mood={correct / items.length >= 0.8 ? 'happy' : 'neutral'} size={120} />
-        <p className="text-xl font-black text-rose">
-          Kết quả: {correct} / {items.length}
-        </p>
+        <p className="text-xl font-black text-rose">{t.quiz.result(correct, items.length)}</p>
         <button type="button" className="btn-primary" onClick={restart}>
-          Làm lại
+          {t.common.retry}
         </button>
       </div>
     );
@@ -98,12 +99,10 @@ export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; t
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <p className="text-sm font-bold text-muted">
-        Câu {i + 1} / {items.length} · Đúng: {correct}
-      </p>
+      <p className="text-sm font-bold text-muted">{t.quiz.position(i + 1, items.length, correct)}</p>
       <div className="text-center">
         <p className="text-xs font-bold text-muted">{item.grammar.title}</p>
-        <p className="text-lg">{item.en}</p>
+        <p className="text-lg">{exampleTranslation(item.example, lang)}</p>
       </div>
       <div
         className="flex min-h-14 w-full max-w-lg flex-wrap items-center justify-center gap-1 rounded-2xl bg-cream p-3 text-xl font-bold ring-2 ring-sakura/50 dark:bg-bg"
@@ -120,7 +119,7 @@ export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; t
             {item.shuffled[k]}
           </button>
         ))}
-        {used.length === 0 && <span className="text-sm font-normal text-muted">Chạm các mảnh bên dưới theo đúng thứ tự</span>}
+        {used.length === 0 && <span className="text-sm font-normal text-muted">{t.grammar.scrambleHint}</span>}
       </div>
       <div className="flex flex-wrap justify-center gap-2">
         {item.shuffled.map((c, k) => (
@@ -137,14 +136,14 @@ export function SentenceScramble({ grammar, total = 8 }: { grammar: Grammar[]; t
       </div>
       {checked === null ? (
         <button type="button" className="btn-primary" disabled={!complete} onClick={check}>
-          Kiểm tra
+          {t.common.check}
         </button>
       ) : (
         <div className="flex flex-col items-center gap-2">
-          <p className={`font-bold ${checked ? 'text-emerald-500' : 'text-rose'}`}>{checked ? '正解！ Chính xác!' : 'Chưa đúng. Đáp án:'}</p>
+          <p className={`font-bold ${checked ? 'text-emerald-500' : 'text-rose'}`}>{checked ? t.common.correct : t.quiz.notQuite}</p>
           {!checked && <p className="text-xl font-black">{item.ja}</p>}
           <button type="button" className="btn-primary" onClick={next} autoFocus>
-            Tiếp →
+            {t.common.next}
           </button>
         </div>
       )}

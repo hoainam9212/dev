@@ -1,32 +1,40 @@
 import { useMemo, useState } from 'react';
-import { buildQueue, type Grammar, type ProgressItem } from '@nihongo/shared';
+import { buildQueue, exampleTranslation, grammarMeaning, type Grammar, type ProgressItem } from '@nihongo/shared';
 import { FlashcardSession, type CardItem } from '../../components/FlashcardSession';
 import { toState } from '../../db/srs';
+import { useLang, useT } from '../../i18n';
 
 export function grammarCard(g: Grammar): CardItem {
-  const ex = g.examples[0];
   return {
     id: g.id,
     type: 'grammar',
-    speakText: ex?.ja,
+    speakText: g.examples[0]?.ja,
     front: <span className="text-3xl font-black">{g.title}</span>,
-    back: (
-      <div className="space-y-1 text-left">
-        <p className="text-lg font-bold text-rose">{g.meaning}</p>
-        <p className="font-mono text-xs text-muted">{g.formation}</p>
-        {ex && (
-          <p className="pt-1 text-sm">
-            {ex.ja}
-            <br />
-            <span className="text-muted">{ex.en}</span>
-          </p>
-        )}
-      </div>
-    ),
+    back: <GrammarBack g={g} />,
   };
 }
 
+/** A component (not JSX baked into the card) so the meaning follows a language switch mid-session. */
+function GrammarBack({ g }: { g: Grammar }) {
+  const lang = useLang();
+  const ex = g.examples[0];
+  return (
+    <div className="space-y-1 text-left">
+      <p className="text-lg font-bold text-rose">{grammarMeaning(g, lang)}</p>
+      <p className="font-mono text-xs text-muted">{g.formation}</p>
+      {ex && (
+        <p className="pt-1 text-sm">
+          {ex.ja}
+          <br />
+          <span className="text-muted">{exampleTranslation(ex, lang)}</span>
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function GrammarFlashcards({ grammar, progress, newLimit = 10 }: { grammar: Grammar[]; progress: Map<string, ProgressItem>; newLimit?: number }) {
+  const t = useT();
   const [seed, setSeed] = useState(0);
   const [done, setDone] = useState(false);
   const items = useMemo<CardItem[]>(() => {
@@ -56,7 +64,7 @@ export function GrammarFlashcards({ grammar, progress, newLimit = 10 }: { gramma
               setSeed((s) => s + 1);
             }}
           >
-            Phiên mới
+            {t.common.newSession}
           </button>
         </div>
       )}

@@ -43,7 +43,7 @@ export function VocabList({ vocab, level, progress }: Props) {
           setLimit(PAGE);
         }}
         placeholder={t.vocab.searchPlaceholder}
-        aria-label={t.vocab.search}
+        aria-label={t.common.search}
         className="w-full rounded-full bg-cream px-5 py-2.5 ring-2 ring-sakura/50 focus:outline-none focus:ring-rose dark:bg-bg"
       />
       <p className="text-sm text-muted">{t.vocab.words(filtered.length)}</p>

@@ -56,7 +56,7 @@ export function VocabQuiz({ vocab, total = 10 }: { vocab: Vocab[]; total?: numbe
     <div className="space-y-4">
       <div className="flex justify-center">
         <Segmented<Dir>
-          ariaLabel={t.vocab.direction}
+          ariaLabel={t.common.direction}
           value={dir}
           onChange={(d) => {
             setDir(d);

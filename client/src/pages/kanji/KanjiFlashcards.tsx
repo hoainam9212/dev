@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
-import { buildQueue, type Kanji, type ProgressItem } from '@nihongo/shared';
+import { buildQueue, kanjiMeanings, type Kanji, type ProgressItem } from '@nihongo/shared';
 import { FlashcardSession, type CardItem } from '../../components/FlashcardSession';
 import { toState } from '../../db/srs';
+import { useLang, useT } from '../../i18n';
 
 interface Props {
   kanji: Kanji[];
@@ -15,18 +16,25 @@ export function kanjiCard(k: Kanji): CardItem {
     type: 'kanji',
     speakText: k.kun[0]?.replace(/[-.]/g, '') ?? k.on[0],
     front: <span className="text-7xl font-black">{k.char}</span>,
-    back: (
-      <div className="space-y-1">
-        <p className="text-3xl font-black">{k.char}</p>
-        <p className="text-lg font-bold text-rose">{k.meanings.slice(0, 3).join(', ')}</p>
-        {k.on.length > 0 && <p className="text-sm">音 {k.on.join('、')}</p>}
-        {k.kun.length > 0 && <p className="text-sm">訓 {k.kun.join('、')}</p>}
-      </div>
-    ),
+    back: <KanjiBack k={k} />,
   };
 }
 
+/** A component (not JSX baked into the card) so the meaning follows a language switch mid-session. */
+function KanjiBack({ k }: { k: Kanji }) {
+  const lang = useLang();
+  return (
+    <div className="space-y-1">
+      <p className="text-3xl font-black">{k.char}</p>
+      <p className="text-lg font-bold text-rose">{kanjiMeanings(k, lang).slice(0, 3).join(', ')}</p>
+      {k.on.length > 0 && <p className="text-sm">音 {k.on.join('、')}</p>}
+      {k.kun.length > 0 && <p className="text-sm">訓 {k.kun.join('、')}</p>}
+    </div>
+  );
+}
+
 export function KanjiFlashcards({ kanji, progress, newLimit = 20 }: Props) {
+  const t = useT();
   const [seed, setSeed] = useState(0);
   const [done, setDone] = useState(false);
   const items = useMemo<CardItem[]>(() => {
@@ -56,7 +64,7 @@ export function KanjiFlashcards({ kanji, progress, newLimit = 20 }: Props) {
               setSeed((s) => s + 1);
             }}
           >
-            Phiên mới
+            {t.common.newSession}
           </button>
         </div>
       )}

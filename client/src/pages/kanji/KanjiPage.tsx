@@ -12,10 +12,12 @@ import { KanjiDetail } from './KanjiDetail';
 import { KanjiFlashcards } from './KanjiFlashcards';
 import { KanjiQuiz } from './KanjiQuiz';
 import { KanjiWrite } from './KanjiWrite';
+import { useT } from '../../i18n';
 
 type Mode = 'grid' | 'cards' | 'quiz' | 'write';
 
 export function KanjiPage() {
+  const t = useT();
   const level = useLevel((s) => s.level);
   const { data, error, loading } = useKanji(level);
   const progress = useProgressMap('kanji');
@@ -35,21 +37,12 @@ export function KanjiPage() {
       </header>
       <div className="flex flex-wrap items-center gap-3">
         <Segmented<Mode>
-          ariaLabel="Chế độ"
+          ariaLabel={t.common.mode}
           value={mode}
           onChange={setMode}
-          options={[
-            { value: 'grid', label: 'Lưới' },
-            { value: 'cards', label: 'Thẻ ghi nhớ' },
-            { value: 'quiz', label: 'Trắc nghiệm' },
-            { value: 'write', label: 'Luyện viết' },
-          ]}
+          options={(['grid', 'cards', 'quiz', 'write'] as const).map((m) => ({ value: m, label: t.kanji.modes[m] }))}
         />
-        {data && (
-          <span className="text-sm text-muted">
-            {data.length} kanji · đã học {learned}
-          </span>
-        )}
+        {data && <span className="text-sm text-muted">{t.kanji.stats(data.length, learned)}</span>}
       </div>
 
       <section className="card p-4 md:p-6">
