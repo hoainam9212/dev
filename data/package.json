@@ -6,6 +6,7 @@
   "scripts": {
     "fetch": "tsx scripts/fetch.ts",
     "build": "tsx scripts/build.ts",
+    "tr": "tsx scripts/tr.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
