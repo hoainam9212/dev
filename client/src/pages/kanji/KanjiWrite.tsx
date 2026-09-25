@@ -21,7 +21,8 @@ export function KanjiWrite({ kanji }: { kanji: Kanji[] }) {
           aria-label="Chọn kanji"
           value={i}
           onChange={(e) => setI(Number(e.target.value))}
-          className="flex-1 rounded-full bg-cream px-4 py-2 font-bold ring-2 ring-sakura/50 dark:bg-bg"
+          // min-w-0: a select is as wide as its longest option (N1 meanings are long) and would push the page sideways
+          className="min-w-0 flex-1 truncate rounded-full bg-cream px-4 py-2 font-bold ring-2 ring-sakura/50 dark:bg-bg"
         >
           {writable.map((k, idx) => (
             <option key={k.id} value={idx}>
