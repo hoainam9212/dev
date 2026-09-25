@@ -1,3 +1,5 @@
+import { getT } from '../i18n';
+
 export class ApiError extends Error {
   status: number;
   constructor(status: number, message: string) {
@@ -26,7 +28,7 @@ export function setApiBase(origin: string): void {
   }
 }
 
-/** JSON fetch wrapper. Throws ApiError with the server's Vietnamese message. */
+/** JSON fetch wrapper. Throws ApiError with the server's message (or a local one in the display language). */
 export async function api<T>(path: string, opts: { method?: string; body?: unknown; token?: string | null } = {}): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json' };
   if (opts.body !== undefined) headers['Content-Type'] = 'application/json';
@@ -35,10 +37,10 @@ export async function api<T>(path: string, opts: { method?: string; body?: unkno
   try {
     res = await fetch(`${getApiBase()}/api${path}`, { method: opts.method ?? 'GET', headers, body: opts.body === undefined ? undefined : JSON.stringify(opts.body) });
   } catch {
-    throw new ApiError(0, 'Không kết nối được máy chủ.');
+    throw new ApiError(0, getT().errors.noServer);
   }
   if (!res.ok) {
-    let msg = `Lỗi ${res.status}`;
+    let msg = getT().errors.http(res.status);
     try {
       const j = (await res.json()) as { error?: string };
       if (j.error) msg = j.error;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Grammar, Kanji, KanaBundle, Level, Sentence, Vocab } from '@nihongo/shared';
+import { getT } from '../i18n';
 
 const cache = new Map<string, Promise<unknown>>();
 
@@ -12,7 +13,7 @@ export function loadJson<T>(path: string): Promise<T> {
   let p = cache.get(path);
   if (!p) {
     p = fetch(`/content/${path}`).then(async (r) => {
-      if (!r.ok) throw new Error(`Không tải được ${path} (${r.status})`);
+      if (!r.ok) throw new Error(getT().errors.loadFailed(path, r.status));
       return r.json() as Promise<unknown>;
     });
     cache.set(path, p);

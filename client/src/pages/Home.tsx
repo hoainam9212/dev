@@ -9,10 +9,12 @@ import { useDueCounts } from '../db/srs';
 import { useSettings } from '../store/settings';
 import { pickMascotLine, levelName } from '../lib/mascot';
 import { levelFromXp } from '../store/streak';
-import { useT } from '../i18n';
+import { useLang, useT } from '../i18n';
+import { pickText } from '@nihongo/shared';
 
 export function Home() {
   const t = useT();
+  const lang = useLang();
   const streak = useProgress((s) => s.streak);
   const due = useDueCounts();
   const petals = useSettings((s) => s.petals);
@@ -30,17 +32,17 @@ export function Home() {
           <div className="flex-1 space-y-3">
             <SpeechBubble>
               <p className="text-lg font-bold">{g.ja}</p>
-              <p className="text-sm text-muted">{g.vi}</p>
+              <p className="text-sm text-muted">{pickText(g.vi, g.en, lang)}</p>
             </SpeechBubble>
             <div className="flex flex-wrap gap-3">
-              <div className="rounded-2xl bg-sakura/30 px-4 py-2 font-bold">🔥 Chuỗi: {streak} ngày</div>
-              <div className="rounded-2xl bg-lavender/40 px-4 py-2 font-bold">🏅 {levelName(levelFromXp(xp).level)}</div>
+              <div className="rounded-2xl bg-sakura/30 px-4 py-2 font-bold">{t.home.streak(streak)}</div>
+              <div className="rounded-2xl bg-lavender/40 px-4 py-2 font-bold">🏅 {levelName(levelFromXp(xp).level, t)}</div>
               <div className="rounded-2xl bg-sky/40 px-4 py-2 font-bold" data-testid="due-chip">
-                🔁 Đến hạn: {dueTotal} thẻ
+                {t.home.due(dueTotal)}
               </div>
               {dueTotal > 0 && (
                 <Link to="/review" className="btn-primary">
-                  Ôn ngay
+                  {t.home.reviewNow}
                 </Link>
               )}
             </div>
@@ -50,7 +52,7 @@ export function Home() {
       </section>
 
       <section>
-        <h2 className="mb-3 text-xl font-black text-rose">Bắt đầu học</h2>
+        <h2 className="mb-3 text-xl font-black text-rose">{t.home.startLearning}</h2>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {quick.map((n) => (
             <Link

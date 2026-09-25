@@ -2,6 +2,7 @@ import { isDue, type ItemType, type ProgressItem } from '@nihongo/shared';
 import type { SessionLog } from './db';
 import { toState } from './srs';
 import { todayStr } from '../store/streak';
+import { getT } from '../i18n';
 
 const DAY = 86_400_000;
 const LEARNED_INTERVAL = 21;
@@ -52,7 +53,7 @@ export function dueForecast(progress: ProgressItem[], days: number, now = new Da
   start.setHours(0, 0, 0, 0);
   const out = Array.from({ length: days }, (_, i) => {
     const d = new Date(start.getTime() + i * DAY);
-    return { day: todayStr(d), label: i === 0 ? 'Hôm nay' : `${d.getDate()}/${d.getMonth() + 1}`, count: 0 };
+    return { day: todayStr(d), label: i === 0 ? getT().progress.today : `${d.getDate()}/${d.getMonth() + 1}`, count: 0 };
   });
   for (const p of progress) {
     const due = new Date(p.due).getTime();

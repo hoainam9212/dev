@@ -9,14 +9,10 @@ import { levelFromXp } from '../store/streak';
 import { BarChart } from '../components/BarChart';
 import { LoadingCat } from '../components/LoadingCat';
 import { Mascot } from '../components/Mascot';
-
-const TYPE_LABEL: Record<ItemType, string> = { vocab: 'Từ vựng', kanji: 'Kanji', grammar: 'Ngữ pháp' };
-const KIND_LABEL: Record<string, string> = {
-  flashcard: 'Thẻ ghi nhớ', quiz: 'Trắc nghiệm', typing: 'Gõ đáp án', listening: 'Nghe', writing: 'Viết',
-  speaking: 'Nói', reading: 'Đọc', dictation: 'Chính tả', scramble: 'Sắp xếp câu', sentence: 'Đặt câu',
-};
+import { useT } from '../i18n';
 
 export function ProgressPage() {
+  const t = useT();
   const progress = useLiveQuery(() => db.progress.toArray(), []);
   const sessions = useLiveQuery(() => db.sessions.orderBy('startedAt').reverse().limit(500).toArray(), []);
   const index = useJson<ContentIndex>('index.json');
@@ -34,30 +30,30 @@ export function ProgressPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-black text-rose">Tiến độ</h1>
+      <h1 className="text-2xl font-black text-rose">{t.progress.title}</h1>
 
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <Stat label="Cấp độ" value={`Cấp ${lv.level}`} sub={`${lv.into}/${lv.need} XP`} />
-        <Stat label="Tổng XP" value={String(xp)} sub="tích lũy" />
-        <Stat label="Chuỗi ngày" value={`${streak} 🔥`} sub="học liên tiếp" />
-        <Stat label="Hôm nay" value={`+${today.xp} XP`} sub={`${today.sessions} phiên học`} />
+        <Stat label={t.progress.level} value={t.common.level(lv.level)} sub={`${lv.into}/${lv.need} XP`} />
+        <Stat label={t.progress.totalXp} value={String(xp)} sub={t.progress.earned} />
+        <Stat label={t.progress.streak} value={`${streak} 🔥`} sub={t.progress.inARow} />
+        <Stat label={t.progress.today} value={`+${today.xp} XP`} sub={t.progress.sessions(today.sessions)} />
       </section>
 
       <section className="card p-4 md:p-6">
-        <h2 className="mb-2 font-black">XP 7 ngày qua</h2>
+        <h2 className="mb-2 font-black">{t.progress.xpWeek}</h2>
         <BarChart data={week.map((d) => ({ label: d.label, value: d.xp }))} />
       </section>
 
       <section className="grid gap-3 md:grid-cols-3">
-        {(['vocab', 'kanji', 'grammar'] as ItemType[]).map((t) => {
-          const c = status[t];
-          const total = totals(t);
+        {(['vocab', 'kanji', 'grammar'] as ItemType[]).map((type) => {
+          const c = status[type];
+          const total = totals(type);
           const started = c.learning + c.learned;
           const pct = total ? Math.round((started / total) * 100) : 0;
           return (
-            <div key={t} className="card p-4">
+            <div key={type} className="card p-4">
               <div className="flex items-baseline justify-between">
-                <h3 className="font-black">{TYPE_LABEL[t]}</h3>
+                <h3 className="font-black">{t.progress.types[type]}</h3>
                 <span className="text-xs text-muted">
                   {started}/{total || '…'} · {pct}%
                 </span>
@@ -67,15 +63,15 @@ export function ProgressPage() {
               </div>
               <dl className="mt-3 grid grid-cols-3 gap-1 text-center text-xs">
                 <div>
-                  <dt className="text-muted">Đang học</dt>
+                  <dt className="text-muted">{t.progress.learning}</dt>
                   <dd className="text-lg font-black text-lavender">{c.learning}</dd>
                 </div>
                 <div>
-                  <dt className="text-muted">Đã thuộc</dt>
+                  <dt className="text-muted">{t.progress.learned}</dt>
                   <dd className="text-lg font-black text-emerald-500">{c.learned}</dd>
                 </div>
                 <div>
-                  <dt className="text-muted">Đến hạn</dt>
+                  <dt className="text-muted">{t.progress.due}</dt>
                   <dd className="text-lg font-black text-rose">{c.due}</dd>
                 </div>
               </dl>
@@ -86,10 +82,10 @@ export function ProgressPage() {
 
       <section className="card p-4 md:p-6">
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="font-black">Lịch ôn 7 ngày tới</h2>
+          <h2 className="font-black">{t.progress.forecast}</h2>
           {forecast[0]!.count > 0 && (
             <Link to="/review" className="btn-primary text-sm">
-              Ôn ngay ({forecast[0]!.count})
+              {t.progress.reviewNow(forecast[0]!.count)}
             </Link>
           )}
         </div>
@@ -97,19 +93,19 @@ export function ProgressPage() {
       </section>
 
       <section className="card p-4 md:p-6">
-        <h2 className="mb-2 font-black">Phiên học gần đây</h2>
+        <h2 className="mb-2 font-black">{t.progress.recent}</h2>
         {sessions.length === 0 ? (
           <div className="flex flex-col items-center gap-2 py-4">
             <Mascot mood="sleepy" size={90} />
-            <p className="text-sm text-muted">Chưa có phiên học nào. Bắt đầu thôi!</p>
+            <p className="text-sm text-muted">{t.progress.noSessions}</p>
           </div>
         ) : (
           <ul className="divide-y divide-sakura/30 text-sm">
             {sessions.slice(0, 10).map((s) => (
               <li key={s.id} className="flex items-center gap-3 py-2">
-                <span className="w-28 text-xs text-muted">{new Date(s.startedAt).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' })}</span>
+                <span className="w-28 text-xs text-muted">{new Date(s.startedAt).toLocaleString(t.common.locale, { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' })}</span>
                 <span className="flex-1 font-bold">
-                  {KIND_LABEL[s.kind] ?? s.kind} · {TYPE_LABEL[s.type as ItemType] ?? s.type}
+                  {t.progress.kinds[s.kind] ?? s.kind} · {t.progress.types[s.type] ?? s.type}
                 </span>
                 <span className="text-muted">
                   {s.correct}/{s.total}

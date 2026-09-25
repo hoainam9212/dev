@@ -1,4 +1,6 @@
-import { canRecognize, recognizeOnce } from './stt';
+import { canRecognize, recognizeOnce, sttMessage } from './stt';
+import { withLang } from '../test/lang';
+import { useSettings } from '../store/settings';
 
 class FakeRecognition {
   static next: { transcript?: string; error?: string } = {};
@@ -39,4 +41,11 @@ it('resolves the transcript and maps errors', async () => {
   await expect(recognizeOnce()).rejects.toThrow('not-allowed');
   FakeRecognition.next = {};
   await expect(recognizeOnce()).rejects.toThrow('no-speech');
+});
+
+it('builds the "not supported" message in the language active at call time', () => {
+  withLang('en');
+  expect(sttMessage('unsupported')).toMatch(/doesn't support speech recognition/);
+  useSettings.getState().setLang('vi');
+  expect(sttMessage('unsupported')).toMatch(/không hỗ trợ nhận dạng giọng nói/);
 });

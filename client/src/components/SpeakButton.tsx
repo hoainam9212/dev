@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { pronunciationScore } from '@nihongo/shared';
-import { canRecognize, recognizeOnce, STT_MESSAGES, type SttError } from '../lib/stt';
+import { canRecognize, recognizeOnce, type SttError } from '../lib/stt';
 import { useProgress } from '../store/progress';
 import { useT } from '../i18n';
 
@@ -23,7 +23,7 @@ export function xpForScore(score: number): number {
 export function SpeakButton({ expected, onResult, disabled }: Props) {
   const t = useT();
   const [state, setState] = useState<'idle' | 'listening' | 'error'>('idle');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<SttError | null>(null);
   const addXp = useProgress((s) => s.addXp);
 
   const finish = (heard: string, score: number) => {
@@ -35,7 +35,7 @@ export function SpeakButton({ expected, onResult, disabled }: Props) {
   if (!canRecognize()) {
     return (
       <div className="flex flex-col items-center gap-2" data-testid="self-assess">
-        <p className="text-center text-xs text-muted">{STT_MESSAGES.unsupported} {t.quiz.selfAssess}</p>
+        <p className="text-center text-xs text-muted">{t.errors.stt.unsupported} {t.quiz.selfAssess}</p>
         <div className="flex gap-2">
           <button type="button" className="btn-primary" disabled={disabled} onClick={() => finish('', 100)}>
             {t.quiz.saidIt}
@@ -63,13 +63,14 @@ export function SpeakButton({ expected, onResult, disabled }: Props) {
             finish(heard, pronunciationScore(expected, heard));
           } catch (e) {
             setState('error');
-            setError(STT_MESSAGES[(e as Error).message as SttError] ?? STT_MESSAGES.error);
+            const code = (e as Error).message as SttError;
+            setError(code in t.errors.stt ? code : 'error');
           }
         }}
       >
         {state === 'listening' ? t.quiz.listening : t.quiz.speak}
       </button>
-      {error && <p className="text-xs text-rose">{error}</p>}
+      {error && <p className="text-xs text-rose">{t.errors.stt[error]}</p>}
     </div>
   );
 }

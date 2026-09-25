@@ -1,5 +1,6 @@
 import { Capacitor } from '@capacitor/core';
 import { SpeechRecognition as NativeSR } from '@capacitor-community/speech-recognition';
+import { getT } from '../i18n';
 
 interface RecognitionResultLike {
   results: ArrayLike<ArrayLike<{ transcript: string }>>;
@@ -98,11 +99,7 @@ export function recognizeOnce(opts: { lang?: string; timeoutMs?: number } = {}):
   });
 }
 
-export const STT_MESSAGES: Record<SttError, string> = {
-  unsupported: 'Thiết bị này không hỗ trợ nhận dạng giọng nói. Hãy dùng Chrome/Edge hoặc bật Google app trên Android.',
-  'no-speech': 'Không nghe thấy gì. Hãy thử nói lại gần micro hơn.',
-  aborted: 'Đã hủy ghi âm.',
-  'not-allowed': 'Bạn chưa cho phép dùng micro. Hãy bật quyền micro cho ứng dụng.',
-  network: 'Lỗi mạng khi nhận dạng giọng nói.',
-  error: 'Có lỗi khi nhận dạng giọng nói. Hãy thử lại.',
-};
+/** User-facing text for an SttError, in the language active at call time. */
+export function sttMessage(code: SttError): string {
+  return getT().errors.stt[code];
+}

@@ -54,7 +54,7 @@ export function Celebration() {
                 {toast.kind === 'level' ? t.app.levelUp(toast.level) : t.app.streakTitle(toast.days)}
               </p>
               <p className="text-sm text-muted">
-                {toast.kind === 'level' ? t.app.youAre(levelName(toast.level)) : t.app.streakBody}
+                {toast.kind === 'level' ? t.app.youAre(levelName(toast.level, t)) : t.app.streakBody}
               </p>
             </div>
           </div>

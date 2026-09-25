@@ -1,16 +1,8 @@
 // Files not yet migrated to the dictionary (relative to client/src, POSIX slashes).
 // Tasks 02–08 remove their entries; task 09 asserts this list is empty.
 export const PENDING: string[] = [
-  'api/client.ts',
-  'content/loader.ts',
-  'db/stats.ts',
-  'lib/mascot.ts',
-  'lib/stt.ts',
-  'pages/Home.tsx',
   'pages/LoginPage.tsx',
-  'pages/ProgressPage.tsx',
   'pages/ReviewPage.tsx',
-  'pages/SettingsPage.tsx',
   'pages/business/BusinessPage.tsx',
   'pages/business/BusinessQuiz.tsx',
   'pages/business/BusinessRoleplay.tsx',

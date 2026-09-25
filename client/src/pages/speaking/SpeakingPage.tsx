@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLevel } from '../../store/level';
 import { LevelPicker } from '../../components/LevelPicker';
 import { Segmented } from '../../components/Segmented';
-import { canRecognize, STT_MESSAGES } from '../../lib/stt';
+import { canRecognize, sttMessage } from '../../lib/stt';
 import { Shadowing } from './Shadowing';
 import { Roleplay } from './Roleplay';
 
@@ -28,7 +28,7 @@ export function SpeakingPage() {
             { value: 'roleplay', label: 'Đóng vai' },
           ]}
         />
-        {!canRecognize() && <span className="text-xs text-rose">{STT_MESSAGES.unsupported}</span>}
+        {!canRecognize() && <span className="text-xs text-rose">{sttMessage('unsupported')}</span>}
       </div>
       <section className="card p-4 md:p-6">
         {mode === 'shadowing' && <Shadowing key={level} level={level} />}
