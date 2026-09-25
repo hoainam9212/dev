@@ -5,3 +5,4 @@ export * from './scoring';
 export * from './svgpath';
 export * from './strokeNumbers';
 export * from './furigana';
+export * from './i18n';

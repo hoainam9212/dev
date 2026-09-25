@@ -7,6 +7,8 @@ export interface Vocab {
   word: string;
   reading: string;
   meanings: string[];
+  /** Vietnamese meanings (added by a later translation phase). */
+  meaningsVi?: string[];
   tags: string[];
   kanji: string[];
   sentenceIds: string[];
@@ -18,6 +20,10 @@ export interface Kanji {
   level: Level;
   strokes: number;
   meanings: string[];
+  /** Vietnamese meanings (added by a later translation phase). */
+  meaningsVi?: string[];
+  /** Sino-Vietnamese reading, e.g. 学 → "Học". */
+  hanViet?: string;
   on: string[];
   kun: string[];
   grade?: number;
@@ -32,6 +38,7 @@ export interface GrammarExample {
   ja: string;
   romaji: string;
   en: string;
+  vi?: string;
 }
 
 export interface Grammar {
@@ -39,6 +46,7 @@ export interface Grammar {
   level: Level;
   title: string;
   meaning: string;
+  meaningVi?: string;
   formation: string;
   examples: GrammarExample[];
 }
@@ -48,6 +56,7 @@ export interface Sentence {
   level: Level;
   ja: string;
   en: string;
+  vi?: string;
 }
 
 export interface Question {
@@ -65,7 +74,8 @@ export interface ReadingLesson {
   /** Theme shown as a filter chip (Vietnamese), e.g. "Công nghệ". */
   topic?: string;
   body: string;
-  vocab: { word: string; reading: string; vi: string }[];
+  vocab: { word: string; reading: string; vi: string; en?: string }[];
+  explainEn?: string;
   questions: Question[];
 }
 
@@ -73,6 +83,7 @@ export interface ListeningLine {
   speaker: string;
   ja: string;
   vi: string;
+  en?: string;
 }
 
 export interface ListeningLesson {
@@ -91,11 +102,12 @@ export interface BusinessItem {
   ja: string;
   reading: string;
   vi: string;
+  en?: string;
   note?: string;
   category: BusinessCategory;
   keigo?: { sonkei?: string; kenjou?: string; teinei?: string };
   /** Example sentence (glossary terms). */
-  example?: { ja: string; vi: string };
+  example?: { ja: string; vi: string; en?: string };
   /** The blunt/inappropriate way to say it (rephrase topics); `ja` is the recommended wording. */
   ng?: string;
 }
@@ -105,6 +117,7 @@ export interface ScenarioLine {
   me: boolean;
   ja: string;
   vi: string;
+  en?: string;
 }
 
 export interface BusinessScenario {
@@ -158,6 +171,7 @@ export interface KanaChar {
   row: string;
   group: 'basic' | 'dakuten' | 'yoon';
   mnemonic?: string;
+  mnemonicEn?: string;
   strokePaths: string[];
   /** Order-number position per stroke, each in its own character's cell. */
   strokeNumbers?: [number, number][];

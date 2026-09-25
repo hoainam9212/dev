@@ -2,7 +2,7 @@
 
 Update the line for your task inside the task's own commit (`todo` → `done <short-sha> <YYYY-MM-DD>` + one-line note).
 
-- 01 infrastructure — todo
+- 01 infrastructure — done 913b64d 2026-09-25 (lang setting, dictionary, VI|EN switch, pickers, guard with 70 pending files, ui-check)
 - 02 shared components — todo
 - 03 home, progress, settings, non-React messages — todo
 - 04 kana, vocab — todo

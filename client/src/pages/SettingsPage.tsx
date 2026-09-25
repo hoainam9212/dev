@@ -6,6 +6,8 @@ import { db } from '../db/db';
 import { exportAll, importAll } from '../db/srs';
 import { speak } from '../lib/tts';
 import { AccountCard } from '../components/AccountCard';
+import { LangSwitch } from '../components/LangSwitch';
+import { useT } from '../i18n';
 
 const THEMES: { value: Theme; label: string }[] = [
   { value: 'light', label: '☀️ Sáng' },
@@ -22,6 +24,7 @@ const SOURCES = [
 ];
 
 export function SettingsPage() {
+  const t = useT();
   const { theme, setTheme } = useTheme();
   const { ttsRate, newLimit, petals, setTtsRate, setNewLimit, setPetals } = useSettings();
   const [msg, setMsg] = useState<string | null>(null);
@@ -86,6 +89,10 @@ export function SettingsPage() {
 
       <section className="card space-y-3 p-4 md:p-6">
         <h2 className="font-black">Giao diện</h2>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-sm font-bold">{t.settings.language}</span>
+          <LangSwitch />
+        </div>
         <div className="flex flex-wrap gap-2">
           {THEMES.map((t) => (
             <button key={t.value} type="button" onClick={() => setTheme(t.value)} className={theme === t.value ? 'btn-primary' : 'btn-soft'}>

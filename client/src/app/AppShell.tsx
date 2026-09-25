@@ -6,6 +6,8 @@ import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
 import { SyncDot } from './SyncDot';
 import { TtsNotice } from './TtsNotice';
+import { LangSwitch } from '../components/LangSwitch';
+import { useT } from '../i18n';
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-3 rounded-full px-4 py-2 font-bold transition ${
@@ -13,6 +15,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
   }`;
 
 export function AppShell() {
+  const t = useT();
   const [more, setMore] = useState(false);
   const { pathname } = useLocation();
 
@@ -43,17 +46,20 @@ export function AppShell() {
           <span className="text-2xl">🌸</span>
           <span className="text-xl font-black text-rose">Nihongo Sensei</span>
         </div>
-        <nav className="flex flex-col gap-1" aria-label="Điều hướng chính">
+        <nav className="flex flex-col gap-1" aria-label={t.nav.mainAria}>
           {NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.to === '/'} className={linkClass}>
               <span className="w-6 text-center">{n.icon}</span>
-              <span>{n.label}</span>
+              <span>{t.nav[n.key].label}</span>
             </NavLink>
           ))}
         </nav>
         <div className="mt-auto flex items-center justify-between pt-4">
           <ThemeToggle />
           <SyncDot />
+        </div>
+        <div className="pt-2">
+          <LangSwitch />
         </div>
       </aside>
 
@@ -65,7 +71,7 @@ export function AppShell() {
 
       <nav
         className="fixed inset-x-0 bottom-0 z-40 flex justify-around border-t border-sakura/50 bg-surface/95 px-1 py-1 backdrop-blur md:hidden"
-        aria-label="Điều hướng di động"
+        aria-label={t.nav.mobileAria}
         style={{ paddingBottom: 'max(4px, env(safe-area-inset-bottom))' }}
       >
         {primary.map((n) => (
@@ -78,7 +84,7 @@ export function AppShell() {
             }
           >
             <span className="text-lg">{n.icon}</span>
-            <span>{n.label}</span>
+            <span>{t.nav[n.key].label}</span>
           </NavLink>
         ))}
         <button
@@ -88,7 +94,7 @@ export function AppShell() {
           aria-expanded={more}
         >
           <span className="text-lg">✨</span>
-          <span>Thêm</span>
+          <span>{t.nav.more}</span>
         </button>
       </nav>
 
@@ -107,11 +113,12 @@ export function AppShell() {
                 className="flex flex-col items-center rounded-2xl bg-bg px-2 py-3 text-sm font-bold text-text"
               >
                 <span className="text-2xl">{n.icon}</span>
-                <span>{n.label}</span>
+                <span>{t.nav[n.key].label}</span>
               </NavLink>
             ))}
-            <div className="col-span-3 flex justify-center pt-2">
+            <div className="col-span-3 flex flex-wrap items-center justify-center gap-3 pt-2">
               <ThemeToggle />
+              <LangSwitch />
             </div>
           </div>
         </div>

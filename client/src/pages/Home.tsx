@@ -9,8 +9,10 @@ import { useDueCounts } from '../db/srs';
 import { useSettings } from '../store/settings';
 import { pickMascotLine, levelName } from '../lib/mascot';
 import { levelFromXp } from '../store/streak';
+import { useT } from '../i18n';
 
 export function Home() {
+  const t = useT();
   const streak = useProgress((s) => s.streak);
   const due = useDueCounts();
   const petals = useSettings((s) => s.petals);
@@ -57,7 +59,7 @@ export function Home() {
               className="card flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
               <span className="text-2xl">{n.icon}</span>
-              <span className="font-bold">{n.label}</span>
+              <span className="font-bold">{t.nav[n.key].label}</span>
             </Link>
           ))}
         </div>

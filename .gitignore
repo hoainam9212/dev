@@ -19,3 +19,5 @@ client/android/capacitor-cordova-android-plugins/build/
 client/android/keystore.properties
 release/
 server/server.log*
+.ui-check/
+.superpowers/

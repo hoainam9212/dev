@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { AppShell } from './app/AppShell';
+import { useSyncHtmlLang } from './i18n';
 import { Home } from './pages/Home';
 import { Placeholder } from './pages/Placeholder';
 import { KanaPage } from './pages/kana/KanaPage';
@@ -17,6 +18,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { LoginPage } from './pages/LoginPage';
 
 export default function App() {
+  useSyncHtmlLang();
   return (
     <Routes>
       <Route element={<AppShell />}>
