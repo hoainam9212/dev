@@ -72,7 +72,7 @@ export const EXCEL_PROJECT: Lesson[] = [
       },
       excelPractice({
         cells: BANG,
-        task: 'Chặng 1 — trình bày. Gộp ô **A1:G1** cho tiêu đề nằm giữa bảng, làm hàng tiêu đề **A2:G2** in đậm và có màu nền, rồi định dạng cột lương **C3:C12** thành **Tiền ₫**.',
+        task: 'Chặng 1 — trình bày. Gộp ô **A1:G1** cho tiêu đề nằm giữa bảng, làm hàng tiêu đề **A2:G2** in đậm và có màu nền, rồi định dạng cột lương **C3:C12** thành **Currency (₫)**.',
         checks: [
           { kind: 'merged', range: 'A1:G1' },
           { kind: 'cellFormat', cell: 'A2', fmt: { bold: true } },
@@ -81,11 +81,11 @@ export const EXCEL_PROJECT: Lesson[] = [
           { kind: 'cellFormat', cell: 'C12', fmt: { numFmt: 'currencyVnd' } },
         ],
         spotlight: { helpId: 'excel.merge' },
-        hint: 'Chọn A1:G1 rồi bấm Gộp ô. Chọn A2:G2 bấm B và Màu nền. Chọn C3:C12 rồi mở ô Kiểu số chọn Tiền ₫.',
+        hint: 'Mọi nút đều ở thẻ Home. Chọn A1:G1 rồi bấm Merge & Center. Chọn A2:G2 bấm B và chọn Fill Color. Chọn C3:C12 rồi mở ô Number Format chọn Currency (₫).',
         steps: [
-          'Bấm ô A1, giữ Shift bấm ô G1, rồi bấm nút Gộp ô (Merge).',
-          'Bấm ô A2, giữ Shift bấm ô G2, bấm nút B rồi chọn Màu nền.',
-          'Bấm ô C3, giữ Shift bấm ô C12, mở ô Kiểu số và chọn Tiền ₫.',
+          'Bấm ô A1, giữ Shift bấm ô G1, rồi ở thẻ Home › nhóm Alignment bấm Merge & Center.',
+          'Bấm ô A2, giữ Shift bấm ô G2; ở nhóm Font bấm B rồi mở Fill Color chọn một màu.',
+          'Bấm ô C3, giữ Shift bấm ô C12; ở nhóm Number mở ô Number Format, chọn Currency (₫).',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A1:G1' },
@@ -125,12 +125,12 @@ export const EXCEL_PROJECT: Lesson[] = [
           { kind: 'cellValue', cell: 'C14', value: 6870000 },
         ],
         spotlight: { cell: 'E3' },
-        hint: 'E3 là =C3*$I$1. F3 là =VLOOKUP(D3,$J$1:$K$3,2,FALSE). G3 là =C3+E3. Rồi chọn E3:G12 và Fill xuống.',
+        hint: 'E3 là =C3*$I$1. F3 là =VLOOKUP(D3,$J$1:$K$3,2,FALSE). G3 là =C3+E3. Rồi chọn E3:G12 và bấm Fill ▾ › Down (thẻ Home › nhóm Editing).',
         steps: [
           'Ô E3 gõ =C3*$I$1 rồi Enter.',
           'Ô F3 gõ =VLOOKUP(D3,$J$1:$K$3,2,FALSE) rồi Enter.',
           'Ô G3 gõ =C3+E3 rồi Enter.',
-          'Chọn vùng E3:G12 rồi bấm Fill xuống.',
+          'Chọn vùng E3:G12, rồi ở thẻ Home › nhóm Editing bấm Fill ▾ › Down.',
           'Ô G13 gõ =SUM(G3:G12), ô C14 gõ =AVERAGE(C3:C12).',
         ],
         solve: () => [

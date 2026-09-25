@@ -160,7 +160,7 @@ export const EXCEL_LOOKUP: Lesson[] = [
           G2: 'B', H2: 'Khá',
           G3: 'C', H3: 'Trung bình',
         },
-        task: 'Bảng tra nằm ở **G1:H3**. Ở ô **C2** dùng **VLOOKUP** đổi mã loại thành chữ xếp loại, **nhớ khoá bảng tra bằng $**, rồi Fill xuống hết **C2:C5**.',
+        task: 'Bảng tra nằm ở **G1:H3**. Ở ô **C2** dùng **VLOOKUP** đổi mã loại thành chữ xếp loại, **nhớ khoá bảng tra bằng $**, rồi dùng **Fill ▾ › Down** cho hết **C2:C5**.',
         checks: [
           { kind: 'cellFormula', cell: 'C2', fn: 'VLOOKUP', absolute: true },
           { kind: 'cellValue', cell: 'C2', value: 'Giỏi' },
@@ -168,11 +168,11 @@ export const EXCEL_LOOKUP: Lesson[] = [
           { kind: 'cellValue', cell: 'C5', value: 'Trung bình' },
         ],
         spotlight: { cell: 'C2' },
-        hint: 'Gõ =VLOOKUP(B2,$G$1:$H$3,2,FALSE) rồi chọn C2:C5 và bấm Fill xuống.',
+        hint: 'Gõ =VLOOKUP(B2,$G$1:$H$3,2,FALSE) rồi chọn C2:C5 và bấm Fill ▾ › Down (thẻ Home › nhóm Editing).',
         steps: [
           'Bấm ô C2, gõ =VLOOKUP(B2,$G$1:$H$3,2,FALSE) rồi Enter.',
           'Bấm ô C2, giữ Shift bấm ô C5.',
-          'Bấm nút Fill xuống ở thẻ Home.',
+          'Ở thẻ Home › nhóm Editing, bấm Fill ▾ rồi chọn Down.',
         ],
         solve: () => [
           { type: 'setCell', cell: 'C2', raw: '=VLOOKUP(B2,$G$1:$H$3,2,FALSE)' },

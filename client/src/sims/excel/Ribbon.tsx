@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { excelSim } from '@office-neko/shared';
-import { Group, ToolButton } from '../../components/ribbon';
+import { Group, RibbonPanel, RibbonTabs, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
 import { RibbonFormulas } from './RibbonFormulas';
 import { RibbonData } from './RibbonData';
@@ -24,23 +24,10 @@ export function Ribbon({ state, dispatch }: Props) {
   const [tab, setTab] = useState<Tab>('Home');
 
   return (
-    <div className="space-y-2">
-      <div role="tablist" aria-label="Thanh công cụ" className="flex flex-wrap gap-1 border-b border-peach/40 pb-1">
-        {TABS.map((name) => (
-          <button
-            key={name}
-            type="button"
-            role="tab"
-            aria-selected={tab === name}
-            onMouseDown={(e) => e.preventDefault()}
-            onClick={() => setTab(name)}
-            className={`rounded-t-lg px-3 py-1 text-sm font-bold transition ${tab === name ? 'bg-white text-excel-ink shadow-sm' : 'text-muted hover:bg-white/60'}`}
-          >
-            {name}
-          </button>
-        ))}
-      </div>
+    <div className="space-y-1">
+      <RibbonTabs app="excel" tabs={TABS} active={tab} onPick={setTab} />
 
+      <RibbonPanel>
       {tab === 'Home' && <RibbonHome state={state} dispatch={dispatch} />}
       {tab === 'Formulas' && <RibbonFormulas state={state} dispatch={dispatch} />}
 
@@ -63,6 +50,7 @@ export function Ribbon({ state, dispatch }: Props) {
           Bảng tính mô phỏng luôn hiện lưới và đầu hàng/cột, nên tab này chưa có gì để đổi.
         </p>
       )}
+      </RibbonPanel>
     </div>
   );
 }

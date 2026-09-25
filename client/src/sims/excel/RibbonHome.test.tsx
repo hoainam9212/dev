@@ -7,18 +7,54 @@ import { HELP_IDS } from '../../content/help-ids';
 
 const state = excelSim.excelInitial({ cells: { B2: '7500000' } });
 
+const groupTitles = () => [...document.querySelectorAll('[data-variant="office"] > span')].map((e) => e.textContent);
+
 describe('Ribbon Home', () => {
-  it('chọn Tiền ₫ trong ô Kiểu số thì phát đúng action', () => {
+  it('xếp nhóm đúng như Excel 365', () => {
+    render(<RibbonHome state={state} dispatch={() => {}} />);
+    expect(groupTitles()).toEqual(['Undo', 'Clipboard', 'Font', 'Alignment', 'Number', 'Editing']);
+  });
+
+  it('Number Format hiện tên tiếng Anh nhưng giá trị bài học không đổi', () => {
+    render(<RibbonHome state={state} dispatch={() => {}} />);
+    const opts = [...screen.getByLabelText('Kiểu số').querySelectorAll('option')].map((o) => [o.value, o.textContent]);
+    expect(opts).toEqual([['general', 'General'], ['number', 'Number'], ['currencyVnd', 'Currency (₫)'], ['percent', 'Percentage'], ['date', 'Short Date']]);
+  });
+
+  it('chọn Currency trong ô Number Format thì phát đúng action', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={state} dispatch={dispatch} />);
     fireEvent.change(screen.getByLabelText('Kiểu số'), { target: { value: 'currencyVnd' } });
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { numFmt: 'currencyVnd' } });
   });
 
-  it('nút mang ký hiệu ngắn, lời tiếng Việt nằm ở nhãn trợ giúp', () => {
+  it('Fill ▾ có Down và Right, Clear ▾ có Clear Contents', () => {
+    const dispatch = vi.fn();
+    render(<RibbonHome state={state} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Fill' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Fill xuống' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Fill' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Fill sang phải' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Xoá' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Xoá nội dung' }));
+    expect(dispatch.mock.calls.map((c) => c[0].type)).toEqual(['fillDown', 'fillRight', 'clear']);
+  });
+
+  it('Borders ▾ kẻ và bỏ viền', () => {
+    const dispatch = vi.fn();
+    render(<RibbonHome state={state} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Viền ô' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Kẻ mọi viền' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Viền ô' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Bỏ viền' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { border: 'all' } });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { border: 'none' } });
+  });
+
+  it('nút mang icon như Excel, lời tiếng Việt nằm ở nhãn trợ giúp', () => {
     render(<RibbonHome state={state} dispatch={() => {}} />);
     const bold = screen.getByRole('button', { name: /in đậm/i });
-    expect(bold.textContent).toBe('B');
+    expect(bold.querySelector('svg')).not.toBeNull();
     // Lời tiếng Việt nằm ở gợi ý màu tối của app, không ở `title` (tránh hai chú thích chồng nhau).
     expect(HELP_IDS[bold.getAttribute('data-help-id')!]?.vi).toBeTruthy();
     expect(bold).not.toHaveAttribute('title');
@@ -44,13 +80,11 @@ describe('Ribbon Home', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { bold: false } });
   });
 
-  it('bấm Merge và Fill xuống', () => {
+  it('bấm Merge & Center', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={state} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: /gộp ô/i }));
-    fireEvent.click(screen.getByRole('button', { name: /fill xuống/i }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'merge' });
-    expect(dispatch).toHaveBeenCalledWith({ type: 'fillDown' });
   });
 
   it('mọi nút và ô chọn đều có helpId đã khai báo', () => {

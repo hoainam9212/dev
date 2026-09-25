@@ -638,7 +638,7 @@
   {
     "id": "ppt.undo",
     "q": "Lỡ tay xoá mất thì làm sao?",
-    "a": "Bấm **Undo** (Hoàn tác, mũi tên ↶ ở tab Home) hoặc nhấn {{mod+z}}. Mỗi lần bấm lùi lại một thao tác, nên cứ bấm tới khi thứ bị mất quay về.",
+    "a": "Bấm **Undo** (Hoàn tác, mũi tên ↶ ở thẻ Home › nhóm Undo) hoặc nhấn {{mod+z}}. Mỗi lần bấm lùi lại một thao tác, nên cứ bấm tới khi thứ bị mất quay về.",
     "keywords": ["undo", "hoan tac", "hoàn tác", "xoa nham", "xoá nhầm", "lo tay", "ctrl z"]
   }
 ]

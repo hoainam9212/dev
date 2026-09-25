@@ -21,7 +21,7 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
       },
       {
         kind: 'explain',
-        body: 'Cách viết như `A2`, `B2` gọi là [[dia-chi-tuong-doi|địa chỉ tương đối]] — tương đối so với chỗ công thức đang đứng. Nút **Fill xuống** đổ công thức từ ô trên cùng xuống hết vùng bạn chọn.',
+        body: 'Cách viết như `A2`, `B2` gọi là [[dia-chi-tuong-doi|địa chỉ tương đối]] — tương đối so với chỗ công thức đang đứng. Nút **Fill ▾ › Down** (thẻ **Home** › nhóm **Editing**) đổ công thức từ ô trên cùng xuống hết vùng bạn chọn.',
       },
       {
         kind: 'quiz',
@@ -38,18 +38,18 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           A4: 'Thước kẻ', B4: '8000', C4: '3',
           D2: '=B2*C2',
         },
-        task: 'Ô **D2** đã có công thức sẵn. Chọn vùng **D2:D4** rồi bấm **Fill xuống** để hai dòng còn lại cũng tính được thành tiền.',
+        task: 'Ô **D2** đã có công thức sẵn. Chọn vùng **D2:D4** rồi bấm **Fill ▾ › Down** để hai dòng còn lại cũng tính được thành tiền.',
         checks: [
           { kind: 'cellFormula', cell: 'D4', contains: 'B4' },
           { kind: 'cellValue', cell: 'D3', value: 60000 },
           { kind: 'cellValue', cell: 'D4', value: 24000 },
         ],
         spotlight: { helpId: 'excel.fillDown' },
-        hint: 'Bấm ô D2, giữ Shift bấm ô D4, rồi bấm nút Fill xuống.',
+        hint: 'Bấm ô D2, giữ Shift bấm ô D4, rồi ở thẻ Home › nhóm Editing bấm Fill ▾ › Down.',
         steps: [
           'Bấm ô D2.',
           'Giữ Shift và bấm ô D4.',
-          'Bấm nút Fill xuống ở nhóm Sửa.',
+          'Ở thẻ Home › nhóm Editing, bấm Fill ▾ rồi chọn Down.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'D2:D4' },
@@ -92,18 +92,18 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           A3: 'Trần Thị Lan', B3: '6200000',
           A4: 'Lê Minh Tú', B4: '8100000',
         },
-        task: 'Ô **E1** là tỉ lệ thưởng dùng chung. Viết công thức thưởng ở **C2** có khoá ô E1 bằng dấu $, rồi Fill xuống hết **C2:C4**.',
+        task: 'Ô **E1** là tỉ lệ thưởng dùng chung. Viết công thức thưởng ở **C2** có khoá ô E1 bằng dấu $, rồi dùng **Fill ▾ › Down** cho hết **C2:C4**.',
         checks: [
           { kind: 'cellFormula', cell: 'C2', absolute: true },
           { kind: 'cellValue', cell: 'C2', value: 750000 },
           { kind: 'cellValue', cell: 'C4', value: 810000 },
         ],
         spotlight: { cell: 'C2' },
-        hint: 'Ở C2 gõ =B2*$E$1 rồi chọn C2:C4 và bấm Fill xuống.',
+        hint: 'Ở C2 gõ =B2*$E$1 rồi chọn C2:C4 và bấm Fill ▾ › Down (thẻ Home › nhóm Editing).',
         steps: [
           'Bấm ô C2, gõ =B2*$E$1 rồi Enter.',
           'Bấm ô C2, giữ Shift bấm ô C4.',
-          'Bấm nút Fill xuống.',
+          'Ở thẻ Home › nhóm Editing, bấm Fill ▾ rồi chọn Down.',
         ],
         solve: () => [
           { type: 'setCell', cell: 'C2', raw: '=B2*$E$1' },
@@ -146,7 +146,7 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           A3: 'Trần Thị Lan', B3: '4',
           A4: 'Lê Minh Tú', B4: '5',
         },
-        task: 'Ở **C2** viết hàm **IF**: điểm từ 5 trở lên thì ghi **Đạt**, dưới 5 thì ghi **Chưa đạt**. Rồi Fill xuống hết **C2:C4**.',
+        task: 'Ở **C2** viết hàm **IF**: điểm từ 5 trở lên thì ghi **Đạt**, dưới 5 thì ghi **Chưa đạt**. Rồi dùng **Fill ▾ › Down** cho hết **C2:C4**.',
         checks: [
           { kind: 'cellFormula', cell: 'C2', fn: 'IF' },
           { kind: 'cellValue', cell: 'C2', value: 'Đạt' },
@@ -154,11 +154,11 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           { kind: 'cellValue', cell: 'C4', value: 'Đạt' },
         ],
         spotlight: { cell: 'C2' },
-        hint: 'Gõ =IF(B2>=5,"Đạt","Chưa đạt") rồi chọn C2:C4 và Fill xuống.',
+        hint: 'Gõ =IF(B2>=5,"Đạt","Chưa đạt") rồi chọn C2:C4 và bấm Fill ▾ › Down (thẻ Home › nhóm Editing).',
         steps: [
           'Bấm ô C2.',
           'Gõ =IF(B2>=5,"Đạt","Chưa đạt") rồi Enter.',
-          'Chọn vùng C2:C4 rồi bấm Fill xuống.',
+          'Chọn vùng C2:C4, rồi ở thẻ Home › nhóm Editing bấm Fill ▾ › Down.',
         ],
         solve: () => [
           { type: 'setCell', cell: 'C2', raw: '=IF(B2>=5,"Đạt","Chưa đạt")' },

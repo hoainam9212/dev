@@ -32,17 +32,17 @@ export const EXCEL_FORMAT: Lesson[] = [
       },
       excelPractice({
         cells: { A1: 'Nhân viên', B1: 'Lương', A2: 'Nguyễn Văn Nam', B2: '7500000', A3: 'Trần Thị Lan', B3: '6200000' },
-        task: 'Chọn vùng **B2:B3** rồi ở ô **Kiểu số** trên thanh Ribbon, chọn **Tiền ₫** để hai ô lương hiện kèm dấu ₫.',
+        task: 'Chọn vùng **B2:B3** rồi ở thẻ **Home** › nhóm **Number** › ô **Number Format**, chọn **Currency (₫)** để hai ô lương hiện kèm dấu ₫.',
         checks: [
           { kind: 'cellFormat', cell: 'B2', fmt: { numFmt: 'currencyVnd' } },
           { kind: 'cellFormat', cell: 'B3', fmt: { numFmt: 'currencyVnd' } },
         ],
         spotlight: { helpId: 'excel.numFmt' },
-        hint: 'Bấm ô B2, giữ {{Shift}} rồi bấm ô B3 để chọn cả hai, sau đó mở ô Kiểu số và chọn Tiền ₫.',
+        hint: 'Bấm ô B2, giữ {{Shift}} rồi bấm ô B3 để chọn cả hai, sau đó mở ô Number Format (thẻ Home › nhóm Number) và chọn Currency (₫).',
         steps: [
           'Bấm vào ô B2.',
           'Giữ Shift và bấm ô B3 — hai ô cùng sáng lên.',
-          'Mở ô chọn Kiểu số ở nhóm Định dạng số, chọn Tiền ₫.',
+          'Ở thẻ Home › nhóm Number, mở ô Number Format và chọn Currency (₫).',
         ],
         solve: () => [
           { type: 'selectRange', range: 'B2:B3' },
@@ -80,17 +80,18 @@ export const EXCEL_FORMAT: Lesson[] = [
       },
       excelPractice({
         cells: { A1: 'Nhân viên', B1: 'Lương', A2: 'Nguyễn Văn Nam', B2: '7500000' },
-        task: 'Làm nổi hàng tiêu đề: chọn vùng **A1:B1**, bấm **In đậm**, rồi bấm **Màu nền** và **Căn giữa**.',
+        task: 'Làm nổi hàng tiêu đề: chọn vùng **A1:B1**, bấm **In đậm**, chọn một **màu nền** (Fill Color) rồi bấm **Căn giữa**.',
         checks: [
           { kind: 'cellFormat', cell: 'A1', fmt: { bold: true, align: 'center' } },
           { kind: 'cellFormat', cell: 'B1', fmt: { bold: true } },
         ],
         spotlight: { helpId: 'excel.bold' },
-        hint: 'Chọn A1:B1 trước, rồi bấm lần lượt ba nút trên Ribbon.',
+        hint: 'Chọn A1:B1 trước, rồi dùng thẻ Home: nhóm Font có B và Fill Color, nhóm Alignment có nút căn giữa.',
         steps: [
           'Bấm ô A1, giữ Shift rồi bấm ô B1.',
-          'Bấm nút In đậm (B).',
-          'Bấm nút Màu nền, rồi bấm Căn giữa.',
+          'Thẻ Home › nhóm Font: bấm nút B (Bold).',
+          'Cũng ở nhóm Font, mở ô Fill Color (xô sơn) chọn một màu.',
+          'Thẻ Home › nhóm Alignment: bấm nút căn giữa (Center).',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A1:B1' },
@@ -114,7 +115,7 @@ export const EXCEL_FORMAT: Lesson[] = [
       },
       {
         kind: 'explain',
-        body: '[[gop-o|Gộp ô]] (Merge) nhập nhiều ô liền nhau thành một ô lớn, thường dùng cho dòng tiêu đề nằm vắt ngang cả bảng. Bấm nút Merge lần nữa là tách trở lại.',
+        body: '[[gop-o|Gộp ô]] nhập nhiều ô liền nhau thành một ô lớn, thường dùng cho dòng tiêu đề nằm vắt ngang cả bảng. Nút là **Merge & Center** ở thẻ **Home** › nhóm **Alignment**. Bấm lần nữa là tách trở lại.',
       },
       {
         kind: 'quiz',
@@ -125,13 +126,13 @@ export const EXCEL_FORMAT: Lesson[] = [
       },
       excelPractice({
         cells: { A1: 'BẢNG LƯƠNG THÁNG 9', A2: 'Nhân viên', B2: 'Lương', A3: 'Nguyễn Văn Nam', B3: '7500000' },
-        task: 'Chọn vùng **A1:B1** rồi bấm **Gộp ô (Merge)** để dòng tiêu đề nằm giữa cả bảng.',
+        task: 'Chọn vùng **A1:B1** rồi bấm **Merge & Center** (gộp ô) để dòng tiêu đề nằm giữa cả bảng.',
         checks: [{ kind: 'merged', range: 'A1:B1' }],
         spotlight: { helpId: 'excel.merge' },
-        hint: 'Chọn A1:B1 rồi bấm nút Gộp ô (Merge) ở nhóm Ô.',
+        hint: 'Chọn A1:B1 rồi bấm Merge & Center ở thẻ Home › nhóm Alignment.',
         steps: [
           'Bấm ô A1, giữ Shift rồi bấm ô B1.',
-          'Bấm nút Gộp ô (Merge).',
+          'Thẻ Home › nhóm Alignment: bấm Merge & Center.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A1:B1' },
