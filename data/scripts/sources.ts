@@ -4,6 +4,7 @@ import path from 'node:path';
 export const DATA_DIR = path.dirname(fileURLToPath(new URL('../package.json', import.meta.url)));
 export const RAW_DIR = path.join(DATA_DIR, 'raw');
 export const OUT_DIR = path.resolve(DATA_DIR, '..', 'client', 'public', 'content');
+export const TRANSLATIONS_DIR = path.join(DATA_DIR, 'translations');
 export const KANJIVG_TAG = 'r20250816';
 export const HANVIET_COMMIT = 'b9923df92c8b55f013001390e37cddd35e986dc1';
 
