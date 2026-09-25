@@ -1,0 +1,2217 @@
+{
+  "type": "vocab",
+  "level": "N5",
+  "entries": {
+    "ああ|ああ": {
+      "vi": [
+        "a!",
+        "ôi!"
+      ],
+      "en": [
+        "Ah!",
+        "Oh!"
+      ]
+    },
+    "会う|あう": {
+      "vi": [
+        "gặp",
+        "gặp mặt"
+      ],
+      "en": [
+        "to meet",
+        "to see"
+      ]
+    },
+    "青|あお": {
+      "vi": [
+        "màu xanh"
+      ],
+      "en": [
+        "blue"
+      ]
+    },
+    "青い|あおい": {
+      "vi": [
+        "xanh"
+      ],
+      "en": [
+        "blue"
+      ]
+    },
+    "赤|あか": {
+      "vi": [
+        "màu đỏ"
+      ],
+      "en": [
+        "red"
+      ]
+    },
+    "赤い|あかい": {
+      "vi": [
+        "đỏ"
+      ],
+      "en": [
+        "red"
+      ]
+    },
+    "明るい|あかるい": {
+      "vi": [
+        "sáng sủa",
+        "vui vẻ"
+      ],
+      "en": [
+        "bright (in reference to personality or weather); cheerful"
+      ]
+    },
+    "秋|あき": {
+      "vi": [
+        "mùa thu"
+      ],
+      "en": [
+        "fall (season)"
+      ]
+    },
+    "開く|あく": {
+      "vi": [
+        "mở",
+        "(tự) mở ra"
+      ],
+      "en": [
+        "to open",
+        "to become open"
+      ]
+    },
+    "開ける|あける": {
+      "vi": [
+        "mở (cái gì)"
+      ],
+      "en": [
+        "to open (v.t.)"
+      ]
+    },
+    "上げる|あげる": {
+      "vi": [
+        "nâng lên",
+        "giơ lên"
+      ],
+      "en": [
+        "to raise",
+        "to lift"
+      ]
+    },
+    "朝|あさ": {
+      "vi": [
+        "buổi sáng"
+      ],
+      "en": [
+        "morning"
+      ]
+    },
+    "朝御飯|あさごはん": {
+      "vi": [
+        "bữa sáng"
+      ],
+      "en": [
+        "breakfast"
+      ]
+    },
+    "明後日|あさって": {
+      "vi": [
+        "ngày kia"
+      ],
+      "en": [
+        "day after tomorrow"
+      ]
+    },
+    "足; 脚|あし": {
+      "vi": [
+        "bàn chân",
+        "chân"
+      ],
+      "en": [
+        "foot; leg"
+      ]
+    },
+    "明日|あした": {
+      "vi": [
+        "ngày mai"
+      ],
+      "en": [
+        "tomorrow"
+      ]
+    },
+    "あそこ|あそこ": {
+      "vi": [
+        "chỗ kia",
+        "đằng kia"
+      ],
+      "en": [
+        "there",
+        "over there",
+        "that place"
+      ]
+    },
+    "遊ぶ|あそぶ": {
+      "vi": [
+        "chơi",
+        "vui chơi",
+        "đi chơi"
+      ],
+      "en": [
+        "to play; to spend time pleasantly; to hang out"
+      ]
+    },
+    "暖かい|あたたかい": {
+      "vi": [
+        "ấm áp"
+      ],
+      "en": [
+        "warm"
+      ]
+    },
+    "頭|あたま": {
+      "vi": [
+        "đầu"
+      ],
+      "en": [
+        "head"
+      ]
+    },
+    "新しい|あたらしい": {
+      "vi": [
+        "mới"
+      ],
+      "en": [
+        "new"
+      ]
+    },
+    "あちら|あちら": {
+      "vi": [
+        "phía kia, đằng kia (lịch sự)"
+      ],
+      "en": [
+        "this way (polite)"
+      ]
+    },
+    "暑い|あつい": {
+      "vi": [
+        "nóng (thời tiết)"
+      ],
+      "en": [
+        "hot (in reference to weather)",
+        "warm"
+      ]
+    },
+    "熱い|あつい": {
+      "vi": [
+        "nóng (đồ vật)"
+      ],
+      "en": [
+        "hot (objects)"
+      ]
+    },
+    "厚い|あつい": {
+      "vi": [
+        "nồng hậu",
+        "ấm áp (tình cảm)",
+        "dày"
+      ],
+      "en": [
+        "kind",
+        "warm(hearted)",
+        "thick",
+        "deep"
+      ]
+    },
+    "あっち|あっち": {
+      "vi": [
+        "đằng kia"
+      ],
+      "en": [
+        "over there"
+      ]
+    },
+    "後|あと": {
+      "vi": [
+        "sau",
+        "sau này",
+        "phần còn lại"
+      ],
+      "en": [
+        "afterwards (later); in the future; the rest; since then"
+      ]
+    },
+    "あなた|あなた": {
+      "vi": [
+        "bạn",
+        "anh, chị (ngôi thứ hai)"
+      ],
+      "en": [
+        "you"
+      ]
+    },
+    "兄|あに": {
+      "vi": [
+        "anh trai (của mình)"
+      ],
+      "en": [
+        "(my) older brother (humble)"
+      ]
+    },
+    "姉|あね": {
+      "vi": [
+        "chị gái (của mình)"
+      ],
+      "en": [
+        "(my) older sister (humble)"
+      ]
+    },
+    "アパート|アパート": {
+      "vi": [
+        "căn hộ",
+        "nhà chung cư"
+      ],
+      "en": [
+        "apartment (abbr.)"
+      ]
+    },
+    "あの|あの": {
+      "vi": [
+        "… kia",
+        "ờ… (ngập ngừng)"
+      ],
+      "en": [
+        "that over there; like that",
+        "that way; um..."
+      ]
+    },
+    "浴びる|あびる": {
+      "vi": [
+        "tắm",
+        "tắm vòi sen"
+      ],
+      "en": [
+        "to bathe",
+        "to shower"
+      ]
+    },
+    "危ない|あぶない": {
+      "vi": [
+        "nguy hiểm"
+      ],
+      "en": [
+        "dangerous",
+        "critical"
+      ]
+    },
+    "甘い|あまい": {
+      "vi": [
+        "dễ dãi",
+        "ngọt"
+      ],
+      "en": [
+        "generous",
+        "sweet"
+      ]
+    },
+    "余り|あまり": {
+      "vi": [
+        "không … lắm",
+        "phần thừa"
+      ],
+      "en": [
+        "not very; surplus"
+      ]
+    },
+    "雨|あめ": {
+      "vi": [
+        "mưa"
+      ],
+      "en": [
+        "rain"
+      ]
+    },
+    "飴|あめ": {
+      "vi": [
+        "kẹo"
+      ],
+      "en": [
+        "(hard) candy"
+      ]
+    },
+    "洗う|あらう": {
+      "vi": [
+        "rửa",
+        "giặt"
+      ],
+      "en": [
+        "to wash"
+      ]
+    },
+    "在る|ある": {
+      "vi": [
+        "ở",
+        "có (đồ vật)"
+      ],
+      "en": [
+        "to be",
+        "to have"
+      ]
+    },
+    "有る|ある": {
+      "vi": [
+        "ở",
+        "có"
+      ],
+      "en": [
+        "to be",
+        "to have"
+      ]
+    },
+    "歩く|あるく": {
+      "vi": [
+        "đi bộ"
+      ],
+      "en": [
+        "to walk"
+      ]
+    },
+    "あれ|あれ": {
+      "vi": [
+        "cái kia"
+      ],
+      "en": [
+        "that one (over there)"
+      ]
+    },
+    "いい; よい|いい; よい": {
+      "vi": [
+        "tốt"
+      ],
+      "en": [
+        "good"
+      ]
+    },
+    "いいえ|いいえ": {
+      "vi": [
+        "không",
+        "không có gì"
+      ],
+      "en": [
+        "no",
+        "not at all"
+      ]
+    },
+    "言う|いう": {
+      "vi": [
+        "nói"
+      ],
+      "en": [
+        "to say"
+      ]
+    },
+    "家|いえ": {
+      "vi": [
+        "nhà",
+        "gia đình"
+      ],
+      "en": [
+        "house",
+        "home"
+      ]
+    },
+    "いかが|いかが": {
+      "vi": [
+        "thế nào (lịch sự)"
+      ],
+      "en": [
+        "how",
+        "in what way"
+      ]
+    },
+    "行く|いく; ゆく": {
+      "vi": [
+        "đi"
+      ],
+      "en": [
+        "to go"
+      ]
+    },
+    "いくつ|いくつ": {
+      "vi": [
+        "bao nhiêu (cái)",
+        "mấy tuổi"
+      ],
+      "en": [
+        "how many",
+        "how old"
+      ]
+    },
+    "いくら|いくら": {
+      "vi": [
+        "bao nhiêu (tiền)",
+        "bao nhiêu"
+      ],
+      "en": [
+        "how much",
+        "how many"
+      ]
+    },
+    "池|いけ": {
+      "vi": [
+        "cái ao"
+      ],
+      "en": [
+        "pond"
+      ]
+    },
+    "医者|いしゃ": {
+      "vi": [
+        "bác sĩ"
+      ],
+      "en": [
+        "doctor; physician"
+      ]
+    },
+    "椅子|いす": {
+      "vi": [
+        "cái ghế"
+      ],
+      "en": [
+        "chair"
+      ]
+    },
+    "忙しい|いそがしい": {
+      "vi": [
+        "bận rộn"
+      ],
+      "en": [
+        "busy (people, days)"
+      ]
+    },
+    "痛い|いたい": {
+      "vi": [
+        "đau"
+      ],
+      "en": [
+        "hurt; painful; sore"
+      ]
+    },
+    "一|いち": {
+      "vi": [
+        "một"
+      ],
+      "en": [
+        "one"
+      ]
+    },
+    "一日|いちにち": {
+      "vi": [
+        "một ngày"
+      ],
+      "en": [
+        "one day (duration)"
+      ]
+    },
+    "一番|いちばん": {
+      "vi": [
+        "nhất",
+        "đầu tiên",
+        "số một"
+      ],
+      "en": [
+        "best (most)",
+        "first",
+        "number one"
+      ]
+    },
+    "いつ|いつ": {
+      "vi": [
+        "khi nào"
+      ],
+      "en": [
+        "when"
+      ]
+    },
+    "五日|いつか": {
+      "vi": [
+        "năm ngày",
+        "ngày mùng năm"
+      ],
+      "en": [
+        "five days; fifth day of the month"
+      ]
+    },
+    "一緒|いっしょ": {
+      "vi": [
+        "cùng nhau"
+      ],
+      "en": [
+        "together"
+      ]
+    },
+    "五つ|いつつ": {
+      "vi": [
+        "năm cái"
+      ],
+      "en": [
+        "five things"
+      ]
+    },
+    "いつも|いつも": {
+      "vi": [
+        "lúc nào cũng",
+        "thường",
+        "mỗi lần"
+      ],
+      "en": [
+        "always",
+        "usually",
+        "every time",
+        "never (with neg. verb)"
+      ]
+    },
+    "犬|いぬ": {
+      "vi": [
+        "con chó"
+      ],
+      "en": [
+        "dog"
+      ]
+    },
+    "今|いま": {
+      "vi": [
+        "bây giờ"
+      ],
+      "en": [
+        "now"
+      ]
+    },
+    "意味|いみ": {
+      "vi": [
+        "ý nghĩa"
+      ],
+      "en": [
+        "meaning",
+        "significance"
+      ]
+    },
+    "妹|いもうと": {
+      "vi": [
+        "em gái (của mình)"
+      ],
+      "en": [
+        "younger sister (humble)"
+      ]
+    },
+    "嫌|いや": {
+      "vi": [
+        "ghét",
+        "khó chịu"
+      ],
+      "en": [
+        "disagreeable",
+        "detestable",
+        "unpleasant"
+      ]
+    },
+    "入口|いりぐち": {
+      "vi": [
+        "lối vào"
+      ],
+      "en": [
+        "entrance"
+      ]
+    },
+    "居る|いる": {
+      "vi": [
+        "có, ở (người, động vật)"
+      ],
+      "en": [
+        "(humble) to be (animate)",
+        "to exist"
+      ]
+    },
+    "要る|いる": {
+      "vi": [
+        "cần"
+      ],
+      "en": [
+        "to need"
+      ]
+    },
+    "入れる|いれる": {
+      "vi": [
+        "cho vào",
+        "bỏ vào"
+      ],
+      "en": [
+        "to put in"
+      ]
+    },
+    "色|いろ": {
+      "vi": [
+        "màu sắc"
+      ],
+      "en": [
+        "color"
+      ]
+    },
+    "色々|いろいろ": {
+      "vi": [
+        "nhiều loại",
+        "đủ thứ"
+      ],
+      "en": [
+        "various"
+      ]
+    },
+    "上|うえ": {
+      "vi": [
+        "trên",
+        "phía trên"
+      ],
+      "en": [
+        "above (up, top, etc.)",
+        "over",
+        "on top of"
+      ]
+    },
+    "後ろ|うしろ": {
+      "vi": [
+        "phía sau",
+        "đằng sau"
+      ],
+      "en": [
+        "back",
+        "behind",
+        "rear"
+      ]
+    },
+    "薄い|うすい": {
+      "vi": [
+        "mỏng",
+        "nhạt"
+      ],
+      "en": [
+        "thin",
+        "weak"
+      ]
+    },
+    "歌|うた": {
+      "vi": [
+        "bài hát"
+      ],
+      "en": [
+        "a song"
+      ]
+    },
+    "歌う|うたう": {
+      "vi": [
+        "hát"
+      ],
+      "en": [
+        "to sing"
+      ]
+    },
+    "うち|うち": {
+      "vi": [
+        "nhà",
+        "nhà mình"
+      ],
+      "en": [
+        "home; house; my place"
+      ]
+    },
+    "生まれる|うまれる": {
+      "vi": [
+        "được sinh ra"
+      ],
+      "en": [
+        "to be born"
+      ]
+    },
+    "海|うみ": {
+      "vi": [
+        "biển",
+        "bãi biển"
+      ],
+      "en": [
+        "sea",
+        "beach"
+      ]
+    },
+    "売る|うる": {
+      "vi": [
+        "bán"
+      ],
+      "en": [
+        "to sell (v.t.)"
+      ]
+    },
+    "うるさい|うるさい": {
+      "vi": [
+        "ồn ào",
+        "phiền phức"
+      ],
+      "en": [
+        "noisy; annoying"
+      ]
+    },
+    "上着|うわぎ": {
+      "vi": [
+        "áo khoác"
+      ],
+      "en": [
+        "coat",
+        "jacket"
+      ]
+    },
+    "絵|え": {
+      "vi": [
+        "bức tranh",
+        "tranh vẽ"
+      ],
+      "en": [
+        "a painting; a picture; a drawing"
+      ]
+    },
+    "映画|えいが": {
+      "vi": [
+        "phim"
+      ],
+      "en": [
+        "movie",
+        "film"
+      ]
+    },
+    "映画館|えいがかん": {
+      "vi": [
+        "rạp chiếu phim"
+      ],
+      "en": [
+        "movie theater",
+        "cinema"
+      ]
+    },
+    "英語|えいご": {
+      "vi": [
+        "tiếng Anh"
+      ],
+      "en": [
+        "English (language)"
+      ]
+    },
+    "ええ|ええ": {
+      "vi": [
+        "vâng",
+        "ừ"
+      ],
+      "en": [
+        "yes"
+      ]
+    },
+    "駅|えき": {
+      "vi": [
+        "nhà ga"
+      ],
+      "en": [
+        "station"
+      ]
+    },
+    "エレベーター|エレベーター": {
+      "vi": [
+        "thang máy"
+      ],
+      "en": [
+        "elevator"
+      ]
+    },
+    "～円|～えん": {
+      "vi": [
+        "~ yên (tiền Nhật)"
+      ],
+      "en": [
+        "Yen"
+      ]
+    },
+    "鉛筆|えんぴつ": {
+      "vi": [
+        "bút chì"
+      ],
+      "en": [
+        "pencil"
+      ]
+    },
+    "お～|お～": {
+      "vi": [
+        "(tiền tố kính ngữ)"
+      ],
+      "en": [
+        "honorable ~ (honorific)"
+      ]
+    },
+    "美味しい|おいしい": {
+      "vi": [
+        "ngon"
+      ],
+      "en": [
+        "delicious",
+        "tasty"
+      ]
+    },
+    "多い|おおい": {
+      "vi": [
+        "nhiều"
+      ],
+      "en": [
+        "many; there are a lot"
+      ]
+    },
+    "大きい|おおきい": {
+      "vi": [
+        "to",
+        "lớn"
+      ],
+      "en": [
+        "big",
+        "large"
+      ]
+    },
+    "大きな|おおきな": {
+      "vi": [
+        "to lớn"
+      ],
+      "en": [
+        "big"
+      ]
+    },
+    "大勢|おおぜい": {
+      "vi": [
+        "đông người",
+        "nhiều người"
+      ],
+      "en": [
+        "great number of people"
+      ]
+    },
+    "お母さん|おかあさん": {
+      "vi": [
+        "mẹ (kính trọng)"
+      ],
+      "en": [
+        "mother (formal)"
+      ]
+    },
+    "お菓子|おかし": {
+      "vi": [
+        "bánh kẹo",
+        "đồ ăn vặt"
+      ],
+      "en": [
+        "confections",
+        "sweets",
+        "snack"
+      ]
+    },
+    "お金|おかね": {
+      "vi": [
+        "tiền"
+      ],
+      "en": [
+        "money"
+      ]
+    },
+    "起きる|おきる": {
+      "vi": [
+        "thức dậy",
+        "xảy ra"
+      ],
+      "en": [
+        "to get up (e.g., from sleeping); to happen"
+      ]
+    },
+    "置く|おく": {
+      "vi": [
+        "đặt",
+        "để"
+      ],
+      "en": [
+        "to put; to lay; to place"
+      ]
+    },
+    "奥さん|おくさん": {
+      "vi": [
+        "vợ (người khác, kính trọng)"
+      ],
+      "en": [
+        "(someone else's) wife (hon.)"
+      ]
+    },
+    "お酒|おさけ": {
+      "vi": [
+        "rượu sake",
+        "rượu"
+      ],
+      "en": [
+        "sake; alcohol"
+      ]
+    },
+    "お皿|おさら": {
+      "vi": [
+        "cái đĩa"
+      ],
+      "en": [
+        "plate",
+        "dish"
+      ]
+    },
+    "伯父; 叔父さん|おじさん": {
+      "vi": [
+        "chú, bác",
+        "người đàn ông trung niên"
+      ],
+      "en": [
+        "uncle",
+        "middle-aged man"
+      ]
+    },
+    "おじいさん|おじいさん": {
+      "vi": [
+        "ông",
+        "cụ ông"
+      ],
+      "en": [
+        "grandfather",
+        "male senior citizen"
+      ]
+    },
+    "教える|おしえる": {
+      "vi": [
+        "dạy",
+        "chỉ bảo",
+        "cho biết"
+      ],
+      "en": [
+        "to teach",
+        "to inform",
+        "to instruct"
+      ]
+    },
+    "押す|おす": {
+      "vi": [
+        "đẩy",
+        "ấn",
+        "đóng dấu"
+      ],
+      "en": [
+        "to push",
+        "to press",
+        "to stamp (e.g., a passport)"
+      ]
+    },
+    "遅い|おそい": {
+      "vi": [
+        "chậm",
+        "muộn"
+      ],
+      "en": [
+        "slow; (to be) late"
+      ]
+    },
+    "お茶|おちゃ": {
+      "vi": [
+        "trà (xanh)"
+      ],
+      "en": [
+        "(green) tea"
+      ]
+    },
+    "お手洗い|おてあらい": {
+      "vi": [
+        "nhà vệ sinh"
+      ],
+      "en": [
+        "toilet",
+        "restroom",
+        "bathroom (lit., a place to wash one's hands)"
+      ]
+    },
+    "お父さん|おとうさん": {
+      "vi": [
+        "bố (kính trọng)"
+      ],
+      "en": [
+        "father (formal)"
+      ]
+    },
+    "弟|おとうと": {
+      "vi": [
+        "em trai"
+      ],
+      "en": [
+        "younger brother"
+      ]
+    },
+    "男|おとこ": {
+      "vi": [
+        "đàn ông",
+        "nam"
+      ],
+      "en": [
+        "man",
+        "male"
+      ]
+    },
+    "男の子|おとこのこ": {
+      "vi": [
+        "con trai",
+        "bé trai"
+      ],
+      "en": [
+        "boy"
+      ]
+    },
+    "一昨日|おととい": {
+      "vi": [
+        "hôm kia"
+      ],
+      "en": [
+        "the day before yesterday"
+      ]
+    },
+    "おととし|おととし": {
+      "vi": [
+        "năm kia"
+      ],
+      "en": [
+        "year before last"
+      ]
+    },
+    "大人|おとな": {
+      "vi": [
+        "người lớn"
+      ],
+      "en": [
+        "adult"
+      ]
+    },
+    "お腹|おなか": {
+      "vi": [
+        "bụng"
+      ],
+      "en": [
+        "stomach"
+      ]
+    },
+    "同じ|おなじ": {
+      "vi": [
+        "giống nhau",
+        "như nhau"
+      ],
+      "en": [
+        "same",
+        "identical"
+      ]
+    },
+    "お兄さん|おにいさん": {
+      "vi": [
+        "anh trai (kính trọng)"
+      ],
+      "en": [
+        "(someone else's) older brother (formal)"
+      ]
+    },
+    "お姉さん|おねえさん": {
+      "vi": [
+        "chị gái (kính trọng)"
+      ],
+      "en": [
+        "older sister (formal)"
+      ]
+    },
+    "伯母さん; 叔母さん|おばさん": {
+      "vi": [
+        "cô, dì, bác gái"
+      ],
+      "en": [
+        "aunt"
+      ]
+    },
+    "おばあさん|おばあさん": {
+      "vi": [
+        "bà",
+        "cụ bà"
+      ],
+      "en": [
+        "grandmother",
+        "female senior-citizen"
+      ]
+    },
+    "お風呂|おふろ": {
+      "vi": [
+        "bồn tắm",
+        "việc tắm"
+      ],
+      "en": [
+        "a bath"
+      ]
+    },
+    "お弁当|おべんとう": {
+      "vi": [
+        "cơm hộp"
+      ],
+      "en": [
+        "a boxed lunch"
+      ]
+    },
+    "覚える|おぼえる": {
+      "vi": [
+        "học thuộc",
+        "ghi nhớ",
+        "nhớ"
+      ],
+      "en": [
+        "to learn",
+        "to commit to memory",
+        "to remember",
+        "to memorize"
+      ]
+    },
+    "おまわりさん|おまわりさん": {
+      "vi": [
+        "chú cảnh sát"
+      ],
+      "en": [
+        "policeman (friendly term)"
+      ]
+    },
+    "重い|おもい": {
+      "vi": [
+        "nặng",
+        "nghiêm trọng"
+      ],
+      "en": [
+        "heavy; serious"
+      ]
+    },
+    "面白い|おもしろい": {
+      "vi": [
+        "thú vị",
+        "buồn cười"
+      ],
+      "en": [
+        "interesting",
+        "amusing"
+      ]
+    },
+    "泳ぐ|およぐ": {
+      "vi": [
+        "bơi"
+      ],
+      "en": [
+        "to swim"
+      ]
+    },
+    "降りる|おりる": {
+      "vi": [
+        "xuống (xe)"
+      ],
+      "en": [
+        "to get off"
+      ]
+    },
+    "終る|おわる": {
+      "vi": [
+        "kết thúc",
+        "xong"
+      ],
+      "en": [
+        "to finish",
+        "to close"
+      ]
+    },
+    "音楽|おんがく": {
+      "vi": [
+        "âm nhạc"
+      ],
+      "en": [
+        "Music"
+      ]
+    },
+    "女|おんな": {
+      "vi": [
+        "phụ nữ",
+        "nữ"
+      ],
+      "en": [
+        "woman",
+        "female"
+      ]
+    },
+    "女の子|おんなのこ": {
+      "vi": [
+        "con gái",
+        "bé gái"
+      ],
+      "en": [
+        "girl"
+      ]
+    },
+    "～回|～かい": {
+      "vi": [
+        "~ lần"
+      ],
+      "en": [
+        "counter for occurrences (~ times)"
+      ]
+    },
+    "～階|～かい": {
+      "vi": [
+        "~ tầng (đếm tầng nhà)"
+      ],
+      "en": [
+        "counter for stories (floors) of a building"
+      ]
+    },
+    "外国|がいこく": {
+      "vi": [
+        "nước ngoài"
+      ],
+      "en": [
+        "foreign country; abroad"
+      ]
+    },
+    "外国人|がいこくじん": {
+      "vi": [
+        "người nước ngoài"
+      ],
+      "en": [
+        "foreigner"
+      ]
+    },
+    "会社|かいしゃ": {
+      "vi": [
+        "công ty"
+      ],
+      "en": [
+        "company",
+        "corporation"
+      ]
+    },
+    "階段|かいだん": {
+      "vi": [
+        "cầu thang"
+      ],
+      "en": [
+        "stairs"
+      ]
+    },
+    "買い物|かいもの": {
+      "vi": [
+        "mua sắm"
+      ],
+      "en": [
+        "shopping"
+      ]
+    },
+    "買う|かう": {
+      "vi": [
+        "mua"
+      ],
+      "en": [
+        "to buy"
+      ]
+    },
+    "返す|かえす": {
+      "vi": [
+        "trả lại"
+      ],
+      "en": [
+        "to return something"
+      ]
+    },
+    "帰る|かえる": {
+      "vi": [
+        "về",
+        "trở về",
+        "về nhà"
+      ],
+      "en": [
+        "to go back",
+        "to go home",
+        "to return"
+      ]
+    },
+    "顔|かお": {
+      "vi": [
+        "khuôn mặt"
+      ],
+      "en": [
+        "face (body part)"
+      ]
+    },
+    "かかる|かかる": {
+      "vi": [
+        "mất, tốn (thời gian, tiền)"
+      ],
+      "en": [
+        "it takes (amount of time, money) (v.i.)"
+      ]
+    },
+    "鍵|かぎ": {
+      "vi": [
+        "ổ khoá",
+        "chìa khoá"
+      ],
+      "en": [
+        "a lock; a key"
+      ]
+    },
+    "書く|かく": {
+      "vi": [
+        "viết"
+      ],
+      "en": [
+        "to write"
+      ]
+    },
+    "学生|がくせい": {
+      "vi": [
+        "học sinh",
+        "sinh viên"
+      ],
+      "en": [
+        "student"
+      ]
+    },
+    "～か月|～かげつ": {
+      "vi": [
+        "~ tháng (số tháng)"
+      ],
+      "en": [
+        "(number of) months"
+      ]
+    },
+    "掛ける|かける": {
+      "vi": [
+        "đeo (kính)",
+        "treo"
+      ],
+      "en": [
+        "to put on (e.g., glasses); to hang (e.g., on a wall)"
+      ]
+    },
+    "かける|かける": {
+      "vi": [
+        "gọi (điện thoại)",
+        "ngồi"
+      ],
+      "en": [
+        "to dial/call (e.g., phone); to sit down"
+      ]
+    },
+    "傘|かさ": {
+      "vi": [
+        "cái ô",
+        "dù"
+      ],
+      "en": [
+        "umbrella",
+        "parasol"
+      ]
+    },
+    "貸す|かす": {
+      "vi": [
+        "cho mượn"
+      ],
+      "en": [
+        "to lend"
+      ]
+    },
+    "風|かぜ": {
+      "vi": [
+        "gió"
+      ],
+      "en": [
+        "wind",
+        "breeze"
+      ]
+    },
+    "風邪|かぜ": {
+      "vi": [
+        "cảm lạnh",
+        "cúm"
+      ],
+      "en": [
+        "cold",
+        "flu"
+      ]
+    },
+    "方|かた": {
+      "vi": [
+        "vị, người (kính trọng)",
+        "cách (làm)"
+      ],
+      "en": [
+        "-- honorific form for 人 (ひと) --; way of doing"
+      ]
+    },
+    "家族|かぞく": {
+      "vi": [
+        "gia đình"
+      ],
+      "en": [
+        "family",
+        "members of a family"
+      ]
+    },
+    "片仮名|かたかな": {
+      "vi": [
+        "chữ katakana"
+      ],
+      "en": [
+        "katakana"
+      ]
+    },
+    "～月|～がつ": {
+      "vi": [
+        "tháng ~ (trong năm)"
+      ],
+      "en": [
+        "month of year"
+      ]
+    },
+    "学校|がっこう": {
+      "vi": [
+        "trường học"
+      ],
+      "en": [
+        "a school"
+      ]
+    },
+    "カップ|カップ": {
+      "vi": [
+        "cái cốc",
+        "tách"
+      ],
+      "en": [
+        "cup"
+      ]
+    },
+    "家庭|かてい": {
+      "vi": [
+        "gia đình",
+        "mái ấm"
+      ],
+      "en": [
+        "home; family"
+      ]
+    },
+    "角|かど": {
+      "vi": [
+        "góc"
+      ],
+      "en": [
+        "corner (e.g., desk, pavement)"
+      ]
+    },
+    "かばん|かばん": {
+      "vi": [
+        "cái cặp",
+        "túi xách"
+      ],
+      "en": [
+        "bag",
+        "basket"
+      ]
+    },
+    "花瓶|かびん": {
+      "vi": [
+        "bình hoa"
+      ],
+      "en": [
+        "(flower) vase"
+      ]
+    },
+    "かぶる|かぶる": {
+      "vi": [
+        "đội (mũ)",
+        "trùm"
+      ],
+      "en": [
+        "to wear",
+        "to put on (e.g., a hat on the head)"
+      ]
+    },
+    "紙|かみ": {
+      "vi": [
+        "giấy"
+      ],
+      "en": [
+        "paper"
+      ]
+    },
+    "カメラ|カメラ": {
+      "vi": [
+        "máy ảnh"
+      ],
+      "en": [
+        "camera"
+      ]
+    },
+    "火曜日|かようび": {
+      "vi": [
+        "thứ ba"
+      ],
+      "en": [
+        "Tuesday"
+      ]
+    },
+    "辛い|からい": {
+      "vi": [
+        "cay",
+        "mặn"
+      ],
+      "en": [
+        "hot and spicy; salty"
+      ]
+    },
+    "体|からだ": {
+      "vi": [
+        "cơ thể",
+        "sức khoẻ"
+      ],
+      "en": [
+        "body; health"
+      ]
+    },
+    "借りる|かりる": {
+      "vi": [
+        "mượn",
+        "vay"
+      ],
+      "en": [
+        "to borrow",
+        "to owe"
+      ]
+    },
+    "～がる|～がる": {
+      "vi": [
+        "cảm thấy (người khác)"
+      ],
+      "en": [
+        "feel"
+      ]
+    },
+    "軽い|かるい": {
+      "vi": [
+        "nhẹ",
+        "không nghiêm trọng"
+      ],
+      "en": [
+        "light",
+        "non-serious",
+        "minor"
+      ]
+    },
+    "カレー|カレー": {
+      "vi": [
+        "cà ri",
+        "cơm cà ri"
+      ],
+      "en": [
+        "curry (abbr. for curry and rice)"
+      ]
+    },
+    "カレンダー|カレンダー": {
+      "vi": [
+        "lịch"
+      ],
+      "en": [
+        "calendar"
+      ]
+    },
+    "川; 河|かわ": {
+      "vi": [
+        "sông"
+      ],
+      "en": [
+        "river"
+      ]
+    },
+    "～側|～がわ": {
+      "vi": [
+        "phía ~",
+        "bên ~"
+      ],
+      "en": [
+        "~ side"
+      ]
+    },
+    "可愛い|かわいい": {
+      "vi": [
+        "dễ thương",
+        "đáng yêu"
+      ],
+      "en": [
+        "cute",
+        "adorable"
+      ]
+    },
+    "漢字|かんじ": {
+      "vi": [
+        "chữ kanji",
+        "chữ Hán"
+      ],
+      "en": [
+        "kanji; Chinese character"
+      ]
+    },
+    "木|き": {
+      "vi": [
+        "cây",
+        "gỗ"
+      ],
+      "en": [
+        "tree",
+        "wood",
+        "timber"
+      ]
+    },
+    "黄色|きいろ": {
+      "vi": [
+        "màu vàng"
+      ],
+      "en": [
+        "yellow"
+      ]
+    },
+    "黄色い|きいろい": {
+      "vi": [
+        "vàng"
+      ],
+      "en": [
+        "yellow"
+      ]
+    },
+    "消える|きえる": {
+      "vi": [
+        "biến mất",
+        "tắt"
+      ],
+      "en": [
+        "to vanish",
+        "to disappear"
+      ]
+    },
+    "聞く|きく": {
+      "vi": [
+        "nghe",
+        "hỏi"
+      ],
+      "en": [
+        "to hear",
+        "to listen",
+        "to ask"
+      ]
+    },
+    "北|きた": {
+      "vi": [
+        "phía bắc"
+      ],
+      "en": [
+        "north"
+      ]
+    },
+    "ギター|ギター": {
+      "vi": [
+        "đàn ghi-ta"
+      ],
+      "en": [
+        "guitar"
+      ]
+    },
+    "汚い|きたない": {
+      "vi": [
+        "bẩn",
+        "dơ"
+      ],
+      "en": [
+        "dirty",
+        "unclean",
+        "filthy"
+      ]
+    },
+    "喫茶店|きっさてん": {
+      "vi": [
+        "quán cà phê"
+      ],
+      "en": [
+        "café"
+      ]
+    },
+    "切手|きって": {
+      "vi": [
+        "tem (thư)"
+      ],
+      "en": [
+        "postal (postage) stamps"
+      ]
+    },
+    "切符|きっぷ": {
+      "vi": [
+        "vé"
+      ],
+      "en": [
+        "a ticket"
+      ]
+    },
+    "昨日|きのう": {
+      "vi": [
+        "hôm qua"
+      ],
+      "en": [
+        "yesterday"
+      ]
+    },
+    "九|きゅう": {
+      "vi": [
+        "chín"
+      ],
+      "en": [
+        "nine"
+      ]
+    },
+    "牛肉|ぎゅうにく": {
+      "vi": [
+        "thịt bò"
+      ],
+      "en": [
+        "beef"
+      ]
+    },
+    "牛乳|ぎゅうにゅう": {
+      "vi": [
+        "sữa bò"
+      ],
+      "en": [
+        "milk"
+      ]
+    },
+    "今日|きょう": {
+      "vi": [
+        "hôm nay"
+      ],
+      "en": [
+        "today",
+        "this day"
+      ]
+    },
+    "教室|きょうしつ": {
+      "vi": [
+        "lớp học (phòng học)"
+      ],
+      "en": [
+        "classroom"
+      ]
+    },
+    "兄弟|きょうだい": {
+      "vi": [
+        "anh chị em"
+      ],
+      "en": [
+        "siblings (humble)",
+        "brothers and sisters"
+      ]
+    },
+    "去年|きょねん": {
+      "vi": [
+        "năm ngoái"
+      ],
+      "en": [
+        "last year"
+      ]
+    },
+    "嫌い|きらい": {
+      "vi": [
+        "ghét",
+        "không thích"
+      ],
+      "en": [
+        "dislike"
+      ]
+    },
+    "切る|きる": {
+      "vi": [
+        "cắt",
+        "cúp (máy)"
+      ],
+      "en": [
+        "to cut; to hang up (a phone)"
+      ]
+    },
+    "着る|きる": {
+      "vi": [
+        "mặc (áo)"
+      ],
+      "en": [
+        "to put on (clothes above your waist); to wear"
+      ]
+    },
+    "綺麗|きれい": {
+      "vi": [
+        "đẹp",
+        "sạch sẽ",
+        "gọn gàng"
+      ],
+      "en": [
+        "pretty",
+        "clean",
+        "tidy"
+      ]
+    },
+    "キロ; キログラム|キロ; キログラム": {
+      "vi": [
+        "ki-lô (ki-lô-gam)"
+      ],
+      "en": [
+        "(abbr.) kilo (kilogram)"
+      ]
+    },
+    "キロ; キロメートル|キロ; キロメートル": {
+      "vi": [
+        "ki-lô (ki-lô-mét)"
+      ],
+      "en": [
+        "(abbr.) kilo (kilometer)"
+      ]
+    },
+    "銀行|ぎんこう": {
+      "vi": [
+        "ngân hàng"
+      ],
+      "en": [
+        "bank"
+      ]
+    },
+    "金曜日|きんようび": {
+      "vi": [
+        "thứ sáu"
+      ],
+      "en": [
+        "Friday"
+      ]
+    },
+    "九|く": {
+      "vi": [
+        "chín"
+      ],
+      "en": [
+        "nine"
+      ]
+    },
+    "薬|くすり": {
+      "vi": [
+        "thuốc"
+      ],
+      "en": [
+        "medicine"
+      ]
+    },
+    "下さい|ください": {
+      "vi": [
+        "xin hãy (làm gì cho tôi)"
+      ],
+      "en": [
+        "(with te-form verb) please do for me"
+      ]
+    },
+    "果物|くだもの": {
+      "vi": [
+        "trái cây",
+        "hoa quả"
+      ],
+      "en": [
+        "fruit"
+      ]
+    },
+    "口|くち": {
+      "vi": [
+        "việc làm (chỗ trống)",
+        "miệng"
+      ],
+      "en": [
+        "job opening; mouth"
+      ]
+    },
+    "靴|くつ": {
+      "vi": [
+        "giày",
+        "giày dép"
+      ],
+      "en": [
+        "shoes",
+        "footwear"
+      ]
+    },
+    "靴下|くつした": {
+      "vi": [
+        "tất",
+        "vớ"
+      ],
+      "en": [
+        "socks"
+      ]
+    },
+    "国|くに": {
+      "vi": [
+        "đất nước",
+        "quê hương"
+      ],
+      "en": [
+        "country; place of origin"
+      ]
+    },
+    "曇り|くもり": {
+      "vi": [
+        "trời nhiều mây",
+        "âm u"
+      ],
+      "en": [
+        "cloudiness",
+        "cloudy weather"
+      ]
+    },
+    "曇る|くもる": {
+      "vi": [
+        "có mây",
+        "mờ đi"
+      ],
+      "en": [
+        "to become cloudy",
+        "to become dim"
+      ]
+    },
+    "暗い|くらい": {
+      "vi": [
+        "tối",
+        "u ám"
+      ],
+      "en": [
+        "dark",
+        "gloomy"
+      ]
+    },
+    "～くらい; ぐらい|～くらい; ぐらい": {
+      "vi": [
+        "khoảng (chừng)"
+      ],
+      "en": [
+        "approximate (quantity)"
+      ]
+    },
+    "クラス|クラス": {
+      "vi": [
+        "lớp (học)"
+      ],
+      "en": [
+        "a class"
+      ]
+    },
+    "グラム|グラム": {
+      "vi": [
+        "gam"
+      ],
+      "en": [
+        "gram"
+      ]
+    },
+    "来る|くる": {
+      "vi": [
+        "đến"
+      ],
+      "en": [
+        "to come"
+      ]
+    },
+    "車|くるま": {
+      "vi": [
+        "xe ô tô",
+        "xe cộ"
+      ],
+      "en": [
+        "car",
+        "vehicle"
+      ]
+    },
+    "黒|くろ": {
+      "vi": [
+        "màu đen"
+      ],
+      "en": [
+        "black"
+      ]
+    },
+    "黒い|くろい": {
+      "vi": [
+        "đen",
+        "tối màu"
+      ],
+      "en": [
+        "black; dark"
+      ]
+    },
+    "警官|けいかん": {
+      "vi": [
+        "cảnh sát"
+      ],
+      "en": [
+        "police officer"
+      ]
+    },
+    "今朝|けさ": {
+      "vi": [
+        "sáng nay"
+      ],
+      "en": [
+        "this morning"
+      ]
+    },
+    "消す|けす": {
+      "vi": [
+        "xoá",
+        "tắt (điện)"
+      ],
+      "en": [
+        "to erase",
+        "to delete",
+        "to turn off power"
+      ]
+    },
+    "結構|けっこう": {
+      "vi": [
+        "tuyệt vời",
+        "đủ rồi",
+        "khá"
+      ],
+      "en": [
+        "splendid; enough",
+        "tolerably"
+      ]
+    },
+    "結婚|けっこん (する)": {
+      "vi": [
+        "kết hôn",
+        "hôn nhân"
+      ],
+      "en": [
+        "marriage (get married)"
+      ]
+    },
+    "月曜日|げつようび": {
+      "vi": [
+        "thứ hai"
+      ],
+      "en": [
+        "Monday"
+      ]
+    },
+    "玄関|げんかん": {
+      "vi": [
+        "lối vào nhà",
+        "tiền sảnh"
+      ],
+      "en": [
+        "entrance (to a house or a building)"
+      ]
+    },
+    "元気|げんき": {
+      "vi": [
+        "khoẻ mạnh",
+        "hăng hái"
+      ],
+      "en": [
+        "health(y)",
+        "energetic"
+      ]
+    },
+    "～個|～こ": {
+      "vi": [
+        "~ cái (đếm vật nhỏ)"
+      ],
+      "en": [
+        "counter for small items (e.g., fruits, cups)"
+      ]
+    },
+    "五|ご": {
+      "vi": [
+        "năm (số 5)"
+      ],
+      "en": [
+        "five"
+      ]
+    },
+    "～語|～ご": {
+      "vi": [
+        "từ",
+        "tiếng (ngôn ngữ)"
+      ],
+      "en": [
+        "word",
+        "language"
+      ]
+    },
+    "公園|こうえん": {
+      "vi": [
+        "công viên"
+      ],
+      "en": [
+        "a park"
+      ]
+    },
+    "交差点|こうさてん": {
+      "vi": [
+        "ngã tư"
+      ],
+      "en": [
+        "intersection"
+      ]
+    },
+    "紅茶|こうちゃ": {
+      "vi": [
+        "hồng trà",
+        "trà đen"
+      ],
+      "en": [
+        "black tea"
+      ]
+    },
+    "交番|こうばん": {
+      "vi": [
+        "đồn cảnh sát (nhỏ)"
+      ],
+      "en": [
+        "police box"
+      ]
+    },
+    "声|こえ": {
+      "vi": [
+        "giọng nói",
+        "tiếng"
+      ],
+      "en": [
+        "voice"
+      ]
+    },
+    "コート|コート": {
+      "vi": [
+        "áo khoác",
+        "sân (tennis)"
+      ],
+      "en": [
+        "coat; court (e.g., tennis)"
+      ]
+    }
+  }
+}
