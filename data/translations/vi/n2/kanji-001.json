@@ -1,0 +1,4946 @@
+{
+  "type": "kanji",
+  "level": "N2",
+  "entries": {
+    "党": {
+      "vi": [
+        "đảng",
+        "phe phái",
+        "bè cánh"
+      ],
+      "en": [
+        "Party",
+        "Faction",
+        "Clique"
+      ]
+    },
+    "協": {
+      "vi": [
+        "hiệp",
+        "hợp tác"
+      ],
+      "en": [
+        "Co-",
+        "Cooperation"
+      ]
+    },
+    "総": {
+      "vi": [
+        "tổng",
+        "toàn bộ",
+        "tất cả",
+        "đầy đủ",
+        "tổng cộng"
+      ],
+      "en": [
+        "General",
+        "Whole",
+        "All",
+        "Full",
+        "Total"
+      ]
+    },
+    "区": {
+      "vi": [
+        "phường",
+        "quận",
+        "khu vực"
+      ],
+      "hanViet": "KHU",
+      "en": [
+        "Ward",
+        "District"
+      ]
+    },
+    "領": {
+      "vi": [
+        "quyền cai quản",
+        "lãnh địa",
+        "lãnh thổ",
+        "thái ấp",
+        "triều đại"
+      ],
+      "hanViet": "LÃNH",
+      "en": [
+        "Jurisdiction",
+        "Dominion",
+        "Territory",
+        "Fief",
+        "Reign"
+      ]
+    },
+    "県": {
+      "vi": [
+        "tỉnh (của Nhật)"
+      ],
+      "hanViet": "HUYỆN",
+      "en": [
+        "Prefecture"
+      ]
+    },
+    "設": {
+      "vi": [
+        "thiết lập",
+        "trang bị",
+        "chuẩn bị"
+      ],
+      "en": [
+        "Establishment",
+        "Provision",
+        "Prepare"
+      ]
+    },
+    "改": {
+      "vi": [
+        "cải cách",
+        "thay đổi",
+        "sửa đổi",
+        "sửa chữa",
+        "đổi mới",
+        "xem xét"
+      ],
+      "en": [
+        "Reformation",
+        "Change",
+        "Modify",
+        "Mend",
+        "Renew",
+        "Examine",
+        "Inspect",
+        "Search"
+      ]
+    },
+    "府": {
+      "vi": [
+        "phủ (Osaka, Kyoto)",
+        "cơ quan chính quyền"
+      ],
+      "en": [
+        "Borough",
+        "Urban Prefecture",
+        "Govt Office",
+        "Representative Body",
+        "Storehouse"
+      ]
+    },
+    "査": {
+      "vi": [
+        "điều tra"
+      ],
+      "hanViet": "TRA",
+      "en": [
+        "Investigate"
+      ]
+    },
+    "委": {
+      "vi": [
+        "ủy ban",
+        "giao phó",
+        "phó thác",
+        "hiến dâng",
+        "vứt bỏ"
+      ],
+      "en": [
+        "Committee",
+        "Entrust To",
+        "Leave To",
+        "Devote",
+        "Discard"
+      ]
+    },
+    "軍": {
+      "vi": [
+        "quân đội",
+        "lực lượng",
+        "binh lính",
+        "chiến tranh",
+        "trận đánh"
+      ],
+      "en": [
+        "Army",
+        "Force",
+        "Troops",
+        "War",
+        "Battle"
+      ]
+    },
+    "団": {
+      "vi": [
+        "đoàn",
+        "nhóm",
+        "hội"
+      ],
+      "en": [
+        "Group",
+        "Association"
+      ]
+    },
+    "各": {
+      "vi": [
+        "mỗi",
+        "mọi",
+        "các"
+      ],
+      "en": [
+        "Each",
+        "Every",
+        "Either"
+      ]
+    },
+    "島": {
+      "vi": [
+        "đảo"
+      ],
+      "en": [
+        "Island"
+      ]
+    },
+    "革": {
+      "vi": [
+        "da thuộc",
+        "da",
+        "cải cách",
+        "trở nên nghiêm túc"
+      ],
+      "en": [
+        "Leather",
+        "Skin",
+        "Reform",
+        "Become Serious"
+      ]
+    },
+    "村": {
+      "vi": [
+        "làng",
+        "thôn"
+      ],
+      "en": [
+        "Village",
+        "Town"
+      ]
+    },
+    "勢": {
+      "vi": [
+        "thế lực",
+        "sức mạnh",
+        "binh lực"
+      ],
+      "en": [
+        "Forces",
+        "Energy",
+        "Military Strength"
+      ]
+    },
+    "減": {
+      "vi": [
+        "giảm dần",
+        "giảm",
+        "cắt giảm",
+        "suy giảm"
+      ],
+      "en": [
+        "Dwindle",
+        "Decrease",
+        "Reduce",
+        "Decline",
+        "Curtail",
+        "Get Hungry"
+      ]
+    },
+    "再": {
+      "vi": [
+        "lại",
+        "hai lần",
+        "lần thứ hai"
+      ],
+      "en": [
+        "Again",
+        "Twice",
+        "Second Time"
+      ]
+    },
+    "税": {
+      "vi": [
+        "thuế"
+      ],
+      "hanViet": "THUẾ",
+      "en": [
+        "Tax",
+        "Duty"
+      ]
+    },
+    "営": {
+      "vi": [
+        "nghề nghiệp",
+        "doanh trại",
+        "kinh doanh",
+        "xây dựng",
+        "điều hành"
+      ],
+      "hanViet": "DOANH",
+      "en": [
+        "Occupation",
+        "Camp",
+        "Perform",
+        "Build",
+        "Conduct (business)"
+      ]
+    },
+    "比": {
+      "vi": [
+        "so sánh",
+        "tỷ lệ",
+        "Philippines"
+      ],
+      "hanViet": "TỶ",
+      "en": [
+        "Compare",
+        "Race",
+        "Ratio",
+        "Philippines"
+      ]
+    },
+    "防": {
+      "vi": [
+        "ngăn ngừa",
+        "phòng thủ",
+        "bảo vệ",
+        "chống lại"
+      ],
+      "en": [
+        "Ward Off",
+        "Defend",
+        "Protect",
+        "Resist"
+      ]
+    },
+    "補": {
+      "vi": [
+        "bổ sung",
+        "cung cấp",
+        "bù đắp",
+        "đền bù",
+        "hỗ trợ"
+      ],
+      "en": [
+        "Supplement",
+        "Supply",
+        "Make Good",
+        "Offset",
+        "Compensate",
+        "Assistant",
+        "Learner"
+      ]
+    },
+    "境": {
+      "vi": [
+        "ranh giới",
+        "biên giới",
+        "vùng"
+      ],
+      "en": [
+        "Boundary",
+        "Border",
+        "Region"
+      ]
+    },
+    "導": {
+      "vi": [
+        "hướng dẫn",
+        "dẫn dắt",
+        "chỉ đạo",
+        "dẫn đường"
+      ],
+      "en": [
+        "Guidance",
+        "Leading",
+        "Conduct",
+        "Usher"
+      ]
+    },
+    "副": {
+      "vi": [
+        "phó",
+        "phụ tá",
+        "trợ lý",
+        "bản sao",
+        "bản chép"
+      ],
+      "en": [
+        "Vice-",
+        "Assistant",
+        "Aide",
+        "Duplicate",
+        "Copy"
+      ]
+    },
+    "算": {
+      "vi": [
+        "tính toán",
+        "bói toán",
+        "con số",
+        "bàn tính",
+        "xác suất"
+      ],
+      "en": [
+        "Calculate",
+        "Divining",
+        "Number",
+        "Abacus",
+        "Probability"
+      ]
+    },
+    "輸": {
+      "vi": [
+        "vận chuyển",
+        "gửi đi",
+        "kém hơn"
+      ],
+      "en": [
+        "Transport",
+        "Send",
+        "Be Inferior"
+      ]
+    },
+    "述": {
+      "vi": [
+        "đề cập",
+        "trình bày",
+        "nói",
+        "kể lại"
+      ],
+      "en": [
+        "Mention",
+        "State",
+        "Speak",
+        "Relate"
+      ]
+    },
+    "線": {
+      "vi": [
+        "đường",
+        "tuyến",
+        "đường ray"
+      ],
+      "en": [
+        "Line",
+        "Track"
+      ]
+    },
+    "農": {
+      "vi": [
+        "nông nghiệp",
+        "nông dân"
+      ],
+      "en": [
+        "Agriculture",
+        "Farmers"
+      ]
+    },
+    "州": {
+      "vi": [
+        "bang",
+        "châu",
+        "tỉnh"
+      ],
+      "en": [
+        "State",
+        "Province"
+      ]
+    },
+    "武": {
+      "vi": [
+        "võ sĩ",
+        "quân sự",
+        "tinh thần hiệp sĩ",
+        "vũ khí"
+      ],
+      "hanViet": "VÕ",
+      "en": [
+        "Warrior",
+        "Military",
+        "Chivalry",
+        "Arms"
+      ]
+    },
+    "象": {
+      "vi": [
+        "con voi",
+        "mô phỏng",
+        "bắt chước",
+        "hình ảnh",
+        "hình dạng",
+        "dấu hiệu"
+      ],
+      "en": [
+        "Elephant",
+        "Pattern After",
+        "Imitate",
+        "Image",
+        "Shape",
+        "Sign (of The Times)"
+      ]
+    },
+    "域": {
+      "vi": [
+        "phạm vi",
+        "khu vực",
+        "giới hạn",
+        "giai đoạn",
+        "mức độ"
+      ],
+      "en": [
+        "Range",
+        "Region",
+        "Limits",
+        "Stage",
+        "Level"
+      ]
+    },
+    "額": {
+      "vi": [
+        "trán",
+        "tấm biển",
+        "bảng hiệu",
+        "tranh đóng khung",
+        "tổng số",
+        "số tiền"
+      ],
+      "en": [
+        "Forehead",
+        "Tablet",
+        "Plaque",
+        "Framed Picture",
+        "Sum",
+        "Amount",
+        "Volume"
+      ]
+    },
+    "欧": {
+      "vi": [
+        "châu Âu"
+      ],
+      "en": [
+        "Europe"
+      ]
+    },
+    "担": {
+      "vi": [
+        "gánh vác",
+        "mang",
+        "nâng",
+        "chịu"
+      ],
+      "hanViet": "ĐẢM",
+      "en": [
+        "Shouldering",
+        "Carry",
+        "Raise",
+        "Bear"
+      ]
+    },
+    "準": {
+      "vi": [
+        "chuẩn",
+        "bán (như bán kết)",
+        "tương ứng",
+        "theo tỷ lệ",
+        "tuân theo",
+        "bắt chước"
+      ],
+      "en": [
+        "Semi-",
+        "Correspond To",
+        "Proportionate To",
+        "Conform",
+        "Imitate"
+      ]
+    },
+    "賞": {
+      "vi": [
+        "giải thưởng",
+        "phần thưởng",
+        "khen ngợi"
+      ],
+      "en": [
+        "Prize",
+        "Reward",
+        "Praise"
+      ]
+    },
+    "辺": {
+      "vi": [
+        "vùng lân cận",
+        "ranh giới",
+        "biên giới",
+        "xung quanh"
+      ],
+      "en": [
+        "Environs",
+        "Boundary",
+        "Border",
+        "Vicinity"
+      ]
+    },
+    "造": {
+      "vi": [
+        "tạo ra",
+        "làm",
+        "cấu trúc",
+        "vóc dáng"
+      ],
+      "en": [
+        "Create",
+        "Make",
+        "Structure",
+        "Physique"
+      ]
+    },
+    "被": {
+      "vi": [
+        "bị (chịu)",
+        "che phủ",
+        "mạng che",
+        "ấp ủ",
+        "che chở",
+        "mặc"
+      ],
+      "en": [
+        "Incur",
+        "Cover",
+        "Veil",
+        "Brood Over",
+        "Shelter",
+        "Wear",
+        "Put On",
+        "Be Exposed (film)",
+        "Receiving"
+      ]
+    },
+    "技": {
+      "vi": [
+        "kỹ năng",
+        "nghệ thuật",
+        "tay nghề",
+        "khả năng",
+        "kỳ tích",
+        "biểu diễn",
+        "nghề"
+      ],
+      "hanViet": "KỸ",
+      "en": [
+        "Skill",
+        "Art",
+        "Craft",
+        "Ability",
+        "Feat",
+        "Performance",
+        "Vocation",
+        "Arts"
+      ]
+    },
+    "低": {
+      "vi": [
+        "thấp",
+        "ngắn",
+        "khiêm tốn"
+      ],
+      "en": [
+        "Lower",
+        "Short",
+        "Humble"
+      ]
+    },
+    "復": {
+      "vi": [
+        "khôi phục",
+        "trở lại",
+        "quay về",
+        "tiếp tục"
+      ],
+      "en": [
+        "Restore",
+        "Return To",
+        "Revert",
+        "Resume"
+      ]
+    },
+    "移": {
+      "vi": [
+        "di chuyển",
+        "dời",
+        "thay đổi",
+        "trôi dạt",
+        "lây (cảm)",
+        "truyền"
+      ],
+      "en": [
+        "Shift",
+        "Move",
+        "Change",
+        "Drift",
+        "Catch (cold, Fire)",
+        "Pass Into"
+      ]
+    },
+    "個": {
+      "vi": [
+        "cá nhân",
+        "đơn vị đếm đồ vật"
+      ],
+      "en": [
+        "Individual",
+        "Counter For Articles"
+      ]
+    },
+    "門": {
+      "vi": [
+        "cổng",
+        "cửa",
+        "đơn vị đếm khẩu pháo"
+      ],
+      "en": [
+        "Gate",
+        "Counter For Cannons"
+      ]
+    },
+    "課": {
+      "vi": [
+        "chương",
+        "bài học",
+        "ban",
+        "phòng",
+        "bộ phận",
+        "đơn vị đếm bài"
+      ],
+      "en": [
+        "Chapter",
+        "Lesson",
+        "Section",
+        "Department",
+        "Division",
+        "Counter For Chapters (of A Book)"
+      ]
+    },
+    "脳": {
+      "vi": [
+        "não",
+        "trí nhớ"
+      ],
+      "en": [
+        "Brain",
+        "Memory"
+      ]
+    },
+    "極": {
+      "vi": [
+        "cực",
+        "kết luận",
+        "tận cùng",
+        "cao nhất",
+        "cực điểm"
+      ],
+      "en": [
+        "Poles",
+        "Settlement",
+        "Conclusion",
+        "End",
+        "Highest Rank",
+        "Electric Poles",
+        "Very",
+        "Extremely",
+        "Most",
+        "Highly",
+        "10**48"
+      ]
+    },
+    "含": {
+      "vi": [
+        "chứa",
+        "bao gồm",
+        "ngậm trong miệng",
+        "ghi nhớ",
+        "hiểu"
+      ],
+      "en": [
+        "Contain",
+        "Include",
+        "Hold In The Mouth",
+        "Bear In Mind",
+        "Understand",
+        "Cherish"
+      ]
+    },
+    "蔵": {
+      "vi": [
+        "nhà kho",
+        "cất giấu",
+        "sở hữu",
+        "có"
+      ],
+      "en": [
+        "Storehouse",
+        "Hide",
+        "Own",
+        "Have",
+        "Possess"
+      ]
+    },
+    "量": {
+      "vi": [
+        "lượng",
+        "đo lường",
+        "trọng lượng",
+        "số lượng",
+        "cân nhắc",
+        "ước tính"
+      ],
+      "en": [
+        "Quantity",
+        "Measure",
+        "Weight",
+        "Amount",
+        "Consider",
+        "Estimate",
+        "Surmise"
+      ]
+    },
+    "型": {
+      "vi": [
+        "khuôn",
+        "kiểu",
+        "mẫu"
+      ],
+      "en": [
+        "Mould",
+        "Type",
+        "Model"
+      ]
+    },
+    "況": {
+      "vi": [
+        "tình trạng",
+        "tình hình"
+      ],
+      "en": [
+        "Condition",
+        "Situation"
+      ]
+    },
+    "針": {
+      "vi": [
+        "kim",
+        "ghim",
+        "ngòi châm"
+      ],
+      "en": [
+        "Needle",
+        "Pin",
+        "Staple",
+        "Stinger"
+      ]
+    },
+    "専": {
+      "vi": [
+        "chuyên môn",
+        "độc quyền",
+        "chủ yếu",
+        "duy nhất"
+      ],
+      "en": [
+        "Specialty",
+        "Exclusive",
+        "Mainly",
+        "Solely"
+      ]
+    },
+    "谷": {
+      "vi": [
+        "thung lũng"
+      ],
+      "en": [
+        "Valley"
+      ]
+    },
+    "史": {
+      "vi": [
+        "lịch sử",
+        "sử ký"
+      ],
+      "en": [
+        "History",
+        "Chronicle"
+      ]
+    },
+    "階": {
+      "vi": [
+        "tầng",
+        "cầu thang",
+        "đơn vị đếm tầng nhà"
+      ],
+      "en": [
+        "Storey",
+        "Stair",
+        "Counter For Storeys Of A Building"
+      ]
+    },
+    "管": {
+      "vi": [
+        "ống",
+        "tẩu",
+        "nhạc cụ hơi",
+        "quản lý",
+        "quyền quản hạt"
+      ],
+      "en": [
+        "Pipe",
+        "Tube",
+        "Wind Instrument",
+        "Drunken Talk",
+        "Control",
+        "Jurisdiction"
+      ]
+    },
+    "兵": {
+      "vi": [
+        "binh lính",
+        "binh nhì",
+        "quân đội",
+        "chiến tranh",
+        "binh pháp",
+        "chiến thuật"
+      ],
+      "en": [
+        "Soldier",
+        "Private",
+        "Troops",
+        "Army",
+        "Warfare",
+        "Strategy",
+        "Tactics"
+      ]
+    },
+    "接": {
+      "vi": [
+        "chạm",
+        "tiếp xúc",
+        "liền kề",
+        "ghép lại"
+      ],
+      "en": [
+        "Touch",
+        "Contact",
+        "Adjoin",
+        "Piece Together"
+      ]
+    },
+    "細": {
+      "vi": [
+        "mảnh mai",
+        "gầy đi",
+        "thon",
+        "nhỏ hẹp",
+        "chi tiết",
+        "tỉ mỉ"
+      ],
+      "en": [
+        "Dainty",
+        "Get Thin",
+        "Taper",
+        "Slender",
+        "Narrow",
+        "Detailed",
+        "Precise"
+      ]
+    },
+    "効": {
+      "vi": [
+        "công hiệu",
+        "hiệu quả",
+        "hiệu suất",
+        "lợi ích"
+      ],
+      "en": [
+        "Merit",
+        "Efficacy",
+        "Efficiency",
+        "Benefit"
+      ]
+    },
+    "丸": {
+      "vi": [
+        "tròn",
+        "trọn vẹn",
+        "hoàn hảo",
+        "viên thuốc",
+        "làm tròn"
+      ],
+      "en": [
+        "Round",
+        "Full (month)",
+        "Perfection",
+        "-ship",
+        "Pills",
+        "Make Round",
+        "Roll Up",
+        "Curl Up",
+        "Seduce",
+        "Explain Away"
+      ]
+    },
+    "湾": {
+      "vi": [
+        "vịnh",
+        "vũng"
+      ],
+      "en": [
+        "Gulf",
+        "Bay",
+        "Inlet"
+      ]
+    },
+    "録": {
+      "vi": [
+        "ghi chép",
+        "ghi lại"
+      ],
+      "en": [
+        "Record"
+      ]
+    },
+    "省": {
+      "vi": [
+        "tập trung",
+        "bộ (chính phủ)",
+        "tiết kiệm",
+        "lược bỏ"
+      ],
+      "en": [
+        "Focus",
+        "Government Ministry",
+        "Conserve"
+      ]
+    },
+    "旧": {
+      "vi": [
+        "xưa",
+        "đồ cũ",
+        "bạn cũ",
+        "trước đây",
+        "cựu"
+      ],
+      "en": [
+        "Old Times",
+        "Old Things",
+        "Old Friend",
+        "Former",
+        "Ex-"
+      ]
+    },
+    "橋": {
+      "vi": [
+        "cây cầu"
+      ],
+      "en": [
+        "Bridge"
+      ]
+    },
+    "岸": {
+      "vi": [
+        "bờ",
+        "bãi biển"
+      ],
+      "en": [
+        "Beach"
+      ]
+    },
+    "周": {
+      "vi": [
+        "chu vi",
+        "vòng quanh",
+        "vòng"
+      ],
+      "en": [
+        "Circumference",
+        "Circuit",
+        "Lap"
+      ]
+    },
+    "材": {
+      "vi": [
+        "gỗ xẻ",
+        "khúc gỗ",
+        "gỗ",
+        "vật liệu",
+        "nguyên liệu",
+        "tài năng"
+      ],
+      "en": [
+        "Lumber",
+        "Log",
+        "Timber",
+        "Wood",
+        "Materials",
+        "Ingredients",
+        "Talent"
+      ]
+    },
+    "戸": {
+      "vi": [
+        "cửa",
+        "đơn vị đếm hộ nhà",
+        "bộ Hộ"
+      ],
+      "en": [
+        "Door",
+        "Counter For Houses",
+        "Door Radical (no. 63)"
+      ]
+    },
+    "央": {
+      "vi": [
+        "trung tâm",
+        "giữa"
+      ],
+      "en": [
+        "Center",
+        "Middle"
+      ]
+    },
+    "券": {
+      "vi": [
+        "vé"
+      ],
+      "en": [
+        "Ticket"
+      ]
+    },
+    "編": {
+      "vi": [
+        "biên soạn",
+        "đan",
+        "tết",
+        "bện",
+        "biên tập",
+        "hoàn thành"
+      ],
+      "en": [
+        "Compilation",
+        "Knit",
+        "Plait",
+        "Braid",
+        "Twist",
+        "Editing",
+        "Completed Poem",
+        "Part Of A Book"
+      ]
+    },
+    "捜": {
+      "vi": [
+        "tìm kiếm",
+        "lục soát",
+        "định vị"
+      ],
+      "en": [
+        "Search",
+        "Look For",
+        "Locate"
+      ]
+    },
+    "竹": {
+      "vi": [
+        "tre",
+        "trúc"
+      ],
+      "en": [
+        "Bamboo"
+      ]
+    },
+    "超": {
+      "vi": [
+        "vượt qua",
+        "siêu",
+        "cực kỳ"
+      ],
+      "en": [
+        "Transcend",
+        "Super-",
+        "Ultra-"
+      ]
+    },
+    "並": {
+      "vi": [
+        "hàng",
+        "và",
+        "ngoài ra",
+        "cũng như",
+        "xếp hàng",
+        "ngang hàng",
+        "sánh với"
+      ],
+      "en": [
+        "Row",
+        "And",
+        "Besides",
+        "As Well As",
+        "Line Up",
+        "Rank With",
+        "Rival",
+        "Equal"
+      ]
+    },
+    "療": {
+      "vi": [
+        "chữa trị",
+        "điều trị"
+      ],
+      "en": [
+        "Heal",
+        "Cure"
+      ]
+    },
+    "採": {
+      "vi": [
+        "hái",
+        "lấy",
+        "nhặt",
+        "tuyển dụng"
+      ],
+      "hanViet": "THÁI",
+      "en": [
+        "Pick",
+        "Take",
+        "Fetch",
+        "Take Up"
+      ]
+    },
+    "森": {
+      "vi": [
+        "rừng rậm",
+        "rừng"
+      ],
+      "en": [
+        "Forest",
+        "Woods"
+      ]
+    },
+    "競": {
+      "vi": [
+        "thi đua",
+        "cạnh tranh",
+        "đấu giá",
+        "cuộc thi"
+      ],
+      "en": [
+        "Emulate",
+        "Compete With",
+        "Bid",
+        "Sell At Auction",
+        "Bout",
+        "Contest",
+        "Race"
+      ]
+    },
+    "介": {
+      "vi": [
+        "kẹt giữa",
+        "vỏ sò",
+        "trung gian",
+        "quan tâm"
+      ],
+      "en": [
+        "Jammed In",
+        "Shellfish",
+        "Mediate",
+        "Concern Oneself With"
+      ]
+    },
+    "根": {
+      "vi": [
+        "rễ",
+        "gốc",
+        "căn",
+        "kiên trì"
+      ],
+      "en": [
+        "Root",
+        "Radical",
+        "Head (pimple)"
+      ]
+    },
+    "販": {
+      "vi": [
+        "tiếp thị",
+        "bán",
+        "buôn bán"
+      ],
+      "en": [
+        "Marketing",
+        "Sell",
+        "Trade"
+      ]
+    },
+    "歴": {
+      "vi": [
+        "lý lịch",
+        "kế tục",
+        "thời gian trôi qua"
+      ],
+      "en": [
+        "Curriculum",
+        "Continuation",
+        "Passage Of Time"
+      ]
+    },
+    "将": {
+      "vi": [
+        "tướng",
+        "người chỉ huy",
+        "tướng quân",
+        "đô đốc",
+        "sắp sửa"
+      ],
+      "hanViet": "TƯỚNG, TƯƠNG",
+      "en": [
+        "Leader",
+        "Commander",
+        "General",
+        "Admiral",
+        "Or",
+        "And Again",
+        "Soon",
+        "From Now On",
+        "Just About"
+      ]
+    },
+    "幅": {
+      "vi": [
+        "cuộn tranh treo",
+        "bề rộng",
+        "khổ"
+      ],
+      "hanViet": "PHÚC",
+      "en": [
+        "Hanging Scroll",
+        "Width"
+      ]
+    },
+    "般": {
+      "vi": [
+        "tàu chở",
+        "chuyên chở",
+        "tất cả",
+        "chung",
+        "loại"
+      ],
+      "hanViet": "BAN",
+      "en": [
+        "Carrier",
+        "Carry",
+        "All",
+        "General",
+        "Sort",
+        "Kind"
+      ]
+    },
+    "貿": {
+      "vi": [
+        "mậu dịch",
+        "trao đổi"
+      ],
+      "en": [
+        "Trade",
+        "Exchange"
+      ]
+    },
+    "講": {
+      "vi": [
+        "bài giảng",
+        "câu lạc bộ",
+        "hội"
+      ],
+      "en": [
+        "Lecture",
+        "Club",
+        "Association"
+      ]
+    },
+    "林": {
+      "vi": [
+        "rừng thưa",
+        "rừng"
+      ],
+      "en": [
+        "Grove",
+        "Forest"
+      ]
+    },
+    "装": {
+      "vi": [
+        "trang phục",
+        "ăn mặc",
+        "giả vờ",
+        "cải trang",
+        "trang bị"
+      ],
+      "en": [
+        "Attire",
+        "Dress",
+        "Pretend",
+        "Disguise",
+        "Profess"
+      ]
+    },
+    "諸": {
+      "vi": [
+        "nhiều loại",
+        "nhiều",
+        "một vài",
+        "cùng nhau"
+      ],
+      "en": [
+        "Various",
+        "Many",
+        "Several",
+        "Together"
+      ]
+    },
+    "劇": {
+      "vi": [
+        "kịch",
+        "vở diễn"
+      ],
+      "en": [
+        "Drama",
+        "Play"
+      ]
+    },
+    "河": {
+      "vi": [
+        "sông"
+      ],
+      "en": [
+        "River"
+      ]
+    },
+    "航": {
+      "vi": [
+        "đi thuyền",
+        "điều khiển tàu",
+        "bay"
+      ],
+      "en": [
+        "Navigate",
+        "Sail",
+        "Cruise",
+        "Fly"
+      ]
+    },
+    "鉄": {
+      "vi": [
+        "sắt"
+      ],
+      "en": [
+        "Iron"
+      ]
+    },
+    "児": {
+      "vi": [
+        "trẻ sơ sinh",
+        "trẻ con",
+        "con non"
+      ],
+      "en": [
+        "Newborn Babe",
+        "Child",
+        "Young Of Animals"
+      ]
+    },
+    "禁": {
+      "vi": [
+        "cấm",
+        "cấm đoán",
+        "ngăn cấm"
+      ],
+      "en": [
+        "Prohibition",
+        "Ban",
+        "Forbid"
+      ]
+    },
+    "印": {
+      "vi": [
+        "con dấu",
+        "ấn",
+        "dấu",
+        "dấu vết",
+        "biểu tượng",
+        "huy hiệu",
+        "nhãn hiệu",
+        "Ấn Độ"
+      ],
+      "en": [
+        "Stamp",
+        "Seal",
+        "Mark",
+        "Imprint",
+        "Symbol",
+        "Emblem",
+        "Trademark",
+        "Evidence",
+        "Souvenir",
+        "India"
+      ]
+    },
+    "逆": {
+      "vi": [
+        "ngược",
+        "đảo ngược",
+        "đối nghịch",
+        "gian ác"
+      ],
+      "en": [
+        "Inverted",
+        "Reverse",
+        "Opposite",
+        "Wicked"
+      ]
+    },
+    "換": {
+      "vi": [
+        "trao đổi",
+        "đổi",
+        "chuyển đổi",
+        "thay thế",
+        "đổi mới"
+      ],
+      "en": [
+        "Interchange",
+        "Period",
+        "Change",
+        "Convert",
+        "Replace",
+        "Renew"
+      ]
+    },
+    "久": {
+      "vi": [
+        "lâu",
+        "chuyện cũ"
+      ],
+      "en": [
+        "Long Time",
+        "Old Story"
+      ]
+    },
+    "短": {
+      "vi": [
+        "ngắn",
+        "ngắn gọn",
+        "khuyết điểm",
+        "nhược điểm"
+      ],
+      "en": [
+        "Short",
+        "Brevity",
+        "Fault",
+        "Defect",
+        "Weak Point"
+      ]
+    },
+    "油": {
+      "vi": [
+        "dầu",
+        "mỡ"
+      ],
+      "hanViet": "DU",
+      "en": [
+        "Oil",
+        "Fat"
+      ]
+    },
+    "暴": {
+      "vi": [
+        "bùng nổ",
+        "nổi giận",
+        "bạo lực",
+        "tàn ác",
+        "bạo hành"
+      ],
+      "en": [
+        "Outburst",
+        "Rave",
+        "Fret",
+        "Force",
+        "Violence",
+        "Cruelty",
+        "Outrage"
+      ]
+    },
+    "輪": {
+      "vi": [
+        "bánh xe",
+        "vòng",
+        "vòng tròn",
+        "mắt xích",
+        "đơn vị đếm bánh xe, bông hoa"
+      ],
+      "en": [
+        "Wheel",
+        "Ring",
+        "Circle",
+        "Link",
+        "Loop",
+        "Counter For Wheels And Flowers"
+      ]
+    },
+    "占": {
+      "vi": [
+        "bói toán",
+        "chiếm",
+        "giữ",
+        "chiếm lĩnh"
+      ],
+      "hanViet": "CHIẾM",
+      "en": [
+        "Fortune-telling",
+        "Divining",
+        "Forecasting",
+        "Occupy",
+        "Hold",
+        "Have",
+        "Get",
+        "Take"
+      ]
+    },
+    "植": {
+      "vi": [
+        "cây trồng",
+        "trồng"
+      ],
+      "en": [
+        "Plant"
+      ]
+    },
+    "清": {
+      "vi": [
+        "trong sạch",
+        "thanh lọc",
+        "tẩy rửa",
+        "nhà Thanh"
+      ],
+      "en": [
+        "Pure",
+        "Purify",
+        "Cleanse",
+        "Exorcise",
+        "Manchu Dynasty"
+      ]
+    },
+    "倍": {
+      "vi": [
+        "gấp đôi",
+        "hai lần",
+        "lần",
+        "bội"
+      ],
+      "en": [
+        "Double",
+        "Twice",
+        "Times",
+        "Fold"
+      ]
+    },
+    "均": {
+      "vi": [
+        "bằng phẳng",
+        "trung bình",
+        "đều"
+      ],
+      "en": [
+        "Level",
+        "Average"
+      ]
+    },
+    "億": {
+      "vi": [
+        "trăm triệu"
+      ],
+      "en": [
+        "Hundred Million",
+        "10**8"
+      ]
+    },
+    "圧": {
+      "vi": [
+        "áp lực",
+        "đẩy",
+        "áp đảo",
+        "áp bức",
+        "thống trị"
+      ],
+      "en": [
+        "Pressure",
+        "Push",
+        "Overwhelm",
+        "Oppress",
+        "Dominate"
+      ]
+    },
+    "芸": {
+      "vi": [
+        "kỹ thuật",
+        "nghệ thuật",
+        "tay nghề",
+        "biểu diễn",
+        "diễn xuất",
+        "mẹo"
+      ],
+      "hanViet": "NGHỆ",
+      "en": [
+        "Technique",
+        "Art",
+        "Craft",
+        "Performance",
+        "Acting",
+        "Trick",
+        "Stunt"
+      ]
+    },
+    "署": {
+      "vi": [
+        "chữ ký",
+        "cơ quan nhà nước",
+        "đồn cảnh sát"
+      ],
+      "en": [
+        "Signature",
+        "Govt Office",
+        "Police Station"
+      ]
+    },
+    "伸": {
+      "vi": [
+        "giãn ra",
+        "kéo dài",
+        "mở rộng",
+        "tăng lên"
+      ],
+      "en": [
+        "Expand",
+        "Stretch",
+        "Extend",
+        "Lengthen",
+        "Increase"
+      ]
+    },
+    "停": {
+      "vi": [
+        "dừng lại",
+        "đình chỉ"
+      ],
+      "en": [
+        "Halt",
+        "Stopping"
+      ]
+    },
+    "爆": {
+      "vi": [
+        "bom",
+        "nổ tung",
+        "bật ra",
+        "tách ra"
+      ],
+      "hanViet": "BỘC",
+      "en": [
+        "Bomb",
+        "Burst Open",
+        "Pop",
+        "Split"
+      ]
+    },
+    "陸": {
+      "vi": [
+        "đất liền",
+        "lục địa",
+        "sáu"
+      ],
+      "en": [
+        "Land",
+        "Six"
+      ]
+    },
+    "玉": {
+      "vi": [
+        "ngọc",
+        "quả cầu",
+        "viên tròn"
+      ],
+      "en": [
+        "Jewel",
+        "Ball"
+      ]
+    },
+    "波": {
+      "vi": [
+        "sóng",
+        "sóng lớn",
+        "Ba Lan"
+      ],
+      "en": [
+        "Waves",
+        "Billows",
+        "Poland"
+      ]
+    },
+    "帯": {
+      "vi": [
+        "thắt lưng",
+        "đai",
+        "obi",
+        "vành đai",
+        "vùng"
+      ],
+      "hanViet": "ĐỚI",
+      "en": [
+        "Sash",
+        "Belt",
+        "Obi",
+        "Zone",
+        "Region"
+      ]
+    },
+    "延": {
+      "vi": [
+        "kéo dài",
+        "trì hoãn",
+        "giãn ra"
+      ],
+      "hanViet": "DIÊN",
+      "en": [
+        "Prolong",
+        "Stretching"
+      ]
+    },
+    "羽": {
+      "vi": [
+        "lông vũ",
+        "đơn vị đếm chim, thỏ"
+      ],
+      "en": [
+        "Feathers",
+        "Counter For Birds, Rabbits"
+      ]
+    },
+    "固": {
+      "vi": [
+        "làm cứng",
+        "đông kết",
+        "đóng cục",
+        "chắc chắn"
+      ],
+      "en": [
+        "Harden",
+        "Set",
+        "Clot",
+        "Curdle"
+      ]
+    },
+    "則": {
+      "vi": [
+        "quy tắc",
+        "tuân theo",
+        "dựa trên",
+        "noi theo"
+      ],
+      "en": [
+        "Rule",
+        "Follow",
+        "Based On",
+        "Model After"
+      ]
+    },
+    "乱": {
+      "vi": [
+        "loạn",
+        "chiến tranh",
+        "hỗn loạn",
+        "làm rối"
+      ],
+      "en": [
+        "Riot",
+        "War",
+        "Disorder",
+        "Disturb"
+      ]
+    },
+    "普": {
+      "vi": [
+        "phổ biến",
+        "rộng rãi",
+        "nói chung",
+        "nước Phổ"
+      ],
+      "en": [
+        "Universal",
+        "Wide(ly)",
+        "Generally",
+        "Prussia"
+      ]
+    },
+    "測": {
+      "vi": [
+        "đo lường",
+        "đo đạc",
+        "dự tính",
+        "phỏng đoán"
+      ],
+      "en": [
+        "Fathom",
+        "Plan",
+        "Scheme",
+        "Measure"
+      ]
+    },
+    "豊": {
+      "vi": [
+        "phong phú",
+        "tuyệt vời",
+        "giàu có"
+      ],
+      "hanViet": "PHONG",
+      "en": [
+        "Bountiful",
+        "Excellent",
+        "Rich"
+      ]
+    },
+    "厚": {
+      "vi": [
+        "dày",
+        "nặng",
+        "hậu hĩnh",
+        "tử tế",
+        "thân tình",
+        "trơ trẽn"
+      ],
+      "en": [
+        "Thick",
+        "Heavy",
+        "Rich",
+        "Kind",
+        "Cordial",
+        "Brazen",
+        "Shameless"
+      ]
+    },
+    "齢": {
+      "vi": [
+        "tuổi",
+        "tuổi tác"
+      ],
+      "en": [
+        "Age"
+      ]
+    },
+    "囲": {
+      "vi": [
+        "bao quanh",
+        "vây hãm",
+        "cất giữ",
+        "hàng rào",
+        "vòng vây"
+      ],
+      "en": [
+        "Surround",
+        "Besiege",
+        "Store",
+        "Paling",
+        "Enclosure",
+        "Encircle",
+        "Preserve",
+        "Keep"
+      ]
+    },
+    "卒": {
+      "vi": [
+        "tốt nghiệp",
+        "binh lính",
+        "binh nhì",
+        "chết"
+      ],
+      "hanViet": "TỐT",
+      "en": [
+        "Graduate",
+        "Soldier",
+        "Private",
+        "Die"
+      ]
+    },
+    "略": {
+      "vi": [
+        "viết tắt",
+        "lược bỏ",
+        "đại cương",
+        "rút ngắn",
+        "chiếm lấy"
+      ],
+      "en": [
+        "Abbreviation",
+        "Omission",
+        "Outline",
+        "Shorten",
+        "Capture",
+        "Plunder"
+      ]
+    },
+    "承": {
+      "vi": [
+        "chấp nhận",
+        "nghe",
+        "tiếp thu",
+        "được biết",
+        "đón nhận"
+      ],
+      "en": [
+        "Acquiesce",
+        "Hear",
+        "Listen To",
+        "Be Informed",
+        "Receive"
+      ]
+    },
+    "順": {
+      "vi": [
+        "vâng lời",
+        "thứ tự",
+        "lượt",
+        "thuận",
+        "dễ bảo"
+      ],
+      "en": [
+        "Obey",
+        "Order",
+        "Turn",
+        "Right",
+        "Docility",
+        "Occasion"
+      ]
+    },
+    "岩": {
+      "vi": [
+        "tảng đá",
+        "đá",
+        "vách đá"
+      ],
+      "en": [
+        "Boulder",
+        "Rock",
+        "Cliff"
+      ]
+    },
+    "練": {
+      "vi": [
+        "luyện tập",
+        "đánh bóng",
+        "huấn luyện",
+        "rèn luyện",
+        "tinh luyện"
+      ],
+      "en": [
+        "Practice",
+        "Gloss",
+        "Train",
+        "Drill",
+        "Polish",
+        "Refine"
+      ]
+    },
+    "軽": {
+      "vi": [
+        "nhẹ",
+        "nhẹ nhàng",
+        "không quan trọng"
+      ],
+      "en": [
+        "Lightly",
+        "Trifling",
+        "Unimportant"
+      ]
+    },
+    "了": {
+      "vi": [
+        "hoàn thành",
+        "kết thúc",
+        "hiểu rõ"
+      ],
+      "en": [
+        "Complete",
+        "Finish"
+      ]
+    },
+    "庁": {
+      "vi": [
+        "cơ quan chính phủ"
+      ],
+      "en": [
+        "Government Office"
+      ]
+    },
+    "城": {
+      "vi": [
+        "thành",
+        "lâu đài"
+      ],
+      "en": [
+        "Castle"
+      ]
+    },
+    "患": {
+      "vi": [
+        "mắc bệnh",
+        "bệnh tật",
+        "chịu đựng",
+        "bị ốm"
+      ],
+      "en": [
+        "Afflicted",
+        "Disease",
+        "Suffer From",
+        "Be Ill"
+      ]
+    },
+    "層": {
+      "vi": [
+        "tầng lớp",
+        "giai cấp",
+        "lớp",
+        "tầng"
+      ],
+      "hanViet": "TẦNG",
+      "en": [
+        "Stratum",
+        "Social Class",
+        "Layer",
+        "Story",
+        "Floor"
+      ]
+    },
+    "版": {
+      "vi": [
+        "bản khắc in",
+        "xuất bản",
+        "ấn bản",
+        "bản in"
+      ],
+      "en": [
+        "Printing Block",
+        "Printing Plate",
+        "Edition",
+        "Impression",
+        "Label"
+      ]
+    },
+    "令": {
+      "vi": [
+        "mệnh lệnh",
+        "luật cổ",
+        "ra lệnh",
+        "sắc lệnh"
+      ],
+      "en": [
+        "Orders",
+        "Ancient Laws",
+        "Command",
+        "Decree"
+      ]
+    },
+    "角": {
+      "vi": [
+        "góc",
+        "hình vuông",
+        "sừng",
+        "gạc"
+      ],
+      "en": [
+        "Angle",
+        "Corner",
+        "Square",
+        "Horn",
+        "Antlers"
+      ]
+    },
+    "絡": {
+      "vi": [
+        "quấn quanh",
+        "cuộn",
+        "vướng vào",
+        "liên lạc"
+      ],
+      "en": [
+        "Entwine",
+        "Coil Around",
+        "Get Caught In"
+      ]
+    },
+    "損": {
+      "vi": [
+        "tổn hại",
+        "tổn thất",
+        "bất lợi",
+        "làm tổn thương"
+      ],
+      "en": [
+        "Damage",
+        "Loss",
+        "Disadvantage",
+        "Hurt",
+        "Injure"
+      ]
+    },
+    "募": {
+      "vi": [
+        "tuyển mộ",
+        "chiến dịch",
+        "quyên góp",
+        "chiêu mộ",
+        "tăng lên"
+      ],
+      "en": [
+        "Recruit",
+        "Campaign",
+        "Gather (contributions)",
+        "Enlist",
+        "Grow Violent"
+      ]
+    },
+    "裏": {
+      "vi": [
+        "mặt sau",
+        "bên trong",
+        "đảo ngược",
+        "lòng bàn tay",
+        "đế giày",
+        "phía sau",
+        "lớp lót"
+      ],
+      "en": [
+        "Back",
+        "Amidst",
+        "In",
+        "Reverse",
+        "Inside",
+        "Palm",
+        "Sole",
+        "Rear",
+        "Lining",
+        "Wrong Side"
+      ]
+    },
+    "仏": {
+      "vi": [
+        "Phật",
+        "người chết",
+        "nước Pháp"
+      ],
+      "en": [
+        "Buddha",
+        "The Dead",
+        "France"
+      ]
+    },
+    "績": {
+      "vi": [
+        "thành tích",
+        "chiến công",
+        "ươm tơ"
+      ],
+      "en": [
+        "Exploits",
+        "Achievements",
+        "Unreeling Cocoons"
+      ]
+    },
+    "築": {
+      "vi": [
+        "chế tạo",
+        "xây dựng",
+        "kiến trúc"
+      ],
+      "en": [
+        "Fabricate",
+        "Build",
+        "Construct"
+      ]
+    },
+    "貨": {
+      "vi": [
+        "hàng hóa",
+        "của cải",
+        "tài sản"
+      ],
+      "en": [
+        "Freight",
+        "Goods",
+        "Property"
+      ]
+    },
+    "混": {
+      "vi": [
+        "trộn",
+        "pha trộn",
+        "lẫn lộn"
+      ],
+      "en": [
+        "Mix",
+        "Blend",
+        "Confuse"
+      ]
+    },
+    "昇": {
+      "vi": [
+        "lên cao",
+        "thăng tiến"
+      ],
+      "en": [
+        "Rise Up"
+      ]
+    },
+    "池": {
+      "vi": [
+        "ao",
+        "bể chứa",
+        "hồ",
+        "hồ chứa nước"
+      ],
+      "en": [
+        "Pond",
+        "Cistern",
+        "Pool",
+        "Reservoir"
+      ]
+    },
+    "血": {
+      "vi": [
+        "máu"
+      ],
+      "en": [
+        "Blood"
+      ]
+    },
+    "温": {
+      "vi": [
+        "ấm"
+      ],
+      "en": [
+        "Warm"
+      ]
+    },
+    "季": {
+      "vi": [
+        "mùa"
+      ],
+      "en": [
+        "Seasons"
+      ]
+    },
+    "星": {
+      "vi": [
+        "ngôi sao",
+        "chấm",
+        "điểm",
+        "dấu"
+      ],
+      "en": [
+        "Star",
+        "Spot",
+        "Dot",
+        "Mark"
+      ]
+    },
+    "永": {
+      "vi": [
+        "vĩnh cửu",
+        "lâu dài"
+      ],
+      "en": [
+        "Eternity",
+        "Long",
+        "Lengthy"
+      ]
+    },
+    "著": {
+      "vi": [
+        "nổi tiếng",
+        "xuất bản",
+        "viết",
+        "đáng chú ý",
+        "phi thường",
+        "mặc vào"
+      ],
+      "en": [
+        "Renowned",
+        "Publish",
+        "Write",
+        "Remarkable",
+        "Phenomenal",
+        "Put On",
+        "Don",
+        "Wear",
+        "Arrival",
+        "Finish (race)",
+        "Counter For Suits Of Clothing",
+        "Literary Work"
+      ]
+    },
+    "誌": {
+      "vi": [
+        "tài liệu",
+        "ghi chép",
+        "tạp chí"
+      ],
+      "en": [
+        "Document",
+        "Records"
+      ]
+    },
+    "庫": {
+      "vi": [
+        "nhà kho",
+        "kho chứa"
+      ],
+      "en": [
+        "Warehouse",
+        "Storehouse"
+      ]
+    },
+    "刊": {
+      "vi": [
+        "xuất bản",
+        "khắc",
+        "chạm"
+      ],
+      "hanViet": "SAN",
+      "en": [
+        "Publish",
+        "Carve",
+        "Engrave"
+      ]
+    },
+    "像": {
+      "vi": [
+        "tượng",
+        "bức tranh",
+        "hình ảnh",
+        "hình dáng",
+        "chân dung"
+      ],
+      "en": [
+        "Statue",
+        "Picture",
+        "Image",
+        "Figure",
+        "Portrait"
+      ]
+    },
+    "香": {
+      "vi": [
+        "hương",
+        "mùi",
+        "nước hoa"
+      ],
+      "en": [
+        "Incense",
+        "Smell",
+        "Perfume"
+      ]
+    },
+    "坂": {
+      "vi": [
+        "dốc",
+        "con dốc",
+        "đồi"
+      ],
+      "en": [
+        "Slope",
+        "Incline",
+        "Hill"
+      ]
+    },
+    "底": {
+      "vi": [
+        "đáy",
+        "đế",
+        "độ sâu",
+        "giá thấp nhất",
+        "nền tảng",
+        "loại"
+      ],
+      "en": [
+        "Bottom",
+        "Sole",
+        "Depth",
+        "Bottom Price",
+        "Base",
+        "Kind",
+        "Sort"
+      ]
+    },
+    "布": {
+      "vi": [
+        "vải lanh",
+        "vải",
+        "trải ra",
+        "phân phát"
+      ],
+      "en": [
+        "Linen",
+        "Cloth",
+        "Spread",
+        "Distribute"
+      ]
+    },
+    "寺": {
+      "vi": [
+        "chùa"
+      ],
+      "en": [
+        "Buddhist Temple"
+      ]
+    },
+    "宇": {
+      "vi": [
+        "mái hiên",
+        "mái nhà",
+        "nhà",
+        "bầu trời",
+        "vũ trụ"
+      ],
+      "en": [
+        "Eaves",
+        "Roof",
+        "House",
+        "Heaven"
+      ]
+    },
+    "巨": {
+      "vi": [
+        "khổng lồ",
+        "to",
+        "lớn",
+        "vĩ đại"
+      ],
+      "en": [
+        "Gigantic",
+        "Big",
+        "Large",
+        "Great"
+      ]
+    },
+    "震": {
+      "vi": [
+        "động đất",
+        "rung",
+        "run rẩy",
+        "run"
+      ],
+      "en": [
+        "Quake",
+        "Shake",
+        "Tremble",
+        "Quiver",
+        "Shiver"
+      ]
+    },
+    "希": {
+      "vi": [
+        "hy vọng",
+        "cầu xin",
+        "yêu cầu",
+        "cầu nguyện",
+        "Hy Lạp",
+        "loãng"
+      ],
+      "en": [
+        "Hope",
+        "Beg",
+        "Request",
+        "Pray",
+        "Beseech",
+        "Greece",
+        "Dilute (acid)",
+        "Rare",
+        "Few",
+        "Phenomenal"
+      ]
+    },
+    "触": {
+      "vi": [
+        "tiếp xúc",
+        "chạm",
+        "cảm nhận",
+        "va chạm",
+        "công bố",
+        "xung đột"
+      ],
+      "en": [
+        "Contact",
+        "Touch",
+        "Feel",
+        "Hit",
+        "Proclaim",
+        "Announce",
+        "Conflict"
+      ]
+    },
+    "依": {
+      "vi": [
+        "dựa vào",
+        "phụ thuộc",
+        "do đó",
+        "vì vậy",
+        "do"
+      ],
+      "en": [
+        "Reliant",
+        "Depend On",
+        "Consequently",
+        "Therefore",
+        "Due To"
+      ]
+    },
+    "籍": {
+      "vi": [
+        "ghi danh",
+        "hộ tịch",
+        "tư cách thành viên"
+      ],
+      "en": [
+        "Enroll",
+        "Domiciliary Register",
+        "Membership"
+      ]
+    },
+    "汚": {
+      "vi": [
+        "bẩn",
+        "làm ô nhiễm",
+        "ô nhục",
+        "làm ô uế"
+      ],
+      "en": [
+        "Dirty",
+        "Pollute",
+        "Disgrace",
+        "Rape",
+        "Defile"
+      ]
+    },
+    "枚": {
+      "vi": [
+        "tờ",
+        "đơn vị đếm vật mỏng, phẳng"
+      ],
+      "en": [
+        "Sheet Of...",
+        "Counter For Flat Thin Objects Or Sheets"
+      ]
+    },
+    "複": {
+      "vi": [
+        "bản sao",
+        "gấp đôi",
+        "phức hợp",
+        "nhiều"
+      ],
+      "en": [
+        "Duplicate",
+        "Double",
+        "Compound",
+        "Multiple"
+      ]
+    },
+    "郵": {
+      "vi": [
+        "bưu điện",
+        "thư",
+        "trạm ngựa"
+      ],
+      "en": [
+        "Mail",
+        "Stagecoach Stop"
+      ]
+    },
+    "仲": {
+      "vi": [
+        "người môi giới",
+        "quan hệ"
+      ],
+      "en": [
+        "Go-between",
+        "Relationship"
+      ]
+    },
+    "栄": {
+      "vi": [
+        "hưng thịnh",
+        "phồn vinh",
+        "danh dự",
+        "vinh quang",
+        "huy hoàng"
+      ],
+      "en": [
+        "Flourish",
+        "Prosperity",
+        "Honor",
+        "Glory",
+        "Splendor"
+      ]
+    },
+    "札": {
+      "vi": [
+        "thẻ",
+        "tiền giấy",
+        "biển báo",
+        "đấu thầu"
+      ],
+      "en": [
+        "Tag",
+        "Paper Money",
+        "Counter For Bonds",
+        "Placard",
+        "Bid"
+      ]
+    },
+    "板": {
+      "vi": [
+        "tấm ván",
+        "tấm bảng",
+        "tấm",
+        "sân khấu"
+      ],
+      "en": [
+        "Plank",
+        "Board",
+        "Plate",
+        "Stage"
+      ]
+    },
+    "骨": {
+      "vi": [
+        "bộ xương",
+        "xương",
+        "di cốt",
+        "khung"
+      ],
+      "en": [
+        "Skeleton",
+        "Bone",
+        "Remains",
+        "Frame"
+      ]
+    },
+    "傾": {
+      "vi": [
+        "nghiêng",
+        "dốc",
+        "xu hướng",
+        "suy tàn",
+        "chìm",
+        "đổ nát",
+        "thiên lệch"
+      ],
+      "en": [
+        "Lean",
+        "Incline",
+        "Tilt",
+        "Trend",
+        "Wane",
+        "Sink",
+        "Ruin",
+        "Bias"
+      ]
+    },
+    "届": {
+      "vi": [
+        "giao",
+        "đến",
+        "tới nơi",
+        "báo cáo",
+        "thông báo",
+        "chuyển tiếp"
+      ],
+      "en": [
+        "Deliver",
+        "Reach",
+        "Arrive",
+        "Report",
+        "Notify",
+        "Forward"
+      ]
+    },
+    "巻": {
+      "vi": [
+        "cuộn",
+        "tập",
+        "quyển",
+        "phần",
+        "cuộn lại",
+        "quấn",
+        "buộc",
+        "cuộn tròn"
+      ],
+      "hanViet": "QUYỂN",
+      "en": [
+        "Scroll",
+        "Volume",
+        "Book",
+        "Part",
+        "Roll Up",
+        "Wind Up",
+        "Tie",
+        "Coil",
+        "Counter For Texts (or Book Scrolls)"
+      ]
+    },
+    "燃": {
+      "vi": [
+        "cháy",
+        "bốc cháy",
+        "rực sáng"
+      ],
+      "en": [
+        "Burn",
+        "Blaze",
+        "Glow"
+      ]
+    },
+    "跡": {
+      "vi": [
+        "dấu vết",
+        "dấu",
+        "vết",
+        "ấn tượng"
+      ],
+      "en": [
+        "Tracks",
+        "Mark",
+        "Print",
+        "Impression"
+      ]
+    },
+    "包": {
+      "vi": [
+        "bọc",
+        "gói",
+        "che phủ",
+        "che giấu"
+      ],
+      "en": [
+        "Wrap",
+        "Pack Up",
+        "Cover",
+        "Conceal"
+      ]
+    },
+    "駐": {
+      "vi": [
+        "dừng chân",
+        "cư trú",
+        "thường trú"
+      ],
+      "en": [
+        "Stop-over",
+        "Reside In",
+        "Resident"
+      ]
+    },
+    "弱": {
+      "vi": [
+        "yếu",
+        "yếu ớt"
+      ],
+      "en": [
+        "Weak",
+        "Frail"
+      ]
+    },
+    "紹": {
+      "vi": [
+        "giới thiệu",
+        "kế thừa",
+        "giúp đỡ"
+      ],
+      "en": [
+        "Introduce",
+        "Inherit",
+        "Help"
+      ]
+    },
+    "雇": {
+      "vi": [
+        "thuê",
+        "mướn"
+      ],
+      "en": [
+        "Employ",
+        "Hire"
+      ]
+    },
+    "替": {
+      "vi": [
+        "trao đổi",
+        "dự phòng",
+        "thay thế"
+      ],
+      "en": [
+        "Exchange",
+        "Spare",
+        "Substitute",
+        "Per-"
+      ]
+    },
+    "預": {
+      "vi": [
+        "gửi",
+        "giữ hộ",
+        "để lại",
+        "giao phó"
+      ],
+      "en": [
+        "Deposit",
+        "Custody",
+        "Leave With",
+        "Entrust To"
+      ]
+    },
+    "焼": {
+      "vi": [
+        "nướng",
+        "đốt cháy"
+      ],
+      "en": [
+        "Bake",
+        "Burning"
+      ]
+    },
+    "簡": {
+      "vi": [
+        "đơn giản",
+        "ngắn gọn"
+      ],
+      "en": [
+        "Simplicity",
+        "Brevity"
+      ]
+    },
+    "章": {
+      "vi": [
+        "huy hiệu",
+        "chương",
+        "bài văn",
+        "bài thơ",
+        "hoa văn"
+      ],
+      "en": [
+        "Badge",
+        "Chapter",
+        "Composition",
+        "Poem",
+        "Design"
+      ]
+    },
+    "臓": {
+      "vi": [
+        "nội tạng",
+        "lục phủ ngũ tạng",
+        "ruột"
+      ],
+      "en": [
+        "Entrails",
+        "Viscera",
+        "Bowels"
+      ]
+    },
+    "律": {
+      "vi": [
+        "nhịp điệu",
+        "luật",
+        "quy định",
+        "tiêu chuẩn",
+        "kiểm soát"
+      ],
+      "en": [
+        "Rhythm",
+        "Law",
+        "Regulation",
+        "Gauge",
+        "Control"
+      ]
+    },
+    "贈": {
+      "vi": [
+        "quà tặng",
+        "gửi",
+        "tặng",
+        "trao tặng",
+        "ban tặng"
+      ],
+      "en": [
+        "Presents",
+        "Send",
+        "Give To",
+        "Award To",
+        "Confer On",
+        "Presenting Something"
+      ]
+    },
+    "照": {
+      "vi": [
+        "chiếu sáng",
+        "tỏa sáng",
+        "so sánh",
+        "e thẹn"
+      ],
+      "en": [
+        "Illuminate",
+        "Shine",
+        "Compare",
+        "Bashful"
+      ]
+    },
+    "薄": {
+      "vi": [
+        "loãng",
+        "mỏng",
+        "nhạt (trà)",
+        "cỏ lau"
+      ],
+      "en": [
+        "Dilute",
+        "Thin",
+        "Weak (tea)",
+        "Pampas Grass"
+      ]
+    },
+    "群": {
+      "vi": [
+        "bầy",
+        "nhóm",
+        "đám đông",
+        "đàn",
+        "bầy đàn",
+        "cụm"
+      ],
+      "en": [
+        "Flock",
+        "Group",
+        "Crowd",
+        "Herd",
+        "Swarm",
+        "Cluster"
+      ]
+    },
+    "秒": {
+      "vi": [
+        "giây (1/60 phút)"
+      ],
+      "en": [
+        "Second (1/60 Minute)"
+      ]
+    },
+    "奥": {
+      "vi": [
+        "lòng",
+        "bên trong",
+        "sâu bên trong"
+      ],
+      "hanViet": "ÁO",
+      "en": [
+        "Heart",
+        "Interior"
+      ]
+    },
+    "詰": {
+      "vi": [
+        "chật kín",
+        "sát",
+        "ép",
+        "khiển trách",
+        "quở trách",
+        "đổ lỗi"
+      ],
+      "en": [
+        "Packed",
+        "Close",
+        "Pressed",
+        "Reprove",
+        "Rebuke",
+        "Blame"
+      ]
+    },
+    "双": {
+      "vi": [
+        "đôi",
+        "bộ",
+        "so sánh",
+        "đơn vị đếm đôi"
+      ],
+      "en": [
+        "Pair",
+        "Set",
+        "Comparison",
+        "Counter For Pairs"
+      ]
+    },
+    "刺": {
+      "vi": [
+        "cái gai",
+        "đâm",
+        "chọc",
+        "châm",
+        "chích",
+        "danh thiếp"
+      ],
+      "hanViet": "THÍCH",
+      "en": [
+        "Thorn",
+        "Pierce",
+        "Stab",
+        "Prick",
+        "Sting",
+        "Calling Card"
+      ]
+    },
+    "純": {
+      "vi": [
+        "thuần túy",
+        "tinh khiết",
+        "ngây thơ",
+        "ròng (lợi nhuận)"
+      ],
+      "en": [
+        "Genuine",
+        "Purity",
+        "Innocence",
+        "Net (profit)"
+      ]
+    },
+    "翌": {
+      "vi": [
+        "tiếp theo",
+        "sau"
+      ],
+      "en": [
+        "The Following",
+        "Next"
+      ]
+    },
+    "快": {
+      "vi": [
+        "vui vẻ",
+        "dễ chịu",
+        "hợp ý",
+        "thoải mái"
+      ],
+      "en": [
+        "Cheerful",
+        "Pleasant",
+        "Agreeable",
+        "Comfortable"
+      ]
+    },
+    "片": {
+      "vi": [
+        "một phía",
+        "lá",
+        "tấm",
+        "mảnh",
+        "bộ Phiến"
+      ],
+      "en": [
+        "One-sided",
+        "Leaf",
+        "Sheet",
+        "Right-side Kata Radical (no. 91)"
+      ]
+    },
+    "敬": {
+      "vi": [
+        "kính sợ",
+        "tôn trọng",
+        "kính trọng",
+        "tôn kính"
+      ],
+      "en": [
+        "Awe",
+        "Respect",
+        "Honor",
+        "Revere"
+      ]
+    },
+    "悩": {
+      "vi": [
+        "phiền muộn",
+        "lo lắng",
+        "đau đớn",
+        "đau khổ",
+        "bệnh tật"
+      ],
+      "en": [
+        "Trouble",
+        "Worry",
+        "In Pain",
+        "Distress",
+        "Illness"
+      ]
+    },
+    "泉": {
+      "vi": [
+        "suối",
+        "đài phun nước"
+      ],
+      "en": [
+        "Spring",
+        "Fountain"
+      ]
+    },
+    "皮": {
+      "vi": [
+        "da thú",
+        "da",
+        "vỏ",
+        "da thuộc",
+        "bộ Bì"
+      ],
+      "en": [
+        "Pelt",
+        "Skin",
+        "Hide",
+        "Leather",
+        "Skin Radical (no. 107)"
+      ]
+    },
+    "漁": {
+      "vi": [
+        "đánh cá",
+        "ngư nghiệp"
+      ],
+      "en": [
+        "Fishing",
+        "Fishery"
+      ]
+    },
+    "荒": {
+      "vi": [
+        "hoang tàn",
+        "thô",
+        "thô lỗ",
+        "hoang dã"
+      ],
+      "en": [
+        "Laid Waste",
+        "Rough",
+        "Rude",
+        "Wild"
+      ]
+    },
+    "貯": {
+      "vi": [
+        "tiết kiệm",
+        "tích trữ",
+        "dự trữ",
+        "giữ",
+        "để ria"
+      ],
+      "en": [
+        "Savings",
+        "Store",
+        "Lay In",
+        "Keep",
+        "Wear Mustache"
+      ]
+    },
+    "硬": {
+      "vi": [
+        "cứng",
+        "rắn"
+      ],
+      "en": [
+        "Stiff",
+        "Hard"
+      ]
+    },
+    "埋": {
+      "vi": [
+        "chôn",
+        "bị lấp đầy",
+        "vùi vào"
+      ],
+      "en": [
+        "Bury",
+        "Be Filled Up",
+        "Embedded"
+      ]
+    },
+    "柱": {
+      "vi": [
+        "cột",
+        "trụ",
+        "hình trụ",
+        "chỗ dựa"
+      ],
+      "en": [
+        "Pillar",
+        "Post",
+        "Cylinder",
+        "Support"
+      ]
+    },
+    "祭": {
+      "vi": [
+        "lễ hội",
+        "cúng tế",
+        "ăn mừng",
+        "thờ phụng",
+        "thờ cúng"
+      ],
+      "en": [
+        "Ritual",
+        "Offer Prayers",
+        "Celebrate",
+        "Deify",
+        "Enshrine",
+        "Worship"
+      ]
+    },
+    "袋": {
+      "vi": [
+        "bao",
+        "túi",
+        "túi nhỏ"
+      ],
+      "en": [
+        "Sack",
+        "Bag",
+        "Pouch"
+      ]
+    },
+    "筆": {
+      "vi": [
+        "bút lông",
+        "viết",
+        "cọ vẽ",
+        "nét chữ"
+      ],
+      "en": [
+        "Writing Brush",
+        "Writing",
+        "Painting Brush",
+        "Handwriting"
+      ]
+    },
+    "訓": {
+      "vi": [
+        "dạy bảo",
+        "âm kun (cách đọc Nhật)",
+        "giải thích"
+      ],
+      "en": [
+        "Instruction",
+        "Japanese Character Reading",
+        "Explanation",
+        "Read"
+      ]
+    },
+    "浴": {
+      "vi": [
+        "tắm",
+        "được ưu ái",
+        "tắm nắng"
+      ],
+      "en": [
+        "Bathe",
+        "Be Favored With",
+        "Bask In"
+      ]
+    },
+    "童": {
+      "vi": [
+        "thiếu niên",
+        "trẻ em"
+      ],
+      "en": [
+        "Juvenile",
+        "Child"
+      ]
+    },
+    "宝": {
+      "vi": [
+        "báu vật",
+        "của cải",
+        "đồ quý"
+      ],
+      "en": [
+        "Treasure",
+        "Wealth",
+        "Valuables"
+      ]
+    },
+    "封": {
+      "vi": [
+        "niêm phong",
+        "đóng kín"
+      ],
+      "en": [
+        "Seal",
+        "Closing"
+      ]
+    },
+    "胸": {
+      "vi": [
+        "ngực",
+        "lồng ngực",
+        "tim",
+        "cảm xúc"
+      ],
+      "en": [
+        "Bosom",
+        "Breast",
+        "Chest",
+        "Heart",
+        "Feelings"
+      ]
+    },
+    "砂": {
+      "vi": [
+        "cát"
+      ],
+      "en": [
+        "Sand"
+      ]
+    },
+    "塩": {
+      "vi": [
+        "muối"
+      ],
+      "en": [
+        "Salt"
+      ]
+    },
+    "賢": {
+      "vi": [
+        "thông minh",
+        "khôn ngoan",
+        "trí tuệ",
+        "lanh lợi"
+      ],
+      "en": [
+        "Intelligent",
+        "Wise",
+        "Wisdom",
+        "Cleverness"
+      ]
+    },
+    "腕": {
+      "vi": [
+        "cánh tay",
+        "năng lực",
+        "tài năng"
+      ],
+      "en": [
+        "Arm",
+        "Ability",
+        "Talent"
+      ]
+    },
+    "兆": {
+      "vi": [
+        "điềm báo",
+        "nghìn tỷ (10^12)",
+        "dấu hiệu",
+        "điềm",
+        "triệu chứng"
+      ],
+      "en": [
+        "Portent",
+        "10**12",
+        "Trillion",
+        "Sign",
+        "Omen",
+        "Symptoms"
+      ]
+    },
+    "床": {
+      "vi": [
+        "giường",
+        "đơn vị đếm giường",
+        "sàn",
+        "đệm",
+        "chiếu tatami"
+      ],
+      "en": [
+        "Bed",
+        "Counter For Beds",
+        "Floor",
+        "Padding",
+        "Tatami"
+      ]
+    },
+    "毛": {
+      "vi": [
+        "lông",
+        "tóc",
+        "lông vũ",
+        "lông tơ"
+      ],
+      "en": [
+        "Fur",
+        "Hair",
+        "Feather",
+        "Down"
+      ]
+    },
+    "緑": {
+      "vi": [
+        "xanh lá"
+      ],
+      "en": [
+        "Green"
+      ]
+    },
+    "尊": {
+      "vi": [
+        "tôn kính",
+        "quý giá",
+        "quý báu",
+        "cao quý",
+        "cao cả"
+      ],
+      "en": [
+        "Revered",
+        "Valuable",
+        "Precious",
+        "Noble",
+        "Exalted"
+      ]
+    },
+    "祝": {
+      "vi": [
+        "chúc mừng",
+        "ăn mừng"
+      ],
+      "en": [
+        "Celebrate",
+        "Congratulate"
+      ]
+    },
+    "柔": {
+      "vi": [
+        "mềm mại",
+        "yếu đuối",
+        "dịu dàng",
+        "mềm"
+      ],
+      "en": [
+        "Tender",
+        "Weakness",
+        "Gentleness",
+        "Softness"
+      ]
+    },
+    "殿": {
+      "vi": [
+        "ngài",
+        "điện",
+        "dinh thự",
+        "cung điện",
+        "đền",
+        "chúa"
+      ],
+      "en": [
+        "Mr.",
+        "Hall",
+        "Mansion",
+        "Palace",
+        "Temple",
+        "Lord"
+      ]
+    },
+    "濃": {
+      "vi": [
+        "đặc",
+        "đậm",
+        "sẫm",
+        "không pha loãng"
+      ],
+      "hanViet": "NỒNG",
+      "en": [
+        "Concentrated",
+        "Thick",
+        "Dark",
+        "Undiluted"
+      ]
+    },
+    "液": {
+      "vi": [
+        "chất lỏng",
+        "dung dịch",
+        "nước ép",
+        "nhựa cây",
+        "dịch tiết"
+      ],
+      "en": [
+        "Fluid",
+        "Liquid",
+        "Juice",
+        "Sap",
+        "Secretion"
+      ]
+    },
+    "衣": {
+      "vi": [
+        "y phục",
+        "quần áo",
+        "trang phục"
+      ],
+      "en": [
+        "Garment",
+        "Clothes",
+        "Dressing"
+      ]
+    },
+    "肩": {
+      "vi": [
+        "vai",
+        "bờ vai"
+      ],
+      "en": [
+        "Shoulder"
+      ]
+    },
+    "零": {
+      "vi": [
+        "số không",
+        "tràn ra",
+        "đổ ra",
+        "không có gì"
+      ],
+      "en": [
+        "Zero",
+        "Spill",
+        "Overflow",
+        "Nothing",
+        "Cipher"
+      ]
+    },
+    "幼": {
+      "vi": [
+        "thơ ấu",
+        "tuổi thơ"
+      ],
+      "en": [
+        "Infancy",
+        "Childhood"
+      ]
+    },
+    "荷": {
+      "vi": [
+        "hành lý",
+        "gánh",
+        "gánh vác",
+        "vác lên vai"
+      ],
+      "en": [
+        "Baggage",
+        "Shoulder-pole Load",
+        "Bear (a Burden)",
+        "Shoulder (a Gun)",
+        "Load",
+        "Cargo",
+        "Freight"
+      ]
+    },
+    "泊": {
+      "vi": [
+        "nghỉ đêm",
+        "trọ lại",
+        "thả neo"
+      ],
+      "en": [
+        "Overnight Stay",
+        "Put Up At",
+        "Ride At Anchor"
+      ]
+    },
+    "黄": {
+      "vi": [
+        "màu vàng"
+      ],
+      "en": [
+        "Yellow"
+      ]
+    },
+    "甘": {
+      "vi": [
+        "ngọt",
+        "dỗ ngọt",
+        "nuông chiều",
+        "bằng lòng",
+        "có đường"
+      ],
+      "en": [
+        "Sweet",
+        "Coax",
+        "Pamper",
+        "Be Content",
+        "Sugary"
+      ]
+    },
+    "臣": {
+      "vi": [
+        "bề tôi",
+        "thần dân"
+      ],
+      "en": [
+        "Retainer",
+        "Subject"
+      ]
+    },
+    "浅": {
+      "vi": [
+        "nông",
+        "hời hợt",
+        "phù phiếm",
+        "kém cỏi"
+      ],
+      "en": [
+        "Shallow",
+        "Superficial",
+        "Frivolous",
+        "Wretched",
+        "Shameful"
+      ]
+    },
+    "掃": {
+      "vi": [
+        "quét",
+        "phủi"
+      ],
+      "en": [
+        "Sweep",
+        "Brush"
+      ]
+    },
+    "雲": {
+      "vi": [
+        "mây"
+      ],
+      "en": [
+        "Cloud"
+      ]
+    },
+    "掘": {
+      "vi": [
+        "đào",
+        "đào bới",
+        "khai quật"
+      ],
+      "en": [
+        "Dig",
+        "Delve",
+        "Excavate"
+      ]
+    },
+    "捨": {
+      "vi": [
+        "vứt bỏ",
+        "ném đi",
+        "bỏ rơi",
+        "từ bỏ",
+        "hy sinh"
+      ],
+      "en": [
+        "Discard",
+        "Throw Away",
+        "Abandon",
+        "Resign",
+        "Reject",
+        "Sacrifice"
+      ]
+    },
+    "軟": {
+      "vi": [
+        "mềm"
+      ],
+      "en": [
+        "Soft"
+      ]
+    },
+    "沈": {
+      "vi": [
+        "chìm",
+        "bị nhấn chìm",
+        "lắng xuống",
+        "buồn bã",
+        "trầm hương"
+      ],
+      "hanViet": "TRẦM",
+      "en": [
+        "Sink",
+        "Be Submerged",
+        "Subside",
+        "Be Depressed",
+        "Aloes"
+      ]
+    },
+    "凍": {
+      "vi": [
+        "đông cứng",
+        "đóng băng",
+        "làm lạnh"
+      ],
+      "hanViet": "ĐÔNG",
+      "en": [
+        "Frozen",
+        "Congeal",
+        "Refrigerate"
+      ]
+    },
+    "乳": {
+      "vi": [
+        "sữa",
+        "vú"
+      ],
+      "en": [
+        "Milk",
+        "Breasts"
+      ]
+    },
+    "恋": {
+      "vi": [
+        "tình yêu",
+        "đang yêu",
+        "nhớ nhung",
+        "nhớ",
+        "người yêu"
+      ],
+      "en": [
+        "Romance",
+        "In Love",
+        "Yearn For",
+        "Miss",
+        "Darling"
+      ]
+    },
+    "紅": {
+      "vi": [
+        "đỏ thẫm",
+        "đỏ đậm"
+      ],
+      "en": [
+        "Crimson",
+        "Deep Red"
+      ]
+    },
+    "郊": {
+      "vi": [
+        "ngoại ô",
+        "vùng ven",
+        "nông thôn"
+      ],
+      "en": [
+        "Outskirts",
+        "Suburbs",
+        "Rural Area"
+      ]
+    },
+    "腰": {
+      "vi": [
+        "thắt lưng",
+        "hông",
+        "eo"
+      ],
+      "en": [
+        "Loins",
+        "Hips",
+        "Waist",
+        "Low Wainscoting"
+      ]
+    },
+    "炭": {
+      "vi": [
+        "than củi",
+        "than"
+      ],
+      "en": [
+        "Charcoal",
+        "Coal"
+      ]
+    },
+    "踊": {
+      "vi": [
+        "nhảy",
+        "múa",
+        "nhảy vọt"
+      ],
+      "en": [
+        "Jump",
+        "Dance",
+        "Leap",
+        "Skip"
+      ]
+    },
+    "冊": {
+      "vi": [
+        "tập sách",
+        "đơn vị đếm sách",
+        "quyển"
+      ],
+      "en": [
+        "Tome",
+        "Counter For Books",
+        "Volume"
+      ]
+    },
+    "勇": {
+      "vi": [
+        "dũng cảm",
+        "cổ vũ",
+        "phấn chấn",
+        "can đảm",
+        "anh hùng"
+      ],
+      "en": [
+        "Courage",
+        "Cheer Up",
+        "Be In High Spirits",
+        "Bravery",
+        "Heroism"
+      ]
+    },
+    "械": {
+      "vi": [
+        "cơ khí",
+        "xiềng xích",
+        "máy móc",
+        "dụng cụ"
+      ],
+      "en": [
+        "Contraption",
+        "Fetter",
+        "Machine",
+        "Instrument"
+      ]
+    },
+    "菜": {
+      "vi": [
+        "rau",
+        "món phụ",
+        "rau xanh"
+      ],
+      "en": [
+        "Vegetable",
+        "Side Dish",
+        "Greens"
+      ]
+    },
+    "珍": {
+      "vi": [
+        "hiếm",
+        "kỳ lạ",
+        "lạ lùng"
+      ],
+      "en": [
+        "Rare",
+        "Curious",
+        "Strange"
+      ]
+    },
+    "卵": {
+      "vi": [
+        "trứng",
+        "noãn",
+        "trứng cá"
+      ],
+      "en": [
+        "Egg",
+        "Ovum",
+        "Spawn",
+        "Roe"
+      ]
+    },
+    "湖": {
+      "vi": [
+        "hồ"
+      ],
+      "en": [
+        "Lake"
+      ]
+    },
+    "喫": {
+      "vi": [
+        "dùng",
+        "ăn",
+        "uống",
+        "hút (thuốc)",
+        "hứng chịu (đòn)"
+      ],
+      "en": [
+        "Consume",
+        "Eat",
+        "Drink",
+        "Smoke",
+        "Receive (a Blow)"
+      ]
+    },
+    "干": {
+      "vi": [
+        "khô",
+        "làm khô",
+        "rút (thủy triều)",
+        "can thiệp",
+        "xen vào"
+      ],
+      "en": [
+        "Dry",
+        "Parch",
+        "Ebb",
+        "Recede",
+        "Interfere",
+        "Intercede"
+      ]
+    },
+    "虫": {
+      "vi": [
+        "côn trùng",
+        "sâu bọ",
+        "tính khí"
+      ],
+      "en": [
+        "Insect",
+        "Bug",
+        "Temper"
+      ]
+    },
+    "刷": {
+      "vi": [
+        "in ấn",
+        "in",
+        "chải"
+      ],
+      "hanViet": "LOÁT",
+      "en": [
+        "Printing",
+        "Print",
+        "Brush"
+      ]
+    },
+    "湯": {
+      "vi": [
+        "nước nóng",
+        "bồn tắm",
+        "suối nước nóng"
+      ],
+      "hanViet": "THANG",
+      "en": [
+        "Hot Water",
+        "Bath",
+        "Hot Spring"
+      ]
+    },
+    "溶": {
+      "vi": [
+        "tan chảy",
+        "hòa tan",
+        "tan băng"
+      ],
+      "hanViet": "DUNG",
+      "en": [
+        "Melt",
+        "Dissolve",
+        "Thaw"
+      ]
+    },
+    "鉱": {
+      "vi": [
+        "khoáng chất",
+        "quặng"
+      ],
+      "en": [
+        "Mineral",
+        "Ore"
+      ]
+    },
+    "涙": {
+      "vi": [
+        "nước mắt",
+        "cảm thông"
+      ],
+      "en": [
+        "Tears",
+        "Sympathy"
+      ]
+    },
+    "匹": {
+      "vi": [
+        "ngang bằng",
+        "con",
+        "đơn vị đếm động vật nhỏ",
+        "cuộn vải"
+      ],
+      "en": [
+        "Equal",
+        "Head",
+        "Counter For Small Animals",
+        "Roll Of Cloth"
+      ]
+    },
+    "孫": {
+      "vi": [
+        "cháu",
+        "con cháu"
+      ],
+      "en": [
+        "Grandchild",
+        "Descendants"
+      ]
+    },
+    "鋭": {
+      "vi": [
+        "nhọn",
+        "sắc bén",
+        "lưỡi sắc",
+        "vũ khí",
+        "sắc",
+        "mãnh liệt"
+      ],
+      "hanViet": "NHUỆ",
+      "en": [
+        "Pointed",
+        "Sharpness",
+        "Edge",
+        "Weapon",
+        "Sharp",
+        "Violent"
+      ]
+    },
+    "枝": {
+      "vi": [
+        "cành cây",
+        "nhánh",
+        "cành con",
+        "chi",
+        "đơn vị đếm cành"
+      ],
+      "en": [
+        "Bough",
+        "Branch",
+        "Twig",
+        "Limb",
+        "Counter For Branches"
+      ]
+    },
+    "塗": {
+      "vi": [
+        "sơn",
+        "trát",
+        "bôi",
+        "phết",
+        "lớp phủ"
+      ],
+      "en": [
+        "Paint",
+        "Plaster",
+        "Daub",
+        "Smear",
+        "Coating"
+      ]
+    },
+    "軒": {
+      "vi": [
+        "căn hộ",
+        "đơn vị đếm nhà",
+        "mái hiên"
+      ],
+      "en": [
+        "Flats",
+        "Counter For Houses",
+        "Eaves"
+      ]
+    },
+    "毒": {
+      "vi": [
+        "chất độc",
+        "virus",
+        "nọc độc",
+        "vi trùng",
+        "tác hại",
+        "tổn thương",
+        "ác ý"
+      ],
+      "en": [
+        "Poison",
+        "Virus",
+        "Venom",
+        "Germ",
+        "Harm",
+        "Injury",
+        "Spite"
+      ]
+    },
+    "叫": {
+      "vi": [
+        "hét",
+        "kêu lên",
+        "la hét"
+      ],
+      "en": [
+        "Shout",
+        "Exclaim",
+        "Yell"
+      ]
+    },
+    "拝": {
+      "vi": [
+        "lạy",
+        "tôn thờ",
+        "cầu nguyện"
+      ],
+      "hanViet": "BÁI",
+      "en": [
+        "Worship",
+        "Adore",
+        "Pray To"
+      ]
+    },
+    "氷": {
+      "vi": [
+        "băng",
+        "nước đá",
+        "mưa đá",
+        "đóng băng",
+        "đông lại"
+      ],
+      "en": [
+        "Icicle",
+        "Ice",
+        "Hail",
+        "Freeze",
+        "Congeal"
+      ]
+    },
+    "乾": {
+      "vi": [
+        "hạn hán",
+        "khô",
+        "làm khô",
+        "uống cạn",
+        "trời",
+        "hoàng đế"
+      ],
+      "hanViet": "CAN",
+      "en": [
+        "Drought",
+        "Dry",
+        "Dessicate",
+        "Drink Up",
+        "Heaven",
+        "Emperor"
+      ]
+    },
+    "棒": {
+      "vi": [
+        "gậy",
+        "que",
+        "gậy chống",
+        "cây sào",
+        "dùi cui",
+        "đường kẻ"
+      ],
+      "en": [
+        "Rod",
+        "Stick",
+        "Cane",
+        "Pole",
+        "Club",
+        "Line"
+      ]
+    },
+    "祈": {
+      "vi": [
+        "cầu nguyện",
+        "mong ước"
+      ],
+      "hanViet": "KỲ",
+      "en": [
+        "Pray",
+        "Wish"
+      ]
+    },
+    "拾": {
+      "vi": [
+        "nhặt",
+        "thu gom",
+        "tìm thấy",
+        "đi bộ",
+        "mười"
+      ],
+      "en": [
+        "Pick Up",
+        "Gather",
+        "Find",
+        "Go On Foot",
+        "Ten"
+      ]
+    },
+    "粉": {
+      "vi": [
+        "bột",
+        "bột mịn",
+        "bụi"
+      ],
+      "en": [
+        "Flour",
+        "Powder",
+        "Dust"
+      ]
+    },
+    "糸": {
+      "vi": [
+        "sợi chỉ"
+      ],
+      "hanViet": "TI",
+      "en": [
+        "Thread"
+      ]
+    },
+    "綿": {
+      "vi": [
+        "bông",
+        "vải bông"
+      ],
+      "en": [
+        "Cotton"
+      ]
+    },
+    "汗": {
+      "vi": [
+        "mồ hôi",
+        "đổ mồ hôi"
+      ],
+      "en": [
+        "Sweat",
+        "Perspire"
+      ]
+    },
+    "銅": {
+      "vi": [
+        "đồng (kim loại)"
+      ],
+      "en": [
+        "Copper"
+      ]
+    },
+    "湿": {
+      "vi": [
+        "ẩm",
+        "ướt",
+        "ẩm ướt"
+      ],
+      "hanViet": "THẤP",
+      "en": [
+        "Damp",
+        "Wet",
+        "Moist"
+      ]
+    },
+    "瓶": {
+      "vi": [
+        "chai",
+        "lọ",
+        "vại",
+        "bình",
+        "thùng",
+        "chum"
+      ],
+      "en": [
+        "Bottle",
+        "Vial",
+        "Jar",
+        "Jug",
+        "Vat",
+        "Urn"
+      ]
+    },
+    "咲": {
+      "vi": [
+        "nở (hoa)",
+        "khai hoa"
+      ],
+      "en": [
+        "Blossom",
+        "Bloom"
+      ]
+    },
+    "召": {
+      "vi": [
+        "dụ dỗ",
+        "gọi",
+        "cho gọi",
+        "mặc (kính ngữ)",
+        "đi (xe)",
+        "mua",
+        "ăn (kính ngữ)"
+      ],
+      "en": [
+        "Seduce",
+        "Call",
+        "Send For",
+        "Wear",
+        "Put On",
+        "Ride In",
+        "Buy",
+        "Eat",
+        "Drink",
+        "Catch (cold)"
+      ]
+    },
+    "缶": {
+      "vi": [
+        "lon thiếc",
+        "đồ chứa",
+        "bình",
+        "bộ Phẫu"
+      ],
+      "hanViet": "QUÁN",
+      "en": [
+        "Tin Can",
+        "Container",
+        "Jar Radical (no. 121)"
+      ]
+    },
+    "隻": {
+      "vi": [
+        "con tàu",
+        "đơn vị đếm tàu, cá, chim, mũi tên",
+        "một chiếc"
+      ],
+      "en": [
+        "Vessels",
+        "Counter For Ships",
+        "Fish",
+        "Birds",
+        "Arrows",
+        "One Of A Pair"
+      ]
+    },
+    "脂": {
+      "vi": [
+        "mỡ",
+        "dầu mỡ",
+        "mỡ động vật",
+        "mỡ lợn",
+        "nhựa thông",
+        "nhựa",
+        "hắc ín"
+      ],
+      "en": [
+        "Fat",
+        "Grease",
+        "Tallow",
+        "Lard",
+        "Rosin",
+        "Gum",
+        "Tar"
+      ]
+    },
+    "蒸": {
+      "vi": [
+        "hấp",
+        "hơi nóng",
+        "oi bức",
+        "chườm nóng",
+        "bị mốc"
+      ],
+      "en": [
+        "Steam",
+        "Heat",
+        "Sultry",
+        "Foment",
+        "Get Musty"
+      ]
+    },
+    "肌": {
+      "vi": [
+        "kết cấu",
+        "da",
+        "thân thể",
+        "thớ"
+      ],
+      "en": [
+        "Texture",
+        "Skin",
+        "Body",
+        "Grain"
+      ]
+    },
+    "耕": {
+      "vi": [
+        "cày",
+        "cày bừa",
+        "canh tác"
+      ],
+      "en": [
+        "Till",
+        "Plow",
+        "Cultivate"
+      ]
+    },
+    "鈍": {
+      "vi": [
+        "cùn",
+        "chậm chạp",
+        "ngốc nghếch",
+        "nhụt"
+      ],
+      "en": [
+        "Dull",
+        "Slow",
+        "Foolish",
+        "Blunt"
+      ]
+    },
+    "泥": {
+      "vi": [
+        "bùn",
+        "bùn lầy",
+        "bám vào",
+        "dính chặt"
+      ],
+      "hanViet": "NÊ",
+      "en": [
+        "Mud",
+        "Mire",
+        "Adhere To",
+        "Be Attached To"
+      ]
+    },
+    "隅": {
+      "vi": [
+        "góc",
+        "xó"
+      ],
+      "en": [
+        "Corner",
+        "Nook"
+      ]
+    },
+    "灯": {
+      "vi": [
+        "đèn",
+        "ánh sáng",
+        "đơn vị đếm đèn"
+      ],
+      "en": [
+        "Lamp",
+        "A Light",
+        "Light",
+        "Counter For Lights"
+      ]
+    },
+    "辛": {
+      "vi": [
+        "cay",
+        "đắng",
+        "cay nồng",
+        "hăng"
+      ],
+      "en": [
+        "Spicy",
+        "Bitter",
+        "Hot",
+        "Acrid"
+      ]
+    },
+    "磨": {
+      "vi": [
+        "mài",
+        "đánh bóng",
+        "chà xát",
+        "cải thiện",
+        "đánh (răng)"
+      ],
+      "en": [
+        "Grind",
+        "Polish",
+        "Scour",
+        "Improve",
+        "Brush (teeth)"
+      ]
+    },
+    "麦": {
+      "vi": [
+        "lúa mạch",
+        "lúa mì"
+      ],
+      "en": [
+        "Barley",
+        "Wheat"
+      ]
+    },
+    "姓": {
+      "vi": [
+        "họ (tên họ)"
+      ],
+      "en": [
+        "Surname"
+      ]
+    },
+    "筒": {
+      "vi": [
+        "ống",
+        "đường ống",
+        "ống tròn",
+        "nòng súng",
+        "tay áo"
+      ],
+      "en": [
+        "Cylinder",
+        "Pipe",
+        "Tube",
+        "Gun Barrel",
+        "Sleeve"
+      ]
+    },
+    "鼻": {
+      "vi": [
+        "mũi",
+        "mõm"
+      ],
+      "hanViet": "TỴ",
+      "en": [
+        "Nose",
+        "Snout"
+      ]
+    },
+    "粒": {
+      "vi": [
+        "hạt",
+        "giọt",
+        "đơn vị đếm hạt nhỏ"
+      ],
+      "en": [
+        "Grains",
+        "Drop",
+        "Counter For Tiny Particles"
+      ]
+    },
+    "詞": {
+      "vi": [
+        "từ loại",
+        "từ ngữ",
+        "thơ ca"
+      ],
+      "en": [
+        "Part Of Speech",
+        "Words",
+        "Poetry"
+      ]
+    },
+    "胃": {
+      "vi": [
+        "dạ dày",
+        "bao tử",
+        "diều"
+      ],
+      "en": [
+        "Stomach",
+        "Paunch",
+        "Crop",
+        "Craw"
+      ]
+    },
+    "畳": {
+      "vi": [
+        "chiếu tatami",
+        "đơn vị đếm chiếu",
+        "gấp lại",
+        "đóng lại"
+      ],
+      "en": [
+        "Tatami Mat",
+        "Counter For Tatami Mats",
+        "Fold",
+        "Shut Up",
+        "Do Away With"
+      ]
+    },
+    "机": {
+      "vi": [
+        "cái bàn",
+        "bàn học"
+      ],
+      "hanViet": "KỶ",
+      "en": [
+        "Desk",
+        "Table"
+      ]
+    },
+    "膚": {
+      "vi": [
+        "da",
+        "thân thể",
+        "thớ",
+        "kết cấu",
+        "tính khí"
+      ],
+      "en": [
+        "Skin",
+        "Body",
+        "Grain",
+        "Texture",
+        "Disposition"
+      ]
+    },
+    "濯": {
+      "vi": [
+        "giặt giũ",
+        "rửa",
+        "dội",
+        "tráng"
+      ],
+      "en": [
+        "Laundry",
+        "Wash",
+        "Pour On",
+        "Rinse"
+      ]
+    },
+    "塔": {
+      "vi": [
+        "chùa tháp",
+        "tháp",
+        "tháp chuông"
+      ],
+      "en": [
+        "Pagoda",
+        "Tower",
+        "Steeple"
+      ]
+    },
+    "沸": {
+      "vi": [
+        "sôi sục",
+        "đun sôi",
+        "lên men",
+        "náo động",
+        "sinh sôi"
+      ],
+      "en": [
+        "Seethe",
+        "Boil",
+        "Ferment",
+        "Uproar",
+        "Breed"
+      ]
+    },
+    "灰": {
+      "vi": [
+        "tro",
+        "nước chát",
+        "hỏa táng"
+      ],
+      "en": [
+        "Ashes",
+        "Puckery Juice",
+        "Cremate"
+      ]
+    },
+    "菓": {
+      "vi": [
+        "kẹo",
+        "bánh ngọt",
+        "trái cây"
+      ],
+      "en": [
+        "Candy",
+        "Cakes",
+        "Fruit"
+      ]
+    },
+    "帽": {
+      "vi": [
+        "mũ",
+        "nón"
+      ],
+      "en": [
+        "Cap",
+        "Headgear"
+      ]
+    },
+    "枯": {
+      "vi": [
+        "héo",
+        "chết",
+        "khô cạn",
+        "được phơi khô"
+      ],
+      "en": [
+        "Wither",
+        "Die",
+        "Dry Up",
+        "Be Seasoned"
+      ]
+    },
+    "涼": {
+      "vi": [
+        "mát mẻ",
+        "dễ chịu và mát"
+      ],
+      "en": [
+        "Refreshing",
+        "Nice And Cool"
+      ]
+    },
+    "舟": {
+      "vi": [
+        "thuyền",
+        "tàu"
+      ],
+      "en": [
+        "Boat",
+        "Ship"
+      ]
+    },
+    "貝": {
+      "vi": [
+        "sò hến"
+      ],
+      "en": [
+        "Shellfish"
+      ]
+    },
+    "符": {
+      "vi": [
+        "dấu hiệu",
+        "ký hiệu",
+        "dấu",
+        "thẻ kiểm",
+        "bùa"
+      ],
+      "en": [
+        "Token",
+        "Sign",
+        "Mark",
+        "Tally",
+        "Charm"
+      ]
+    },
+    "憎": {
+      "vi": [
+        "ghét",
+        "căm ghét"
+      ],
+      "en": [
+        "Hate",
+        "Detest"
+      ]
+    },
+    "皿": {
+      "vi": [
+        "đĩa",
+        "một phần ăn",
+        "cái đĩa"
+      ],
+      "en": [
+        "Dish",
+        "A Helping",
+        "Plate"
+      ]
+    },
+    "肯": {
+      "vi": [
+        "đồng ý",
+        "chấp thuận",
+        "tuân theo"
+      ],
+      "en": [
+        "Agreement",
+        "Consent",
+        "Comply With"
+      ]
+    },
+    "燥": {
+      "vi": [
+        "làm khô",
+        "khô cạn"
+      ],
+      "en": [
+        "Parch",
+        "Dry Up"
+      ]
+    },
+    "畜": {
+      "vi": [
+        "gia súc",
+        "gia cầm và vật nuôi"
+      ],
+      "hanViet": "SÚC",
+      "en": [
+        "Livestock",
+        "Domestic Fowl And Animals"
+      ]
+    },
+    "挟": {
+      "vi": [
+        "kẹp",
+        "ở giữa"
+      ],
+      "hanViet": "HIỆP",
+      "en": [
+        "Pinch",
+        "Between"
+      ]
+    },
+    "曇": {
+      "vi": [
+        "trời nhiều mây",
+        "u ám"
+      ],
+      "en": [
+        "Cloudy Weather",
+        "Cloud Up"
+      ]
+    },
+    "滴": {
+      "vi": [
+        "nhỏ giọt",
+        "giọt"
+      ],
+      "hanViet": "TRÍCH",
+      "en": [
+        "Drip",
+        "Drop"
+      ]
+    },
+    "伺": {
+      "vi": [
+        "thăm hỏi (khiêm nhường)",
+        "đến thăm",
+        "hỏi",
+        "tra hỏi",
+        "cầu xin"
+      ],
+      "hanViet": "TỨ",
+      "en": [
+        "Pay Respects",
+        "Visit",
+        "Ask",
+        "Inquire",
+        "Question",
+        "Implore"
+      ]
+    }
+  }
+}
