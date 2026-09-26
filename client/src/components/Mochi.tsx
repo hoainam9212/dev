@@ -17,6 +17,8 @@ const PATCH = '#F7B98B';
 const INK = '#3B2E4A';
 const PINK = '#FFB7C5';
 const BLUSH = '#FF9EB5';
+/** Viền tay đậm hơn viền thân một chút để tay không chìm vào bụng. */
+const LINE = '#E6CFB9';
 
 function Eyes({ mood }: { mood: MochiMood }) {
   if (mood === 'happy') {
@@ -91,6 +93,11 @@ export function Mochi({ mood = 'neutral', size = 160, animated = true, className
       <ellipse cx="60" cy="120" rx="30" ry="24" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
       <ellipse cx="46" cy="140" rx="10" ry="6" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
       <ellipse cx="74" cy="140" rx="10" ry="6" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
+      {/* tay trái đặt trên bụng (tay phải giơ lên cạnh chuông, vẽ đè lên vòng cổ) */}
+      <path d="M38 106 q2 14 11 22" stroke={LINE} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M38 106 q2 14 11 22" stroke={fur} strokeWidth="9.5" fill="none" strokeLinecap="round" />
+      <ellipse cx="50" cy="129" rx="7.5" ry="6" fill={fur} stroke={LINE} strokeWidth="2" />
+      <path d="M48 131 v3 M52 131 v3" stroke={LINE} strokeWidth="1.5" strokeLinecap="round" />
       <path d="M26 54 L32 14 L58 40 Z" fill={patch} />
       <path d="M94 54 L88 14 L62 40 Z" fill={fur} stroke="#F1E4D6" strokeWidth="1.5" />
       <path d="M32 48 L35 24 L50 40 Z" fill={PINK} />
@@ -110,6 +117,16 @@ export function Mochi({ mood = 'neutral', size = 160, animated = true, className
       <Mouth mood={mood} />
       <path d="M30 100 q30 16 60 0" stroke="#8FE3CF" strokeWidth="6" fill="none" strokeLinecap="round" />
       <circle cx="60" cy="109" r="5.5" fill="#FFE08A" stroke="#E0B84A" strokeWidth="1.5" />
+      {/* tay phải giơ lên cạnh chuông, lộ đệm thịt hồng */}
+      <path d="M82 106 Q93 124 77 110" stroke={LINE} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M82 106 Q93 124 77 110" stroke={fur} strokeWidth="9.5" fill="none" strokeLinecap="round" />
+      <ellipse cx="76" cy="105" rx="6.5" ry="7.5" fill={fur} stroke={LINE} strokeWidth="2" />
+      <g fill={PINK}>
+        <circle cx="76" cy="106.5" r="2.4" />
+        <circle cx="73" cy="101.5" r="1.3" />
+        <circle cx="76" cy="100.5" r="1.3" />
+        <circle cx="79" cy="101.5" r="1.3" />
+      </g>
       <g transform="translate(84 22) rotate(35)">
         <path d="M0 -14 v28" stroke="#C69C6D" strokeWidth="2" strokeLinecap="round" />
         <circle cy="-9" r="4.5" fill="#FFB7C5" />
