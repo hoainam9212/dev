@@ -1,0 +1,1206 @@
+{
+  "type": "sentences",
+  "level": "N3",
+  "entries": {
+    "185880": {
+      "vi": "Chúng ta truyền đạt ý nghĩ bằng ngôn ngữ.",
+      "en": "We communicate by means of language."
+    },
+    "185975": {
+      "vi": "Chúng tôi đã thắng áp đảo.",
+      "en": "We were completely victorious."
+    },
+    "185993": {
+      "vi": "Tất cả chúng ta đều mong thành công.",
+      "en": "We all desire success."
+    },
+    "186163": {
+      "vi": "Chúng ta đã được hưởng hòa bình hơn 40 năm.",
+      "en": "We have enjoyed peace for more than 40 years."
+    },
+    "186193": {
+      "vi": "Đã đến lúc chúng ta vùng lên.",
+      "en": "The time has come for us to stand up."
+    },
+    "186461": {
+      "vi": "Muỗi đốt rồi.",
+      "en": "A mosquito just bit me."
+    },
+    "186486": {
+      "vi": "Quá khứ là quá khứ.",
+      "en": "Let bygones be bygones."
+    },
+    "186533": {
+      "vi": "Tôi có thể gửi hành lý được không?",
+      "en": "Could I check my bags?"
+    },
+    "186537": {
+      "vi": "Tôi muốn sắp xếp lại hành lý.",
+      "en": "I'd like to put my belongings away."
+    },
+    "186697": {
+      "vi": "Tôi đã mất tài sản vì hỏa hoạn.",
+      "en": "The fire deprived us of our property."
+    },
+    "186713": {
+      "vi": "Chuông báo cháy đã reo.",
+      "en": "The fire alarm rang."
+    },
+    "186729": {
+      "vi": "Lửa cháy.",
+      "en": "Fire burns."
+    },
+    "186742": {
+      "vi": "Lửa có thể lan nhanh hơn cả chân bạn chạy.",
+      "en": "A fire can spread faster than you can run."
+    },
+    "186749": {
+      "vi": "Chỉ như đổ thêm dầu vào lửa.",
+      "en": "It only adds fuel to the fire."
+    },
+    "186801": {
+      "vi": "Trái cây để dưới nắng sẽ bị hỏng.",
+      "en": "Fruits decay in the sun."
+    },
+    "186807": {
+      "vi": "Trái cây được phơi khô dưới nắng.",
+      "en": "The fruits are dried in the sun."
+    },
+    "186864": {
+      "vi": "Khoa học đã tiến bộ vượt bậc.",
+      "en": "Science has made remarkable progress."
+    },
+    "187011": {
+      "vi": "Ngôi nhà đang bốc cháy.",
+      "en": "The house was in flames."
+    },
+    "187198": {
+      "vi": "Mùa hè đến rồi chẳng mấy chốc lại đi.",
+      "en": "As the summer has come, so it will go."
+    },
+    "187238": {
+      "vi": "Mùa hè cỏ mọc nhanh.",
+      "en": "Grass is luxuriant in summer."
+    },
+    "187255": {
+      "vi": "Nhắc đến mùa hè bạn liên tưởng đến điều gì?",
+      "en": "What do you associate with summer?"
+    },
+    "187283": {
+      "vi": "Giá cả phản ánh nhu cầu.",
+      "en": "The price reflects the demand."
+    },
+    "187312": {
+      "vi": "Tôi đã bắn hàng trăm con gà lôi.",
+      "en": "We shot pheasants by the hundred."
+    },
+    "187417": {
+      "vi": "Tôi đã ngắm biển hàng giờ liền.",
+      "en": "I gazed at the sea for hours."
+    },
+    "187431": {
+      "vi": "Mấy giờ bắt đầu lên máy bay?",
+      "en": "What time does boarding begin?"
+    },
+    "187672": {
+      "vi": "Tôi không có ý định gì cả.",
+      "en": "I have no real intent."
+    },
+    "187747": {
+      "vi": "Những ngôi nhà mới sang trọng làm sao.",
+      "en": "What splendid houses they are!"
+    },
+    "187788": {
+      "vi": "Làm gì đi chứ!",
+      "en": "Do something!"
+    },
+    "187802": {
+      "vi": "Không biết nói gì, cô ấy chỉ biết mỉm cười.",
+      "en": "Not knowing what to say, she just smiled."
+    },
+    "187807": {
+      "vi": "Thật là bất ngờ.",
+      "en": "What a surprise!"
+    },
+    "187809": {
+      "vi": "Thật là lãng phí năng lượng.",
+      "en": "What a waste of energy!"
+    },
+    "187822": {
+      "vi": "Cứ hỏi gì cũng được!",
+      "en": "Ask me anything!"
+    },
+    "187855": {
+      "vi": "Thật là một cách diễn đạt mơ hồ.",
+      "en": "What an ambiguous expression!"
+    },
+    "187857": {
+      "vi": "Cái gì cơ?",
+      "en": "We'll what?"
+    },
+    "188001": {
+      "vi": "Chuyện gì sẽ xảy ra nhỉ.",
+      "en": "What would happen?"
+    },
+    "188002": {
+      "vi": "Không thể đoán trước điều gì sẽ xảy ra.",
+      "en": "We can't predict what'll happen."
+    },
+    "188177": {
+      "vi": "Tôi bị giả cận thị.",
+      "en": "I have false nearsightedness."
+    },
+    "188210": {
+      "vi": "Tôi hơi bị tiêu chảy.",
+      "en": "I have a touch of diarrhea."
+    },
+    "188224": {
+      "vi": "Kẻ kém cỏi thì khôn sau.",
+      "en": "It is easy to be wise after the event."
+    },
+    "188289": {
+      "vi": "Âm nhạc không có biên giới.",
+      "en": "Music is universal."
+    },
+    "188313": {
+      "vi": "Tiếng ồn đã nhỏ đi đáng kể nhờ thiết bị cách âm.",
+      "en": "The noise was deadened by the insulation."
+    },
+    "188317": {
+      "vi": "Âm thanh truyền đi rất nhanh.",
+      "en": "Sound travels very quickly."
+    },
+    "188322": {
+      "vi": "Nhiệt kế là dụng cụ đo nhiệt độ.",
+      "en": "The thermometer is an instrument for measuring temperature."
+    },
+    "188325": {
+      "vi": "Nhiệt độ là bảy mươi độ.",
+      "en": "The thermometer stands at 70."
+    },
+    "188328": {
+      "vi": "Nhiệt độ giảm.",
+      "en": "The temperature falls."
+    },
+    "188359": {
+      "vi": "Tao là con người.",
+      "en": "I am a man."
+    },
+    "188386": {
+      "vi": "Trái tim rung động.",
+      "en": "My heart is trembling."
+    },
+    "188407": {
+      "vi": "Tôi cảm thấy điều gì đó.",
+      "en": "I feel something."
+    },
+    "188453": {
+      "vi": "Okinawa có khí hậu dễ chịu quanh năm.",
+      "en": "Okinawa has a fine climate all year round."
+    },
+    "188455": {
+      "vi": "Ở Okinawa mưa nhiều.",
+      "en": "It rains a lot in Okinawa."
+    },
+    "188478": {
+      "vi": "Hoàng tử bị lạc đường trong rừng.",
+      "en": "The prince was lost in the woods."
+    },
+    "188481": {
+      "vi": "Hoàng tử đã kế vị ngai vàng.",
+      "en": "The prince succeeded to the throne."
+    },
+    "188485": {
+      "vi": "Kế vị ngai vàng.",
+      "en": "I succeed to the throne."
+    },
+    "188493": {
+      "vi": "Nhà vua đã bị xử tử.",
+      "en": "The king was executed."
+    },
+    "188511": {
+      "vi": "Đồng tiền châu Âu đã yếu đi so với đồng đô la.",
+      "en": "European currencies weakened against the dollar."
+    },
+    "188536": {
+      "vi": "Tôi muốn đi cổ vũ.",
+      "en": "I want to go and cheer."
+    },
+    "188537": {
+      "vi": "Cổ vũ cho mình nhé!",
+      "en": "Please back me up!"
+    },
+    "188542": {
+      "vi": "Vé khứ hồi giá bao nhiêu?",
+      "en": "What's the round-trip fare?"
+    },
+    "188549": {
+      "vi": "Răng hàm của tôi bị mẻ.",
+      "en": "My back tooth has chipped."
+    },
+    "188561": {
+      "vi": "Thử giả định là bạn có vợ xem.",
+      "en": "Imagine that you have a wife."
+    },
+    "188603": {
+      "vi": "Muối là một chất hữu ích.",
+      "en": "Salt is a useful substance."
+    },
+    "188607": {
+      "vi": "Muối giúp cá không bị hỏng.",
+      "en": "Salt preserves fish from spoilage."
+    },
+    "188611": {
+      "vi": "Nêm bằng muối.",
+      "en": "We season with salt."
+    },
+    "188632": {
+      "vi": "Chì dễ uốn cong.",
+      "en": "Lead bends easily."
+    },
+    "188681": {
+      "vi": "Tôi đã nhìn thấy ngọn tháp ở phía xa.",
+      "en": "We saw the tower in the distance."
+    },
+    "188685": {
+      "vi": "Tôi đã nhìn thấy một túp lều ở phía xa.",
+      "en": "I saw a hut in the distance."
+    },
+    "188715": {
+      "vi": "Hôn nhân được định đoạt trên trời.",
+      "en": "Marriage is made in heaven."
+    },
+    "188719": {
+      "vi": "Duyên phận thật kỳ lạ.",
+      "en": "Marriages are made in heaven."
+    },
+    "188722": {
+      "vi": "Đừng có bắt chước như khỉ nữa.",
+      "en": "Don't be a copycat."
+    },
+    "188761": {
+      "vi": "Vặn nhỏ lửa lại.",
+      "en": "Turn the flame down low."
+    },
+    "188762": {
+      "vi": "Ngọn lửa đã bao trùm khu rừng.",
+      "en": "Fire devoured the forest."
+    },
+    "188768": {
+      "vi": "Tôi rất lo lắng về buổi hòa nhạc.",
+      "en": "I'm all in a dither about the concert."
+    },
+    "188784": {
+      "vi": "Bắt đầu biểu diễn!",
+      "en": "Action!"
+    },
+    "188800": {
+      "vi": "Vượt qua tình trạng đồng yên tăng giá là một vấn đề lớn.",
+      "en": "How to overcome the high value of the yen is a big problem."
+    },
+    "188804": {
+      "vi": "Đồng yên tăng giá, đồng đô la giảm giá.",
+      "en": "The yen is rising and the dollar is falling."
+    },
+    "188892": {
+      "vi": "Nhà ga ở trung tâm thành phố.",
+      "en": "The station is the middle of the city."
+    },
+    "188944": {
+      "vi": "Tôi đã mua cơm hộp ở nhà ga.",
+      "en": "I bought a box lunch at the station."
+    },
+    "188949": {
+      "vi": "Chúng tôi tình cờ gặp nhau ở nhà ga.",
+      "en": "We ran into each other at the station."
+    },
+    "188965": {
+      "vi": "Chất lỏng nặng hơn chất khí.",
+      "en": "Liquids are heavier than gases."
+    },
+    "188972": {
+      "vi": "Anh hùng khó qua ải mỹ nhân.",
+      "en": "Great men are fond of sensual pleasures."
+    },
+    "189100": {
+      "vi": "Tiếng Anh là một phương tiện truyền đạt.",
+      "en": "English is a means of communication."
+    },
+    "189106": {
+      "vi": "Tiếng Anh đã phổ biến khắp cả nước.",
+      "en": "English has spread all over the country."
+    },
+    "189178": {
+      "vi": "Bạn có thể xoay xở mà không cần từ điển tiếng Anh không?",
+      "en": "Can you do without an English dictionary?"
+    },
+    "189218": {
+      "vi": "Nói suy nghĩ của mình bằng tiếng Anh thật khó.",
+      "en": "It is difficult to express one's thoughts in English."
+    },
+    "189340": {
+      "vi": "Phim sắp bắt đầu.",
+      "en": "The movie starts."
+    },
+    "189360": {
+      "vi": "Chuyện viển vông như bắt mây vậy.",
+      "en": "What you're saying doesn't make sense."
+    },
+    "189451": {
+      "vi": "Người lái xe cứ tiếp tục phóng tốc độ cao.",
+      "en": "The driver maintained a high speed."
+    },
+    "189480": {
+      "vi": "Bạn may mắn thật.",
+      "en": "It's a godsend."
+    },
+    "189732": {
+      "vi": "Có thể trời sẽ mưa.",
+      "en": "It may rain."
+    },
+    "189844": {
+      "vi": "Mưa đang rơi khắp cả vùng.",
+      "en": "The rain is raining all around."
+    },
+    "189853": {
+      "vi": "Lông vũ là đặc điểm riêng của loài chim.",
+      "en": "Feathers are peculiar to birds."
+    },
+    "189855": {
+      "vi": "Con quạ đen như than.",
+      "en": "A crow is as black as coal."
+    },
+    "189882": {
+      "vi": "Mời gọi tôi đến tận cùng vũ trụ.",
+      "en": "I am invited to the end of the universe."
+    },
+    "189935": {
+      "vi": "Đồ thâm hiểm.",
+      "en": "You are a snake!"
+    },
+    "189983": {
+      "vi": "Tao kéo đây.",
+      "en": "We're going to pull it."
+    },
+    "190004": {
+      "vi": "Mực in đang thiếu.",
+      "en": "Printing ink is in short supply."
+    },
+    "190012": {
+      "vi": "Tia chớp lóe lên.",
+      "en": "The lightning flashed."
+    },
+    "190013": {
+      "vi": "Tia chớp xuất hiện trước tiếng sấm.",
+      "en": "The flash of lightning precedes the sound of thunder."
+    },
+    "190068": {
+      "vi": "1 phút là 60 giây.",
+      "en": "A minute has sixty seconds."
+    },
+    "190132": {
+      "vi": "Tôi có thể cho anh ấy ngủ lại một đêm.",
+      "en": "We can accommodate him for the night."
+    },
+    "190210": {
+      "vi": "Đi làm một ly với tôi không?",
+      "en": "Would you join me in a drink?"
+    },
+    "190223": {
+      "vi": "Mưa nhiều quanh năm.",
+      "en": "There's lots of rain all year."
+    },
+    "190316": {
+      "vi": "Mỗi lần chỉ làm một việc thôi.",
+      "en": "Do one thing at a time."
+    },
+    "190318": {
+      "vi": "Mỗi lần hãy làm một việc.",
+      "en": "Do one thing at a time."
+    },
+    "190342": {
+      "vi": "Rốt cuộc là ai vậy nhỉ?",
+      "en": "Who ever can it be?"
+    },
+    "190344": {
+      "vi": "Rốt cuộc thì vấn đề là gì?",
+      "en": "What on earth is the problem?"
+    },
+    "190379": {
+      "vi": "Đừng bỏ tất cả trứng vào một giỏ.",
+      "en": "Don't risk putting everything in one boat."
+    },
+    "190581": {
+      "vi": "Chỉ là tạm thời thôi.",
+      "en": "It's a temporary condition."
+    },
+    "190694": {
+      "vi": "Sai một ly, đi một dặm.",
+      "en": "A miss is as good as a mile."
+    },
+    "190730": {
+      "vi": "Có dùng được bảo hiểm y tế không?",
+      "en": "Can I use my medical insurance?"
+    },
+    "190827": {
+      "vi": "Buổi chiều bác sĩ đã đi khám tại nhà 6 nơi.",
+      "en": "The doctor made six house calls in the afternoon."
+    },
+    "190926": {
+      "vi": "Vì bác sĩ khuyên nên tôi định đi đâu đó thay đổi không khí để dưỡng bệnh.",
+      "en": "I'm thinking of going somewhere for a change of air, since my doctor advises me to."
+    },
+    "190976": {
+      "vi": "Quần áo đang bị thừa hàng.",
+      "en": "We have an oversupply of clothing."
+    },
+    "190999": {
+      "vi": "Bạn có đau dạ dày không?",
+      "en": "Does your stomach hurt?"
+    },
+    "191000": {
+      "vi": "Tôi bị đau dạ dày.",
+      "en": "My stomach hurts."
+    },
+    "191001": {
+      "vi": "Tôi bị đầy bụng.",
+      "en": "My stomach feels heavy."
+    },
+    "191017": {
+      "vi": "Có gì bất thường không?",
+      "en": "Is everything all right?"
+    },
+    "191045": {
+      "vi": "Tôi đã bất tỉnh.",
+      "en": "I blacked out."
+    },
+    "191047": {
+      "vi": "Không còn ý thức.",
+      "en": "He's unconscious."
+    },
+    "191048": {
+      "vi": "Việc truyền đạt ý nghĩ có nhiều hình thức khác nhau.",
+      "en": "Communication takes many forms."
+    },
+    "191066": {
+      "vi": "Không được đánh đồng ý kiến với sự thật.",
+      "en": "Never confuse opinions with facts."
+    },
+    "191067": {
+      "vi": "Ý kiến đã thống nhất.",
+      "en": "We agree."
+    },
+    "191072": {
+      "vi": "Một kết quả bất ngờ đã được công bố.",
+      "en": "Unexpected results were announced."
+    },
+    "191073": {
+      "vi": "Bất ngờ thật đấy.",
+      "en": "You don't say."
+    },
+    "191079": {
+      "vi": "Ủy ban đã thông qua ngân sách.",
+      "en": "The committee approved the budget."
+    },
+    "191086": {
+      "vi": "Ủy ban gồm mười người.",
+      "en": "The committee has ten members."
+    },
+    "191094": {
+      "vi": "Ủy ban nên tập trung vào những vấn đề cụ thể hơn.",
+      "en": "A committee should apply the focus to the more concrete problem."
+    },
+    "191118": {
+      "vi": "Ủy ban đã được triệu tập ngay lập tức.",
+      "en": "The committee was summoned at once."
+    },
+    "191140": {
+      "vi": "Vẫn chưa có tin tức gì từ anh ấy.",
+      "en": "I still haven't heard from him."
+    },
+    "191155": {
+      "vi": "Từ đó đến nay chúng tôi vẫn là bạn.",
+      "en": "We've been friends ever since."
+    },
+    "191239": {
+      "vi": "Không ngờ cuốn sách này dễ đọc thế nhỉ.",
+      "en": "This book is surprisingly easy to read, isn't it?"
+    },
+    "191246": {
+      "vi": "Lo lắng còn khó hơn bắt tay vào làm.",
+      "en": "Fear often exaggerates danger."
+    },
+    "191264": {
+      "vi": "Đột ngột xuất hiện từ trong bóng tối.",
+      "en": "I spring out of the darkness."
+    },
+    "191351": {
+      "vi": "Bắt tay nào!",
+      "en": "Shake my hand."
+    },
+    "191357": {
+      "vi": "Hãy cố tránh xa bạn xấu.",
+      "en": "Try to avoid bad company."
+    },
+    "191358": {
+      "vi": "Nên tránh xa bạn xấu.",
+      "en": "You should keep away from bad company."
+    },
+    "191361": {
+      "vi": "Tên phiến quân khét tiếng cuối cùng đã bị bắt và bị giam giữ trong trại tạm giam.",
+      "en": "The notorious rebel was ultimately captured and confined to jail."
+    },
+    "191412": {
+      "vi": "Bỏ thói quen xấu không phải chuyện dễ.",
+      "en": "It's not easy to get rid of a bad habit."
+    },
+    "191415": {
+      "vi": "Nên tước bằng lái của những tài xế ẩu.",
+      "en": "Bad drivers should have their licenses taken away from them."
+    },
+    "191416": {
+      "vi": "Chuyện xấu cứ liên tiếp xảy ra.",
+      "en": "When it rains, it pours."
+    },
+    "191432": {
+      "vi": "Số đỏ thật.",
+      "en": "Have the devil's own luck."
+    },
+    "191449": {
+      "vi": "Tôi sai rồi.",
+      "en": "I'm sorry."
+    },
+    "191452": {
+      "vi": "Sách xấu gây hại.",
+      "en": "Bad books will do you harm."
+    },
+    "191460": {
+      "vi": "Đừng giao du với kẻ xấu.",
+      "en": "Never associate with bad fellows."
+    },
+    "191480": {
+      "vi": "Tin đồn xấu lan nhanh lắm.",
+      "en": "Bad news travels fast."
+    },
+    "191482": {
+      "vi": "Tiếng xấu đồn xa.",
+      "en": "Ill news comes apace."
+    },
+    "191525": {
+      "vi": "Tôi không cảm thấy tình yêu.",
+      "en": "I'm dead to love."
+    },
+    "191528": {
+      "vi": "Cháy bỏng tình yêu.",
+      "en": "Burn with desire."
+    },
+    "191548": {
+      "vi": "Tình yêu không phải thứ để cướp đoạt, cũng không phải để truyền đạt.",
+      "en": "Love is something that you can neither snatch away nor express."
+    },
+    "191555": {
+      "vi": "Tình yêu vận động thật khó hiểu.",
+      "en": "Love moves in mysterious ways."
+    },
+    "191556": {
+      "vi": "Sức mạnh của tình yêu làm xoay chuyển thế giới.",
+      "en": "Love makes the world go round."
+    },
+    "191559": {
+      "vi": "Là tình yêu và hòa bình.",
+      "en": "Love and Peace."
+    },
+    "191577": {
+      "vi": "Thương hại gần với tình yêu.",
+      "en": "Pity is akin to love."
+    },
+    "191707": {
+      "vi": "Trong buổi hoàng hôn của nền văn minh chúng ta.",
+      "en": "We find ourselves in the twilight of our civilization."
+    },
+    "191744": {
+      "vi": "Để chúng ta bàn về vấn đề đó thì ba tiếng là quá ngắn.",
+      "en": "Three hours is too short for us to discuss that matter."
+    },
+    "191887": {
+      "vi": "Tôi đang ở nhà.",
+      "en": "I am at home."
+    },
+    "191967": {
+      "vi": "Đừng cãi nhau vì một số tiền nhỏ như thế.",
+      "en": "Don't haggle over a small sum of money."
+    },
+    "192061": {
+      "vi": "Cho tôi rượu vang.",
+      "en": "We'd like to have some wine."
+    },
+    "192065": {
+      "vi": "Rượu vang giúp tiêu hóa.",
+      "en": "Wine helps digest food."
+    },
+    "192215": {
+      "vi": "Tên lửa đã bay lên.",
+      "en": "The rocket went up."
+    },
+    "192216": {
+      "vi": "Tên lửa đã bay lên thuận lợi.",
+      "en": "The rocket went up smoothly."
+    },
+    "192268": {
+      "vi": "Đừng buông dây thừng.",
+      "en": "Don't let go of the rope."
+    },
+    "192324": {
+      "vi": "Chanh là loại quả chua.",
+      "en": "The lemon is a sour fruit."
+    },
+    "192542": {
+      "vi": "Bà Lee rất thích nói chuyện.",
+      "en": "Mrs. Lee is a great talker."
+    },
+    "192638": {
+      "vi": "Tôi có thể mượn vợt được không?",
+      "en": "Can I rent rackets?"
+    },
+    "192641": {
+      "vi": "Bóng bầu dục là môn thể thao ngoài trời.",
+      "en": "Rugby is an outdoor game."
+    },
+    "192664": {
+      "vi": "Có bật lửa không?",
+      "en": "Do you have a lighter?"
+    },
+    "192666": {
+      "vi": "Anh có bật lửa không ạ?",
+      "en": "Do you have a lighter?"
+    },
+    "192727": {
+      "vi": "Chiếc du thuyền đón gió tiến lên.",
+      "en": "The yacht sailed before the wind."
+    },
+    "192729": {
+      "vi": "Chiếc du thuyền đã vòng qua cái phao.",
+      "en": "The yacht sailed around a buoy."
+    },
+    "192784": {
+      "vi": "Tôi hay bị viêm kết mạc.",
+      "en": "I often get conjunctivitis."
+    },
+    "192879": {
+      "vi": "Chào mừng đến với cỗ máy.",
+      "en": "Welcome to the machine."
+    },
+    "192890": {
+      "vi": "Truyền thống tốt đẹp cần được gìn giữ.",
+      "en": "Good traditions should be preserved."
+    },
+    "192894": {
+      "vi": "Nếu có khu vườn đẹp thì giá trị ngôi nhà sẽ tăng lên.",
+      "en": "If you have a good garden, it will enhance the value of your house."
+    },
+    "192903": {
+      "vi": "Chúc cuối tuần vui vẻ!",
+      "en": "Have a good weekend!"
+    },
+    "192918": {
+      "vi": "Phim hay giúp mở rộng tầm nhìn con người.",
+      "en": "Good movies broaden your horizons."
+    },
+    "192929": {
+      "vi": "Chúc một ngày tốt lành!",
+      "en": "Have a nice day!"
+    },
+    "193065": {
+      "vi": "Cuối cùng cũng đến lượt tôi.",
+      "en": "My turn finally came."
+    },
+    "193127": {
+      "vi": "Chẳng mấy chốc mặt trăng bắt đầu hiện ra.",
+      "en": "Before long, the moon began to appear."
+    },
+    "193401": {
+      "vi": "Trời sắp sáng rồi.",
+      "en": "The day is breaking soon."
+    },
+    "193517": {
+      "vi": "Nếu anh ấy chết thì chắc tôi sẽ đau buồn lắm.",
+      "en": "I'll certainly be sad if he dies."
+    },
+    "193734": {
+      "vi": "Nếu vội thì bạn sẽ đuổi kịp anh ấy.",
+      "en": "If you hurry, you will overtake him."
+    },
+    "193877": {
+      "vi": "Biết đâu ngày mai trời sẽ mưa.",
+      "en": "It might rain tomorrow."
+    },
+    "193878": {
+      "vi": "Biết đâu ngày mai anh ấy sẽ đến.",
+      "en": "He might come tomorrow."
+    },
+    "193976": {
+      "vi": "Đã quá nửa đêm rồi.",
+      "en": "It's midnight already."
+    },
+    "194243": {
+      "vi": "Tôi hết chịu nổi rồi!",
+      "en": "This is the last straw!"
+    },
+    "194575": {
+      "vi": "Gà mái ấp trứng cho đến khi nở.",
+      "en": "The hen sits on her eggs until they hatch."
+    },
+    "194608": {
+      "vi": "Ghi chép lại đi.",
+      "en": "Take note."
+    },
+    "194675": {
+      "vi": "Tiến sĩ Mason luôn đặt công việc lên hàng đầu.",
+      "en": "Dr Mason placed his work above everything."
+    },
+    "195044": {
+      "vi": "Uống sữa không?",
+      "en": "How about some milk?"
+    },
+    "195141": {
+      "vi": "Hoàn toàn không ngủ được.",
+      "en": "I can't sleep at all!"
+    },
+    "195199": {
+      "vi": "Mayuko đã tự thiết kế quần áo của mình.",
+      "en": "Mayuko designed her own clothes."
+    },
+    "195252": {
+      "vi": "Chẳng bao lâu anh ấy sẽ nhận ra sai lầm.",
+      "en": "It won't be long before he realizes the mistake."
+    },
+    "195265": {
+      "vi": "Mặt trời sắp mọc.",
+      "en": "It won't be long before the sun rises."
+    },
+    "195352": {
+      "vi": "Thật là một cảnh tượng đau buồn.",
+      "en": "It is quite a sorry sight."
+    },
+    "195428": {
+      "vi": "Lại tụ tập nhé.",
+      "en": "Let's get together again."
+    },
+    "195621": {
+      "vi": "Bài diễn thuyết của ông ấy bị chìm trong tiếng phản đối ngày càng lớn.",
+      "en": "Ever louder voices of protest drowned out his speech."
+    },
+    "195646": {
+      "vi": "Đừng coi là thật.",
+      "en": "Don't take it seriously."
+    },
+    "195658": {
+      "vi": "Đúng là như vậy.",
+      "en": "That is well said."
+    },
+    "195684": {
+      "vi": "Không thể nào, nói dối phải không.",
+      "en": "You must be kidding!"
+    },
+    "195740": {
+      "vi": "Mike đã cười.",
+      "en": "Mike smiled."
+    },
+    "195791": {
+      "vi": "Mike cười.",
+      "en": "Mike laughs."
+    },
+    "195825": {
+      "vi": "Mark là người chăm chỉ trong đội xây dựng.",
+      "en": "Mark was a work horse on his construction crew."
+    },
+    "195900": {
+      "vi": "Làm ơn nối máy cho tôi gặp tiến sĩ White.",
+      "en": "Please connect me with Dr. White."
+    },
+    "196247": {
+      "vi": "Đừng chạm vào nút!",
+      "en": "Don't touch that button!"
+    },
+    "196370": {
+      "vi": "Tôi đã bỏ thuốc được một năm.",
+      "en": "I gave up smoking for a year."
+    },
+    "196476": {
+      "vi": "Quả bóng tròn.",
+      "en": "Balls are round."
+    },
+    "196533": {
+      "vi": "Tôi nhớ nhà.",
+      "en": "I am homesick."
+    },
+    "196555": {
+      "vi": "Xin hãy dán thông báo lên bảng.",
+      "en": "Stick a notice on the board."
+    },
+    "196597": {
+      "vi": "Cần sắp xếp suy nghĩ trước khi cầm bút.",
+      "en": "I must put my ideas together before I take up a pen."
+    },
+    "196632": {
+      "vi": "Tôi đã ngồi xuống ghế dài.",
+      "en": "He seated himself on the bench."
+    },
+    "196640": {
+      "vi": "Sơn bị bong rồi kìa.",
+      "en": "The paint is off."
+    },
+    "196733": {
+      "vi": "Con rắn cuộn tròn.",
+      "en": "The snake coils itself up."
+    },
+    "196873": {
+      "vi": "Gửi ở quầy lễ tân là được.",
+      "en": "You had better check them at the front desk."
+    },
+    "196925": {
+      "vi": "Phanh có vấn đề.",
+      "en": "Something is wrong with the brakes."
+    },
+    "196940": {
+      "vi": "Tôi nghĩ đồ uống trái cây sẽ thành công lớn trong mùa hè.",
+      "en": "I think that a new fruit drink will go over big during the summer."
+    },
+    "197035": {
+      "vi": "Nhựa khó cháy.",
+      "en": "Plastic does not burn easily."
+    },
+    "197036": {
+      "vi": "Nhựa khó vỡ.",
+      "en": "Plastic does not break easily."
+    },
+    "197127": {
+      "vi": "Tôi tình cờ gặp anh ấy trên phố.",
+      "en": "I met him on the street by chance."
+    },
+    "197275": {
+      "vi": "Bill giỏi tranh luận.",
+      "en": "Bill is skillful in arguing and debating."
+    },
+    "197459": {
+      "vi": "Đừng đếm gà trước khi nở.",
+      "en": "Don't count your chickens."
+    },
+    "197543": {
+      "vi": "Khí hậu tồi tệ.",
+      "en": "This is a terrible climate."
+    },
+    "197567": {
+      "vi": "Tôi đã xem phim qua băng video.",
+      "en": "I watched a movie on video."
+    },
+    "197625": {
+      "vi": "Đi dã ngoại thôi.",
+      "en": "Let's go to the picnic."
+    },
+    "197634": {
+      "vi": "Đây là sản phẩm mới tinh.",
+      "en": "It's brand new."
+    },
+    "197651": {
+      "vi": "Làm một ly bia không?",
+      "en": "How about a beer?"
+    },
+    "197899": {
+      "vi": "Ô che nắng được dùng vào mùa hè để mặt khỏi bị nắng.",
+      "en": "A parasol is used during the summertime to shade the face."
+    },
+    "197937": {
+      "vi": "Patricia sẽ tổ chức giải đấu đó.",
+      "en": "Patricia will organize the tournament."
+    },
+    "197961": {
+      "vi": "Tôi tình cờ gặp lại một người bạn cũ.",
+      "en": "I ran into an old friend."
+    },
+    "197966": {
+      "vi": "Tôi bị lấy trộm túi xách.",
+      "en": "My bag was stolen."
+    },
+    "198016": {
+      "vi": "Bơ được làm từ kem sữa.",
+      "en": "Butter is made from cream."
+    },
+    "198090": {
+      "vi": "Bạn cầm hộ chiếu chưa?",
+      "en": "Do you have your passport?"
+    },
+    "198107": {
+      "vi": "Xe buýt đã dừng lại để đón khách.",
+      "en": "The bus stopped to take up passengers."
+    },
+    "198114": {
+      "vi": "Xe buýt sẽ khởi hành sau năm phút nữa.",
+      "en": "The bus leaves in five minutes."
+    },
+    "198224": {
+      "vi": "Xe buýt đã rời bến.",
+      "en": "The bus left the stop."
+    },
+    "198276": {
+      "vi": "Làm ơn lấy giúp tôi cái kéo.",
+      "en": "Get me the scissors, please."
+    },
+    "198320": {
+      "vi": "Phi công đã lái máy bay.",
+      "en": "The pilot flew the airplane."
+    },
+    "198329": {
+      "vi": "Có gì đó bị tắc trong ống.",
+      "en": "Something is stuck in the pipe."
+    },
+    "198330": {
+      "vi": "Tôi không tìm thấy cái tẩu.",
+      "en": "I can't find my pipe."
+    },
+    "198349": {
+      "vi": "Đi bộ đường dài thì nhất là vào mùa thu.",
+      "en": "Autumn is the best season for going on hikes."
+    },
+    "198400": {
+      "vi": "Chắc chắn đạt điểm par.",
+      "en": "This guarantees me par."
+    },
+    "198406": {
+      "vi": "Uốn tóc tính phí riêng.",
+      "en": "A permanent is extra."
+    },
+    "198544": {
+      "vi": "Cứ thong thả mà đi.",
+      "en": "Take it easy."
+    },
+    "198664": {
+      "vi": "Tỏi làm tăng hương vị món ăn.",
+      "en": "Garlic enhances the flavor of meals."
+    },
+    "198860": {
+      "vi": "Bạn bè gì thế không biết.",
+      "en": "What a friend you are!"
+    },
+    "198882": {
+      "vi": "Cái tivi nhỏ quá nhỉ. Có thật là xem được không?",
+      "en": "What a small television set! Does it really work?"
+    },
+    "198921": {
+      "vi": "Sao bạn lại buồn đến thế?",
+      "en": "Why should you be so sad?"
+    },
+    "198932": {
+      "vi": "Bộ trang phục đẹp quá.",
+      "en": "What a darling outfit!"
+    },
+    "199064": {
+      "vi": "Đừng có mà coi thường tao!",
+      "en": "Don't mock me!"
+    },
+    "199097": {
+      "vi": "Mọi thứ đã sẵn sàng.",
+      "en": "Everything's ready."
+    },
+    "199120": {
+      "vi": "Có gì đâu, đồ cũ thôi mà.",
+      "en": "No, it's second hand."
+    },
+    "199223": {
+      "vi": "Bởi vì anh ấy đã mời.",
+      "en": "Because he invited me."
+    },
+    "199225": {
+      "vi": "Bởi vì anh ấy từng là phóng viên báo.",
+      "en": "Because I was a newspaper reporter."
+    },
+    "199266": {
+      "vi": "Sao lại không được?",
+      "en": "Why not?"
+    },
+    "199325": {
+      "vi": "Làm ơn sửa lại.",
+      "en": "Please fix it."
+    },
+    "199328": {
+      "vi": "Không có thì làm sao mà cho.",
+      "en": "An empty bag can't stand upright."
+    },
+    "199714": {
+      "vi": "Chơi bài vui lắm.",
+      "en": "Playing cards is fun."
+    },
+    "199754": {
+      "vi": "Tôi tình cờ nhìn thấy chiếc xe tải đâm vào lan can bảo vệ.",
+      "en": "We happened to see a truck run into the guard-rail."
+    },
+    "199756": {
+      "vi": "Đi lái xe dạo chơi không?",
+      "en": "How about going for a drive?"
+    },
+    "199790": {
+      "vi": "Tom là kẻ bất lịch sự.",
+      "en": "Tom has no manners."
+    },
+    "200255": {
+      "vi": "Mỡ tích ở chỗ nào?",
+      "en": "Where is the fat located?"
+    },
+    "200269": {
+      "vi": "Trang trọng đến mức độ nào vậy?",
+      "en": "How formal is this ceremony?"
+    },
+    "200308": {
+      "vi": "Bạn thích vở kịch nào?",
+      "en": "Can you recommend a good play?"
+    },
+    "200316": {
+      "vi": "Đứa trẻ nào cũng cúi chào thầy giáo.",
+      "en": "Every child bowed to the teacher."
+    },
+    "200437": {
+      "vi": "Dù sao thì cũng cảm ơn.",
+      "en": "Thanks anyway."
+    },
+    "200607": {
+      "vi": "Tôi đã rất cảm động.",
+      "en": "I was moved."
+    },
+    "200736": {
+      "vi": "Đi đường nào cũng đến được nhà ga.",
+      "en": "Whichever way you go, you can get to the station."
+    },
+    "200778": {
+      "vi": "Anh làm việc ở đâu vậy?",
+      "en": "Who do you work for?"
+    },
+    "201011": {
+      "vi": "Chắc chắn là có chỗ nào đó trong cơ cấu có vấn đề.",
+      "en": "Something must be wrong with the machinery."
+    },
+    "201303": {
+      "vi": "Rất mong được giúp đỡ.",
+      "en": "Nice to meet you."
+    },
+    "201494": {
+      "vi": "Tôi không sao quên được.",
+      "en": "I just can't get it out of my head."
+    },
+    "201782": {
+      "vi": "Vừa đóng cửa là đã có người bắt đầu gõ.",
+      "en": "I had no sooner closed the door than somebody started knocking on it."
+    },
+    "202019": {
+      "vi": "Nhờ có tivi mà chúng ta có thể mở rộng kiến thức.",
+      "en": "Television helps us widen our knowledge."
+    },
+    "202079": {
+      "vi": "Đoàn biểu tình đã diễu hành trật tự.",
+      "en": "The demonstrators marched in order."
+    },
+    "202096": {
+      "vi": "Tôi định tham gia biểu tình.",
+      "en": "I'm going to join a demonstration."
+    },
+    "202271": {
+      "vi": "Nếu được thì cuối tuần này nhé.",
+      "en": "This weekend, if possible."
+    },
+    "202423": {
+      "vi": "Đừng chống khuỷu tay lên bàn nữa.",
+      "en": "Keep your elbows off the table."
+    },
+    "202461": {
+      "vi": "Tôi cá là Dave đã chi cả đống tiền cho chiếc xe mới của anh ta.",
+      "en": "I bet Dave paid a pretty penny for his new car."
+    },
+    "202531": {
+      "vi": "Tóm lại, nói kết luận thì là thế này.",
+      "en": "This is the bottom line."
+    },
+    "202652": {
+      "vi": "Cuối cùng cũng lộ nguyên hình rồi nhé.",
+      "en": "Now you've given yourself away."
+    },
+    "202670": {
+      "vi": "Cuối cùng đã xuất bản cuốn sách đó.",
+      "en": "We finally published the book."
+    },
+    "202841": {
+      "vi": "Hơi chật một chút.",
+      "en": "They're a little tight."
+    },
+    "202947": {
+      "vi": "Zurich là thị trường vàng lớn thứ hai thế giới sau London.",
+      "en": "Zurich is the second largest gold market in the world after London."
+    },
+    "202961": {
+      "vi": "Ngồi cho đàng hoàng vào.",
+      "en": "Sit tight."
+    },
+    "202965": {
+      "vi": "Đừng bỏ lỡ cơ hội.",
+      "en": "Don't miss this chance."
+    },
+    "202968": {
+      "vi": "Chuông reo rồi nhỉ.",
+      "en": "The door bell has rung."
+    },
+    "203073": {
+      "vi": "Nhảy thì tôi dở tệ.",
+      "en": "I cannot dance worth a damn."
+    },
+    "203074": {
+      "vi": "Bạn có thích khiêu vũ không?",
+      "en": "Do you like dancing?"
+    },
+    "203276": {
+      "vi": "Hành tây chín nhanh hơn khoai tây.",
+      "en": "Onions cook more quickly than potatoes."
+    },
+    "203368": {
+      "vi": "Tôi đã đến đó nhiều lần rồi.",
+      "en": "I have been there scores of times."
+    },
+    "203438": {
+      "vi": "Khói thuốc lá làm ô nhiễm không khí trong phòng.",
+      "en": "Cigarette smoke fouls the air in a room."
+    },
+    "203457": {
+      "vi": "Dù có bận thì anh ấy vẫn sẽ đến.",
+      "en": "Even if he is busy, he will come."
+    },
+    "1866522": {
+      "vi": "Đời bướm ngắn ngủi.",
+      "en": "The life span of a butterfly is short."
+    },
+    "1874348": {
+      "vi": "Xin lỗi chuyện hôm trước nhé.",
+      "en": "I'm sorry about the other day."
+    },
+    "1880984": {
+      "vi": "Chú ý: sơn còn ướt.",
+      "en": "Caution! Wet Paint"
+    },
+    "1911366": {
+      "vi": "Con chó đã chạy khắp nơi.",
+      "en": "The dog ran all over."
+    },
+    "1944414": {
+      "vi": "Bạn đặt sách chưa?",
+      "en": "Did you order a book?"
+    },
+    "1987808": {
+      "vi": "Tôi sẽ thu hút bọn chúng.",
+      "en": "I'll attract those guys."
+    },
+    "2000082": {
+      "vi": "Tôi đọc.",
+      "en": "I read."
+    },
+    "2038391": {
+      "vi": "Bình tĩnh.",
+      "en": "Be cool."
+    }
+  }
+}
