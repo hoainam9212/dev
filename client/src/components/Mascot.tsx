@@ -100,14 +100,29 @@ export function Mascot({ mood = 'neutral', size = 160, className = '' }: Props) 
       {/* body */}
       <ellipse cx="60" cy="120" rx="30" ry="24" fill={FUR} />
       <ellipse cx="60" cy="126" rx="16" ry="12" fill="#FFFBF5" />
-      {/* paws */}
-      <ellipse cx="46" cy="140" rx="10" ry="6" fill={FUR} />
-      <ellipse cx="74" cy="140" rx="10" ry="6" fill={FUR} />
+      {/* feet */}
+      <ellipse cx="44" cy="140" rx="10" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
+      <ellipse cx="76" cy="140" rx="10" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
       <g stroke={FUR_SHADE} strokeWidth="1.5" strokeLinecap="round">
-        <path d="M43 142 v3" />
-        <path d="M47 142 v3" />
-        <path d="M71 142 v3" />
-        <path d="M75 142 v3" />
+        <path d="M41 140 v3" />
+        <path d="M47 140 v3" />
+        <path d="M73 140 v3" />
+        <path d="M79 140 v3" />
+      </g>
+      {/* arms, resting on the belly */}
+      <g fill="none" strokeLinecap="round">
+        <path d="M38 106 q2 14 11 22" stroke={FUR_SHADE} strokeWidth="13" />
+        <path d="M82 106 q-2 14 -11 22" stroke={FUR_SHADE} strokeWidth="13" />
+        <path d="M38 106 q2 14 11 22" stroke={FUR} strokeWidth="9.5" />
+        <path d="M82 106 q-2 14 -11 22" stroke={FUR} strokeWidth="9.5" />
+      </g>
+      <ellipse cx="50" cy="129" rx="7.5" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
+      <ellipse cx="70" cy="129" rx="7.5" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
+      <g stroke={FUR_SHADE} strokeWidth="1.5" strokeLinecap="round">
+        <path d="M48 131 v3" />
+        <path d="M52 131 v3" />
+        <path d="M68 131 v3" />
+        <path d="M72 131 v3" />
       </g>
       {/* ears */}
       <path d="M26 54 L32 14 L58 40 Z" fill={FUR} />
