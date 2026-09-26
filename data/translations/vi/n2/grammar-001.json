@@ -1,0 +1,1916 @@
+{
+  "type": "grammar",
+  "level": "N2",
+  "entries": {
+    "N2|A あるいは B (A aruiwa B)": {
+      "vi": "A あるいは B (nêu lựa chọn: A hoặc B, hay là B)",
+      "examples": [
+        {
+          "ja": "今日は映画を見るあるいはショッピングをする予定です。",
+          "vi": "Hôm nay tôi định đi xem phim hoặc đi mua sắm."
+        }
+      ],
+      "en": "Indicates alternatives; 'A or B', 'either A or B'."
+    },
+    "N2|A。おまけに B。(~omake ni)": {
+      "vi": "A。おまけに B。 (ngoài A ra còn thêm B: hơn nữa, thêm vào đó, lại còn)",
+      "examples": [
+        {
+          "ja": "彼は遅刻した。おまけに宿題も忘れた。",
+          "vi": "Anh ấy đến muộn. Lại còn quên cả bài tập nữa."
+        }
+      ],
+      "en": "Expresses that in addition to A, there is also B; 'moreover', 'besides', 'not only', 'but also'."
+    },
+    "N2|A。さて B。(A. Sate B.)": {
+      "vi": "A。さて B。 (chuyển sang chuyện khác: nào, thôi thì, vậy thì)",
+      "examples": [
+        {
+          "ja": "今日の仕事が終わった。さて、これから帰るか。",
+          "vi": "Công việc hôm nay xong rồi. Nào, giờ về thôi nhỉ."
+        }
+      ],
+      "en": "Indicates a sudden change or shift in the topic or situation; 'now then', 'well', 'so'."
+    },
+    "N2|A。しかも B。(A. Shikamo B.)": {
+      "vi": "A。しかも B。 (bổ sung thông tin: hơn nữa, lại còn, thêm vào đó)",
+      "examples": [
+        {
+          "ja": "この料理は美味しいです。しかも、安いです。",
+          "vi": "Món này ngon. Hơn nữa lại rẻ."
+        }
+      ],
+      "en": "Expressing additional information; 'moreover', 'besides', 'furthermore'."
+    },
+    "N2|A。したがって B。(A. Shitagatte B.)": {
+      "vi": "A。したがって B。 (quan hệ nhân quả: do đó, vì vậy, cho nên)",
+      "examples": [
+        {
+          "ja": "今日は雨が降っています。したがって、傘を持って行きましょう。",
+          "vi": "Hôm nay trời đang mưa. Vì vậy, hãy mang ô theo nhé."
+        }
+      ],
+      "en": "Express a cause-and-effect relationship; 'therefore', 'consequently', 'so'."
+    },
+    "N2|A すなわち B。 (A sunawachi B)": {
+      "vi": "A すなわち B。 (A tương đương với B: tức là, nghĩa là, nói cách khác)",
+      "examples": [
+        {
+          "ja": "私は立派な成果を出したい、すなわち、成功したいのです。",
+          "vi": "Tôi muốn đạt được thành quả xuất sắc, tức là tôi muốn thành công."
+        }
+      ],
+      "en": "Express that A is equivalent to B; 'in other words', 'namely', 'that is to say'."
+    },
+    "N2|A。すると B。(~suruto)": {
+      "vi": "A。すると B。 (làm A thì B xảy ra tiếp theo: thế rồi, thì, khi đó)",
+      "examples": [
+        {
+          "ja": "電話をかけると、彼女が出ました。",
+          "vi": "Tôi gọi điện thì cô ấy nghe máy."
+        }
+      ],
+      "en": "Indicates that when action A is done, action or event B follows; 'then', 'when', 'if'."
+    },
+    "N2|A。そういえば B。(~souieba)": {
+      "vi": "A。そういえば B。 (nhớ ra điều liên quan đến A: nhắc mới nhớ, nhân tiện, à này)",
+      "examples": [
+        {
+          "ja": "映画。そういえば、彼は映画館で働いているんだ。",
+          "vi": "Phim à. Nhắc mới nhớ, anh ấy đang làm ở rạp chiếu phim đấy."
+        }
+      ],
+      "en": "Recalling something related to A; 'speaking of which', 'by the way', 'now that you mention it'."
+    },
+    "N2|A。そこで B。(~sokode)": {
+      "vi": "A。そこで B。 (vì thế, vì lý do đó (nên làm B))",
+      "examples": [
+        {
+          "ja": "明日は試験があります。そこで今晩勉強しようと思います。",
+          "vi": "Ngày mai có bài thi. Vì thế tối nay tôi định học bài."
+        }
+      ],
+      "en": "Expresses 'therefore' or 'because of that'."
+    },
+    "N2|A。それがB。(~sorega)": {
+      "vi": "A。それがB。 (đó chính là; chuyện là (B trái với dự đoán))",
+      "examples": [
+        {
+          "ja": "彼は勉強ができる。それが天才だ。",
+          "vi": "Anh ấy học giỏi. Đó chính là thiên tài."
+        }
+      ],
+      "en": "Expressing 'that's what A is; in other words, B'."
+    },
+    "N2|A。それで B。 (~sore de)": {
+      "vi": "A。それで B。 (chuỗi sự việc: rồi thì, vì vậy, cho nên)",
+      "examples": [
+        {
+          "ja": "昨日は雨が降っていた。それで公園に行かなかった。",
+          "vi": "Hôm qua trời mưa. Vì vậy tôi đã không đi công viên."
+        }
+      ],
+      "en": "Express a sequence of events; 'and then', 'so', 'because of that'."
+    },
+    "N2|A。それでも B。(~sore demo)": {
+      "vi": "A。それでも B。 (dù vậy, mặc dù thế, vẫn)",
+      "examples": [
+        {
+          "ja": "今日は日曜日です。それでも、仕事に行かなければなりません。",
+          "vi": "Hôm nay là chủ nhật. Dù vậy, tôi vẫn phải đi làm."
+        }
+      ],
+      "en": "Expresses 'even so', 'nevertheless', 'still', or 'but'; used to contrast two statements."
+    },
+    "N2|A。それなのに B。(~sorenanoni)": {
+      "vi": "A。それなのに B。 (thế mà, vậy mà (trái với điều mong đợi))",
+      "examples": [
+        {
+          "ja": "彼は頭がいい。それなのに、試験に落ちた。",
+          "vi": "Anh ấy thông minh. Vậy mà lại trượt kỳ thi."
+        }
+      ],
+      "en": "Express contrast or a contradiction between two situations or facts; 'even though', 'despite', 'but still'."
+    },
+    "N2|A。それなら B。(A. Sore nara B.)": {
+      "vi": "A。それなら B。 (nếu vậy thì, thế thì)",
+      "examples": [
+        {
+          "ja": "試験が近い。それなら、もっと勉強しなければならない。",
+          "vi": "Kỳ thi sắp đến. Nếu vậy thì phải học nhiều hơn nữa."
+        }
+      ],
+      "en": "Express 'if that's the case, then'; used to show a logical consequence or decision based on a given situation."
+    },
+    "N2|A それはそうと B。 (A Sore wa sou to B)": {
+      "vi": "A それはそうと B。 (đổi chủ đề: nhân tiện, mà này, à mà)",
+      "examples": [
+        {
+          "ja": "それはそうと、今日の天気はいいですね。",
+          "vi": "À mà này, thời tiết hôm nay đẹp nhỉ."
+        }
+      ],
+      "en": "Changing the topic; 'by the way', 'speaking of which'."
+    },
+    "N2|A。だが B。(~daga)": {
+      "vi": "A。だが B。 (nhưng, tuy nhiên)",
+      "examples": [
+        {
+          "ja": "このレストランは値段が高い。だが、味はとてもいい。",
+          "vi": "Nhà hàng này giá đắt. Nhưng mà vị rất ngon."
+        }
+      ],
+      "en": "Expresses contrasting ideas or statements; 'but', 'however'."
+    },
+    "N2|A。ただB。(~tada)": {
+      "vi": "A。ただB。 (có điều, chỉ có điều, tuy nhiên)",
+      "examples": [
+        {
+          "ja": "彼は頭がいい。ただ、努力はあまりしない。",
+          "vi": "Anh ấy thông minh. Có điều là không chịu cố gắng lắm."
+        }
+      ],
+      "en": "Express contrast between two situations; 'although', 'but', 'however'."
+    },
+    "N2|A。ただしB。 (A. Tadashi B)": {
+      "vi": "A。ただしB。 (thêm điều kiện hay ngoại lệ: tuy nhiên, nhưng mà, với điều kiện)",
+      "examples": [
+        {
+          "ja": "この部屋を使ってもいいです。ただし、使った後で掃除してください。",
+          "vi": "Bạn dùng phòng này cũng được. Nhưng dùng xong thì hãy dọn dẹp nhé."
+        }
+      ],
+      "en": "Adding a condition or exception to a statement; 'however', 'provided that', 'but only if'."
+    },
+    "N2|A。だって B。(Datte~)": {
+      "vi": "A。だって B。 (nêu lý do: vì, bởi vì, tại vì)",
+      "examples": [
+        {
+          "ja": "暇だって、映画を見に行こうよ。",
+          "vi": "Rảnh mà, đi xem phim đi."
+        }
+      ],
+      "en": "Used to give a reason, express cause or bring up a topic; 'because', 'since', 'it's just that'."
+    },
+    "N2|A。ちなみに B。(A. Chinamini B.)": {
+      "vi": "A。ちなみに B。 (bổ sung thông tin liên quan: nhân tiện, tiện thể nói luôn)",
+      "examples": [
+        {
+          "ja": "今日は授業がありません。ちなみに、明日も休みです。",
+          "vi": "Hôm nay không có giờ học. Nhân tiện, ngày mai cũng được nghỉ."
+        }
+      ],
+      "en": "Used to give additional information about the topic; 'by the way', 'incidentally'."
+    },
+    "N2|A。ということは B。 (A. To iu koto wa B.)": {
+      "vi": "A。ということは B。 (nếu A thì có nghĩa là B: như vậy có nghĩa là, tức là)",
+      "examples": [
+        {
+          "ja": "彼女が泣いている。ということは何か悲しいことがあったに違いない。",
+          "vi": "Cô ấy đang khóc. Như vậy chắc chắn là đã có chuyện gì buồn."
+        }
+      ],
+      "en": "Expresses the meaning 'if A, that means B' or 'A implies B'."
+    },
+    "N2|A。というのは B。(Toiu no wa~)": {
+      "vi": "A。というのは B。 (giải thích lý do cho A: là vì, bởi vì)",
+      "examples": [
+        {
+          "ja": "彼は非常に疲れています。というのは、昨夜、車で遠くまで行ってきたためです。",
+          "vi": "Anh ấy đang rất mệt. Là vì tối qua anh ấy đã lái xe đi rất xa."
+        }
+      ],
+      "en": "Used to give an explanation or provide additional information for A; 'that is to say', 'in other words'."
+    },
+    "N2|A。なおB。(A. Nao B.)": {
+      "vi": "A。なおB。 (bổ sung thông tin: ngoài ra, thêm vào đó, xin lưu ý)",
+      "examples": [
+        {
+          "ja": "明日は休みです。なお、月曜日も休みです。",
+          "vi": "Ngày mai được nghỉ. Ngoài ra, thứ hai cũng được nghỉ."
+        }
+      ],
+      "en": "Provides additional information; 'moreover', 'besides', 'in addition'."
+    },
+    "N2|A。もっとも B。(Motto mo ~)": {
+      "vi": "A。もっとも B。 (bổ sung ý trái lại: tuy nhiên, dù vậy, có điều)",
+      "examples": [
+        {
+          "ja": "彼は頭がいい。もっとも、勉強も大切だ。",
+          "vi": "Anh ấy thông minh. Tuy nhiên, việc học cũng quan trọng."
+        }
+      ],
+      "en": "Express contrasting opinions or facts; 'although', 'but', 'however'."
+    },
+    "N2|A。要するに B。(A. Yousuru ni B.)": {
+      "vi": "A。要するに B。 (tóm lại, nói tóm lại, nói ngắn gọn)",
+      "examples": [
+        {
+          "ja": "このプロジェクトは成功しました。要するに、私たちのチームは素晴らしい仕事をしました。",
+          "vi": "Dự án này đã thành công. Tóm lại, đội chúng tôi đã làm việc tuyệt vời."
+        }
+      ],
+      "en": "Expressing 'in short', 'in a nutshell', or 'to sum up' when restating or summarizing A as B."
+    },
+    "N2|Noun につき (〜ni tsuki)": {
+      "vi": "Noun につき (vì, do (lý do trong thông báo); mỗi, cho mỗi)",
+      "examples": [
+        {
+          "ja": "試験につき、今日は静かにしてください。",
+          "vi": "Vì đang thi nên hôm nay xin hãy giữ yên lặng."
+        }
+      ],
+      "en": "Indicates the reason, cause, or condition for something; 'due to', 'regarding', 'per'."
+    },
+    "N2|Noun にて (Noun nite)": {
+      "vi": "Noun にて (tại, ở, bằng (cách nói trang trọng))",
+      "examples": [
+        {
+          "ja": "駅前広場にてイベントが開催されます。",
+          "vi": "Sự kiện sẽ được tổ chức tại quảng trường trước nhà ga."
+        }
+      ],
+      "en": "Expresses location or means; 'at', 'in', 'by', 'with'."
+    },
+    "N2|Noun の ことだから (Noun no koto dakara)": {
+      "vi": "Noun の ことだから (vì là (người đó) nên chắc chắn)",
+      "examples": [
+        {
+          "ja": "彼は料理が得意なのことだから、美味しい料理を作ってくれるでしょう。",
+          "vi": "Anh ấy vốn nấu ăn giỏi nên chắc sẽ nấu món ngon cho mình."
+        }
+      ],
+      "en": "Used to provide a reason or explanation based on one's knowledge about the noun; 'since', 'because', 'knowing'."
+    },
+    "N2|Noun を はじめ (Noun wo hajime)": {
+      "vi": "Noun を はじめ (tiêu biểu là, trước hết là, bắt đầu từ)",
+      "examples": [
+        {
+          "ja": "日本料理をはじめ、さまざまな料理がこのレストランで楽しめます。",
+          "vi": "Ở nhà hàng này có thể thưởng thức nhiều món ăn, tiêu biểu là món Nhật."
+        }
+      ],
+      "en": "Meaning 'starting with', 'including', 'not only... but also'."
+    },
+    "N2|Noun を はじめとして (Noun wo hajimete shite)": {
+      "vi": "Noun を はじめとして (tiêu biểu là, bắt đầu từ, kể cả)",
+      "examples": [
+        {
+          "ja": "東京をはじめとして、日本にはたくさんの観光スポットがあります。",
+          "vi": "Nhật Bản có rất nhiều điểm tham quan, tiêu biểu là Tokyo."
+        }
+      ],
+      "en": "Expresses 'starting with', 'beginning with', or 'including'."
+    },
+    "N2|Noun を はじめとする Noun (Noun wo hajimete suru Noun)": {
+      "vi": "Noun を はじめとする Noun (danh từ tiêu biểu trong nhóm: như, kể cả, bắt đầu từ)",
+      "examples": [
+        {
+          "ja": "彼はフランス語をはじめとする外国語が話せる。",
+          "vi": "Anh ấy nói được các ngoại ngữ như tiếng Pháp."
+        }
+      ],
+      "en": "Indicates a representative example of a group; 'starting with', 'including', 'such as'."
+    },
+    "N2|Noun を めぐって (Noun wo megutte)": {
+      "vi": "Noun を めぐって (xoay quanh, liên quan đến, về)",
+      "examples": [
+        {
+          "ja": "環境問題をめぐって、多くの議論が行われています。",
+          "vi": "Xoay quanh vấn đề môi trường, nhiều cuộc tranh luận đang diễn ra."
+        }
+      ],
+      "en": "Concerning; with regard to; about"
+    },
+    "N2|Noun を めぐる Noun (Noun wo meguru Noun)": {
+      "vi": "Noun を めぐる Noun ((danh từ) xoay quanh, liên quan đến)",
+      "examples": [
+        {
+          "ja": "この事件をめぐる議論が続いています。",
+          "vi": "Cuộc tranh luận xoay quanh vụ việc này vẫn đang tiếp diễn."
+        }
+      ],
+      "en": "Indicate a situation or event revolving around a particular noun; 'concerning', 'regarding', 'pertaining to'."
+    },
+    "N2|Noun を もとに (Noun o moto ni)": {
+      "vi": "Noun を もとに (dựa trên, lấy làm cơ sở)",
+      "examples": [
+        {
+          "ja": "この映画は実話をもとに作られました。",
+          "vi": "Bộ phim này được làm dựa trên chuyện có thật."
+        }
+      ],
+      "en": "Based on; drawing from; using as a reference."
+    },
+    "N2|Noun を もとにして (Noun wo moto ni shite)": {
+      "vi": "Noun を もとにして (dựa vào, lấy làm cơ sở)",
+      "examples": [
+        {
+          "ja": "彼の意見をもとにして、計画を変更しました。",
+          "vi": "Dựa trên ý kiến của anh ấy, chúng tôi đã thay đổi kế hoạch."
+        }
+      ],
+      "en": "Based on; using; utilizing."
+    },
+    "N2|Verb ことなく (~kotonaku)": {
+      "vi": "Verb ことなく (mà không, không hề)",
+      "examples": [
+        {
+          "ja": "彼女は泣くことなく帰ってしまいました。",
+          "vi": "Cô ấy đã ra về mà không hề khóc."
+        }
+      ],
+      "en": "Means 'without doing', 'not doing', or 'without happening'."
+    },
+    "N2|Verb ないことには Verb ない (~nai koto ni wa ~ nai)": {
+      "vi": "Verb ないことには Verb ない (nếu không làm A thì không thể B)",
+      "examples": [
+        {
+          "ja": "薬を飲まないことには、病気が治らない。",
+          "vi": "Nếu không uống thuốc thì bệnh sẽ không khỏi."
+        }
+      ],
+      "en": "Express that something cannot be done without meeting a certain condition."
+    },
+    "N2|～あげく (~ageku)": {
+      "vi": "～あげく (sau một hồi... cuối cùng (kết quả không tốt))",
+      "examples": [
+        {
+          "ja": "長い時間待ってあげく、電車が来なかった。",
+          "vi": "Chờ rất lâu, rốt cuộc tàu vẫn không đến."
+        }
+      ],
+      "en": "Expresses the outcome of a series of actions or events; 'in the end', 'finally', 'after'."
+    },
+    "N2|～あまり (〜amari)": {
+      "vi": "～あまり (vì quá... nên)",
+      "examples": [
+        {
+          "ja": "昨日は疲れすぎたあまり、朝まで眠り続けました。",
+          "vi": "Hôm qua vì quá mệt nên tôi ngủ một mạch đến sáng."
+        }
+      ],
+      "en": "Expresses the result of doing something excessively or beyond a certain point."
+    },
+    "N2|～うちに (〜uchi ni)": {
+      "vi": "～うちに (trong lúc còn, nhân lúc còn)",
+      "examples": [
+        {
+          "ja": "元気なうちに、旅行を楽しんでください。",
+          "vi": "Nhân lúc còn khỏe, hãy tận hưởng những chuyến du lịch nhé."
+        }
+      ],
+      "en": "Expresses doing something while a certain condition still holds; 'while', 'before', 'as long as'."
+    },
+    "N2|～がい (〜gai)": {
+      "vi": "～がい (đáng để làm, giá trị của việc làm)",
+      "examples": [
+        {
+          "ja": "この本を読むがいです。",
+          "vi": "Cuốn sách này rất đáng đọc."
+        }
+      ],
+      "en": "Expresses 'worth doing' for verbs."
+    },
+    "N2|～かいがあって (〜kaiga atte)": {
+      "vi": "～かいがあって (nỗ lực đã được đền đáp, bõ công)",
+      "examples": [
+        {
+          "ja": "毎日勉強するかいがあって、テストに合格した。",
+          "vi": "Bõ công ngày nào cũng học, tôi đã đỗ bài kiểm tra."
+        }
+      ],
+      "en": "Used to express that an effort is worth it or has value; 'to be worth the effort' or 'to pay off'."
+    },
+    "N2|～かいもなく (〜kai mo naku)": {
+      "vi": "～かいもなく (uổng công, dù đã cố gắng mà không có kết quả)",
+      "examples": [
+        {
+          "ja": "長い間苦労したが、かいもなく失敗した。",
+          "vi": "Vất vả suốt một thời gian dài nhưng uổng công, vẫn thất bại."
+        }
+      ],
+      "en": "Expresses the meaning of 'without worth', 'in vain', 'fruitless'."
+    },
+    "N2|～かける (〜kakeru)": {
+      "vi": "～かける (đang dở dang, làm dở)",
+      "examples": [
+        {
+          "ja": "彼女は食べかけのリンゴを置いて出かけた。",
+          "vi": "Cô ấy để lại quả táo đang ăn dở rồi đi ra ngoài."
+        }
+      ],
+      "en": "Indicates a process or action is 'in progress' or 'halfway'."
+    },
+    "N2|～がち (〜gachi)": {
+      "vi": "～がち (hay, thường hay, dễ bị (điều không tốt))",
+      "examples": [
+        {
+          "ja": "彼は風邪を引きがちです。",
+          "vi": "Anh ấy hay bị cảm."
+        }
+      ],
+      "en": "Expresses that something tends to occur frequently or habitually."
+    },
+    "N2|～か～ないかのうちに (〜ka〜naika no uchi ni)": {
+      "vi": "～か～ないかのうちに (vừa mới... thì đã, gần như ngay lập tức)",
+      "examples": [
+        {
+          "ja": "駅に着くか着かないかのうちに、雨が降り出した。",
+          "vi": "Vừa mới đến ga thì trời đã đổ mưa."
+        }
+      ],
+      "en": "Expresses an action that occurs immediately after another action; 'as soon as', 'no sooner than', 'the moment'."
+    },
+    "N2|～かねない (〜kane nai)": {
+      "vi": "～かねない (có thể dẫn đến (kết quả xấu))",
+      "examples": [
+        {
+          "ja": "彼はそんなに無責任だから、約束を守れかねない。",
+          "vi": "Anh ấy vô trách nhiệm như thế nên có thể sẽ không giữ lời hứa."
+        }
+      ],
+      "en": "Express the likelihood of a negative outcome or consequence."
+    },
+    "N2|～かねる (〜kaneru)": {
+      "vi": "～かねる (khó mà, không thể (cách nói lịch sự))",
+      "examples": [
+        {
+          "ja": "その問題は難しいので、私には解決できかねます。",
+          "vi": "Vấn đề đó khó nên tôi khó mà giải quyết được."
+        }
+      ],
+      "en": "Express inability or impossibility of doing an action."
+    },
+    "N2|～かのようだ (〜ka no you da)": {
+      "vi": "～かのようだ (như thể là, cứ như là)",
+      "examples": [
+        {
+          "ja": "彼は犬が怖いかのようだ。",
+          "vi": "Anh ấy cứ như là sợ chó vậy."
+        }
+      ],
+      "en": "Express a similarity or comparison; 'as if', 'like', 'as though'."
+    },
+    "N2|～か～まいか (〜ka 〜maika)": {
+      "vi": "～か～まいか (nên làm hay không (phân vân))",
+      "examples": [
+        {
+          "ja": "このプロジェクトを引き受けるか引き受けないまいか、まだ決めていない。",
+          "vi": "Tôi vẫn chưa quyết định có nhận dự án này hay không."
+        }
+      ],
+      "en": "Used to express a dilemma or indecision between two options or actions"
+    },
+    "N2|～からこそ (〜kara koso)": {
+      "vi": "～からこそ (chính vì... nên (nhấn mạnh lý do))",
+      "examples": [
+        {
+          "ja": "失敗したからこそ、成功の意味がわかる。",
+          "vi": "Chính vì đã thất bại nên mới hiểu được ý nghĩa của thành công."
+        }
+      ],
+      "en": "Express the emphasis on the reason; 'precisely because', 'it is precisely because'."
+    },
+    "N2|〜からして (〜kara shite)": {
+      "vi": "〜からして (ngay từ (một điểm) đã, xét từ)",
+      "examples": [
+        {
+          "ja": "彼の顔つきからして、何か悪いことがあったのだろう。",
+          "vi": "Nhìn vẻ mặt anh ấy thì chắc đã có chuyện gì không hay."
+        }
+      ],
+      "en": "Expresses that something is exceptional, unusual or negative from a certain aspect or point."
+    },
+    "N2|～からすると (〜kara suru to)": {
+      "vi": "～からすると (xét theo, đánh giá từ, theo quan điểm)",
+      "examples": [
+        {
+          "ja": "経験からすると、この仕事は難しいでしょう。",
+          "vi": "Theo kinh nghiệm thì công việc này chắc sẽ khó."
+        }
+      ],
+      "en": "Expresses a judgment or evaluation based on a certain standard; 'from this perspective', 'considering', 'judging from'."
+    },
+    "N2|～からといって (〜kara to itte)": {
+      "vi": "～からといって (không phải cứ... là, dù... cũng không hẳn)",
+      "examples": [
+        {
+          "ja": "雨が降ったからといって、試合が中止になるわけではありません。",
+          "vi": "Không phải cứ mưa là trận đấu sẽ bị hủy."
+        }
+      ],
+      "en": "Expresses 'just because...doesn't mean' or 'even though...not necessarily'."
+    },
+    "N2|～から～にかけて (〜kara 〜ni kakete)": {
+      "vi": "～から～にかけて (từ... đến (khoảng thời gian, không gian))",
+      "examples": [
+        {
+          "ja": "午前９時から午後５時にかけて、仕事をしています。",
+          "vi": "Tôi làm việc từ 9 giờ sáng đến 5 giờ chiều."
+        }
+      ],
+      "en": "Expresses a range of time, space or quantities; 'from...to', 'between...and', 'over'."
+    },
+    "N2|～からには (〜kara niwa)": {
+      "vi": "～からには (một khi đã... thì phải)",
+      "examples": [
+        {
+          "ja": "試験に合格したからには、一所懸命働かなければならない。",
+          "vi": "Một khi đã đỗ kỳ thi thì phải làm việc hết sức mình."
+        }
+      ],
+      "en": "Express a sense of responsibility or determination; 'since', 'now that', 'if'."
+    },
+    "N2|～から見ると (〜kara miru to)": {
+      "vi": "～から見ると (nhìn từ, xét theo góc độ)",
+      "examples": [
+        {
+          "ja": "費用から見ると、このプランはお得です。",
+          "vi": "Xét về chi phí thì phương án này có lợi."
+        }
+      ],
+      "en": "Express a perspective or point of view; 'from the standpoint of', 'in terms of', 'from the perspective of'."
+    },
+    "N2|～から言うと (〜kara iuto)": {
+      "vi": "～から言うと (nói về, xét về mặt)",
+      "examples": [
+        {
+          "ja": "値段から言うと、この商品が最もお得です。",
+          "vi": "Xét về giá cả thì sản phẩm này là có lợi nhất."
+        }
+      ],
+      "en": "Express a judgment or opinion based on a specific criterion; 'speaking from', 'in terms of', 'from the viewpoint of'."
+    },
+    "N2|～くせして (〜kuse shite)": {
+      "vi": "～くせして (vậy mà, mặc dù (chê trách))",
+      "examples": [
+        {
+          "ja": "彼はいつも遅刻してくるくせに、自分が待たされるのが嫌いだ。",
+          "vi": "Anh ta lúc nào cũng đến muộn, vậy mà lại ghét bị người khác bắt chờ."
+        }
+      ],
+      "en": "Used to criticize someone for doing something contrary to their nature or appearance."
+    },
+    "N2|～ことから (〜koto kara)": {
+      "vi": "～ことから (vì, do, từ việc)",
+      "examples": [
+        {
+          "ja": "彼は毎日運動することから、体が丈夫です。",
+          "vi": "Vì ngày nào cũng tập thể dục nên cơ thể anh ấy khỏe mạnh."
+        }
+      ],
+      "en": "Indicates the reason or basis for something; 'because', 'since', 'due to'."
+    },
+    "N2|～ことに (〜koto ni)": {
+      "vi": "～ことに (thật là (cảm xúc về sự việc))",
+      "examples": [
+        {
+          "ja": "彼が急に帰国することに驚いた。",
+          "vi": "Tôi ngạc nhiên vì anh ấy đột ngột về nước."
+        }
+      ],
+      "en": "Used to express feelings or emotions towards a situation, an action, or an outcome."
+    },
+    "N2|～ことになっている (〜koto ni natte iru)": {
+      "vi": "～ことになっている (theo quy định, đã được quyết định là)",
+      "examples": [
+        {
+          "ja": "日本では、左側を運転することになっています。",
+          "vi": "Ở Nhật Bản, theo quy định thì xe chạy bên trái."
+        }
+      ],
+      "en": "Expressing something is supposed to be or has been decided."
+    },
+    "N2|～さえ～ば (〜sae 〜ba)": {
+      "vi": "～さえ～ば (chỉ cần... là)",
+      "examples": [
+        {
+          "ja": "お金さえあれば、幸せです。",
+          "vi": "Chỉ cần có tiền là tôi hạnh phúc."
+        }
+      ],
+      "en": "As long as, if only, providing that."
+    },
+    "N2|～ざるを得ない (〜zaru wo enai)": {
+      "vi": "～ざるを得ない (buộc phải, không thể không)",
+      "examples": [
+        {
+          "ja": "この仕事は締め切りが近いので、残業するざるを得ない。",
+          "vi": "Công việc này sắp đến hạn chót nên tôi buộc phải làm thêm giờ."
+        }
+      ],
+      "en": "To have no choice but to; cannot help but."
+    },
+    "N2|～ずにはいられない (〜zu ni wa irarenai)": {
+      "vi": "～ずにはいられない (không thể không, không kìm được)",
+      "examples": [
+        {
+          "ja": "この曲を聞くと、歌わずにはいられない。",
+          "vi": "Cứ nghe bài hát này là tôi không thể không hát theo."
+        }
+      ],
+      "en": "Cannot help but; cannot resist to; always."
+    },
+    "N2|～そうにない (〜sou ni nai)": {
+      "vi": "～そうにない (có vẻ không, khó mà)",
+      "examples": [
+        {
+          "ja": "この雨が止むそうにない。",
+          "vi": "Trận mưa này có vẻ không tạnh được."
+        }
+      ],
+      "en": "Express the unlikelihood of something happening; 'not likely', 'doesn't seem'."
+    },
+    "N2|～たかと思ったら (〜ta ka to omottara)": {
+      "vi": "～たかと思ったら (vừa mới... thì đã (liền ngay sau đó))",
+      "examples": [
+        {
+          "ja": "電話をかけたかと思ったら、すぐに彼女が出た。",
+          "vi": "Vừa gọi điện thì cô ấy đã nghe máy ngay."
+        }
+      ],
+      "en": "Express a sequence of events happening in quick succession or immediately following; 'as soon as', 'no sooner than'."
+    },
+    "N2|～たきり (〜takiri)": {
+      "vi": "～たきり (kể từ khi... là (không thay đổi gì nữa))",
+      "examples": [
+        {
+          "ja": "彼は会社を辞めたきり、連絡がない。",
+          "vi": "Từ khi nghỉ việc ở công ty, anh ấy không liên lạc gì nữa."
+        }
+      ],
+      "en": "Express 'since then' or 'after'; used to indicate that an action occurred once and has not been repeated or that a state has continued since a certain event or time."
+    },
+    "N2|～だけあって (〜dake atte)": {
+      "vi": "～だけあって (quả đúng là, không hổ danh là)",
+      "examples": [
+        {
+          "ja": "彼は日本語が上手だけあって、日本人のように話すことができる。",
+          "vi": "Quả đúng là giỏi tiếng Nhật, anh ấy có thể nói như người Nhật."
+        }
+      ],
+      "en": "Expresses that something is as expected or deserves its reputation."
+    },
+    "N2|～だけましだ (〜dake mashi da)": {
+      "vi": "～だけましだ (thế vẫn còn may, còn hơn)",
+      "examples": [
+        {
+          "ja": "失敗するだけましだ。",
+          "vi": "Thất bại thế vẫn còn may."
+        }
+      ],
+      "en": "Express a comparison; 'better than', 'at least', 'preferable'."
+    },
+    "N2|～たところ (〜ta tokoro)": {
+      "vi": "～たところ (sau khi làm... thì (kết quả))",
+      "examples": [
+        {
+          "ja": "掃除したところ、部屋がずっとキレイになりました。",
+          "vi": "Sau khi dọn dẹp thì căn phòng sạch hơn hẳn."
+        }
+      ],
+      "en": "Used to describe an action that has just been completed, often followed by a result or observation."
+    },
+    "N2|～たとたん (〜ta totan)": {
+      "vi": "～たとたん (vừa mới... thì ngay lập tức)",
+      "examples": [
+        {
+          "ja": "ドアを開けたとたん、雨が降り始めた。",
+          "vi": "Vừa mở cửa ra thì trời bắt đầu mưa."
+        }
+      ],
+      "en": "Express the moment something happens; 'as soon as', 'just when'."
+    },
+    "N2|～だらけ (〜darake)": {
+      "vi": "～だらけ (đầy, toàn là (điều không tốt))",
+      "examples": [
+        {
+          "ja": "彼の部屋はゴミだらけだ。",
+          "vi": "Phòng anh ấy toàn là rác."
+        }
+      ],
+      "en": "Indicates that something is full of or covered with a certain characteristic or quality."
+    },
+    "N2|～っこない (〜kkonai)": {
+      "vi": "～っこない (không đời nào, không thể nào)",
+      "examples": [
+        {
+          "ja": "こんなに雪が降っているんだから、学校に間に合っこない。",
+          "vi": "Tuyết rơi nhiều thế này thì không đời nào đến trường kịp."
+        }
+      ],
+      "en": "Expresses the impossibility or very low probability of something happening; 'no way', 'no chance', 'impossible'."
+    },
+    "N2|～つつ (〜tsutsu)": {
+      "vi": "～つつ (vừa... vừa; tuy... nhưng)",
+      "examples": [
+        {
+          "ja": "彼はテレビを見つつ、宿題をしていました。",
+          "vi": "Anh ấy vừa xem tivi vừa làm bài tập."
+        }
+      ],
+      "en": "Shows two actions happening simultaneously; 'while', 'although'."
+    },
+    "N2|～つつある (〜tsutsu aru)": {
+      "vi": "～つつある (đang dần dần, đang trong quá trình)",
+      "examples": [
+        {
+          "ja": "地球温暖化は進行つつある。",
+          "vi": "Hiện tượng nóng lên toàn cầu đang dần tiến triển."
+        }
+      ],
+      "en": "Expresses the ongoing process or gradual change."
+    },
+    "N2|～っぱなし (〜ppanashi)": {
+      "vi": "～っぱなし (để nguyên, suốt, liên tục)",
+      "examples": [
+        {
+          "ja": "窓を開けっぱなしにして、部屋が寒くなってしまった。",
+          "vi": "Tôi để cửa sổ mở suốt nên phòng trở nên lạnh."
+        }
+      ],
+      "en": "Express a continuous action or state; 'leave as is', 'non-stop', 'the whole time'."
+    },
+    "N2|～っぽい (〜ppoi)": {
+      "vi": "～っぽい (có vẻ như, có tính chất của)",
+      "examples": [
+        {
+          "ja": "彼女は大人っぽい服を着ている。",
+          "vi": "Cô ấy mặc quần áo trông người lớn."
+        }
+      ],
+      "en": "Used to indicate that something has the appearance, characteristics, or behavior of something else."
+    },
+    "N2|～ていられない (〜te irarenai)": {
+      "vi": "～ていられない (không thể cứ... mãi được)",
+      "examples": [
+        {
+          "ja": "こんなに忙しいのに、無理に遊んでいられない。",
+          "vi": "Bận thế này thì không thể cứ ngồi chơi được."
+        }
+      ],
+      "en": "Expresses that one cannot afford to do something; 'can't keep on', 'unable to continue'."
+    },
+    "N2|～てかなわない (〜te kanawanai)": {
+      "vi": "～てかなわない (... không chịu nổi)",
+      "examples": [
+        {
+          "ja": "この暑さにはもう我慢してかなわない。",
+          "vi": "Cái nóng này tôi không thể chịu đựng thêm nữa."
+        }
+      ],
+      "en": "Expresses that something cannot be endured, tolerated, or is uncontrollable."
+    },
+    "N2|～てからでないと (〜te kara denai to)": {
+      "vi": "～てからでないと (nếu chưa làm xong... thì không thể)",
+      "examples": [
+        {
+          "ja": "宿題をしてからでないと、遊びに行けません。",
+          "vi": "Chưa làm bài tập xong thì không được đi chơi."
+        }
+      ],
+      "en": "Indicates that something cannot be done before a certain action is completed; 'not until', 'only after'."
+    },
+    "N2|～てこそ (〜te koso)": {
+      "vi": "～てこそ (chỉ khi... mới, chính vì... mới)",
+      "examples": [
+        {
+          "ja": "勉強してこそ、テストに合格します。",
+          "vi": "Chỉ khi học hành chăm chỉ mới đỗ bài kiểm tra."
+        }
+      ],
+      "en": "Emphasizes the condition; 'only when', 'precisely because'"
+    },
+    "N2|～でしょうがない (〜deshou ga nai)": {
+      "vi": "～でしょうがない (vô cùng, không chịu nổi; đành chịu)",
+      "examples": [
+        {
+          "ja": "雨が降っているから、家にいるでしょうがない。",
+          "vi": "Trời đang mưa nên đành phải ở nhà thôi."
+        }
+      ],
+      "en": "Can't be helped; inevitable."
+    },
+    "N2|～でたまらない (〜de tamaranai)": {
+      "vi": "～でたまらない (... không chịu nổi, vô cùng)",
+      "examples": [
+        {
+          "ja": "この暑さでたまらない。",
+          "vi": "Cái nóng này thật không chịu nổi."
+        }
+      ],
+      "en": "Express strong feelings or emotions; 'can't stand', 'can't resist', 'extremely'."
+    },
+    "N2|～でならない (〜de naranai)": {
+      "vi": "～でならない (không kìm được, vô cùng (cảm xúc))",
+      "examples": [
+        {
+          "ja": "彼の演技が上手すぎて、感動でならない。",
+          "vi": "Anh ấy diễn quá hay, tôi xúc động không kìm được."
+        }
+      ],
+      "en": "Indicates a strong feeling or emotion; 'I cannot help but', 'I cannot stand'."
+    },
+    "N2|～でばかりはいられない (〜de bakari wa irarenai)": {
+      "vi": "～でばかりはいられない (không thể cứ mãi..., không thể chỉ...)",
+      "examples": [
+        {
+          "ja": "いつも助けてもらってばかりはいられない。",
+          "vi": "Không thể cứ mãi nhờ người khác giúp được."
+        }
+      ],
+      "en": "Cannot afford to only do something; cannot always rely on"
+    },
+    "N2|～ではないか (〜de wa nai ka)": {
+      "vi": "～ではないか (chẳng phải là... sao (khẳng định mạnh))",
+      "examples": [
+        {
+          "ja": "彼は優秀な学生ではないか。",
+          "vi": "Chẳng phải anh ấy là học sinh giỏi sao?"
+        }
+      ],
+      "en": "Used to show a strong assertion or emphasis on one's opinion; 'isn't it', 'aren't you', 'right'."
+    },
+    "N2|～てはならない (〜te wa naranai)": {
+      "vi": "～てはならない (không được, cấm)",
+      "examples": [
+        {
+          "ja": "ここでタバコを吸ってはならない。",
+          "vi": "Không được hút thuốc ở đây."
+        }
+      ],
+      "en": "Express prohibition; 'must not', 'cannot', 'should not'."
+    },
+    "N2|～てまで (〜te made)": {
+      "vi": "～てまで (đến mức, thậm chí đến cả)",
+      "examples": [
+        {
+          "ja": "彼は試験に合格するために、徹夜してまで勉強しました。",
+          "vi": "Để đỗ kỳ thi, anh ấy đã học đến mức thức trắng đêm."
+        }
+      ],
+      "en": "Express the extent someone goes in order to achieve something; 'to the point of', 'even', 'so far as to'."
+    },
+    "N2|～て当然だ (〜te touzen da)": {
+      "vi": "～て当然だ (... là đương nhiên)",
+      "examples": [
+        {
+          "ja": "彼は毎日勉強しているから、試験に合格して当然だ。",
+          "vi": "Ngày nào anh ấy cũng học nên đỗ kỳ thi là đương nhiên."
+        }
+      ],
+      "en": "Expresses that something is natural or expected."
+    },
+    "N2|～というものだ (〜to iu mono da)": {
+      "vi": "～というものだ (đó mới gọi là, lẽ thường là)",
+      "examples": [
+        {
+          "ja": "若者の熱情は尊敬するに値するというものだ。",
+          "vi": "Nhiệt huyết của người trẻ thật đáng được tôn trọng."
+        }
+      ],
+      "en": "Expressing a general rule or common sense."
+    },
+    "N2|どうにか～ないものか (dou ni ka ~ nai mono ka)": {
+      "vi": "どうにか～ないものか (có cách nào... không nhỉ (mong muốn mạnh))",
+      "examples": [
+        {
+          "ja": "どうにかこの仕事を終わらせないものか。",
+          "vi": "Có cách nào làm xong công việc này không nhỉ?"
+        }
+      ],
+      "en": "Express a strong desire or wish for something to be possible."
+    },
+    "N2|～とおり (〜toori)": {
+      "vi": "～とおり (theo đúng như, như)",
+      "examples": [
+        {
+          "ja": "先生が言ったとおりに宿題をしました。",
+          "vi": "Tôi đã làm bài tập theo đúng như thầy giáo nói."
+        }
+      ],
+      "en": "Express doing as instructed or how something is; 'as', 'according to', 'following'."
+    },
+    "N2|～とか (〜to ka)": {
+      "vi": "～とか (nào là... nào là; nghe nói là)",
+      "examples": [
+        {
+          "ja": "休日は映画を見るとか、買い物に行くとかして過ごします。",
+          "vi": "Ngày nghỉ tôi thường xem phim, đi mua sắm, v.v."
+        }
+      ],
+      "en": "Used to list examples or express uncertainty; 'such as', 'like', 'or something like that'."
+    },
+    "N2|～ところ (〜tokoro)": {
+      "vi": "～ところ (đúng lúc, sắp sửa, đang lúc)",
+      "examples": [
+        {
+          "ja": "出かけるところです。",
+          "vi": "Tôi đang chuẩn bị ra ngoài."
+        }
+      ],
+      "en": "Express a specific point in time or state; 'when', 'just about', 'in the middle of'."
+    },
+    "N2|～どころか (〜dokoroka)": {
+      "vi": "～どころか (không những không... mà còn, nói gì đến)",
+      "examples": [
+        {
+          "ja": "彼は歌が上手どころか、プロの歌手みたいだ。",
+          "vi": "Anh ấy không chỉ hát hay mà còn như ca sĩ chuyên nghiệp."
+        }
+      ],
+      "en": "Express 'far from', 'not just', 'not only', or 'to say nothing of'."
+    },
+    "N2|～どころではない (〜Dokoro de wa nai)": {
+      "vi": "～どころではない (không phải lúc để, không thể nào)",
+      "examples": [
+        {
+          "ja": "彼の失敗を笑うどころではない。我々も同じように失敗している。",
+          "vi": "Không phải lúc để cười thất bại của anh ấy. Chúng ta cũng thất bại y như vậy."
+        }
+      ],
+      "en": "Not the time/place for; far from; not merely"
+    },
+    "N2|～としたら (〜to shitara)": {
+      "vi": "～としたら (nếu giả sử, giả như)",
+      "examples": [
+        {
+          "ja": "明日雨が降るとしたら、傘を持って行きましょう。",
+          "vi": "Nếu ngày mai trời mưa thì hãy mang ô theo nhé."
+        }
+      ],
+      "en": "Express a hypothetical situation; 'if', 'suppose', 'assuming'."
+    },
+    "N2|～としても (〜to shite mo)": {
+      "vi": "～としても (dù cho, cho dù)",
+      "examples": [
+        {
+          "ja": "雨が降っても、レースは開催されます。",
+          "vi": "Dù trời mưa, cuộc đua vẫn sẽ được tổ chức."
+        }
+      ],
+      "en": "Even if, despite, although"
+    },
+    "N2|～と～ともに (〜to 〜tomoni)": {
+      "vi": "～と～ともに (cùng với, đồng thời với)",
+      "examples": [
+        {
+          "ja": "彼が来るとともに、パーティーが始まりました。",
+          "vi": "Anh ấy vừa đến thì bữa tiệc cũng bắt đầu."
+        }
+      ],
+      "en": "Expresses 'together with' or 'along with'; used to describe two events or actions happening simultaneously or in parallel."
+    },
+    "N2|～とは限らない (〜to wa kagiranai)": {
+      "vi": "～とは限らない (không hẳn là, chưa chắc)",
+      "examples": [
+        {
+          "ja": "いつも勉強しているとは限らない。",
+          "vi": "Chưa chắc lúc nào cũng đang học."
+        }
+      ],
+      "en": "Expresses that something is not necessarily true; 'not always', 'not necessarily'."
+    },
+    "N2|～ないことはない (〜nai koto wa nai)": {
+      "vi": "～ないことはない (không phải là không, cũng có thể)",
+      "examples": [
+        {
+          "ja": "彼が来ないことはない。",
+          "vi": "Không phải là anh ấy không đến."
+        }
+      ],
+      "en": "Express that something is not impossible, meaning it is possible or could be done."
+    },
+    "N2|～ないこともない (〜nai koto mo nai)": {
+      "vi": "～ないこともない (không phải là không (nhưng miễn cưỡng))",
+      "examples": [
+        {
+          "ja": "この問題を解くことはできないこともないけど、難しいです。",
+          "vi": "Bài này không phải là không giải được, nhưng khó."
+        }
+      ],
+      "en": "Used to express an action or state is 'not impossible', but emphasizes reluctance or doubt."
+    },
+    "N2|～ないではいられない (〜nai de wa irarenai)": {
+      "vi": "～ないではいられない (không thể không, không kìm được)",
+      "examples": [
+        {
+          "ja": "この映画はとても感動的で、泣かないではいられなかった。",
+          "vi": "Bộ phim này rất cảm động, tôi đã không kìm được nước mắt."
+        }
+      ],
+      "en": "Cannot help but; cannot avoid; unable to refrain from."
+    },
+    "N2|～ながら (〜nagara)": {
+      "vi": "～ながら (vừa... vừa (hai việc cùng lúc))",
+      "examples": [
+        {
+          "ja": "テレビを見ながら宿題をしています。",
+          "vi": "Tôi vừa xem tivi vừa làm bài tập."
+        }
+      ],
+      "en": "Express doing two things simultaneously or at the same time."
+    },
+    "N2|～にあたり (〜ni atari)": {
+      "vi": "～にあたり (nhân dịp, khi, vào lúc)",
+      "examples": [
+        {
+          "ja": "入学にあたり、必要な書類を準備してください。",
+          "vi": "Khi nhập học, hãy chuẩn bị các giấy tờ cần thiết."
+        }
+      ],
+      "en": "Expresses the meaning of 'at the time of', 'in', 'on', or 'upon'."
+    },
+    "N2|～において (〜ni oite)": {
+      "vi": "～において (tại, ở, trong (cách nói trang trọng))",
+      "examples": [
+        {
+          "ja": "この大学において、英語のクラスが一番人気があります。",
+          "vi": "Tại trường đại học này, lớp tiếng Anh được yêu thích nhất."
+        }
+      ],
+      "en": "Indicates the place, time, or context where an action or event occurs; 'in', 'at', 'on', 'regarding'."
+    },
+    "N2|～にかかわらず (〜ni kakawarazu)": {
+      "vi": "～にかかわらず (bất kể, không phân biệt)",
+      "examples": [
+        {
+          "ja": "天気にかかわらず、今日の試合は行われます。",
+          "vi": "Bất kể thời tiết, trận đấu hôm nay vẫn diễn ra."
+        }
+      ],
+      "en": "Regardless of; irrespective of; despite."
+    },
+    "N2|～にかけては (〜ni kakete wa)": {
+      "vi": "～にかけては (về khoản (giỏi nhất), riêng về)",
+      "examples": [
+        {
+          "ja": "料理の腕前にかけては、彼女は誰にも負けません。",
+          "vi": "Riêng về tay nghề nấu ăn thì cô ấy không thua ai."
+        }
+      ],
+      "en": "Indicates a specific area or aspect in which someone or something excels."
+    },
+    "N2|～にしたがって (〜ni shitagatte)": {
+      "vi": "～にしたがって (càng... càng, theo)",
+      "examples": [
+        {
+          "ja": "成長にしたがって、この植物の葉が大きくなります。",
+          "vi": "Cây này càng lớn thì lá càng to."
+        }
+      ],
+      "en": "Expresses a natural consequence or a change that occurs according to something else; 'as', 'with', 'in accordance with'."
+    },
+    "N2|～にしたら (〜ni shitara)": {
+      "vi": "～にしたら (đối với (người đó) thì, theo lập trường của)",
+      "examples": [
+        {
+          "ja": "彼にしたら、早く帰りたいだろう。",
+          "vi": "Đối với anh ấy thì chắc là muốn về sớm."
+        }
+      ],
+      "en": "Express a point of view; 'from the perspective of', 'if I were'."
+    },
+    "N2|～にしろ～にしろ (〜ni shiro 〜ni shiro)": {
+      "vi": "～にしろ～にしろ (dù là... hay là)",
+      "examples": [
+        {
+          "ja": "行くにしろ行かないにしろ、早く決めてください。",
+          "vi": "Dù đi hay không đi, hãy quyết định sớm nhé."
+        }
+      ],
+      "en": "Expresses 'either way', 'in any case', 'be it...', used when presenting two alternatives."
+    },
+    "N2|～につけ～につけ (〜ni tsuke 〜ni tsuke)": {
+      "vi": "～につけ～につけ (mỗi khi, hễ... là; dù... hay)",
+      "examples": [
+        {
+          "ja": "外国へ行くにつけ、勉強するにつけ、言葉の壁にぶつかる。",
+          "vi": "Dù là đi nước ngoài hay học tập, tôi đều vấp phải rào cản ngôn ngữ."
+        }
+      ],
+      "en": "Expresses 'whenever', 'each time', 'whether...or'."
+    },
+    "N2|～につれて (〜ni tsurete)": {
+      "vi": "～につれて (càng... càng, cùng với)",
+      "examples": [
+        {
+          "ja": "年を取るにつれて、健康に気をつけなければなりません。",
+          "vi": "Càng có tuổi thì càng phải chú ý đến sức khỏe."
+        }
+      ],
+      "en": "Expresses the idea that as one thing changes, so does another; 'as', 'along with', 'while'."
+    },
+    "N2|～にともなって (〜ni tomonatte)": {
+      "vi": "～にともなって (cùng với, kéo theo)",
+      "examples": [
+        {
+          "ja": "人口が増えるにともなって、交通渋滞も悪化しています。",
+          "vi": "Cùng với việc dân số tăng, tình trạng tắc đường cũng ngày càng tệ."
+        }
+      ],
+      "en": "Expresses 'along with' or 'as a result of'; indicates that one event occurs along with another."
+    },
+    "N2|～にほかならない (〜ni hoka naranai)": {
+      "vi": "～にほかならない (không gì khác ngoài, chính là)",
+      "examples": [
+        {
+          "ja": "彼の成功は努力にほかならない。",
+          "vi": "Thành công của anh ấy không gì khác ngoài sự nỗ lực."
+        }
+      ],
+      "en": "Express that something is 'nothing but' or 'none other than'."
+    },
+    "N2|～にもかかわらず (〜ni mo kakawarazu)": {
+      "vi": "～にもかかわらず (mặc dù, bất chấp)",
+      "examples": [
+        {
+          "ja": "忙しいにもかかわらず、彼は毎日運動しています。",
+          "vi": "Mặc dù bận, ngày nào anh ấy cũng tập thể dục."
+        }
+      ],
+      "en": "Expresses 'despite', 'in spite of' or 'even though'."
+    },
+    "N2|～により (〜ni yori)": {
+      "vi": "～により (do, bởi, bằng)",
+      "examples": [
+        {
+          "ja": "この事故は運転手の不注意により起こりました。",
+          "vi": "Tai nạn này xảy ra do sự bất cẩn của tài xế."
+        }
+      ],
+      "en": "Indicates the reason, method, or means by which something happens; 'by', 'through', 'due to'."
+    },
+    "N2|～にわたって (〜ni watatte)": {
+      "vi": "～にわたって (suốt, trải dài, trong suốt)",
+      "examples": [
+        {
+          "ja": "彼女は一年にわたって日本語を勉強しました。",
+          "vi": "Cô ấy đã học tiếng Nhật suốt một năm."
+        }
+      ],
+      "en": "Indicates a range or extent; 'over', 'throughout', 'across'."
+    },
+    "N2|～に先立ち (〜ni sakidachi)": {
+      "vi": "～に先立ち (trước khi, trước)",
+      "examples": [
+        {
+          "ja": "会議に先立ち、資料を確認しましょう。",
+          "vi": "Trước cuộc họp, chúng ta hãy kiểm tra tài liệu."
+        }
+      ],
+      "en": "Express an action or event that occurs before another; 'before', 'prior to', 'preceding'."
+    },
+    "N2|～に反して (〜ni hanshite)": {
+      "vi": "～に反して (trái với, ngược với)",
+      "examples": [
+        {
+          "ja": "天気予報に反して、今日は雨が降っている。",
+          "vi": "Trái với dự báo thời tiết, hôm nay trời mưa."
+        }
+      ],
+      "en": "Contrary to, against, in spite of"
+    },
+    "N2|～に基づいて (〜ni motozuite)": {
+      "vi": "～に基づいて (dựa trên, căn cứ vào)",
+      "examples": [
+        {
+          "ja": "研究結果に基づいて、新しい治療法が開発されました。",
+          "vi": "Dựa trên kết quả nghiên cứu, một phương pháp điều trị mới đã được phát triển."
+        }
+      ],
+      "en": "Based on, according to, depending on"
+    },
+    "N2|～に対して (〜ni taishite)": {
+      "vi": "～に対して (đối với, trái lại, so với)",
+      "examples": [
+        {
+          "ja": "日本の文化に対して尊敬の念を持っています。",
+          "vi": "Tôi có lòng kính trọng đối với văn hóa Nhật Bản."
+        }
+      ],
+      "en": "Expresses 'toward', 'against', 'in contrast to', or 'in response to'."
+    },
+    "N2|～に応えて (〜ni kotaete)": {
+      "vi": "～に応えて (đáp ứng, đáp lại)",
+      "examples": [
+        {
+          "ja": "お客様の要望に応えて、新しいメニューを作りました。",
+          "vi": "Đáp ứng mong muốn của khách hàng, chúng tôi đã làm thực đơn mới."
+        }
+      ],
+      "en": "Responding to; living up to; meeting."
+    },
+    "N2|～に応じて (〜ni oujite)": {
+      "vi": "～に応じて (tùy theo, phù hợp với)",
+      "examples": [
+        {
+          "ja": "仕事の量に応じて給料が変わります。",
+          "vi": "Lương thay đổi tùy theo khối lượng công việc."
+        }
+      ],
+      "en": "In accordance with, depending on, in response to."
+    },
+    "N2|～に決まっている (〜ni kimatte iru)": {
+      "vi": "～に決まっている (chắc chắn là, nhất định là)",
+      "examples": [
+        {
+          "ja": "こんなに暑い日に運動したら、汗をかくに決まっている。",
+          "vi": "Vận động vào ngày nóng thế này thì chắc chắn là đổ mồ hôi."
+        }
+      ],
+      "en": "Express certainty; 'it is obvious', 'it must be', 'no doubt'."
+    },
+    "N2|～に沿って (〜ni sotte)": {
+      "vi": "～に沿って (dọc theo, theo)",
+      "examples": [
+        {
+          "ja": "川に沿って歩いていくと、橋が見えてきます。",
+          "vi": "Đi bộ dọc theo con sông thì sẽ thấy cây cầu."
+        }
+      ],
+      "en": "Along with; in accordance with; following"
+    },
+    "N2|～に過ぎない (〜ni suginai)": {
+      "vi": "～に過ぎない (chỉ là, chẳng qua là)",
+      "examples": [
+        {
+          "ja": "彼の失敗はミスに過ぎない。",
+          "vi": "Thất bại của anh ấy chẳng qua chỉ là một lỗi nhỏ."
+        }
+      ],
+      "en": "Expresses that something is 'just' or 'nothing more than'; 'merely', 'only', 'simply'."
+    },
+    "N2|～に関わって (〜ni kakawatte)": {
+      "vi": "～に関わって (liên quan đến, dính dáng đến)",
+      "examples": [
+        {
+          "ja": "試験の内容に関わって、先生に質問があります。",
+          "vi": "Tôi có câu hỏi cho thầy liên quan đến nội dung bài thi."
+        }
+      ],
+      "en": "Indicates that something is related to or influenced by a certain matter or factor; 'concerning', 'in connection with', 'regarding'."
+    },
+    "N2|～に限り (〜ni kagiri)": {
+      "vi": "～に限り (chỉ giới hạn, chỉ riêng)",
+      "examples": [
+        {
+          "ja": "今日に限り、この商品が半額です。",
+          "vi": "Chỉ riêng hôm nay, sản phẩm này giảm nửa giá."
+        }
+      ],
+      "en": "Expresses limitation; 'only', 'limited to', 'exclusive to'."
+    },
+    "N2|～に際して (〜ni saishite)": {
+      "vi": "～に際して (nhân dịp, khi, vào lúc)",
+      "examples": [
+        {
+          "ja": "卒業式に際して、校長先生がスピーチをします。",
+          "vi": "Nhân dịp lễ tốt nghiệp, thầy hiệu trưởng sẽ phát biểu."
+        }
+      ],
+      "en": "Used to express the moment or the occasion of an action; 'at the time of', 'upon', 'when'."
+    },
+    "N2|～ねばならない (〜neba naranai)": {
+      "vi": "～ねばならない (phải, cần phải)",
+      "examples": [
+        {
+          "ja": "試験に合格するために、もっと勉強しなければならない。",
+          "vi": "Để đỗ kỳ thi, phải học nhiều hơn nữa."
+        }
+      ],
+      "en": "Expresses obligation or necessity; 'must', 'have to', 'need to'."
+    },
+    "N2|～のみならず～も (〜nomi narazu 〜mo)": {
+      "vi": "～のみならず～も (không chỉ... mà còn)",
+      "examples": [
+        {
+          "ja": "彼は英語のみならず、フランス語も話せます。",
+          "vi": "Anh ấy không chỉ nói được tiếng Anh mà còn nói được tiếng Pháp."
+        }
+      ],
+      "en": "Not only... but also; as well as."
+    },
+    "N2|～のももっともだ (〜no mo mottomo da)": {
+      "vi": "～のももっともだ (... cũng là điều dễ hiểu)",
+      "examples": [
+        {
+          "ja": "彼が緊張するのももっともだ。",
+          "vi": "Anh ấy căng thẳng cũng là điều dễ hiểu."
+        }
+      ],
+      "en": "Express that something is understandable or reasonable."
+    },
+    "N2|〜の上では (〜no ue de wa)": {
+      "vi": "〜の上では (xét về mặt, trên phương diện)",
+      "examples": [
+        {
+          "ja": "効率の上では、この方法が最適です。",
+          "vi": "Xét về hiệu suất thì cách này là tốt nhất."
+        }
+      ],
+      "en": "Indicates 'on the basis of', 'in terms of', or 'from the standpoint of'."
+    },
+    "N2|～の下で (〜no shita de)": {
+      "vi": "～の下で (dưới (sự chỉ dẫn, điều kiện của))",
+      "examples": [
+        {
+          "ja": "先生の下で勉強するのはとても楽しいです。",
+          "vi": "Học dưới sự chỉ dẫn của thầy rất vui."
+        }
+      ],
+      "en": "Under the context or condition of; under."
+    },
+    "N2|～ばかりか〜も (〜bakari ka 〜 mo)": {
+      "vi": "～ばかりか〜も (không chỉ... mà còn)",
+      "examples": [
+        {
+          "ja": "彼はかわいいばかりか賢いもです。",
+          "vi": "Cô ấy không chỉ dễ thương mà còn thông minh."
+        }
+      ],
+      "en": "Expresses 'not only... but also'; emphasizing the extent of something."
+    },
+    "N2|～ばかりだ (〜bakari da)": {
+      "vi": "～ばかりだ (toàn là, ngày càng (xấu đi))",
+      "examples": [
+        {
+          "ja": "彼は文句を言ってばかりだ。",
+          "vi": "Anh ta toàn là phàn nàn."
+        }
+      ],
+      "en": "Express a continuing state or negative tendency; 'just', 'only', 'always'."
+    },
+    "N2|～ばかりに (〜bakari ni)": {
+      "vi": "～ばかりに (chỉ vì (dẫn đến kết quả xấu))",
+      "examples": [
+        {
+          "ja": "雨が降ったばかりに、試合が中止になりました。",
+          "vi": "Chỉ vì trời mưa mà trận đấu bị hủy."
+        }
+      ],
+      "en": "Express undesired situation or result caused by something; 'simply because', 'due to', 'on account of'."
+    },
+    "N2|～ば～というものでもない (〜ba 〜to iu mono demo nai)": {
+      "vi": "～ば～というものでもない (không phải cứ... là được)",
+      "examples": [
+        {
+          "ja": "高いものがいいものばかりではない。",
+          "vi": "Không phải đồ đắt nào cũng là đồ tốt."
+        }
+      ],
+      "en": "Not necessarily true that if A, then B."
+    },
+    "N2|～はともかく～は (〜wa tomokaku 〜wa)": {
+      "vi": "～はともかく～は (... thì chưa nói, còn... thì)",
+      "examples": [
+        {
+          "ja": "デザインはともかく、機能はこの携帯電話が一番です。",
+          "vi": "Thiết kế thì chưa bàn tới, còn về tính năng thì chiếc điện thoại này là nhất."
+        }
+      ],
+      "en": "Used to compare elements in a sentence with 'as for'."
+    },
+    "N2|～はまだしも (〜wa mada shimo)": {
+      "vi": "～はまだしも (... thì còn được, chứ... thì)",
+      "examples": [
+        {
+          "ja": "失敗するのはまだしも、やらないで後悔する方がつらい。",
+          "vi": "Thất bại thì còn chấp nhận được, chứ không làm rồi hối hận thì đau hơn."
+        }
+      ],
+      "en": "Expresses that although the first item is somewhat understandable or acceptable, the second item is not."
+    },
+    "N2|～はもとより (〜wa moto yori〜mo)": {
+      "vi": "～はもとより (... là đương nhiên, ... thì khỏi phải nói)",
+      "examples": [
+        {
+          "ja": "英語はもとより、スペイン語も勉強しています。",
+          "vi": "Tiếng Anh thì khỏi phải nói, tôi còn học cả tiếng Tây Ban Nha."
+        }
+      ],
+      "en": "Expressing that something is obvious or not only, but also."
+    },
+    "N2|～は抜きにして (〜wa nuki ni shite)": {
+      "vi": "～は抜きにして (bỏ qua, không tính)",
+      "examples": [
+        {
+          "ja": "値段は抜きにして、味は美味しい。",
+          "vi": "Bỏ qua giá cả thì vị rất ngon."
+        }
+      ],
+      "en": "Leaving aside, excluding"
+    },
+    "N2|～べきではない (〜beki dewa nai)": {
+      "vi": "～べきではない (không nên)",
+      "examples": [
+        {
+          "ja": "遅れる理由がないなら、遅れるべきではありません。",
+          "vi": "Nếu không có lý do gì để đến muộn thì không nên đến muộn."
+        }
+      ],
+      "en": "Express an action that should not be done; 'should not', 'ought not to'."
+    },
+    "N2|～まい (〜mai)": {
+      "vi": "～まい (chắc sẽ không; nhất định không)",
+      "examples": [
+        {
+          "ja": "彼は今晩来るまい。",
+          "vi": "Tối nay chắc anh ấy sẽ không đến."
+        }
+      ],
+      "en": "Express a negative conjecture or determination; 'probably not' or 'I will not'."
+    },
+    "N2|～まで～て (〜made 〜te)": {
+      "vi": "～まで～て (đến mức... cũng)",
+      "examples": [
+        {
+          "ja": "9時まで働いて、その後休憩しました。",
+          "vi": "Tôi làm việc đến 9 giờ, sau đó nghỉ giải lao."
+        }
+      ],
+      "en": "Express doing something until a certain time or condition; 'until', 'to'."
+    },
+    "N2|～ままに (〜mama ni)": {
+      "vi": "～ままに (theo như, cứ để nguyên)",
+      "examples": [
+        {
+          "ja": "子供が寝ているままに、静かに部屋を出ました。",
+          "vi": "Để nguyên cho con đang ngủ, tôi lặng lẽ ra khỏi phòng."
+        }
+      ],
+      "en": "Act according to; left as it is; unchanged."
+    },
+    "N2|～もかまわず (〜mo kamawazu)": {
+      "vi": "～もかまわず (bất chấp, không để ý đến)",
+      "examples": [
+        {
+          "ja": "彼は周りの人もかまわず、大声で話しました。",
+          "vi": "Anh ta nói to, không để ý gì đến những người xung quanh."
+        }
+      ],
+      "en": "Express indifference or disregard; 'without hesitating', 'without worrying about'."
+    },
+    "N2|～ものか (〜mono ka)": {
+      "vi": "～ものか (nhất định không, làm sao mà)",
+      "examples": [
+        {
+          "ja": "そんなこと、僕がやりたいものか。",
+          "vi": "Chuyện đó, tôi làm sao mà muốn làm chứ."
+        }
+      ],
+      "en": "Definitely not; no way; no chance."
+    },
+    "N2|～ものがある (〜mono ga aru)": {
+      "vi": "～ものがある (thật là, có cái gì đó (cảm nhận mạnh))",
+      "examples": [
+        {
+          "ja": "彼はいつも遅刻するものがある。",
+          "vi": "Anh ta lúc nào cũng đến muộn thật."
+        }
+      ],
+      "en": "Express a feeling that something should be done or is expected; 'there is a need', 'there is a tendency'."
+    },
+    "N2|～ものだ (〜mono da)": {
+      "vi": "～ものだ (lẽ thường là, nên (điều tự nhiên))",
+      "examples": [
+        {
+          "ja": "若い時はたくさん遊ぶものだ。",
+          "vi": "Khi còn trẻ thì nên chơi thật nhiều."
+        }
+      ],
+      "en": "Expresses something natural or normal; 'should', 'ought to'."
+    },
+    "N2|～ものだから (〜mono dakara)": {
+      "vi": "～ものだから (vì, bởi vì (giải thích lý do))",
+      "examples": [
+        {
+          "ja": "試験が近いものだから、毎日勉強しています。",
+          "vi": "Vì kỳ thi sắp đến nên ngày nào tôi cũng học."
+        }
+      ],
+      "en": "Express the reason or cause for something; 'because', 'since', 'due to'."
+    },
+    "N2|～ものではない (〜mono dewa nai)": {
+      "vi": "～ものではない (không nên (lời khuyên))",
+      "examples": [
+        {
+          "ja": "そんなことを言うものではありません。",
+          "vi": "Không nên nói những điều như vậy."
+        }
+      ],
+      "en": "Expresses 'not (something) to be done', 'should not', 'must not'."
+    },
+    "N2|～ものなら (〜mono nara)": {
+      "vi": "～ものなら (nếu có thể... thì)",
+      "examples": [
+        {
+          "ja": "時間があるものなら、この本を全部読みたい。",
+          "vi": "Nếu có thời gian thì tôi muốn đọc hết cuốn sách này."
+        }
+      ],
+      "en": "Express a conditional wish; 'if only' or 'if possible'."
+    },
+    "N2|～ものの、～ (〜mono no、～)": {
+      "vi": "～ものの、～ (tuy... nhưng, mặc dù)",
+      "examples": [
+        {
+          "ja": "早起きしたものの、バスに間に合わなかった。",
+          "vi": "Tuy đã dậy sớm nhưng vẫn không kịp xe buýt."
+        }
+      ],
+      "en": "Indicates a contrast or contradiction between two clauses; 'although', 'but', 'even though'."
+    },
+    "N2|～も～ば～も～ (〜mo〜ba〜mo〜)": {
+      "vi": "～も～ば～も～ (vừa... vừa, cũng... cũng)",
+      "examples": [
+        {
+          "ja": "勉強すればするも、成績が上がるでしょう。",
+          "vi": "Nếu học thì thành tích chắc cũng sẽ tăng."
+        }
+      ],
+      "en": "Expressing that if one thing increases, the other also increases; 'the more, the more'."
+    },
+    "N2|～も同然だ (〜mo douzen da)": {
+      "vi": "～も同然だ (cũng như là, coi như là)",
+      "examples": [
+        {
+          "ja": "この運動は簡単で覚えることも同然だ。",
+          "vi": "Động tác này đơn giản, coi như là nhớ rồi."
+        }
+      ],
+      "en": "Indicates 'as good as', 'virtually', or 'practically'."
+    },
+    "N2|～やら～やら (〜yara〜yara)": {
+      "vi": "～やら～やら (nào là... nào là)",
+      "examples": [
+        {
+          "ja": "宿題やら掃除やらやることがたくさんある。",
+          "vi": "Nào là bài tập, nào là dọn dẹp, có rất nhiều việc phải làm."
+        }
+      ],
+      "en": "Express various things or actions; 'and', 'such as', 'things like'."
+    },
+    "N2|～ようがない (〜you ga nai)": {
+      "vi": "～ようがない (không có cách nào, không thể)",
+      "examples": [
+        {
+          "ja": "この仕事は終わりが見えないので、疲れるようがない。",
+          "vi": "Công việc này không thấy điểm kết thúc nên không thể không mệt."
+        }
+      ],
+      "en": "Expresses that something cannot be helped or is unavoidable."
+    },
+    "N2|～よりほかない (〜yori hoka nai)": {
+      "vi": "～よりほかない (chỉ còn cách, không còn cách nào khác)",
+      "examples": [
+        {
+          "ja": "試験が近いので、勉強するよりほかない。",
+          "vi": "Kỳ thi sắp đến nên chỉ còn cách học thôi."
+        }
+      ],
+      "en": "Express that there is no other choice/alternative; 'have no choice but', 'nothing but', 'cannot do anything but'."
+    },
+    "N2|～わけがない (〜wake ga nai)": {
+      "vi": "～わけがない (không thể nào, làm gì có chuyện)",
+      "examples": [
+        {
+          "ja": "彼が怪我をしたから、試合に勝てるわけがない。",
+          "vi": "Anh ấy bị thương rồi nên không thể nào thắng trận được."
+        }
+      ],
+      "en": "Expresses 'there's no way' or 'it's impossible', indicating a high degree of certainty."
+    },
+    "N2|～わけだ (〜wake da)": {
+      "vi": "～わけだ (thảo nào, nghĩa là, có nghĩa là)",
+      "examples": [
+        {
+          "ja": "彼女が遅れたのは、電車が遅れたわけだ。",
+          "vi": "Cô ấy đến muộn là vì tàu bị trễ."
+        }
+      ],
+      "en": "Express a logical conclusion or reason; 'it means', 'no wonder', 'the reason is'."
+    },
+    "N2|～わけではない (〜wake dewa nai)": {
+      "vi": "～わけではない (không hẳn là, không có nghĩa là)",
+      "examples": [
+        {
+          "ja": "彼が勉強しないわけではないが、成績があまり良くない。",
+          "vi": "Không phải là anh ấy không học, nhưng thành tích không tốt lắm."
+        }
+      ],
+      "en": "Not necessarily; it doesn't mean that."
+    },
+    "N2|～わけにはいかない (〜wake ni wa ikanai)": {
+      "vi": "～わけにはいかない (không thể, không được phép)",
+      "examples": [
+        {
+          "ja": "試験が近いから、遊ぶわけにはいかない。",
+          "vi": "Kỳ thi sắp đến nên không thể đi chơi được."
+        }
+      ],
+      "en": "Expresses that one cannot afford to do something; 'cannot', 'must not', 'not allowed to'."
+    },
+    "N2|～をきっかけに (〜wo kikkake ni)": {
+      "vi": "～をきっかけに (nhân dịp, nhờ có (khởi đầu))",
+      "examples": [
+        {
+          "ja": "結婚をきっかけに、彼は真剣に仕事を頑張り始めました。",
+          "vi": "Nhân dịp kết hôn, anh ấy bắt đầu nghiêm túc cố gắng làm việc."
+        }
+      ],
+      "en": "indicates that something serves as a starting point or trigger for another event or action."
+    },
+    "N2|～を～として (〜wo〜toshite)": {
+      "vi": "～を～として (coi... là, lấy... làm)",
+      "examples": [
+        {
+          "ja": "彼は教師を職業としています。",
+          "vi": "Anh ấy lấy nghề giáo làm nghề nghiệp."
+        }
+      ],
+      "en": "Express 'as', 'in the capacity of', or 'taking for'."
+    },
+    "N2|～を中心に (〜wo chuushin ni)": {
+      "vi": "～を中心に (lấy... làm trung tâm, chủ yếu là)",
+      "examples": [
+        {
+          "ja": "このイベントは音楽を中心に楽しまれています。",
+          "vi": "Sự kiện này được yêu thích với trọng tâm là âm nhạc."
+        }
+      ],
+      "en": "Centering around, mainly, focusing on."
+    },
+    "N2|～を問わず (〜wo towazu)": {
+      "vi": "～を問わず (bất kể, không phân biệt)",
+      "examples": [
+        {
+          "ja": "このイベントは、年齢を問わず、誰でも参加できます。",
+          "vi": "Sự kiện này ai cũng có thể tham gia, không phân biệt tuổi tác."
+        }
+      ],
+      "en": "Regardless of; irrespective of."
+    },
+    "N2|～を込めて (〜wo komete)": {
+      "vi": "～を込めて (gửi gắm, dồn cả (tình cảm))",
+      "examples": [
+        {
+          "ja": "愛を込めて料理を作りました。",
+          "vi": "Tôi đã nấu ăn bằng cả tấm lòng yêu thương."
+        }
+      ],
+      "en": "To express that something is done with a certain feeling, intention, or emotion."
+    },
+    "N2|～を通じて (〜wo tsuujite)": {
+      "vi": "～を通じて (thông qua, suốt)",
+      "examples": [
+        {
+          "ja": "インターネットを通じて友達と連絡を取ります。",
+          "vi": "Tôi liên lạc với bạn bè thông qua internet."
+        }
+      ],
+      "en": "Expresses 'through', 'throughout', or 'during'."
+    },
+    "N2|～を頼りに (〜wo tayori ni)": {
+      "vi": "～を頼りに (dựa vào, nhờ vào)",
+      "examples": [
+        {
+          "ja": "彼女は地図を頼りに旅行をしている。",
+          "vi": "Cô ấy đi du lịch nhờ vào tấm bản đồ."
+        }
+      ],
+      "en": "To rely on or depend on something or someone."
+    },
+    "N2|～一方 (〜ippou)": {
+      "vi": "～一方 (trong khi, mặt khác)",
+      "examples": [
+        {
+          "ja": "技術が進化する一方、生活が忙しくなっている。",
+          "vi": "Trong khi công nghệ tiến bộ thì cuộc sống lại trở nên bận rộn hơn."
+        }
+      ],
+      "en": "Indicates that while one action is happening, another action or situation is simultaneously occurring or is in contrast."
+    },
+    "N2|～一方だ (〜ippou da)": {
+      "vi": "～一方だ (ngày càng, cứ thế)",
+      "examples": [
+        {
+          "ja": "世界の人口は増える一方だ。",
+          "vi": "Dân số thế giới ngày càng tăng."
+        }
+      ],
+      "en": "Expresses that a situation or condition is increasingly getting more and more."
+    },
+    "N2|～上で (〜ue de)": {
+      "vi": "～上で (sau khi, trên cơ sở)",
+      "examples": [
+        {
+          "ja": "調査を行った上で、結論を出しましょう。",
+          "vi": "Sau khi tiến hành điều tra, chúng ta hãy đưa ra kết luận."
+        }
+      ],
+      "en": "Used to express that something is done after or on the grounds of something else; 'after', 'on the basis of'."
+    },
+    "N2|～上に (〜ue ni)": {
+      "vi": "～上に (hơn nữa, không chỉ... mà còn)",
+      "examples": [
+        {
+          "ja": "彼は頭がいい上に、スポーツも得意です。",
+          "vi": "Anh ấy không chỉ thông minh mà còn giỏi thể thao."
+        }
+      ],
+      "en": "Express 'in addition to', 'besides', 'not only... but also'."
+    },
+    "N2|～上は (～ue wa)": {
+      "vi": "～上は (một khi đã, vì đã)",
+      "examples": [
+        {
+          "ja": "試験に合格した上は、パーティーを開こう。",
+          "vi": "Một khi đã đỗ kỳ thi thì mở tiệc thôi."
+        }
+      ],
+      "en": "Now that; since; once"
+    },
+    "N2|～以上 (〜ijou)": {
+      "vi": "～以上 (một khi đã, vì đã (thì phải))",
+      "examples": [
+        {
+          "ja": "彼は忙しい以上、手伝いに行っても無駄だろう。",
+          "vi": "Anh ấy đã bận như vậy thì có đi giúp chắc cũng vô ích."
+        }
+      ],
+      "en": "Expresses 'since' or 'as long as' in a conditional context."
+    },
+    "N2|～以来 (〜irai)": {
+      "vi": "～以来 (kể từ khi)",
+      "examples": [
+        {
+          "ja": "卒業以来、彼女に会っていない。",
+          "vi": "Kể từ khi tốt nghiệp, tôi chưa gặp lại cô ấy."
+        }
+      ],
+      "en": "Indicates something happening 'since', 'ever since', or 'after' a particular time."
+    },
+    "N2|～切る (〜kiru)": {
+      "vi": "～切る (làm hết, làm trọn vẹn)",
+      "examples": [
+        {
+          "ja": "彼は試験勉強をがんばり切るつもりだ。",
+          "vi": "Anh ấy định sẽ cố gắng ôn thi đến cùng."
+        }
+      ],
+      "en": "To do something completely or thoroughly."
+    },
+    "N2|～反面 (〜hanmen)": {
+      "vi": "～反面 (mặt khác, trái lại (hai mặt đối lập))",
+      "examples": [
+        {
+          "ja": "この車は速い反面、燃費が悪いです。",
+          "vi": "Chiếc xe này nhanh nhưng mặt khác lại tốn xăng."
+        }
+      ],
+      "en": "Express contrast between two aspects; 'on the one hand', 'on the other hand'."
+    },
+    "N2|～向け (〜muke)": {
+      "vi": "～向け (dành cho, hướng đến)",
+      "examples": [
+        {
+          "ja": "この雑誌は若者向けです。",
+          "vi": "Tạp chí này dành cho giới trẻ."
+        }
+      ],
+      "en": "Indicating target or intended audience."
+    },
+    "N2|～恐れがある (〜osore ga aru)": {
+      "vi": "～恐れがある (có nguy cơ, e rằng)",
+      "examples": [
+        {
+          "ja": "地震が来る恐れがあるため、避難所に行ってください。",
+          "vi": "Vì có nguy cơ động đất nên hãy đến nơi sơ tán."
+        }
+      ],
+      "en": "Express a concern or fear that something undesirable might occur."
+    },
+    "N2|～折には (〜ori ni wa)": {
+      "vi": "～折には (khi, nhân lúc, vào dịp)",
+      "examples": [
+        {
+          "ja": "喉が渇く折には、このペットボトルの水を飲んでください。",
+          "vi": "Khi khát, hãy uống nước trong chai này."
+        }
+      ],
+      "en": "Expresses 'when' or 'in case of' specific situations or timings."
+    },
+    "N2|～末 (～sue)": {
+      "vi": "～末 (sau một thời gian, sau khi (kết quả))",
+      "examples": [
+        {
+          "ja": "長い議論の末、ようやく意見がまとまった。",
+          "vi": "Sau cuộc thảo luận dài, cuối cùng ý kiến cũng thống nhất."
+        }
+      ],
+      "en": "Express the outcome after a period of time or a series of actions; 'after', 'as a result of'."
+    },
+    "N2|～次第 (〜shidai)": {
+      "vi": "～次第 (ngay sau khi, tùy vào)",
+      "examples": [
+        {
+          "ja": "仕事が終わり次第、帰ります。",
+          "vi": "Làm xong việc là tôi về ngay."
+        }
+      ],
+      "en": "Expresses 'as soon as', 'depending on', or 'depending on the situation'."
+    },
+    "N2|～次第で (〜shidai de)": {
+      "vi": "～次第で (tùy vào, tùy theo)",
+      "examples": [
+        {
+          "ja": "仕事が終わり次第で、家に帰ります。",
+          "vi": "Làm xong việc là tôi về nhà ngay."
+        }
+      ],
+      "en": "Depending on; based on."
+    },
+    "N2|～次第です (〜shidai desu)": {
+      "vi": "～次第です (tùy thuộc vào, là do)",
+      "examples": [
+        {
+          "ja": "天気次第ですが、明日ピクニックに行きたいです。",
+          "vi": "Còn tùy thời tiết, nhưng ngày mai tôi muốn đi dã ngoại."
+        }
+      ],
+      "en": "Depends on; up to; as soon as; upon."
+    },
+    "N2|～気味 (〜gimi)": {
+      "vi": "～気味 (hơi có vẻ, có chiều hướng)",
+      "examples": [
+        {
+          "ja": "最近寝不足気味で、ちょっと疲れています。",
+          "vi": "Dạo này tôi hơi thiếu ngủ nên hơi mệt."
+        }
+      ],
+      "en": "Expresses a slight feeling or tendency towards a certain state or condition."
+    },
+    "N2|～限り (〜kagiri)": {
+      "vi": "～限り (chừng nào còn, trong phạm vi)",
+      "examples": [
+        {
+          "ja": "元気な限り、運動し続けます。",
+          "vi": "Chừng nào còn khỏe, tôi sẽ tiếp tục tập thể dục."
+        }
+      ],
+      "en": "Expresses 'as long as', 'while', or 'to the extent of' a certain condition."
+    },
+    "N2|～際に (〜sai ni)": {
+      "vi": "～際に (khi, lúc, trong trường hợp)",
+      "examples": [
+        {
+          "ja": "出発の際に、パスポートを忘れないでください。",
+          "vi": "Khi khởi hành, đừng quên hộ chiếu nhé."
+        }
+      ],
+      "en": "Used to express the condition or situation during an event, meaning 'when', 'while', 'in the case of'."
+    }
+  }
+}
