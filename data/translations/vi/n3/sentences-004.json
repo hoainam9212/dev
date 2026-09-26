@@ -1,0 +1,1206 @@
+{
+  "type": "sentences",
+  "level": "N3",
+  "entries": {
+    "110355": {
+      "vi": "Anh ấy đặt cây vợt xuống.",
+      "en": "He put down his racket."
+    },
+    "110379": {
+      "vi": "Anh ấy hay vẽ phong cảnh.",
+      "en": "He often paints landscapes."
+    },
+    "110393": {
+      "vi": "Ông ấy hay trích dẫn Kinh Thánh.",
+      "en": "He often quotes the Bible."
+    },
+    "110439": {
+      "vi": "Anh ấy nói nhiều.",
+      "en": "He talks a lot."
+    },
+    "110457": {
+      "vi": "Anh ấy đã có được địa vị tốt.",
+      "en": "He got a good appointment."
+    },
+    "110488": {
+      "vi": "Anh ấy hiểu sự hài hước.",
+      "en": "He has a sense of humor."
+    },
+    "110489": {
+      "vi": "Anh ấy không có óc hài hước.",
+      "en": "He is devoid of humor."
+    },
+    "110754": {
+      "vi": "Chắc anh ấy sẽ sớm trở lại thi đấu.",
+      "en": "He will return to the game soon."
+    },
+    "110871": {
+      "vi": "Anh ấy ngày càng nổi tiếng.",
+      "en": "He became more and more famous."
+    },
+    "110899": {
+      "vi": "Anh ấy có vẻ mặt lơ đãng.",
+      "en": "He wore a blank look."
+    },
+    "110908": {
+      "vi": "Anh ấy gần bằng tuổi tôi.",
+      "en": "He is about my age."
+    },
+    "111084": {
+      "vi": "Ông ấy am hiểu lịch sử cận đại Pháp.",
+      "en": "He is acquainted with the modern history of France."
+    },
+    "111182": {
+      "vi": "Ông ấy quỳ gối cầu nguyện cho linh hồn người đã khuất.",
+      "en": "He got down on his knees and prayed for the souls of the deceased."
+    },
+    "111297": {
+      "vi": "Anh ấy đang mặc bộ đồ ngủ.",
+      "en": "He is in pajamas."
+    },
+    "111323": {
+      "vi": "Anh ấy chơi violin giỏi.",
+      "en": "He is a good violinist."
+    },
+    "111345": {
+      "vi": "Anh ấy đã thắng bằng knock-out.",
+      "en": "He won the fight by a knockout."
+    },
+    "111460": {
+      "vi": "Anh ấy đã phải khổ sở biết bao.",
+      "en": "How he has suffered!"
+    },
+    "111480": {
+      "vi": "Anh ấy chơi bài giỏi.",
+      "en": "He's good at cards."
+    },
+    "111483": {
+      "vi": "Anh ấy là người lạnh lùng, sòng phẳng mà.",
+      "en": "He's dry and unemotional."
+    },
+    "111530": {
+      "vi": "Ông ấy đã rất già.",
+      "en": "He was very old."
+    },
+    "111563": {
+      "vi": "Anh ấy tuyệt đối không phải loại người phản bội người khác.",
+      "en": "He would be the last person to betray others."
+    },
+    "111626": {
+      "vi": "Anh ta rất keo kiệt.",
+      "en": "He's very stingy."
+    },
+    "111646": {
+      "vi": "Đi đâu anh ấy cũng lạc đường.",
+      "en": "He gets lost wherever he goes."
+    },
+    "111752": {
+      "vi": "Anh ấy đứng dưới khung cửa.",
+      "en": "He stood under the door frame."
+    },
+    "111812": {
+      "vi": "Anh ấy đã say mê quần vợt.",
+      "en": "He went mad on tennis."
+    },
+    "111931": {
+      "vi": "Anh ấy là người khá nổi tiếng.",
+      "en": "He is something of a celebrity."
+    },
+    "111968": {
+      "vi": "Anh ấy là đội trưởng của đội.",
+      "en": "He is the captain of the team."
+    },
+    "112003": {
+      "vi": "Cậu ấy thường xuyên đi học muộn.",
+      "en": "He is often late for school."
+    },
+    "112508": {
+      "vi": "Ông ấy đã đóng góp cho sự phát triển của thị trấn đó.",
+      "en": "He contributed to the development to the city."
+    },
+    "112578": {
+      "vi": "Anh ấy đã uống nước từ con suối đó.",
+      "en": "He drank from the spring."
+    },
+    "112629": {
+      "vi": "Anh ấy đã ngạc nhiên khi nhìn thấy cảnh đó.",
+      "en": "He was surprised at the scene."
+    },
+    "112659": {
+      "vi": "Anh ấy đã buộc gói hàng đó lại.",
+      "en": "He tied the parcel up."
+    },
+    "112792": {
+      "vi": "Anh ấy đã ra sân trận đấu đó với tư cách người đánh thay.",
+      "en": "He appeared as a pinch hitter in the game."
+    },
+    "112841": {
+      "vi": "Anh ấy phù hợp với công việc đó.",
+      "en": "He is the right man for the job."
+    },
+    "112854": {
+      "vi": "Anh ấy hoàn toàn hợp với công việc đó.",
+      "en": "He is just right for the job."
+    },
+    "112976": {
+      "vi": "Anh ấy đã vượt qua hoàn cảnh khó khăn đó.",
+      "en": "He got over the end."
+    },
+    "112990": {
+      "vi": "Cậu ấy chăm chú nhìn mô hình thu nhỏ tinh xảo của con khủng long đó.",
+      "en": "He stared at the faithful miniature of the dinosaur."
+    },
+    "112995": {
+      "vi": "Anh ấy đã tham gia cuộc thi đó.",
+      "en": "He took part in the athletic meeting."
+    },
+    "112996": {
+      "vi": "Anh ấy đã mất tư cách tham gia cuộc thi đó.",
+      "en": "He was disqualified from taking part in the contest."
+    },
+    "113397": {
+      "vi": "Anh ấy có dáng người đẹp.",
+      "en": "He has a nice build."
+    },
+    "113476": {
+      "vi": "Chắc anh ta sẽ chán công việc đó ngay thôi.",
+      "en": "He will soon be weary of the task."
+    },
+    "113565": {
+      "vi": "Anh ấy hay phải lòng người khác.",
+      "en": "He often falls in love."
+    },
+    "113576": {
+      "vi": "Anh ấy thường kêu đau răng.",
+      "en": "He often complains that he has a toothache."
+    },
+    "113599": {
+      "vi": "Anh ấy cứ luôn tay làm gì đó.",
+      "en": "He is busy doing something."
+    },
+    "113616": {
+      "vi": "Anh ấy đang mặc quần jean.",
+      "en": "He had jeans on."
+    },
+    "113674": {
+      "vi": "Anh ấy đã nổi danh nhờ cuộc thi.",
+      "en": "He distinguished himself in the contest."
+    },
+    "113715": {
+      "vi": "Ông ấy là người tiên phong trong lĩnh vực này.",
+      "en": "He is a trailblazer in this field."
+    },
+    "113900": {
+      "vi": "Anh ấy đã bị lạc khỏi nhóm.",
+      "en": "He strayed from his group."
+    },
+    "114222": {
+      "vi": "Anh ấy đã bồi thường vụ tai nạn đó bằng tiền.",
+      "en": "He compensated me for the accident with money."
+    },
+    "114239": {
+      "vi": "Tom thường ở văn phòng.",
+      "en": "Tom spends a lot of time at the office."
+    },
+    "114276": {
+      "vi": "Anh ấy kiếm được rất nhiều tiền.",
+      "en": "He earns a great deal."
+    },
+    "114312": {
+      "vi": "Anh ấy thân với em trai tôi.",
+      "en": "He's been friendly with my kid brother."
+    },
+    "114359": {
+      "vi": "Cậu ấy là cái gọi là học sinh ưu tú.",
+      "en": "He's what we call an honor student."
+    },
+    "114360": {
+      "vi": "Anh ấy là cái gọi là mọt sách.",
+      "en": "He is what is called a bookworm."
+    },
+    "114364": {
+      "vi": "Ông ấy là cái gọi là người tiên phong.",
+      "en": "He is what we call a pioneer."
+    },
+    "114452": {
+      "vi": "Anh ấy lúc nào cũng mặt lạnh tanh.",
+      "en": "He is always expressionless."
+    },
+    "114544": {
+      "vi": "Anh ấy luôn dốc toàn lực vào công việc.",
+      "en": "He always works with all his might."
+    },
+    "114662": {
+      "vi": "Cậu ấy thích nghịch ngợm.",
+      "en": "He likes to be mischievous."
+    },
+    "114786": {
+      "vi": "Ông ấy là chính trị gia về mọi mặt.",
+      "en": "He is a politician in all senses."
+    },
+    "114796": {
+      "vi": "Anh ấy đã mất hết mọi hy vọng.",
+      "en": "He was bereft of all hope."
+    },
+    "114953": {
+      "vi": "Anh ấy đi bộ khắp nơi.",
+      "en": "He walked back and forth."
+    },
+    "114956": {
+      "vi": "Anh ấy nhìn quanh.",
+      "en": "He looked about."
+    },
+    "115034": {
+      "vi": "Ông ấy 70 tuổi mà vẫn còn hoạt động tích cực.",
+      "en": "At seventy, he is still active."
+    },
+    "115103": {
+      "vi": "Tháng 4 anh ấy sẽ rời Nhật Bản.",
+      "en": "He will leave Japan in April."
+    },
+    "115217": {
+      "vi": "Mỗi năm anh ấy lên Tokyo một lần.",
+      "en": "He comes to Tokyo once a year."
+    },
+    "115269": {
+      "vi": "Ông ấy sinh vào thế kỷ 19.",
+      "en": "He was born in the 19th century."
+    },
+    "115376": {
+      "vi": "Anh ấy đã gửi tin bằng vô tuyến điện.",
+      "en": "He sent a message by wireless."
+    },
+    "115434": {
+      "vi": "Ông ấy đã quyên góp một khoản tiền lớn.",
+      "en": "He donated a lot of money."
+    },
+    "115487": {
+      "vi": "Anh ta rất nhạy bén với lợi ích của bản thân.",
+      "en": "He is alive to his own interests."
+    },
+    "115503": {
+      "vi": "Anh ấy thử.",
+      "en": "He tries."
+    },
+    "115541": {
+      "vi": "Anh ấy thích hổ.",
+      "en": "He likes tigers."
+    },
+    "115562": {
+      "vi": "Anh ấy đã phá kỷ lục.",
+      "en": "He broke the record."
+    },
+    "115687": {
+      "vi": "Anh ấy không chỉ không hát được opera mà đến bài đồng dao cũng không hát nổi.",
+      "en": "Opera! He cannot even sing children's songs!"
+    },
+    "1111477": {
+      "vi": "Tôi nghe thấy tiếng ai đó huýt sáo.",
+      "en": "I heard someone whistle."
+    },
+    "1112985": {
+      "vi": "Đứng núi này trông núi nọ.",
+      "en": "The grass is always greener on the other side."
+    },
+    "1114392": {
+      "vi": "Quá khứ không thể xóa bỏ.",
+      "en": "You can't erase the past."
+    },
+    "1115260": {
+      "vi": "Tôi đã mua một cuốn sách về động vật.",
+      "en": "I bought a book about animals."
+    },
+    "1125113": {
+      "vi": "Đây là cây đàn hạc.",
+      "en": "It's a harp."
+    },
+    "1130344": {
+      "vi": "Tuần sau sẽ có một gia đình chuyển đến.",
+      "en": "Next week a family will move in."
+    },
+    "1130816": {
+      "vi": "Quần áo mà không gấp hoặc treo lên móc là nhăn nhúm hết đấy.",
+      "en": "If you don't fold your clothes or hang them, they will be wrinkled."
+    },
+    "1151914": {
+      "vi": "Không còn lựa chọn nào khác.",
+      "en": "There is no other choice."
+    },
+    "1153163": {
+      "vi": "Cho tôi nhập hội với.",
+      "en": "Count me in."
+    },
+    "11028034": {
+      "vi": "Tôi nhả làn khói tích trong phổi ra và đưa mắt nhìn về phía công viên tối.",
+      "en": "I clear my lungs of the smoke lingering inside, and turn my eyes to a park shrouded in the dark."
+    },
+    "11029250": {
+      "vi": "Chúng tôi đang xem xét.",
+      "en": "That's under consideration."
+    },
+    "11029539": {
+      "vi": "Tôi thích những tác phẩm có không khí nhẹ nhàng.",
+      "en": "I like lighthearted works of art."
+    },
+    "11029631": {
+      "vi": "Tôi nghĩ là rất hợp với bạn đấy.",
+      "en": "I think it fits you well."
+    },
+    "11029674": {
+      "vi": "Tôi đã mất hy vọng.",
+      "en": "We lost hope."
+    },
+    "11029715": {
+      "vi": "Tất cả đống này là hóa đơn.",
+      "en": "This is the entire invoice."
+    },
+    "11029721": {
+      "vi": "Tất cả chỗ này đều là hóa đơn à?",
+      "en": "Is this all the invoices."
+    },
+    "11029755": {
+      "vi": "Cụ thể là làm gì?",
+      "en": "What are you going to do, specifically?"
+    },
+    "11029824": {
+      "vi": "Việc gì cũng vậy, cảm giác cân bằng là quan trọng.",
+      "en": "As with everything, it's important to have a balanced sense of perception."
+    },
+    "11030926": {
+      "vi": "Bạn có hiểu luật chơi không?",
+      "en": "Do you know the rules?"
+    },
+    "11030947": {
+      "vi": "Bạn đứng về phe ai vậy?",
+      "en": "Which side are you on?"
+    },
+    "11031351": {
+      "vi": "Thơm quá.",
+      "en": "It smells really good."
+    },
+    "11032266": {
+      "vi": "Xe bán dầu hỏa đến rồi.",
+      "en": "A truck selling kerosene came."
+    },
+    "11034451": {
+      "vi": "Có gì đó không ổn lắm nhỉ?",
+      "en": "It's kind of iffy, don't you think?"
+    },
+    "11037040": {
+      "vi": "Bạn có mấy cây vợt?",
+      "en": "How many rackets do you have?"
+    },
+    "11038491": {
+      "vi": "Lúc nào không hay tôi đã xếp chót.",
+      "en": "Before I knew it, I was at the bottom of the list."
+    },
+    "11038575": {
+      "vi": "Cái đó là bom à?",
+      "en": "Is it a bomb?"
+    },
+    "11041405": {
+      "vi": "Mãi lâu tôi mới tỉnh lại được.",
+      "en": "Took you a while to wake up."
+    },
+    "11041705": {
+      "vi": "Không có gì to tát cả.",
+      "en": "It's not serious."
+    },
+    "11041791": {
+      "vi": "Bạn giỏi cái gì?",
+      "en": "What are you good at?"
+    },
+    "11041800": {
+      "vi": "Lần này thôi, bỏ qua cho tôi đi.",
+      "en": "Let it go this one time."
+    },
+    "11041808": {
+      "vi": "Tôi lấy cái này.",
+      "en": "I'll take this."
+    },
+    "11041834": {
+      "vi": "Răng tôi bị mẻ rồi.",
+      "en": "I've chipped a tooth."
+    },
+    "11041855": {
+      "vi": "Bạn đã gọi món gì chưa?",
+      "en": "Did you order something?"
+    },
+    "11042994": {
+      "vi": "Vụ việc đã khép lại.",
+      "en": "The case came to a close."
+    },
+    "11044950": {
+      "vi": "Không bị tắc đường.",
+      "en": "There's no traffic jam."
+    },
+    "11045107": {
+      "vi": "Tôi ăn lấy ăn để để giải tỏa căng thẳng.",
+      "en": "I eat a lot to de-stress."
+    },
+    "11046577": {
+      "vi": "Nghe có mùi lừa đảo.",
+      "en": "It sounds like a scam."
+    },
+    "11049485": {
+      "vi": "Quỳ xuống xin lỗi đi!",
+      "en": "On your knees!"
+    },
+    "11049486": {
+      "vi": "Tôi đến từ tương lai.",
+      "en": "I come from the future."
+    },
+    "11052245": {
+      "vi": "Tôi muốn tiết kiệm.",
+      "en": "I want to save money."
+    },
+    "11052252": {
+      "vi": "Tôi nhắm mắt trong giây lát.",
+      "en": "I closed my eyes for a moment."
+    },
+    "11052263": {
+      "vi": "Người vẫy cờ là Tom.",
+      "en": "Tom waved the flag."
+    },
+    "11052289": {
+      "vi": "Tôi muốn ngồi cạnh cửa sổ.",
+      "en": "I want to sit by the window."
+    },
+    "11052448": {
+      "vi": "Bạn là người dậy sớm? Hay là cú đêm?",
+      "en": "Are you a morning person or a night person?"
+    },
+    "11052449": {
+      "vi": "Thỉnh thoảng tay tôi bị run.",
+      "en": "Sometimes my hands shake."
+    },
+    "11053901": {
+      "vi": "Tôi đã vô cùng vui mừng.",
+      "en": "We were overjoyed."
+    },
+    "11053928": {
+      "vi": "Bài phát biểu hay quá nhỉ.",
+      "en": "That was a good speech."
+    },
+    "11053930": {
+      "vi": "Hãy nắm bắt cơ hội.",
+      "en": "Take a chance."
+    },
+    "11056041": {
+      "vi": "Hiểu đàng hoàng chưa?",
+      "en": "Did I understand you correctly?"
+    },
+    "11056066": {
+      "vi": "Mọi người chuẩn bị xong hết chưa?",
+      "en": "Is everybody ready?"
+    },
+    "11056076": {
+      "vi": "Đi hay không đi đây, phân vân quá.",
+      "en": "I don't know whether to leave or stay."
+    },
+    "11056081": {
+      "vi": "Không bị gãy xương.",
+      "en": "There are no broken bones."
+    },
+    "11056088": {
+      "vi": "Làm người ta muốn rơi nước mắt.",
+      "en": "That makes me cry."
+    },
+    "11056202": {
+      "vi": "Anh có biết em yêu anh nhiều đến nhường nào không?",
+      "en": "Do you know how much I love you?"
+    },
+    "11056532": {
+      "vi": "Thằng nhóc láo toét.",
+      "en": "Cheeky little boy!"
+    },
+    "11058278": {
+      "vi": "Tôi đã đến tận hiện trường vụ án.",
+      "en": "I went to the scene of the crime."
+    },
+    "11058279": {
+      "vi": "Đó là ấn tượng đầu tiên.",
+      "en": "That is a first impression."
+    },
+    "11058332": {
+      "vi": "Tôi dùng nó rất tiện đấy.",
+      "en": "Oh, it's useful."
+    },
+    "11058368": {
+      "vi": "Điện thoại di động đấy.",
+      "en": "It's a cellphone."
+    },
+    "11058413": {
+      "vi": "Thanh kiếm của ta đâu?",
+      "en": "Where's my sword?"
+    },
+    "11064018": {
+      "vi": "Tỷ lệ thất nghiệp cao.",
+      "en": "The unemployment level is high."
+    },
+    "11064127": {
+      "vi": "Tôi đã gặp một chàng trai tốt.",
+      "en": "I met a nice young man."
+    },
+    "11064129": {
+      "vi": "\"Boy\" nghĩa là cậu bé.",
+      "en": "A boy is a male child."
+    },
+    "11064165": {
+      "vi": "Giá đã bao gồm thuế tiêu dùng.",
+      "en": "The price includes the consumption tax."
+    },
+    "11065616": {
+      "vi": "Không trả tiền thì tao đăng ảnh mày lên mạng đấy.",
+      "en": "If you don't pay me, I'll post your photos on the Internet."
+    },
+    "11065659": {
+      "vi": "Giá hợp lý nhỉ.",
+      "en": "That's a fair price."
+    },
+    "11065687": {
+      "vi": "Đó là cái bóng thôi.",
+      "en": "It's a shadow."
+    },
+    "11065792": {
+      "vi": "Tôi hình dung được.",
+      "en": "I can imagine."
+    },
+    "11065802": {
+      "vi": "Chiếc đồng hồ này có chức năng chống nước.",
+      "en": "This watch is waterproof."
+    },
+    "11069529": {
+      "vi": "Đó là một đêm thật kỳ lạ.",
+      "en": "It was a strange night."
+    },
+    "11072619": {
+      "vi": "Anh có mang danh thiếp không ạ?",
+      "en": "Do you have a business card?"
+    },
+    "11072621": {
+      "vi": "Có danh thiếp không?",
+      "en": "Do you have a business card?"
+    },
+    "11075393": {
+      "vi": "Tay tôi run.",
+      "en": "My hands are shaking."
+    },
+    "11095677": {
+      "vi": "Tôi không thể thi đỗ.",
+      "en": "I can't pass the test."
+    },
+    "11101222": {
+      "vi": "Ba người vắng mặt.",
+      "en": "Three people are absent."
+    },
+    "11108097": {
+      "vi": "Khó chịu thật.",
+      "en": "I don't like this feeling."
+    },
+    "11110375": {
+      "vi": "Xin hãy cho tôi lá phiếu trong sạch của bạn!",
+      "en": "Vote now!"
+    },
+    "11110387": {
+      "vi": "Là nhà sinh vật học đấy.",
+      "en": "He's a biologist."
+    },
+    "11124419": {
+      "vi": "Tại sao anh lại trách tôi?",
+      "en": "Why are you blaming me for what happened?"
+    },
+    "11134580": {
+      "vi": "Tôi thích poker.",
+      "en": "I enjoy poker."
+    },
+    "11135131": {
+      "vi": "Cái chai trống rỗng đấy.",
+      "en": "The jar is empty."
+    },
+    "11137909": {
+      "vi": "Ít nhất 2 người đã tử vong.",
+      "en": "At least two people perished."
+    },
+    "11144935": {
+      "vi": "Thật khó chịu.",
+      "en": "We're not amused."
+    },
+    "11156548": {
+      "vi": "Nói thẳng với Tom đi.",
+      "en": "Tell Tom in person."
+    },
+    "11156617": {
+      "vi": "Cho tôi cái khác.",
+      "en": "Give me another one."
+    },
+    "11161615": {
+      "vi": "Biển đã rất êm.",
+      "en": "The sea was calm."
+    },
+    "11161621": {
+      "vi": "Cay cú à?",
+      "en": "Are you disappointed?"
+    },
+    "11161622": {
+      "vi": "Thất vọng à?",
+      "en": "Are you disappointed?"
+    },
+    "11161677": {
+      "vi": "Cả khu vực này cấm bơi.",
+      "en": "No swimming in this area."
+    },
+    "11162320": {
+      "vi": "Việc kinh doanh đang suôn sẻ.",
+      "en": "Things are operating smoothly."
+    },
+    "11165550": {
+      "vi": "Đang xây tòa nhà trường học mới.",
+      "en": "A new school building is being built."
+    },
+    "11180500": {
+      "vi": "Phản ứng trẻ con hơn tôi tưởng nhỉ.",
+      "en": "Your reaction is surprisingly childish."
+    },
+    "11187953": {
+      "vi": "Toàn bộ đèn đã tắt.",
+      "en": "All the lights went out."
+    },
+    "11193533": {
+      "vi": "Sau bữa trưa thì tôi rảnh.",
+      "en": "I'm free after lunch."
+    },
+    "11195061": {
+      "vi": "Tai nạn giao thông làm 2 người tử vong.",
+      "en": "Two people were killed in a traffic accident."
+    },
+    "11195166": {
+      "vi": "Tôi đang đợi đèn giao thông.",
+      "en": "I'm waiting at the traffic lights."
+    },
+    "11196190": {
+      "vi": "Càng có tuổi thì tình trạng sức khỏe càng xấu đi.",
+      "en": "As I grew older, my health declined."
+    },
+    "11197867": {
+      "vi": "Công việc gần như xong xuôi rồi.",
+      "en": "The work is almost done."
+    },
+    "11199176": {
+      "vi": "Bạn biết cách chơi không?",
+      "en": "Do you know how to play?"
+    },
+    "11208028": {
+      "vi": "Đừng bỏ dở công việc đấy.",
+      "en": "Don't leave your work unfinished."
+    },
+    "11211496": {
+      "vi": "Mục tiêu là giải nhất.",
+      "en": "The goal is the first prize."
+    },
+    "11211852": {
+      "vi": "Tôi nuôi ngỗng.",
+      "en": "I feed geese."
+    },
+    "11216574": {
+      "vi": "Tôi muốn nhấn mạnh điểm này.",
+      "en": "I want to stress this point."
+    },
+    "11218549": {
+      "vi": "Chẳng có sức hấp dẫn gì nhỉ.",
+      "en": "It's because I'm not charming."
+    },
+    "11231204": {
+      "vi": "Tóc bố tôi đã bắt đầu lấm tấm bạc.",
+      "en": "My father's hair has become streaked with gray."
+    },
+    "11241502": {
+      "vi": "Thiên nhiên thật tuyệt vời.",
+      "en": "Nature is amazing."
+    },
+    "11252748": {
+      "vi": "Tôi rất muốn có nó.",
+      "en": "I really do want that."
+    },
+    "11254029": {
+      "vi": "Sự thật chỉ có một.",
+      "en": "There is only one truth."
+    },
+    "11256133": {
+      "vi": "Tệ nhất luôn.",
+      "en": "You're the worst."
+    },
+    "11256134": {
+      "vi": "Tuyệt vời!",
+      "en": "Incredible!"
+    },
+    "11256191": {
+      "vi": "Giúp tôi hạ cái này xuống với.",
+      "en": "Help me take this down."
+    },
+    "11256834": {
+      "vi": "Mặc kệ đi.",
+      "en": "Ignore it."
+    },
+    "11257849": {
+      "vi": "Tôi đang thong thả đây.",
+      "en": "I'm taking it easy."
+    },
+    "11257850": {
+      "vi": "Đau đầu kinh khủng.",
+      "en": "I have a bad headache."
+    },
+    "11257868": {
+      "vi": "Đừng bỏ tờ quảng cáo vào nhé?",
+      "en": "Could you not include ads?"
+    },
+    "11257875": {
+      "vi": "Tôi muốn ổn định cuộc sống.",
+      "en": "I want stability in my life."
+    },
+    "11257899": {
+      "vi": "Thật yên bình.",
+      "en": "It's so peaceful."
+    },
+    "11257901": {
+      "vi": "Vật giá tăng quá.",
+      "en": "Prices are going up too much."
+    },
+    "11257926": {
+      "vi": "Mỗi người một khác thôi.",
+      "en": "To each their own."
+    },
+    "11257988": {
+      "vi": "Nét mặt cứng đờ nhỉ.",
+      "en": "What a stern expression."
+    },
+    "11257997": {
+      "vi": "Hãy can đảm lên.",
+      "en": "Be brave."
+    },
+    "11258038": {
+      "vi": "Đi xem tình hình thế nào đi.",
+      "en": "Go check on things."
+    },
+    "11258047": {
+      "vi": "Tôi thất vọng rồi.",
+      "en": "I was disappointed."
+    },
+    "11263437": {
+      "vi": "Ngửi mùi cá là tôi buồn nôn.",
+      "en": "The smell of raw fish nauseates me."
+    },
+    "11263440": {
+      "vi": "Ngửi mùi cá sống là tôi muốn ói.",
+      "en": "The smell of raw fish nauseates me."
+    },
+    "11264687": {
+      "vi": "Cái nào là đồ thật?",
+      "en": "Which is the real one?"
+    },
+    "11269349": {
+      "vi": "Tôi cảm thấy mình già rồi.",
+      "en": "I feel old."
+    },
+    "11269350": {
+      "vi": "Tôi cảm thấy tuổi già.",
+      "en": "I feel old."
+    },
+    "11277668": {
+      "vi": "Tôi không phủ nhận.",
+      "en": "I don't deny it."
+    },
+    "11284124": {
+      "vi": "Chỉ là ý kiến cá nhân thôi.",
+      "en": "That's just a personal opinion."
+    },
+    "11295784": {
+      "vi": "Tom vắng mặt.",
+      "en": "Tom is absent."
+    },
+    "11303556": {
+      "vi": "Giờ đừng có nói.",
+      "en": "Don't talk now."
+    },
+    "11310561": {
+      "vi": "Cây giống là cây non.",
+      "en": "Seedlings are young plants."
+    },
+    "11310752": {
+      "vi": "Tom liên tục xin lỗi.",
+      "en": "Tom apologized profusely."
+    },
+    "11310763": {
+      "vi": "Trong vườn có chuồng chó.",
+      "en": "There's a doghouse in the yard."
+    },
+    "11310772": {
+      "vi": "Tôi đã mua giày da.",
+      "en": "I bought a pair of leather shoes."
+    },
+    "11310784": {
+      "vi": "Tôi đã bị sốc.",
+      "en": "I was shocked."
+    },
+    "11314698": {
+      "vi": "Tôi đang ở bảo tàng.",
+      "en": "We're at the museum."
+    },
+    "11319970": {
+      "vi": "Thực tế là đã có chuyện gì?",
+      "en": "What actually happened?"
+    },
+    "11320552": {
+      "vi": "Người gì mà phiền hết chỗ nói.",
+      "en": "That person is extremely annoying, aren't they."
+    },
+    "11324910": {
+      "vi": "Không phải chuyện đáng để bàn đâu.",
+      "en": "It's not worth discussing."
+    },
+    "11327914": {
+      "vi": "Có tiếng động trong phòng ngủ.",
+      "en": "I heard something in the bedroom."
+    },
+    "11332123": {
+      "vi": "Tôi sẽ thanh toán vào cuối tháng.",
+      "en": "I'll pay you at the end of the month."
+    },
+    "11340616": {
+      "vi": "Bạn đi du lịch từ khi nào?",
+      "en": "When do you start on your trip?"
+    },
+    "11340619": {
+      "vi": "Bạn có biết người đàn ông này không?",
+      "en": "Do you know this man?"
+    },
+    "11344081": {
+      "vi": "Tôi không ăn được nhiều như thế này đâu.",
+      "en": "I can't eat this much."
+    },
+    "11351792": {
+      "vi": "Có tiếng gõ cửa à?",
+      "en": "Did you hear a knock?"
+    },
+    "11351948": {
+      "vi": "Mày ấy, lúc nào cũng bác đề xuất của tao nhỉ.",
+      "en": "You always reject what I suggest."
+    },
+    "11352000": {
+      "vi": "Có bao nhiêu hành khách?",
+      "en": "How many passengers are in the car?"
+    },
+    "11357841": {
+      "vi": "Đang nổi tiếng nhanh chóng!",
+      "en": "Its popularity is skyrocketing!"
+    },
+    "11358805": {
+      "vi": "Tôi thấy ngần ngại.",
+      "en": "There is resistance."
+    },
+    "11359580": {
+      "vi": "Rồi mày cũng sẽ hiểu thôi.",
+      "en": "You'll understand someday."
+    },
+    "11369516": {
+      "vi": "Để tôi hâm nóng súp nhé.",
+      "en": "I'll heat up the soup for you."
+    },
+    "11375521": {
+      "vi": "Tôi ghét hành tây.",
+      "en": "I hate onions."
+    },
+    "11376931": {
+      "vi": "Lúc nào tôi cũng sẵn sàng giúp bạn.",
+      "en": "I'm always ready to help you."
+    },
+    "11378488": {
+      "vi": "Cái máy này khó vận hành lắm.",
+      "en": "This machine is hard to operate."
+    },
+    "11390339": {
+      "vi": "Đây là công việc tốn công sức.",
+      "en": "It's a time-consuming task."
+    },
+    "11390405": {
+      "vi": "Gửi địa chỉ cho tôi nhé.",
+      "en": "Text me the address."
+    },
+    "11391181": {
+      "vi": "Đặt xuống sàn đi.",
+      "en": "Put it on the floor."
+    },
+    "11411973": {
+      "vi": "Lại nghịch ngợm nữa rồi!",
+      "en": "You've been up to mischief again!"
+    },
+    "11412630": {
+      "vi": "Tôi bị đau bên hông.",
+      "en": "I have a pain in my side."
+    },
+    "11427641": {
+      "vi": "Đợi tôi đếm đến 10 nhé.",
+      "en": "Wait till I count to ten."
+    },
+    "11434175": {
+      "vi": "Ngược đãi trẻ em là tội phạm.",
+      "en": "Child abuse is a crime."
+    },
+    "11454277": {
+      "vi": "Lần này thì khác.",
+      "en": "This time, it's different."
+    },
+    "11455362": {
+      "vi": "Tôi đã run lên vì sợ hãi.",
+      "en": "I'm horrified."
+    },
+    "11455408": {
+      "vi": "Cái này kích thích trí tò mò đấy.",
+      "en": "This arouses my curiosity."
+    },
+    "11455417": {
+      "vi": "Tiếng Anh của đứa bé đó tốt hơn tôi tưởng.",
+      "en": "Her English was surprisingly good."
+    },
+    "11455528": {
+      "vi": "Tôi đã mua giày leo núi.",
+      "en": "I bought a pair of hiking boots."
+    },
+    "11459579": {
+      "vi": "Tom đã muốn tự sát.",
+      "en": "Tom wanted to commit suicide."
+    },
+    "11464967": {
+      "vi": "Tôi nghĩ Tom sẽ thích loại rượu vang này đấy.",
+      "en": "I think Tom will like this wine."
+    },
+    "11469890": {
+      "vi": "Tom đầy tự tin.",
+      "en": "Tom has a lot of confidence."
+    },
+    "11470114": {
+      "vi": "Con chó của Tom hay sủa lắm.",
+      "en": "Tom's dog barks a lot."
+    },
+    "11481957": {
+      "vi": "Con nhà mình đâu rồi nhỉ?",
+      "en": "Where's my kid?"
+    },
+    "11483459": {
+      "vi": "Tôi đã đọc lướt qua cuốn sách.",
+      "en": "I skimmed the book."
+    },
+    "11483580": {
+      "vi": "Mái nhà bị thủng một lỗ.",
+      "en": "There's a hole in the roof."
+    },
+    "11484184": {
+      "vi": "Con tôi đâu rồi nhỉ?",
+      "en": "Where's my kid?"
+    },
+    "11488287": {
+      "vi": "Xếp thành một hàng.",
+      "en": "Line up in single file."
+    },
+    "11488330": {
+      "vi": "Đứng đối diện nhau đi.",
+      "en": "Stand face to face."
+    },
+    "11490927": {
+      "vi": "Tôi cứ tưởng nó sẽ kéo dài mãi mãi.",
+      "en": "It felt like forever."
+    },
+    "11491189": {
+      "vi": "Trong lều nóng lắm.",
+      "en": "It was hot inside the tent."
+    },
+    "11508351": {
+      "vi": "Đừng vừa lái xe vừa nhìn ngang.",
+      "en": "Keep your eyes on the road."
+    },
+    "11508531": {
+      "vi": "Bạn có xăm mình không?",
+      "en": "Do you have a tattoo?"
+    },
+    "11508629": {
+      "vi": "Cái này là bạn gọi à?",
+      "en": "Did you order this?"
+    },
+    "11508959": {
+      "vi": "Chúng ta là bạn bè.",
+      "en": "We're buddies."
+    },
+    "11510678": {
+      "vi": "Toàn phàn nàn.",
+      "en": "She complains about everything and everyone."
+    },
+    "11512248": {
+      "vi": "Bình thường tôi đi xe buýt.",
+      "en": "I usually go to school by bus."
+    },
+    "11524874": {
+      "vi": "Tôi mất 3 tiếng để làm xong.",
+      "en": "It took me three hours to finish."
+    },
+    "11527073": {
+      "vi": "Đuôi voi ngắn.",
+      "en": "The elephant has a short tail."
+    },
+    "11527118": {
+      "vi": "Thông minh quá.",
+      "en": "You're clever."
+    },
+    "11528227": {
+      "vi": "Chỉ cho tôi cách liên lạc với.",
+      "en": "How can I reach you?"
+    },
+    "11528229": {
+      "vi": "Tom đã mua thực phẩm.",
+      "en": "Tom bought food."
+    },
+    "11529706": {
+      "vi": "Bóng ném là môn thể thao đồng đội.",
+      "en": "Handball is a team sport."
+    },
+    "11532863": {
+      "vi": "Câu hỏi khó đây.",
+      "en": "It's a difficult problem."
+    },
+    "11532911": {
+      "vi": "Ích kỷ thật.",
+      "en": "You're selfish."
+    },
+    "11542262": {
+      "vi": "Có lời nhắn cho quý khách ạ.",
+      "en": "You have a message."
+    },
+    "11545919": {
+      "vi": "Có thời gian rảnh như thế à?",
+      "en": "Can you afford it?"
+    },
+    "11545978": {
+      "vi": "Tôi muốn đi dã ngoại.",
+      "en": "I want to have a picnic."
+    },
+    "11548189": {
+      "vi": "Trộn đều các nguyên liệu.",
+      "en": "Mix the ingredients well."
+    },
+    "11554754": {
+      "vi": "Bạn có thích bia không?",
+      "en": "Do you like beer?"
+    },
+    "11554922": {
+      "vi": "Đăng ký trực tuyến có khi nhanh hơn đấy.",
+      "en": "It may be faster if you apply online."
+    },
+    "11555207": {
+      "vi": "Tối nay tôi có hẹn hò.",
+      "en": "I have a date with her tonight."
+    },
+    "11555566": {
+      "vi": "Tôi kiệt sức rồi.",
+      "en": "I'm completely exhausted."
+    },
+    "11556166": {
+      "vi": "Ai là người phát minh ra?",
+      "en": "Who invented it?"
+    },
+    "11557822": {
+      "vi": "Tàu đã khởi hành đúng giờ.",
+      "en": "The train departed on time."
+    },
+    "11559531": {
+      "vi": "Không có gì to tát đâu.",
+      "en": "It's a minor wound."
+    },
+    "11559533": {
+      "vi": "Chỉ bị thương nhẹ.",
+      "en": "It's a minor wound."
+    },
+    "11559608": {
+      "vi": "Bạn làm nghề bán xe được mấy năm rồi?",
+      "en": "How many years have you been selling cars?"
+    },
+    "11559639": {
+      "vi": "Lần lượt từng người qua đời.",
+      "en": "They died one after the other."
+    },
+    "11559822": {
+      "vi": "Giải chạy marathon vẫn diễn ra dù trời mưa.",
+      "en": "The marathon will be held, rain or shine."
+    },
+    "11561351": {
+      "vi": "Tôi bị đuổi học mất rồi.",
+      "en": "I got expelled from school."
+    },
+    "11561704": {
+      "vi": "Sau đó thì sẽ thế nào?",
+      "en": "What happens then?"
+    },
+    "11561872": {
+      "vi": "Của cho là của nợ.",
+      "en": "Nothing costs as much as what one gets for free."
+    },
+    "11563300": {
+      "vi": "Thành thói quen mất rồi.",
+      "en": "It has become habit."
+    },
+    "11563424": {
+      "vi": "Tôi sửa được.",
+      "en": "I can fix it."
+    },
+    "11563522": {
+      "vi": "Tìm việc thế nào rồi?",
+      "en": "How's the job hunt?"
+    },
+    "11563625": {
+      "vi": "Tôi không có lò vi sóng.",
+      "en": "I don't have a microwave oven."
+    },
+    "11563854": {
+      "vi": "Bạn có trượt tuyết được không?",
+      "en": "Can you ski?"
+    },
+    "11569730": {
+      "vi": "Con người vốn hay che giấu suy nghĩ thật.",
+      "en": "People hide their true feelings."
+    },
+    "11569776": {
+      "vi": "Chúng tôi là bạn cùng lớp.",
+      "en": "They're classmates."
+    },
+    "11571504": {
+      "vi": "Sự thật và tình yêu sẽ chiến thắng.",
+      "en": "Maria will win."
+    },
+    "11571518": {
+      "vi": "Dạo này tôi cảm thấy căng thẳng.",
+      "en": "I've been feeling stressed lately."
+    },
+    "11571528": {
+      "vi": "Tàu đến rồi.",
+      "en": "The train's here."
+    },
+    "11571571": {
+      "vi": "Đó là đậu phụ đấy.",
+      "en": "That's tofu."
+    },
+    "11571578": {
+      "vi": "Phạm luật rồi đấy.",
+      "en": "It's against the rules."
+    },
+    "11571613": {
+      "vi": "Tôi đang tiết kiệm.",
+      "en": "I'm saving money."
+    },
+    "11571854": {
+      "vi": "Chuyện quá khứ rồi.",
+      "en": "It's in the past."
+    },
+    "11571953": {
+      "vi": "Kỳ lạ nhỉ.",
+      "en": "It is strange."
+    }
+  }
+}
