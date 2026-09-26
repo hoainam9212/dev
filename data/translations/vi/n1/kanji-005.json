@@ -1,0 +1,366 @@
+{
+  "type": "kanji",
+  "level": "N1",
+  "entries": {
+    "詢": {
+      "vi": [
+        "hỏi ý kiến",
+        "tham vấn"
+      ],
+      "en": [
+        "Consult With"
+      ]
+    },
+    "頌": {
+      "vi": [
+        "bài tụng ca",
+        "ca ngợi"
+      ],
+      "en": [
+        "Eulogy"
+      ]
+    },
+    "箇": {
+      "vi": [
+        "đơn vị đếm đồ vật",
+        "cái"
+      ],
+      "en": [
+        "Counter For Articles"
+      ]
+    },
+    "瑳": {
+      "vi": [
+        "đánh bóng",
+        "ánh trắng ngời của ngọc",
+        "nụ cười duyên"
+      ],
+      "en": [
+        "Polish",
+        "Brilliant White Luster Of A Gem",
+        "Artful Smile"
+      ]
+    },
+    "爾": {
+      "vi": [
+        "anh",
+        "ngươi",
+        "ngôi thứ hai"
+      ],
+      "en": [
+        "You",
+        "Thou",
+        "Second Person"
+      ]
+    },
+    "碩": {
+      "vi": [
+        "lớn",
+        "vĩ đại",
+        "lỗi lạc"
+      ],
+      "en": [
+        "Large",
+        "Great",
+        "Eminent"
+      ]
+    },
+    "銑": {
+      "vi": [
+        "gang"
+      ],
+      "en": [
+        "Pig Iron"
+      ]
+    },
+    "綸": {
+      "vi": [
+        "sợi tơ",
+        "vải lụa"
+      ],
+      "en": [
+        "Thread",
+        "Silk Cloth"
+      ]
+    },
+    "颯": {
+      "vi": [
+        "bất chợt",
+        "nhanh",
+        "tiếng gió vi vu"
+      ],
+      "en": [
+        "Sudden",
+        "Quick",
+        "Sound Of The Wind"
+      ]
+    },
+    "謁": {
+      "vi": [
+        "yết kiến",
+        "bệ kiến (vua)"
+      ],
+      "en": [
+        "Audience",
+        "Audience (with King)"
+      ]
+    },
+    "誼": {
+      "vi": [
+        "tình bạn",
+        "thân tình"
+      ],
+      "en": [
+        "Friendship",
+        "Intimacy"
+      ]
+    },
+    "遵": {
+      "vi": [
+        "tuân thủ",
+        "theo",
+        "vâng lời",
+        "học theo"
+      ],
+      "en": [
+        "Abide By",
+        "Follow",
+        "Obey",
+        "Learn"
+      ]
+    },
+    "賦": {
+      "vi": [
+        "thu thuế",
+        "bài phú",
+        "văn xuôi",
+        "bài thơ",
+        "cống nạp",
+        "trả góp"
+      ],
+      "en": [
+        "Levy",
+        "Ode",
+        "Prose",
+        "Poem",
+        "Tribute",
+        "Installment"
+      ]
+    },
+    "璃": {
+      "vi": [
+        "như thủy tinh",
+        "đá lưu ly"
+      ],
+      "en": [
+        "Glassy",
+        "Lapis Lazuli"
+      ]
+    },
+    "諒": {
+      "vi": [
+        "sự thật",
+        "thực tế",
+        "thấu hiểu",
+        "thông cảm"
+      ],
+      "en": [
+        "Fact",
+        "Reality",
+        "Understand",
+        "Appreciate"
+      ]
+    },
+    "諄": {
+      "vi": [
+        "dài dòng",
+        "lải nhải",
+        "dặn đi dặn lại",
+        "nhắc nhở ân cần"
+      ],
+      "en": [
+        "Tedious"
+      ]
+    },
+    "凜": {
+      "vi": [
+        "lạnh",
+        "nghiêm khắc",
+        "nghiêm nghị",
+        "khắc nghiệt"
+      ],
+      "en": [
+        "Cold",
+        "Strict",
+        "Severe"
+      ]
+    },
+    "熙": {
+      "vi": [
+        "sáng sủa",
+        "nắng ấm",
+        "hưng thịnh",
+        "vui vẻ"
+      ],
+      "hanViet": "HY",
+      "en": [
+        "Bright",
+        "Sunny",
+        "Prosperous",
+        "Merry"
+      ]
+    },
+    "叡": {
+      "vi": [
+        "thông minh",
+        "thuộc về vua"
+      ],
+      "en": [
+        "Intelligence",
+        "Imperial"
+      ]
+    },
+    "墾": {
+      "vi": [
+        "khai khẩn",
+        "vỡ đất trồng trọt"
+      ],
+      "en": [
+        "Ground-breaking",
+        "Open Up Farmland"
+      ]
+    },
+    "錘": {
+      "vi": [
+        "quả cân",
+        "quả dọi",
+        "chì lưới",
+        "con suốt"
+      ],
+      "hanViet": "CHÙY",
+      "en": [
+        "Weight",
+        "Plumb Bob",
+        "Sinker",
+        "Spindle"
+      ]
+    },
+    "蕗": {
+      "vi": [
+        "cây lá lớn fuki (cải củ Nhật)"
+      ],
+      "hanViet": "LỘ",
+      "en": [
+        "Butterbur",
+        "Bog Rhubarb"
+      ]
+    },
+    "澪": {
+      "vi": [
+        "luồng nước",
+        "luồng tàu chạy"
+      ],
+      "hanViet": "LINH",
+      "en": [
+        "Water Route",
+        "Shipping Channel"
+      ]
+    },
+    "燎": {
+      "vi": [
+        "đốt",
+        "lửa trại"
+      ],
+      "en": [
+        "Burn",
+        "Bonfire"
+      ]
+    },
+    "鞠": {
+      "vi": [
+        "quả bóng"
+      ],
+      "en": [
+        "Ball"
+      ]
+    },
+    "燦": {
+      "vi": [
+        "rực rỡ",
+        "sáng chói"
+      ],
+      "en": [
+        "Brilliant"
+      ]
+    },
+    "爵": {
+      "vi": [
+        "nam tước",
+        "tước vị quý tộc",
+        "phẩm tước triều đình"
+      ],
+      "en": [
+        "Baron",
+        "Peerage",
+        "Court Rank"
+      ]
+    },
+    "瞭": {
+      "vi": [
+        "rõ ràng"
+      ],
+      "hanViet": "LIỄU",
+      "en": [
+        "Clear"
+      ]
+    },
+    "麿": {
+      "vi": [
+        "ta",
+        "ngươi (kokuji)"
+      ],
+      "hanViet": "MA",
+      "en": [
+        "I",
+        "You",
+        "(kokuji)"
+      ]
+    },
+    "濫": {
+      "vi": [
+        "quá mức",
+        "tràn ra",
+        "lan tràn"
+      ],
+      "en": [
+        "Excessive",
+        "Overflow",
+        "Spread Out"
+      ]
+    },
+    "燿": {
+      "vi": [
+        "tỏa sáng"
+      ],
+      "en": [
+        "Shine"
+      ]
+    },
+    "麟": {
+      "vi": [
+        "kỳ lân",
+        "thiên tài",
+        "hươu cao cổ",
+        "sáng",
+        "chói lọi"
+      ],
+      "en": [
+        "Chinese Unicorn",
+        "Genius",
+        "Giraffe",
+        "Bright",
+        "Shining"
+      ]
+    }
+  }
+}
