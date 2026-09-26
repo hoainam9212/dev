@@ -1,0 +1,1206 @@
+{
+  "type": "sentences",
+  "level": "N3",
+  "entries": {
+    "152513": {
+      "vi": "Tôi tình cờ gặp bạn.",
+      "en": "I came upon a friend of mine."
+    },
+    "152711": {
+      "vi": "Hằng ngày tôi đi làm.",
+      "en": "I go to work every day."
+    },
+    "152923": {
+      "vi": "Tôi sống ở tỉnh Hyogo.",
+      "en": "I live in Hyogo."
+    },
+    "153060": {
+      "vi": "Tôi không hài lòng.",
+      "en": "I'm dissatisfied."
+    },
+    "153065": {
+      "vi": "Tôi vụng về.",
+      "en": "I'm all thumbs."
+    },
+    "153100": {
+      "vi": "Tôi đã liều mạng chạy trốn.",
+      "en": "I ran for my life."
+    },
+    "153125": {
+      "vi": "Tôi vô cùng khó chịu.",
+      "en": "I'm really unhappy about this."
+    },
+    "153183": {
+      "vi": "Tôi đã đánh giá cao cô ấy.",
+      "en": "I had a good opinion of her."
+    },
+    "153837": {
+      "vi": "Tôi đã hiểu ra nhờ lời giải thích của anh ấy.",
+      "en": "I was convinced by his explanation."
+    },
+    "154129": {
+      "vi": "Tôi đã thất vọng về anh ấy.",
+      "en": "I was disappointed in him."
+    },
+    "154191": {
+      "vi": "Tôi mang ơn anh ấy.",
+      "en": "I am indebted to him."
+    },
+    "154336": {
+      "vi": "Tôi đã hợp tác với anh ấy.",
+      "en": "I went into partnership with him."
+    },
+    "154572": {
+      "vi": "Tôi đã nhìn thấy anh ấy xé lá thư đó.",
+      "en": "I saw him tear up the letter."
+    },
+    "154605": {
+      "vi": "Tôi là nhân viên bán hàng.",
+      "en": "I'm a salesperson."
+    },
+    "154607": {
+      "vi": "Tôi đã bị nghi là thủ phạm.",
+      "en": "I was suspected to be the criminal."
+    },
+    "154619": {
+      "vi": "Tôi đã thừa kế một gia tài khổng lồ.",
+      "en": "I came into a huge fortune."
+    },
+    "154802": {
+      "vi": "Tôi đã đi bộ một mình.",
+      "en": "I walked alone."
+    },
+    "154810": {
+      "vi": "Tôi đặc biệt thích cảnh này.",
+      "en": "I like this scene in particular."
+    },
+    "154950": {
+      "vi": "Tôi đã thức trắng đêm.",
+      "en": "I sat up all night."
+    },
+    "155040": {
+      "vi": "Tôi thức dậy từ sáng sớm.",
+      "en": "I wake up early."
+    },
+    "155104": {
+      "vi": "Tôi đã về nhà để thay quần áo.",
+      "en": "I went home in order to change my clothes."
+    },
+    "155133": {
+      "vi": "Tôi đã ra ứng cử thống đốc.",
+      "en": "I ran for the governor."
+    },
+    "155197": {
+      "vi": "Tôi sống ở Osaka.",
+      "en": "I stay in Osaka."
+    },
+    "155207": {
+      "vi": "Tôi định học lên cao học.",
+      "en": "I'm planning to go to graduate school."
+    },
+    "155286": {
+      "vi": "Tôi đã bồi thường thiệt hại.",
+      "en": "I paid for the damage."
+    },
+    "155353": {
+      "vi": "Tôi đã bị nhìn thấy lúc làm vỡ cửa sổ.",
+      "en": "I was seen to break the window."
+    },
+    "155563": {
+      "vi": "Tôi là người trung thực.",
+      "en": "I'm an honest person."
+    },
+    "155565": {
+      "vi": "Tôi đã đến Tokyo vào buổi trưa.",
+      "en": "I arrived in Tokyo at noon."
+    },
+    "155657": {
+      "vi": "Tôi phản đối chính sách phân biệt chủng tộc.",
+      "en": "I don't agree with segregation of people by race."
+    },
+    "155659": {
+      "vi": "Tôi đã chen qua đám đông tiến lên phía trước.",
+      "en": "I made my way through the crowd."
+    },
+    "155698": {
+      "vi": "Tôi đang có ý định chấp nhận lời đề nghị.",
+      "en": "I lean toward accepting the proposal."
+    },
+    "155779": {
+      "vi": "Tôi không thấy thèm ăn.",
+      "en": "I have no appetite."
+    },
+    "155780": {
+      "vi": "Tôi thấy thèm ăn.",
+      "en": "I have a good appetite."
+    },
+    "155844": {
+      "vi": "Tôi đã nhìn thấy cậu bé.",
+      "en": "I caught sight of the boy."
+    },
+    "155850": {
+      "vi": "Tôi là một cậu bé.",
+      "en": "I'm a boy."
+    },
+    "155873": {
+      "vi": "Tôi chẳng mệt chút nào.",
+      "en": "I'm not a bit tired."
+    },
+    "155935": {
+      "vi": "Tôi đang tìm trợ lý.",
+      "en": "I'm looking for an assistant."
+    },
+    "155942": {
+      "vi": "Tôi đã ký vào giấy tờ.",
+      "en": "I attached my signature to the document."
+    },
+    "155979": {
+      "vi": "Tôi đã làm xong bài tập.",
+      "en": "I've finished my assignment."
+    },
+    "156061": {
+      "vi": "Tôi không thích rượu.",
+      "en": "I don't care for alcoholic drinks."
+    },
+    "156064": {
+      "vi": "Tôi muốn trở thành nhà ảo thuật.",
+      "en": "I want to be a magician."
+    },
+    "156092": {
+      "vi": "Tôi là nội trợ.",
+      "en": "I'm a housewife."
+    },
+    "156197": {
+      "vi": "Tôi đã đồng nhất mình với tên yakuza trong phim.",
+      "en": "I identified myself with the gangsters in the film."
+    },
+    "156441": {
+      "vi": "Tôi định làm rõ chân tướng sự việc.",
+      "en": "I am going to ascertain the truth of the matter."
+    },
+    "156472": {
+      "vi": "Tôi đã cắt giấy bằng kéo.",
+      "en": "I cut the paper with a pair of scissors."
+    },
+    "156486": {
+      "vi": "Tôi ngửi mùi bằng mũi của mình.",
+      "en": "I smell with my nose."
+    },
+    "156512": {
+      "vi": "Tôi sẽ chiến đấu đến chết.",
+      "en": "I'll fight to the death."
+    },
+    "156524": {
+      "vi": "Tôi đã bất giác bật khóc.",
+      "en": "I wept in spite of myself."
+    },
+    "156627": {
+      "vi": "Tôi nghiêm túc với công việc.",
+      "en": "I'm serious about my job."
+    },
+    "156678": {
+      "vi": "Tôi đã sơn hàng rào màu xanh lá.",
+      "en": "I painted the fence green."
+    },
+    "156863": {
+      "vi": "Tôi đã lỡ chuyến xe buýt cuối cùng.",
+      "en": "I was late for the last bus."
+    },
+    "156883": {
+      "vi": "Tôi đã gặp lại anh ấy.",
+      "en": "I saw him again."
+    },
+    "157028": {
+      "vi": "Tôi vừa mới bắt đầu.",
+      "en": "I'm just beginning."
+    },
+    "157106": {
+      "vi": "Tôi đã hoàn thành toàn bộ chương trình cấp ba.",
+      "en": "I completed the whole high school curriculum."
+    },
+    "157137": {
+      "vi": "Tôi đã trả bằng tiền xu.",
+      "en": "I paid in coin."
+    },
+    "157143": {
+      "vi": "Tôi đã đọc thêm 50 trang nữa.",
+      "en": "I read fifty pages further."
+    },
+    "157168": {
+      "vi": "Tôi thấy hứng thú hơn với tiếng Anh giao tiếp.",
+      "en": "I'm more interested in spoken English."
+    },
+    "157250": {
+      "vi": "Tôi đã thử đến hiện trường.",
+      "en": "I went to the scene of the crime."
+    },
+    "157274": {
+      "vi": "Vừa nhìn thấy là tôi đã nhận ra cô ấy.",
+      "en": "I recognized her the moment I saw her."
+    },
+    "157276": {
+      "vi": "Vừa nhìn thấy là tôi đã biết đó là cô ấy.",
+      "en": "I recognized her the moment I saw her."
+    },
+    "157308": {
+      "vi": "Tôi coi trọng sức khỏe.",
+      "en": "I take my health seriously."
+    },
+    "157333": {
+      "vi": "Rốt cuộc tôi đã thất bại.",
+      "en": "I failed after all."
+    },
+    "157381": {
+      "vi": "Tôi tự hào về anh trai mình.",
+      "en": "I'm proud of my brother."
+    },
+    "157413": {
+      "vi": "Tôi tôn trọng phán đoán của bạn.",
+      "en": "I defer to your judgement."
+    },
+    "157512": {
+      "vi": "Tôi đã cởi dây giày.",
+      "en": "I loosened my shoelaces."
+    },
+    "157592": {
+      "vi": "Tôi là giáo sư.",
+      "en": "I'm a professor."
+    },
+    "157616": {
+      "vi": "Tôi đã gặp một cơn ác mộng.",
+      "en": "I had a terrible dream."
+    },
+    "157624": {
+      "vi": "Hễ đi Kyoto là tôi nhất định ghé thăm chùa Nanzen-ji.",
+      "en": "I never go to Kyoto without visiting the Nanzenji Temple."
+    },
+    "157668": {
+      "vi": "Tôi đã gặp bạn cùng lớp.",
+      "en": "I met my classmate."
+    },
+    "157716": {
+      "vi": "Tôi muốn trở thành kỹ sư.",
+      "en": "I want to be an engineer."
+    },
+    "157740": {
+      "vi": "Tôi đã được phép về nhà.",
+      "en": "I got leave to go home."
+    },
+    "157781": {
+      "vi": "Tôi là Iwamoto Kazuto.",
+      "en": "I am Kazuto Iwamoto."
+    },
+    "157814": {
+      "vi": "Tôi đã được chào đón.",
+      "en": "I was welcomed."
+    },
+    "157889": {
+      "vi": "Tôi đã sẵn sàng tinh thần.",
+      "en": "I am ready."
+    },
+    "157961": {
+      "vi": "Tôi đã quên ngày họp.",
+      "en": "I forgot the date of the meeting."
+    },
+    "158020": {
+      "vi": "Tôi đã bán nhà được giá.",
+      "en": "I sold the house to advantage."
+    },
+    "158102": {
+      "vi": "Việc gì tôi cũng xin anh ấy chỉ bảo.",
+      "en": "I look to him for direction in everything."
+    },
+    "158363": {
+      "vi": "Tôi muốn sống mãi mãi.",
+      "en": "I want to live forever."
+    },
+    "158628": {
+      "vi": "Tôi tham gia câu lạc bộ du thuyền.",
+      "en": "I belong to the sailing club."
+    },
+    "159146": {
+      "vi": "Tôi đã tham gia chuyến đi bộ đường dài.",
+      "en": "I went hiking with the group."
+    },
+    "159147": {
+      "vi": "Tôi đã đi bộ đường dài đấy.",
+      "en": "I went hiking."
+    },
+    "159218": {
+      "vi": "Loại hoa nào tôi cũng thích.",
+      "en": "I like flowers of every description."
+    },
+    "159547": {
+      "vi": "Tôi thường xuyên đến thăm anh ấy.",
+      "en": "I often call on him."
+    },
+    "159687": {
+      "vi": "Tôi đã điều tra kỹ lưỡng việc đó.",
+      "en": "I studied it thoroughly."
+    },
+    "159712": {
+      "vi": "Tôi sẽ viết lên bảng nhé.",
+      "en": "I'll write it on the blackboard."
+    },
+    "159930": {
+      "vi": "Tôi đã nhấn mạnh điểm đó.",
+      "en": "I stressed the point."
+    },
+    "160035": {
+      "vi": "Tôi định nộp đơn xin học bổng đó.",
+      "en": "I'm going to apply for the scholarship."
+    },
+    "160144": {
+      "vi": "Tôi muốn từ chối công việc đó.",
+      "en": "I want to excuse myself from the work."
+    },
+    "160230": {
+      "vi": "Tôi đã trả gấp đôi số tiền đó.",
+      "en": "I paid double the sum."
+    },
+    "160236": {
+      "vi": "Tôi đã tham gia cuộc thi đó.",
+      "en": "I took part in the athletic meeting."
+    },
+    "160445": {
+      "vi": "Tôi mong là như vậy.",
+      "en": "I hope so."
+    },
+    "160492": {
+      "vi": "Tôi đã cân nhắc mọi thứ.",
+      "en": "I've taken everything into consideration."
+    },
+    "160572": {
+      "vi": "Tôi đã tìm anh ấy ở siêu thị.",
+      "en": "I looked for him in the supermarket."
+    },
+    "161039": {
+      "vi": "Tôi sắp rời khỏi đây.",
+      "en": "I am about to leave here."
+    },
+    "161120": {
+      "vi": "Tôi thích nhạc cổ điển.",
+      "en": "I like classical music."
+    },
+    "161182": {
+      "vi": "Tôi đang ở một vị trí khá tế nhị.",
+      "en": "I find myself in a rather delicate situation."
+    },
+    "161265": {
+      "vi": "Tôi đã trả khoảng 50 đô la.",
+      "en": "I paid about 50 bucks."
+    },
+    "161467": {
+      "vi": "Tôi đồng ý với bạn ở mức độ nào đó.",
+      "en": "I agree with you to a certain extent."
+    },
+    "161610": {
+      "vi": "Thỉnh thoảng tôi có bắt gặp bạn.",
+      "en": "I see you every now and then."
+    },
+    "161636": {
+      "vi": "Tôi không có ý định đáp ứng yêu cầu của bạn.",
+      "en": "I cannot bring myself to accept your offer."
+    },
+    "162054": {
+      "vi": "Tôi mất 1 tiếng để đi làm.",
+      "en": "I commute to work for an hour."
+    },
+    "162212": {
+      "vi": "Tôi là học sinh cấp hai.",
+      "en": "I'm a junior high school student."
+    },
+    "162287": {
+      "vi": "Tôi đã dọn dẹp bàn làm việc.",
+      "en": "I cleared up my desk."
+    },
+    "162459": {
+      "vi": "Hãy đặt mình vào vị trí của tôi.",
+      "en": "Please put yourself in my place."
+    },
+    "162517": {
+      "vi": "Vai trò của tôi là gì?",
+      "en": "What's my role?"
+    },
+    "162529": {
+      "vi": "Mệnh lệnh của ta là tuyệt đối.",
+      "en": "My orders are absolute."
+    },
+    "162759": {
+      "vi": "Tôi thua rồi.",
+      "en": "I give in."
+    },
+    "162786": {
+      "vi": "Bố tôi có thể lái máy bay.",
+      "en": "My father can fly an airplane."
+    },
+    "162923": {
+      "vi": "Bạn gái tôi là diễn viên.",
+      "en": "My girlfriend is an actress."
+    },
+    "162951": {
+      "vi": "Con mèo của tôi đã chui ra khỏi giỏ.",
+      "en": "My cat came out of the basket."
+    },
+    "163136": {
+      "vi": "Con trai tôi lúc nào đi xe buýt cũng bị say xe.",
+      "en": "My son always gets sick when he rides a bus."
+    },
+    "163149": {
+      "vi": "Bà tôi thích dệt vải.",
+      "en": "My grandmother likes to weave things."
+    },
+    "163195": {
+      "vi": "Chuyên ngành của tôi là nông nghiệp.",
+      "en": "My major is agriculture."
+    },
+    "163204": {
+      "vi": "Đó là trách nhiệm của tôi.",
+      "en": "It's my fault."
+    },
+    "163306": {
+      "vi": "Phòng đọc sách của tôi ở tầng 2.",
+      "en": "My study is upstairs."
+    },
+    "163421": {
+      "vi": "Xe của tôi là xe cũ.",
+      "en": "My car is a used one."
+    },
+    "163478": {
+      "vi": "Đồng hồ của tôi chạy chính xác.",
+      "en": "My watch is accurate."
+    },
+    "163551": {
+      "vi": "Chị tôi hảo ngọt.",
+      "en": "My sister likes sweets."
+    },
+    "163755": {
+      "vi": "Bệnh viêm kết mạc của tôi là mãn tính.",
+      "en": "My conjunctivitis is chronic."
+    },
+    "163756": {
+      "vi": "Bạn sẽ tặng gì làm quà cưới cho tôi?",
+      "en": "What will you give me at my wedding?"
+    },
+    "163787": {
+      "vi": "Anh tôi là người có thẩm quyền về triết học.",
+      "en": "My brother's an authority on philosophy."
+    },
+    "163803": {
+      "vi": "Anh tôi là kỹ sư.",
+      "en": "My brother is an engineer."
+    },
+    "164017": {
+      "vi": "Mái nhà tôi màu đỏ.",
+      "en": "The roof of my house is red."
+    },
+    "164037": {
+      "vi": "Tôi cam kết sẽ giúp đỡ.",
+      "en": "I assure you of my support."
+    },
+    "164164": {
+      "vi": "Máy đánh chữ của tôi bị hỏng.",
+      "en": "Something is wrong with my typewriter."
+    },
+    "164392": {
+      "vi": "Chị tôi đã đính hôn.",
+      "en": "My sister got engaged."
+    },
+    "164401": {
+      "vi": "Anh ấy đã đối xử công bằng với tôi.",
+      "en": "He acted fairly towards me."
+    },
+    "164503": {
+      "vi": "Tôi có một người bạn qua thư.",
+      "en": "I have a friend I correspond with."
+    },
+    "164509": {
+      "vi": "Tôi không có gì bất mãn.",
+      "en": "I have nothing to complain about."
+    },
+    "164591": {
+      "vi": "Tôi không có nợ nần.",
+      "en": "I am free of debt."
+    },
+    "164606": {
+      "vi": "Tôi chẳng còn mặt mũi nào để gặp.",
+      "en": "I have no face to turn to."
+    },
+    "164656": {
+      "vi": "Tôi có một người bạn là phi công.",
+      "en": "I have a friend who is a pilot."
+    },
+    "164710": {
+      "vi": "Tôi chẳng hiểu gì cả.",
+      "en": "It's all Greek to me."
+    },
+    "164718": {
+      "vi": "Tôi không đủ sức nhấc hòn đá này.",
+      "en": "I have no strength to lift this stone."
+    },
+    "165010": {
+      "vi": "Chúng tôi là hàng xóm của nhau.",
+      "en": "We're neighbors."
+    },
+    "165069": {
+      "vi": "Chúng tôi đã thức dậy lúc bình minh.",
+      "en": "We got up at dawn."
+    },
+    "165337": {
+      "vi": "Chúng tôi nghĩ việc anh ấy tham gia là đương nhiên.",
+      "en": "We took it for granted that he would join us."
+    },
+    "165347": {
+      "vi": "Chúng tôi đã vỗ tay.",
+      "en": "We clapped our hands."
+    },
+    "165378": {
+      "vi": "Chúng tôi đã mổ ếch để xem các cơ quan nội tạng.",
+      "en": "We dissected a frog to examine its internal organs."
+    },
+    "165464": {
+      "vi": "Chúng tôi đã đi qua Đài Loan.",
+      "en": "We went by way of Taiwan."
+    },
+    "165480": {
+      "vi": "Chúng ta sử dụng rất nhiều nước.",
+      "en": "We use a lot of water."
+    },
+    "165569": {
+      "vi": "Chúng tôi đã được cấp đồng phục.",
+      "en": "We were supplied with uniforms."
+    },
+    "165741": {
+      "vi": "Chúng tôi đã được hưởng hòa bình hơn bốn mươi năm.",
+      "en": "We have been enjoying peace for more than 40 years."
+    },
+    "165948": {
+      "vi": "Chúng ta nên tuân theo quy định.",
+      "en": "We should obey the rules."
+    },
+    "166060": {
+      "vi": "Chúng ta là những người cùng chung số phận.",
+      "en": "We're in the same boat."
+    },
+    "166165": {
+      "vi": "Tất cả chúng ta đều mong hạnh phúc.",
+      "en": "We all wish for happiness."
+    },
+    "166343": {
+      "vi": "Chúng ta nên xem xét vấn đề đó từ góc nhìn của trẻ em.",
+      "en": "We should consider the problem from a child's point of view."
+    },
+    "166519": {
+      "vi": "Chúng tôi đã tham gia cuộc thi.",
+      "en": "We took part in the contest."
+    },
+    "166739": {
+      "vi": "Chúng tôi thử.",
+      "en": "We try."
+    },
+    "167402": {
+      "vi": "Tôi sẽ chăm sóc.",
+      "en": "I will see to it."
+    },
+    "167435": {
+      "vi": "Tôi định làm thay cho bố.",
+      "en": "I'll take my father's place."
+    },
+    "167486": {
+      "vi": "Tôi sẽ làm thay cho anh ấy.",
+      "en": "I will take his place."
+    },
+    "167676": {
+      "vi": "Những người tôi gặp đều tử tế.",
+      "en": "The people whom I meet are kind."
+    },
+    "167898": {
+      "vi": "Chắc là tôi nên nhờ vả nhỉ.",
+      "en": "I should ask, shouldn't I?"
+    },
+    "167960": {
+      "vi": "Tôi đảm bảo đấy.",
+      "en": "I will endorse it."
+    },
+    "168003": {
+      "vi": "Tôi có cần phải đến đó không?",
+      "en": "Do I need to go there?"
+    },
+    "168094": {
+      "vi": "Đợi đến khi tôi đếm tới 10.",
+      "en": "Wait till I count to ten."
+    },
+    "168119": {
+      "vi": "Tìm đường sống trong chỗ chết.",
+      "en": "Find life amongst death."
+    },
+    "168133": {
+      "vi": "Nên bãi bỏ án tử hình.",
+      "en": "We must abolish the death penalty."
+    },
+    "168153": {
+      "vi": "Cái chết thường được ví như giấc ngủ.",
+      "en": "Death is often compared to sleep."
+    },
+    "168158": {
+      "vi": "Hãy làm với quyết tâm sẵn sàng chết.",
+      "en": "Do or die."
+    },
+    "168205": {
+      "vi": "Người quản lý đứng ở cửa ra vào.",
+      "en": "The manager stood at the door."
+    },
+    "168211": {
+      "vi": "Người quản lý đã ra lệnh quét dọn sạch sẽ tất cả các phòng càng sớm càng tốt.",
+      "en": "The manager ordered all the rooms to be swept clean as soon as possible."
+    },
+    "168220": {
+      "vi": "Chi nhánh có mặt trên khắp cả nước.",
+      "en": "Our branches extend all over the country."
+    },
+    "168239": {
+      "vi": "Nhạc trưởng xuất hiện trên sân khấu.",
+      "en": "The conductor appeared on the stage."
+    },
+    "168244": {
+      "vi": "Tôi bị đứt tay.",
+      "en": "I just cut my finger."
+    },
+    "168255": {
+      "vi": "Tư tưởng thể hiện ra thành hành động.",
+      "en": "An idea is expressed in terms of action."
+    },
+    "168256": {
+      "vi": "Tư tưởng được biểu đạt bằng lời nói.",
+      "en": "Thoughts are expressed by means of words."
+    },
+    "168273": {
+      "vi": "Thậm chí chẳng đáng để nghĩ tới.",
+      "en": "It's not even worth a thought."
+    },
+    "168350": {
+      "vi": "Thị trường đang giảm giá toàn diện nhỉ.",
+      "en": "The market prices have fallen across the board."
+    },
+    "168367": {
+      "vi": "Thành phố đã cấp chăn cho những người khó khăn.",
+      "en": "The city supplied the needy with blankets."
+    },
+    "168380": {
+      "vi": "Có một công viên ở trung tâm thành phố.",
+      "en": "There is a park in the middle of the city."
+    },
+    "168525": {
+      "vi": "Trẻ con lớn nhanh.",
+      "en": "Children grow very quickly."
+    },
+    "168538": {
+      "vi": "Con cái theo mẹ.",
+      "en": "The child followeth the womb."
+    },
+    "168829": {
+      "vi": "Chẳng lạ gì khi số trẻ em giảm đi.",
+      "en": "It isn't strange that the number of children decreases, too."
+    },
+    "168862": {
+      "vi": "Mỗi ngày trẻ em nhận ra cả nghìn điều khác biệt.",
+      "en": "He notices a thousand times a day the difference."
+    },
+    "168885": {
+      "vi": "Bạn có chị em gái không?",
+      "en": "Do you have any sisters?"
+    },
+    "168988": {
+      "vi": "Cuốn sách mới đầy kích thích đang thu hút sự chú ý.",
+      "en": "A stimulating new book attracts attention."
+    },
+    "169007": {
+      "vi": "Người thợ may tạo nên con người.",
+      "en": "The tailor makes the man."
+    },
+    "169008": {
+      "vi": "Thông số kỹ thuật và giá cả có thể thay đổi.",
+      "en": "Specifications and price are subject to change."
+    },
+    "169013": {
+      "vi": "Thêm vài nét bút hoàn thiện.",
+      "en": "I add a few finishing touches."
+    },
+    "169062": {
+      "vi": "Đã đến lúc nên nghỉ việc rồi.",
+      "en": "It's time to leave off work."
+    },
+    "169068": {
+      "vi": "Chúng ta hãy đẩy nhanh công việc.",
+      "en": "Let's press on with our work."
+    },
+    "169116": {
+      "vi": "Công việc gần như đã xong.",
+      "en": "My work is almost finished."
+    },
+    "169143": {
+      "vi": "Hãy say mê với công việc.",
+      "en": "Have some enthusiasm for your job."
+    },
+    "169173": {
+      "vi": "Anh làm việc thật năng nổ nhỉ.",
+      "en": "I see you're doing very well in your business."
+    },
+    "169285": {
+      "vi": "Phần còn lại cứ giữ lấy.",
+      "en": "Keep the rest for yourself."
+    },
+    "169304": {
+      "vi": "Mưa axit không phải hiện tượng tự nhiên.",
+      "en": "Acid rain isn't a natural phenomenon."
+    },
+    "169306": {
+      "vi": "Axit ăn mòn kim loại.",
+      "en": "Acids act on metals."
+    },
+    "169308": {
+      "vi": "Axit tác dụng với các chất chứa kim loại.",
+      "en": "Acid acts on things which contain metal."
+    },
+    "169318": {
+      "vi": "Kế hoạch chấn hưng công nghiệp được các nhà tài chính địa phương lo về vốn.",
+      "en": "Local finance are bankrolling the industrial promotion program."
+    },
+    "169401": {
+      "vi": "Người ta đã đào đường hầm xuyên qua núi.",
+      "en": "They drove a tunnel through the hill."
+    },
+    "169408": {
+      "vi": "Núi không phải lúc nào cũng xanh.",
+      "en": "Mountains are not necessarily green."
+    },
+    "169448": {
+      "vi": "Không cần phí tham gia.",
+      "en": "There's no membership fee for joining."
+    },
+    "169472": {
+      "vi": "Ô bán rất chạy.",
+      "en": "Umbrellas sell well."
+    },
+    "169527": {
+      "vi": "Cỏ dại mọc nhanh.",
+      "en": "Ill weeds grow apace."
+    },
+    "169593": {
+      "vi": "Hoa anh đào đang nở đẹp nhất.",
+      "en": "The cherry blossoms are at their best."
+    },
+    "169729": {
+      "vi": "Tối qua tôi đã gặp ác mộng.",
+      "en": "I had a terrible dream last night."
+    },
+    "170128": {
+      "vi": "Hôm qua học kỳ hai đã kết thúc.",
+      "en": "The second term came to an end yesterday."
+    },
+    "170166": {
+      "vi": "Hoa màu đã chết khô.",
+      "en": "The crops have withered."
+    },
+    "170173": {
+      "vi": "Nhà soạn nhạc sáng tác âm nhạc.",
+      "en": "Composers create music."
+    },
+    "170222": {
+      "vi": "Thừa kế tài sản.",
+      "en": "I succeed to a fortune."
+    },
+    "170235": {
+      "vi": "Nên trừng phạt tương xứng với tội.",
+      "en": "The punishment should be in proportion to the crime."
+    },
+    "170239": {
+      "vi": "Suýt nữa thì toi.",
+      "en": "That was a close shave."
+    },
+    "170269": {
+      "vi": "Phiên tòa kéo dài ba tiếng.",
+      "en": "The court session lasted for three hours."
+    },
+    "170292": {
+      "vi": "Lễ hội đã kết thúc.",
+      "en": "The festival came to an end."
+    },
+    "170314": {
+      "vi": "Tài năng cần được rèn luyện.",
+      "en": "One's talent is in need of discipline."
+    },
+    "170345": {
+      "vi": "Vợ tôi đã mất vì ung thư.",
+      "en": "My wife died of cancer."
+    },
+    "170365": {
+      "vi": "Tôi đang tìm một chiếc túi để tặng vợ.",
+      "en": "I'm looking for a bag for my wife."
+    },
+    "170386": {
+      "vi": "Tồi tệ nhất!",
+      "en": "It's the worst!"
+    },
+    "170402": {
+      "vi": "Hãy hy vọng điều tốt đẹp nhất.",
+      "en": "Let's hope for the best."
+    },
+    "170522": {
+      "vi": "Hạn chót đang đến gần.",
+      "en": "The deadline is drawing near."
+    },
+    "170534": {
+      "vi": "Tòa án tối cao chỉ trích giáo dục phân biệt chủng tộc.",
+      "en": "The Supreme Court attacks school segregation."
+    },
+    "170536": {
+      "vi": "Đó là một sân khấu tuyệt vời nhất.",
+      "en": "It was an excellent performance."
+    },
+    "170537": {
+      "vi": "Chúng tôi kinh doanh những mặt hàng tốt nhất.",
+      "en": "Deal in top of the line of goods."
+    },
+    "170538": {
+      "vi": "Đang ở trạng thái tốt nhất nhỉ.",
+      "en": "It's in peak condition."
+    },
+    "170547": {
+      "vi": "Hãy chiến đấu đến cùng.",
+      "en": "Let's fight to the last."
+    },
+    "170566": {
+      "vi": "Chúng ta bỏ hai khổ cuối rồi hát nhé?",
+      "en": "We'll sing that song, omitting the last two verses."
+    },
+    "170626": {
+      "vi": "Dạo này thị lực tôi giảm sút.",
+      "en": "My vision is getting worse these days."
+    },
+    "170636": {
+      "vi": "Gần đây chủ nghĩa cộng sản đã lan rộng.",
+      "en": "Recently communism has extended its power."
+    },
+    "170765": {
+      "vi": "Tôi đã chuẩn bị tinh thần cho điều tồi tệ nhất.",
+      "en": "I am prepared for the worst."
+    },
+    "170774": {
+      "vi": "Cần phải chuẩn bị cho tình huống xấu nhất.",
+      "en": "It is necessary that we should prepare for the worst."
+    },
+    "170829": {
+      "vi": "Tôi đã đặt chỗ ngồi.",
+      "en": "I booked a seat."
+    },
+    "170833": {
+      "vi": "Quay về chỗ ngồi thôi.",
+      "en": "Let's go back to our places."
+    },
+    "170836": {
+      "vi": "Tất cả chỗ ngồi đã được đặt trước.",
+      "en": "All seats are reserved."
+    },
+    "170881": {
+      "vi": "Đường tan trong nước.",
+      "en": "Sugar dissolves in water."
+    },
+    "170900": {
+      "vi": "Có chênh lệch giá không?",
+      "en": "Is there a difference?"
+    },
+    "170910": {
+      "vi": "Hãy đi bên trái.",
+      "en": "Keep to the left."
+    },
+    "171150": {
+      "vi": "Dự báo tối nay có mưa.",
+      "en": "Rain is forecast for this evening."
+    },
+    "171153": {
+      "vi": "Buổi diễn thuyết tối nay là ai vậy?",
+      "en": "Who is going to speak tonight?"
+    },
+    "171210": {
+      "vi": "Tối nay tụ tập nhé.",
+      "en": "Let's get together tonight."
+    },
+    "171270": {
+      "vi": "Tối nay tôi định mời 5 người khách.",
+      "en": "We're having five guests tonight."
+    },
+    "171342": {
+      "vi": "Năm nay cà chua được mùa.",
+      "en": "We have a good crop of tomatoes this year."
+    },
+    "171538": {
+      "vi": "Hôm nay thời tiết bất thường.",
+      "en": "The weather is unusual today."
+    },
+    "171628": {
+      "vi": "Hôm nay không ẩm bằng hôm qua.",
+      "en": "It is less humid today than it was yesterday."
+    },
+    "172421": {
+      "vi": "Không biết từ nay về sau sẽ xảy ra chuyện gì.",
+      "en": "You never can tell what's going to happen."
+    },
+    "172538": {
+      "vi": "Giờ đây du học đang rất thịnh hành.",
+      "en": "Studying abroad is very common now."
+    },
+    "172634": {
+      "vi": "Giờ thì răng sâu khắp miệng.",
+      "en": "I have a lot of bad teeth."
+    },
+    "172646": {
+      "vi": "Bây giờ hoàn cảnh đã khác.",
+      "en": "Matters are different now."
+    },
+    "172705": {
+      "vi": "Bây giờ là mấy giờ?",
+      "en": "What time is it now?"
+    },
+    "172720": {
+      "vi": "Thứ đang nâng đỡ tôi lúc này chỉ có hy vọng.",
+      "en": "Only hope can keep me together now."
+    },
+    "172754": {
+      "vi": "Rồi sẽ biết thôi.",
+      "en": "You'll see."
+    },
+    "172755": {
+      "vi": "Rồi mày sẽ hối hận cho xem.",
+      "en": "You will yet regret it."
+    },
+    "172757": {
+      "vi": "Có vẻ sắp có bão đến nơi.",
+      "en": "A storm is brewing."
+    },
+    "172759": {
+      "vi": "Có vẻ tuyết sắp rơi đến nơi.",
+      "en": "It is going to snow."
+    },
+    "172764": {
+      "vi": "Có vẻ sắp có một trận mưa.",
+      "en": "It is threatening to rain."
+    },
+    "172860": {
+      "vi": "Bây giờ chính là lúc chốt giao dịch một mạch.",
+      "en": "Now is the time to clinch the deal."
+    },
+    "172895": {
+      "vi": "Nghe nói vừa rồi đã vượt qua đường đổi ngày quốc tế.",
+      "en": "He said we just crossed the International Date Line."
+    },
+    "172973": {
+      "vi": "Nhìn lên bảng đi.",
+      "en": "Look at the blackboard."
+    },
+    "173020": {
+      "vi": "Người dân đã tước đoạt quyền lợi của ông ta.",
+      "en": "The people deprived him of his rights."
+    },
+    "173024": {
+      "vi": "Người dân đã khổ sở vì thuế nặng.",
+      "en": "The people groaned under the burden of heavy taxation."
+    },
+    "173025": {
+      "vi": "Người dân đã được nếm trải tự do.",
+      "en": "The people enjoyed a taste of freedom."
+    },
+    "173057": {
+      "vi": "Tôi định tiếp tục làm việc trong lĩnh vực tài chính quốc tế.",
+      "en": "I plan to pursue a career in international finance."
+    },
+    "173084": {
+      "vi": "Quốc hội đang họp.",
+      "en": "The Diet is now in session."
+    },
+    "173086": {
+      "vi": "Quốc hội đã bị giải tán.",
+      "en": "The Diet has been dissolved."
+    },
+    "173124": {
+      "vi": "Chiếc du thuyền sang trọng đã vào cảng.",
+      "en": "A luxury liner arrived in the harbor."
+    },
+    "173125": {
+      "vi": "Trận mưa lớn kèm theo sấm sét.",
+      "en": "The heavy rain was accompanied with thunder."
+    },
+    "173133": {
+      "vi": "Tiếng còi báo hiệu đã vang lên.",
+      "en": "The whistle blew."
+    },
+    "173165": {
+      "vi": "Tổng cộng là 100.",
+      "en": "The total is one hundred."
+    },
+    "173166": {
+      "vi": "Tổng cộng là bao nhiêu tiền?",
+      "en": "What is the total amount?"
+    },
+    "173193": {
+      "vi": "Đường cao tốc đang bị tắc.",
+      "en": "The motorway is snarled up."
+    },
+    "1531875": {
+      "vi": "Cảm ơn!",
+      "en": "Thanks."
+    },
+    "1532832": {
+      "vi": "Cảm ơn.",
+      "en": "Thanks!"
+    },
+    "1551038": {
+      "vi": "Tôi thì tốt hơn.",
+      "en": "I'm better."
+    },
+    "1555133": {
+      "vi": "Máy đánh chữ bị trục trặc.",
+      "en": "Something is wrong with my typewriter."
+    },
+    "1564955": {
+      "vi": "A có kích thước bằng B.",
+      "en": "A is of equal size to B."
+    },
+    "1578952": {
+      "vi": "Mặt Trăng không có khí quyển.",
+      "en": "The moon has no atmosphere."
+    },
+    "1578998": {
+      "vi": "Bạn đã quyết định chưa?",
+      "en": "Have you decided?"
+    },
+    "1579006": {
+      "vi": "Tôi cũng là khách du lịch.",
+      "en": "I'm a tourist, too."
+    },
+    "1579007": {
+      "vi": "Mực nước sông đang dâng cao.",
+      "en": "The river's water level has risen."
+    },
+    "1602127": {
+      "vi": "Hôm nay Tokyo chắc sẽ rất lạnh.",
+      "en": "Today, Tokyo will get very cold."
+    },
+    "1608768": {
+      "vi": "Tom là lính cứu hỏa.",
+      "en": "Tom is a firefighter."
+    },
+    "1614172": {
+      "vi": "Tình yêu yêu tình yêu.",
+      "en": "Love loves love."
+    },
+    "1614261": {
+      "vi": "Tình yêu là kỳ tích của văn minh.",
+      "en": "Love is the miracle of civilization."
+    },
+    "1619958": {
+      "vi": "Nhiệm vụ của cậu là gắn kết cả lớp.",
+      "en": "It is your responsibility to bring the class together."
+    },
+    "1621929": {
+      "vi": "Chủ tịch đã đưa ra kết luận.",
+      "en": "The company's president has come to a conclusion."
+    },
+    "1622559": {
+      "vi": "Khổng lồ quá.",
+      "en": "It's enormous!"
+    },
+    "1622563": {
+      "vi": "Tôi in một trăm trang.",
+      "en": "I print 100 pages."
+    },
+    "1627126": {
+      "vi": "Meg nói nhiều lắm.",
+      "en": "Meg talks a lot."
+    },
+    "1627146": {
+      "vi": "Tom đã lấy lại thăng bằng.",
+      "en": "Tom regained his balance."
+    },
+    "1627173": {
+      "vi": "Thất vọng thật đấy.",
+      "en": "I'm disappointed."
+    },
+    "1634746": {
+      "vi": "Anh Tom đã bấm chuông.",
+      "en": "Tom rang the doorbell."
+    },
+    "1636387": {
+      "vi": "Sự nhẫn nại cũng có giới hạn.",
+      "en": "I'm running out of patience."
+    },
+    "1643719": {
+      "vi": "Hắn là bạn cũ của tôi.",
+      "en": "He's an old friend of mine."
+    },
+    "1657754": {
+      "vi": "Tôi muốn viết một bài báo.",
+      "en": "I want to write an article."
+    },
+    "1676744": {
+      "vi": "Vì đó là sự thật mà.",
+      "en": "But it's true."
+    },
+    "1678497": {
+      "vi": "Cơ hội cuối cùng!",
+      "en": "Last call!"
+    },
+    "1678511": {
+      "vi": "Tôi đã đi du lịch quanh châu Âu.",
+      "en": "I traveled about Europe."
+    },
+    "1680870": {
+      "vi": "Tom làm việc ở một công ty lớn.",
+      "en": "Tom works for a large company."
+    },
+    "1687821": {
+      "vi": "Nghe nói khi trời nóng thì nên làm mát sau gáy.",
+      "en": "I hear that it's good to cool the back of your neck when it's hot."
+    },
+    "1688688": {
+      "vi": "Rốt cuộc là bạn muốn làm gì?",
+      "en": "What in the world do you want to do?"
+    },
+    "1689715": {
+      "vi": "Ngôi nhà này là nhà chống cháy.",
+      "en": "This house is fireproof."
+    },
+    "1690126": {
+      "vi": "Đây là nơi lý tưởng.",
+      "en": "This is the perfect place."
+    },
+    "1690218": {
+      "vi": "Phương pháp này chắc chắn.",
+      "en": "This method is sure to work."
+    },
+    "1697721": {
+      "vi": "100 năm được gọi là 1 thế kỷ.",
+      "en": "100 years is called a century."
+    },
+    "1699535": {
+      "vi": "Con người là sản phẩm của môi trường.",
+      "en": "Man is a product of his environment."
+    },
+    "1710242": {
+      "vi": "Anh ấy đã tham gia môn đua ngựa biểu diễn.",
+      "en": "He participated in the horse dressage competition."
+    },
+    "1721173": {
+      "vi": "Phòng thu rất chật, không có chỗ nào để trốn.",
+      "en": "The studio is very small, with no place to hide."
+    },
+    "1728854": {
+      "vi": "Vở kịch đó khép lại bằng cái chết của nhân vật chính.",
+      "en": "The play concludes with the hero's death."
+    },
+    "1728959": {
+      "vi": "Trường học ở trên đồi.",
+      "en": "The school is on the hill."
+    }
+  }
+}
