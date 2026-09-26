@@ -1,0 +1,3458 @@
+{
+  "type": "kanji",
+  "level": "N1",
+  "entries": {
+    "岬": {
+      "vi": [
+        "mũi đất",
+        "mũi biển",
+        "doi đất",
+        "mỏm đất"
+      ],
+      "en": [
+        "Headland",
+        "Cape",
+        "Spit",
+        "Promontory"
+      ]
+    },
+    "癖": {
+      "vi": [
+        "cử chỉ quen",
+        "thói quen",
+        "tật xấu",
+        "đặc điểm",
+        "khuyết điểm",
+        "tật"
+      ],
+      "en": [
+        "Mannerism",
+        "Habit",
+        "Vice",
+        "Trait",
+        "Fault",
+        "Kink"
+      ]
+    },
+    "愉": {
+      "vi": [
+        "niềm vui",
+        "vui vẻ",
+        "hân hoan"
+      ],
+      "en": [
+        "Pleasure",
+        "Happy",
+        "Rejoice"
+      ]
+    },
+    "寅": {
+      "vi": [
+        "cung Dần",
+        "giờ Dần (3–5 giờ sáng)",
+        "chi thứ ba"
+      ],
+      "en": [
+        "Sign Of The Tiger",
+        "3-5am",
+        "Third Sign Of Chinese Zodiac"
+      ]
+    },
+    "礁": {
+      "vi": [
+        "đá ngầm",
+        "rạn san hô"
+      ],
+      "hanViet": "TIÊU",
+      "en": [
+        "Reef",
+        "Sunken Rock"
+      ]
+    },
+    "乃": {
+      "vi": [
+        "từ",
+        "trợ từ sở hữu",
+        "thế là",
+        "do đó"
+      ],
+      "en": [
+        "From",
+        "Possessive Particle",
+        "Whereupon",
+        "Accordingly"
+      ]
+    },
+    "洲": {
+      "vi": [
+        "lục địa",
+        "cồn cát",
+        "đảo",
+        "quốc gia"
+      ],
+      "en": [
+        "Continent",
+        "Sandbar",
+        "Island",
+        "Country"
+      ]
+    },
+    "屯": {
+      "vi": [
+        "doanh trại",
+        "đồn cảnh sát",
+        "trại",
+        "tấn"
+      ],
+      "hanViet": "ĐỒN",
+      "en": [
+        "Barracks",
+        "Police Station",
+        "Camp",
+        "Ton"
+      ]
+    },
+    "樺": {
+      "vi": [
+        "cây bạch dương",
+        "đỏ sẫm"
+      ],
+      "en": [
+        "Birch",
+        "Dark Red"
+      ]
+    },
+    "槙": {
+      "vi": [
+        "cành non",
+        "cây thường xanh cảnh"
+      ],
+      "hanViet": "ĐIÊN",
+      "en": [
+        "Twig",
+        "Ornamental Evergreen"
+      ]
+    },
+    "姻": {
+      "vi": [
+        "hôn nhân",
+        "kết hôn"
+      ],
+      "en": [
+        "Matrimony",
+        "Marry"
+      ]
+    },
+    "巌": {
+      "vi": [
+        "tảng đá",
+        "vách đá",
+        "đá lớn"
+      ],
+      "hanViet": "NHAM",
+      "en": [
+        "Rock",
+        "Crag",
+        "Boulder"
+      ]
+    },
+    "擬": {
+      "vi": [
+        "bắt chước",
+        "nhắm (súng)",
+        "đề cử",
+        "mô phỏng"
+      ],
+      "en": [
+        "Mimic",
+        "Aim (a Gun) At",
+        "Nominate",
+        "Imitate"
+      ]
+    },
+    "塀": {
+      "vi": [
+        "hàng rào",
+        "bức tường (kokuji)"
+      ],
+      "hanViet": "BÌNH",
+      "en": [
+        "Fence",
+        "Wall",
+        "(kokuji)"
+      ]
+    },
+    "唇": {
+      "vi": [
+        "môi"
+      ],
+      "en": [
+        "Lips"
+      ]
+    },
+    "睦": {
+      "vi": [
+        "thân mật",
+        "thân thiện",
+        "hòa thuận"
+      ],
+      "en": [
+        "Intimate",
+        "Friendly",
+        "Harmonious"
+      ]
+    },
+    "閑": {
+      "vi": [
+        "nhàn rỗi"
+      ],
+      "en": [
+        "Leisure"
+      ]
+    },
+    "胡": {
+      "vi": [
+        "mọi rợ",
+        "ngoại quốc"
+      ],
+      "en": [
+        "Barbarian",
+        "Foreign"
+      ]
+    },
+    "幽": {
+      "vi": [
+        "ẩn dật",
+        "giam trong phòng",
+        "sâu thẳm",
+        "thâm u",
+        "hẻo lánh",
+        "mờ nhạt",
+        "tối tăm",
+        "tĩnh lặng"
+      ],
+      "en": [
+        "Seclude",
+        "Confine To A Room",
+        "Deep",
+        "Profound",
+        "Secluded",
+        "Faint",
+        "Dark",
+        "Tranquil",
+        "Calm"
+      ]
+    },
+    "峻": {
+      "vi": [
+        "cao",
+        "dốc"
+      ],
+      "en": [
+        "High",
+        "Steep"
+      ]
+    },
+    "曹": {
+      "vi": [
+        "quan nha",
+        "quan chức",
+        "đồng chí",
+        "đồng bọn"
+      ],
+      "en": [
+        "Office",
+        "Official",
+        "Comrade",
+        "Fellow"
+      ]
+    },
+    "詠": {
+      "vi": [
+        "ngâm vịnh",
+        "bài thơ",
+        "bài hát",
+        "sáng tác"
+      ],
+      "en": [
+        "Recitation",
+        "Poem",
+        "Song",
+        "Composing"
+      ]
+    },
+    "卑": {
+      "vi": [
+        "thấp hèn",
+        "hèn hạ",
+        "đê tiện",
+        "thô tục"
+      ],
+      "en": [
+        "Lowly",
+        "Base",
+        "Vile",
+        "Vulgar"
+      ]
+    },
+    "侮": {
+      "vi": [
+        "khinh miệt",
+        "coi thường",
+        "xem nhẹ",
+        "khinh bỉ"
+      ],
+      "en": [
+        "Scorn",
+        "Despise",
+        "Make Light Of",
+        "Contempt"
+      ]
+    },
+    "鋳": {
+      "vi": [
+        "đúc",
+        "đúc tiền"
+      ],
+      "en": [
+        "Casting",
+        "Mint"
+      ]
+    },
+    "抹": {
+      "vi": [
+        "xoa",
+        "quét (sơn)",
+        "xóa"
+      ],
+      "en": [
+        "Rub",
+        "Paint",
+        "Erase"
+      ]
+    },
+    "尉": {
+      "vi": [
+        "sĩ quan",
+        "cai ngục",
+        "ông già",
+        "cấp bậc"
+      ],
+      "hanViet": "ÚY",
+      "en": [
+        "Military Officer",
+        "Jailer",
+        "Old Man",
+        "Rank"
+      ]
+    },
+    "槻": {
+      "vi": [
+        "cây du Nhật (keyaki)"
+      ],
+      "hanViet": "QUY",
+      "en": [
+        "Zelkova Tree"
+      ]
+    },
+    "隷": {
+      "vi": [
+        "nô lệ",
+        "đầy tớ",
+        "tù nhân",
+        "tội phạm",
+        "môn đồ"
+      ],
+      "en": [
+        "Slave",
+        "Servant",
+        "Prisoner",
+        "Criminal",
+        "Follower"
+      ]
+    },
+    "禍": {
+      "vi": [
+        "tai họa",
+        "bất hạnh",
+        "điều ác",
+        "lời nguyền"
+      ],
+      "en": [
+        "Calamity",
+        "Misfortune",
+        "Evil",
+        "Curse"
+      ]
+    },
+    "蝶": {
+      "vi": [
+        "con bướm"
+      ],
+      "en": [
+        "Butterfly"
+      ]
+    },
+    "酪": {
+      "vi": [
+        "sản phẩm từ sữa",
+        "váng sữa",
+        "nước dùng",
+        "nước ép trái cây"
+      ],
+      "en": [
+        "Dairy Products",
+        "Whey",
+        "Broth",
+        "Fruit Juice"
+      ]
+    },
+    "茎": {
+      "vi": [
+        "cuống",
+        "thân cây"
+      ],
+      "en": [
+        "Stalk",
+        "Stem"
+      ]
+    },
+    "帥": {
+      "vi": [
+        "chỉ huy",
+        "thống lĩnh quân",
+        "thống đốc"
+      ],
+      "hanViet": "SOÁI",
+      "en": [
+        "Commander",
+        "Leading Troops",
+        "Governor"
+      ]
+    },
+    "逝": {
+      "vi": [
+        "qua đời",
+        "mất"
+      ],
+      "en": [
+        "Departed",
+        "Die"
+      ]
+    },
+    "汽": {
+      "vi": [
+        "hơi nước",
+        "hơi"
+      ],
+      "en": [
+        "Vapor",
+        "Steam"
+      ]
+    },
+    "琢": {
+      "vi": [
+        "mài giũa"
+      ],
+      "en": [
+        "Polish"
+      ]
+    },
+    "匿": {
+      "vi": [
+        "giấu",
+        "che chở",
+        "bảo vệ"
+      ],
+      "en": [
+        "Hide",
+        "Shelter",
+        "Shield"
+      ]
+    },
+    "襟": {
+      "vi": [
+        "cổ áo",
+        "cổ",
+        "ve áo",
+        "tâm tư"
+      ],
+      "en": [
+        "Collar",
+        "Neck",
+        "Lapel",
+        "One's Inner Feelings"
+      ]
+    },
+    "蛍": {
+      "vi": [
+        "đom đóm"
+      ],
+      "en": [
+        "Lightning-bug",
+        "Firefly"
+      ]
+    },
+    "蕉": {
+      "vi": [
+        "chuối",
+        "chuối lá"
+      ],
+      "en": [
+        "Banana",
+        "Plantain"
+      ]
+    },
+    "寡": {
+      "vi": [
+        "góa phụ",
+        "thiểu số",
+        "ít"
+      ],
+      "en": [
+        "Widow",
+        "Minority",
+        "Few"
+      ]
+    },
+    "琉": {
+      "vi": [
+        "đá quý",
+        "ngọc",
+        "đá lưu ly"
+      ],
+      "en": [
+        "Precious Stone",
+        "Gem",
+        "Lapis Lazuli"
+      ]
+    },
+    "痢": {
+      "vi": [
+        "bệnh tiêu chảy",
+        "kiết lỵ"
+      ],
+      "en": [
+        "Diarrhea"
+      ]
+    },
+    "庸": {
+      "vi": [
+        "tầm thường",
+        "bình thường",
+        "thuê mướn"
+      ],
+      "hanViet": "DUNG",
+      "en": [
+        "Commonplace",
+        "Ordinary",
+        "Employment"
+      ]
+    },
+    "朋": {
+      "vi": [
+        "bạn đồng hành",
+        "bạn"
+      ],
+      "en": [
+        "Companion",
+        "Friend"
+      ]
+    },
+    "坑": {
+      "vi": [
+        "hố",
+        "lỗ"
+      ],
+      "hanViet": "KHANH",
+      "en": [
+        "Pit",
+        "Hole"
+      ]
+    },
+    "藍": {
+      "vi": [
+        "màu chàm"
+      ],
+      "en": [
+        "Indigo"
+      ]
+    },
+    "賊": {
+      "vi": [
+        "kẻ trộm",
+        "phiến quân",
+        "kẻ phản bội",
+        "kẻ cướp"
+      ],
+      "en": [
+        "Burglar",
+        "Rebel",
+        "Traitor",
+        "Robber"
+      ]
+    },
+    "搾": {
+      "vi": [
+        "vắt",
+        "ép"
+      ],
+      "en": [
+        "Squeeze"
+      ]
+    },
+    "畔": {
+      "vi": [
+        "bờ ruộng",
+        "bờ đê"
+      ],
+      "en": [
+        "Paddy Ridge",
+        "Levee"
+      ]
+    },
+    "遼": {
+      "vi": [
+        "xa xôi"
+      ],
+      "en": [
+        "Distant"
+      ]
+    },
+    "唄": {
+      "vi": [
+        "bài hát",
+        "dân ca"
+      ],
+      "hanViet": "BÁI",
+      "en": [
+        "Song",
+        "Ballad"
+      ]
+    },
+    "孔": {
+      "vi": [
+        "hốc",
+        "lỗ",
+        "khe",
+        "rất",
+        "lớn",
+        "vô cùng"
+      ],
+      "en": [
+        "Cavity",
+        "Hole",
+        "Slit",
+        "Very",
+        "Great",
+        "Exceedingly"
+      ]
+    },
+    "橘": {
+      "vi": [
+        "quýt",
+        "cam quýt"
+      ],
+      "hanViet": "QUẤT",
+      "en": [
+        "Mandarin Orange"
+      ]
+    },
+    "漱": {
+      "vi": [
+        "súc miệng",
+        "súc"
+      ],
+      "hanViet": "SẤU",
+      "en": [
+        "Gargle",
+        "Rinse Mouth"
+      ]
+    },
+    "呂": {
+      "vi": [
+        "xương sống",
+        "cột sống"
+      ],
+      "hanViet": "LỮ",
+      "en": [
+        "Spine",
+        "Backbone"
+      ]
+    },
+    "拷": {
+      "vi": [
+        "tra tấn",
+        "đánh đập"
+      ],
+      "en": [
+        "Torture",
+        "Beat"
+      ]
+    },
+    "嬢": {
+      "vi": [
+        "cô gái",
+        "thiếu nữ",
+        "cô",
+        "con gái"
+      ],
+      "en": [
+        "Lass",
+        "Girl",
+        "Miss",
+        "Daughter"
+      ]
+    },
+    "苑": {
+      "vi": [
+        "vườn",
+        "trang trại",
+        "công viên"
+      ],
+      "en": [
+        "Garden",
+        "Farm",
+        "Park"
+      ]
+    },
+    "巽": {
+      "vi": [
+        "hướng đông nam"
+      ],
+      "en": [
+        "Southeast"
+      ]
+    },
+    "杜": {
+      "vi": [
+        "rừng",
+        "lùm cây"
+      ],
+      "en": [
+        "Woods",
+        "Grove"
+      ]
+    },
+    "渓": {
+      "vi": [
+        "suối núi",
+        "thung lũng"
+      ],
+      "en": [
+        "Mountain Stream",
+        "Valley"
+      ]
+    },
+    "翁": {
+      "vi": [
+        "ông lão đáng kính"
+      ],
+      "en": [
+        "Venerable Old Man"
+      ]
+    },
+    "廉": {
+      "vi": [
+        "rẻ",
+        "lý do",
+        "tính phí",
+        "nghi ngờ",
+        "điểm",
+        "tài khoản",
+        "thanh liêm",
+        "trung thực",
+        "giá thấp"
+      ],
+      "en": [
+        "Bargain",
+        "Reason",
+        "Charge",
+        "Suspicion",
+        "Point",
+        "Account",
+        "Purity",
+        "Honest",
+        "Low Price",
+        "Cheap",
+        "Rested",
+        "Contented",
+        "Peaceful"
+      ]
+    },
+    "謹": {
+      "vi": [
+        "thận trọng",
+        "cung kính",
+        "khiêm tốn"
+      ],
+      "en": [
+        "Discreet",
+        "Reverently",
+        "Humbly"
+      ]
+    },
+    "瞳": {
+      "vi": [
+        "con ngươi"
+      ],
+      "en": [
+        "Pupil (of Eye)"
+      ]
+    },
+    "湧": {
+      "vi": [
+        "sôi",
+        "lên men",
+        "sục sôi",
+        "náo động",
+        "sinh sôi",
+        "phun trào"
+      ],
+      "en": [
+        "Boil",
+        "Ferment",
+        "Seethe",
+        "Uproar",
+        "Breed"
+      ]
+    },
+    "欣": {
+      "vi": [
+        "vui thích",
+        "hân hoan"
+      ],
+      "en": [
+        "Take Pleasure In",
+        "Rejoice"
+      ]
+    },
+    "窯": {
+      "vi": [
+        "lò nung",
+        "lò",
+        "lò luyện"
+      ],
+      "en": [
+        "Kiln",
+        "Oven",
+        "Furnace"
+      ]
+    },
+    "褒": {
+      "vi": [
+        "khen ngợi",
+        "ca ngợi"
+      ],
+      "en": [
+        "Praise",
+        "Extol"
+      ]
+    },
+    "醜": {
+      "vi": [
+        "xấu xí",
+        "ô uế",
+        "xấu hổ",
+        "khó coi"
+      ],
+      "en": [
+        "Ugly",
+        "Unclean",
+        "Shame",
+        "Bad Looking"
+      ]
+    },
+    "升": {
+      "vi": [
+        "hộp đong",
+        "1,8 lít"
+      ],
+      "en": [
+        "Measuring Box",
+        "1.8 Liter"
+      ]
+    },
+    "殉": {
+      "vi": [
+        "tử vì đạo",
+        "từ chức theo"
+      ],
+      "en": [
+        "Martyrdom",
+        "Follow By Resigning"
+      ]
+    },
+    "煩": {
+      "vi": [
+        "lo âu",
+        "rắc rối",
+        "lo lắng",
+        "đau đớn",
+        "ốm",
+        "làm phiền",
+        "phiền toái",
+        "khó chịu"
+      ],
+      "en": [
+        "Anxiety",
+        "Trouble",
+        "Worry",
+        "Pain",
+        "Ill",
+        "Annoy",
+        "Nuisance",
+        "Irksome"
+      ]
+    },
+    "巴": {
+      "vi": [
+        "hoa văn dấu phẩy (tomoe)"
+      ],
+      "en": [
+        "Comma-design"
+      ]
+    },
+    "禎": {
+      "vi": [
+        "hạnh phúc",
+        "được ban phước",
+        "may mắn",
+        "điềm lành"
+      ],
+      "en": [
+        "Happiness",
+        "Blessed",
+        "Good Fortune",
+        "Auspicious"
+      ]
+    },
+    "劾": {
+      "vi": [
+        "khiển trách",
+        "điều tra tội phạm"
+      ],
+      "en": [
+        "Censure",
+        "Criminal Investigation"
+      ]
+    },
+    "堕": {
+      "vi": [
+        "thoái hóa",
+        "rơi xuống",
+        "sa vào"
+      ],
+      "en": [
+        "Degenerate",
+        "Descend To",
+        "Lapse Into"
+      ]
+    },
+    "租": {
+      "vi": [
+        "thuế quan",
+        "thuế ruộng",
+        "vay mượn"
+      ],
+      "en": [
+        "Tariff",
+        "Crop Tax",
+        "Borrowing"
+      ]
+    },
+    "稜": {
+      "vi": [
+        "góc",
+        "cạnh",
+        "góc cạnh",
+        "uy lực",
+        "uy nghi"
+      ],
+      "en": [
+        "Angle",
+        "Edge",
+        "Corner",
+        "Power",
+        "Majesty"
+      ]
+    },
+    "桟": {
+      "vi": [
+        "giàn giáo",
+        "thanh nẹp",
+        "khung",
+        "cầu tàu",
+        "chốt (cửa)"
+      ],
+      "hanViet": "SẠN",
+      "en": [
+        "Scaffold",
+        "Cleat",
+        "Frame",
+        "Jetty",
+        "Bolt (door)"
+      ]
+    },
+    "倭": {
+      "vi": [
+        "Yamato",
+        "Nhật Bản cổ"
+      ],
+      "hanViet": "OA",
+      "en": [
+        "Yamato",
+        "Ancient Japan"
+      ]
+    },
+    "婿": {
+      "vi": [
+        "chú rể",
+        "con rể"
+      ],
+      "en": [
+        "Bridegroom",
+        "Son-in-law"
+      ]
+    },
+    "慕": {
+      "vi": [
+        "khao khát",
+        "mong mỏi",
+        "yêu quý",
+        "ngưỡng mộ"
+      ],
+      "en": [
+        "Pining",
+        "Yearn For",
+        "Love Dearly",
+        "Adore"
+      ]
+    },
+    "斐": {
+      "vi": [
+        "đẹp",
+        "có hoa văn"
+      ],
+      "en": [
+        "Beautiful",
+        "Patterned"
+      ]
+    },
+    "罷": {
+      "vi": [
+        "thôi",
+        "dừng",
+        "rời đi",
+        "rút lui",
+        "đi"
+      ],
+      "en": [
+        "Quit",
+        "Stop",
+        "Leave",
+        "Withdraw",
+        "Go"
+      ]
+    },
+    "矯": {
+      "vi": [
+        "sửa chữa",
+        "nắn thẳng",
+        "chỉnh sửa",
+        "cải cách",
+        "chữa trị",
+        "kiểm soát",
+        "giả vờ",
+        "làm giả"
+      ],
+      "en": [
+        "Rectify",
+        "Straighten",
+        "Correct",
+        "Reform",
+        "Cure",
+        "Control",
+        "Pretend",
+        "Falsify"
+      ]
+    },
+    "某": {
+      "vi": [
+        "người nọ",
+        "một",
+        "một... nào đó",
+        "người ấy"
+      ],
+      "en": [
+        "So-and-so",
+        "One",
+        "A Certain",
+        "That Person"
+      ]
+    },
+    "囚": {
+      "vi": [
+        "bị bắt",
+        "tội phạm",
+        "bắt giữ",
+        "bắt"
+      ],
+      "en": [
+        "Captured",
+        "Criminal",
+        "Arrest",
+        "Catch"
+      ]
+    },
+    "魁": {
+      "vi": [
+        "xông lên trước"
+      ],
+      "en": [
+        "Charging Ahead Of Others"
+      ]
+    },
+    "虹": {
+      "vi": [
+        "cầu vồng"
+      ],
+      "en": [
+        "Rainbow"
+      ]
+    },
+    "鴻": {
+      "vi": [
+        "chim lớn",
+        "ngỗng trời",
+        "to lớn",
+        "vĩ đại",
+        "hùng mạnh",
+        "thịnh vượng"
+      ],
+      "en": [
+        "Large Bird",
+        "Wild Goose",
+        "Large",
+        "Great",
+        "Powerful",
+        "Prosperous"
+      ]
+    },
+    "泌": {
+      "vi": [
+        "rỉ ra",
+        "chảy",
+        "thấm vào",
+        "xuyên qua",
+        "tiết ra"
+      ],
+      "en": [
+        "Ooze",
+        "Flow",
+        "Soak In",
+        "Penetrate",
+        "Secrete"
+      ]
+    },
+    "於": {
+      "vi": [
+        "tại",
+        "ở",
+        "trên",
+        "về phần"
+      ],
+      "hanViet": "Ư",
+      "en": [
+        "At",
+        "In",
+        "On",
+        "As For"
+      ]
+    },
+    "赳": {
+      "vi": [
+        "mạnh mẽ và dũng cảm"
+      ],
+      "en": [
+        "Strong And Brave"
+      ]
+    },
+    "漸": {
+      "vi": [
+        "đều đặn",
+        "tiến dần",
+        "cuối cùng",
+        "vừa đủ"
+      ],
+      "hanViet": "TIỆM",
+      "en": [
+        "Steadily",
+        "Gradually Advancing",
+        "Finally",
+        "Barely"
+      ]
+    },
+    "蚊": {
+      "vi": [
+        "con muỗi"
+      ],
+      "en": [
+        "Mosquito"
+      ]
+    },
+    "葵": {
+      "vi": [
+        "cây thục quỳ"
+      ],
+      "en": [
+        "Hollyhock"
+      ]
+    },
+    "厄": {
+      "vi": [
+        "xui xẻo",
+        "bất hạnh",
+        "vận rủi",
+        "tai họa"
+      ],
+      "en": [
+        "Unlucky",
+        "Misfortune",
+        "Bad Luck",
+        "Disaster"
+      ]
+    },
+    "藻": {
+      "vi": [
+        "rong biển",
+        "bèo tấm"
+      ],
+      "en": [
+        "Seaweed",
+        "Duckweed"
+      ]
+    },
+    "禄": {
+      "vi": [
+        "thái ấp",
+        "trợ cấp",
+        "lương hưu",
+        "ban cấp",
+        "hạnh phúc"
+      ],
+      "hanViet": "LỘC",
+      "en": [
+        "Fief",
+        "Allowance",
+        "Pension",
+        "Grant",
+        "Happiness"
+      ]
+    },
+    "孟": {
+      "vi": [
+        "đứng đầu",
+        "khởi đầu"
+      ],
+      "en": [
+        "Chief",
+        "Beginning"
+      ]
+    },
+    "嫡": {
+      "vi": [
+        "vợ cả",
+        "dòng chính (con chính thất)"
+      ],
+      "en": [
+        "Legitimate Wife",
+        "Direct Descent (non-bastard)"
+      ]
+    },
+    "尭": {
+      "vi": [
+        "cao",
+        "xa"
+      ],
+      "hanViet": "NGHIÊU",
+      "en": [
+        "High",
+        "Far"
+      ]
+    },
+    "嚇": {
+      "vi": [
+        "đe dọa",
+        "uy nghi",
+        "uy nghiêm",
+        "hăm dọa"
+      ],
+      "en": [
+        "Menacing",
+        "Dignity",
+        "Majesty",
+        "Threaten"
+      ]
+    },
+    "巳": {
+      "vi": [
+        "cung Tỵ",
+        "giờ Tỵ (9–11 giờ sáng)",
+        "chi thứ sáu"
+      ],
+      "hanViet": "TỴ",
+      "en": [
+        "Sign Of The Snake Or Serpent",
+        "9-11am",
+        "Sixth Sign Of Chinese Zodiac"
+      ]
+    },
+    "凸": {
+      "vi": [
+        "lồi",
+        "lông mày nhô",
+        "gồ ghề"
+      ],
+      "en": [
+        "Convex",
+        "Beetle Brow",
+        "Uneven"
+      ]
+    },
+    "暢": {
+      "vi": [
+        "duỗi ra",
+        "thông suốt"
+      ],
+      "en": [
+        "Stretch"
+      ]
+    },
+    "韻": {
+      "vi": [
+        "vần",
+        "tao nhã",
+        "âm điệu"
+      ],
+      "en": [
+        "Rhyme",
+        "Elegance",
+        "Tone"
+      ]
+    },
+    "霜": {
+      "vi": [
+        "sương giá"
+      ],
+      "en": [
+        "Frost"
+      ]
+    },
+    "硝": {
+      "vi": [
+        "nitrat",
+        "diêm tiêu"
+      ],
+      "en": [
+        "Nitrate",
+        "Saltpeter"
+      ]
+    },
+    "勅": {
+      "vi": [
+        "chiếu chỉ của vua"
+      ],
+      "en": [
+        "Imperial Order"
+      ]
+    },
+    "芹": {
+      "vi": [
+        "rau cần"
+      ],
+      "en": [
+        "Parsley"
+      ]
+    },
+    "杏": {
+      "vi": [
+        "quả mơ"
+      ],
+      "en": [
+        "Apricot"
+      ]
+    },
+    "棺": {
+      "vi": [
+        "quan tài",
+        "áo quan"
+      ],
+      "en": [
+        "Coffin",
+        "Casket"
+      ]
+    },
+    "儒": {
+      "vi": [
+        "Nho giáo"
+      ],
+      "en": [
+        "Confucian"
+      ]
+    },
+    "鳳": {
+      "vi": [
+        "chim phượng (trống)"
+      ],
+      "en": [
+        "Male Mythical Bird"
+      ]
+    },
+    "馨": {
+      "vi": [
+        "thơm ngát",
+        "dịu mát",
+        "thuận lợi"
+      ],
+      "en": [
+        "Fragrant",
+        "Balmy",
+        "Favourable"
+      ]
+    },
+    "慧": {
+      "vi": [
+        "thông tuệ"
+      ],
+      "en": [
+        "Wise"
+      ]
+    },
+    "愁": {
+      "vi": [
+        "sầu muộn",
+        "đau buồn",
+        "than thở",
+        "lo âu"
+      ],
+      "en": [
+        "Distress",
+        "Grieve",
+        "Lament",
+        "Be Anxious"
+      ]
+    },
+    "楼": {
+      "vi": [
+        "tháp canh",
+        "chòi canh",
+        "tòa nhà cao"
+      ],
+      "en": [
+        "Watchtower",
+        "Lookout",
+        "High Building"
+      ]
+    },
+    "彬": {
+      "vi": [
+        "tao nhã",
+        "nhã nhặn"
+      ],
+      "en": [
+        "Refined",
+        "Gentle"
+      ]
+    },
+    "匡": {
+      "vi": [
+        "sửa sai",
+        "cứu",
+        "giúp đỡ"
+      ],
+      "en": [
+        "Correct",
+        "Save",
+        "Assist"
+      ]
+    },
+    "眉": {
+      "vi": [
+        "lông mày"
+      ],
+      "hanViet": "MI",
+      "en": [
+        "Eyebrow"
+      ]
+    },
+    "欽": {
+      "vi": [
+        "kính trọng",
+        "tôn kính",
+        "mong mỏi"
+      ],
+      "en": [
+        "Respect",
+        "Revere",
+        "Long For"
+      ]
+    },
+    "薪": {
+      "vi": [
+        "nhiên liệu",
+        "củi",
+        "củi nhóm"
+      ],
+      "en": [
+        "Fuel",
+        "Firewood",
+        "Kindling"
+      ]
+    },
+    "褐": {
+      "vi": [
+        "màu nâu",
+        "kimono len"
+      ],
+      "en": [
+        "Brown",
+        "Woollen Kimono"
+      ]
+    },
+    "賜": {
+      "vi": [
+        "ban cho",
+        "quà tặng",
+        "ân huệ",
+        "thành quả"
+      ],
+      "en": [
+        "Grant",
+        "Gift",
+        "Boon",
+        "Results"
+      ]
+    },
+    "嵯": {
+      "vi": [
+        "dốc",
+        "lởm chởm",
+        "gồ ghề"
+      ],
+      "en": [
+        "Steep",
+        "Craggy",
+        "Rugged"
+      ]
+    },
+    "綜": {
+      "vi": [
+        "cai quản",
+        "tổng hợp"
+      ],
+      "hanViet": "TỔNG",
+      "en": [
+        "Rule",
+        "Synthesize"
+      ]
+    },
+    "繕": {
+      "vi": [
+        "mạng (vá)",
+        "sửa chữa",
+        "vá",
+        "tỉa",
+        "dọn dẹp",
+        "điều chỉnh"
+      ],
+      "en": [
+        "Darning",
+        "Repair",
+        "Mend",
+        "Trim",
+        "Tidy Up",
+        "Adjust"
+      ]
+    },
+    "栓": {
+      "vi": [
+        "nút",
+        "chốt",
+        "nút bần",
+        "nút thùng",
+        "nút chặn"
+      ],
+      "en": [
+        "Plug",
+        "Bolt",
+        "Cork",
+        "Bung",
+        "Stopper"
+      ]
+    },
+    "翠": {
+      "vi": [
+        "màu xanh lục",
+        "chim bói cá"
+      ],
+      "en": [
+        "Green",
+        "Kingfisher"
+      ]
+    },
+    "鮎": {
+      "vi": [
+        "cá ayu (cá hương)"
+      ],
+      "en": [
+        "Freshwater Trout",
+        "Smelt"
+      ]
+    },
+    "榛": {
+      "vi": [
+        "hạt phỉ",
+        "cây phỉ"
+      ],
+      "en": [
+        "Hazelnut",
+        "Filbert"
+      ]
+    },
+    "凹": {
+      "vi": [
+        "lõm",
+        "trũng",
+        "sụt xuống"
+      ],
+      "en": [
+        "Concave",
+        "Hollow",
+        "Sunken"
+      ]
+    },
+    "艶": {
+      "vi": [
+        "bóng loáng",
+        "ánh bóng",
+        "men bóng",
+        "đánh bóng",
+        "quyến rũ",
+        "sặc sỡ",
+        "mê hoặc"
+      ],
+      "en": [
+        "Glossy",
+        "Luster",
+        "Glaze",
+        "Polish",
+        "Charm",
+        "Colorful",
+        "Captivating"
+      ]
+    },
+    "惣": {
+      "vi": [
+        "tất cả"
+      ],
+      "hanViet": "TỔNG",
+      "en": [
+        "All"
+      ]
+    },
+    "蔦": {
+      "vi": [
+        "dây leo",
+        "cây thường xuân"
+      ],
+      "en": [
+        "Vine",
+        "Ivy"
+      ]
+    },
+    "錬": {
+      "vi": [
+        "tôi luyện",
+        "tinh luyện",
+        "rèn luyện",
+        "huấn luyện",
+        "đánh bóng"
+      ],
+      "hanViet": "LUYỆN",
+      "en": [
+        "Tempering",
+        "Refine",
+        "Drill",
+        "Train",
+        "Polish"
+      ]
+    },
+    "隼": {
+      "vi": [
+        "chim cắt"
+      ],
+      "en": [
+        "Falcon"
+      ]
+    },
+    "渚": {
+      "vi": [
+        "bãi cát",
+        "bãi biển",
+        "bờ biển"
+      ],
+      "en": [
+        "Strand",
+        "Beach",
+        "Shore"
+      ]
+    },
+    "衷": {
+      "vi": [
+        "thâm tâm",
+        "trái tim",
+        "tâm trí",
+        "bên trong"
+      ],
+      "en": [
+        "Inmost",
+        "Heart",
+        "Mind",
+        "Inside"
+      ]
+    },
+    "逐": {
+      "vi": [
+        "truy đuổi",
+        "đuổi đi",
+        "săn đuổi",
+        "hoàn thành",
+        "đạt được",
+        "lần lượt"
+      ],
+      "en": [
+        "Pursue",
+        "Drive Away",
+        "Chase",
+        "Accomplish",
+        "Attain",
+        "Commit"
+      ]
+    },
+    "斥": {
+      "vi": [
+        "bác bỏ",
+        "rút lui",
+        "lùi lại",
+        "rút đi",
+        "đẩy lùi",
+        "đánh bật"
+      ],
+      "en": [
+        "Reject",
+        "Retreat",
+        "Recede",
+        "Withdraw",
+        "Repel",
+        "Repulse"
+      ]
+    },
+    "稀": {
+      "vi": [
+        "hiếm",
+        "phi thường",
+        "loãng (axit)"
+      ],
+      "hanViet": "HY",
+      "en": [
+        "Rare",
+        "Phenomenal",
+        "Dilute (acid)"
+      ]
+    },
+    "芙": {
+      "vi": [
+        "hoa sen",
+        "núi Phú Sĩ"
+      ],
+      "en": [
+        "Lotus",
+        "Mt Fuji"
+      ]
+    },
+    "詔": {
+      "vi": [
+        "chiếu chỉ của vua"
+      ],
+      "en": [
+        "Imperial Edict"
+      ]
+    },
+    "皐": {
+      "vi": [
+        "đầm lầy",
+        "bờ nước"
+      ],
+      "en": [
+        "Swamp",
+        "Shore"
+      ]
+    },
+    "雛": {
+      "vi": [
+        "gà con",
+        "bồ câu non",
+        "vịt con",
+        "búp bê"
+      ],
+      "en": [
+        "Chick",
+        "Squab",
+        "Duckling",
+        "Doll"
+      ]
+    },
+    "惟": {
+      "vi": [
+        "cân nhắc",
+        "suy ngẫm",
+        "suy nghĩ"
+      ],
+      "en": [
+        "Consider",
+        "Reflect",
+        "Think"
+      ]
+    },
+    "佑": {
+      "vi": [
+        "giúp đỡ",
+        "phù trợ"
+      ],
+      "hanViet": "HỰU",
+      "en": [
+        "Help",
+        "Assist"
+      ]
+    },
+    "耀": {
+      "vi": [
+        "tỏa sáng",
+        "lấp lánh",
+        "sáng lóa",
+        "nhấp nháy"
+      ],
+      "en": [
+        "Shine",
+        "Sparkle",
+        "Gleam",
+        "Twinkle"
+      ]
+    },
+    "黛": {
+      "vi": [
+        "lông mày kẻ đen"
+      ],
+      "en": [
+        "Blackened Eyebrows"
+      ]
+    },
+    "渥": {
+      "vi": [
+        "lòng tốt",
+        "làm ẩm"
+      ],
+      "en": [
+        "Kindness",
+        "Moisten"
+      ]
+    },
+    "憧": {
+      "vi": [
+        "khao khát",
+        "mong mỏi",
+        "hướng tới",
+        "ngưỡng mộ",
+        "say mê"
+      ],
+      "en": [
+        "Yearn After",
+        "Long For",
+        "Aspire To",
+        "Admire",
+        "Adore"
+      ]
+    },
+    "宵": {
+      "vi": [
+        "đêm khuya",
+        "buổi tối",
+        "chập tối"
+      ],
+      "en": [
+        "Wee Hours",
+        "Evening",
+        "Early Night"
+      ]
+    },
+    "妄": {
+      "vi": [
+        "ảo tưởng",
+        "vô cớ",
+        "không có thẩm quyền",
+        "liều lĩnh"
+      ],
+      "en": [
+        "Delusion",
+        "Unnecessarily",
+        "Without Authority",
+        "Reckless"
+      ]
+    },
+    "惇": {
+      "vi": [
+        "chân thành",
+        "tử tế",
+        "chu đáo"
+      ],
+      "en": [
+        "Sincere",
+        "Kind",
+        "Considerate"
+      ]
+    },
+    "脩": {
+      "vi": [
+        "thịt khô"
+      ],
+      "en": [
+        "Dried Meat"
+      ]
+    },
+    "甫": {
+      "vi": [
+        "lần đầu tiên",
+        "mãi đến khi"
+      ],
+      "en": [
+        "For The First Time",
+        "Not Until"
+      ]
+    },
+    "酌": {
+      "vi": [
+        "rót rượu",
+        "mời rượu sake",
+        "chủ nhà",
+        "múc (nước)",
+        "gáo",
+        "xúc",
+        "bơm"
+      ],
+      "en": [
+        "Bar-tending",
+        "Serving Sake",
+        "The Host",
+        "Draw (water)",
+        "Ladle",
+        "Scoop",
+        "Pump"
+      ]
+    },
+    "蚕": {
+      "vi": [
+        "con tằm"
+      ],
+      "hanViet": "TÀM",
+      "en": [
+        "Silkworm"
+      ]
+    },
+    "嬉": {
+      "vi": [
+        "vui mừng",
+        "hài lòng",
+        "hân hoan"
+      ],
+      "en": [
+        "Glad",
+        "Pleased",
+        "Rejoice"
+      ]
+    },
+    "蒼": {
+      "vi": [
+        "xanh lam",
+        "xanh nhợt"
+      ],
+      "en": [
+        "Blue",
+        "Pale"
+      ]
+    },
+    "暉": {
+      "vi": [
+        "tỏa sáng",
+        "ánh sáng"
+      ],
+      "en": [
+        "Shine",
+        "Light"
+      ]
+    },
+    "頒": {
+      "vi": [
+        "phân phát",
+        "phổ biến",
+        "phân chia",
+        "hiểu"
+      ],
+      "en": [
+        "Distribute",
+        "Disseminate",
+        "Partition",
+        "Understand"
+      ]
+    },
+    "只": {
+      "vi": [
+        "chỉ",
+        "miễn phí",
+        "thêm vào đó"
+      ],
+      "en": [
+        "Only",
+        "Free",
+        "In Addition"
+      ]
+    },
+    "肢": {
+      "vi": [
+        "chi",
+        "tay chân"
+      ],
+      "en": [
+        "Limb",
+        "Arms & Legs"
+      ]
+    },
+    "檀": {
+      "vi": [
+        "cây tuyết tùng",
+        "gỗ đàn hương",
+        "cây chân chim"
+      ],
+      "en": [
+        "Cedar",
+        "Sandlewood",
+        "Spindle Tree"
+      ]
+    },
+    "凱": {
+      "vi": [
+        "khúc khải hoàn"
+      ],
+      "en": [
+        "Victory Song"
+      ]
+    },
+    "彗": {
+      "vi": [
+        "sao chổi"
+      ],
+      "en": [
+        "Comet"
+      ]
+    },
+    "謄": {
+      "vi": [
+        "in rô-nê-ô",
+        "sao chép"
+      ],
+      "en": [
+        "Mimeograph",
+        "Copy"
+      ]
+    },
+    "梓": {
+      "vi": [
+        "cây catalpa",
+        "in khắc gỗ"
+      ],
+      "en": [
+        "Catalpa Tree",
+        "Woodblock Printing"
+      ]
+    },
+    "丑": {
+      "vi": [
+        "cung Sửu",
+        "giờ Sửu (1–3 giờ sáng)",
+        "chi thứ hai"
+      ],
+      "en": [
+        "Sign Of The Ox Or Cow",
+        "1-3am",
+        "Second Sign Of Chinese Zodiac"
+      ]
+    },
+    "嗣": {
+      "vi": [
+        "người thừa kế",
+        "kế tục"
+      ],
+      "en": [
+        "Heir",
+        "Succeed"
+      ]
+    },
+    "叶": {
+      "vi": [
+        "ban cho",
+        "đáp ứng"
+      ],
+      "en": [
+        "Grant",
+        "Answer"
+      ]
+    },
+    "汐": {
+      "vi": [
+        "thủy triều chiều",
+        "thủy triều",
+        "nước mặn",
+        "thời cơ"
+      ],
+      "en": [
+        "Eventide",
+        "Tide",
+        "Salt Water",
+        "Opportunity"
+      ]
+    },
+    "絢": {
+      "vi": [
+        "hoa văn vải rực rỡ"
+      ],
+      "en": [
+        "Brilliant Fabric Design"
+      ]
+    },
+    "朔": {
+      "vi": [
+        "giao hội (thiên văn)",
+        "ngày mùng một",
+        "phương bắc"
+      ],
+      "en": [
+        "Conjunction (astronomy)",
+        "First Day Of Month",
+        "North"
+      ]
+    },
+    "伽": {
+      "vi": [
+        "chăm nom",
+        "hầu hạ",
+        "người mua vui"
+      ],
+      "en": [
+        "Nursing",
+        "Attending",
+        "Entertainer"
+      ]
+    },
+    "畝": {
+      "vi": [
+        "luống cày",
+        "ba mươi tsubo",
+        "bờ luống",
+        "gân"
+      ],
+      "en": [
+        "Furrow",
+        "Thirty Tsubo",
+        "Ridge",
+        "Rib"
+      ]
+    },
+    "抄": {
+      "vi": [
+        "trích",
+        "tuyển chọn",
+        "tóm tắt",
+        "sao chép",
+        "trải mỏng"
+      ],
+      "en": [
+        "Extract",
+        "Selection",
+        "Summary",
+        "Copy",
+        "Spread Thin"
+      ]
+    },
+    "爽": {
+      "vi": [
+        "sảng khoái",
+        "mát mẻ",
+        "vang",
+        "ngọt ngào",
+        "trong trẻo"
+      ],
+      "en": [
+        "Refreshing",
+        "Bracing",
+        "Resonant",
+        "Sweet",
+        "Clear"
+      ]
+    },
+    "黎": {
+      "vi": [
+        "tối",
+        "đen",
+        "nhiều"
+      ],
+      "en": [
+        "Dark",
+        "Black",
+        "Many"
+      ]
+    },
+    "惰": {
+      "vi": [
+        "lười",
+        "lười biếng"
+      ],
+      "hanViet": "ĐỌA",
+      "en": [
+        "Lazy",
+        "Laziness"
+      ]
+    },
+    "蛮": {
+      "vi": [
+        "mọi rợ"
+      ],
+      "en": [
+        "Barbarian"
+      ]
+    },
+    "冴": {
+      "vi": [
+        "trong trẻo",
+        "thanh tịnh",
+        "lạnh",
+        "khéo léo"
+      ],
+      "hanViet": "HỘ",
+      "en": [
+        "Be Clear",
+        "Serene",
+        "Cold",
+        "Skilful"
+      ]
+    },
+    "旺": {
+      "vi": [
+        "hưng thịnh",
+        "thành công",
+        "đẹp",
+        "mạnh mẽ"
+      ],
+      "en": [
+        "Flourishing",
+        "Successful",
+        "Beautiful",
+        "Vigorous"
+      ]
+    },
+    "萌": {
+      "vi": [
+        "có dấu hiệu",
+        "nảy mầm",
+        "đâm chồi",
+        "mạch nha"
+      ],
+      "en": [
+        "Show Symptoms Of",
+        "Sprout",
+        "Bud",
+        "Malt"
+      ]
+    },
+    "偲": {
+      "vi": [
+        "hồi tưởng",
+        "nhớ lại"
+      ],
+      "en": [
+        "Recollect",
+        "Remember"
+      ]
+    },
+    "壱": {
+      "vi": [
+        "một (trong văn bản)"
+      ],
+      "en": [
+        "One (in Documents)"
+      ]
+    },
+    "瑠": {
+      "vi": [
+        "đá lưu ly"
+      ],
+      "en": [
+        "Lapis Lazuli"
+      ]
+    },
+    "允": {
+      "vi": [
+        "cho phép",
+        "thành thật",
+        "chấp thuận"
+      ],
+      "en": [
+        "License",
+        "Sincerity",
+        "Permit"
+      ]
+    },
+    "侯": {
+      "vi": [
+        "hầu tước",
+        "lãnh chúa",
+        "daimyo"
+      ],
+      "en": [
+        "Marquis",
+        "Lord",
+        "Daimyo"
+      ]
+    },
+    "蒔": {
+      "vi": [
+        "gieo (hạt)"
+      ],
+      "hanViet": "THÌ",
+      "en": [
+        "Sow (seeds)"
+      ]
+    },
+    "鯉": {
+      "vi": [
+        "cá chép"
+      ],
+      "en": [
+        "Carp"
+      ]
+    },
+    "弧": {
+      "vi": [
+        "cung tròn",
+        "vòm",
+        "cánh cung"
+      ],
+      "en": [
+        "Arc",
+        "Arch",
+        "Bow"
+      ]
+    },
+    "遥": {
+      "vi": [
+        "xa xôi",
+        "xa",
+        "từ lâu"
+      ],
+      "hanViet": "DAO",
+      "en": [
+        "Far Off",
+        "Distant",
+        "Long Ago"
+      ]
+    },
+    "舜": {
+      "vi": [
+        "hoa bìm bìm",
+        "dâm bụt",
+        "cây mộc cận"
+      ],
+      "en": [
+        "Type Of Morning Glory",
+        "Rose Of Sharon",
+        "Althea"
+      ]
+    },
+    "瑛": {
+      "vi": [
+        "ánh ngọc lấp lánh",
+        "pha lê"
+      ],
+      "en": [
+        "Sparkle Of Jewelry",
+        "Crystal"
+      ]
+    },
+    "附": {
+      "vi": [
+        "đính kèm",
+        "gắn",
+        "tham khảo",
+        "phụ thêm"
+      ],
+      "en": [
+        "Affixed",
+        "Attach",
+        "Refer To",
+        "Append"
+      ]
+    },
+    "彪": {
+      "vi": [
+        "lốm đốm",
+        "vằn vện",
+        "có hoa văn",
+        "hổ nhỏ"
+      ],
+      "en": [
+        "Spotted",
+        "Mottled",
+        "Patterned",
+        "Small Tiger"
+      ]
+    },
+    "卯": {
+      "vi": [
+        "cung Mão",
+        "chi thứ tư",
+        "giờ Mão (5–7 giờ sáng)",
+        "phương đông"
+      ],
+      "en": [
+        "Sign Of The Hare Or Rabbit",
+        "Fourth Sign Of Chinese Zodiac",
+        "5-7am",
+        "East"
+      ]
+    },
+    "但": {
+      "vi": [
+        "tuy nhiên",
+        "nhưng"
+      ],
+      "en": [
+        "However",
+        "But"
+      ]
+    },
+    "綺": {
+      "vi": [
+        "vải hoa",
+        "đẹp"
+      ],
+      "hanViet": "Ỷ",
+      "en": [
+        "Figured Cloth",
+        "Beautiful"
+      ]
+    },
+    "芋": {
+      "vi": [
+        "khoai"
+      ],
+      "en": [
+        "Potato"
+      ]
+    },
+    "茜": {
+      "vi": [
+        "cây thiến thảo",
+        "thuốc nhuộm đỏ",
+        "đỏ Thổ Nhĩ Kỳ"
+      ],
+      "en": [
+        "Madder",
+        "Red Dye",
+        "Turkey Red"
+      ]
+    },
+    "凌": {
+      "vi": [
+        "chịu đựng",
+        "che (mưa)",
+        "chống đỡ",
+        "vượt qua",
+        "thách thức",
+        "coi thường",
+        "vượt trội"
+      ],
+      "en": [
+        "Endure",
+        "Keep (rain)out",
+        "Stave Off",
+        "Tide Over",
+        "Defy",
+        "Slight",
+        "Surpass"
+      ]
+    },
+    "皓": {
+      "vi": [
+        "trắng",
+        "trong sáng"
+      ],
+      "en": [
+        "White",
+        "Clear"
+      ]
+    },
+    "洸": {
+      "vi": [
+        "nước lấp lánh"
+      ],
+      "hanViet": "QUANG",
+      "en": [
+        "Sparkling Water"
+      ]
+    },
+    "毬": {
+      "vi": [
+        "quả có gai",
+        "quả bóng"
+      ],
+      "en": [
+        "Burr",
+        "Ball"
+      ]
+    },
+    "婆": {
+      "vi": [
+        "bà lão",
+        "bà",
+        "vú nuôi"
+      ],
+      "en": [
+        "Old Woman",
+        "Grandma",
+        "Wet Nurse"
+      ]
+    },
+    "緋": {
+      "vi": [
+        "đỏ tươi",
+        "đỏ thắm"
+      ],
+      "en": [
+        "Scarlet",
+        "Cardinal"
+      ]
+    },
+    "鯛": {
+      "vi": [
+        "cá tráp biển",
+        "cá hồng"
+      ],
+      "en": [
+        "Sea Bream",
+        "Red Snapper"
+      ]
+    },
+    "怜": {
+      "vi": [
+        "khôn ngoan"
+      ],
+      "hanViet": "LINH",
+      "en": [
+        "Wise"
+      ]
+    },
+    "邑": {
+      "vi": [
+        "làng",
+        "cộng đồng nông thôn",
+        "bộ Ấp bên phải (số 163)"
+      ],
+      "en": [
+        "Village",
+        "Rural Community",
+        "Right Village Radical (no. 163)"
+      ]
+    },
+    "倣": {
+      "vi": [
+        "noi theo",
+        "bắt chước"
+      ],
+      "en": [
+        "Emulate",
+        "Imitate"
+      ]
+    },
+    "碧": {
+      "vi": [
+        "xanh lam",
+        "xanh lục"
+      ],
+      "en": [
+        "Blue",
+        "Green"
+      ]
+    },
+    "啄": {
+      "vi": [
+        "mổ",
+        "nhặt"
+      ],
+      "en": [
+        "Peck",
+        "Pick Up"
+      ]
+    },
+    "穣": {
+      "vi": [
+        "được mùa",
+        "thịnh vượng",
+        "10^28"
+      ],
+      "hanViet": "NHƯƠNG",
+      "en": [
+        "Good Crops",
+        "Prosperity",
+        "10**28"
+      ]
+    },
+    "酉": {
+      "vi": [
+        "phương tây",
+        "chim",
+        "cung Dậu",
+        "giờ Dậu (5–7 giờ tối)",
+        "chi thứ mười",
+        "bộ Dậu"
+      ],
+      "en": [
+        "West",
+        "Bird",
+        "Sign Of The Bird",
+        "5-7pm",
+        "Tenth Sign Of Chinese Zodiac",
+        "Sake Radical (no. 164)"
+      ]
+    },
+    "悌": {
+      "vi": [
+        "kính trọng người trên"
+      ],
+      "en": [
+        "Serving Our Elders"
+      ]
+    },
+    "倹": {
+      "vi": [
+        "tằn tiện",
+        "tiết kiệm",
+        "dè sẻn"
+      ],
+      "en": [
+        "Frugal",
+        "Economy",
+        "Thrifty"
+      ]
+    },
+    "柚": {
+      "vi": [
+        "quả thanh yên",
+        "quả yuzu"
+      ],
+      "en": [
+        "Citron"
+      ]
+    },
+    "繭": {
+      "vi": [
+        "kén tằm"
+      ],
+      "en": [
+        "Cocoon"
+      ]
+    },
+    "勺": {
+      "vi": [
+        "cái muôi",
+        "một phần mười gō",
+        "múc"
+      ],
+      "hanViet": "CHƯỚC",
+      "en": [
+        "Ladle",
+        "One Tenth Of A Go",
+        "Dip"
+      ]
+    },
+    "斤": {
+      "vi": [
+        "cái rìu",
+        "cân (0,6 kg)",
+        "đơn vị đếm ổ bánh mì",
+        "bộ Cân (số 69)"
+      ],
+      "en": [
+        "Axe",
+        "1.32 Lb",
+        "Catty",
+        "Counter For Loaves Of Bread",
+        "Axe Radical (no. 69)"
+      ]
+    },
+    "匁": {
+      "vi": [
+        "monme (3,75 gam) (kokuji)"
+      ],
+      "hanViet": "CHỈ",
+      "en": [
+        "Monme",
+        "3.75 Grams",
+        "(kokuji)"
+      ]
+    },
+    "且": {
+      "vi": [
+        "hơn nữa",
+        "cũng",
+        "ngoài ra"
+      ],
+      "en": [
+        "Moreover",
+        "Also",
+        "Furthermore"
+      ]
+    },
+    "旦": {
+      "vi": [
+        "rạng đông",
+        "bình minh",
+        "buổi sáng"
+      ],
+      "en": [
+        "Daybreak",
+        "Dawn",
+        "Morning"
+      ]
+    },
+    "丙": {
+      "vi": [
+        "hạng ba",
+        "thứ ba",
+        "can Bính"
+      ],
+      "en": [
+        "Third Class",
+        "3rd",
+        "3rd Calendar Sign"
+      ]
+    },
+    "亥": {
+      "vi": [
+        "cung Hợi",
+        "giờ Hợi (9–11 giờ tối)",
+        "chi thứ mười hai"
+      ],
+      "en": [
+        "Sign Of The Hog",
+        "9-11pm",
+        "Twelfth Sign Of The Chinese Zodiac"
+      ]
+    },
+    "伎": {
+      "vi": [
+        "việc làm",
+        "kỹ năng"
+      ],
+      "en": [
+        "Deed",
+        "Skill"
+      ]
+    },
+    "丞": {
+      "vi": [
+        "giúp đỡ"
+      ],
+      "en": [
+        "Help"
+      ]
+    },
+    "凪": {
+      "vi": [
+        "lặng gió",
+        "biển lặng (kokuji)"
+      ],
+      "hanViet": "DĨ",
+      "en": [
+        "Lull",
+        "Calm",
+        "(kokuji)"
+      ]
+    },
+    "弐": {
+      "vi": [
+        "hai (trong văn bản)",
+        "thứ hai"
+      ],
+      "hanViet": "NHỊ",
+      "en": [
+        "Ii",
+        "Two",
+        "Second"
+      ]
+    },
+    "亦": {
+      "vi": [
+        "cũng",
+        "lại"
+      ],
+      "en": [
+        "Also",
+        "Again"
+      ]
+    },
+    "吏": {
+      "vi": [
+        "quan lại",
+        "viên chức"
+      ],
+      "en": [
+        "Officer",
+        "An Official"
+      ]
+    },
+    "玖": {
+      "vi": [
+        "ngọc đen đẹp",
+        "chín"
+      ],
+      "en": [
+        "Beautiful Black Jewel",
+        "Nine"
+      ]
+    },
+    "汰": {
+      "vi": [
+        "rửa",
+        "sàng",
+        "lọc",
+        "loại bỏ",
+        "xa xỉ"
+      ],
+      "hanViet": "THẢI",
+      "en": [
+        "Washing",
+        "Sieving",
+        "Filtering",
+        "Weeding Out",
+        "Luxury"
+      ]
+    },
+    "冶": {
+      "vi": [
+        "nung chảy",
+        "luyện kim"
+      ],
+      "en": [
+        "Melting",
+        "Smelting"
+      ]
+    },
+    "伶": {
+      "vi": [
+        "diễn viên"
+      ],
+      "en": [
+        "Actor"
+      ]
+    },
+    "茄": {
+      "vi": [
+        "cà tím"
+      ],
+      "en": [
+        "Eggplant"
+      ]
+    },
+    "侃": {
+      "vi": [
+        "cương trực",
+        "công bằng",
+        "chính trực",
+        "yêu hòa bình"
+      ],
+      "en": [
+        "Strong",
+        "Just",
+        "Righteous",
+        "Peace-loving"
+      ]
+    },
+    "昂": {
+      "vi": [
+        "dâng lên"
+      ],
+      "en": [
+        "Rise"
+      ]
+    },
+    "采": {
+      "vi": [
+        "xúc xắc",
+        "hình dạng",
+        "vẻ ngoài",
+        "lấy",
+        "thu thập",
+        "màu sắc"
+      ],
+      "hanViet": "THÁI",
+      "en": [
+        "Dice",
+        "Form",
+        "Appearance",
+        "Take",
+        "Gather",
+        "Coloring"
+      ]
+    },
+    "侑": {
+      "vi": [
+        "mời ăn"
+      ],
+      "en": [
+        "Urge To Eat"
+      ]
+    },
+    "茉": {
+      "vi": [
+        "hoa nhài"
+      ],
+      "en": [
+        "Jasmine"
+      ]
+    },
+    "迪": {
+      "vi": [
+        "khai sáng",
+        "con đường",
+        "lối đi"
+      ],
+      "en": [
+        "Edify",
+        "Way",
+        "Path"
+      ]
+    },
+    "胤": {
+      "vi": [
+        "dòng dõi",
+        "con cháu",
+        "hậu duệ"
+      ],
+      "en": [
+        "Descendent",
+        "Issue",
+        "Offspring"
+      ]
+    },
+    "衿": {
+      "vi": [
+        "cổ",
+        "cổ áo",
+        "ve áo"
+      ],
+      "en": [
+        "Neck",
+        "Collar",
+        "Lapel"
+      ]
+    },
+    "哉": {
+      "vi": [
+        "sao",
+        "gì",
+        "than ôi",
+        "dấu hỏi",
+        "dấu cảm thán"
+      ],
+      "en": [
+        "How",
+        "What",
+        "Alas",
+        "Question Mark",
+        "Exclamation Mark"
+      ]
+    },
+    "柊": {
+      "vi": [
+        "cây nhựa ruồi"
+      ],
+      "en": [
+        "Holly"
+      ]
+    },
+    "柾": {
+      "vi": [
+        "thớ gỗ thẳng",
+        "cây chân chim (kokuji)"
+      ],
+      "hanViet": "CỮU",
+      "en": [
+        "Straight Grain",
+        "Spindle Tree",
+        "(kokuji)"
+      ]
+    },
+    "耶": {
+      "vi": [
+        "dấu hỏi"
+      ],
+      "hanViet": "DA",
+      "en": [
+        "Question Mark"
+      ]
+    },
+    "宥": {
+      "vi": [
+        "xoa dịu",
+        "làm dịu",
+        "vỗ về"
+      ],
+      "en": [
+        "Soothe",
+        "Calm",
+        "Pacify"
+      ]
+    },
+    "勁": {
+      "vi": [
+        "mạnh"
+      ],
+      "hanViet": "KÍNH",
+      "en": [
+        "Strong"
+      ]
+    },
+    "奎": {
+      "vi": [
+        "sao Khuê",
+        "thần văn chương"
+      ],
+      "en": [
+        "Star",
+        "God Of Literature"
+      ]
+    },
+    "昴": {
+      "vi": [
+        "chòm sao Tua Rua (Pleiades)"
+      ],
+      "en": [
+        "The Pleiades"
+      ]
+    },
+    "洵": {
+      "vi": [
+        "giống nhau",
+        "sự thật"
+      ],
+      "en": [
+        "Alike",
+        "Truth"
+      ]
+    },
+    "莞": {
+      "vi": [
+        "mỉm cười",
+        "cỏ cói bọc chiếu tatami"
+      ],
+      "hanViet": "HOẢN",
+      "en": [
+        "Smiling",
+        "Reed Used To Cover Tatami"
+      ]
+    },
+    "倖": {
+      "vi": [
+        "hạnh phúc",
+        "may mắn"
+      ],
+      "en": [
+        "Happiness",
+        "Luck"
+      ]
+    },
+    "紗": {
+      "vi": [
+        "vải the",
+        "tơ mỏng"
+      ],
+      "en": [
+        "Gauze",
+        "Gossamer"
+      ]
+    },
+    "恕": {
+      "vi": [
+        "thứ lỗi",
+        "khoan dung",
+        "tha thứ"
+      ],
+      "en": [
+        "Excuse",
+        "Tolerate",
+        "Forgive"
+      ]
+    },
+    "朕": {
+      "vi": [
+        "trẫm (vua tự xưng)"
+      ],
+      "en": [
+        "Majestic Plural",
+        "Imperial We"
+      ]
+    },
+    "耗": {
+      "vi": [
+        "giảm",
+        "hao hụt"
+      ],
+      "hanViet": "HAO",
+      "en": [
+        "Decrease"
+      ]
+    },
+    "晏": {
+      "vi": [
+        "muộn",
+        "yên tĩnh",
+        "(mặt trời) lặn"
+      ],
+      "en": [
+        "Late",
+        "Quiet",
+        "Sets (sun)"
+      ]
+    },
+    "晟": {
+      "vi": [
+        "sáng rõ"
+      ],
+      "hanViet": "THỊNH",
+      "en": [
+        "Clear"
+      ]
+    },
+    "栞": {
+      "vi": [
+        "thẻ đánh dấu sách",
+        "sách hướng dẫn"
+      ],
+      "en": [
+        "Bookmark",
+        "Guidebook"
+      ]
+    },
+    "莉": {
+      "vi": [
+        "hoa nhài"
+      ],
+      "en": [
+        "Jasmine"
+      ]
+    },
+    "袈": {
+      "vi": [
+        "áo cà sa (vải thô)"
+      ],
+      "hanViet": "CÀ",
+      "en": [
+        "A Coarse Camlet"
+      ]
+    },
+    "絃": {
+      "vi": [
+        "dây đàn",
+        "dây",
+        "nhạc đàn shamisen"
+      ],
+      "en": [
+        "String",
+        "Cord",
+        "Samisen Music"
+      ]
+    },
+    "梧": {
+      "vi": [
+        "cây ngô đồng",
+        "cây phượng"
+      ],
+      "en": [
+        "Chinese Parasol Tree",
+        "Phoenix Tree"
+      ]
+    },
+    "捷": {
+      "vi": [
+        "chiến thắng",
+        "nhanh"
+      ],
+      "en": [
+        "Victory",
+        "Fast"
+      ]
+    },
+    "梢": {
+      "vi": [
+        "ngọn cây",
+        "cành non"
+      ],
+      "en": [
+        "Treetops",
+        "Twig"
+      ]
+    },
+    "菖": {
+      "vi": [
+        "hoa diên vĩ"
+      ],
+      "en": [
+        "Iris"
+      ]
+    },
+    "紬": {
+      "vi": [
+        "lụa pongee (lụa sợi thô)"
+      ],
+      "en": [
+        "Pongee (a Knotted Silk Cloth)"
+      ]
+    },
+    "捺": {
+      "vi": [
+        "ấn",
+        "in",
+        "đóng dấu",
+        "dập dấu"
+      ],
+      "en": [
+        "Press",
+        "Print",
+        "Affix A Seal",
+        "Stamp"
+      ]
+    },
+    "崚": {
+      "vi": [
+        "núi non trùng điệp"
+      ],
+      "en": [
+        "Mountains Towering In A Row"
+      ]
+    },
+    "晨": {
+      "vi": [
+        "buổi sáng",
+        "sớm"
+      ],
+      "en": [
+        "Morning",
+        "Early"
+      ]
+    },
+    "眸": {
+      "vi": [
+        "con ngươi"
+      ],
+      "en": [
+        "Pupil Of The Eye"
+      ]
+    },
+    "笙": {
+      "vi": [
+        "kèn sênh (nhạc cụ sậy)"
+      ],
+      "en": [
+        "A Reed Instrument"
+      ]
+    },
+    "菫": {
+      "vi": [
+        "hoa violet"
+      ],
+      "en": [
+        "The Violet"
+      ]
+    },
+    "竣": {
+      "vi": [
+        "kết thúc",
+        "hoàn thành"
+      ],
+      "en": [
+        "End",
+        "Finish"
+      ]
+    },
+    "脹": {
+      "vi": [
+        "giãn nở",
+        "căng phồng",
+        "phình ra",
+        "đầy đặn",
+        "sưng"
+      ],
+      "en": [
+        "Dilate",
+        "Distend",
+        "Bulge",
+        "Fill Out",
+        "Swell"
+      ]
+    },
+    "痘": {
+      "vi": [
+        "đậu",
+        "bệnh đậu mùa"
+      ],
+      "en": [
+        "Pox",
+        "Smallpox"
+      ]
+    },
+    "椋": {
+      "vi": [
+        "cây mukunoki",
+        "chim sáo xám"
+      ],
+      "hanViet": "LƯƠNG",
+      "en": [
+        "Type Of Deciduous Tree",
+        "Grey Starling"
+      ]
+    },
+    "琳": {
+      "vi": [
+        "ngọc",
+        "tiếng ngọc leng keng"
+      ],
+      "en": [
+        "Jewel",
+        "Tinkling Of Jewelry"
+      ]
+    },
+    "虞": {
+      "vi": [
+        "lo sợ",
+        "bất an",
+        "lo âu",
+        "mối lo",
+        "dự tính",
+        "cân nhắc"
+      ],
+      "en": [
+        "Fear",
+        "Uneasiness",
+        "Anxiety",
+        "Concern",
+        "Expectation",
+        "Consideration"
+      ]
+    },
+    "瑚": {
+      "vi": [
+        "đồ đựng lễ vật",
+        "san hô"
+      ],
+      "en": [
+        "Ancestral Offering Receptacle",
+        "Coral"
+      ]
+    },
+    "裟": {
+      "vi": [
+        "áo cà sa"
+      ],
+      "en": [
+        "Buddhist Surplice"
+      ]
+    },
+    "嵩": {
+      "vi": [
+        "trầm trọng thêm",
+        "xấu đi",
+        "cồng kềnh",
+        "phình to"
+      ],
+      "en": [
+        "Be Aggravated",
+        "Grow Worse",
+        "Grow Bulky",
+        "Swell"
+      ]
+    },
+    "塑": {
+      "vi": [
+        "mô hình",
+        "đúc khuôn"
+      ],
+      "en": [
+        "Model",
+        "Molding"
+      ]
+    },
+    "楓": {
+      "vi": [
+        "cây phong"
+      ],
+      "en": [
+        "Maple"
+      ]
+    },
+    "蓉": {
+      "vi": [
+        "hoa sen"
+      ],
+      "hanViet": "DUNG",
+      "en": [
+        "Lotus"
+      ]
+    },
+    "椰": {
+      "vi": [
+        "cây dừa"
+      ],
+      "hanViet": "GIA",
+      "en": [
+        "Coconut Tree"
+      ]
+    },
+    "滉": {
+      "vi": [
+        "sâu và rộng"
+      ],
+      "hanViet": "HOẢNG",
+      "en": [
+        "Deep And Broad"
+      ]
+    },
+    "瑶": {
+      "vi": [
+        "đẹp như ngọc"
+      ],
+      "hanViet": "DAO",
+      "en": [
+        "Beautiful As A Jewel"
+      ]
+    }
+  }
+}
