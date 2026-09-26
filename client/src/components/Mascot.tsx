@@ -109,20 +109,15 @@ export function Mascot({ mood = 'neutral', size = 160, className = '' }: Props) 
         <path d="M73 140 v3" />
         <path d="M79 140 v3" />
       </g>
-      {/* arms, resting on the belly */}
+      {/* left arm, resting on the belly (the right one is raised, drawn over the collar) */}
       <g fill="none" strokeLinecap="round">
         <path d="M38 106 q2 14 11 22" stroke={FUR_SHADE} strokeWidth="13" />
-        <path d="M82 106 q-2 14 -11 22" stroke={FUR_SHADE} strokeWidth="13" />
         <path d="M38 106 q2 14 11 22" stroke={FUR} strokeWidth="9.5" />
-        <path d="M82 106 q-2 14 -11 22" stroke={FUR} strokeWidth="9.5" />
       </g>
       <ellipse cx="50" cy="129" rx="7.5" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
-      <ellipse cx="70" cy="129" rx="7.5" ry="6" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
       <g stroke={FUR_SHADE} strokeWidth="1.5" strokeLinecap="round">
         <path d="M48 131 v3" />
         <path d="M52 131 v3" />
-        <path d="M68 131 v3" />
-        <path d="M72 131 v3" />
       </g>
       {/* ears */}
       <path d="M26 54 L32 14 L58 40 Z" fill={FUR} />
@@ -155,6 +150,18 @@ export function Mascot({ mood = 'neutral', size = 160, className = '' }: Props) 
       <path d="M30 100 q30 16 60 0" stroke={ROSE} strokeWidth="6" fill="none" strokeLinecap="round" />
       <circle cx="60" cy="109" r="5.5" fill="#FFD166" stroke="#E0A800" strokeWidth="1.5" />
       <path d="M57 109 h6" stroke="#E0A800" strokeWidth="1.2" />
+      {/* right arm raised beside the bell, pink paw pads showing */}
+      <g fill="none" strokeLinecap="round">
+        <path d="M82 106 Q93 124 77 110" stroke={FUR_SHADE} strokeWidth="13" />
+        <path d="M82 106 Q93 124 77 110" stroke={FUR} strokeWidth="9.5" />
+      </g>
+      <ellipse cx="76" cy="105" rx="6.5" ry="7.5" fill={FUR} stroke={FUR_SHADE} strokeWidth="2" />
+      <g fill={PINK}>
+        <circle cx="76" cy="106.5" r="2.4" />
+        <circle cx="73" cy="101.5" r="1.3" />
+        <circle cx="76" cy="100.5" r="1.3" />
+        <circle cx="79" cy="101.5" r="1.3" />
+      </g>
       {/* sakura flower on ear */}
       <g transform="translate(88 30)">
         {[0, 72, 144, 216, 288].map((a) => (
