@@ -1,0 +1,2367 @@
+{
+  "type": "vocab",
+  "level": "N1",
+  "entries": {
+    "ゼリー|ゼリー": {
+      "vi": [
+        "thạch",
+        "rau câu"
+      ],
+      "en": [
+        "jelly"
+      ]
+    },
+    "セレモニー|セレモニー": {
+      "vi": [
+        "nghi lễ",
+        "buổi lễ"
+      ],
+      "en": [
+        "ceremony"
+      ]
+    },
+    "世論|せろん": {
+      "vi": [
+        "dư luận"
+      ],
+      "en": [
+        "public opinion"
+      ]
+    },
+    "先|せん": {
+      "vi": [
+        "trước",
+        "ưu tiên",
+        "trước đây"
+      ],
+      "en": [
+        "priority",
+        "precedence",
+        "previous"
+      ]
+    },
+    "繊維|せんい": {
+      "vi": [
+        "sợi",
+        "chất xơ",
+        "hàng dệt"
+      ],
+      "en": [
+        "fiber",
+        "fiber",
+        "textile"
+      ]
+    },
+    "全快|ぜんかい": {
+      "vi": [
+        "bình phục hoàn toàn"
+      ],
+      "en": [
+        "complete recovery of health"
+      ]
+    },
+    "宣教|せんきょう": {
+      "vi": [
+        "truyền giáo"
+      ],
+      "en": [
+        "religious mission"
+      ]
+    },
+    "宣言|せんげん": {
+      "vi": [
+        "tuyên bố",
+        "tuyên ngôn"
+      ],
+      "en": [
+        "declaration",
+        "proclamation",
+        "announcement"
+      ]
+    },
+    "戦災|せんさい": {
+      "vi": [
+        "thiệt hại do chiến tranh"
+      ],
+      "en": [
+        "war damage"
+      ]
+    },
+    "専修|せんしゅう": {
+      "vi": [
+        "chuyên tu",
+        "chuyên ngành"
+      ],
+      "en": [
+        "specialization"
+      ]
+    },
+    "戦術|せんじゅつ": {
+      "vi": [
+        "chiến thuật"
+      ],
+      "en": [
+        "tactics"
+      ]
+    },
+    "センス|センス": {
+      "vi": [
+        "khiếu",
+        "gu thẩm mỹ",
+        "cảm quan"
+      ],
+      "en": [
+        "sense (for music, style, tact, etc.)"
+      ]
+    },
+    "潜水|せんすい": {
+      "vi": [
+        "lặn"
+      ],
+      "en": [
+        "diving"
+      ]
+    },
+    "全盛|ぜんせい": {
+      "vi": [
+        "cực thịnh",
+        "thời hoàng kim"
+      ],
+      "en": [
+        "height of prosperity"
+      ]
+    },
+    "先代|せんだい": {
+      "vi": [
+        "đời trước",
+        "người tiền nhiệm"
+      ],
+      "en": [
+        "family predecessor",
+        "previous age",
+        "previous generation"
+      ]
+    },
+    "先だって|せんだって": {
+      "vi": [
+        "hôm nọ",
+        "mới đây"
+      ],
+      "en": [
+        "recently",
+        "the other day"
+      ]
+    },
+    "先着|せんちゃく": {
+      "vi": [
+        "đến trước"
+      ],
+      "en": [
+        "first arrival"
+      ]
+    },
+    "前提|ぜんてい": {
+      "vi": [
+        "tiền đề",
+        "điều kiện tiên quyết"
+      ],
+      "en": [
+        "preamble",
+        "premise",
+        "prerequisite"
+      ]
+    },
+    "先天的|せんてんてき": {
+      "vi": [
+        "bẩm sinh"
+      ],
+      "en": [
+        "inherent",
+        "congenital",
+        "hereditary"
+      ]
+    },
+    "前途|ぜんと": {
+      "vi": [
+        "tiền đồ",
+        "tương lai"
+      ],
+      "en": [
+        "future prospects",
+        "outlook",
+        "the journey ahead"
+      ]
+    },
+    "戦闘|せんとう": {
+      "vi": [
+        "chiến đấu"
+      ],
+      "en": [
+        "battle",
+        "fight",
+        "combat"
+      ]
+    },
+    "潜入|せんにゅう": {
+      "vi": [
+        "thâm nhập",
+        "lẻn vào"
+      ],
+      "en": [
+        "infiltration",
+        "sneaking in"
+      ]
+    },
+    "船舶|せんぱく": {
+      "vi": [
+        "tàu thuyền"
+      ],
+      "en": [
+        "ship"
+      ]
+    },
+    "全滅|ぜんめつ": {
+      "vi": [
+        "bị tiêu diệt hoàn toàn"
+      ],
+      "en": [
+        "annihilation"
+      ]
+    },
+    "専用|せんよう": {
+      "vi": [
+        "dùng riêng",
+        "chuyên dụng"
+      ],
+      "en": [
+        "exclusive use",
+        "personal use"
+      ]
+    },
+    "占領|せんりょう": {
+      "vi": [
+        "chiếm đóng",
+        "chiếm giữ"
+      ],
+      "en": [
+        "occupation",
+        "possession",
+        "have a room to oneself"
+      ]
+    },
+    "善良|ぜんりょう": {
+      "vi": [
+        "lương thiện",
+        "tốt bụng"
+      ],
+      "en": [
+        "goodness",
+        "excellence",
+        "virtue"
+      ]
+    },
+    "戦力|せんりょく": {
+      "vi": [
+        "lực lượng chiến đấu",
+        "sức chiến đấu"
+      ],
+      "en": [
+        "war potential"
+      ]
+    },
+    "前例|ぜんれい": {
+      "vi": [
+        "tiền lệ"
+      ],
+      "en": [
+        "precedent"
+      ]
+    },
+    "相応|そうおう": {
+      "vi": [
+        "tương xứng",
+        "phù hợp"
+      ],
+      "en": [
+        "suitability",
+        "fitness"
+      ]
+    },
+    "総会|そうかい": {
+      "vi": [
+        "đại hội",
+        "hội nghị toàn thể"
+      ],
+      "en": [
+        "general meeting"
+      ]
+    },
+    "創刊|そうかん": {
+      "vi": [
+        "phát hành số đầu tiên"
+      ],
+      "en": [
+        "launching (e.g., newspaper, first issue)"
+      ]
+    },
+    "雑木|ぞうき": {
+      "vi": [
+        "các loại cây tạp"
+      ],
+      "en": [
+        "various kinds of small trees",
+        "assorted trees"
+      ]
+    },
+    "早急|そうきゅう": {
+      "vi": [
+        "khẩn cấp",
+        "gấp"
+      ],
+      "en": [
+        "urgent"
+      ]
+    },
+    "早急|さっきゅう": {
+      "vi": [
+        "khẩn cấp",
+        "gấp"
+      ],
+      "en": [
+        "urgent"
+      ]
+    },
+    "増強|ぞうきょう": {
+      "vi": [
+        "tăng cường"
+      ],
+      "en": [
+        "reinforce",
+        "increase"
+      ]
+    },
+    "送金|そうきん": {
+      "vi": [
+        "chuyển tiền"
+      ],
+      "en": [
+        "remittance",
+        "sending money"
+      ]
+    },
+    "走行|そうこう": {
+      "vi": [
+        "chạy (xe)"
+      ],
+      "en": [
+        "running a wheeled vehicle (e.g., car, traveling)"
+      ]
+    },
+    "総合|そうごう": {
+      "vi": [
+        "tổng hợp"
+      ],
+      "en": [
+        "synthesis",
+        "generalization"
+      ]
+    },
+    "捜索|そうさく": {
+      "vi": [
+        "tìm kiếm",
+        "lục soát"
+      ],
+      "en": [
+        "search (esp. for someone or something missing, investigation)"
+      ]
+    },
+    "蔵相|ぞうしょう": {
+      "vi": [
+        "bộ trưởng tài chính"
+      ],
+      "en": [
+        "Minister of Finance"
+      ]
+    },
+    "装飾|そうしょく": {
+      "vi": [
+        "trang trí"
+      ],
+      "en": [
+        "ornament"
+      ]
+    },
+    "増進|ぞうしん": {
+      "vi": [
+        "tăng cường",
+        "thúc đẩy"
+      ],
+      "en": [
+        "promoting",
+        "increase",
+        "advance"
+      ]
+    },
+    "相対|そうたい": {
+      "vi": [
+        "tương đối"
+      ],
+      "en": [
+        "relative"
+      ]
+    },
+    "壮大|そうだい": {
+      "vi": [
+        "hùng vĩ",
+        "tráng lệ"
+      ],
+      "en": [
+        "magnificent",
+        "grand",
+        "majestic"
+      ]
+    },
+    "騒動|そうどう": {
+      "vi": [
+        "náo loạn",
+        "bạo động"
+      ],
+      "en": [
+        "strife",
+        "riot",
+        "rebellion"
+      ]
+    },
+    "遭難|そうなん": {
+      "vi": [
+        "gặp nạn"
+      ],
+      "en": [
+        "disaster",
+        "shipwreck",
+        "accident"
+      ]
+    },
+    "相場|そうば": {
+      "vi": [
+        "giá thị trường",
+        "đầu cơ",
+        "lệ thường"
+      ],
+      "en": [
+        "market price",
+        "speculation",
+        "estimation"
+      ]
+    },
+    "装備|そうび": {
+      "vi": [
+        "trang bị"
+      ],
+      "en": [
+        "equipment"
+      ]
+    },
+    "創立|そうりつ": {
+      "vi": [
+        "sáng lập",
+        "thành lập"
+      ],
+      "en": [
+        "establishment",
+        "founding"
+      ]
+    },
+    "添える|そえる": {
+      "vi": [
+        "thêm vào",
+        "đính kèm",
+        "đi kèm"
+      ],
+      "en": [
+        "to add to",
+        "to attach",
+        "to accompany"
+      ]
+    },
+    "ソース|ソース": {
+      "vi": [
+        "nguồn",
+        "nước sốt"
+      ],
+      "en": [
+        "source"
+      ]
+    },
+    "即座に|そくざに": {
+      "vi": [
+        "ngay lập tức"
+      ],
+      "en": [
+        "immediately",
+        "right away"
+      ]
+    },
+    "促進|そくしん": {
+      "vi": [
+        "xúc tiến",
+        "thúc đẩy"
+      ],
+      "en": [
+        "promotion",
+        "acceleration",
+        "encouragement"
+      ]
+    },
+    "即する|そくする": {
+      "vi": [
+        "phù hợp với",
+        "dựa theo"
+      ],
+      "en": [
+        "to conform to",
+        "to agree with",
+        "to be adapted to"
+      ]
+    },
+    "束縛|そくばく": {
+      "vi": [
+        "ràng buộc",
+        "trói buộc"
+      ],
+      "en": [
+        "restraint",
+        "restriction",
+        "confinement"
+      ]
+    },
+    "側面|そくめん": {
+      "vi": [
+        "mặt bên",
+        "khía cạnh"
+      ],
+      "en": [
+        "side",
+        "sidelight",
+        "lateral"
+      ]
+    },
+    "損う|そこなう": {
+      "vi": [
+        "làm hại",
+        "làm hỏng"
+      ],
+      "en": [
+        "to harm",
+        "to hurt"
+      ]
+    },
+    "そこら|そこら": {
+      "vi": [
+        "quanh đây",
+        "đâu đó"
+      ],
+      "en": [
+        "everywhere",
+        "somewhere"
+      ]
+    },
+    "素材|そざい": {
+      "vi": [
+        "nguyên liệu",
+        "chất liệu",
+        "đề tài"
+      ],
+      "en": [
+        "raw materials",
+        "subject matter"
+      ]
+    },
+    "阻止|そし": {
+      "vi": [
+        "ngăn chặn"
+      ],
+      "en": [
+        "obstruction",
+        "check",
+        "hindrance"
+      ]
+    },
+    "訴訟|そしょう": {
+      "vi": [
+        "kiện tụng",
+        "vụ kiện"
+      ],
+      "en": [
+        "litigation",
+        "lawsuit"
+      ]
+    },
+    "育ち|そだち": {
+      "vi": [
+        "sự nuôi dạy",
+        "sự trưởng thành"
+      ],
+      "en": [
+        "breeding",
+        "growth"
+      ]
+    },
+    "措置|そち": {
+      "vi": [
+        "biện pháp"
+      ],
+      "en": [
+        "measure",
+        "step"
+      ]
+    },
+    "ソックス|ソックス": {
+      "vi": [
+        "tất",
+        "vớ"
+      ],
+      "en": [
+        "socks"
+      ]
+    },
+    "素っ気無い|そっけない": {
+      "vi": [
+        "lạnh nhạt",
+        "cộc lốc"
+      ],
+      "en": [
+        "cold",
+        "short",
+        "curt",
+        "blunt"
+      ]
+    },
+    "外方|そっぽ": {
+      "vi": [
+        "hướng khác (quay mặt đi)"
+      ],
+      "en": [
+        "look (or turn) the other way"
+      ]
+    },
+    "備え付ける|そなえつける": {
+      "vi": [
+        "trang bị",
+        "lắp đặt"
+      ],
+      "en": [
+        "to provide",
+        "to equip",
+        "to install"
+      ]
+    },
+    "備わる|そなわる": {
+      "vi": [
+        "được trang bị",
+        "vốn có"
+      ],
+      "en": [
+        "to be furnished with"
+      ]
+    },
+    "具わる|そなわる": {
+      "vi": [
+        "được trang bị",
+        "vốn có"
+      ],
+      "en": [
+        "to be furnished with"
+      ]
+    },
+    "聳える|そびえる": {
+      "vi": [
+        "sừng sững",
+        "cao vút"
+      ],
+      "en": [
+        "to rise",
+        "to tower",
+        "to soar"
+      ]
+    },
+    "素朴|そぼく": {
+      "vi": [
+        "mộc mạc",
+        "chất phác"
+      ],
+      "en": [
+        "simplicity",
+        "artlessness",
+        "naivety"
+      ]
+    },
+    "背く|そむく": {
+      "vi": [
+        "làm trái",
+        "phản bội"
+      ],
+      "en": [
+        "to run counter to",
+        "to go against"
+      ]
+    },
+    "染まる|そまる": {
+      "vi": [
+        "được nhuộm",
+        "bị nhiễm"
+      ],
+      "en": [
+        "to be dyed"
+      ]
+    },
+    "染める|そめる": {
+      "vi": [
+        "nhuộm"
+      ],
+      "en": [
+        "to dye",
+        "to color"
+      ]
+    },
+    "そらす|そらす": {
+      "vi": [
+        "làm cong",
+        "lảng tránh (ánh mắt)"
+      ],
+      "en": [
+        "to bend",
+        "to warp"
+      ]
+    },
+    "そり (～にのる)|そり (～にのる)": {
+      "vi": [
+        "xe trượt tuyết"
+      ],
+      "en": [
+        "sleigh",
+        "sled"
+      ]
+    },
+    "反る|そる": {
+      "vi": [
+        "cong",
+        "vênh"
+      ],
+      "en": [
+        "to warp",
+        "to be warped",
+        "to curve"
+      ]
+    },
+    "それゆえ|それゆえ": {
+      "vi": [
+        "vì vậy",
+        "do đó"
+      ],
+      "en": [
+        "therefore",
+        "for that reason",
+        "so"
+      ]
+    },
+    "ソロ|ソロ": {
+      "vi": [
+        "đơn ca",
+        "độc tấu"
+      ],
+      "en": [
+        "solo"
+      ]
+    },
+    "揃い|そろい": {
+      "vi": [
+        "bộ",
+        "đồng bộ"
+      ],
+      "en": [
+        "set",
+        "suit",
+        "uniform"
+      ]
+    },
+    "ぞんざい|ぞんざい": {
+      "vi": [
+        "cẩu thả",
+        "lỗ mãng"
+      ],
+      "en": [
+        "rude",
+        "careless",
+        "slovenly"
+      ]
+    },
+    "損失|そんしつ": {
+      "vi": [
+        "tổn thất"
+      ],
+      "en": [
+        "loss"
+      ]
+    },
+    "存続|そんぞく": {
+      "vi": [
+        "tồn tại tiếp",
+        "duy trì"
+      ],
+      "en": [
+        "duration",
+        "continuance"
+      ]
+    },
+    "ダース|ダース": {
+      "vi": [
+        "tá (12 cái)"
+      ],
+      "en": [
+        "dozen"
+      ]
+    },
+    "対応|たいおう": {
+      "vi": [
+        "đối ứng",
+        "xử lý"
+      ],
+      "en": [
+        "dealing with"
+      ]
+    },
+    "大家|たいか": {
+      "vi": [
+        "danh gia",
+        "bậc thầy",
+        "nhà giàu"
+      ],
+      "en": [
+        "rich family",
+        "distinguished family"
+      ]
+    },
+    "退化|たいか": {
+      "vi": [
+        "thoái hóa"
+      ],
+      "en": [
+        "degeneration",
+        "retrogression"
+      ]
+    },
+    "大概|たいがい": {
+      "vi": [
+        "phần lớn",
+        "đại khái"
+      ],
+      "en": [
+        "in general",
+        "mainly"
+      ]
+    },
+    "体格|たいかく": {
+      "vi": [
+        "thể chất",
+        "vóc dáng"
+      ],
+      "en": [
+        "physique",
+        "constitution"
+      ]
+    },
+    "大金|たいきん": {
+      "vi": [
+        "số tiền lớn"
+      ],
+      "en": [
+        "large amount of money"
+      ]
+    },
+    "待遇|たいぐう": {
+      "vi": [
+        "đãi ngộ",
+        "tiếp đãi"
+      ],
+      "en": [
+        "treatment",
+        "reception"
+      ]
+    },
+    "対決|たいけつ": {
+      "vi": [
+        "đối đầu",
+        "đối chất"
+      ],
+      "en": [
+        "confrontation",
+        "showdown"
+      ]
+    },
+    "体験|たいけん": {
+      "vi": [
+        "trải nghiệm"
+      ],
+      "en": [
+        "personal experience"
+      ]
+    },
+    "対抗|たいこう": {
+      "vi": [
+        "đối kháng",
+        "cạnh tranh"
+      ],
+      "en": [
+        "opposition",
+        "antagonism"
+      ]
+    },
+    "退治|たいじ": {
+      "vi": [
+        "tiêu diệt",
+        "diệt trừ"
+      ],
+      "en": [
+        "extermination"
+      ]
+    },
+    "大衆|たいしゅう": {
+      "vi": [
+        "đại chúng",
+        "quần chúng"
+      ],
+      "en": [
+        "general public"
+      ]
+    },
+    "対処|たいしょ": {
+      "vi": [
+        "đối phó",
+        "xử lý"
+      ],
+      "en": [
+        "deal with",
+        "cope"
+      ]
+    },
+    "退職|たいしょく": {
+      "vi": [
+        "nghỉ việc",
+        "nghỉ hưu"
+      ],
+      "en": [
+        "retirement (from office)"
+      ]
+    },
+    "題する|だいする": {
+      "vi": [
+        "đặt tựa đề"
+      ],
+      "en": [
+        "to title"
+      ]
+    },
+    "態勢|たいせい": {
+      "vi": [
+        "tư thế sẵn sàng",
+        "thế trận"
+      ],
+      "en": [
+        "attitude",
+        "conditions",
+        "tendency"
+      ]
+    },
+    "対談|たいだん": {
+      "vi": [
+        "đối thoại",
+        "trò chuyện"
+      ],
+      "en": [
+        "talk",
+        "dialogue"
+      ]
+    },
+    "大胆|だいたん": {
+      "vi": [
+        "táo bạo",
+        "gan dạ"
+      ],
+      "en": [
+        "bold",
+        "daring",
+        "audacious"
+      ]
+    },
+    "対等|たいとう": {
+      "vi": [
+        "ngang hàng",
+        "bình đẳng"
+      ],
+      "en": [
+        "equivalent"
+      ]
+    },
+    "台無し|だいなし": {
+      "vi": [
+        "hỏng bét",
+        "tiêu tan"
+      ],
+      "en": [
+        "mess",
+        "spoiled",
+        "(come to) nothing"
+      ]
+    },
+    "滞納|たいのう": {
+      "vi": [
+        "chậm nộp",
+        "nợ đọng"
+      ],
+      "en": [
+        "non-payment",
+        "default"
+      ]
+    },
+    "対比|たいひ": {
+      "vi": [
+        "so sánh",
+        "đối chiếu"
+      ],
+      "en": [
+        "contrast",
+        "comparison"
+      ]
+    },
+    "タイピスト|タイピスト": {
+      "vi": [
+        "nhân viên đánh máy"
+      ],
+      "en": [
+        "typist"
+      ]
+    },
+    "大部|たいぶ": {
+      "vi": [
+        "phần lớn",
+        "khá nhiều"
+      ],
+      "en": [
+        "most (e.g., most part, greater, fairly, a good deal, much)"
+      ]
+    },
+    "大便|だいべん": {
+      "vi": [
+        "phân"
+      ],
+      "en": [
+        "feces"
+      ]
+    },
+    "代弁|だいべん": {
+      "vi": [
+        "nói thay",
+        "phát ngôn thay"
+      ],
+      "en": [
+        "speak for another"
+      ]
+    },
+    "待望|たいぼう": {
+      "vi": [
+        "mong đợi từ lâu"
+      ],
+      "en": [
+        "long-expected",
+        "waiting"
+      ]
+    },
+    "台本|だいほん": {
+      "vi": [
+        "kịch bản"
+      ],
+      "en": [
+        "libretto",
+        "scenario"
+      ]
+    },
+    "タイマー|タイマー": {
+      "vi": [
+        "đồng hồ hẹn giờ"
+      ],
+      "en": [
+        "timer"
+      ]
+    },
+    "怠慢|たいまん": {
+      "vi": [
+        "lơ là",
+        "chểnh mảng"
+      ],
+      "en": [
+        "negligence",
+        "carelessness"
+      ]
+    },
+    "タイミング|タイミング": {
+      "vi": [
+        "thời điểm",
+        "thời cơ"
+      ],
+      "en": [
+        "timing"
+      ]
+    },
+    "タイム|タイム": {
+      "vi": [
+        "thời gian"
+      ],
+      "en": [
+        "time"
+      ]
+    },
+    "タイムリー|タイムリー": {
+      "vi": [
+        "đúng lúc"
+      ],
+      "en": [
+        "timely",
+        "run-batted-in (baseball)",
+        "RBI"
+      ]
+    },
+    "対面|たいめん": {
+      "vi": [
+        "gặp mặt",
+        "đối diện"
+      ],
+      "en": [
+        "interview",
+        "meeting"
+      ]
+    },
+    "代用|だいよう": {
+      "vi": [
+        "thay thế"
+      ],
+      "en": [
+        "substitution"
+      ]
+    },
+    "体力|たいりょく": {
+      "vi": [
+        "thể lực"
+      ],
+      "en": [
+        "physical strength"
+      ]
+    },
+    "タイル|タイル": {
+      "vi": [
+        "gạch men"
+      ],
+      "en": [
+        "tile"
+      ]
+    },
+    "対話|たいわ": {
+      "vi": [
+        "đối thoại"
+      ],
+      "en": [
+        "conversation",
+        "dialogue"
+      ]
+    },
+    "耐える|たえる": {
+      "vi": [
+        "chịu đựng"
+      ],
+      "en": [
+        "to endure",
+        "to put up with"
+      ]
+    },
+    "堪える|たえる": {
+      "vi": [
+        "chịu đựng"
+      ],
+      "en": [
+        "to endure",
+        "to put up with"
+      ]
+    },
+    "絶える|たえる": {
+      "vi": [
+        "tuyệt chủng",
+        "dứt",
+        "mất"
+      ],
+      "en": [
+        "to die out",
+        "to become extinct"
+      ]
+    },
+    "断える|たえる": {
+      "vi": [
+        "dứt",
+        "chấm dứt"
+      ],
+      "en": [
+        "to cease",
+        "to become extinct"
+      ]
+    },
+    "打開|だかい": {
+      "vi": [
+        "khai thông",
+        "đột phá"
+      ],
+      "en": [
+        "solution",
+        "breakthrough"
+      ]
+    },
+    "焚火|たきび": {
+      "vi": [
+        "đốt lửa",
+        "đống lửa"
+      ],
+      "en": [
+        "(open) fire"
+      ]
+    },
+    "妥協|だきょう": {
+      "vi": [
+        "thỏa hiệp"
+      ],
+      "en": [
+        "compromise",
+        "giving in"
+      ]
+    },
+    "たくましい|たくましい": {
+      "vi": [
+        "vạm vỡ",
+        "mạnh mẽ",
+        "kiên cường"
+      ],
+      "en": [
+        "burly",
+        "strong",
+        "sturdy"
+      ]
+    },
+    "巧み|たくみ": {
+      "vi": [
+        "khéo léo",
+        "tài tình"
+      ],
+      "en": [
+        "skill",
+        "cleverness"
+      ]
+    },
+    "丈|たけ": {
+      "vi": [
+        "chiều dài",
+        "chiều cao"
+      ],
+      "en": [
+        "length",
+        "height"
+      ]
+    },
+    "打撃|だげき": {
+      "vi": [
+        "đòn đánh",
+        "thiệt hại",
+        "đánh bóng (bóng chày)"
+      ],
+      "en": [
+        "blow",
+        "damage; batting (baseball)"
+      ]
+    },
+    "妥結|だけつ": {
+      "vi": [
+        "đạt thỏa thuận"
+      ],
+      "en": [
+        "agreement"
+      ]
+    },
+    "駄作|ださく": {
+      "vi": [
+        "tác phẩm kém"
+      ],
+      "en": [
+        "poor work"
+      ]
+    },
+    "足し算|たしざん": {
+      "vi": [
+        "phép cộng"
+      ],
+      "en": [
+        "addition"
+      ]
+    },
+    "多数決|たすうけつ": {
+      "vi": [
+        "biểu quyết theo đa số"
+      ],
+      "en": [
+        "majority rule"
+      ]
+    },
+    "助け|たすけ": {
+      "vi": [
+        "sự giúp đỡ"
+      ],
+      "en": [
+        "assistance"
+      ]
+    },
+    "携わる|たずさわる": {
+      "vi": [
+        "tham gia",
+        "làm (nghề)"
+      ],
+      "en": [
+        "to engage",
+        "to involve"
+      ]
+    },
+    "漂う|ただよう": {
+      "vi": [
+        "trôi nổi",
+        "phảng phất"
+      ],
+      "en": [
+        "to drift about",
+        "to float",
+        "to hang in air"
+      ]
+    },
+    "立ち去る|たちさる": {
+      "vi": [
+        "rời đi"
+      ],
+      "en": [
+        "to leave",
+        "to depart"
+      ]
+    },
+    "立ち寄る|たちよる": {
+      "vi": [
+        "ghé qua"
+      ],
+      "en": [
+        "to stop by",
+        "to drop in for a short visit"
+      ]
+    },
+    "抱っこ|だっこ": {
+      "vi": [
+        "bế",
+        "ôm (trẻ con)"
+      ],
+      "en": [
+        "(child's) hug"
+      ]
+    },
+    "達者|たっしゃ": {
+      "vi": [
+        "giỏi",
+        "khỏe mạnh"
+      ],
+      "en": [
+        "skillful",
+        "in good health"
+      ]
+    },
+    "脱出|だっしゅつ": {
+      "vi": [
+        "thoát ra",
+        "trốn thoát"
+      ],
+      "en": [
+        "escape"
+      ]
+    },
+    "脱する|だっする": {
+      "vi": [
+        "thoát khỏi"
+      ],
+      "en": [
+        "to escape from",
+        "to get out"
+      ]
+    },
+    "達成|たっせい": {
+      "vi": [
+        "đạt được",
+        "hoàn thành"
+      ],
+      "en": [
+        "achievement"
+      ]
+    },
+    "脱退|だったい": {
+      "vi": [
+        "rút khỏi",
+        "ly khai"
+      ],
+      "en": [
+        "secession",
+        "withdrawal"
+      ]
+    },
+    "だったら|だったら": {
+      "vi": [
+        "nếu vậy thì"
+      ],
+      "en": [
+        "if it's the case"
+      ]
+    },
+    "立て替える|たてかえる": {
+      "vi": [
+        "trả trước (thay người khác)"
+      ],
+      "en": [
+        "to pay in advance",
+        "to pay for another"
+      ]
+    },
+    "建前|たてまえ": {
+      "vi": [
+        "lập trường bề ngoài",
+        "nguyên tắc"
+      ],
+      "en": [
+        "position; stance one takes in public; principle"
+      ]
+    },
+    "奉る|たてまつる": {
+      "vi": [
+        "dâng",
+        "kính cẩn làm"
+      ],
+      "en": [
+        "to offer",
+        "to do respectfully"
+      ]
+    },
+    "だと|だと": {
+      "vi": [
+        "nếu vậy thì"
+      ],
+      "en": [
+        "if it's the case"
+      ]
+    },
+    "他動詞|たどうし": {
+      "vi": [
+        "tha động từ"
+      ],
+      "en": [
+        "transitive verb (direct object)"
+      ]
+    },
+    "辿り着く|たどりつく": {
+      "vi": [
+        "đến được",
+        "mò đến được"
+      ],
+      "en": [
+        "to reach",
+        "to make it somehow"
+      ]
+    },
+    "辿る|たどる": {
+      "vi": [
+        "lần theo",
+        "đi theo"
+      ],
+      "en": [
+        "to follow (road, to pursue (course), to follow up"
+      ]
+    },
+    "束ねる|たばねる": {
+      "vi": [
+        "bó lại",
+        "quản lý"
+      ],
+      "en": [
+        "to tie up in a bundle",
+        "to control"
+      ]
+    },
+    "だぶだぶ|だぶだぶ": {
+      "vi": [
+        "rộng thùng thình"
+      ],
+      "en": [
+        "loose",
+        "baggy"
+      ]
+    },
+    "他方|たほう": {
+      "vi": [
+        "mặt khác"
+      ],
+      "en": [
+        "another side",
+        "on the other hand"
+      ]
+    },
+    "多忙|たぼう": {
+      "vi": [
+        "bận rộn"
+      ],
+      "en": [
+        "busy"
+      ]
+    },
+    "給う|たまう": {
+      "vi": [
+        "ban cho (kính ngữ)"
+      ],
+      "en": [
+        "to receive",
+        "to grant"
+      ]
+    },
+    "魂|たましい": {
+      "vi": [
+        "linh hồn",
+        "tinh thần"
+      ],
+      "en": [
+        "soul",
+        "spirit"
+      ]
+    },
+    "溜まり|たまり": {
+      "vi": [
+        "chỗ tụ tập",
+        "phần tích tụ",
+        "nợ đọng"
+      ],
+      "en": [
+        "collected things",
+        "gathering place",
+        "arrears"
+      ]
+    },
+    "賜る|たまわる": {
+      "vi": [
+        "ban cho",
+        "được ban"
+      ],
+      "en": [
+        "to grant",
+        "to bestow"
+      ]
+    },
+    "保つ|たもつ": {
+      "vi": [
+        "giữ",
+        "duy trì"
+      ],
+      "en": [
+        "to keep",
+        "to preserve",
+        "to sustain"
+      ]
+    },
+    "たやすい|たやすい": {
+      "vi": [
+        "dễ dàng"
+      ],
+      "en": [
+        "easy",
+        "simple",
+        "light"
+      ]
+    },
+    "多様|たよう": {
+      "vi": [
+        "đa dạng"
+      ],
+      "en": [
+        "diversity",
+        "variety"
+      ]
+    },
+    "だるい|だるい": {
+      "vi": [
+        "uể oải",
+        "mệt mỏi"
+      ],
+      "en": [
+        "sluggish",
+        "feel heavy (tired)",
+        "languid"
+      ]
+    },
+    "弛み|たるみ": {
+      "vi": [
+        "sự chùng",
+        "lơi lỏng"
+      ],
+      "en": [
+        "slack",
+        "slackening"
+      ]
+    },
+    "弛む|たるむ": {
+      "vi": [
+        "chùng",
+        "lỏng",
+        "lơ là"
+      ],
+      "en": [
+        "to slacken",
+        "to loosen",
+        "to relax"
+      ]
+    },
+    "垂れる|たれる": {
+      "vi": [
+        "rủ xuống",
+        "nhỏ giọt"
+      ],
+      "en": [
+        "to hang",
+        "to droop; to drip"
+      ]
+    },
+    "タレント|タレント": {
+      "vi": [
+        "người nổi tiếng",
+        "nghệ sĩ truyền hình"
+      ],
+      "en": [
+        "talent",
+        "star",
+        "personality"
+      ]
+    },
+    "タワー|タワー": {
+      "vi": [
+        "tháp"
+      ],
+      "en": [
+        "tower"
+      ]
+    },
+    "単一|たんいつ": {
+      "vi": [
+        "đơn nhất"
+      ],
+      "en": [
+        "single",
+        "simple",
+        "sole"
+      ]
+    },
+    "短歌|たんか": {
+      "vi": [
+        "thơ tanka (31 âm tiết)"
+      ],
+      "en": [
+        "31-syllable Japanese poem"
+      ]
+    },
+    "担架|たんか": {
+      "vi": [
+        "cáng"
+      ],
+      "en": [
+        "stretcher",
+        "litter"
+      ]
+    },
+    "短気|たんき": {
+      "vi": [
+        "nóng tính"
+      ],
+      "en": [
+        "quick temper"
+      ]
+    },
+    "団結|だんけつ": {
+      "vi": [
+        "đoàn kết"
+      ],
+      "en": [
+        "unity",
+        "union",
+        "solidarity"
+      ]
+    },
+    "探検|たんけん": {
+      "vi": [
+        "thám hiểm"
+      ],
+      "en": [
+        "exploration",
+        "expedition"
+      ]
+    },
+    "断言|だんげん": {
+      "vi": [
+        "khẳng định",
+        "quả quyết"
+      ],
+      "en": [
+        "assertion",
+        "declaration",
+        "affirmation"
+      ]
+    },
+    "短縮|たんしゅく": {
+      "vi": [
+        "rút ngắn"
+      ],
+      "en": [
+        "shortening",
+        "abbreviation",
+        "reduction"
+      ]
+    },
+    "断然|だんぜん": {
+      "vi": [
+        "dứt khoát",
+        "hẳn"
+      ],
+      "en": [
+        "firmly",
+        "absolutely",
+        "definitely"
+      ]
+    },
+    "炭素|たんそ": {
+      "vi": [
+        "cac-bon"
+      ],
+      "en": [
+        "carbon (C)"
+      ]
+    },
+    "短大|たんだい": {
+      "vi": [
+        "cao đẳng"
+      ],
+      "en": [
+        "junior college"
+      ]
+    },
+    "単調|たんちょう": {
+      "vi": [
+        "đơn điệu"
+      ],
+      "en": [
+        "monotony",
+        "monotone",
+        "dullness"
+      ]
+    },
+    "単独|たんどく": {
+      "vi": [
+        "đơn độc",
+        "một mình"
+      ],
+      "en": [
+        "sole",
+        "single"
+      ]
+    },
+    "旦那|だんな": {
+      "vi": [
+        "ông chủ",
+        "chồng"
+      ],
+      "en": [
+        "master (of house)",
+        "husband (informal)"
+      ]
+    },
+    "短波|たんぱ": {
+      "vi": [
+        "sóng ngắn"
+      ],
+      "en": [
+        "short wave"
+      ]
+    },
+    "蛋白質|たんぱくしつ": {
+      "vi": [
+        "chất đạm",
+        "protein"
+      ],
+      "en": [
+        "protein"
+      ]
+    },
+    "ダンプ|ダンプ": {
+      "vi": [
+        "xe ben"
+      ],
+      "en": [
+        "dump truck"
+      ]
+    },
+    "断面|だんめん": {
+      "vi": [
+        "mặt cắt"
+      ],
+      "en": [
+        "cross section"
+      ]
+    },
+    "弾力|だんりょく": {
+      "vi": [
+        "độ đàn hồi",
+        "sự linh hoạt"
+      ],
+      "en": [
+        "elasticity",
+        "flexibility"
+      ]
+    },
+    "治安|ちあん": {
+      "vi": [
+        "trị an",
+        "an ninh"
+      ],
+      "en": [
+        "public order",
+        "security"
+      ]
+    },
+    "チームワーク|チームワーク": {
+      "vi": [
+        "tinh thần đồng đội"
+      ],
+      "en": [
+        "teamwork"
+      ]
+    },
+    "チェンジ|チェンジ": {
+      "vi": [
+        "thay đổi",
+        "đổi"
+      ],
+      "en": [
+        "change"
+      ]
+    },
+    "違える|ちがえる": {
+      "vi": [
+        "làm khác đi",
+        "làm sai"
+      ],
+      "en": [
+        "to change"
+      ]
+    },
+    "畜産|ちくさん": {
+      "vi": [
+        "chăn nuôi"
+      ],
+      "en": [
+        "animal husbandry"
+      ]
+    },
+    "畜生|ちくしょう": {
+      "vi": [
+        "súc sinh",
+        "đồ khốn"
+      ],
+      "en": [
+        "beast",
+        "brute",
+        "damn"
+      ]
+    },
+    "蓄積|ちくせき": {
+      "vi": [
+        "tích lũy"
+      ],
+      "en": [
+        "accumulation",
+        "accumulate",
+        "store"
+      ]
+    },
+    "地形|ちけい": {
+      "vi": [
+        "địa hình"
+      ],
+      "en": [
+        "landform",
+        "geographical features",
+        "topography"
+      ]
+    },
+    "知性|ちせい": {
+      "vi": [
+        "trí tuệ"
+      ],
+      "en": [
+        "intelligence"
+      ]
+    },
+    "乳|ちち": {
+      "vi": [
+        "sữa",
+        "vú"
+      ],
+      "en": [
+        "milk",
+        "breast",
+        "loop"
+      ]
+    },
+    "縮まる|ちぢまる": {
+      "vi": [
+        "co lại",
+        "rút ngắn"
+      ],
+      "en": [
+        "to be shortened",
+        "to be contracted",
+        "to shrink"
+      ]
+    },
+    "秩序|ちつじょ": {
+      "vi": [
+        "trật tự"
+      ],
+      "en": [
+        "order",
+        "regularity"
+      ]
+    },
+    "窒息|ちっそく": {
+      "vi": [
+        "ngạt thở"
+      ],
+      "en": [
+        "suffocation"
+      ]
+    },
+    "知的|ちてき": {
+      "vi": [
+        "trí tuệ",
+        "tri thức"
+      ],
+      "en": [
+        "intellectual"
+      ]
+    },
+    "着手|ちゃくしゅ": {
+      "vi": [
+        "bắt tay vào"
+      ],
+      "en": [
+        "embarkation",
+        "launch"
+      ]
+    },
+    "着色|ちゃくしょく": {
+      "vi": [
+        "tô màu",
+        "nhuộm màu"
+      ],
+      "en": [
+        "coloring",
+        "coloring"
+      ]
+    },
+    "着席|ちゃくせき": {
+      "vi": [
+        "ngồi vào chỗ"
+      ],
+      "en": [
+        "sit down",
+        "seat"
+      ]
+    },
+    "着目|ちゃくもく": {
+      "vi": [
+        "chú ý",
+        "để mắt đến"
+      ],
+      "en": [
+        "attention"
+      ]
+    },
+    "着陸|ちゃくりく": {
+      "vi": [
+        "hạ cánh"
+      ],
+      "en": [
+        "landing",
+        "touch down"
+      ]
+    },
+    "着工|ちゃっこう": {
+      "vi": [
+        "khởi công"
+      ],
+      "en": [
+        "start of (construction) work"
+      ]
+    },
+    "茶の間|ちゃのま": {
+      "vi": [
+        "phòng khách (kiểu Nhật)"
+      ],
+      "en": [
+        "living room (Japanese style)"
+      ]
+    },
+    "茶の湯|ちゃのゆ": {
+      "vi": [
+        "trà đạo"
+      ],
+      "en": [
+        "tea ceremony"
+      ]
+    },
+    "ちやほや|ちやほや": {
+      "vi": [
+        "nuông chiều",
+        "tâng bốc"
+      ],
+      "en": [
+        "pamper",
+        "make a fuss of",
+        "spoil"
+      ]
+    },
+    "チャンネル|チャンネル": {
+      "vi": [
+        "kênh"
+      ],
+      "en": [
+        "a channel"
+      ]
+    },
+    "宙返り|ちゅうがえり": {
+      "vi": [
+        "nhào lộn"
+      ],
+      "en": [
+        "somersault",
+        "looping-the-loop"
+      ]
+    },
+    "中継|ちゅうけい": {
+      "vi": [
+        "tiếp sóng",
+        "truyền hình trực tiếp"
+      ],
+      "en": [
+        "relay",
+        "hook-up"
+      ]
+    },
+    "忠告|ちゅうこく": {
+      "vi": [
+        "khuyên bảo"
+      ],
+      "en": [
+        "advice",
+        "warning"
+      ]
+    },
+    "中傷|ちゅうしょう": {
+      "vi": [
+        "phỉ báng",
+        "vu khống"
+      ],
+      "en": [
+        "slander",
+        "libel",
+        "defamation"
+      ]
+    },
+    "中枢|ちゅうすう": {
+      "vi": [
+        "trung tâm",
+        "đầu não"
+      ],
+      "en": [
+        "center",
+        "mainstay",
+        "nucleus"
+      ]
+    },
+    "抽選|ちゅうせん": {
+      "vi": [
+        "bốc thăm",
+        "quay số"
+      ],
+      "en": [
+        "lottery",
+        "raffle",
+        "drawing (of lots)"
+      ]
+    },
+    "中断|ちゅうだん": {
+      "vi": [
+        "gián đoạn",
+        "tạm dừng"
+      ],
+      "en": [
+        "interruption",
+        "suspension",
+        "break"
+      ]
+    },
+    "中毒|ちゅうどく": {
+      "vi": [
+        "ngộ độc",
+        "nghiện"
+      ],
+      "en": [
+        "poisoning"
+      ]
+    },
+    "中腹|ちゅうふく": {
+      "vi": [
+        "lưng chừng núi"
+      ],
+      "en": [
+        "mountain side",
+        "halfway up"
+      ]
+    },
+    "中立|ちゅうりつ": {
+      "vi": [
+        "trung lập"
+      ],
+      "en": [
+        "neutrality"
+      ]
+    },
+    "中和|ちゅうわ": {
+      "vi": [
+        "trung hòa"
+      ],
+      "en": [
+        "neutralize",
+        "counteract"
+      ]
+    },
+    "～著|～ちょ": {
+      "vi": [
+        "tác giả"
+      ],
+      "en": [
+        "written by ~"
+      ]
+    },
+    "腸|ちょう": {
+      "vi": [
+        "ruột"
+      ],
+      "en": [
+        "bowels",
+        "intestines"
+      ]
+    },
+    "蝶|ちょう": {
+      "vi": [
+        "con bướm"
+      ],
+      "en": [
+        "butterfly"
+      ]
+    },
+    "超|ちょう": {
+      "vi": [
+        "siêu"
+      ],
+      "en": [
+        "super-",
+        "ultra-",
+        "hyper-"
+      ]
+    },
+    "調印|ちょういん": {
+      "vi": [
+        "ký kết"
+      ],
+      "en": [
+        "signature",
+        "sign",
+        "sealing"
+      ]
+    },
+    "聴覚|ちょうかく": {
+      "vi": [
+        "thính giác"
+      ],
+      "en": [
+        "the sense of hearing"
+      ]
+    },
+    "長官|ちょうかん": {
+      "vi": [
+        "trưởng cơ quan",
+        "bộ trưởng"
+      ],
+      "en": [
+        "chief",
+        "(government) secretary"
+      ]
+    },
+    "聴講|ちょうこう": {
+      "vi": [
+        "dự thính"
+      ],
+      "en": [
+        "lecture attendance",
+        "auditing"
+      ]
+    },
+    "徴収|ちょうしゅう": {
+      "vi": [
+        "thu (thuế, phí)"
+      ],
+      "en": [
+        "collection",
+        "levy"
+      ]
+    },
+    "聴診器|ちょうしんき": {
+      "vi": [
+        "ống nghe"
+      ],
+      "en": [
+        "stethoscope"
+      ]
+    },
+    "調停|ちょうてい": {
+      "vi": [
+        "hòa giải"
+      ],
+      "en": [
+        "arbitration",
+        "conciliation",
+        "mediation"
+      ]
+    },
+    "重複|ちょうふく": {
+      "vi": [
+        "trùng lặp"
+      ],
+      "en": [
+        "duplication",
+        "repetition",
+        "overlapping",
+        "redundancy",
+        "restoration"
+      ]
+    },
+    "長編|ちょうへん": {
+      "vi": [
+        "truyện dài",
+        "phim dài"
+      ],
+      "en": [
+        "long (e.g., novel, film)"
+      ]
+    },
+    "重宝|ちょうほう": {
+      "vi": [
+        "tiện lợi",
+        "hữu ích"
+      ],
+      "en": [
+        "convenient",
+        "useful"
+      ]
+    },
+    "調理|ちょうり": {
+      "vi": [
+        "nấu nướng"
+      ],
+      "en": [
+        "cooking"
+      ]
+    },
+    "調和|ちょうわ": {
+      "vi": [
+        "hài hòa"
+      ],
+      "en": [
+        "harmony"
+      ]
+    },
+    "ちょくちょく|ちょくちょく": {
+      "vi": [
+        "thỉnh thoảng",
+        "thường"
+      ],
+      "en": [
+        "often",
+        "frequently",
+        "now and then",
+        "occasionally"
+      ]
+    },
+    "直面|ちょくめん": {
+      "vi": [
+        "đối mặt"
+      ],
+      "en": [
+        "confrontation"
+      ]
+    },
+    "著書|ちょしょ": {
+      "vi": [
+        "sách (của tác giả)"
+      ],
+      "en": [
+        "literary work",
+        "book"
+      ]
+    },
+    "貯蓄|ちょちく": {
+      "vi": [
+        "tiết kiệm"
+      ],
+      "en": [
+        "savings"
+      ]
+    },
+    "直感|ちょっかん": {
+      "vi": [
+        "trực giác"
+      ],
+      "en": [
+        "intuition",
+        "instinct"
+      ]
+    },
+    "著名|ちょめい": {
+      "vi": [
+        "nổi tiếng"
+      ],
+      "en": [
+        "well-known",
+        "noted",
+        "celebrated"
+      ]
+    }
+  }
+}
