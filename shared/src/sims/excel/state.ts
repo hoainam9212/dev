@@ -89,6 +89,7 @@ export type ExcelAction =
   | { type: 'setFilterValues'; col: string; values: string[] }
   | { type: 'insertChart'; chart: Chart }
   | { type: 'removeChart'; id: string }
+  | { type: 'setChartTitle'; id: string; title: string }
   | { type: 'openDialog'; dialog: ExcelDialog }
   | { type: 'undo' };
 

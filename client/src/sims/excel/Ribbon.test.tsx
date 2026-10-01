@@ -76,10 +76,15 @@ describe('Thanh tab ribbon', () => {
     expect(screen.getByText(/chưa có gì để đổi/i)).toBeInTheDocument();
   });
 
-  it('tab Insert chèn được biểu đồ', () => {
-    show();
+  it('Insert › Charts: chọn Clustered Column là chèn ngay với tiêu đề Chart Title', () => {
+    const dispatch = show(excelSim.reduceExcel(state, { type: 'selectRange', range: 'A2:B5' }));
     fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
-    expect(screen.getByRole('button', { name: /chèn biểu đồ/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ cột hoặc thanh' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Clustered Column' }));
+    expect(dispatch).toHaveBeenCalledWith({
+      type: 'insertChart',
+      chart: { id: 'chart-0', type: 'column', range: 'A2:B5', title: 'Chart Title' },
+    });
   });
 
   it('tab Data có nút sắp xếp và lọc thật', () => {

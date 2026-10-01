@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { excelInitial, reduceExcel, type ExcelAction, type WorkbookState } from './state';
-import { chartData, chartsOf } from './chart';
+import { DEFAULT_CHART_TITLE, chartData, chartsOf } from './chart';
 
 const run = (s: WorkbookState, ...as: ExcelAction[]) => as.reduce(reduceExcel, s);
 const months = () => excelInitial({
@@ -52,6 +52,22 @@ describe('chèn và xoá biểu đồ', () => {
   it('chèn biểu đồ là một bước hoàn tác', () => {
     const s = run(months(), { type: 'insertChart', chart }, { type: 'undo' });
     expect(chartsOf(s)).toEqual([]);
+  });
+
+  it('setChartTitle đổi tiêu đề, chuỗi trống thì giữ tiêu đề cũ', () => {
+    const withChart = () => run(months(), {
+      type: 'insertChart', chart: { id: 'chart-0', type: 'column', range: 'A1:B3', title: DEFAULT_CHART_TITLE },
+    });
+    let s = run(withChart(), { type: 'setChartTitle', id: 'chart-0', title: '  Lương nhân viên ' });
+    expect(chartsOf(s)[0]!.title).toBe('Lương nhân viên');
+    s = run(s, { type: 'setChartTitle', id: 'chart-0', title: '   ' });
+    expect(chartsOf(s)[0]!.title).toBe('Lương nhân viên');
+    expect(run(s, { type: 'undo' }).sheets[0]!.charts?.[0]?.title).toBe('Chart Title');
+  });
+
+  it('setChartTitle với id không có thì không đổi gì, cũng không thêm bậc hoàn tác', () => {
+    const s = run(months(), { type: 'insertChart', chart });
+    expect(run(s, { type: 'setChartTitle', id: 'nope', title: 'X' })).toBe(s);
   });
 
   it('mỗi sheet giữ biểu đồ riêng', () => {

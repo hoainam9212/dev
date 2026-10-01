@@ -82,23 +82,81 @@ describe('ChartView', () => {
   });
 });
 
-describe('Tab Insert', () => {
-  it('chèn biểu đồ loại đã chọn cho vùng đang chọn, id không dùng thời gian thực', () => {
+describe('Sửa tiêu đề ngay trên biểu đồ', () => {
+  it('bấm tiêu đề, gõ chữ mới rồi Enter thì gọi onRename', () => {
+    const onRename = vi.fn();
+    render(<ChartView state={months()} chart={chart('column')} onRemove={() => {}} onRename={onRename} />);
+    const title = screen.getByRole('button', { name: 'Sửa tiêu đề biểu đồ' });
+    expect(title.getAttribute('data-help-id')).toBe('excel.chartTitle');
+    fireEvent.click(title);
+    const input = screen.getByLabelText('Tiêu đề biểu đồ') as HTMLInputElement;
+    expect(input.value).toBe('Doanh thu');
+    expect([input.selectionStart, input.selectionEnd]).toEqual([0, 'Doanh thu'.length]);
+    fireEvent.change(input, { target: { value: 'Lương' } });
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(onRename).toHaveBeenCalledWith('Lương');
+    expect(screen.queryByLabelText('Tiêu đề biểu đồ')).toBeNull();
+  });
+
+  it('Esc thì thôi sửa, không gọi onRename, tiêu đề cũ vẫn hiện', () => {
+    const onRename = vi.fn();
+    render(<ChartView state={months()} chart={chart('column')} onRemove={() => {}} onRename={onRename} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Sửa tiêu đề biểu đồ' }));
+    const input = screen.getByLabelText('Tiêu đề biểu đồ');
+    fireEvent.change(input, { target: { value: 'Lương' } });
+    fireEvent.keyDown(input, { key: 'Escape' });
+    expect(onRename).not.toHaveBeenCalled();
+    expect(screen.getByText('Doanh thu')).toBeInTheDocument();
+  });
+
+  it('rời ô nhập cũng là xong', () => {
+    const onRename = vi.fn();
+    render(<ChartView state={months()} chart={chart('column')} onRemove={() => {}} onRename={onRename} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Sửa tiêu đề biểu đồ' }));
+    const input = screen.getByLabelText('Tiêu đề biểu đồ');
+    fireEvent.change(input, { target: { value: 'Quý 1' } });
+    fireEvent.blur(input);
+    expect(onRename).toHaveBeenCalledTimes(1);
+    expect(onRename).toHaveBeenCalledWith('Quý 1');
+  });
+});
+
+describe('Thẻ Insert › Charts', () => {
+  it('Insert Pie Chart › Pie chèn biểu đồ tròn cho vùng đang chọn, id không dùng thời gian thực', () => {
     const dispatch = vi.fn();
     const s = excelSim.reduceExcel(months(), { type: 'selectRange', range: 'A1:B3' });
     render(<RibbonInsert state={s} dispatch={dispatch} />);
-    fireEvent.change(screen.getByLabelText('Loại biểu đồ'), { target: { value: 'pie' } });
-    fireEvent.change(screen.getByLabelText('Tiêu đề biểu đồ'), { target: { value: 'Doanh thu' } });
-    fireEvent.click(screen.getByRole('button', { name: /chèn biểu đồ/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ tròn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pie' }));
     expect(dispatch).toHaveBeenCalledWith({
       type: 'insertChart',
-      chart: { id: 'chart-0', type: 'pie', range: 'A1:B3', title: 'Doanh thu' },
+      chart: { id: 'chart-0', type: 'pie', range: 'A1:B3', title: 'Chart Title' },
     });
   });
 
-  it('mọi nút và ô chọn đều có helpId đã khai báo', () => {
+  it('menu cột có cả Clustered Bar, menu đường có Line', () => {
+    const dispatch = vi.fn();
+    render(<RibbonInsert state={months()} dispatch={dispatch} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ cột hoặc thanh' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Clustered Bar' }));
+    expect(dispatch).toHaveBeenLastCalledWith(expect.objectContaining({ chart: expect.objectContaining({ type: 'bar' }) }));
+    fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ đường' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Line' }));
+    expect(dispatch).toHaveBeenLastCalledWith(expect.objectContaining({ chart: expect.objectContaining({ type: 'line' }) }));
+  });
+
+  it('nhóm Charts, không còn ô loại / ô tiêu đề / nút Chèn biểu đồ, vẫn nói vẽ từ vùng nào', () => {
+    render(<RibbonInsert state={excelSim.reduceExcel(months(), { type: 'selectRange', range: 'A1:B3' })} dispatch={() => {}} />);
+    expect(screen.getByText('Charts')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Loại biểu đồ')).toBeNull();
+    expect(screen.queryByLabelText('Tiêu đề biểu đồ')).toBeNull();
+    expect(screen.queryByRole('button', { name: /chèn biểu đồ/i })).toBeNull();
+    expect(screen.getByText('A1:B3')).toBeInTheDocument();
+  });
+
+  it('mọi nút đều có helpId đã khai báo', () => {
     render(<RibbonInsert state={months()} dispatch={() => {}} />);
-    for (const el of [...screen.getAllByRole('button'), ...screen.getAllByRole('combobox')]) {
+    for (const el of screen.getAllByRole('button')) {
       const id = el.getAttribute('data-help-id');
       expect(id, el.getAttribute('aria-label') ?? '').toBeTruthy();
       expect(HELP_IDS, id!).toHaveProperty(id!);

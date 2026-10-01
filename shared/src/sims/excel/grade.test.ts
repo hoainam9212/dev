@@ -133,6 +133,18 @@ describe('chấm sắp xếp, lọc và biểu đồ', () => {
     expect(check(s, { kind: 'chart', chartType: 'pie', range: 'A1:B9' }).pass).toBe(false);
   });
 
+  it('chart đòi đúng tiêu đề nếu check nói rõ — bỏ tên gốc "Chart Title" là chưa xong', () => {
+    const s = reduceExcel(staff(), {
+      type: 'insertChart',
+      chart: { id: 'c1', type: 'pie', range: 'A2:B3', title: 'Chart Title' },
+    });
+    const r = check(s, { kind: 'chart', chartType: 'pie', title: 'Lương' });
+    expect(r.pass).toBe(false);
+    expect(r.results[0]!.messageVi).toContain('Chart Title');
+    const named = reduceExcel(s, { type: 'setChartTitle', id: 'c1', title: 'lương ' });
+    expect(check(named, { kind: 'chart', chartType: 'pie', title: 'Lương' }).pass).toBe(true);
+  });
+
   it('câu báo lỗi nói rõ phải làm gì', () => {
     const r = check(staff(), { kind: 'chart', chartType: 'column' });
     expect(r.results[0]!.messageVi).toContain('biểu đồ cột');

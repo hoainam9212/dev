@@ -51,6 +51,7 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
           state={state}
           chart={chart}
           onRemove={() => dispatch({ type: 'removeChart', id: chart.id })}
+          onRename={(title) => dispatch({ type: 'setChartTitle', id: chart.id, title })}
         />
       ))}
       <ExcelDialogs state={state} dispatch={dispatch} now={Date.now()} />

@@ -37,6 +37,9 @@ export function chartData(s: WorkbookState, range: string): ChartData {
   return { labels, values, max: values.length ? Math.max(0, ...values) : 0 };
 }
 
+/** Tiêu đề Excel đặt sẵn cho biểu đồ mới chèn; người dùng bấm vào để sửa. */
+export const DEFAULT_CHART_TITLE = 'Chart Title';
+
 export function chartsOf(s: WorkbookState): Chart[] {
   return s.sheets[s.active]!.charts ?? [];
 }
@@ -54,6 +57,15 @@ export function reduceChart(s: WorkbookState, a: ExcelAction): WorkbookState | n
       return withEdit(s, (sheet) => ({ ...sheet, charts: [...(sheet.charts ?? []), a.chart] }));
     case 'removeChart':
       return withEdit(s, (sheet) => ({ ...sheet, charts: (sheet.charts ?? []).filter((c) => c.id !== a.id) }));
+    case 'setChartTitle': {
+      // Xoá trắng rồi Enter thì giữ tiêu đề cũ — biểu đồ không bao giờ mất tên.
+      const title = a.title.trim();
+      if (!title || !chartsOf(s).some((c) => c.id === a.id)) return s;
+      return withEdit(s, (sheet) => ({
+        ...sheet,
+        charts: (sheet.charts ?? []).map((c) => (c.id === a.id ? { ...c, title } : c)),
+      }));
+    }
     default:
       return null;
   }

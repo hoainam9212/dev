@@ -162,14 +162,14 @@ export const EXCEL_PROJECT: Lesson[] = [
         checks: [
           { kind: 'rangeSorted', range: 'A3:G12', by: 'G', dir: 'desc' },
           { kind: 'filterActive', col: 'B', values: ['Kế toán'] },
-          { kind: 'chart', chartType: 'pie', range: 'I5:J7' },
+          { kind: 'chart', chartType: 'pie', range: 'I5:J7', title: 'Cơ cấu quỹ lương' },
         ],
         spotlight: { helpId: 'excel.sort' },
-        hint: 'Thẻ **Data** › nhóm **Sort & Filter** để sắp xếp và lọc, thẻ Insert để chèn biểu đồ tròn từ I5:J7.',
+        hint: 'Thẻ **Data** › nhóm **Sort & Filter** để sắp xếp và lọc; thẻ **Insert** › nhóm **Charts** › nút **Insert Pie Chart** ▾ › **Pie** để chèn biểu đồ tròn từ I5:J7.',
         steps: [
           'Chọn A3:G12, thẻ Data › nhóm Sort & Filter › nút Sort: Sort by Column G, Order Largest to Smallest, rồi OK.',
           'Chọn A2:G12, thẻ Data › nhóm Sort & Filter › nút Filter, bấm mũi tên ▾ ở ô B2 (tiêu đề Phòng) và chỉ để lại Kế toán.',
-          'Chọn I5:J7, sang thẻ Insert, chọn loại Tròn, gõ tiêu đề Cơ cấu quỹ lương rồi bấm Chèn biểu đồ.',
+          'Chọn I5:J7, thẻ Insert › nhóm Charts › nút Insert Pie Chart ▾ › Pie; bấm chữ Chart Title trên biểu đồ, gõ Cơ cấu quỹ lương rồi nhấn Enter.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A3:G12' },
@@ -178,7 +178,8 @@ export const EXCEL_PROJECT: Lesson[] = [
           { type: 'enableFilter', range: 'A2:G12' },
           { type: 'setFilterValues', col: 'B', values: ['Kế toán'] },
           { type: 'selectRange', range: 'I5:J7' },
-          { type: 'insertChart', chart: { id: 'chart-0', type: 'pie', range: 'I5:J7', title: 'Cơ cấu quỹ lương' } },
+          { type: 'insertChart', chart: { id: 'chart-0', type: 'pie', range: 'I5:J7', title: 'Chart Title' } },
+          { type: 'setChartTitle', id: 'chart-0', title: 'Cơ cấu quỹ lương' },
           { type: 'save', name: 'bang-luong-thang-9.xlsx', at: 0 },
         ],
       }),

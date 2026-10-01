@@ -573,6 +573,17 @@
     ]
   },
   {
+    "id": "excel.chart-title",
+    "q": "Biểu đồ hiện chữ Chart Title, đổi tên thế nào?",
+    "a": "Chart Title là tên Excel đặt sẵn. Bấm thẳng vào chữ đó trên biểu đồ, gõ tên mới rồi nhấn Enter. Đổi ý thì nhấn Esc là giữ tên cũ; lỡ đổi rồi thì Ctrl+Z.",
+    "keywords": [
+      "chart title",
+      "doi ten bieu do",
+      "tieu de bieu do",
+      "sua tieu de"
+    ]
+  },
+  {
     "id": "excel.sort-vs-filter",
     "q": "Sắp xếp và lọc khác nhau ở đâu?",
     "a": "Sắp xếp ĐỔI THỨ TỰ các hàng nhưng vẫn giữ đủ mọi hàng. Lọc GIỮ NGUYÊN thứ tự nhưng tạm ẩn bớt hàng. Hai việc dùng được cùng lúc: sắp xếp trước rồi lọc, hoặc ngược lại.",

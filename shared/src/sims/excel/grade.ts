@@ -15,7 +15,7 @@ export type ExcelCheck =
   | { kind: 'rangeSorted'; range: string; by: string; dir: 'asc' | 'desc' }
   | { kind: 'filterActive'; col: string; values?: string[] }
   /** Tên trường là `chartType` chứ không phải `type`: `kind` đã dùng để phân nhánh check. */
-  | { kind: 'chart'; chartType: Chart['type']; range?: string };
+  | { kind: 'chart'; chartType: Chart['type']; range?: string; title?: string };
 
 const CHART_VI: Record<Chart['type'], string> = {
   column: 'biểu đồ cột',
@@ -161,6 +161,13 @@ export function gradeExcel(state: WorkbookState, check: ExcelCheck): CheckResult
             && got.to.row === want.to.row && got.to.col === want.to.col;
         });
         if (!hit) return no(`Đã có ${ten} nhưng chưa vẽ từ vùng ${check.range}.`);
+      }
+      if (check.title) {
+        const want = check.title.trim().toLocaleLowerCase('vi');
+        if (!found.some((c) => c.title.trim().toLocaleLowerCase('vi') === want)) {
+          const now = found[0]!.title;
+          return no(`${ten[0]!.toUpperCase()}${ten.slice(1)} đang có tiêu đề "${now}". Bấm vào chữ đó trên biểu đồ, gõ ${check.title} rồi nhấn Enter.`);
+        }
       }
       return ok(`Đã có ${ten}.`);
     }

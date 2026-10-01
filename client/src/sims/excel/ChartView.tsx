@@ -1,9 +1,69 @@
+import { useRef, useState } from 'react';
 import { excelSim, formula } from '@office-neko/shared';
 
 interface Props {
   state: excelSim.WorkbookState;
   chart: excelSim.Chart;
   onRemove: () => void;
+  /** Gõ xong tiêu đề mới (Enter hoặc rời ô). Không truyền thì tiêu đề chỉ để xem. */
+  onRename?: (title: string) => void;
+}
+
+/**
+ * Tiêu đề trên biểu đồ: bấm vào là sửa ngay tại chỗ, như bấm chữ "Chart Title" trong Excel.
+ * Enter hoặc rời ô là xong; Esc là thôi, giữ tiêu đề cũ.
+ */
+function ChartTitle({ title, onRename }: { title: string; onRename?: (title: string) => void }) {
+  const [draft, setDraft] = useState<string | null>(null);
+  // Esc gỡ ô nhập; có trình duyệt bắn `blur` lúc gỡ — cờ này chặn blur đó ghi chữ đang gõ dở.
+  const done = useRef(false);
+
+  if (!onRename) return <h3 className="text-sm font-bold">{title}</h3>;
+
+  if (draft === null) {
+    return (
+      <button
+        type="button"
+        aria-label="Sửa tiêu đề biểu đồ"
+        data-help-id="excel.chartTitle"
+        onClick={() => {
+          done.current = false;
+          setDraft(title);
+        }}
+        className="rounded-sm border border-transparent px-1 text-sm font-bold hover:border-neutral-300"
+      >
+        {title}
+      </button>
+    );
+  }
+
+  const finish = () => {
+    if (done.current) return;
+    done.current = true;
+    onRename(draft);
+    setDraft(null);
+  };
+  return (
+    <input
+      aria-label="Tiêu đề biểu đồ"
+      autoFocus
+      value={draft}
+      onFocus={(e) => e.currentTarget.select()}
+      onChange={(e) => setDraft(e.target.value)}
+      onBlur={finish}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          finish();
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          done.current = true;
+          setDraft(null);
+        }
+      }}
+      className="w-56 rounded-sm border border-neutral-400 px-1 text-sm font-bold"
+    />
+  );
 }
 
 const W = 420;
@@ -46,7 +106,7 @@ function slicePath(cx: number, cy: number, r: number, from: number, to: number):
   return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
 }
 
-export function ChartView({ state, chart, onRemove }: Props) {
+export function ChartView({ state, chart, onRemove, onRename }: Props) {
   const data = excelSim.chartData(state, chart.range);
   const money = (n: number) => formula.displayValue(n, { numFmt: 'number' });
 
@@ -55,7 +115,7 @@ export function ChartView({ state, chart, onRemove }: Props) {
 
   const header = (
     <div className="flex items-center gap-2">
-      <h3 className="text-sm font-bold">{chart.title}</h3>
+      <ChartTitle title={chart.title} onRename={onRename} />
       <span className="text-xs text-muted">{CHART_VI[chart.type]} · {chart.range}</span>
       <button type="button" aria-label="Xoá biểu đồ" className="btn ml-auto !px-2 !py-0.5 text-xs" onClick={onRemove}>✕</button>
     </div>
