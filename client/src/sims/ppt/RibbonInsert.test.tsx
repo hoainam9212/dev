@@ -11,9 +11,23 @@ const setup = () => {
 };
 
 describe('RibbonInsert', () => {
+  it('Insert xếp nhóm như PowerPoint 365', () => {
+    setup();
+    expect([...document.querySelectorAll('[data-variant="office"] > span')].map((e) => e.textContent))
+      .toEqual(['Slides', 'Images', 'Illustrations', 'Text']);
+  });
+
+  it('New Slide ở thẻ Insert là cùng nút tách đôi của thẻ Home', async () => {
+    const { dispatch } = setup();
+    await userEvent.click(screen.getByRole('button', { name: 'Slide mới' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'addSlide' });
+    await userEvent.click(screen.getByRole('button', { name: 'Chọn bố cục cho slide mới' }));
+    expect(screen.getByRole('button', { name: 'Nhân đôi slide đang chọn' })).toBeInTheDocument();
+  });
+
   it('Text Box chèn hộp chữ ở vị trí định sẵn, trong khung', async () => {
     const { dispatch } = setup();
-    await userEvent.click(screen.getByRole('button', { name: /Text Box/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Hộp chữ' }));
     const a = dispatch.mock.calls[0]?.[0];
     expect(a).toMatchObject({ type: 'addText', x: 80, y: 400, w: 480, h: 80 });
     expect(a.x + a.w).toBeLessThanOrEqual(pptSim.SLIDE_W);
@@ -22,7 +36,7 @@ describe('RibbonInsert', () => {
 
   it('hộp chữ mới không đè chỗ dành sẵn của bất kỳ bố cục nào', async () => {
     const { dispatch } = setup();
-    await userEvent.click(screen.getByRole('button', { name: /Text Box/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Hộp chữ' }));
     const a = dispatch.mock.calls[0]?.[0];
     for (const [layout, holders] of Object.entries(pptSim.PLACEHOLDERS)) {
       for (const p of holders) {
@@ -32,19 +46,28 @@ describe('RibbonInsert', () => {
     }
   });
 
-  it('Shapes mời đủ bốn hình, chọn thì phát addShape', async () => {
+  it('Shapes ▾ mời đủ bốn hình, chọn thì phát addShape', async () => {
     const { dispatch } = setup();
-    await userEvent.click(screen.getByRole('button', { name: /Shapes/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Hình khối' }));
     for (const vi of ['Hình chữ nhật', 'Hình tròn', 'Mũi tên', 'Ngôi sao']) {
-      expect(screen.getByRole('button', { name: new RegExp(vi) })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: vi })).toBeInTheDocument();
     }
-    await userEvent.click(screen.getByRole('button', { name: /Ngôi sao/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Ngôi sao' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'addShape', shape: 'star', x: 400, y: 216, w: 160, h: 160 });
   });
 
   it('Pictures mở hộp thoại chèn ảnh', async () => {
     const { dispatch } = setup();
-    await userEvent.click(screen.getByRole('button', { name: /Pictures/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Chèn ảnh' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: 'image' });
+  });
+
+  it('nút mang icon và chữ tiếng Anh như PowerPoint', () => {
+    setup();
+    for (const [vi, en] of [['Chèn ảnh', 'Pictures'], ['Hình khối', 'Shapes'], ['Hộp chữ', 'Text Box']] as const) {
+      const b = screen.getByRole('button', { name: vi });
+      expect(b.querySelector('svg')).not.toBeNull();
+      expect(b).toHaveTextContent(en);
+    }
   });
 });

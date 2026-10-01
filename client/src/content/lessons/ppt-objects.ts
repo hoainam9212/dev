@@ -29,7 +29,7 @@ export const PPT_OBJECTS: Lesson[] = [
       },
       {
         kind: 'explain',
-        body: 'Vào tab **Insert** (Chèn), bấm **Text Box** (Hộp chữ). Hộp chữ mới hiện ra và **đang được chọn**: kéo nó là dời được ngay, nháy đúp vào là gõ được chữ.',
+        body: 'Thẻ **Insert** (Chèn) › nhóm **Text** › nút **Text Box** (Hộp chữ). Hộp chữ mới hiện ra và **đang được chọn**: kéo nó là dời được ngay, nháy đúp vào là gõ được chữ.',
       },
       {
         kind: 'quiz',
@@ -43,10 +43,10 @@ export const PPT_OBJECTS: Lesson[] = [
         task: 'Slide đã có tiêu đề «Sở thích của tôi». Hãy chèn một **hộp chữ** và gõ vào đó **Đọc sách**.',
         checks: [{ kind: 'hasElement', slide: 1, el: 'text', textContains: 'Đọc sách' }],
         spotlight: { helpId: 'ppt.textBox' },
-        hint: 'Nút Text Box nằm ở tab Insert, không phải tab Home.',
+        hint: 'Nút Text Box nằm ở thẻ Insert, không phải thẻ Home.',
         steps: [
-          'Bấm tab Insert (Chèn) ở trên cùng.',
-          'Bấm Text Box (Hộp chữ): một khung mới hiện ra ở phía dưới slide.',
+          'Bấm thẻ Insert (Chèn) ở trên cùng.',
+          'Nhóm Text › bấm Text Box (Hộp chữ): một khung mới hiện ra ở phía dưới slide.',
           'Nháy đúp vào khung đó, gõ Đọc sách rồi bấm Enter.',
         ],
         setup: titled('Sở thích của tôi'),
@@ -68,28 +68,28 @@ export const PPT_OBJECTS: Lesson[] = [
     steps: [
       {
         kind: 'explain',
-        body: '[[hinh-khoi|Hình khối]] — hình chữ nhật, hình tròn, mũi tên, ngôi sao — giúp slide bớt khô và làm ý chính nổi bật. Chúng nằm ở nút **Shapes** (Hình khối) của tab Insert.',
+        body: '[[hinh-khoi|Hình khối]] — hình chữ nhật, hình tròn, mũi tên, ngôi sao — giúp slide bớt khô và làm ý chính nổi bật. Chúng nằm ở thẻ **Insert** › nhóm **Illustrations** › nút **Shapes ▾** (Hình khối).',
       },
       {
         kind: 'explain',
         mood: 'surprised',
-        body: 'Hình đang được chọn có tám chấm tròn nhỏ quanh viền, gọi là [[tay-nam|tay nắm]]: kéo chúng để hình to ra hay nhỏ lại. Muốn đổi màu hình thì dùng **Shape Fill** (Màu nền hình) ở tab Home; **Font color** chỉ đổi màu chữ.',
+        body: 'Hình đang được chọn có tám chấm tròn nhỏ quanh viền, gọi là [[tay-nam|tay nắm]]: kéo chúng để hình to ra hay nhỏ lại. Muốn đổi màu hình thì dùng thẻ **Home** › nhóm **Drawing** › **Shape Fill** (Màu nền hình); **Font Color** chỉ đổi màu chữ.',
       },
       {
         kind: 'quiz',
         question: 'Bạn muốn tô ngôi sao thành màu vàng. Dùng nút nào?',
-        choices: ['Font color (Màu chữ)', 'Shape Fill (Màu nền hình)', 'Layout (Bố cục)'],
+        choices: ['Font Color (Màu chữ)', 'Shape Fill (Màu nền hình)', 'Layout (Bố cục)'],
         answer: 1,
-        why: 'Shape Fill tô phần ruột của hình. Font color chỉ đổi màu chữ gõ bên trong hình.',
+        why: 'Shape Fill tô phần ruột của hình. Font Color chỉ đổi màu chữ gõ bên trong hình.',
       },
       pptPractice({
         task: 'Chèn một **ngôi sao** vào slide.',
         checks: [{ kind: 'hasElement', slide: 1, el: 'shape', shape: 'star' }],
         spotlight: { helpId: 'ppt.shapes' },
-        hint: 'Shapes nằm ở tab Insert, ngay cạnh Text Box.',
+        hint: 'Shapes ▾ nằm ở thẻ Insert › nhóm Illustrations.',
         steps: [
-          'Bấm tab Insert (Chèn).',
-          'Bấm Shapes (Hình khối): một bảng các hình hiện ra.',
+          'Bấm thẻ Insert (Chèn).',
+          'Nhóm Illustrations › bấm Shapes ▾ (Hình khối): một bảng các hình hiện ra.',
           'Chọn Ngôi sao.',
         ],
         solve: () => [{ type: 'addShape', shape: 'star', x: 400, y: 216, w: 160, h: 160 }],
@@ -100,7 +100,7 @@ export const PPT_OBJECTS: Lesson[] = [
         spotlight: { helpId: 'ppt.shapes' },
         hint: 'Hình mới luôn hiện ở giữa slide, nên hình thứ hai sẽ đè lên hình thứ nhất. Kéo một hình sang bên.',
         steps: [
-          'Insert → Shapes → hình chữ nhật. Làm hai lần.',
+          'Thẻ Insert › nhóm Illustrations › Shapes ▾ › Hình chữ nhật. Làm hai lần.',
           'Hai hình đang chồng lên nhau: bấm giữ vào hình trên cùng rồi kéo nó sang một bên.',
           'Mochi chỉ đếm xem có đủ hai hình chữ nhật chưa; phần kéo cho gọn là để bạn luyện tay.',
         ],
@@ -120,7 +120,7 @@ export const PPT_OBJECTS: Lesson[] = [
     steps: [
       {
         kind: 'explain',
-        body: 'Vào tab Insert, bấm **Pictures** (Ảnh). Một hộp thoại hiện ra: chọn một ảnh mẫu, hoặc lấy ảnh từ máy của bạn. Ảnh hiện lên giữa slide và đang được chọn.',
+        body: 'Thẻ **Insert** › nhóm **Images** › nút **Pictures** (Ảnh). Một hộp thoại hiện ra: chọn một ảnh mẫu, hoặc lấy ảnh từ máy của bạn. Ảnh hiện lên giữa slide và đang được chọn.',
       },
       {
         kind: 'explain',
@@ -138,9 +138,9 @@ export const PPT_OBJECTS: Lesson[] = [
         task: 'Chèn một ảnh vào slide, rồi kéo **tay nắm ở góc** cho ảnh nhỏ lại một chút.',
         checks: [{ kind: 'hasElement', slide: 1, el: 'image' }],
         spotlight: { helpId: 'ppt.pictures' },
-        hint: 'Pictures ở tab Insert. Thu nhỏ bằng chấm tròn ở một trong bốn góc ảnh.',
+        hint: 'Pictures ở thẻ Insert › nhóm Images. Thu nhỏ bằng chấm tròn ở một trong bốn góc ảnh.',
         steps: [
-          'Bấm tab Insert (Chèn), rồi bấm Pictures (Ảnh).',
+          'Bấm thẻ Insert (Chèn), rồi nhóm Images › bấm Pictures (Ảnh).',
           'Bấm vào một ảnh mẫu trong hộp thoại.',
           'Bấm giữ chấm tròn ở góc dưới bên phải của ảnh, kéo chéo vào trong rồi thả.',
         ],

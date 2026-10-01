@@ -613,13 +613,13 @@
   {
     "id": "ppt.new-slide",
     "q": "Làm sao thêm một slide mới?",
-    "a": "Bấm **New Slide** (Slide mới) ở tab Home, hoặc nút **+ Slide mới** dưới cột bên trái. Slide mới chen vào ngay sau slide đang mở. Muốn bỏ slide đang mở thì bấm **Delete Slide** (Xoá slide).",
+    "a": "Thẻ **Home** › nhóm **Slides** › nút **New Slide** (Slide mới), hoặc nút **+ Slide mới** dưới cột bên trái. Slide mới chen vào ngay sau slide đang mở. Muốn bỏ một slide thì bấm **chuột phải** vào hình slide ở cột trái › **Delete Slide** (Xoá slide).",
     "keywords": ["new slide", "them slide", "thêm slide", "slide moi", "xoa slide"]
   },
   {
     "id": "ppt.layout",
     "q": "Bố cục (Layout) để làm gì?",
-    "a": "Bố cục quyết định trên slide có sẵn những khung nào: chỉ tiêu đề, tiêu đề kèm nội dung, hai cột, hay trang trắng. Mở slide cần đổi rồi bấm nút **Layout** (Bố cục, hình ▤) ở tab Home. Chữ đã gõ vẫn được giữ lại.",
+    "a": "Bố cục quyết định trên slide có sẵn những khung nào: chỉ tiêu đề, tiêu đề kèm nội dung, hai cột, hay trang trắng. Mở slide cần đổi rồi vào thẻ **Home** › nhóm **Slides** › nút **Layout ▾** (Bố cục). Chữ đã gõ vẫn được giữ lại.",
     "keywords": ["bo cuc", "bố cục", "layout", "hai cot", "doi bo cuc"]
   },
   {
@@ -631,13 +631,13 @@
   {
     "id": "ppt.textbox",
     "q": "Tôi muốn viết chữ ở chỗ khác trên slide thì làm sao?",
-    "a": "Chèn một hộp chữ: tab **Insert** (Chèn) → **Text Box** (Hộp chữ). Hộp mới đang được chọn, kéo viền để dời nó đi đâu cũng được, rồi nháy đúp vào để gõ.",
+    "a": "Chèn một hộp chữ: thẻ **Insert** (Chèn) › nhóm **Text** › nút **Text Box** (Hộp chữ). Hộp mới đang được chọn, kéo viền để dời nó đi đâu cũng được, rồi nháy đúp vào để gõ.",
     "keywords": ["hop chu", "hộp chữ", "text box", "textbox", "viet chu", "them chu"]
   },
   {
     "id": "ppt.picture",
     "q": "Chèn ảnh vào slide bằng cách nào?",
-    "a": "Vào tab **Insert** (Chèn), bấm **Pictures** (Ảnh). Chọn một ảnh mẫu của Mochi, hoặc lấy ảnh từ máy của bạn. Ảnh hiện giữa slide, kéo nó tới chỗ bạn muốn.",
+    "a": "Thẻ **Insert** (Chèn) › nhóm **Images** › nút **Pictures** (Ảnh). Chọn một ảnh mẫu của Mochi, hoặc lấy ảnh từ máy của bạn. Ảnh hiện giữa slide, kéo nó tới chỗ bạn muốn.",
     "keywords": ["chen anh", "chèn ảnh", "pictures", "hinh anh", "hình ảnh", "them anh"]
   },
   {

@@ -1,6 +1,8 @@
 import type { Dispatch } from 'react';
 import type { pptSim } from '@office-neko/shared';
+import { Image20Regular, Shapes20Regular, Textbox20Regular } from '@fluentui/react-icons';
 import { Group, MenuButton, ToolButton } from '../../components/ribbon';
+import { NewSlideButton } from './RibbonHome';
 
 interface Props {
   state: pptSim.PptState;
@@ -19,19 +21,33 @@ const SHAPES: { id: pptSim.ShapeKind; vi: string }[] = [
 const NEW_TEXT = { x: 80, y: 400, w: 480, h: 80 };
 const NEW_SHAPE = { x: 400, y: 216, w: 160, h: 160 };
 
-export function RibbonInsert({ dispatch }: Props) {
+/** Thẻ Insert theo PowerPoint 365: Slides | Images | Illustrations | Text. */
+export function RibbonInsert({ state, dispatch }: Props) {
   return (
-    <div className="flex flex-wrap items-start gap-y-2 py-1">
-      <Group title="Text">
-        <ToolButton helpId="ppt.textBox" label="Text Box — Hộp chữ" onClick={() => dispatch({ type: 'addText', ...NEW_TEXT })}>
-          🅰 Text Box
+    <div className="flex flex-wrap items-stretch gap-y-2 py-1">
+      <Group title="Slides" variant="office">
+        <NewSlideButton state={state} dispatch={dispatch} />
+      </Group>
+
+      <Group title="Images" variant="office">
+        <ToolButton variant="office" large helpId="ppt.pictures" label="Chèn ảnh" onClick={() => dispatch({ type: 'openDialog', dialog: 'image' })}>
+          <Image20Regular />
+          <span>Pictures</span>
         </ToolButton>
       </Group>
-      <Group title="Illustrations">
+
+      <Group title="Illustrations" variant="office">
         <MenuButton
+          variant="office"
+          large
           helpId="ppt.shapes"
-          label="Shapes — Hình khối"
-          button="⬟ Shapes"
+          label="Hình khối"
+          button={
+            <>
+              <Shapes20Regular />
+              <span>Shapes ▾</span>
+            </>
+          }
           items={SHAPES.map((s) => ({
             value: s.id,
             label: s.vi,
@@ -46,8 +62,12 @@ export function RibbonInsert({ dispatch }: Props) {
           }))}
           onPick={(shape) => dispatch({ type: 'addShape', shape: shape as pptSim.ShapeKind, ...NEW_SHAPE })}
         />
-        <ToolButton helpId="ppt.pictures" label="Pictures — Ảnh" onClick={() => dispatch({ type: 'openDialog', dialog: 'image' })}>
-          🖼 Pictures
+      </Group>
+
+      <Group title="Text" variant="office">
+        <ToolButton variant="office" large helpId="ppt.textBox" label="Hộp chữ" onClick={() => dispatch({ type: 'addText', ...NEW_TEXT })}>
+          <Textbox20Regular />
+          <span>Text Box</span>
         </ToolButton>
       </Group>
     </div>

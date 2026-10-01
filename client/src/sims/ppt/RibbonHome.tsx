@@ -62,6 +62,30 @@ const swatchItems = (prefix: string) =>
     ),
   }));
 
+/** New Slide tách đôi — PowerPoint đặt cùng một nút ở thẻ Home và thẻ Insert. */
+export function NewSlideButton({ dispatch }: Props) {
+  return (
+    <SplitButton
+      helpId="ppt.newSlide"
+      label="Slide mới"
+      menuLabel="Chọn bố cục cho slide mới"
+      icon={<SlideAdd20Regular />}
+      text="New Slide"
+      onClick={() => dispatch({ type: 'addSlide' })}
+      items={[
+        ...LAYOUT_ITEMS,
+        { value: DUPLICATE, label: 'Nhân đôi slide đang chọn', content: <span className="px-1">Duplicate Selected Slides</span> },
+      ]}
+      onPick={(v) => {
+        if (v === DUPLICATE) return dispatch({ type: 'duplicateSlide' });
+        // Như PowerPoint: chọn bố cục ở New Slide ▾ là thêm slide mới mang luôn bố cục đó.
+        dispatch({ type: 'addSlide' });
+        dispatch({ type: 'setLayout', layout: v as pptSim.Layout });
+      }}
+    />
+  );
+}
+
 /** Thẻ Home theo PowerPoint 365: Undo | Slides | Font | Paragraph | Drawing. */
 export function RibbonHome({ state, dispatch }: Props) {
   const el = pptSim.elOf(state);
@@ -86,24 +110,7 @@ export function RibbonHome({ state, dispatch }: Props) {
 
       <Group title="Slides" variant="office">
         <Row>
-          <SplitButton
-            helpId="ppt.newSlide"
-            label="Slide mới"
-            menuLabel="Chọn bố cục cho slide mới"
-            icon={<SlideAdd20Regular />}
-            text="New Slide"
-            onClick={() => dispatch({ type: 'addSlide' })}
-            items={[
-              ...LAYOUT_ITEMS,
-              { value: DUPLICATE, label: 'Nhân đôi slide đang chọn', content: <span className="px-1">Duplicate Selected Slides</span> },
-            ]}
-            onPick={(v) => {
-              if (v === DUPLICATE) return dispatch({ type: 'duplicateSlide' });
-              // Như PowerPoint: chọn bố cục ở New Slide ▾ là thêm slide mới mang luôn bố cục đó.
-              dispatch({ type: 'addSlide' });
-              dispatch({ type: 'setLayout', layout: v as pptSim.Layout });
-            }}
-          />
+          <NewSlideButton state={state} dispatch={dispatch} />
           <MenuButton
             variant="office"
             helpId="ppt.layout"

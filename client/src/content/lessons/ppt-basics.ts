@@ -106,11 +106,11 @@ export const PPT_BASICS: Lesson[] = [
     steps: [
       {
         kind: 'explain',
-        body: 'Nút **New Slide** (Slide mới) ở tab Home thêm một slide **ngay sau** slide đang mở. Nút **Layout** ngay cạnh đổi [[bo-cuc|bố cục]] của slide đang mở.',
+        body: 'Thẻ **Home** › nhóm **Slides** › nút **New Slide** (Slide mới) thêm một slide **ngay sau** slide đang mở. Nút **Layout ▾** (Bố cục) ngay cạnh đổi [[bo-cuc|bố cục]] của slide đang mở.',
       },
       {
         kind: 'explain',
-        body: 'Bố cục là cách sắp chỗ trên slide: chỉ có tiêu đề, tiêu đề kèm nội dung, hay hai cột đặt cạnh nhau. Muốn đổi thứ tự thì **kéo** hình nhỏ ở cột bên trái lên hoặc xuống. Muốn bỏ slide đang mở thì bấm **Delete Slide**.',
+        body: 'Bố cục là cách sắp chỗ trên slide: chỉ có tiêu đề, tiêu đề kèm nội dung, hay hai cột đặt cạnh nhau. Muốn đổi thứ tự thì **kéo** hình nhỏ ở cột bên trái lên hoặc xuống. Muốn bỏ một slide thì bấm **chuột phải** vào hình nhỏ của nó ở cột bên trái › **Delete Slide** (Xoá slide).',
       },
       {
         kind: 'quiz',
@@ -126,10 +126,10 @@ export const PPT_BASICS: Lesson[] = [
           { kind: 'slideLayout', slide: 3, layout: 'twoContent' },
         ],
         spotlight: { helpId: 'ppt.newSlide' },
-        hint: 'Bấm New Slide hai lần, rồi đổi bố cục của slide 3 ở nút Layout.',
+        hint: 'Bấm New Slide hai lần, rồi đổi bố cục của slide 3 ở nút Layout ▾.',
         steps: [
-          'Bấm nút New Slide (Slide mới) ở tab Home hai lần — cột bên trái có 3 slide.',
-          'Slide 3 vừa thêm đang mở. Bấm nút Layout (Bố cục) — hình ▤ nằm ngay cạnh New Slide.',
+          'Thẻ Home › nhóm Slides › bấm nửa trên nút New Slide (Slide mới) hai lần — cột bên trái có 3 slide.',
+          'Slide 3 vừa thêm đang mở. Thẻ Home › nhóm Slides › nút Layout ▾ (Bố cục), ngay cạnh New Slide.',
           'Chọn Two Content (Hai cột nội dung): slide 3 chia làm hai cột là xong.',
         ],
         solve: () => [{ type: 'addSlide' }, { type: 'addSlide' }, { type: 'setLayout', layout: 'twoContent' }],

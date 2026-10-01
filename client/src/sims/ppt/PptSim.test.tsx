@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { pptSim } from '@office-neko/shared';
 import { describe, expect, it, vi } from 'vitest';
@@ -41,6 +41,17 @@ describe('PptSim', () => {
       { type: 'setText', text: 'Mochi' },
     );
     expect(withText.slides[0]?.els[0]?.text).toBe('Mochi');
+  });
+
+  it('Delete khi đang sửa chữ trong hộp không xoá slide', async () => {
+    const { onState } = setup();
+    await userEvent.dblClick(screen.getByText('Bấm để nhập tiêu đề'));
+    const box = screen.getByRole('textbox', { name: 'Nội dung đối tượng' });
+    fireEvent.keyDown(box, { key: 'Delete' });
+    fireEvent.keyDown(box, { key: 'Backspace' });
+    expect(screen.getAllByRole('button', { name: /^Slide \d+$/ })).toHaveLength(2);
+    expect(onState).toHaveBeenLastCalledWith(expect.objectContaining({ slides: expect.any(Array) }));
+    expect(onState.mock.lastCall?.[0].slides).toHaveLength(2);
   });
 
   it('mọi đối tượng nằm gọn trong khung 960x540', () => {
