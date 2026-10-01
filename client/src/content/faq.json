@@ -476,7 +476,7 @@
   {
     "id": "excel.sort-desync",
     "q": "Sắp xếp xong thì tên một đằng lương một nẻo, vì sao?",
-    "a": "Vì bạn chỉ bôi đen một cột rồi mới sắp. Bảng tính làm đúng điều bạn bảo: chỉ xếp lại phần bạn chọn, các cột khác đứng yên. Bấm Ctrl+Z để hoàn tác, rồi chọn CẢ vùng dữ liệu (từ cột đầu tới cột cuối) và sắp lại.",
+    "a": "Vì bạn chỉ bôi đen một cột rồi mới sắp (trên Excel thật là đã chọn Continue with the current selection ở hộp Sort Warning). Bảng tính làm đúng điều bạn bảo: chỉ xếp lại phần bạn chọn, các cột khác đứng yên. Bấm Ctrl+Z để hoàn tác, rồi chọn CẢ vùng dữ liệu (từ cột đầu tới cột cuối) — hoặc chỉ bấm một ô trong bảng — rồi vào thẻ Data › nhóm Sort & Filter › nút Sort để sắp lại.",
     "keywords": [
       "sap xep lech",
       "sap xep sai",
@@ -488,7 +488,7 @@
   {
     "id": "excel.filter-delete",
     "q": "Lọc rồi thì dữ liệu có bị xoá mất không?",
-    "a": "Không hề. Lọc chỉ TẠM ẨN những hàng không thoả điều kiện, dữ liệu vẫn nguyên vẹn. Bấm nút Filter lần nữa là mọi hàng hiện lại đầy đủ.",
+    "a": "Không hề. Lọc chỉ TẠM ẨN những hàng không thoả điều kiện, dữ liệu vẫn nguyên vẹn. Bấm lại thẻ Data › nhóm Sort & Filter › nút Filter là mọi hàng hiện lại đầy đủ.",
     "keywords": [
       "loc co xoa du lieu khong",
       "loc mat du lieu",

@@ -58,7 +58,7 @@ export interface WorkbookState {
   past: Sheet[][];
 }
 
-export type ExcelDialog = 'save' | 'print' | null;
+export type ExcelDialog = 'save' | 'print' | 'sort' | null;
 
 export type ExcelAction =
   | { type: 'select'; cell: string }

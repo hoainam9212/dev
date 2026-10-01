@@ -85,7 +85,7 @@ describe('Thanh tab ribbon', () => {
   it('tab Data có nút sắp xếp và lọc thật', () => {
     show();
     fireEvent.click(screen.getByRole('tab', { name: 'Data' }));
-    expect(screen.getByRole('button', { name: /A→Z/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /^Filter/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sắp tăng dần' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Bật tắt lọc' })).toBeInTheDocument();
   });
 });

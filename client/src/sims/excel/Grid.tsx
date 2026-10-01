@@ -1,5 +1,8 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { excelSim, formula } from '@office-neko/shared';
+import { ChevronDown12Regular } from '@fluentui/react-icons';
+import { FilterMenu } from './FilterMenu';
+import { nativeTitle } from '../../help/nativeTitle';
 
 const ROW_H = 26;
 const COL_W = 96;
@@ -38,6 +41,13 @@ export function Grid({ state, dispatch, gridRef }: Props) {
   const lo = { row: Math.min(sel.from.row, sel.to.row), col: Math.min(sel.from.col, sel.to.col) };
   const hi = { row: Math.max(sel.from.row, sel.to.row), col: Math.max(sel.from.col, sel.to.col) };
   const inSel = (row: number, col: number) => row >= lo.row && row <= hi.row && col >= lo.col && col <= hi.col;
+
+  // Đang lọc thì mỗi ô ở hàng đầu vùng lọc có mũi tên ▾ — như AutoFilter của Excel.
+  const filter = state.sheets[state.active]!.filter ?? null;
+  const hasArrow = (row: number, col: number) =>
+    !!filter && row === filter.range.from.row && col >= filter.range.from.col && col <= filter.range.to.col;
+  const [menu, setMenu] = useState<{ col: string; anchor: DOMRect } | null>(null);
+  const closeMenu = useCallback(() => setMenu(null), []);
 
   function onKeyDown(e: React.KeyboardEvent) {
     const move = (dRow: number, dCol: number) => {
@@ -123,7 +133,8 @@ export function Grid({ state, dispatch, gridRef }: Props) {
               const fmt = excelSim.formatOf(state, name);
               const align = fmt.align ?? formula.defaultAlign(value);
               const anchored = sel.from.row === row && sel.from.col === col;
-              return (
+              const arrow = hasArrow(row, col);
+              const cell = (
                 <button
                   key={col}
                   type="button"
@@ -137,6 +148,7 @@ export function Grid({ state, dispatch, gridRef }: Props) {
                     `text-${align}`,
                     fmt.bold ? 'font-bold' : '',
                     fmt.italic ? 'italic' : '',
+                    arrow ? 'pr-6' : '',
                     anchored ? 'ring-2 ring-excel-ink z-10' : inSel(row, col) ? 'bg-excel-ink/10' : '',
                   ].filter(Boolean).join(' ')}
                   style={{
@@ -149,10 +161,37 @@ export function Grid({ state, dispatch, gridRef }: Props) {
                   {formula.displayValue(value, fmt)}
                 </button>
               );
+              if (!arrow) return cell;
+              // Mũi tên là nút riêng nằm CẠNH nút ô (không lồng button trong button), cả hai trong một khung.
+              const colName = formula.colToName(col);
+              const label = `Mở menu lọc cột ${colName}`;
+              return (
+                <div key={col} className="relative shrink-0">
+                  {cell}
+                  <button
+                    type="button"
+                    data-filter-arrow
+                    data-help-id="excel.filterCol"
+                    aria-label={label}
+                    aria-expanded={menu?.col === colName}
+                    title={nativeTitle('excel.filterCol', label)}
+                    onClick={(e) => {
+                      const anchor = e.currentTarget.getBoundingClientRect();
+                      setMenu(menu?.col === colName ? null : { col: colName, anchor });
+                    }}
+                    className="absolute right-0.5 top-1/2 z-20 grid h-[18px] w-[18px] -translate-y-1/2 place-items-center rounded-sm border border-neutral-400 bg-white text-neutral-700 hover:bg-neutral-100"
+                  >
+                    <ChevronDown12Regular />
+                  </button>
+                </div>
+              );
             })}
           </div>
         ))}
       </div>
+      {menu ? (
+        <FilterMenu state={state} col={menu.col} anchor={menu.anchor} dispatch={dispatch} onClose={closeMenu} />
+      ) : null}
     </div>
   );
 }

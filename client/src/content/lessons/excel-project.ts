@@ -164,11 +164,11 @@ export const EXCEL_PROJECT: Lesson[] = [
           { kind: 'filterActive', col: 'B', values: ['Kế toán'] },
           { kind: 'chart', chartType: 'pie', range: 'I5:J7' },
         ],
-        spotlight: { helpId: 'excel.sortDesc' },
-        hint: 'Thẻ Data để sắp xếp và lọc, thẻ Insert để chèn biểu đồ tròn từ I5:J7.',
+        spotlight: { helpId: 'excel.sort' },
+        hint: 'Thẻ **Data** › nhóm **Sort & Filter** để sắp xếp và lọc, thẻ Insert để chèn biểu đồ tròn từ I5:J7.',
         steps: [
-          'Chọn A3:G12, sang thẻ Data, chọn Cột G rồi bấm Z→A.',
-          'Chọn A2:G12, bấm Filter, mở menu cột B và chỉ để lại Kế toán.',
+          'Chọn A3:G12, thẻ Data › nhóm Sort & Filter › nút Sort: Sort by Column G, Order Largest to Smallest, rồi OK.',
+          'Chọn A2:G12, thẻ Data › nhóm Sort & Filter › nút Filter, bấm mũi tên ▾ ở ô B2 (tiêu đề Phòng) và chỉ để lại Kế toán.',
           'Chọn I5:J7, sang thẻ Insert, chọn loại Tròn, gõ tiêu đề Cơ cấu quỹ lương rồi bấm Chèn biểu đồ.',
         ],
         solve: () => [

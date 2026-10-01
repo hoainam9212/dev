@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { cellRaw, cellValue, excelInitial, reduceExcel, type ExcelAction, type WorkbookState } from './state';
-import { filterOptions, hiddenRows, isSorted } from './table';
+import { currentRegion, filterOptions, hiddenRows, isSorted } from './table';
 
 const run = (s: WorkbookState, ...as: ExcelAction[]) => as.reduce(reduceExcel, s);
 
@@ -171,5 +171,27 @@ describe('AutoFilter', () => {
   it('bật lọc là một bước hoàn tác', () => {
     const s = run(staff(), { type: 'enableFilter', range: 'A1:C5' }, { type: 'undo' });
     expect(s.sheets[0]!.filter ?? null).toBeNull();
+  });
+});
+
+describe('currentRegion', () => {
+  it('mở rộng một ô thành cả bảng và nhận ra hàng tiêu đề', () => {
+    const s = excelInitial({ cells: { A1: 'Tên', B1: 'Lương', A2: 'An', B2: '7', A3: 'Bình', B3: '5', D9: 'lạc' } });
+    expect(currentRegion(s, { row: 2, col: 1 })).toEqual({ range: 'A2:B3', header: true });
+  });
+
+  it('không có hàng tiêu đề khi hàng đầu có số', () => {
+    const s = excelInitial({ cells: { A1: 'An', B1: '7', A2: 'Bình', B2: '5' } });
+    expect(currentRegion(s, { row: 0, col: 0 })).toEqual({ range: 'A1:B2', header: false });
+  });
+
+  it('hàng đầu toàn chữ nhưng bên dưới không có số thì không coi là tiêu đề', () => {
+    const s = excelInitial({ cells: { A1: 'bút', A2: 'Áo', A3: 'Cặp' } });
+    expect(currentRegion(s, { row: 1, col: 0 })).toEqual({ range: 'A1:A3', header: false });
+  });
+
+  it('ô đứng trống ngoài bảng thì vùng chỉ là chính ô đó', () => {
+    const s = excelInitial({ cells: { A1: 'An', B1: '7' } });
+    expect(currentRegion(s, { row: 5, col: 5 })).toEqual({ range: 'F6:F6', header: false });
   });
 });

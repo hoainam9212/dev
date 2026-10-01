@@ -1,4 +1,4 @@
-import { isErr, nameToCol, parseRange, shiftFormula, type CellValue, type Range } from '../../formula';
+import { MAX_COLS, MAX_ROWS, isErr, nameToCol, parseRange, shiftFormula, type CellValue, type Range } from '../../formula';
 import {
   cellKey,
   cellText,
@@ -111,6 +111,48 @@ export function isSorted(s: WorkbookState, range: string, by: string, dir: 'asc'
     if ((bothFilled ? c * dirN : c) > 0) return false;
   }
   return true;
+}
+
+/**
+ * Khối ô liền nhau không trống chứa `at` — như Ctrl+A của Excel, và là thứ Excel
+ * sắp khi người dùng chỉ đứng ở một ô rồi bấm A→Z. Ô chạm nhau theo đường chéo
+ * cũng tính là liền. `header`: hàng đầu toàn chữ và hàng dưới có ít nhất một số
+ * — khi đó `range` bỏ hàng tiêu đề ra, để tiêu đề đứng yên khi sắp.
+ */
+export function currentRegion(
+  s: WorkbookState,
+  at: { row: number; col: number },
+): { range: string; header: boolean } {
+  const sheet = s.sheets[s.active]!;
+  const filled = (row: number, col: number) =>
+    row >= 0 && col >= 0 && row < MAX_ROWS && col < MAX_COLS && (sheet.cells[cellKey(row, col)]?.raw ?? '') !== '';
+  const anyIn = (r0: number, r1: number, c0: number, c1: number) => {
+    for (let row = r0; row <= r1; row++) for (let col = c0; col <= c1; col++) if (filled(row, col)) return true;
+    return false;
+  };
+
+  let top = at.row, bottom = at.row, left = at.col, right = at.col;
+  for (let grew = true; grew;) {
+    grew = false;
+    if (top > 0 && anyIn(top - 1, top - 1, left - 1, right + 1)) { top--; grew = true; }
+    if (bottom < MAX_ROWS - 1 && anyIn(bottom + 1, bottom + 1, left - 1, right + 1)) { bottom++; grew = true; }
+    if (left > 0 && anyIn(top - 1, bottom + 1, left - 1, left - 1)) { left--; grew = true; }
+    if (right < MAX_COLS - 1 && anyIn(top - 1, bottom + 1, right + 1, right + 1)) { right++; grew = true; }
+  }
+
+  const value = (row: number, col: number) => cellValue(s, refName({ row, col }));
+  let header = bottom > top;
+  for (let col = left; col <= right && header; col++) {
+    const v = value(top, col);
+    if (typeof v !== 'string' || v === '' || isErr(v)) header = false;
+  }
+  if (header) {
+    let number = false;
+    for (let col = left; col <= right; col++) if (typeof value(top + 1, col) === 'number') number = true;
+    header = number;
+  }
+  const first = header ? top + 1 : top;
+  return { range: `${refName({ row: first, col: left })}:${refName({ row: bottom, col: right })}`, header };
 }
 
 // ——— AutoFilter ———

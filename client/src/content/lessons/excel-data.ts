@@ -22,12 +22,12 @@ export const EXCEL_DATA: Lesson[] = [
       {
         kind: 'explain',
         mood: 'happy',
-        body: '[[sap-xep|Sắp xếp]] là xếp lại thứ tự các hàng theo một cột: ai lương cao lên trên, hàng nào mới nhất xuống dưới. Ở thẻ **Data** có hai nút **A→Z** (tăng dần) và **Z→A** (giảm dần).',
+        body: '[[sap-xep|Sắp xếp]] là xếp lại thứ tự các hàng theo một cột: ai lương cao lên trên, hàng nào mới nhất xuống dưới. Ở thẻ **Data** › nhóm **Sort & Filter** có hai nút nhỏ **A→Z** (tăng dần), **Z→A** (giảm dần), và nút lớn **Sort** mở hộp thoại để tự chọn cột và thứ tự.',
       },
       {
         kind: 'explain',
         mood: 'surprised',
-        body: 'Đây là chỗ sai kinh điển, bạn nhớ kỹ giúp Mochi: **phải chọn CẢ vùng dữ liệu**, không chỉ một cột. Nếu chỉ bôi đen cột Lương rồi sắp, thì cột lương đổi chỗ mà cột tên đứng yên — lương của người này nhảy sang tên người khác, cả bảng thành vô nghĩa.',
+        body: 'Đây là chỗ sai kinh điển, bạn nhớ kỹ giúp Mochi: **phải chọn CẢ vùng dữ liệu**, không chỉ một cột. Nếu chỉ bôi đen cột Lương rồi sắp, Excel hiện hộp **Sort Warning** hỏi lại; lỡ chọn **Continue with the current selection** thì cột lương đổi chỗ mà cột tên đứng yên — lương của người này nhảy sang tên người khác, cả bảng thành vô nghĩa.',
       },
       {
         kind: 'explain',
@@ -35,7 +35,7 @@ export const EXCEL_DATA: Lesson[] = [
       },
       {
         kind: 'quiz',
-        question: 'Bạn chỉ bôi đen cột Lương rồi bấm A→Z. Chuyện gì xảy ra?',
+        question: 'Bạn chỉ bôi đen cột Lương, bấm A→Z, Excel hỏi Sort Warning và bạn chọn **Continue with the current selection**. Chuyện gì xảy ra?',
         choices: [
           'Cột Lương đổi chỗ còn cột Tên đứng yên, bảng lệch hết',
           'Cả bảng được sắp đúng',
@@ -52,12 +52,12 @@ export const EXCEL_DATA: Lesson[] = [
           { kind: 'rangeSorted', range: 'A2:C5', by: 'C', dir: 'desc' },
           { kind: 'cellValue', cell: 'A2', value: 'Lê Minh Tú' },
         ],
-        spotlight: { helpId: 'excel.sortDesc' },
-        hint: 'Bấm ô A2, giữ {{Shift}} bấm ô C5. Sang thẻ Data, chọn Cột C rồi bấm Z→A.',
+        spotlight: { helpId: 'excel.sort' },
+        hint: 'Bấm ô A2, giữ {{Shift}} bấm ô C5. Thẻ **Data** › nhóm **Sort & Filter** › nút **Sort**, chọn Column C và Largest to Smallest.',
         steps: [
           'Bấm ô A2, giữ Shift và bấm ô C5 — cả ba cột cùng sáng.',
-          'Bấm thẻ Data trên thanh Ribbon.',
-          'Ở ô Cột cần sắp chọn Cột C, rồi bấm nút Z→A.',
+          'Thẻ Data › nhóm Sort & Filter › nút Sort.',
+          'Trong hộp thoại Sort: Sort by chọn Column C, Order chọn Largest to Smallest, rồi bấm OK.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A2:C5' },
@@ -75,7 +75,7 @@ export const EXCEL_DATA: Lesson[] = [
     steps: [
       {
         kind: 'explain',
-        body: 'Bảng có trăm dòng mà bạn chỉ muốn xem phòng Kế toán? Đó là lúc dùng [[loc|lọc]]. Chọn vùng gồm cả hàng tiêu đề, sang thẻ **Data** bấm **Filter**, rồi mở menu của cột và tích chọn giá trị muốn xem.',
+        body: 'Bảng có trăm dòng mà bạn chỉ muốn xem phòng Kế toán? Đó là lúc dùng [[loc|lọc]]. Chọn vùng gồm cả hàng tiêu đề, vào thẻ **Data** › nhóm **Sort & Filter** › nút **Filter**: mỗi ô tiêu đề hiện một mũi tên ▾. Bấm mũi tên đó rồi tích chọn giá trị muốn xem.',
       },
       {
         kind: 'explain',
@@ -103,11 +103,11 @@ export const EXCEL_DATA: Lesson[] = [
         task: 'Chọn vùng **A1:C5** (gồm cả hàng tiêu đề), bật **Filter**, rồi lọc cột **Phòng (B)** để chỉ hiện phòng **Kế toán**.',
         checks: [{ kind: 'filterActive', col: 'B', values: ['Kế toán'] }],
         spotlight: { helpId: 'excel.filter' },
-        hint: 'Chọn A1:C5, sang thẻ Data bấm Filter, mở menu cột B rồi bỏ tích Kinh doanh.',
+        hint: 'Chọn A1:C5, thẻ **Data** › nhóm **Sort & Filter** › nút **Filter**, rồi bấm mũi tên ▾ ở ô **B1** (tiêu đề Phòng) và bỏ tích Kinh doanh.',
         steps: [
           'Bấm ô A1, giữ Shift và bấm ô C5.',
-          'Bấm thẻ Data, rồi bấm nút Filter.',
-          'Bấm nút B ▾ để mở menu, bỏ tích Kinh doanh.',
+          'Thẻ Data › nhóm Sort & Filter › nút Filter.',
+          'Bấm mũi tên ▾ ở ô B1 (tiêu đề Phòng), bỏ tích Kinh doanh.',
         ],
         solve: () => [
           { type: 'selectRange', range: 'A1:C5' },
