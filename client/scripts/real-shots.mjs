@@ -1,7 +1,8 @@
 // Tách ảnh chụp Office thật từ file Excel người dùng gom lại (mỗi sheet một ảnh, đúng thứ tự
-// SHOTS bên dưới) rồi ghi vào client/public/images/real/.
+// SHOTS[app] bên dưới) rồi ghi vào client/public/images/real/.
 //
-//   node client/scripts/real-shots.mjs "đường/dẫn/anh-word.xlsx"
+//   node client/scripts/real-shots.mjs excel "đường/dẫn/anh-excel.xlsx"
+//   node client/scripts/real-shots.mjs "đường/dẫn/anh-word.xlsx"      (không ghi app = word)
 //
 // File .xlsx là một file zip: sheet → drawing → ảnh gốc trong xl/media. Không cần thư viện:
 // tự đọc thư mục trung tâm của zip và giải nén bằng zlib có sẵn của Node.
@@ -10,18 +11,46 @@ import { inflateRawSync } from 'node:zlib';
 import { dirname, join, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-/** Thứ tự sheet = thứ tự danh sách chụp đã gửi người dùng. Đổi ở đây nếu danh sách đổi. */
-export const SHOTS = [
-  'word-01-window',
-  'word-02-home',
-  'word-03-line-spacing',
-  'word-04-replace-dialog',
-  'word-05-insert',
-  'word-06-insert-table',
-  'word-07-picture-format',
-  'word-08-references',
-  'word-09-save-as',
-];
+/**
+ * Thứ tự sheet = thứ tự danh sách chụp đã gửi người dùng (`docs/real-shots-<app>.md`, test khoá
+ * hai bên khớp nhau). Đổi ở đây thì đổi cả file docs.
+ */
+export const SHOTS = {
+  word: [
+    'word-01-window',
+    'word-02-home',
+    'word-03-line-spacing',
+    'word-04-replace-dialog',
+    'word-05-insert',
+    'word-06-insert-table',
+    'word-07-picture-format',
+    'word-08-references',
+    'word-09-save-as',
+  ],
+  excel: [
+    'excel-01-window',
+    'excel-02-home',
+    'excel-03-fill-menu',
+    'excel-04-formulas',
+    'excel-05-autosum-menu',
+    'excel-06-data',
+    'excel-07-sort-dialog',
+    'excel-08-filter-menu',
+    'excel-09-insert',
+    'excel-10-column-menu',
+    'excel-11-save-as',
+  ],
+  ppt: ['ppt-01-window', 'ppt-02-home', 'ppt-03-layout-menu', 'ppt-04-insert', 'ppt-05-shapes-menu'],
+};
+
+/** argv sau tên script. Không ghi app thì là 'word' (cách gọi cũ vẫn chạy). */
+export function parseArgs(argv) {
+  const [first, second] = argv;
+  if (!first) throw new Error('Cách dùng: node client/scripts/real-shots.mjs [word|excel|ppt] <file.xlsx>');
+  if (second === undefined) return { app: 'word', file: first };
+  if (!Object.hasOwn(SHOTS, first)) throw new Error(`App "${first}" không có: chỉ nhận word, excel hoặc ppt.`);
+  return { app: first, file: second };
+}
 
 function unzip(buf) {
   let eocd = buf.length - 22;
@@ -93,11 +122,15 @@ function pngSize(data) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  const xlsx = process.argv[2];
-  if (!xlsx) {
-    console.error('Cách dùng: node client/scripts/real-shots.mjs <file.xlsx>');
+  let args;
+  try {
+    args = parseArgs(process.argv.slice(2));
+  } catch (e) {
+    console.error(e.message);
     process.exit(1);
   }
+  const { app, file: xlsx } = args;
+  const shots = SHOTS[app];
   const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'images', 'real');
   mkdirSync(outDir, { recursive: true });
   // Sheet trống (người dùng lỡ để thừa) bị bỏ qua, không được chiếm một số thứ tự — nếu không
@@ -108,12 +141,12 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     return false;
   });
   sheets.forEach((sheet, i) => {
-    const base = SHOTS[i] ?? `extra-${String(i + 1).padStart(2, '0')}`;
+    const base = shots[i] ?? `${app}-extra-${String(i + 1).padStart(2, '0')}`;
     sheet.images.forEach((img, j) => {
       const file = `${base}${j ? `-${j + 1}` : ''}${img.ext}`;
       writeFileSync(join(outDir, file), img.data);
       console.log(`Sheet "${sheet.name}" → ${file} (${pngSize(img.data)})`);
     });
   });
-  if (sheets.length !== SHOTS.length) console.warn(`⚠ File có ${sheets.length} sheet có ảnh, danh sách chụp có ${SHOTS.length}.`);
+  if (sheets.length !== shots.length) console.warn(`⚠ File có ${sheets.length} sheet có ảnh, danh sách chụp ${app} có ${shots.length}.`);
 }
