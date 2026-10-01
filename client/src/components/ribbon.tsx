@@ -141,9 +141,32 @@ export function MenuButton({
   large?: boolean;
   disabled?: boolean;
   button: ReactNode;
-  items: { value: string; label: string; content: ReactNode }[];
+  items: MenuItem[];
   onPick: (value: string) => void;
 }) {
+  const { open, setOpen, root } = useDropdown();
+
+  return (
+    <div ref={root} className="relative">
+      <ToolButton helpId={helpId} label={label} variant={variant} large={large} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+        {large ? (
+          button
+        ) : (
+          <span className="flex items-center gap-1">
+            {button}
+            <span className="text-[0.6rem]">▾</span>
+          </span>
+        )}
+      </ToolButton>
+      {open ? <DropdownMenu label={label} items={items} onPick={onPick} close={() => setOpen(false)} /> : null}
+    </div>
+  );
+}
+
+type MenuItem = { value: string; label: string; content: ReactNode };
+
+/** Mở/đóng một bảng thả xuống: đóng khi bấm ra ngoài `root` hoặc nhấn Esc. */
+function useDropdown() {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
 
@@ -161,38 +184,71 @@ export function MenuButton({
     };
   }, [open]);
 
+  return { open, setOpen, root };
+}
+
+/** Bảng thả xuống dùng chung của `MenuButton` và `SplitButton`. */
+function DropdownMenu({ label, items, onPick, close }: { label: string; items: MenuItem[]; onPick: (value: string) => void; close: () => void }) {
   return (
-    <div ref={root} className="relative">
-      <ToolButton helpId={helpId} label={label} variant={variant} large={large} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
-        {large ? (
-          button
-        ) : (
-          <span className="flex items-center gap-1">
-            {button}
-            <span className="text-[0.6rem]">▾</span>
-          </span>
-        )}
+    <div role="menu" aria-label={label} className="ribbon-menu">
+      {items.map((it) => (
+        <button
+          key={it.value}
+          type="button"
+          aria-label={it.label}
+          title={it.label}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => {
+            close();
+            onPick(it.value);
+          }}
+          className="ribbon-menu-item"
+        >
+          {it.content}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Nút lớn tách đôi như New Slide của Office: nửa trên (icon to) làm việc chính,
+ * nửa dưới ("New Slide ▾") mở menu.
+ */
+export function SplitButton({
+  helpId,
+  label,
+  menuLabel,
+  icon,
+  text,
+  disabled,
+  onClick,
+  items,
+  onPick,
+}: {
+  helpId: string;
+  label: string;
+  menuLabel: string;
+  icon: ReactNode;
+  text: string;
+  disabled?: boolean;
+  onClick: () => void;
+  items: MenuItem[];
+  onPick: (value: string) => void;
+}) {
+  const { open, setOpen, root } = useDropdown();
+
+  return (
+    // Nửa trên chỉ có icon nên thấp hơn nút lớn thường (min-h-16): hai nửa cộng lại vẫn vừa
+    // chiều cao ribbon, thẻ Home không cao hơn các thẻ khác.
+    <div ref={root} className="relative flex flex-col items-stretch [&>button:first-child]:min-h-10">
+      <ToolButton helpId={helpId} label={label} variant="office" large disabled={disabled} onClick={onClick}>
+        {icon}
       </ToolButton>
-      {open ? (
-        <div role="menu" aria-label={label} className="ribbon-menu">
-          {items.map((it) => (
-            <button
-              key={it.value}
-              type="button"
-              aria-label={it.label}
-              title={it.label}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => {
-                setOpen(false);
-                onPick(it.value);
-              }}
-              className="ribbon-menu-item"
-            >
-              {it.content}
-            </button>
-          ))}
-        </div>
-      ) : null}
+      <ToolButton helpId={helpId} label={menuLabel} variant="office" pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+        <span className="whitespace-nowrap text-[0.72rem]">{text} ▾</span>
+      </ToolButton>
+      {open ? <DropdownMenu label={menuLabel} items={items} onPick={onPick} close={() => setOpen(false)} /> : null}
     </div>
   );
 }
