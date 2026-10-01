@@ -1,5 +1,6 @@
 node_modules/
 dist/
+client/.vite/
 data/raw/
 data/translations/_work/
 client/public/content/
