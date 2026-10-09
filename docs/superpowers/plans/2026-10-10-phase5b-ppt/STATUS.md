@@ -6,7 +6,7 @@ Cập nhật **một dòng** sau mỗi task, trong cùng commit của task đó.
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 shared: theme, chuyển cảnh, trình chiếu, 6 check | ☐ | | |
+| 1 shared: theme, chuyển cảnh, trình chiếu, 6 check | ☑ | (commit này) | shared 482 / client 356. `past` nay là `PptSnap {slides, theme}`. Trình chiếu nằm ở `show.ts`; `reducePpt` bỏ qua mọi action soạn thảo khi `show` khác null. **Ruling:** màu `accent` hạ tối hơn bảng plan (mochi `#B54C17`, bien `#1A5FA8`, la `#2B6E37`, hoa `#B03163`) để chắc ≥ 4.5 trên nền — test tương phản canh. `elFormat` so màu không phân biệt hoa thường; khoá thiếu lấy mặc định `layout.ts` (title 40 đậm giữa, body 24 trái) |
 | 2 vẽ theo theme + thẻ Design | ☐ | | |
 | 3 thẻ Transitions | ☐ | | |
 | 4 thẻ Slide Show + trình chiếu | ☐ | | |

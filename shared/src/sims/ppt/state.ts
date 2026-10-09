@@ -1,6 +1,7 @@
 import { clampEl, elOf, resizeBy, SHAPE_FILL, type Handle } from './elements';
 import { applyLayout } from './layout';
 import { mergeFmt } from './text';
+import { reduceShow, type ShowAction } from './show';
 
 /** Khung slide 16:9. Mọi toạ độ đối tượng tính bằng px trên khung này; giao diện chỉ co giãn khi vẽ. */
 export const SLIDE_W = 960;
@@ -65,15 +66,23 @@ export interface PptState {
   /** Chữ trước khi bắt đầu sửa, để `cancelEdit` trả lại. */
   editBackup: string | null;
   theme: ThemeId;
-  /** Đang trình chiếu ở slide thứ mấy (giai đoạn 5B). */
-  show: { at: number } | null;
+  /** Đang trình chiếu: `at` là slide đang chiếu (`slides.length` = màn Hết bài), `from` là slide bắt đầu. */
+  show: { at: number; from: number } | null;
+  /** Đã trình chiếu từ slide 1 tới slide cuối ít nhất một lần. */
+  presented: boolean;
   /** Lưu và In là MÔ PHỎNG: chỉ ghi lại là đã bấm, không tạo tệp thật. */
   saved: { name: string; at: number } | null;
   printed: boolean;
   dialog: PptDialog;
   /** Nguồn id; reducer không bao giờ dùng random hay Date.now(). */
   nextId: number;
-  past: Slide[][];
+  /** Bậc hoàn tác: chụp cả theme, vì Undo sau khi đổi theme phải trả theme cũ như PowerPoint thật. */
+  past: PptSnap[];
+}
+
+export interface PptSnap {
+  slides: Slide[];
+  theme: ThemeId;
 }
 
 export type PptDialog = 'save' | 'print' | 'image' | null;
@@ -103,7 +112,11 @@ export type PptAction =
   | { type: 'openDialog'; dialog: Exclude<PptDialog, null> }
   | { type: 'closeDialog' }
   | { type: 'save'; name: string; at: number }
-  | { type: 'print' };
+  | { type: 'print' }
+  | { type: 'setTheme'; theme: ThemeId }
+  /** `none` xoá chuyển cảnh; `all` là nút Apply To All. */
+  | { type: 'setTransition'; transition: Transition; all?: true }
+  | ShowAction;
 
 export const PPT_LAYOUTS: { id: Layout; label: string; vi: string }[] = [
   { id: 'title', label: 'Title Slide', vi: 'Slide tiêu đề' },
@@ -133,6 +146,7 @@ export function pptInitial(o?: { slides?: Layout[] }): PptState {
     editBackup: null,
     theme: 'mochi',
     show: null,
+    presented: false,
     saved: null,
     printed: false,
     dialog: null,
@@ -141,9 +155,9 @@ export function pptInitial(o?: { slides?: Layout[] }): PptState {
   };
 }
 
-/** Ghi lại slides cũ để hoàn tác, rồi thay bằng slides mới. */
+/** Ghi lại slides + theme cũ để hoàn tác, rồi thay bằng slides mới. */
 function withSlides(s: PptState, slides: Slide[], extra?: Partial<PptState>): PptState {
-  return { ...s, slides, past: [...s.past, s.slides].slice(-30), ...extra };
+  return { ...s, slides, past: [...s.past, { slides: s.slides, theme: s.theme }].slice(-30), ...extra };
 }
 
 /**
@@ -162,8 +176,25 @@ function addEl(s: PptState, el: Omit<El, 'id'>): PptState {
   return withEls(s, [...slideOf(s).els, made], { sel: made.id, nextId: s.nextId + 1 });
 }
 
+/** Đặt hoặc xoá chuyển cảnh của một slide; xoá thì bỏ hẳn khoá, không để `transition: undefined`. */
+function withTransition(slide: Slide, t: Transition): Slide {
+  const { transition: _old, ...rest } = slide;
+  return t === 'none' ? rest : { ...rest, transition: t };
+}
+
 export function reducePpt(s: PptState, a: PptAction): PptState {
+  const isShow = a.type === 'startShow' || a.type === 'showNext' || a.type === 'showPrev' || a.type === 'endShow';
+  if (isShow) return reduceShow(s, a);
+  // Đang trình chiếu thì màn soạn thảo bị che kín: mọi thao tác soạn thảo bị bỏ qua.
+  if (s.show) return s;
   switch (a.type) {
+    case 'setTheme':
+      return a.theme === s.theme ? s : withSlides(s, s.slides, { theme: a.theme });
+    case 'setTransition':
+      return withSlides(
+        s,
+        s.slides.map((x, i) => (a.all || i === s.active ? withTransition(x, a.transition) : x)),
+      );
     case 'addSlide': {
       const r = applyLayout({ id: `s${s.nextId}`, layout: 'blank', els: [] }, a.layout ?? 'titleContent', s.nextId + 1);
       const slides = [...s.slides];
@@ -300,12 +331,13 @@ export function reducePpt(s: PptState, a: PptAction): PptState {
       if (!prev) return s;
       return {
         ...s,
-        slides: prev,
+        slides: prev.slides,
+        theme: prev.theme,
         past: s.past.slice(0, -1),
         sel: null,
         editing: null,
         editBackup: null,
-        active: Math.min(s.active, prev.length - 1),
+        active: Math.min(s.active, prev.slides.length - 1),
       };
     }
     case 'openDialog':

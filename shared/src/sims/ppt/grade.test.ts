@@ -107,3 +107,82 @@ describe('gradePpt', () => {
     expect(grade('ppt', pptInitial(), [{ kind: 'slideCount', count: 1 }]).pass).toBe(true);
   });
 });
+
+describe('gradePpt – check của 5B', () => {
+  const msg = (s: PptState, c: PptCheck) => check(s, c).results[0]?.messageVi ?? '';
+  const act = (s: PptState, ...a: PptAction[]): PptState => a.reduce(reducePpt, s);
+  /** Bài 3 slide: Title, Title and Content, Two Content; đang mở slide 3. */
+  const deck = (): PptState => run({ type: 'addSlide' }, { type: 'addSlide', layout: 'twoContent' });
+
+  it('theme đúng thì đạt, sai thì nêu tên theme đang dùng', () => {
+    const s = run({ type: 'setTheme', theme: 'bien' });
+    expect(check(s, { kind: 'theme', theme: 'bien' }).pass).toBe(true);
+    expect(check(pptInitial(), { kind: 'theme', theme: 'bien' }).pass).toBe(false);
+    expect(msg(pptInitial(), { kind: 'theme', theme: 'bien' })).toContain('Mochi');
+  });
+
+  it('notTheme mochi trượt ở bài mới, đạt sau khi đổi theme', () => {
+    expect(check(pptInitial(), { kind: 'notTheme', theme: 'mochi' }).pass).toBe(false);
+    expect(msg(pptInitial(), { kind: 'notTheme', theme: 'mochi' })).toBe('Hãy chọn một theme khác Mochi ở thẻ Design.');
+    expect(check(run({ type: 'setTheme', theme: 'hoa' }), { kind: 'notTheme', theme: 'mochi' }).pass).toBe(true);
+  });
+
+  it('transition đúng loại, đúng slide', () => {
+    const s = act(deck(), { type: 'gotoSlide', index: 1 }, { type: 'setTransition', transition: 'fade' });
+    expect(check(s, { kind: 'transition', slide: 2, transition: 'fade' }).pass).toBe(true);
+    expect(check(s, { kind: 'transition', slide: 2, transition: 'push' }).pass).toBe(false);
+    expect(check(s, { kind: 'transition', slide: 1, transition: 'fade' }).pass).toBe(false);
+  });
+
+  it("transition 'any' đạt với chuyển cảnh bất kỳ, trượt khi chưa có", () => {
+    expect(check(deck(), { kind: 'transition', slide: 3, transition: 'any' }).pass).toBe(false);
+    const s = reducePpt(deck(), { type: 'setTransition', transition: 'push' });
+    expect(check(s, { kind: 'transition', slide: 3, transition: 'any' }).pass).toBe(true);
+  });
+
+  it('transition ở slide không tồn tại thì trượt, không văng', () => {
+    expect(() => check(deck(), { kind: 'transition', slide: 9, transition: 'fade' })).not.toThrow();
+    expect(check(deck(), { kind: 'transition', slide: 9, transition: 'fade' }).pass).toBe(false);
+  });
+
+  it('placeholder tìm chữ trong cột, không phân biệt hoa thường', () => {
+    const s0 = deck();
+    const body2 = slideOf(s0).els.find((e) => e.role === 'body2')!.id;
+    const s = typeInto(s0, body2, 'Con CHÓ nhà tôi');
+    expect(check(s, { kind: 'placeholder', slide: 3, role: 'body2', textContains: 'chó' }).pass).toBe(true);
+    expect(check(s, { kind: 'placeholder', slide: 3, role: 'body', textContains: 'chó' }).pass).toBe(false);
+  });
+
+  it('placeholder notEmpty', () => {
+    const s0 = deck();
+    const body = slideOf(s0).els.find((e) => e.role === 'body')!.id;
+    expect(check(s0, { kind: 'placeholder', slide: 3, role: 'body', notEmpty: true }).pass).toBe(false);
+    expect(check(typeInto(s0, body, 'Ăn'), { kind: 'placeholder', slide: 3, role: 'body', notEmpty: true }).pass).toBe(true);
+  });
+
+  it('placeholder trên slide không có vai trò đó thì trượt và khuyên đổi bố cục', () => {
+    expect(check(deck(), { kind: 'placeholder', slide: 2, role: 'body2', notEmpty: true }).pass).toBe(false);
+    expect(msg(deck(), { kind: 'placeholder', slide: 2, role: 'body2', notEmpty: true })).toContain('bố cục');
+  });
+
+  it('elFormat so từng khoá, tính cả giá trị mặc định của chỗ dành sẵn', () => {
+    const s0 = pptInitial();
+    expect(check(s0, { kind: 'elFormat', slide: 1, role: 'title', fmt: { size: 40, bold: true, align: 'center' } }).pass).toBe(true);
+    const s = act(s0, { type: 'selectEl', id: titleId(s0) }, { type: 'setFmt', fmt: { size: 54, color: '#C55A11' } });
+    expect(check(s, { kind: 'elFormat', slide: 1, role: 'title', fmt: { size: 54, color: '#C55A11' } }).pass).toBe(true);
+    expect(check(s, { kind: 'elFormat', slide: 1, role: 'title', fmt: { size: 54, align: 'left' } }).pass).toBe(false);
+  });
+
+  it('elFormat sai thì nêu giá trị đang có', () => {
+    expect(msg(pptInitial(), { kind: 'elFormat', slide: 1, role: 'title', fmt: { size: 54 } })).toContain('40');
+  });
+
+  it('presented: chưa chiếu trượt, đang chiếu dở nhắc Esc, chiếu xong và thoát thì đạt', () => {
+    const s0 = deck();
+    expect(msg(s0, { kind: 'presented' })).toContain('từ slide đầu tới slide cuối');
+    const showing = act(s0, { type: 'startShow', from: 'start' }, { type: 'showNext' }, { type: 'showNext' });
+    expect(check(showing, { kind: 'presented' }).pass).toBe(false);
+    expect(msg(showing, { kind: 'presented' })).toContain('Esc');
+    expect(check(reducePpt(showing, { type: 'endShow' }), { kind: 'presented' }).pass).toBe(true);
+  });
+});
