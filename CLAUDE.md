@@ -7,12 +7,11 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
-- Không có nhánh làm dở: ribbon giống thật (Word/Excel/PowerPoint + ảnh thật) đã gộp master 2026-10-10. Việc kế
-  tiếp là PowerPoint 5B; Design / Transitions / Slide Show dựng bằng `RibbonTabs`/`RibbonPanel`/`variant="office"`,
-  tên tiếng Anh, và bài mới có nút ribbon phải kết bằng ảnh thật (xem README "Ảnh chụp Office thật").
+- Phần còn lại của dự án nằm trong `docs/superpowers/plans/ROADMAP.md` (4 plan: 5B PowerPoint → 6A AI → 6B hoàn
+  thiện → dọn tồn đọng). Chưa bắt đầu plan nào; kế tiếp là Task 1 của `2026-10-10-phase5b-ppt/`.
   Nhánh mới: `office-neko/feat/<tên>`, tạo từ `office-neko/master`.
 - **Commit bằng email `lehoainam.htd@gmail.com`**, không bao giờ dùng email công ty. Soát `git config user.email` trước commit đầu tiên.
-- Dòng cuối commit message: `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
+- Dòng cuối commit message: `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ## Chạy và kiểm tra
 
@@ -28,9 +27,11 @@ Chạy test và typecheck chung một lệnh. Thêm thứ mới vào `shared` m�
 
 ## Cách làm việc (người dùng đã chốt)
 
-- **Bắt đầu phiên:** đọc `docs/superpowers/plans/<plan>/00-overview.md`, `STATUS.md`, rồi đúng một file `task-NN-*.md`. Không đọc cả thư mục plan.
+- **Bắt đầu phiên / sau compact:** đọc `docs/superpowers/plans/ROADMAP.md`, rồi `00-overview.md` + `STATUS.md` của
+  plan đang chạy, rồi đúng một file `task-NN-*.md`. Không đọc cả thư mục plan.
 - **Không dùng subagent.** Tự làm từng task theo TDD: test đỏ → code → xanh → kiểm trình duyệt → commit.
-  **Ba task một phiên** rồi dừng. Phiên dài là thứ tốn token nhất.
+  **Một task một lượt** (chốt 2026-10-10): xong task thì dừng, nhắn "Task N xong — gõ `/compact` rồi gõ `tiếp`".
+  Claude không tự compact được; người dùng chạy. Phiên dài là thứ tốn token nhất.
 - Cập nhật **một dòng** trong `STATUS.md` ngay trong commit của task đó.
 - **Không tự chạy review toàn nhánh.** Xong giai đoạn: đủ test, kiểm trình duyệt, gộp `--ff-only` vào master,
   báo người dùng một dòng rằng có thể review nếu họ muốn.
