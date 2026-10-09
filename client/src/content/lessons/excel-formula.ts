@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const AUTOSUM_SHOT = '/images/real/excel-05-autosum-menu.png';
+
 /** Chương 3 — Công thức đầu tiên. */
 export const EXCEL_FORMULA: Lesson[] = [
   {
@@ -55,6 +58,16 @@ export const EXCEL_FORMULA: Lesson[] = [
         ],
         solve: () => [{ type: 'setCell', cell: 'C2', raw: '=A2*B2' }],
       }),
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-01-window.png',
+        caption: 'Trên Excel thật: ô đang chọn và thanh công thức',
+        credit: CREDIT,
+        marks: [
+          { x: 2.7, y: 34.5, w: 6.4, h: 3.1, label: 'Ô đang chọn (viền xanh đậm): gõ dấu = để bắt đầu công thức' },
+          { x: 41.7, y: 26, w: 57.5, h: 3.8, label: 'Thanh công thức (Formula Bar): hiện công thức của ô đang chọn, ví dụ =A2*B2' },
+        ],
+      },
     ],
   },
   {
@@ -114,6 +127,16 @@ export const EXCEL_FORMULA: Lesson[] = [
         ],
         solve: () => [{ type: 'setCell', cell: 'B5', raw: '=SUM(B2:B4)' }],
       }),
+      {
+        kind: 'realShot',
+        image: AUTOSUM_SHOT,
+        caption: 'Trên Excel thật: thẻ Formulas › nhóm Function Library › AutoSum',
+        credit: CREDIT,
+        marks: [
+          { x: 6.4, y: 18.1, w: 5, h: 13.8, label: 'AutoSum ▾ (nửa dưới của nút): mở danh sách hàm hay dùng' },
+          { x: 6.6, y: 32.8, w: 13.4, h: 10.3, label: 'Sum: cộng cả vùng, Excel tự viết =SUM(…)' },
+        ],
+      },
     ],
   },
   {
@@ -169,6 +192,16 @@ export const EXCEL_FORMULA: Lesson[] = [
           { type: 'setCell', cell: 'B8', raw: '=COUNT(B2:B4)' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: AUTOSUM_SHOT,
+        caption: 'Trên Excel thật: thẻ Formulas › nhóm Function Library › AutoSum',
+        credit: CREDIT,
+        marks: [
+          { x: 6.4, y: 18.1, w: 5, h: 13.8, label: 'AutoSum ▾ (nửa dưới của nút): mở danh sách hàm hay dùng' },
+          { x: 6.6, y: 53.4, w: 13.4, h: 31, label: 'Count Numbers, Max, Min: đếm ô có số (hàm COUNT), số lớn nhất (MAX), số nhỏ nhất (MIN)' },
+        ],
+      },
     ],
   },
 ];

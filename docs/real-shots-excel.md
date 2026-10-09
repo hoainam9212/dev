@@ -1,11 +1,16 @@
 # Ảnh chụp Excel thật — danh sách chụp
 
-Excel 365 **tiếng Anh**, cửa sổ phóng to hết màn hình, chụp bằng Win + Shift + S rồi dán vào một file Excel:
-**mỗi ảnh một sheet, đúng thứ tự dưới đây** (Sheet1 = ảnh 1…). Tên sheet không quan trọng, thứ tự thì có.
-Nhận file xong chạy: `node client/scripts/real-shots.mjs excel "<file>.xlsx"` → ảnh vào `client/public/images/real/`
-với tên ở cột "Tên file" (sheet trống bị bỏ qua). Rồi **bắt buộc** chạy `powershell -File client/scripts/blur-names.ps1`
-để làm mờ tên tài khoản trên thanh tiêu đề và email trên màn hình Save As (khung mờ của ảnh Excel thêm vào script
-khi có ảnh; chụp lại ảnh nào thì xem lại khung mờ của ảnh đó).
+Excel **tiếng Anh**, **không** phóng to hết màn hình: bài học hiện ảnh trong khung rộng khoảng 970 px, nên ảnh rộng
+quanh 1000 px là nét nhất. Đã chụp 2026-10-10 trên Excel 2019 (en-us) ở 96 DPI, cửa sổ rộng 1000 px; chỉ nới rộng khi
+thẻ thu gọn nhóm mà bài trỏ tới (Home 1550 px rồi cắt sau nhóm Editing → 1372 px; Formulas 1250 px để Function
+Library là nút lớn). Ảnh menu/hộp thoại cắt từ dưới hàng thẻ, rộng ~960–1100 px. Khung đỏ trong bài lấy từ toạ độ
+UI Automation lúc chụp.
+
+Chụp lại bằng tay thì dùng Win + Shift + S rồi dán vào một file Excel: **mỗi ảnh một sheet, đúng thứ tự dưới đây**
+(Sheet1 = ảnh 1…). Nhận file xong chạy: `node client/scripts/real-shots.mjs excel "<file>.xlsx"` → ảnh vào
+`client/public/images/real/` với tên ở cột "Tên file" (sheet trống bị bỏ qua). Rồi **bắt buộc** chạy
+`powershell -File client/scripts/blur-names.ps1` để làm mờ tên tài khoản trên thanh tiêu đề, email và danh sách thư
+mục gần đây trên màn hình Save As (chụp lại ảnh nào thì xem lại khung mờ và khung đỏ của ảnh đó).
 
 | Sheet | Tên file | Chụp gì | Cách mở trên Excel | Dùng cho bài |
 |---|---|---|---|---|

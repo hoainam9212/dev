@@ -112,5 +112,11 @@ describe('content', () => {
     for (const l of lessons.filter((l) => l.trackId === 'word' && !['word.edit', 'word.select'].includes(l.id))) {
       expect(l.steps.some((s) => s.kind === 'realShot'), `${l.id}: no real screenshot`).toBe(true);
     }
+    // Excel: mọi bài có nút ribbon kết bằng ảnh Excel thật; excel.enter chỉ gõ trong ô.
+    for (const l of lessons.filter((l) => l.trackId === 'excel' && l.id !== 'excel.enter')) {
+      const shots = l.steps.filter((s) => s.kind === 'realShot');
+      expect(shots.length, `${l.id}: no real screenshot`).toBeGreaterThan(0);
+      for (const s of shots) expect(s.credit, `${l.id}: credit`).toBe('Ảnh chụp Microsoft Excel');
+    }
   });
 });

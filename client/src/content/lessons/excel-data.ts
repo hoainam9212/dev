@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const DATA_SHOT = '/images/real/excel-06-data.png';
+
 /** Bảng dùng chung cả chương. */
 const STAFF = {
   A1: 'Nhân viên', B1: 'Phòng', C1: 'Lương',
@@ -64,6 +67,28 @@ export const EXCEL_DATA: Lesson[] = [
           { type: 'sortRange', range: 'A2:C5', by: 'C', dir: 'desc' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: DATA_SHOT,
+        caption: 'Trên Excel thật: thẻ Data › nhóm Sort & Filter',
+        credit: CREDIT,
+        marks: [
+          { x: 33.8, y: 47.5, w: 2.2, h: 33.8, label: 'Sort A to Z (trên) và Sort Z to A (dưới): sắp tăng dần hoặc giảm dần theo cột đang đứng' },
+          { x: 36, y: 42.5, w: 4.2, h: 43.1, label: 'Sort: mở hộp thoại để chọn cột và chiều sắp' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-07-sort-dialog.png',
+        caption: 'Trên Excel thật: hộp thoại Sort',
+        credit: CREDIT,
+        marks: [
+          { x: 32.9, y: 54.3, w: 20.1, h: 5.2, label: 'Sort by: chọn cột cần sắp, ví dụ Lương' },
+          { x: 73, y: 54.3, w: 19.1, h: 5.2, label: 'Order: chọn Largest to Smallest (lớn trước, nhỏ sau)' },
+          { x: 79, y: 43.9, w: 13.3, h: 3.6, label: 'My data has headers: giữ dấu tích khi vùng có hàng tiêu đề' },
+          { x: 75.7, y: 88, w: 7.8, h: 5.2, label: 'OK: sắp xếp' },
+        ],
+      },
     ],
   },
   {
@@ -115,6 +140,26 @@ export const EXCEL_DATA: Lesson[] = [
           { type: 'setFilterValues', col: 'B', values: ['Kế toán'] },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: DATA_SHOT,
+        caption: 'Trên Excel thật: thẻ Data › nhóm Sort & Filter',
+        credit: CREDIT,
+        marks: [
+          { x: 41.1, y: 42.5, w: 4.2, h: 43.1, label: 'Filter: bật mũi tên ▾ ở mỗi ô tiêu đề. Bấm lần nữa để tắt lọc' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-08-filter-menu.png',
+        caption: 'Trên Excel thật: menu lọc của cột Phòng',
+        credit: CREDIT,
+        marks: [
+          { x: 27.6, y: 12.9, w: 1.8, h: 3.4, label: 'Mũi tên ▾ ở ô tiêu đề: mở menu lọc của cột đó' },
+          { x: 6.7, y: 64.4, w: 17.3, h: 3.4, label: 'Bỏ tích Kinh doanh để chỉ còn các hàng Kế toán' },
+          { x: 18.5, y: 92.7, w: 3.5, h: 4.8, label: 'OK: áp dụng bộ lọc' },
+        ],
+      },
     ],
   },
   {
@@ -173,6 +218,24 @@ export const EXCEL_DATA: Lesson[] = [
           { type: 'setChartTitle', id: 'chart-0', title: 'Lương nhân viên' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-09-insert.png',
+        caption: 'Trên Excel thật: thẻ Insert › nhóm Charts',
+        credit: CREDIT,
+        marks: [
+          { x: 37.8, y: 42.5, w: 3.6, h: 14.4, label: 'Insert Column or Bar Chart ▾: biểu đồ cột. Hai nút ngay dưới là biểu đồ đường và biểu đồ tròn' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-10-column-menu.png',
+        caption: 'Trên Excel thật: menu Insert Column or Bar Chart',
+        credit: CREDIT,
+        marks: [
+          { x: 39.5, y: 13.8, w: 5.8, h: 14.9, label: 'Clustered Column: kiểu cột đầu tiên trong nhóm 2-D Column' },
+        ],
+      },
     ],
   },
 ];

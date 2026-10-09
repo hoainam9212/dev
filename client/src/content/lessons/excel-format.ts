@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const HOME_SHOT = '/images/real/excel-02-home.png';
+
 /** Chương 2 — Định dạng cho dễ đọc. */
 export const EXCEL_FORMAT: Lesson[] = [
   {
@@ -49,6 +52,15 @@ export const EXCEL_FORMAT: Lesson[] = [
           { type: 'setFormat', fmt: { numFmt: 'currencyVnd' } },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: HOME_SHOT,
+        caption: 'Trên Excel thật: thẻ Home › nhóm Number',
+        credit: CREDIT,
+        marks: [
+          { x: 49.5, y: 47.5, w: 10.2, h: 14.4, label: 'Number Format (ô đang ghi General): bấm ▾ rồi chọn Currency để hiện kiểu tiền' },
+        ],
+      },
     ],
   },
   {
@@ -100,6 +112,17 @@ export const EXCEL_FORMAT: Lesson[] = [
           { type: 'setFormat', fmt: { align: 'center' } },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: HOME_SHOT,
+        caption: 'Trên Excel thật: thẻ Home › nhóm Font và nhóm Alignment',
+        credit: CREDIT,
+        marks: [
+          { x: 8.2, y: 66.9, w: 1.6, h: 14.4, label: 'Bold (B), phím tắt Ctrl + B: in đậm' },
+          { x: 18.4, y: 66.9, w: 2.7, h: 14.4, label: 'Fill Color (xô sơn): bấm ▾ để chọn màu nền ô' },
+          { x: 30.2, y: 66.9, w: 1.6, h: 14.4, label: 'Center: căn chữ vào giữa ô' },
+        ],
+      },
     ],
   },
   {
@@ -139,6 +162,15 @@ export const EXCEL_FORMAT: Lesson[] = [
           { type: 'merge' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: HOME_SHOT,
+        caption: 'Trên Excel thật: thẻ Home › nhóm Alignment',
+        credit: CREDIT,
+        marks: [
+          { x: 38.3, y: 66.9, w: 10.1, h: 14.4, label: 'Merge & Center: gộp các ô đang chọn thành một ô, chữ nằm giữa. Bấm lần nữa để tách' },
+        ],
+      },
     ],
   },
 ];

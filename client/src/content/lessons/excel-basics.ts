@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const WINDOW_SHOT = '/images/real/excel-01-window.png';
+
 /** Chương 1 — Làm quen bảng tính. */
 export const EXCEL_BASICS: Lesson[] = [
   {
@@ -43,6 +46,17 @@ export const EXCEL_BASICS: Lesson[] = [
         // Lời giải mẫu gõ một cái tên bất kỳ; check chỉ đòi ô có nội dung.
         solve: () => [{ type: 'setCell', cell: 'C3', raw: 'Nguyễn Văn Nam' }],
       }),
+      {
+        kind: 'realShot',
+        image: WINDOW_SHOT,
+        caption: 'Trên Excel thật: lưới ô, tên cột, số hàng và Name Box',
+        credit: CREDIT,
+        marks: [
+          { x: 2.7, y: 31.4, w: 51.2, h: 3.1, label: 'Tên cột: chữ A, B, C… ở hàng trên cùng của lưới' },
+          { x: 0.1, y: 34.5, w: 2.6, h: 15.4, label: 'Số hàng: 1, 2, 3… ở cột bên trái' },
+          { x: 0.6, y: 26, w: 26.6, h: 3.8, label: 'Name Box: tên ô đang chọn, ở đây là A1 (ô có viền xanh đậm)' },
+        ],
+      },
     ],
   },
   {
@@ -142,6 +156,16 @@ export const EXCEL_BASICS: Lesson[] = [
           { type: 'setCell', cell: 'A1', raw: '=Báo cáo!B1' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: WINDOW_SHOT,
+        caption: 'Trên Excel thật: thanh tên sheet ở đáy cửa sổ',
+        credit: CREDIT,
+        marks: [
+          { x: 10.1, y: 92.2, w: 6.5, h: 4.3, label: 'Tên sheet (Sheet1): bấm đúp để đổi tên' },
+          { x: 19.4, y: 92.2, w: 2.8, h: 4.3, label: 'New sheet (dấu +): thêm sheet mới' },
+        ],
+      },
     ],
   },
 ];

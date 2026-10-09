@@ -1,6 +1,8 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+
 /**
  * Bảng lương 10 nhân viên. Hàng 1 là tiêu đề lớn, hàng 2 là tiêu đề cột,
  * hàng 3–12 là dữ liệu, hàng 13–14 là dòng tổng kết.
@@ -183,6 +185,29 @@ export const EXCEL_PROJECT: Lesson[] = [
           { type: 'save', name: 'bang-luong-thang-9.xlsx', at: 0 },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-02-home.png',
+        caption: 'Trên Excel thật: thẻ Home, các nút của dự án',
+        credit: CREDIT,
+        marks: [
+          { x: 38.3, y: 66.9, w: 10.1, h: 14.4, label: 'Merge & Center: gộp ô tiêu đề A1:G1' },
+          { x: 8.2, y: 66.9, w: 1.6, h: 14.4, label: 'Bold (B): in đậm hàng tên cột' },
+          { x: 18.4, y: 66.9, w: 2.7, h: 14.4, label: 'Fill Color: tô nền hàng tên cột' },
+          { x: 49.5, y: 47.5, w: 10.2, h: 14.4, label: 'Number Format: chọn Currency cho cột tiền' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-11-save-as.png',
+        caption: 'Trên Excel thật: thẻ File › Save As',
+        credit: CREDIT,
+        marks: [
+          { x: 0.1, y: 46, w: 14, h: 6.2, label: 'Save As: lưu bảng tính với tên bạn đặt. Lưu lại lần sau thì bấm Ctrl + S' },
+          { x: 18.2, y: 55.5, w: 27.9, h: 10.3, label: 'This PC: lưu vào máy tính này' },
+          { x: 18.2, y: 73.5, w: 27.9, h: 6.8, label: 'Browse: chọn thư mục và đặt tên tệp' },
+        ],
+      },
       {
         kind: 'explain',
         mood: 'happy',

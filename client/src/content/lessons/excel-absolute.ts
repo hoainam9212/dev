@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const FILL_SHOT = '/images/real/excel-03-fill-menu.png';
+
 /** Chương 4 — Ô nào cố định. */
 export const EXCEL_ABSOLUTE: Lesson[] = [
   {
@@ -56,6 +59,16 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           { type: 'fillDown' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FILL_SHOT,
+        caption: 'Trên Excel thật: thẻ Home › nhóm Editing › Fill',
+        credit: CREDIT,
+        marks: [
+          { x: 79.8, y: 11, w: 5.6, h: 9, label: 'Fill ▾: mở menu đổ dữ liệu sang các ô bên cạnh' },
+          { x: 80, y: 20.8, w: 16.5, h: 9.4, label: 'Down: chép công thức ô trên cùng xuống các ô đã chọn bên dưới' },
+        ],
+      },
     ],
   },
   {
@@ -111,6 +124,16 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           { type: 'fillDown' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FILL_SHOT,
+        caption: 'Trên Excel thật: thẻ Home › nhóm Editing › Fill',
+        credit: CREDIT,
+        marks: [
+          { x: 79.8, y: 11, w: 5.6, h: 9, label: 'Fill ▾: mở menu đổ dữ liệu sang các ô bên cạnh' },
+          { x: 80, y: 20.8, w: 16.5, h: 9.4, label: 'Down: chép công thức xuống; phần có dấu $ giữ nguyên ô, phần còn lại tự dịch theo hàng' },
+        ],
+      },
     ],
   },
   {
@@ -166,6 +189,15 @@ export const EXCEL_ABSOLUTE: Lesson[] = [
           { type: 'fillDown' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: '/images/real/excel-04-formulas.png',
+        caption: 'Trên Excel thật: thẻ Formulas › nhóm Function Library',
+        credit: CREDIT,
+        marks: [
+          { x: 18.2, y: 42.5, w: 3.4, h: 43.1, label: 'Logical ▾: nhóm hàm điều kiện, có IF. Gõ thẳng =IF( vào ô cũng được' },
+        ],
+      },
     ],
   },
 ];

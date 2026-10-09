@@ -1,6 +1,10 @@
 import type { Lesson } from '@office-neko/shared';
 import { excelPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft Excel';
+const FORMULAS_SHOT = '/images/real/excel-04-formulas.png';
+const CAPTION = 'Trên Excel thật: thẻ Formulas › nhóm Function Library';
+
 /** Bảng dùng chung cả chương: bốn nhân viên, phòng ban và lương. */
 const STAFF = {
   A1: 'Nhân viên', B1: 'Phòng', C1: 'Lương',
@@ -63,6 +67,15 @@ export const EXCEL_LOOKUP: Lesson[] = [
           { type: 'setCell', cell: 'C8', raw: '=COUNTIF(C2:C5,">6000000")' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FORMULAS_SHOT,
+        caption: CAPTION,
+        credit: CREDIT,
+        marks: [
+          { x: 37.5, y: 42.5, w: 5.4, h: 43.1, label: 'More Functions ▾ › Statistical: có COUNTIF. Gõ thẳng =COUNTIF( vào ô cũng được' },
+        ],
+      },
     ],
   },
   {
@@ -116,6 +129,16 @@ export const EXCEL_LOOKUP: Lesson[] = [
           { type: 'setCell', cell: 'C8', raw: '=AVERAGEIF(B2:B5,"Kinh doanh",C2:C5)' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FORMULAS_SHOT,
+        caption: CAPTION,
+        credit: CREDIT,
+        marks: [
+          { x: 33.8, y: 42.5, w: 3.7, h: 43.1, label: 'Math & Trig ▾: có SUM và SUMIF. Gõ thẳng =SUMIF( vào ô cũng được' },
+          { x: 37.5, y: 42.5, w: 5.4, h: 43.1, label: 'More Functions ▾ › Statistical: có AVERAGEIF' },
+        ],
+      },
     ],
   },
   {
@@ -180,6 +203,15 @@ export const EXCEL_LOOKUP: Lesson[] = [
           { type: 'fillDown' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FORMULAS_SHOT,
+        caption: CAPTION,
+        credit: CREDIT,
+        marks: [
+          { x: 28.4, y: 42.5, w: 5.4, h: 43.1, label: 'Lookup & Reference ▾: có VLOOKUP. Gõ thẳng =VLOOKUP( vào ô cũng được' },
+        ],
+      },
     ],
   },
   {
@@ -229,6 +261,15 @@ export const EXCEL_LOOKUP: Lesson[] = [
           { type: 'setCell', cell: 'E2', raw: '=UPPER(B2)' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: FORMULAS_SHOT,
+        caption: CAPTION,
+        credit: CREDIT,
+        marks: [
+          { x: 21.6, y: 42.5, w: 3.4, h: 43.1, label: 'Text ▾: có LEN và UPPER. Dấu & để nối chữ thì gõ từ bàn phím' },
+        ],
+      },
     ],
   },
 ];
