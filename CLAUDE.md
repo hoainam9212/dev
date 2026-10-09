@@ -7,7 +7,10 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
-- Nhánh đang làm dở: `office-neko/feat/real-ribbon-excel-ppt`. Nhánh mới: `office-neko/feat/<tên>`, tạo từ `office-neko/master`.
+- Không có nhánh làm dở: ribbon giống thật (Word/Excel/PowerPoint + ảnh thật) đã gộp master 2026-10-10. Việc kế
+  tiếp là PowerPoint 5B; Design / Transitions / Slide Show dựng bằng `RibbonTabs`/`RibbonPanel`/`variant="office"`,
+  tên tiếng Anh, và bài mới có nút ribbon phải kết bằng ảnh thật (xem README "Ảnh chụp Office thật").
+  Nhánh mới: `office-neko/feat/<tên>`, tạo từ `office-neko/master`.
 - **Commit bằng email `lehoainam.htd@gmail.com`**, không bao giờ dùng email công ty. Soát `git config user.email` trước commit đầu tiên.
 - Dòng cuối commit message: `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 

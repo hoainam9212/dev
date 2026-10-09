@@ -18,6 +18,9 @@ gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Moc
   hộp chữ / hình khối / ảnh kéo–thả và đổi kích thước bằng 8 tay nắm (ảnh giữ tỉ lệ khi kéo góc), định dạng chữ,
   hoàn tác, lưu/in; ribbon File/Home/Insert. **6 bài / 2 chương**: slide đầu tiên, rồi chữ, hình và ảnh. Theme,
   chuyển cảnh, trình chiếu toàn màn hình, các bài còn lại và dự án thuộc giai đoạn 5B, chưa làm.
+- Ribbon giống Office thật ở cả ba app: thẻ › nhóm › thứ tự › nhãn theo Office **tiếng Anh**, gạch chân thẻ đúng màu
+  từng app (Word xanh dương, Excel xanh lá, PowerPoint cam), mọi thẻ cao bằng nhau; giải nghĩa tiếng Việt ở chú thích.
+  Cuối mọi bài có nút ribbon là bước **ảnh chụp thật** (`realShot`) có khung đỏ khoanh đúng nút vừa học.
 - Trợ giúp ở mọi màn hình: Từ điển (F1), Hỏi Mèo, chú thích khi rê chuột, gợi ý 3 bậc.
 - Nhiều người học trên một máy: mỗi người một thẻ tên và ảnh mèo riêng, tiến độ – sao – XP – chuỗi ngày – thống kê gõ tách biệt; đổi người ở thanh trên cùng; sao lưu một file cho cả máy (đọc được cả file bản cũ).
 
@@ -31,6 +34,20 @@ npm run typecheck
 npm run build      # client/dist, cài được như app
 npm run preview    # http://localhost:4174
 ```
+
+## Ảnh chụp Office thật
+
+Ảnh nằm ở `client/public/images/real/<app>-NN-*.png`; danh sách cần chụp và độ rộng đã dùng ở
+`docs/real-shots-word.md`, `real-shots-excel.md`, `real-shots-ppt.md`. Ảnh nên rộng ~1000 px (bài học hiện ảnh trong
+khung ~970 px; hẹp hơn thì bị phóng to và mờ), **không** chụp cửa sổ phóng to hết màn hình.
+
+- **Tự chụp trên Windows có Office tiếng Anh:** `client/scripts/office-shots/` — `lib.ps1` (điều khiển Office bằng COM +
+  UI Automation, chụp bằng CopyFromScreen, ghi toạ độ mọi nút), `crop.ps1` (cắt), `mark.mjs` (toạ độ nút → khung %),
+  `draw.ps1` (vẽ thử khung lên bản sao). Lúc chụp không ai được chạm chuột/bàn phím; màn hình không khoá.
+- **Chụp tay:** Win + Shift + S, dán mỗi ảnh một sheet của một file Excel, rồi
+  `node client/scripts/real-shots.mjs <word|excel|ppt> "<file>.xlsx"`.
+- **Luôn chạy sau khi có ảnh mới:** `powershell -File client/scripts/blur-names.ps1` (làm mờ tên tài khoản, email;
+  `'fill'` tô nền danh sách thư mục gần đây). Rồi `git checkout` lại các ảnh cũ mà script làm mờ lại không cần thiết.
 
 Thiết kế: `docs/superpowers/specs/2026-09-19-office-neko-design.md`
 Kế hoạch: `docs/superpowers/plans/`
