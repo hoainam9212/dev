@@ -22,6 +22,11 @@ function textsOf(l: Lesson): string[] {
 }
 
 describe('content', () => {
+  it('calls ribbon tabs "thẻ", never "tab", in lessons, glossary and FAQ', () => {
+    const texts = [...lessons.flatMap(textsOf), JSON.stringify(GLOSSARY), JSON.stringify(FAQ)];
+    for (const t of texts) expect(t).not.toMatch(/\btab (Home|Insert|File|Data|Formulas|Design)\b/);
+  });
+
   it('uses lesson ids as keys', () => {
     for (const [k, l] of Object.entries(LESSONS)) expect(l.id).toBe(k);
   });

@@ -380,7 +380,7 @@
     "term": "Text Box",
     "say": "tếch-x bốc-x",
     "vi": "Hộp chữ",
-    "explain": "Khung chứa chữ đặt được ở bất kỳ đâu trên slide. Chèn ở tab Insert, nháy đúp vào để gõ, kéo viền để dời.",
+    "explain": "Khung chứa chữ đặt được ở bất kỳ đâu trên slide. Chèn ở thẻ Insert, nháy đúp vào để gõ, kéo viền để dời.",
     "lessonIds": [
       "ppt.textbox"
     ]
