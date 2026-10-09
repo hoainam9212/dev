@@ -1,6 +1,9 @@
 import type { Lesson } from '@office-neko/shared';
 import { pptPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft PowerPoint';
+const WINDOW_SHOT = '/images/real/ppt-01-window.png';
+
 /** Chương 1 — Slide đầu tiên. */
 export const PPT_BASICS: Lesson[] = [
   {
@@ -44,6 +47,16 @@ export const PPT_BASICS: Lesson[] = [
         ],
         solve: () => [{ type: 'gotoSlide', index: 1 }],
       }),
+      {
+        kind: 'realShot',
+        image: WINDOW_SHOT,
+        caption: 'Trên PowerPoint thật: cột hình thu nhỏ và slide đang mở',
+        credit: CREDIT,
+        marks: [
+          { x: 0.1, y: 24.9, w: 15.9, h: 66.2, label: 'Cột hình thu nhỏ: mỗi slide một hình, bấm vào hình nào thì mở slide đó' },
+          { x: 20.6, y: 25.8, w: 73.4, h: 63.6, label: 'Slide đang mở: làm việc trực tiếp trên vùng lớn này' },
+        ],
+      },
     ],
   },
   {
@@ -95,6 +108,15 @@ export const PPT_BASICS: Lesson[] = [
           { type: 'commitEdit' },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: WINDOW_SHOT,
+        caption: 'Trên PowerPoint thật: khung tiêu đề trên slide',
+        credit: CREDIT,
+        marks: [
+          { x: 29.6, y: 36, w: 55.4, h: 22.6, label: 'Khung tiêu đề (Click to add title): nháy đúp vào khung rồi gõ' },
+        ],
+      },
     ],
   },
   {
@@ -134,6 +156,25 @@ export const PPT_BASICS: Lesson[] = [
         ],
         solve: () => [{ type: 'addSlide' }, { type: 'addSlide' }, { type: 'setLayout', layout: 'twoContent' }],
       }),
+      {
+        kind: 'realShot',
+        image: '/images/real/ppt-02-home.png',
+        caption: 'Trên PowerPoint thật: thẻ Home › nhóm Slides',
+        credit: CREDIT,
+        marks: [
+          { x: 11.1, y: 42.5, w: 4.1, h: 43.1, label: 'New Slide, phím tắt Ctrl + M: thêm slide mới. Nửa dưới có ▾ để chọn bố cục luôn' },
+          { x: 15.2, y: 42.5, w: 7.5, h: 14.4, label: 'Layout ▾: đổi bố cục của slide đang chọn' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/ppt-03-layout-menu.png',
+        caption: 'Trên PowerPoint thật: menu Layout',
+        credit: CREDIT,
+        marks: [
+          { x: 15.4, y: 32.4, w: 10.6, h: 21, label: 'Two Content: bố cục hai cột nội dung' },
+        ],
+      },
     ],
   },
 ];

@@ -1,6 +1,9 @@
 import { pptSim, wordSim, type Lesson } from '@office-neko/shared';
 import { pptPractice } from '../lessonKit';
 
+const CREDIT = 'Ảnh chụp Microsoft PowerPoint';
+const INSERT_SHOT = '/images/real/ppt-04-insert.png';
+
 /** Ảnh mẫu dùng chung với hộp thoại Pictures (Task 8), không chép chuỗi ảnh vào đây. */
 const IMG = wordSim.IMAGE_LIBRARY[0]!;
 
@@ -57,6 +60,15 @@ export const PPT_OBJECTS: Lesson[] = [
           return [add, { type: 'startEditEl', id }, { type: 'setText', text: 'Đọc sách' }, { type: 'commitEdit' }];
         },
       }),
+      {
+        kind: 'realShot',
+        image: INSERT_SHOT,
+        caption: 'Trên PowerPoint thật: thẻ Insert › nhóm Text',
+        credit: CREDIT,
+        marks: [
+          { x: 65.1, y: 42.5, w: 4.2, h: 43.1, label: 'Text Box: vẽ một hộp chữ trên slide rồi gõ vào' },
+        ],
+      },
     ],
   },
   {
@@ -109,6 +121,25 @@ export const PPT_OBJECTS: Lesson[] = [
           { type: 'addShape', shape: 'rect', x: 480, y: 300, w: 160, h: 80 },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: INSERT_SHOT,
+        caption: 'Trên PowerPoint thật: thẻ Insert › nhóm Illustrations',
+        credit: CREDIT,
+        marks: [
+          { x: 31.2, y: 42.5, w: 4.2, h: 43.1, label: 'Shapes ▾: mở bảng hình khối' },
+        ],
+      },
+      {
+        kind: 'realShot',
+        image: '/images/real/ppt-05-shapes-menu.png',
+        caption: 'Trên PowerPoint thật: bảng Shapes',
+        credit: CREDIT,
+        marks: [
+          { x: 38.6, y: 76.8, w: 2.4, h: 3, label: 'Star: 5 Points (ngôi sao năm cánh), nhóm Stars and Banners' },
+          { x: 31.4, y: 26.9, w: 2.4, h: 3, label: 'Rectangle (hình chữ nhật), nhóm Rectangles' },
+        ],
+      },
     ],
   },
   {
@@ -149,6 +180,15 @@ export const PPT_OBJECTS: Lesson[] = [
           { type: 'resizeEl', handle: 'se', dx: -80, dy: -60 },
         ],
       }),
+      {
+        kind: 'realShot',
+        image: INSERT_SHOT,
+        caption: 'Trên PowerPoint thật: thẻ Insert › nhóm Images',
+        credit: CREDIT,
+        marks: [
+          { x: 12.5, y: 42.5, w: 4.7, h: 43.1, label: 'Pictures ▾: chèn ảnh có sẵn trong máy' },
+        ],
+      },
     ],
   },
 ];

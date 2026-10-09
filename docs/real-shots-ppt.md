@@ -1,11 +1,15 @@
 # Ảnh chụp PowerPoint thật — danh sách chụp
 
-PowerPoint 365 **tiếng Anh**, cửa sổ phóng to hết màn hình, chụp bằng Win + Shift + S rồi dán vào một file Excel:
-**mỗi ảnh một sheet, đúng thứ tự dưới đây** (Sheet1 = ảnh 1…). Tên sheet không quan trọng, thứ tự thì có.
-Nhận file xong chạy: `node client/scripts/real-shots.mjs ppt "<file>.xlsx"` → ảnh vào `client/public/images/real/`
-với tên ở cột "Tên file" (sheet trống bị bỏ qua). Rồi **bắt buộc** chạy `powershell -File client/scripts/blur-names.ps1`
-để làm mờ tên tài khoản trên thanh tiêu đề (khung mờ của ảnh PowerPoint thêm vào script khi có ảnh; chụp lại ảnh
-nào thì xem lại khung mờ của ảnh đó).
+PowerPoint **tiếng Anh**, **không** phóng to hết màn hình: bài học hiện ảnh trong khung rộng khoảng 970 px. Đã chụp
+2026-10-10 trên PowerPoint 2019 (en-us) ở 96 DPI: cửa sổ 1000×650; thẻ Home ở cửa sổ 1350 px (nhóm Slides và Drawing
+mới hiện đủ chữ) rồi cắt sau nhóm Drawing → 1018 px; menu cắt từ dưới hàng thẻ. Khung đỏ lấy từ toạ độ UI Automation;
+cột hình thu nhỏ và khung tiêu đề không có trong UI Automation nên đo theo điểm ảnh.
+
+Chụp lại bằng tay thì dùng Win + Shift + S rồi dán vào một file Excel: **mỗi ảnh một sheet, đúng thứ tự dưới đây**
+(Sheet1 = ảnh 1…). Nhận file xong chạy: `node client/scripts/real-shots.mjs ppt "<file>.xlsx"` → ảnh vào
+`client/public/images/real/` với tên ở cột "Tên file" (sheet trống bị bỏ qua). Rồi **bắt buộc** chạy
+`powershell -File client/scripts/blur-names.ps1` để làm mờ tên tài khoản trên thanh tiêu đề (chụp lại ảnh nào thì
+xem lại khung mờ và khung đỏ của ảnh đó).
 
 | Sheet | Tên file | Chụp gì | Cách mở trên PowerPoint | Dùng cho bài |
 |---|---|---|---|---|

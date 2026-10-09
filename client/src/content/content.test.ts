@@ -118,5 +118,11 @@ describe('content', () => {
       expect(shots.length, `${l.id}: no real screenshot`).toBeGreaterThan(0);
       for (const s of shots) expect(s.credit, `${l.id}: credit`).toBe('Ảnh chụp Microsoft Excel');
     }
+    // PowerPoint: cả 6 bài của 5A đều kết bằng ảnh PowerPoint thật.
+    for (const l of lessons.filter((l) => l.trackId === 'ppt')) {
+      const shots = l.steps.filter((s) => s.kind === 'realShot');
+      expect(shots.length, `${l.id}: no real screenshot`).toBeGreaterThan(0);
+      for (const s of shots) expect(s.credit, `${l.id}: credit`).toBe('Ảnh chụp Microsoft PowerPoint');
+    }
   });
 });
