@@ -23,3 +23,5 @@ export * as formula from './formula';
 export * as excelSim from './sims/excel';
 
 export * as pptSim from './sims/ppt';
+
+export * as aichatSim from './sims/aichat';

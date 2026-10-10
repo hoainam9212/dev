@@ -1,12 +1,12 @@
 # Giai đoạn 6A (lộ trình Dùng AI) – tình trạng
 
-Chưa bắt đầu. Bắt đầu sau khi 5B đã gộp master.
+Đang chạy trên nhánh `feat/phase6a-ai` (tạo từ master 7c8029f).
 
 Cập nhật **một dòng** sau mỗi task, trong cùng commit. Dòng đầu tiên chưa ☑ là task kế tiếp.
 
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
-| 1 chấm prompt `scorePrompt` | ☐ | | |
+| 1 chấm prompt `scorePrompt` | ☑ | (commit này) | 11 test. Mẫu `phong ` viết `phong\s`; `viet` cũng khớp "tiếng Việt" (dễ dãi, chấp nhận). shared 494 |
 | 2 state, reducer, 4 check | ☐ | | |
 | 3 giao diện chat + `aiPractice` + `/dev/aichat` | ☐ | | |
 | 4 chế độ bắt câu sai / chọn thông tin | ☐ | | |
