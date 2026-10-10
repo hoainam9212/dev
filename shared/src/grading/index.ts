@@ -7,6 +7,7 @@ import { gradeFish } from '../sims/fishSim';
 import { gradeWord } from '../sims/word/grade';
 import { gradeExcel } from '../sims/excel/grade';
 import { gradePpt } from '../sims/ppt/grade';
+import { gradeAiChat } from '../sims/aichat/grade';
 
 export * from './core';
 
@@ -20,6 +21,7 @@ export const GRADERS: Partial<Record<SimKind, Grader<any, any>>> = {
   word: gradeWord,
   excel: gradeExcel,
   ppt: gradePpt,
+  aichat: gradeAiChat,
 };
 
 export function grade(sim: SimKind, state: unknown, checks: unknown[]): GradeReport {

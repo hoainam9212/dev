@@ -7,7 +7,7 @@ Cập nhật **một dòng** sau mỗi task, trong cùng commit. Dòng đầu ti
 | Task | Xong | Commit | Ghi chú / việc còn treo |
 |---|---|---|---|
 | 1 chấm prompt `scorePrompt` | ☑ | (commit này) | 11 test. Mẫu `phong ` viết `phong\s`; `viet` cũng khớp "tiếng Việt" (dễ dãi, chấp nhận). shared 494 |
-| 2 state, reducer, 4 check | ☐ | | |
+| 2 state, reducer, 4 check | ☑ | (commit này) | 20 test. Ruling: `grade()` với kind lạ vẫn **ném lỗi** như cũ (plan ghi "trượt có lời báo") — giữ hành vi đã có, test đổi sang `'nope' as SimKind`. `pickItems` thừa và thiếu cùng lúc thì báo mục thừa trước. Thiếu câu trả lời: mức thiếu lấy mức gần nhất, ưu tiên câu tốt hơn. shared 514, client 392 |
 | 3 giao diện chat + `aiPractice` + `/dev/aichat` | ☐ | | |
 | 4 chế độ bắt câu sai / chọn thông tin | ☐ | | |
 | 5 chương 1 Làm quen AI | ☐ | | |

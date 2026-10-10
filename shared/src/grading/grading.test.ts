@@ -1,5 +1,6 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import { gradeWith, grade, GRADERS, type Grader } from './index';
+import type { SimKind } from '../types';
 
 type S = { n: number };
 type C = { min: number };
@@ -35,9 +36,9 @@ describe('grade registry', () => {
     expect(grade('mouse', { n: 2 }, [{ min: 2 }]).pass).toBe(true);
   });
   it('throws for sims without a grader', () => {
-    // 'aichat' là sim chưa làm; test này lần lượt đổi từ 'excel' (4A) sang 'ppt'
-    // (5A) mỗi khi sim đó có grader thật.
-    expect(() => grade('aichat', {}, [{}])).toThrow(/aichat/);
+    // Từ 6A mọi SimKind đều có grader; vẫn giữ nhánh phòng thủ cho kind lạ
+    // (ví dụ dữ liệu bài học cũ ghi sai tên sim).
+    expect(() => grade('nope' as SimKind, {}, [{}])).toThrow(/nope/);
   });
   it('không sập khi grader trả về undefined vì gặp loại check lạ', () => {
     // Xảy ra thật: bản `shared` cũ còn trong bộ nhớ đệm của Vite không biết loại
