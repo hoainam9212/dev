@@ -59,5 +59,7 @@ export const TRACKS: Track[] = [
       { id: 'ppt.show', title: 'Trình bày', lessonIds: ['ppt.transition', 'ppt.present'] },
       { id: 'ppt.final', title: 'Dự án: Giới thiệu bản thân', lessonIds: ['ppt.project'] },
     ] },
-  { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [] },
+  { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [
+      { id: 'ai.start', title: 'Làm quen AI', lessonIds: ['ai.intro', 'ai.safety', 'ai.verify'] },
+    ] },
 ];

@@ -453,7 +453,8 @@
     "vi": "Trí tuệ nhân tạo",
     "explain": "Chương trình máy tính có thể trò chuyện, viết, tóm tắt, trả lời câu hỏi. Claude là một trợ lý AI.",
     "lessonIds": [
-      "basics.welcome"
+      "basics.welcome",
+      "ai.intro"
     ]
   },
   {
@@ -981,6 +982,26 @@
     "explain": "Chia một hình tròn thành các múi theo tỉ lệ. Dùng khi muốn thấy mỗi phần chiếm bao nhiêu phần trăm của tổng.",
     "lessonIds": [
       "excel.chart"
+    ]
+  },
+  {
+    "id": "du-lieu-nhay-cam",
+    "term": "Sensitive data",
+    "say": "sen-si-tiv đây-ta",
+    "vi": "Dữ liệu nhạy cảm",
+    "explain": "Thông tin mà lộ ra thì gây hại: mật khẩu, mã OTP, số căn cước, số tài khoản, bảng lương, thông tin khách hàng. Không dán những thứ này vào ô chat AI.",
+    "lessonIds": [
+      "ai.safety"
+    ]
+  },
+  {
+    "id": "ao-giac",
+    "term": "Hallucination",
+    "say": "hơ-lu-xi-nây-sần",
+    "vi": "Ảo giác của AI",
+    "explain": "Khi AI bịa ra thông tin sai nhưng vẫn nói rất tự tin. Vì vậy kết quả quan trọng luôn phải kiểm lại.",
+    "lessonIds": [
+      "ai.verify"
     ]
   }
 ]
