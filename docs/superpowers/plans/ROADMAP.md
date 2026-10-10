@@ -6,7 +6,7 @@ Bốn plan dưới đây làm nốt toàn bộ dự án theo spec `specs/2026-09
 | Thứ tự | Plan | Nhánh | Số task | Ra được gì |
 |---|---|---|---|---|
 | 1 ☑ | `2026-10-10-phase5b-ppt/` | `feat/phase5b-ppt` | 9 | PowerPoint đủ 12 bài: theme, chuyển cảnh, trình chiếu, dự án |
-| 2 | `2026-10-10-phase6a-ai/` | `feat/phase6a-ai` | 9 | Lộ trình "Dùng AI" 10 bài trên trình mô phỏng chat |
+| 2 ☑ | `2026-10-10-phase6a-ai/` | `feat/phase6a-ai` | 9 | Lộ trình "Dùng AI" 10 bài trên trình mô phỏng chat |
 | 3 | `2026-10-10-phase6b-polish/` | `feat/phase6b-polish` | 6 | Huy hiệu, phụ kiện Mochi, Phòng tự do, kiểm tra đầu vào, `Start Tin Hoc.bat`, PWA |
 | 4 | `2026-10-10-backlog/` | `feat/backlog` | 6 | Dọn tồn đọng từ giai đoạn 2–5A: bài vỏ máy tính, trợ năng, bàn phím ảo, lỗi chấm gõ phím |
 

@@ -1,6 +1,6 @@
 # Giai đoạn 6A (lộ trình Dùng AI) – tình trạng
 
-Đang chạy trên nhánh `feat/phase6a-ai` (tạo từ master 7c8029f).
+**XONG** — gộp `master` bằng `--ff-only` 2026-10-10 (9c44be9), đã xoá nhánh `feat/phase6a-ai`; chưa push.
 
 Cập nhật **một dòng** sau mỗi task, trong cùng commit. Dòng đầu tiên chưa ☑ là task kế tiếp.
 
