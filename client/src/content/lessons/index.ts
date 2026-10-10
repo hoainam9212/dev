@@ -24,7 +24,8 @@ import { PPT_SHOW } from './ppt-show';
 import { PPT_PROJECT } from './ppt-project';
 import { AI_START } from './ai-start';
 import { AI_PROMPT } from './ai-prompt';
+import { AI_WORK } from './ai-work';
 
-const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS, ...PPT_DESIGN, ...PPT_SHOW, ...PPT_PROJECT, ...AI_START, ...AI_PROMPT];
+const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS, ...PPT_DESIGN, ...PPT_SHOW, ...PPT_PROJECT, ...AI_START, ...AI_PROMPT, ...AI_WORK];
 
 export const LESSONS: Record<string, Lesson> = Object.fromEntries(ALL.map((l) => [l.id, l]));
