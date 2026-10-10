@@ -42,6 +42,8 @@ describe('SettingsPage', () => {
     expect(toggle).toHaveAttribute('aria-checked', 'false');
     fireEvent.click(toggle);
     await waitFor(async () => expect((await db.profiles.get('p1'))?.unlockAll).toBe(true));
+    // Chờ giao diện đọc lại hồ sơ: bấm lần hai trước khi công tắc kịp bật sẽ lại ghi `true` (chập chờn khi máy bận).
+    await waitFor(() => expect(toggle).toHaveAttribute('aria-checked', 'true'));
     fireEvent.click(toggle);
     await waitFor(async () => expect((await db.profiles.get('p1'))?.unlockAll).toBe(false));
   });

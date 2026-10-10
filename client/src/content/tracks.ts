@@ -57,6 +57,7 @@ export const TRACKS: Track[] = [
       { id: 'ppt.objects', title: 'Chữ, hình và ảnh', lessonIds: ['ppt.textbox', 'ppt.shape', 'ppt.image'] },
       { id: 'ppt.design', title: 'Cho đẹp mắt', lessonIds: ['ppt.layout', 'ppt.format', 'ppt.theme'] },
       { id: 'ppt.show', title: 'Trình bày', lessonIds: ['ppt.transition', 'ppt.present'] },
+      { id: 'ppt.final', title: 'Dự án: Giới thiệu bản thân', lessonIds: ['ppt.project'] },
     ] },
   { id: 'ai', order: 5, title: 'Dùng AI (Claude) trong công việc', emoji: '🤖', color: '#C8B6FF', blurb: 'Viết prompt tốt, dùng AI an toàn và kiểm chứng kết quả.', chapters: [] },
 ];
