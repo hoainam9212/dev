@@ -14,10 +14,12 @@ gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Moc
   khi đang gõ, sắp xếp có dịch địa chỉ như Excel thật, AutoFilter ẩn hàng mà không xoá dữ liệu, và bốn loại biểu đồ
   tự vẽ bằng SVG (cột, thanh ngang, đường, tròn). Ribbon sáu thẻ File/Home/Insert/Formulas/Data/View. **20 bài**, từ
   ô/hàng/cột tới VLOOKUP, lọc, biểu đồ, kết thúc bằng dự án Bảng lương 10 nhân viên chia ba chặng.
-- PowerPoint (giai đoạn 5A): trình soạn slide mô phỏng — cột thumbnail, khung 16:9 co giãn theo cửa sổ, bốn bố cục,
-  hộp chữ / hình khối / ảnh kéo–thả và đổi kích thước bằng 8 tay nắm (ảnh giữ tỉ lệ khi kéo góc), định dạng chữ,
-  hoàn tác, lưu/in; ribbon File/Home/Insert. **6 bài / 2 chương**: slide đầu tiên, rồi chữ, hình và ảnh. Theme,
-  chuyển cảnh, trình chiếu toàn màn hình, các bài còn lại và dự án thuộc giai đoạn 5B, chưa làm.
+- PowerPoint (giai đoạn 5A + 5B): trình soạn slide mô phỏng — cột thumbnail, khung 16:9 co giãn theo cửa sổ, bốn bố
+  cục, hộp chữ / hình khối / ảnh kéo–thả và đổi kích thước bằng 8 tay nắm (ảnh giữ tỉ lệ khi kéo góc), định dạng chữ,
+  hoàn tác, lưu/in; sáu theme (Font Color có Automatic theo màu theme), chuyển cảnh Fade/Push/Zoom kèm Preview và
+  Apply To All, trình chiếu toàn màn hình (F5 / Shift+F5, mũi tên, Esc; tôn trọng giảm chuyển động). Ribbon
+  File/Home/Insert/Design/Transitions/Slide Show. **12 bài / 5 chương**: slide đầu tiên; chữ, hình và ảnh; cho đẹp
+  mắt; trình bày; dự án Slide giới thiệu bản thân chia ba chặng.
 - Ribbon giống Office thật ở cả ba app: thẻ › nhóm › thứ tự › nhãn theo Office **tiếng Anh**, gạch chân thẻ đúng màu
   từng app (Word xanh dương, Excel xanh lá, PowerPoint cam), mọi thẻ cao bằng nhau; giải nghĩa tiếng Việt ở chú thích.
   Cuối mọi bài có nút ribbon là bước **ảnh chụp thật** (`realShot`) có khung đỏ khoanh đúng nút vừa học.

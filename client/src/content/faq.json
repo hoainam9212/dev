@@ -651,5 +651,35 @@
     "q": "Lỡ tay xoá mất thì làm sao?",
     "a": "Bấm **Undo** (Hoàn tác, mũi tên ↶ ở thẻ Home › nhóm Undo) hoặc nhấn {{mod+z}}. Mỗi lần bấm lùi lại một thao tác, nên cứ bấm tới khi thứ bị mất quay về.",
     "keywords": ["undo", "hoan tac", "hoàn tác", "xoa nham", "xoá nhầm", "lo tay", "ctrl z"]
+  },
+  {
+    "id": "ppt.theme",
+    "q": "Đổi màu nền và kiểu chữ cho cả bài trình chiếu thế nào?",
+    "a": "Chọn một **theme**: thẻ **Design** › nhóm **Themes**, bấm một mẫu. Theme đổi cùng lúc màu nền, màu chữ và kiểu chữ của **mọi slide**, không phải tô từng slide.",
+    "keywords": ["theme", "chu de", "chủ đề", "mau nen", "màu nền", "design", "doi mau", "đổi màu", "trang tri", "trang trí"]
+  },
+  {
+    "id": "ppt.theme.invisible",
+    "q": "Đổi sang theme tối thì chữ của tôi biến mất?",
+    "a": "Chữ đó đã được tô màu riêng (ví dụ màu đen) nên giữ nguyên màu, chìm vào nền tối. Bấm chọn khung chữ, rồi thẻ **Home** › nhóm **Font** › nút **Font Color ▾** › **Automatic** (Tự động): chữ đổi theo màu của theme.",
+    "keywords": ["chu bien mat", "chữ biến mất", "chu chim", "chữ chìm", "theme toi", "theme tối", "automatic", "tu dong", "tự động", "khong thay chu", "không thấy chữ"]
+  },
+  {
+    "id": "ppt.applyAll",
+    "q": "Làm sao cho mọi slide cùng một kiểu chuyển cảnh?",
+    "a": "Mở một slide, chọn kiểu ở thẻ **Transitions** › nhóm **Transition to This Slide**, rồi bấm nhóm **Timing** › **Apply To All** (Áp dụng cho tất cả). Slide nào có chuyển cảnh sẽ có dấu ★ nhỏ cạnh số thứ tự.",
+    "keywords": ["chuyen canh", "chuyển cảnh", "transition", "apply to all", "tat ca slide", "tất cả slide", "hieu ung", "hiệu ứng", "fade", "push", "zoom"]
+  },
+  {
+    "id": "ppt.present",
+    "q": "Bắt đầu trình chiếu bằng cách nào?",
+    "a": "Nhấn **F5** để chiếu từ slide đầu, **Shift + F5** để chiếu từ slide đang mở. Hoặc thẻ **Slide Show** › nhóm **Start Slide Show** › **From Beginning**. Mũi tên → hoặc bấm chuột để sang slide sau, ← để lùi.",
+    "keywords": ["trinh chieu", "trình chiếu", "slide show", "f5", "chieu", "chiếu", "thuyet trinh", "thuyết trình", "toan man hinh", "toàn màn hình"]
+  },
+  {
+    "id": "ppt.exitShow",
+    "q": "Đang trình chiếu, thoát ra thế nào?",
+    "a": "Nhấn **Esc** ở bất kỳ slide nào là về màn soạn slide, mở đúng slide đang chiếu. Chiếu tới hết thì có màn đen \"Hết bài trình chiếu\" — bấm thêm một lần là về.",
+    "keywords": ["thoat trinh chieu", "thoát trình chiếu", "esc", "dung chieu", "dừng chiếu", "ket thuc", "kết thúc", "man hinh den", "màn hình đen"]
   }
 ]

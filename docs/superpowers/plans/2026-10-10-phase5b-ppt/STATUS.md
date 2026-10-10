@@ -1,6 +1,7 @@
 # Giai đoạn 5B (PowerPoint: trang trí, chuyển cảnh, trình chiếu) – tình trạng
 
-Chưa bắt đầu. Nền: master b971042 (shared 440 / client 356 test), PowerPoint 6 bài / 2 chương.
+**☑ XONG 9/9 task, 2026-10-10, gộp master.** PowerPoint **12 bài / 5 chương**; shared 483 / client 392 test.
+Nền lúc bắt đầu: master b971042 (shared 440 / client 356), PowerPoint 6 bài / 2 chương.
 
 Cập nhật **một dòng** sau mỗi task, trong cùng commit của task đó. Dòng đầu tiên chưa ☑ là task kế tiếp.
 
@@ -14,13 +15,16 @@ Cập nhật **một dòng** sau mỗi task, trong cùng commit của task đó.
 | 6 chương 3 Cho đẹp mắt | ☑ | (commit này) | shared 483 / client 392. 3 bài + glossary `theme`. **Ruling:** `ppt.format` định dạng **khung nội dung** (cỡ 32, Cam Mochi, căn giữa) chứ không phải tiêu đề như plan — tiêu đề vốn đã căn giữa nên dạy "Center" trên đó là vô nghĩa. **Lỗi bắt được khi học thật:** hàm dựng sẵn gõ vào slide 2 khi slide 1 đang mở ⇒ reducer bỏ qua im lặng, tiêu đề «Mèo và chó» trống — content test không kêu vì check không đọc tiêu đề. Đã sửa (`gotoSlide` trước) và thêm **chốt chặn trong `pptPractice`: bước `setup` nào không đổi state thì ném lỗi** (mọi bài cũ đều qua). Lời chấm `elFormat` nay gọi tên màu ("Cam Mochi") thay vì mã hex. **Sửa Task 5:** `SHOTS.ppt` trong `real-shots.mjs` thiếu ảnh mới ⇒ `realShots.test` đỏ; dòng ảnh 7–8 trong `docs/real-shots-ppt.md` chuyển sang Task 7–8 (test đòi bài trong cột "Dùng cho bài" phải có thật). Học bằng chuột trên Chrome (`t6-learn.cjs`): cả 3 bài đạt, gõ "MÈO" viết hoa vẫn đạt, ảnh thật tải đúng số khung |
 | 7 chương 4 Trình bày | ☑ | (commit này) | 2 bài + glossary `chuyen-canh`, `trinh-chieu`; dòng ảnh 7–8 trở lại `docs/real-shots-ppt.md` + `SHOTS`. `pptTypeInto`/`pptChain` chuyển vào `lessonKit.ts` (dùng chung Task 6–8). Lời bài nói rõ Zoom nằm trong More ▾ trên PowerPoint thật. Học thật trên Chrome (`t7-learn.cjs`): Fade → 1 ★ đạt; bước Apply To All mở ra chưa đạt, bấm xong 3 ★ đạt; `ppt.present` bằng F5 thật: Esc giữa chừng ⇒ "❌ Hãy trình chiếu từ slide đầu tới slide cuối rồi nhấn Esc để thoát.", F5 + → ×4 ⇒ đạt |
 | 8 dự án Giới thiệu bản thân | ☑ | (commit này) | PowerPoint đủ **12 bài / 5 chương**; shared 483 / client 392. Chặng 1 thêm check `slideTitle 3 = Mục tiêu` (plan thiếu). Đề chặng 2–3 nói rõ "Mochi đã dựng sẵn slide mẫu" — học thật thấy chặng 3 hiện tên mẫu "Mochi" thay tên người học gõ ở chặng 1, dễ hoang mang. Học trọn bằng chuột trên Chrome (`t8-project.cjs`): tên "Lê Hoài Nam", ảnh mẫu + Hình tròn, theme Hoa, Push + Apply To All, F5 + → ×4 ⇒ **3 sao, +30 XP**, 0 gợi ý, 0 lần sai. **Sửa test chập chờn có từ trước:** `SettingsPage` "turns the unlock-all mode on and off" bấm lần hai trước khi công tắc kịp bật (đỏ 1 lần khi chạy cả bộ) ⇒ chờ `aria-checked="true"` trước |
-| 9 Hỏi Mèo, README, build, gộp | ☐ | | |
+| 9 Hỏi Mèo, README, build, gộp | ☑ | (commit này) | 5 câu Hỏi Mèo (theme, chữ biến mất trên theme tối → Automatic, Apply To All, F5, Esc). README mục PowerPoint. `npm test` shared 483 / client 392, typecheck, build xanh. **Bản build** (cổng 4174, `t9-build.cjs`, `t9-profile.cjs`): học `ppt.present` chỉ bằng bấm thật tới **3 sao**, F5 vào fullscreen thật; ngắt mạng tải lại `ppt.theme` vẫn mở, 3 ảnh mới trả 200 từ service worker; thêm hồ sơ B rồi quay lại A vẫn "Trình chiếu, 3 sao" (việc treo từ 5A — xong); thẻ Slide Show ở 390px không tràn |
 
 ## Việc còn treo (ai phát hiện thì ghi vào đây, đừng sửa lạc task)
 
 - Từ 5A: nút "Kiểm tra" ở màn hẹp đè mép dưới khung slide; hình chữ nhật mới chèn là hình vuông 160×160
   (cả hai xếp vào plan `2026-10-10-backlog/` Task 6).
 - App theo Office 365 (có nhóm Undo ở Home), ảnh thật là Office 2019 (Undo trên thanh tiêu đề) — để nguyên.
+- Dự án `ppt.project`: chặng sau dựng lại bản **mẫu** (tên "Mochi"), không nối bản của người học — player chưa
+  truyền state giữa các bước. Đề đã nói rõ; nếu muốn nối thật thì cần tính năng mới của LessonPlayer.
+- Ảnh thật thẻ Design hiện chữ mẫu "亜あ" (máy chụp đặt ngôn ngữ soạn thảo tiếng Nhật).
 
 ## Cố ý KHÔNG làm
 
