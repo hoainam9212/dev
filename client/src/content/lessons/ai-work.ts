@@ -1,5 +1,5 @@
 import type { aichatSim, Lesson } from '@office-neko/shared';
-import { aiPractice } from '../lessonKit';
+import { aiPractice, excelPractice, pptChain, pptPractice, pptTypeInto } from '../lessonKit';
 
 const typeAndSend = (text: string) => (): aichatSim.AiChatAction[] => [{ type: 'setDraft', text }, { type: 'send' }];
 const pickAll = (indexes: number[]) => (): aichatSim.AiChatAction[] => indexes.map((index) => ({ type: 'pick', index }));
@@ -190,6 +190,157 @@ export const AI_WORK: Lesson[] = [
         kind: 'explain',
         mood: 'happy',
         body: 'Bắt đúng rồi! Sếp đọc «tăng 15%» thì sẽ quyết định khác hẳn. Tóm tắt nhờ AI cho nhanh, nhưng **con số, tên người, ngày tháng** thì luôn so lại với bản gốc.',
+      },
+    ],
+  },
+  {
+    id: 'ai.formula',
+    trackId: 'ai',
+    chapterId: 'ai.work',
+    title: 'Nhờ AI viết công thức Excel',
+    minutes: 9,
+    steps: [
+      {
+        kind: 'explain',
+        mood: 'happy',
+        body: 'Quên tên hàm, không nhớ cú pháp? Hỏi AI! Nhưng AI **không nhìn thấy bảng tính của bạn**. Bạn phải kể: cột nào chứa gì, dữ liệu từ hàng mấy đến hàng mấy, muốn kết quả đặt ở ô nào.',
+      },
+      {
+        kind: 'explain',
+        body: 'So sánh hai cách hỏi:\n\n' +
+          '- «Viết công thức tính tổng» — AI phải đoán vùng ô, dễ đoán sai.\n' +
+          '- «Bảng của tôi có cột B là Doanh số, từ B2 đến B8. Viết công thức tính tổng, đặt ở ô B9» — AI trả lời trúng ngay.',
+      },
+      aiPractice({
+        greeting: 'Chào bạn! Mình là trợ lý AI mô phỏng. Bạn cần công thức Excel gì?',
+        replies: {
+          weak: 'Bạn thử công thức **=SUM(B2:B7)** nhé. Có thể bạn cần chỉnh lại vùng ô cho khớp với bảng của mình.',
+          ok: 'Bạn gõ vào ô **B9**: **=SUM(B2:B8)**\n\nHàm SUM cộng tất cả các số từ B2 đến B8.',
+          good:
+            'Bạn gõ vào ô **B9**: **=SUM(B2:B8)** rồi bấm Enter.\n\n' +
+            'Hàm SUM cộng tất cả các số từ B2 đến B8. Sau này thêm hàng mới, nhớ sửa lại vùng ô cho đủ.',
+        },
+        task: 'Bảng có cột B là **Doanh số**, từ ô **B2** đến **B8**. Nhờ AI viết công thức tính **tổng doanh số** — nói rõ cột và hàng.',
+        checks: [{ kind: 'promptCriteria', required: ['task', 'context'] }],
+        spotlight: { helpId: 'ai.composer' },
+        hint: 'Kể cho AI về bảng của bạn (Bối cảnh), rồi nói việc cần làm bằng động từ «viết» (Nhiệm vụ).',
+        steps: [
+          'Vai trò: «Bạn là chuyên gia Excel.»',
+          'Bối cảnh: «Tôi đang làm bảng doanh số, cột B từ B2 đến B8.»',
+          'Nhiệm vụ: «Viết công thức tính tổng doanh số, đặt ở ô B9.» Rồi bấm Gửi.',
+        ],
+        solve: typeAndSend(
+          'Bạn là chuyên gia Excel. Tôi đang làm bảng doanh số, cột B từ B2 đến B8. Viết công thức tính tổng doanh số, đặt ở ô B9.',
+        ),
+      }),
+      {
+        kind: 'explain',
+        mood: 'surprised',
+        body: 'AI đưa công thức rồi. Đừng tin ngay — **chép sang Excel thử**. Bảng có doanh số từ B2 đến B8, nên công thức đúng phải cộng đủ 7 ô đó.',
+      },
+      excelPractice({
+        cells: {
+          A1: 'Ngày', B1: 'Doanh số',
+          A2: 'Thứ 2', B2: '300', A3: 'Thứ 3', B3: '350', A4: 'Thứ 4', B4: '280', A5: 'Thứ 5', B5: '400',
+          A6: 'Thứ 6', B6: '320', A7: 'Thứ 7', B7: '450', A8: 'Chủ nhật', B8: '350',
+          A9: 'Tổng',
+        },
+        task: 'Gõ vào ô **B9** công thức AI gợi ý: **=SUM(B2:B8)**. Gõ công thức, đừng tự cộng rồi gõ con số.',
+        checks: [
+          { kind: 'cellFormula', cell: 'B9', fn: 'SUM', range: 'B2:B8' },
+          { kind: 'cellValue', cell: 'B9', value: 2450 },
+        ],
+        spotlight: { helpId: 'excel.formulaBar' },
+        hint: 'Bấm ô B9, gõ đúng như AI gợi ý, bắt đầu bằng dấu =.',
+        steps: ['Bấm vào ô B9 (cạnh chữ «Tổng»).', 'Gõ =SUM(B2:B8)', 'Bấm Enter. Ô hiện 2450.'],
+        solve: () => [{ type: 'setCell', cell: 'B9', raw: '=SUM(B2:B8)' }],
+      }),
+      {
+        kind: 'quiz',
+        question: 'Bảng có doanh số từ B2 đến B8, nhưng AI gợi ý **=SUM(B2:B7)**. Bạn làm gì?',
+        choices: ['Dùng luôn, AI tính giỏi hơn người', 'Sửa thành =SUM(B2:B8), vì công thức bỏ sót hàng 8', 'Xoá hàng 8 cho khớp công thức'],
+        answer: 1,
+        why: 'Công thức thiếu một hàng vẫn ra một con số trông rất hợp lý — nhưng sai. Luôn soát vùng ô AI đưa với bảng thật.',
+      },
+      {
+        kind: 'explain',
+        mood: 'happy',
+        body: 'Công thức AI gợi ý mà ra kết quả lạ? Gửi tiếp cho AI: «Công thức báo lỗi #NAME?, sửa giúp tôi» — AI sẽ sửa cùng bạn.',
+      },
+    ],
+  },
+  {
+    id: 'ai.outline',
+    trackId: 'ai',
+    chapterId: 'ai.work',
+    title: 'Nhờ AI lên dàn ý slide',
+    minutes: 9,
+    steps: [
+      {
+        kind: 'explain',
+        mood: 'happy',
+        body: 'Ngồi trước slide trắng không biết bắt đầu từ đâu? Nhờ AI lên **dàn ý** trước: mấy slide, mỗi slide tiêu đề gì, nói ý gì. Rồi **bạn** tự dựng slide trong PowerPoint.',
+      },
+      {
+        kind: 'explain',
+        body: 'Prompt xin dàn ý nên nói rõ **số slide** và chủ đề. Thêm người xem là ai, giọng ra sao thì dàn ý càng sát ý bạn.',
+      },
+      aiPractice({
+        greeting: 'Chào bạn! Mình là trợ lý AI mô phỏng. Bạn định làm bài trình chiếu về gì?',
+        replies: {
+          weak:
+            'Bài trình chiếu về bánh mochi có thể nói về nguồn gốc, cách làm, các vị, giá bán, cách bảo quản, ' +
+            'chương trình khuyến mãi và cách đặt hàng.',
+          ok: '1. Bánh mochi là gì\n2. Các vị bánh\n3. Đặt hàng',
+          good:
+            '**Slide 1 – Bánh mochi là gì:** bánh nếp mềm của Nhật, nhân ngọt, làm mới mỗi ngày.\n' +
+            '**Slide 2 – Các vị bánh:** trà xanh, đậu đỏ, dâu tây, xoài.\n' +
+            '**Slide 3 – Đặt hàng:** số điện thoại, địa chỉ cửa hàng, giờ mở cửa.',
+        },
+        task: 'Nhờ AI lên **dàn ý 3 slide** giới thiệu sản phẩm bánh mochi của cửa hàng.',
+        checks: [{ kind: 'promptCriteria', required: ['task', 'format'] }],
+        spotlight: { helpId: 'ai.composer' },
+        hint: 'Nói việc cần làm («lên dàn ý») và định dạng («3 slide»). Thêm vai trò để dàn ý gọn hơn.',
+        steps: [
+          'Vai trò: «Bạn là nhân viên marketing.»',
+          'Nhiệm vụ và định dạng: «Lên dàn ý 3 slide giới thiệu bánh mochi của cửa hàng.»',
+          'Bấm Gửi.',
+        ],
+        solve: typeAndSend('Bạn là nhân viên marketing. Lên dàn ý 3 slide giới thiệu bánh mochi của cửa hàng, mỗi slide một tiêu đề.'),
+      }),
+      {
+        kind: 'explain',
+        body: 'Có dàn ý rồi, giờ sang PowerPoint. AI chỉ gợi ý — bạn là người dựng slide và quyết định giữ, bỏ hay sửa ý nào.',
+      },
+      pptPractice({
+        task: 'Dựng 3 slide theo dàn ý AI vừa đưa: tiêu đề slide 1 «**Bánh mochi là gì**», slide 2 «**Các vị bánh**», slide 3 «**Đặt hàng**».',
+        checks: [
+          { kind: 'slideCount', count: 3 },
+          { kind: 'slideTitle', slide: 1, text: 'Bánh mochi là gì' },
+          { kind: 'slideTitle', slide: 2, text: 'Các vị bánh' },
+          { kind: 'slideTitle', slide: 3, text: 'Đặt hàng' },
+        ],
+        spotlight: { helpId: 'ppt.newSlide' },
+        hint: 'Gõ tiêu đề slide 1 trước, rồi bấm New Slide để thêm slide mới và gõ tiêu đề tiếp.',
+        steps: [
+          'Nháy đúp vào khung «Bấm để nhập tiêu đề» của slide 1, gõ: Bánh mochi là gì — bấm Enter.',
+          'Thẻ Home › nhóm Slides › nút New Slide (Slide mới). Nháy đúp khung tiêu đề, gõ: Các vị bánh.',
+          'Thêm một slide nữa, gõ tiêu đề: Đặt hàng.',
+        ],
+        solve: (s0) =>
+          pptChain(
+            s0,
+            (s) => pptTypeInto(s, 0, 'title', 'Bánh mochi là gì'),
+            () => [{ type: 'addSlide' }],
+            (s) => pptTypeInto(s, 1, 'title', 'Các vị bánh'),
+            () => [{ type: 'addSlide' }],
+            (s) => pptTypeInto(s, 2, 'title', 'Đặt hàng'),
+          ),
+      }),
+      {
+        kind: 'explain',
+        mood: 'happy',
+        body: 'Ba slide xong khung! Giờ bạn có thể nhờ AI viết tiếp nội dung cho từng slide — nhớ đọc lại, sửa cho đúng giọng cửa hàng mình. Chương sau là **dự án cuối**: tự viết một prompt hoàn chỉnh.',
       },
     ],
   },
