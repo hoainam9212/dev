@@ -5,19 +5,22 @@ import { Group, RibbonPanel, RibbonTabs, Row, SoonTab, ToolButton } from '../../
 import { RibbonHome } from './RibbonHome';
 import { RibbonInsert } from './RibbonInsert';
 import { RibbonDesign } from './RibbonDesign';
+import { RibbonTransitions } from './RibbonTransitions';
 
 export { PptDialogs } from './dialogs';
 
 interface Props {
   state: pptSim.PptState;
   dispatch: Dispatch<pptSim.PptAction>;
+  /** Nút Preview của thẻ Transitions: phát thử hiệu ứng trên khung soạn. */
+  onPreview?: () => void;
 }
 
 const TABS = ['File', 'Home', 'Insert', 'Design', 'Transitions', 'Slide Show'] as const;
 type Tab = (typeof TABS)[number];
 
 /** Tab đang mở là trạng thái giao diện nên nằm ngoài reducer, giống ribbon Word và Excel. */
-export function Ribbon({ state, dispatch }: Props) {
+export function Ribbon({ state, dispatch, onPreview }: Props) {
   const [tab, setTab] = useState<Tab>('Home');
 
   return (
@@ -47,7 +50,7 @@ export function Ribbon({ state, dispatch }: Props) {
       )}
       {tab === 'Insert' && <RibbonInsert state={state} dispatch={dispatch} />}
       {tab === 'Design' && <RibbonDesign state={state} dispatch={dispatch} />}
-      {tab === 'Transitions' && <SoonTab what="Hiệu ứng chuyển slide" />}
+      {tab === 'Transitions' && <RibbonTransitions state={state} dispatch={dispatch} onPreview={onPreview ?? (() => {})} />}
       {tab === 'Slide Show' && <SoonTab what="Trình chiếu toàn màn hình" />}
       </RibbonPanel>
     </div>

@@ -103,6 +103,13 @@ describe('SlideList', () => {
     expect(screen.getAllByText('Bấm để nhập tiêu đề')).toHaveLength(1);
   });
 
+  it('slide có chuyển cảnh mang dấu ★, slide không có thì không', () => {
+    const s = pptSim.reducePpt(twoSlides, { type: 'setTransition', transition: 'fade' });
+    render(<SlideList state={s} dispatch={vi.fn()} />);
+    expect(screen.getAllByLabelText('Có hiệu ứng chuyển cảnh')).toHaveLength(1);
+    expect(screen.getByRole('button', { name: 'Slide 2' })).toContainElement(screen.getByLabelText('Có hiệu ứng chuyển cảnh'));
+  });
+
   it('thumbnail vẽ theo theme của bài', () => {
     render(<SlideList state={pptSim.reducePpt(twoSlides, { type: 'setTheme', theme: 'hoa' })} dispatch={vi.fn()} />);
     const thumbs = [...document.querySelectorAll('.ppt-thumb-canvas')];

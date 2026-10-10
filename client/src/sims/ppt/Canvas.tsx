@@ -2,6 +2,7 @@ import { useRef, type Dispatch, type PointerEvent as ReactPointerEvent } from 'r
 import { pptSim } from '@office-neko/shared';
 import { ElementView } from './ElementView';
 import { useDrag } from './useDrag';
+import { transitionClass } from './transitions';
 
 /**
  * Khung 16:9. State luôn nói bằng px của khổ 960x540; khung này co giãn bằng
@@ -11,9 +12,15 @@ import { useDrag } from './useDrag';
 export function Canvas({
   state,
   dispatch,
+  preview,
 }: {
   state: pptSim.PptState;
   dispatch: Dispatch<pptSim.PptAction>;
+  /**
+   * Lần bấm Preview gần nhất và slide được xem thử. Chỉ slide đó chạy hiệu ứng — nếu không, chuyển
+   * sang một slide khác có chuyển cảnh cũng làm nó nhảy lên như đang trình chiếu.
+   */
+  preview?: { n: number; slideId: string };
 }) {
   const canvas = useRef<HTMLDivElement>(null);
   const mode = useRef<pptSim.Handle | 'move' | null>(null);
@@ -37,6 +44,7 @@ export function Canvas({
   const slide = state.slides[state.active];
   if (!slide) return null;
   const theme = pptSim.themeOf(state.theme);
+  const previewing = preview !== undefined && preview.slideId === slide.id;
   return (
     <div className="ppt-stage" data-help-id="ppt.canvas">
       <div
@@ -49,7 +57,10 @@ export function Canvas({
         tabIndex={0}
         style={{ width: pptSim.SLIDE_W, height: pptSim.SLIDE_H, background: theme.bg }}
         onPointerDown={(e) => {
-          if (e.target === e.currentTarget) dispatch({ type: 'selectEl', id: null });
+          // Bấm vào chỗ trống: khung, hoặc lớp vẽ phủ kín khung (CSS cho lớp này không nhận chuột,
+          // nhưng đừng dựa hẳn vào CSS — thiếu nó là không bỏ chọn được nữa).
+          const t = e.target as HTMLElement;
+          if (t === e.currentTarget || t.classList.contains('ppt-slide-layer')) dispatch({ type: 'selectEl', id: null });
         }}
         onPointerMove={drag.onPointerMove}
         onPointerUp={(e) => {
@@ -75,6 +86,7 @@ export function Canvas({
           e.preventDefault();
         }}
       >
+        <div key={previewing ? preview.n : 0} className={`ppt-slide-layer ${previewing ? transitionClass(slide.transition) : ''}`}>
         {slide.els.map((el) => (
           <ElementView
             key={el.id}
@@ -89,6 +101,7 @@ export function Canvas({
             onCancel={() => dispatch({ type: 'cancelEdit' })}
           />
         ))}
+        </div>
       </div>
     </div>
   );

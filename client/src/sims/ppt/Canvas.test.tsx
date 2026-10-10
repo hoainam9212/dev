@@ -91,6 +91,34 @@ describe('Canvas', () => {
   });
 });
 
+describe('Canvas – xem thử chuyển cảnh', () => {
+  const faded = pptSim.reducePpt(base, { type: 'setTransition', transition: 'fade' });
+  const slideId = faded.slides[0]!.id;
+  const layer = () => document.querySelector('.ppt-slide-layer')!;
+
+  it('chưa bấm Preview thì không chạy hiệu ứng', () => {
+    setup(faded);
+    expect(layer().className).not.toContain('ppt-tr-');
+  });
+
+  it('Preview của đúng slide này thì gắn lớp hiệu ứng', () => {
+    const dispatch = vi.fn();
+    render(<Canvas state={faded} dispatch={dispatch} preview={{ n: 1, slideId }} />);
+    expect(layer()).toHaveClass('ppt-tr-fade');
+  });
+
+  it('Preview của slide khác thì không chạy trên slide này', () => {
+    render(<Canvas state={faded} dispatch={vi.fn()} preview={{ n: 1, slideId: 'khác' }} />);
+    expect(layer().className).not.toContain('ppt-tr-');
+  });
+
+  it('bấm vào chỗ trống của slide vẫn bỏ chọn dù có lớp vẽ', async () => {
+    const { dispatch } = setup(faded);
+    await userEvent.pointer({ keys: '[MouseLeft]', target: layer() });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'selectEl', id: null });
+  });
+});
+
 describe('Canvas – theme', () => {
   /** jsdom đọc lại `style.color` dạng rgb(...). */
   const rgb = (hex: string) =>

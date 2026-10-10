@@ -129,6 +129,17 @@ body {
     overflow: hidden;
     user-select: none;
   }
+  /* Lớp vẽ các đối tượng của slide, phủ kín khung. Hiệu ứng chuyển cảnh chạy trên lớp này chứ không
+     trên `.ppt-canvas` (khung đã dùng `transform: scale`). Không nhận chuột để bấm chỗ trống vẫn bỏ chọn. */
+  .ppt-slide-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .ppt-slide-layer > * { pointer-events: auto; }
+  .ppt-tr-fade { animation: ppt-tr-fade 300ms ease-out; }
+  .ppt-tr-push { animation: ppt-tr-push 300ms ease-out; }
+  .ppt-tr-zoom { animation: ppt-tr-zoom 300ms ease-out; }
   .ppt-el {
     display: flex;
     align-items: center;
@@ -253,6 +264,10 @@ body {
     color: var(--color-muted, #6b7280);
   }
 }
+
+@keyframes ppt-tr-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ppt-tr-push { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes ppt-tr-zoom { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }

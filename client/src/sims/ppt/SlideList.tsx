@@ -52,7 +52,15 @@ export function SlideList({ state, dispatch }: Props) {
             }
           }}
         >
-          <span className="ppt-thumb-no">{i + 1}</span>
+          <span className="ppt-thumb-no flex flex-col items-center">
+            {i + 1}
+            {/* Như PowerPoint: ngôi sao nhỏ dưới số thứ tự báo slide có chuyển cảnh. */}
+            {slide.transition ? (
+              <span role="img" aria-label="Có hiệu ứng chuyển cảnh" className="text-[0.7rem] leading-none">
+                ★
+              </span>
+            ) : null}
+          </span>
           <span className="ppt-thumb-stage" aria-hidden="true">
             <span
               className="ppt-thumb-canvas"
