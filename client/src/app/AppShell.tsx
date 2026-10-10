@@ -1,7 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import { levelFromXp } from '@office-neko/shared';
 import { useProfile } from '../db/profile';
-import { avatarSkin } from '../profiles/avatars';
+import { avatarSkin, wearable } from '../profiles/avatars';
 import { useStreak } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
 
@@ -22,7 +22,7 @@ export function AppShell() {
           title="Đổi người học"
           className="ml-auto flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-bold shadow"
         >
-          <Mochi skin={avatarSkin(profile.avatar)} size={26} mood="happy" animated={false} label={`Ảnh của ${profile.name}`} />
+          <Mochi skin={avatarSkin(profile.avatar)} accessory={wearable(profile)} size={26} mood="happy" animated={false} label={`Ảnh của ${profile.name}`} />
           <span className="hidden sm:inline">{profile.name}</span>
         </Link>
         <div className="flex items-center gap-2 text-sm font-bold">

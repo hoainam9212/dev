@@ -1,4 +1,4 @@
-import type { MochiMood } from '@office-neko/shared';
+import type { AccessoryId, MochiMood } from '@office-neko/shared';
 import './mochi.css';
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
   skin?: { fur: string; patch: string };
   /** Tên đọc cho trình đọc màn hình; mặc định "Mochi <tâm trạng>". */
   label?: string;
+  /** Phụ kiện đang đeo (chỉ ảnh của hồ sơ). */
+  accessory?: AccessoryId | null;
 }
 
 const FUR = '#FFFDF8';
@@ -75,8 +77,60 @@ function Mouth({ mood }: { mood: MochiMood }) {
   }
 }
 
+/** Khăn quàng vẽ ngay trên vòng cổ, dưới bàn tay giơ lên; các phụ kiện khác vẽ trên cùng. */
+function Scarf() {
+  return (
+    <g data-accessory="scarf">
+      <path d="M28 99 q32 18 64 0" stroke="#FF8FA3" strokeWidth="11" fill="none" strokeLinecap="round" />
+      <path d="M28 99 q32 18 64 0" stroke="#FFFFFF" strokeWidth="2" strokeDasharray="4 7" fill="none" opacity="0.8" />
+      <path d="M42 106 l-6 20" stroke="#FF8FA3" strokeWidth="10" strokeLinecap="round" />
+      <path d="M31 128 l3 4 M35 129 l2 4 M39 129 l1 4" stroke="#E0607F" strokeWidth="1.8" strokeLinecap="round" />
+    </g>
+  );
+}
+
+function TopAccessory({ id }: { id: Exclude<AccessoryId, 'scarf'> }) {
+  switch (id) {
+    case 'bow':
+      return (
+        <g data-accessory="bow" transform="translate(38 36) rotate(-18)">
+          <path d="M0 0 L-14 -10 L-14 10 Z" fill="#FF8FB1" stroke="#E0607F" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M0 0 L14 -10 L14 10 Z" fill="#FF8FB1" stroke="#E0607F" strokeWidth="1.5" strokeLinejoin="round" />
+          <circle r="4.5" fill="#FF6F96" stroke="#E0607F" strokeWidth="1.2" />
+        </g>
+      );
+    case 'glasses':
+      return (
+        <g data-accessory="glasses" stroke={INK} strokeWidth="2.8" fill="#A0D8FF" fillOpacity="0.18">
+          <circle cx="46" cy="70" r="11" />
+          <circle cx="74" cy="70" r="11" />
+          <path d="M57 69 q3 -3 6 0" fill="none" />
+          <path d="M35 67 l-10 -3 M85 67 l10 -3" fill="none" strokeLinecap="round" />
+        </g>
+      );
+    case 'hat':
+      return (
+        <g data-accessory="hat">
+          <path d="M26 48 Q24 10 60 10 Q96 10 94 48 Z" fill="#C8B6FF" stroke="#9A82E8" strokeWidth="1.5" />
+          <path d="M44 16 v28 M60 12 v32 M76 16 v28" stroke="#B29DF7" strokeWidth="2.5" strokeLinecap="round" />
+          <rect x="22" y="42" width="76" height="12" rx="6" fill="#A58BF0" />
+          <circle cx="60" cy="9" r="8" fill="#FFF9F2" stroke="#E2D8F7" strokeWidth="1.5" />
+        </g>
+      );
+    case 'crown':
+      return (
+        <g data-accessory="crown" strokeLinejoin="round">
+          <path d="M40 40 L38 18 L50 28 L60 12 L70 28 L82 18 L80 40 Z" fill="#FFD45A" stroke="#D9A020" strokeWidth="2" />
+          <circle cx="60" cy="31" r="3.5" fill="#FF7A9A" />
+          <circle cx="48" cy="34" r="2.5" fill="#8FE3CF" />
+          <circle cx="72" cy="34" r="2.5" fill="#A0D8FF" />
+        </g>
+      );
+  }
+}
+
 /** Mèo Mochi: lông trắng kem, tai và má vá cam, kẹp tóc dango 3 màu. */
-export function Mochi({ mood = 'neutral', size = 160, animated = true, className = '', skin, label }: Props) {
+export function Mochi({ mood = 'neutral', size = 160, animated = true, className = '', skin, label, accessory }: Props) {
   const fur = skin?.fur ?? FUR;
   const patch = skin?.patch ?? PATCH;
   return (
@@ -117,6 +171,7 @@ export function Mochi({ mood = 'neutral', size = 160, animated = true, className
       <Mouth mood={mood} />
       <path d="M30 100 q30 16 60 0" stroke="#8FE3CF" strokeWidth="6" fill="none" strokeLinecap="round" />
       <circle cx="60" cy="109" r="5.5" fill="#FFE08A" stroke="#E0B84A" strokeWidth="1.5" />
+      {accessory === 'scarf' && <Scarf />}
       {/* tay phải giơ lên cạnh chuông, lộ đệm thịt hồng */}
       <path d="M82 106 Q93 124 77 110" stroke={LINE} strokeWidth="13" fill="none" strokeLinecap="round" />
       <path d="M82 106 Q93 124 77 110" stroke={fur} strokeWidth="9.5" fill="none" strokeLinecap="round" />
@@ -133,6 +188,7 @@ export function Mochi({ mood = 'neutral', size = 160, animated = true, className
         <circle cy="0" r="4.5" fill="#FFFFFF" stroke="#EDE3D8" strokeWidth="1" />
         <circle cy="9" r="4.5" fill="#8FE3CF" />
       </g>
+      {accessory && accessory !== 'scarf' && <TopAccessory id={accessory} />}
     </svg>
   );
 }

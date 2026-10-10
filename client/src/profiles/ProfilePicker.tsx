@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { levelFromXp } from '@office-neko/shared';
 import { db } from '../db/db';
 import { Mochi } from '../components/Mochi';
-import { avatarSkin } from './avatars';
+import { avatarSkin, wearable } from './avatars';
 import { clearCurrentProfileId, setCurrentProfileId } from './current';
 import { listProfiles, touchProfile } from './manage';
 
@@ -50,7 +50,7 @@ export function ProfilePicker() {
               onClick={() => void choose(p.id)}
               className="card flex flex-col items-center gap-2 p-5 transition hover:ring-4 hover:ring-peach"
             >
-              <Mochi skin={avatarSkin(p.avatar)} size={96} mood="happy" animated={false} label={`Ảnh của ${p.name}`} />
+              <Mochi skin={avatarSkin(p.avatar)} accessory={wearable(p)} size={96} mood="happy" animated={false} label={`Ảnh của ${p.name}`} />
               <span className="text-xl font-extrabold">{p.name}</span>
               <span className="text-muted text-sm">
                 Cấp {lvl.level} · {data.done.get(p.id) ?? 0} bài đã xong

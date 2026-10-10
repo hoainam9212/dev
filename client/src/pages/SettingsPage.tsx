@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import type { OS } from '@office-neko/shared';
+import { ACCESSORIES, levelFromXp, type OS } from '@office-neko/shared';
 import { updateProfile, useProfile } from '../db/profile';
 import type { Profile } from '../db/db';
 import {
@@ -9,7 +9,7 @@ import {
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
 import { Mochi } from '../components/Mochi';
-import { AVATARS, avatarSkin } from '../profiles/avatars';
+import { AVATARS, avatarSkin, wearable } from '../profiles/avatars';
 import { ProfileList } from '../profiles/ProfileList';
 
 const LICENSES: [string, string][] = [
@@ -41,6 +41,8 @@ export function SettingsPage() {
   }, [profile?.name]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!profile) return null;
+  const level = levelFromXp(profile.xp).level;
+  const worn = wearable(profile);
 
   const onFile = async (file: File | undefined) => {
     setError(null);
@@ -102,9 +104,32 @@ export function SettingsPage() {
                 onClick={() => updateProfile(profile.id, { avatar: a.id })}
                 className={`rounded-2xl bg-white p-1 transition ${profile.avatar === a.id ? 'ring-4 ring-rose' : 'hover:ring-2 hover:ring-peach'}`}
               >
-                <Mochi skin={avatarSkin(a.id)} size={48} mood="happy" animated={false} label={a.label} />
+                <Mochi skin={avatarSkin(a.id)} accessory={worn} size={48} mood="happy" animated={false} label={a.label} />
               </button>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Phụ kiện cho Mochi">
+        <p className="text-muted">Lên cấp để mở thêm phụ kiện. Bạn đang ở cấp {level}.</p>
+        <div className="flex flex-wrap items-center gap-4">
+          <Mochi skin={avatarSkin(profile.avatar)} accessory={worn} size={64} mood="happy" animated={false} label="Xem trước Mochi" />
+          <div className="flex flex-1 flex-wrap gap-2">
+            <button type="button" aria-pressed={worn === null} onClick={() => updateProfile(profile.id, { accessory: null })}
+              className={`rounded-full px-3 py-1.5 font-bold ${worn === null ? 'bg-rose text-white' : 'bg-white shadow'}`}>
+              Không đeo
+            </button>
+            {ACCESSORIES.map((a) => {
+              const open = a.level <= level;
+              return (
+                <button key={a.id} type="button" disabled={!open} aria-pressed={worn === a.id}
+                  onClick={() => updateProfile(profile.id, { accessory: a.id })}
+                  className={`rounded-full px-3 py-1.5 font-bold ${worn === a.id ? 'bg-rose text-white' : 'bg-white shadow'} disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none`}>
+                  {a.name}{!open && <span className="ml-1 text-xs font-semibold">🔒 Cấp {a.level}</span>}
+                </button>
+              );
+            })}
           </div>
         </div>
       </Section>

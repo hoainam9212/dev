@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { LessonProgress, OS, SimKind } from '@office-neko/shared';
+import type { AccessoryId, LessonProgress, OS, SimKind } from '@office-neko/shared';
 
 export type AvatarId = 'cam' | 'hong' | 'xanh' | 'tim' | 'vang' | 'mint';
 
@@ -14,6 +14,8 @@ export interface Profile {
   reducedMotion: boolean;
   /** Chế độ mở khoá toàn bộ bài học (dành cho người hướng dẫn). Hồ sơ cũ không có trường này. */
   unlockAll?: boolean;
+  /** Phụ kiện Mochi đang đeo; chỉ vẽ khi cấp đủ (xem `wearable`). Hồ sơ cũ không có trường này. */
+  accessory?: AccessoryId | null;
   xp: number;
   createdAt: string;
   lastActiveAt: string;

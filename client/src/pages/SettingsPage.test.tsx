@@ -36,6 +36,27 @@ describe('SettingsPage', () => {
     await waitFor(() => expect(document.documentElement.dataset.font).toBe('xl'));
   });
 
+  it('locks accessories above the current level', async () => {
+    await db.profiles.update('p1', { xp: 200 }); // cấp 3
+    renderPage();
+    const hat = await screen.findByRole('button', { name: /Mũ len/ });
+    expect(hat).toBeDisabled();
+    expect(hat).toHaveTextContent('Cấp 6');
+    expect(screen.getByRole('button', { name: /Kính tròn/ })).toBeEnabled();
+  });
+
+  it('wears and removes an accessory', async () => {
+    await db.profiles.update('p1', { xp: 200 });
+    renderPage();
+    const glasses = await screen.findByRole('button', { name: /Kính tròn/ });
+    await waitFor(() => expect(glasses).toBeEnabled());
+    fireEvent.click(glasses);
+    await waitFor(async () => expect((await db.profiles.get('p1'))?.accessory).toBe('glasses'));
+    await waitFor(() => expect(glasses).toHaveAttribute('aria-pressed', 'true'));
+    fireEvent.click(screen.getByRole('button', { name: 'Không đeo' }));
+    await waitFor(async () => expect((await db.profiles.get('p1'))?.accessory).toBeNull());
+  });
+
   it('turns the unlock-all mode on and off', async () => {
     renderPage();
     const toggle = await screen.findByRole('switch', { name: 'Mở khoá toàn bộ bài học' });

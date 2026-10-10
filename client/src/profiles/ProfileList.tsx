@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { dayKey } from '@office-neko/shared';
 import { Mochi } from '../components/Mochi';
-import { avatarSkin } from './avatars';
+import { avatarSkin, wearable } from './avatars';
 import { deleteProfile, listProfiles } from './manage';
 
 /** "Hôm nay" / "hôm qua" / ngày tháng — người mới dùng máy đọc kiểu này dễ hơn ISO. */
@@ -47,7 +47,7 @@ export function ProfileList({ currentId }: { currentId: string }) {
           return (
             <li key={p.id} className="rounded-2xl bg-white/70 p-3">
               <div className="flex items-center gap-3">
-                <Mochi skin={avatarSkin(p.avatar)} size={40} mood="happy" animated={false} label={`Ảnh của ${p.name}`} />
+                <Mochi skin={avatarSkin(p.avatar)} accessory={wearable(p)} size={40} mood="happy" animated={false} label={`Ảnh của ${p.name}`} />
                 <div className="flex-1">
                   <p className="font-bold">{p.name}{isMe ? ' (bạn)' : ''}</p>
                   <p className="text-muted text-sm">Học gần nhất: {whenText(p.lastActiveAt)}</p>

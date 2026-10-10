@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { nextLessonId, unlockState } from '@office-neko/shared';
+import { levelFromXp, newlyUnlocked, nextLessonId, unlockState, type AccessoryId } from '@office-neko/shared';
+import { db } from '../db/db';
 import { LESSONS, TRACKS } from '../content';
 import { useOs, useProfileId, useUnlockAll } from '../db/profile';
 import { recordLessonResult } from '../progress/record';
@@ -14,7 +15,9 @@ export function LessonPage({ id }: { id: string }) {
   const navigate = useNavigate();
   const os = useOs();
   const unlockAll = useUnlockAll();
-  const [done, setDone] = useState<{ result: LessonResult; xpGained: number; newBadges?: string[]; saveError?: string } | null>(null);
+  const [done, setDone] = useState<{
+    result: LessonResult; xpGained: number; newBadges?: string[]; newAccessories?: AccessoryId[]; saveError?: string;
+  } | null>(null);
   const profileId = useProfileId();
   const { completed, loaded } = useCompleted(profileId);
 
@@ -25,7 +28,9 @@ export function LessonPage({ id }: { id: string }) {
         const { xpGained } = await recordLessonResult({ profileId, lessonId: id, stars: result.stars, hintsUsed: result.maxHint, timeMs: result.timeMs });
         // Lỗi trao huy hiệu không được làm mất kết quả bài học vừa lưu.
         const newBadges = await awardBadges(profileId).catch(() => []);
-        setDone({ result, xpGained, newBadges });
+        const xp = (await db.profiles.get(profileId))?.xp ?? 0;
+        const newAccessories = newlyUnlocked(levelFromXp(xp - xpGained).level, levelFromXp(xp).level);
+        setDone({ result, xpGained, newBadges, newAccessories });
       } catch {
         setDone({ result, xpGained: 0, saveError: 'Chưa lưu được kết quả bài học này, nhưng bạn vẫn có thể học tiếp. Hãy thử lại sau nhé.' });
       }
@@ -70,6 +75,7 @@ export function LessonPage({ id }: { id: string }) {
         nextId={nextLessonId(TRACKS, LESSONS, os, id)}
         saveError={done.saveError}
         newBadges={done.newBadges}
+        newAccessories={done.newAccessories}
       />
     );
   }

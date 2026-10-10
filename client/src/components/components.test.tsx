@@ -12,6 +12,13 @@ describe('components', () => {
     expect(screen.getByRole('img', { name: 'Mochi happy' })).toBeInTheDocument();
   });
 
+  it('draws an accessory only when given one', () => {
+    const { container, rerender } = render(<Mochi accessory="hat" />);
+    expect(container.querySelector('[data-accessory="hat"]')).not.toBeNull();
+    rerender(<Mochi />);
+    expect(container.querySelector('[data-accessory]')).toBeNull();
+  });
+
   it('renders speech bubble content', () => {
     render(<SpeechBubble>Xin chào!</SpeechBubble>);
     expect(screen.getByText('Xin chào!')).toBeInTheDocument();

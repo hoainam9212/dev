@@ -1,4 +1,5 @@
-import type { AvatarId } from '../db/db';
+import { accessoriesUnlocked, levelFromXp, type AccessoryId } from '@office-neko/shared';
+import type { AvatarId, Profile } from '../db/db';
 
 export interface AvatarSkin {
   id: AvatarId;
@@ -27,4 +28,10 @@ const BY_ID = new Map(AVATARS.map((a) => [a.id, a]));
 /** Bộ màu theo id; id lạ (dữ liệu cũ, file sao lưu hỏng) rơi về con mèo đầu tiên. */
 export function avatarSkin(id: AvatarId | string | undefined): AvatarSkin {
   return BY_ID.get(id as AvatarId) ?? AVATARS[0]!;
+}
+
+/** Phụ kiện được vẽ: hồ sơ ghi món gì đó nhưng cấp chưa đủ (sửa tay, dữ liệu lạ) thì không vẽ gì. */
+export function wearable(p: Pick<Profile, 'xp' | 'accessory'>): AccessoryId | null {
+  const a = p.accessory;
+  return a && accessoriesUnlocked(levelFromXp(p.xp).level).includes(a) ? a : null;
 }

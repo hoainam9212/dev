@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BADGES, type Lesson } from '@office-neko/shared';
+import { ACCESSORIES, BADGES, type AccessoryId, type Lesson } from '@office-neko/shared';
 import { Confetti } from '../components/Confetti';
 import { Mochi } from '../components/Mochi';
 import { useSound } from '../lib/sound';
 import type { LessonResult } from './LessonPlayer';
 
 export function FinishView({
-  lesson, result, xpGained, nextId, saveError, newBadges = [],
-}: { lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null; saveError?: string; newBadges?: string[] }) {
+  lesson, result, xpGained, nextId, saveError, newBadges = [], newAccessories = [],
+}: {
+  lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null; saveError?: string;
+  newBadges?: string[]; newAccessories?: AccessoryId[];
+}) {
   const sound = useSound();
   useEffect(() => sound('finish'), [sound]);
   const badges = BADGES.filter((b) => newBadges.includes(b.id));
+  const gifts = ACCESSORIES.filter((a) => newAccessories.includes(a.id)).map((a) => a.name);
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-4 p-6 text-center">
       <Confetti />
@@ -37,7 +41,10 @@ export function FinishView({
           </ul>
         </section>
       )}
-      {saveError &&<p role="alert" className="font-semibold text-rose-ink">{saveError}</p>}
+      {gifts.length > 0 && (
+        <p className="font-bold">Mochi có phụ kiện mới: {gifts.join(', ')}! Vào Cài đặt để đeo thử.</p>
+      )}
+      {saveError && <p role="alert" className="font-semibold text-rose-ink">{saveError}</p>}
       <div className="flex flex-wrap justify-center gap-3">
         {nextId && <Link to={`/lesson/${nextId}`} className="btn-primary">Bài tiếp theo →</Link>}
         <Link to="/" className="btn-soft">Về bản đồ</Link>
