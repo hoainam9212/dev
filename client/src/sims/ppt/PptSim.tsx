@@ -4,6 +4,7 @@ import type { SimProps } from '../types';
 import { SlideList } from './SlideList';
 import { Canvas } from './Canvas';
 import { PptDialogs, Ribbon } from './Ribbon';
+import { SlideShow } from './SlideShow';
 
 /**
  * Trình chiếu mô phỏng. Trạng thái do `useReducer(reducePpt, initial)` giữ; cột
@@ -17,6 +18,19 @@ export function PptSim({ initial, onState }: SimProps<pptSim.PptState>) {
 
   useEffect(() => onState(state), [state, onState]);
 
+  // Người quen PowerPoint sẽ bấm F5: chặn trình duyệt tải lại trang (mất bài đang làm) và trình chiếu.
+  const showing = state.show !== null;
+  useEffect(() => {
+    if (showing) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'F5') return;
+      e.preventDefault();
+      dispatch({ type: 'startShow', from: e.shiftKey ? 'current' : 'start' });
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showing]);
+
   return (
     <div className="space-y-3">
       <div className="card p-2">
@@ -29,6 +43,7 @@ export function PptSim({ initial, onState }: SimProps<pptSim.PptState>) {
         </div>
       </div>
       <PptDialogs state={state} dispatch={dispatch} now={Date.now()} />
+      <SlideShow state={state} dispatch={dispatch} />
     </div>
   );
 }

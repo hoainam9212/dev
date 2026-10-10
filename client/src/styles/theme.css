@@ -137,6 +137,31 @@ body {
     pointer-events: none;
   }
   .ppt-slide-layer > * { pointer-events: auto; }
+  /* Trình chiếu: phủ kín màn hình, nền đen, slide 16:9 lớn nhất vừa màn, căn giữa. */
+  .ppt-show {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    cursor: pointer;
+  }
+  .ppt-show-frame {
+    position: relative;
+    width: min(100vw, calc(100vh * 16 / 9));
+    aspect-ratio: 16 / 9;
+    container-type: inline-size;
+    overflow: hidden;
+  }
+  .ppt-show-canvas {
+    position: relative;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / 960px));
+    overflow: hidden;
+    user-select: none;
+  }
   .ppt-tr-fade { animation: ppt-tr-fade 300ms ease-out; }
   .ppt-tr-push { animation: ppt-tr-push 300ms ease-out; }
   .ppt-tr-zoom { animation: ppt-tr-zoom 300ms ease-out; }

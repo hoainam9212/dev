@@ -67,4 +67,20 @@ describe('PptSim', () => {
       expect(y + h).toBeLessThanOrEqual(pptSim.SLIDE_H);
     }
   });
+
+  it('F5 trình chiếu từ đầu thay vì để trình duyệt tải lại trang', () => {
+    setup(pptSim.pptInitial({ slides: ['title', 'titleContent', 'blank'] }));
+    const notPrevented = fireEvent.keyDown(window, { key: 'F5' });
+    expect(notPrevented).toBe(false);
+    expect(screen.getByRole('dialog', { name: 'Đang trình chiếu, slide 1 trên 3' })).toBeInTheDocument();
+  });
+
+  it('Shift+F5 trình chiếu từ slide đang mở', () => {
+    const s = pptSim.reducePpt(pptSim.pptInitial({ slides: ['title', 'titleContent', 'blank'] }), { type: 'gotoSlide', index: 1 });
+    setup(s);
+    fireEvent.keyDown(window, { key: 'F5', shiftKey: true });
+    expect(screen.getByRole('dialog', { name: 'Đang trình chiếu, slide 2 trên 3' })).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
 });

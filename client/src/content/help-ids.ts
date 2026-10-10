@@ -117,6 +117,8 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'ppt.transitions': { label: 'Transition to This Slide (Chuyển cảnh)', vi: 'Chọn cách slide này hiện ra khi trình chiếu.' },
   'ppt.applyAll': { label: 'Apply To All (Áp dụng cho tất cả)', vi: 'Dùng chuyển cảnh của slide này cho mọi slide.' },
   'ppt.preview': { label: 'Preview (Xem thử)', vi: 'Phát thử hiệu ứng chuyển cảnh của slide đang mở.' },
+  'ppt.showStart': { label: 'From Beginning (Trình chiếu từ đầu)', vi: 'Chiếu toàn màn hình từ slide 1. Phím tắt F5. Mũi tên → sang slide sau, Esc để thoát.' },
+  'ppt.showCurrent': { label: 'From Current Slide (Trình chiếu từ slide này)', vi: 'Chiếu từ slide đang mở. Phím tắt Shift + F5. Mũi tên → sang slide sau, Esc để thoát.' },
   'ppt.themes': { label: 'Themes (Chủ đề)', vi: 'Đổi cùng lúc màu nền, màu chữ và kiểu chữ cho **mọi slide**. Chữ bạn đã tô màu riêng thì giữ màu đó.' },
   'ppt.fill': { label: 'Shape Fill (Màu nền hình)', vi: 'Tô màu cho hình khối đang chọn. Màu chữ trong hình thì đổi ở Font Color.' },
   'ppt.undo': { label: 'Undo (Hoàn tác)', vi: 'Quay lại thao tác vừa làm. Phím tắt: Ctrl + Z.' },

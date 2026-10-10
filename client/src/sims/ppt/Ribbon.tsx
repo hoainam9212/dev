@@ -1,11 +1,12 @@
 import { useState, type Dispatch } from 'react';
 import type { pptSim } from '@office-neko/shared';
 import { Print20Regular, Save20Regular } from '@fluentui/react-icons';
-import { Group, RibbonPanel, RibbonTabs, Row, SoonTab, ToolButton } from '../../components/ribbon';
+import { Group, RibbonPanel, RibbonTabs, Row, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
 import { RibbonInsert } from './RibbonInsert';
 import { RibbonDesign } from './RibbonDesign';
 import { RibbonTransitions } from './RibbonTransitions';
+import { RibbonSlideShow } from './RibbonSlideShow';
 
 export { PptDialogs } from './dialogs';
 
@@ -51,7 +52,7 @@ export function Ribbon({ state, dispatch, onPreview }: Props) {
       {tab === 'Insert' && <RibbonInsert state={state} dispatch={dispatch} />}
       {tab === 'Design' && <RibbonDesign state={state} dispatch={dispatch} />}
       {tab === 'Transitions' && <RibbonTransitions state={state} dispatch={dispatch} onPreview={onPreview ?? (() => {})} />}
-      {tab === 'Slide Show' && <SoonTab what="Trình chiếu toàn màn hình" />}
+      {tab === 'Slide Show' && <RibbonSlideShow dispatch={dispatch} />}
       </RibbonPanel>
     </div>
   );
