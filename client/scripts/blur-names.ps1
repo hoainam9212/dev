@@ -31,7 +31,10 @@ $boxes = @(
   @('excel-11-save-as.png',       470, 182, 476, 452, 'fill'),  # thư mục gần đây
   @('excel-11-save-as.png',       926, 112, 20, 72, 'fill'),    # đầu thanh cuộn của danh sách đó
   @('ppt-01-window.png',          688, 2, 127, 32),
-  @('ppt-04-insert.png',          688, 2, 127, 32)
+  @('ppt-04-insert.png',          688, 2, 127, 32),
+  @('ppt-06-design.png',          688, 2, 127, 32),
+  @('ppt-07-transitions.png',     688, 2, 127, 32),
+  @('ppt-08-slideshow.png',       688, 2, 127, 32)
 )
 
 $dir = Join-Path $PSScriptRoot '..\public\images\real'

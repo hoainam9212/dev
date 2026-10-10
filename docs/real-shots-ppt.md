@@ -18,3 +18,6 @@ xem lại khung mờ và khung đỏ của ảnh đó).
 | 3 | ppt-03-layout-menu | Menu **Layout** đang mở | Home › Slides › Layout ▾ | ppt.slides |
 | 4 | ppt-04-insert | Cả thanh Ribbon thẻ **Insert** | Thẻ Insert | ppt.textbox, ppt.shape, ppt.image |
 | 5 | ppt-05-shapes-menu | Menu **Shapes** đang mở | Insert › Illustrations › Shapes ▾ | ppt.shape |
+| 6 | ppt-06-design | Thanh Ribbon thẻ **Design** (Themes, Variants, Customize), 1000×160 | Bài 3 slide, thẻ Design | ppt.theme |
+| 7 | ppt-07-transitions | Thanh Ribbon thẻ **Transitions**, 1000×160. Trên Office 2019, Zoom không ở hàng đầu bộ sưu tập mà trong nút More ▾ | Thẻ Transitions | ppt.transition |
+| 8 | ppt-08-slideshow | Thanh Ribbon thẻ **Slide Show**, 1000×160 | Thẻ Slide Show | ppt.present, ppt.project |
