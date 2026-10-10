@@ -317,6 +317,39 @@ body {
     color: var(--color-excel-ink, #1E7B45);
     font-weight: 700;
   }
+  /* Bắt câu sai: mỗi câu là nút nhưng vẫn đọc trôi như một đoạn văn. */
+  .ai-sentence {
+    padding: 0.05rem 0.1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .ai-sentence:hover {
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+  }
+  .ai-sentence-picked {
+    background: #FFF3BF;
+    box-shadow: 0 0 0 2px #E03131;
+  }
+  /* Chọn thông tin nhạy cảm: hàng đủ cao để bấm bằng ngón tay (≥ 44px). */
+  .ai-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.8rem;
+    background: white;
+    text-align: left;
+  }
+  .ai-item[aria-checked='true'] {
+    border-color: #E03131;
+    background: #FFF5F5;
+  }
 
   .ribbon-soon {
     padding: 0.5rem 0.75rem;
