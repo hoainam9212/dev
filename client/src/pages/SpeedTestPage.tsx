@@ -5,6 +5,7 @@ import { useOs, useProfileId } from '../db/profile';
 import { speedTestText, TYPING_TEXTS } from '../content/typing-texts';
 import { KeyboardSim } from '../sims/keyboard/KeyboardSim';
 import { recordTypingRun } from '../progress/typing';
+import { awardBadges } from '../progress/badges';
 import { Mochi } from '../components/Mochi';
 
 function makeInitial(minutes: number, attempt: number) {
@@ -31,7 +32,9 @@ export function SpeedTestPage() {
       saved.current = true;
       const m = typingSim.typingMetrics(s);
       setResult(m);
-      void recordTypingRun({ profileId, mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: s.keyStats }).catch(() => undefined);
+      void recordTypingRun({ profileId, mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: s.keyStats })
+        .then(() => awardBadges(profileId))
+        .catch(() => undefined);
     },
     [minutes, profileId],
   );

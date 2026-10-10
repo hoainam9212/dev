@@ -6,6 +6,7 @@ export * from './typing';
 export * from './ime';
 export * from './grading';
 export * from './progress';
+export * from './badges';
 export * from './rich';
 export * as mouseSim from './sims/mouse';
 export * as desktopSim from './sims/desktop';

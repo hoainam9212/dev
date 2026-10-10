@@ -8,6 +8,7 @@ import { SpotlightOverlay } from '../help/SpotlightOverlay';
 import { useSound } from '../lib/sound';
 import { ErrorBoundary } from '../app/ErrorBoundary';
 import { recordTypingRun } from '../progress/typing';
+import { awardBadges } from '../progress/badges';
 import { HintPanel } from './HintPanel';
 import { BackButton } from './BackButton';
 import type { PlayerAction, PlayerState } from './playerReducer';
@@ -53,7 +54,9 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
         if (ts.finished && profileId) {
           typingRecordedRef.current = true;
           const m = typingSim.typingMetrics(ts);
-          void recordTypingRun({ profileId, mode: 'lesson', wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: ts.keyStats }).catch(() => undefined);
+          void recordTypingRun({ profileId, mode: 'lesson', wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: ts.keyStats })
+            .then(() => awardBadges(profileId))
+            .catch(() => undefined);
         }
       }
       if (doneRef.current) return;

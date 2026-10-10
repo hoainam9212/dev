@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import type { Lesson } from '@office-neko/shared';
+import { BADGES, type Lesson } from '@office-neko/shared';
 import { Confetti } from '../components/Confetti';
 import { Mochi } from '../components/Mochi';
 import { useSound } from '../lib/sound';
 import type { LessonResult } from './LessonPlayer';
 
 export function FinishView({
-  lesson, result, xpGained, nextId, saveError,
-}: { lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null; saveError?: string }) {
+  lesson, result, xpGained, nextId, saveError, newBadges = [],
+}: { lesson: Lesson; result: LessonResult; xpGained: number; nextId: string | null; saveError?: string; newBadges?: string[] }) {
   const sound = useSound();
   useEffect(() => sound('finish'), [sound]);
+  const badges = BADGES.filter((b) => newBadges.includes(b.id));
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-4 p-6 text-center">
       <Confetti />
@@ -23,7 +24,20 @@ export function FinishView({
         {xpGained > 0 ? `+${xpGained} XP` : 'Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!'}
       </p>
       <p className="text-muted">Gợi ý đã dùng: {result.maxHint}/3 · Lần kiểm tra chưa đúng: {result.failures}</p>
-      {saveError && <p role="alert" className="font-semibold text-rose-ink">{saveError}</p>}
+      {badges.length > 0 && (
+        <section className="w-full rounded-2xl border-2 border-peach bg-peach/15 p-4">
+          <h2 className="text-lg font-extrabold">Huy hiệu mới!</h2>
+          <ul className="mt-2 flex flex-wrap justify-center gap-3">
+            {badges.map((b) => (
+              <li key={b.id} className="flex items-center gap-2 font-bold">
+                <span aria-hidden className="text-3xl">{b.emoji}</span>
+                <span>{b.title}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {saveError &&<p role="alert" className="font-semibold text-rose-ink">{saveError}</p>}
       <div className="flex flex-wrap justify-center gap-3">
         {nextId && <Link to={`/lesson/${nextId}`} className="btn-primary">Bài tiếp theo →</Link>}
         <Link to="/" className="btn-soft">Về bản đồ</Link>

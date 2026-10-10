@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { unlockState, visibleLessons } from '@office-neko/shared';
 import { LESSONS, TRACKS } from '../content';
@@ -7,12 +7,19 @@ import { useCompleted, useStreak, useTodayMinutes } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
 import { TrackMap } from '../home/TrackMap';
 import { GoalRing } from '../home/GoalRing';
+import { BadgeShelf } from '../home/BadgeShelf';
+import { awardBadges, useBadges } from '../progress/badges';
 
 export function HomePage() {
   const profile = useProfile()!;
   const { completed, stars } = useCompleted(profile.id);
   const today = useTodayMinutes(profile.id);
   const streak = useStreak(profile.id);
+  const { earned: badges } = useBadges(profile.id);
+  // Trao bù cho người đã học từ trước khi có huy hiệu; gọi lại không tạo bản ghi trùng.
+  useEffect(() => {
+    void awardBadges(profile.id).catch(() => undefined);
+  }, [profile.id]);
   const doneKey = [...completed].sort().join('|');
   const unlockAll = profile.unlockAll ?? false;
   const unlock = useMemo(
@@ -42,6 +49,7 @@ export function HomePage() {
           <div className="font-extrabold">{streak} ngày</div>
         </div>
       </section>
+      <BadgeShelf earned={badges} />
       <TrackMap tracks={TRACKS} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} />
     </div>
   );
