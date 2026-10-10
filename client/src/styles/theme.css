@@ -283,6 +283,41 @@ body {
     text-align: left;
   }
   .ribbon-menu-item:hover { background: var(--color-cream, #FFF6EC); }
+  /* Trợ lý AI mô phỏng: tin mình bên phải nền màu nhấn nhạt, tin AI bên trái nền xám nhạt. */
+  .ai-bubble {
+    max-width: 85%;
+    padding: 0.5rem 0.85rem;
+    border-radius: 1.1rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    line-height: 1.45;
+  }
+  .ai-bubble-user {
+    background: color-mix(in srgb, var(--color-peach, #FFB38A) 35%, white);
+    border-bottom-right-radius: 0.35rem;
+  }
+  .ai-bubble-ai {
+    background: #F1EEF4;
+    border-bottom-left-radius: 0.35rem;
+  }
+  .ai-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.1rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    color: var(--color-muted, #6b7280);
+    cursor: help;
+  }
+  .ai-chip.is-hit {
+    border: 1px solid var(--color-excel-ink, #1E7B45);
+    background: color-mix(in srgb, var(--color-mint, #8FE3CF) 35%, white);
+    color: var(--color-excel-ink, #1E7B45);
+    font-weight: 700;
+  }
+
   .ribbon-soon {
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;

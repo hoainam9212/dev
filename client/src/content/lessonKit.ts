@@ -1,4 +1,4 @@
-import { desktopSim, excelSim, fishGame, fishSim, mouseSim, pptSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
+import { aichatSim, desktopSim, excelSim, fishGame, fishSim, mouseSim, pptSim, typingSim, wordSim, type ImeMethod, type OS, type PracticeStep, type Spotlight, type TreeSpec } from '@office-neko/shared';
 
 export function keyActions(raw: string, msPerKey = 150, start = 1000): typingSim.TypingAction[] {
   return [...raw].map((key, i) => ({ type: 'key', key, at: start + i * msPerKey }));
@@ -204,6 +204,28 @@ export function pptPractice(o: {
   return {
     kind: 'practice',
     sim: 'ppt',
+    task: o.task,
+    initial,
+    checks: o.checks,
+    hints: [o.hint, o.spotlight, o.steps],
+    solution: o.solve(initial),
+  };
+}
+
+export function aiPractice(
+  o: Parameters<typeof aichatSim.aiChatInitial>[0] & {
+    task: string;
+    checks: aichatSim.AiCheck[];
+    spotlight: Spotlight;
+    hint: string;
+    steps: string[];
+    solve: (s0: aichatSim.AiChatState) => aichatSim.AiChatAction[];
+  },
+): PracticeStep<aichatSim.AiChatState, aichatSim.AiCheck, aichatSim.AiChatAction> {
+  const initial = aichatSim.aiChatInitial(o);
+  return {
+    kind: 'practice',
+    sim: 'aichat',
     task: o.task,
     initial,
     checks: o.checks,

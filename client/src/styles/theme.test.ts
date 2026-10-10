@@ -58,7 +58,7 @@ describe('theme.css', () => {
       }
     }
     const selectors = topLevel.join(' | ');
-    for (const cls of ['.card', '.btn', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb', '.ribbon-menu', '.ribbon-soon', '.ppt-slide-layer', '.ppt-tr-fade', '.ppt-tr-push', '.ppt-tr-zoom', '.ppt-show', '.ppt-show-frame']) {
+    for (const cls of ['.card', '.btn', '.kbd', '.term', '.cellbox', '.gridhead', '.ppt-stage', '.ppt-canvas', '.ppt-el', '.ppt-thumb', '.ribbon-menu', '.ribbon-soon', '.ppt-slide-layer', '.ppt-tr-fade', '.ppt-tr-push', '.ppt-tr-zoom', '.ppt-show', '.ppt-show-frame', '.ai-bubble', '.ai-bubble-user', '.ai-bubble-ai', '.ai-chip']) {
       expect(selectors.includes(cls), `${cls} phải ở cấp đầu của @layer components`).toBe(true);
     }
   });

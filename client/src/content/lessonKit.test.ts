@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { grade, typingSim } from '@office-neko/shared';
+import { aichatSim, grade, typingSim } from '@office-neko/shared';
 import { SIMS } from '../sims/registry';
-import { keyActions, mousePractice, pptPractice, typingPractice } from './lessonKit';
+import { aiPractice, keyActions, mousePractice, pptPractice, typingPractice } from './lessonKit';
 
 describe('lessonKit', () => {
   it('turns raw keys into timed actions', () => {
@@ -51,5 +51,21 @@ describe('lessonKit', () => {
         solve: () => [],
       }),
     ).toThrow(/setup.*startEditEl/);
+  });
+
+  it('aiPractice dựng bước aichat từ aiChatInitial, solution là solve(initial) và qua được', () => {
+    const step = aiPractice({
+      greeting: 'Chào bạn',
+      replies: { good: 'G' },
+      task: 't', hint: 'h', steps: ['s'], spotlight: { helpId: 'ai.composer' },
+      checks: [{ kind: 'sent' }],
+      solve: () => [{ type: 'setDraft', text: 'Viết cho tôi một email xin nghỉ phép' }, { type: 'send' }],
+    });
+    expect(step.sim).toBe('aichat');
+    expect(step.initial).toEqual(aichatSim.aiChatInitial({ greeting: 'Chào bạn', replies: { good: 'G' } }));
+    expect(step.solution).toHaveLength(2);
+    expect(grade('aichat', step.initial, step.checks).pass).toBe(false);
+    const end = step.solution.reduce((s, a) => SIMS.aichat!.reduce(s, a), step.initial);
+    expect(grade('aichat', end, step.checks).pass).toBe(true);
   });
 });
