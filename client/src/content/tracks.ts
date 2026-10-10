@@ -63,5 +63,6 @@ export const TRACKS: Track[] = [
       { id: 'ai.start', title: 'Làm quen AI', lessonIds: ['ai.intro', 'ai.safety', 'ai.verify'] },
       { id: 'ai.prompt', title: 'Viết prompt tốt', lessonIds: ['ai.structure', 'ai.context'] },
       { id: 'ai.work', title: 'AI trong công việc', lessonIds: ['ai.email', 'ai.summary', 'ai.formula', 'ai.outline'] },
+      { id: 'ai.final', title: 'Dự án: Báo cáo tuần', lessonIds: ['ai.project'] },
     ] },
 ];

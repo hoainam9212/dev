@@ -3,7 +3,7 @@
 Ứng dụng web (PWA, chạy offline) dạy tin học văn phòng cho người mới: làm quen máy tính (Windows/Mac),
 gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Mochi.
 
-## Đã có (giai đoạn 1–5A)
+## Đã có (giai đoạn 1–6A)
 
 - Làm quen máy tính: phòng tập chuột (5 trò), bàn phím, thư mục & file cho Windows và Mac (dự án "Ảnh du lịch").
 - Gõ phím 10 ngón: 20 bài từ hàng cơ sở tới Telex/VNI, dự án 25 WPM.
@@ -20,6 +20,12 @@ gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Moc
   Apply To All, trình chiếu toàn màn hình (F5 / Shift+F5, mũi tên, Esc; tôn trọng giảm chuyển động). Ribbon
   File/Home/Insert/Design/Transitions/Slide Show. **12 bài / 5 chương**: slide đầu tiên; chữ, hình và ảnh; cho đẹp
   mắt; trình bày; dự án Slide giới thiệu bản thân chia ba chặng.
+- Dùng AI (giai đoạn 6A): trợ lý chat **mô phỏng, ngoại tuyến** — không gọi mạng, không API thật; mọi câu trả lời
+  soạn sẵn ba mức (kém / tạm / tốt) và Mochi chọn theo độ rõ của prompt. Prompt được chấm năm tiêu chí Vai trò ·
+  Bối cảnh · Nhiệm vụ · Định dạng · Giới hạn bằng từ khoá trên chữ đã bỏ dấu (gõ không dấu vẫn được chấm), năm ô
+  tiêu chí sáng lên ngay khi gõ. Thêm hai chế độ: bấm chọn câu AI nói sai, và chọn thông tin không nên đưa cho AI.
+  **10 bài / 4 chương**: làm quen AI (an toàn, bắt lỗi); viết prompt tốt; AI trong công việc (email, tóm tắt, công
+  thức Excel và dàn ý slide ghép với bước Excel/PowerPoint thật của app); dự án Prompt tạo báo cáo tuần ba chặng.
 - Ribbon giống Office thật ở cả ba app: thẻ › nhóm › thứ tự › nhãn theo Office **tiếng Anh**, gạch chân thẻ đúng màu
   từng app (Word xanh dương, Excel xanh lá, PowerPoint cam), mọi thẻ cao bằng nhau; giải nghĩa tiếng Việt ở chú thích.
   Cuối mọi bài có nút ribbon là bước **ảnh chụp thật** (`realShot`) có khung đỏ khoanh đúng nút vừa học.

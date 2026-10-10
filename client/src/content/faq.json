@@ -681,5 +681,35 @@
     "q": "Đang trình chiếu, thoát ra thế nào?",
     "a": "Nhấn **Esc** ở bất kỳ slide nào là về màn soạn slide, mở đúng slide đang chiếu. Chiếu tới hết thì có màn đen \"Hết bài trình chiếu\" — bấm thêm một lần là về.",
     "keywords": ["thoat trinh chieu", "thoát trình chiếu", "esc", "dung chieu", "dừng chiếu", "ket thuc", "kết thúc", "man hinh den", "màn hình đen"]
+  },
+  {
+    "id": "ai.prompt",
+    "q": "Prompt là gì?",
+    "a": "**Prompt** là câu bạn gõ để nhờ AI làm việc, ví dụ «Viết email xin nghỉ phép gửi trưởng phòng». Prompt càng rõ, câu trả lời càng sát ý bạn.",
+    "keywords": ["prompt", "prompt la gi", "prompt là gì", "cau lenh", "câu lệnh", "hoi ai", "hỏi ai", "nho ai", "nhờ ai"]
+  },
+  {
+    "id": "ai.parts",
+    "q": "Một prompt tốt gồm những phần nào?",
+    "a": "Năm phần: **Vai trò** (AI đóng vai ai), **Bối cảnh** (bạn là ai, viết cho ai), **Nhiệm vụ** (việc cần làm), **Định dạng** (gạch đầu dòng, bảng, mấy đoạn) và **Giới hạn** (độ dài, giọng văn). Trong bài thực hành, năm ô dưới ô gõ sáng lên ✓ khi prompt có phần đó.",
+    "keywords": ["5 phan", "5 phần", "nam phan", "năm phần", "prompt tot", "prompt tốt", "vai tro", "vai trò", "boi canh", "bối cảnh", "dinh dang", "định dạng", "gioi han", "giới hạn"]
+  },
+  {
+    "id": "ai.wrong",
+    "q": "AI trả lời sai thì sao?",
+    "a": "AI có thể **bịa** chuyện hoặc chép nhầm số mà vẫn viết rất trôi chảy. Luôn so con số, tên người, ngày tháng với bản gốc trước khi dùng. Thấy sai thì gửi tiếp cho AI để sửa, hoặc tự sửa — người chịu trách nhiệm bản gửi đi là bạn.",
+    "keywords": ["ai sai", "tra loi sai", "trả lời sai", "bia", "bịa", "ao giac", "ảo giác", "kiem tra", "kiểm tra", "sai so lieu", "sai số liệu"]
+  },
+  {
+    "id": "ai.secret",
+    "q": "Có nên dán mật khẩu, số CCCD vào AI không?",
+    "a": "**Không.** Đừng đưa mật khẩu, mã OTP, số CCCD, số tài khoản ngân hàng, số điện thoại hay thông tin khách hàng vào ô chat của bất kỳ AI nào. Trước khi dán văn bản công ty, xoá hoặc che những thông tin đó.",
+    "keywords": ["mat khau", "mật khẩu", "cccd", "can cuoc", "căn cước", "otp", "bao mat", "bảo mật", "an toan", "an toàn", "nhay cam", "nhạy cảm", "tai khoan", "tài khoản"]
+  },
+  {
+    "id": "ai.simulated",
+    "q": "Trợ lý AI trong app có phải AI thật không?",
+    "a": "**Không.** Đây là trợ lý **mô phỏng**: câu trả lời đã soạn sẵn để luyện tập, Mochi chọn câu theo độ rõ của prompt. Không có gì được gửi lên mạng, app chạy được cả khi mất mạng. Học xong, bạn dùng đúng các mẹo này với Claude hay trợ lý AI thật khác.",
+    "keywords": ["ai that", "ai thật", "mo phong", "mô phỏng", "claude", "chatgpt", "gui di dau", "gửi đi đâu", "co gui", "có gửi", "ngoai tuyen", "ngoại tuyến", "offline"]
   }
 ]

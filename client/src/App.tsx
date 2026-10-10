@@ -11,7 +11,6 @@ import { SettingsPage } from './pages/SettingsPage';
 import { TypingHubPage } from './pages/TypingHubPage';
 import { SpeedTestPage } from './pages/SpeedTestPage';
 import { FishGamePage } from './pages/FishGamePage';
-import { DevAiPage } from './pages/DevAiPage';
 import { Mochi } from './components/Mochi';
 import { HelpButton } from './help/HelpButton';
 import { HelpDrawer } from './help/HelpDrawer';
@@ -42,7 +41,6 @@ export default function App() {
         <Routes>
           <Route path="/who" element={<ProfilePicker />} />
           <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/dev/aichat" element={<DevAiPage />} />
           <Route element={<RequireProfile><AppShell /></RequireProfile>}>
             <Route index element={<HomePage />} />
             <Route path="/lesson/:id" element={<LessonRoute />} />
