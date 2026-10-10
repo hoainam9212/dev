@@ -463,7 +463,9 @@
     "say": "p-rom",
     "vi": "Câu lệnh gửi cho AI",
     "explain": "Đoạn chữ bạn viết để nhờ AI làm việc. Prompt càng rõ ràng, câu trả lời càng tốt.",
-    "lessonIds": []
+    "lessonIds": [
+      "ai.structure"
+    ]
   },
   {
     "id": "wpm",
