@@ -50,6 +50,13 @@ export function HomePage() {
         </div>
       </section>
       <BadgeShelf earned={badges} />
+      <Link to="/sandbox" className="card flex items-center gap-4 p-5 transition hover:ring-4 hover:ring-peach">
+        <span aria-hidden className="text-4xl">🧪</span>
+        <span>
+          <span className="block text-lg font-extrabold">Phòng tự do</span>
+          <span className="block text-muted">Mở Word, Excel, PowerPoint để tự luyện, không chấm điểm.</span>
+        </span>
+      </Link>
       <TrackMap tracks={TRACKS} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} />
     </div>
   );

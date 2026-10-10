@@ -8,6 +8,8 @@ import { ProfilePicker } from './profiles/ProfilePicker';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { SandboxPage } from './pages/SandboxPage';
+import { SandboxDocPage } from './pages/SandboxDocPage';
 import { TypingHubPage } from './pages/TypingHubPage';
 import { SpeedTestPage } from './pages/SpeedTestPage';
 import { FishGamePage } from './pages/FishGamePage';
@@ -48,6 +50,8 @@ export default function App() {
             <Route path="/typing/test/:min" element={<SpeedTestPage />} />
             <Route path="/typing/fish" element={<FishGamePage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/sandbox" element={<SandboxPage />} />
+            <Route path="/sandbox/:id" element={<SandboxDocPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
