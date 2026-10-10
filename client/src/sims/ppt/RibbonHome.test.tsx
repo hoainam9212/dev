@@ -80,6 +80,15 @@ describe('Thẻ Home của PowerPoint', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { color: '#D2691E' } });
   });
 
+  it('Font Color › Automatic trả chữ về màu của theme', async () => {
+    const { dispatch } = setup(withShape);
+    await userEvent.click(screen.getByRole('button', { name: 'Màu chữ' }));
+    const items = screen.getAllByRole('button', { name: /Tự động/ });
+    expect(items).toHaveLength(1);
+    await userEvent.click(items[0]!);
+    expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { color: undefined } });
+  });
+
   it('căn giữa phát setFmt align', async () => {
     const { dispatch } = setup(withShape);
     await userEvent.click(screen.getByRole('button', { name: 'Căn giữa' }));

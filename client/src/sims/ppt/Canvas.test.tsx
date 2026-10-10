@@ -90,3 +90,48 @@ describe('Canvas', () => {
     expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({ type: 'moveEl' }));
   });
 });
+
+describe('Canvas – theme', () => {
+  /** jsdom đọc lại `style.color` dạng rgb(...). */
+  const rgb = (hex: string) =>
+    `rgb(${[1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(', ')})`;
+  /** Bài 1 slide Title and Content, đã có chữ ở tiêu đề và nội dung. */
+  const typed = (theme: pptSim.ThemeId) => {
+    let s = pptSim.pptInitial({ slides: ['titleContent'] });
+    for (const el of s.slides[0]!.els) {
+      s = [
+        { type: 'startEditEl', id: el.id },
+        { type: 'setText', text: `Chữ ${el.role}` },
+        { type: 'commitEdit' },
+      ].reduce<pptSim.PptState>((x, a) => pptSim.reducePpt(x, a as pptSim.PptAction), s);
+    }
+    return pptSim.reducePpt(s, { type: 'setTheme', theme });
+  };
+  const elOf = (role: string) => document.querySelector<HTMLElement>(`[data-role="${role}"]`)!;
+
+  it('khung slide mang nền và data-theme của theme đang dùng', () => {
+    setup(typed('bien'));
+    const canvas = screen.getByTestId('ppt-canvas');
+    expect(canvas).toHaveAttribute('data-theme', 'bien');
+    expect(canvas.style.background).toBe(rgb(pptSim.themeOf('bien').bg));
+  });
+
+  it('tiêu đề chưa tô màu mang màu accent, nội dung mang màu fg', () => {
+    setup(typed('dem'));
+    const t = pptSim.themeOf('dem');
+    expect(elOf('title').style.color).toBe(rgb(t.accent));
+    expect(elOf('body').style.color).toBe(rgb(t.fg));
+    expect(elOf('title').style.fontFamily).toContain('Segoe UI');
+  });
+
+  it('chữ đã tô màu riêng giữ màu đó dù theme tối', () => {
+    const s0 = typed('dem');
+    const title = s0.slides[0]!.els.find((e) => e.role === 'title')!.id;
+    const s = [
+      { type: 'selectEl', id: title },
+      { type: 'setFmt', fmt: { color: '#000000' } },
+    ].reduce<pptSim.PptState>((x, a) => pptSim.reducePpt(x, a as pptSim.PptAction), s0);
+    setup(s);
+    expect(elOf('title').style.color).toBe('rgb(0, 0, 0)');
+  });
+});

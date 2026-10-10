@@ -102,4 +102,11 @@ describe('SlideList', () => {
     setup(['title']);
     expect(screen.getAllByText('Bấm để nhập tiêu đề')).toHaveLength(1);
   });
+
+  it('thumbnail vẽ theo theme của bài', () => {
+    render(<SlideList state={pptSim.reducePpt(twoSlides, { type: 'setTheme', theme: 'hoa' })} dispatch={vi.fn()} />);
+    const thumbs = [...document.querySelectorAll('.ppt-thumb-canvas')];
+    expect(thumbs).toHaveLength(2);
+    expect(thumbs.every((t) => t.getAttribute('data-theme') === 'hoa')).toBe(true);
+  });
 });

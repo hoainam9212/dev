@@ -4,6 +4,7 @@ import { Print20Regular, Save20Regular } from '@fluentui/react-icons';
 import { Group, RibbonPanel, RibbonTabs, Row, SoonTab, ToolButton } from '../../components/ribbon';
 import { RibbonHome } from './RibbonHome';
 import { RibbonInsert } from './RibbonInsert';
+import { RibbonDesign } from './RibbonDesign';
 
 export { PptDialogs } from './dialogs';
 
@@ -45,7 +46,7 @@ export function Ribbon({ state, dispatch }: Props) {
         </div>
       )}
       {tab === 'Insert' && <RibbonInsert state={state} dispatch={dispatch} />}
-      {tab === 'Design' && <SoonTab what="Chủ đề trang trí" />}
+      {tab === 'Design' && <RibbonDesign state={state} dispatch={dispatch} />}
       {tab === 'Transitions' && <SoonTab what="Hiệu ứng chuyển slide" />}
       {tab === 'Slide Show' && <SoonTab what="Trình chiếu toàn màn hình" />}
       </RibbonPanel>

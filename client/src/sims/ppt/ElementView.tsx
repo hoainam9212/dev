@@ -23,6 +23,7 @@ const HANDLES: { h: pptSim.Handle; style: CSSProperties; cursor: string }[] = [
 /** Vẽ một đối tượng theo px của khung gốc 960x540; khung cha lo việc co giãn. */
 export function ElementView({
   el,
+  theme,
   selected,
   hint = true,
   editing = false,
@@ -33,6 +34,8 @@ export function ElementView({
   onCancel,
 }: {
   el: pptSim.El;
+  /** Màu chữ mặc định và kiểu chữ lấy từ theme; chỉ `fmt.color` đặt tay mới ghi đè. */
+  theme: pptSim.PptTheme;
   selected: boolean;
   /** Thumbnail đặt `false`: chữ mờ "Bấm để nhập…" chỉ có nghĩa trên khung lớn. */
   hint?: boolean;
@@ -59,7 +62,8 @@ export function ElementView({
     fontSize: fmt.size,
     fontWeight: fmt.bold ? 700 : 400,
     fontStyle: fmt.italic ? 'italic' : 'normal',
-    color: fmt.color,
+    color: fmt.color ?? (el.role === 'title' ? theme.accent : theme.fg),
+    fontFamily: theme.font,
     textAlign: fmt.align,
   };
   const empty = !(el.text ?? '').trim();
@@ -88,7 +92,7 @@ export function ElementView({
           aria-label="Nội dung đối tượng"
           className="ppt-edit"
           value={el.text ?? ''}
-          style={{ fontSize: fmt.size, textAlign: fmt.align, fontWeight: fmt.bold ? 700 : 400 }}
+          style={{ fontSize: fmt.size, textAlign: fmt.align, fontWeight: fmt.bold ? 700 : 400, color: 'inherit', fontFamily: 'inherit' }}
           onPointerDown={(e) => e.stopPropagation()}
           onChange={(e) => onText?.(e.target.value)}
           onBlur={() => onCommit?.()}

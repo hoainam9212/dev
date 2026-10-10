@@ -147,7 +147,8 @@ body {
     white-space: pre-wrap;
     overflow: hidden;
   }
-  .ppt-placeholder { color: rgba(0, 0, 0, 0.35); }
+  /* Chữ mờ theo màu theme (đối tượng cha đặt `color`), nên trên theme tối vẫn đọc được. */
+  .ppt-placeholder { opacity: 0.5; }
   /* Tay nắm to 10px THẬT trên màn hình: khung cha đã bị scale nên phải chia ngược lại. */
   .ppt-handle {
     position: absolute;

@@ -114,6 +114,7 @@ export const HELP_IDS: Record<string, HelpIdEntry> = {
   'ppt.pictures': { label: 'Pictures (Ảnh)', vi: 'Chèn một ảnh mẫu hoặc ảnh từ máy của bạn lên slide.' },
   'ppt.save': { label: 'Save As (Lưu tệp)', vi: 'Đặt tên và lưu bài trình chiếu. Phím tắt: Ctrl + S.' },
   'ppt.print': { label: 'Print (In)', vi: 'In các slide ra giấy. Phím tắt: Ctrl + P.' },
+  'ppt.themes': { label: 'Themes (Chủ đề)', vi: 'Đổi cùng lúc màu nền, màu chữ và kiểu chữ cho **mọi slide**. Chữ bạn đã tô màu riêng thì giữ màu đó.' },
   'ppt.fill': { label: 'Shape Fill (Màu nền hình)', vi: 'Tô màu cho hình khối đang chọn. Màu chữ trong hình thì đổi ở Font Color.' },
   'ppt.undo': { label: 'Undo (Hoàn tác)', vi: 'Quay lại thao tác vừa làm. Phím tắt: Ctrl + Z.' },
 };

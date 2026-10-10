@@ -62,6 +62,19 @@ const swatchItems = (prefix: string) =>
     ),
   }));
 
+const AUTO = 'auto';
+/** "Automatic" của Font Color: bỏ màu đặt tay để chữ theo màu theme — cứu chữ đen chìm trên theme tối. */
+const AUTO_COLOR = {
+  value: AUTO,
+  label: 'Tự động (Automatic) – theo màu của theme',
+  content: (
+    <span className="flex items-center gap-2">
+      <span className="inline-block h-4 w-4 rounded border border-dashed border-black/50" />
+      Automatic (Tự động)
+    </span>
+  ),
+};
+
 /** New Slide tách đôi — PowerPoint đặt cùng một nút ở thẻ Home và thẻ Insert. */
 export function NewSlideButton({ dispatch }: Props) {
   return (
@@ -146,9 +159,9 @@ export function RibbonHome({ state, dispatch }: Props) {
             helpId="ppt.color"
             label="Màu chữ"
             disabled={none}
-            button={<Swatched icon={<TextColor20Regular />} color={fmt.color ?? '#2F2A26'} />}
-            items={swatchItems('')}
-            onPick={(color) => set({ color })}
+            button={<Swatched icon={<TextColor20Regular />} color={fmt.color ?? pptSim.themeOf(state.theme).fg} />}
+            items={[AUTO_COLOR, ...swatchItems('')]}
+            onPick={(color) => set({ color: color === AUTO ? undefined : color })}
           />
         </Row>
       </Group>

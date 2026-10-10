@@ -22,6 +22,7 @@ export function SlideList({ state, dispatch }: Props) {
     dispatch({ type });
   };
 
+  const theme = pptSim.themeOf(state.theme);
   return (
     // Màn hẹp: cột thumbnail nằm ngang phía trên, nhường cả bề ngang cho khung slide.
     <div
@@ -53,9 +54,13 @@ export function SlideList({ state, dispatch }: Props) {
         >
           <span className="ppt-thumb-no">{i + 1}</span>
           <span className="ppt-thumb-stage" aria-hidden="true">
-            <span className="ppt-thumb-canvas" style={{ width: pptSim.SLIDE_W, height: pptSim.SLIDE_H }}>
+            <span
+              className="ppt-thumb-canvas"
+              data-theme={theme.id}
+              style={{ width: pptSim.SLIDE_W, height: pptSim.SLIDE_H, background: theme.bg }}
+            >
               {slide.els.map((el) => (
-                <ElementView key={el.id} el={el} selected={false} hint={false} />
+                <ElementView key={el.id} el={el} theme={theme} selected={false} hint={false} />
               ))}
             </span>
           </span>

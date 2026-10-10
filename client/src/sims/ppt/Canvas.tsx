@@ -36,6 +36,7 @@ export function Canvas({
 
   const slide = state.slides[state.active];
   if (!slide) return null;
+  const theme = pptSim.themeOf(state.theme);
   return (
     <div className="ppt-stage" data-help-id="ppt.canvas">
       <div
@@ -43,9 +44,10 @@ export function Canvas({
         data-testid="ppt-canvas"
         data-w={pptSim.SLIDE_W}
         data-h={pptSim.SLIDE_H}
+        data-theme={theme.id}
         className="ppt-canvas"
         tabIndex={0}
-        style={{ width: pptSim.SLIDE_W, height: pptSim.SLIDE_H }}
+        style={{ width: pptSim.SLIDE_W, height: pptSim.SLIDE_H, background: theme.bg }}
         onPointerDown={(e) => {
           if (e.target === e.currentTarget) dispatch({ type: 'selectEl', id: null });
         }}
@@ -77,6 +79,7 @@ export function Canvas({
           <ElementView
             key={el.id}
             el={el}
+            theme={theme}
             selected={el.id === state.sel}
             editing={el.id === state.editing}
             onStartDrag={startDrag(el.id)}
