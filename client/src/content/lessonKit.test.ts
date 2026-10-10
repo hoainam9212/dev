@@ -39,4 +39,17 @@ describe('lessonKit', () => {
     expect(step.initial.sel).toBeNull();
     expect(grade('ppt', step.initial, step.checks).pass).toBe(true);
   });
+
+  it('pptPractice báo lỗi khi một bước dựng sẵn không làm gì (gõ vào slide không đang mở)', () => {
+    expect(() =>
+      pptPractice({
+        slides: ['title', 'titleContent'],
+        task: 't', hint: 'h', steps: ['s'], spotlight: { helpId: 'ppt.canvas' },
+        checks: [{ kind: 'slideCount', count: 3 }],
+        // Slide đang mở là slide 1, nên sửa tiêu đề slide 2 bị reducer bỏ qua.
+        setup: (s0) => [{ type: 'startEditEl', id: s0.slides[1]!.els[0]!.id }],
+        solve: () => [],
+      }),
+    ).toThrow(/setup.*startEditEl/);
+  });
 });

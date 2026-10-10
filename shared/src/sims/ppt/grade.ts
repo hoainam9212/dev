@@ -1,6 +1,7 @@
 import type { CheckResult } from '../../grading/core';
 import type { ElFormat, ElKind, Layout, PptState, Role, ShapeKind, Slide, ThemeId, Transition } from './state';
 import { themeOf } from './theme';
+import { PPT_COLORS } from './text';
 
 export type PptCheck =
   | { kind: 'slideCount'; count: number }
@@ -62,6 +63,10 @@ function fmtValue(key: keyof ElFormat, v: unknown): string {
   if (v === undefined) return 'tự động';
   if (key === 'align') return `căn ${ALIGN_VI[v as NonNullable<ElFormat['align']>]}`;
   if (typeof v === 'boolean') return v ? 'có' : 'không';
+  if (key === 'color' && typeof v === 'string') {
+    // Người học chọn màu theo tên trong bảng Font Color, không đọc được mã hex.
+    return PPT_COLORS.find((c) => c.id.toLowerCase() === v.toLowerCase())?.vi ?? 'một màu khác';
+  }
   return String(v);
 }
 

@@ -171,7 +171,13 @@ export function pptPractice(o: {
   solve: (s0: pptSim.PptState) => pptSim.PptAction[];
 }): PracticeStep<pptSim.PptState, pptSim.PptCheck, pptSim.PptAction> {
   const fresh = pptSim.pptInitial({ slides: o.slides });
-  const prepared = (o.setup ? o.setup(fresh) : []).reduce(pptSim.reducePpt, fresh);
+  // Bước dựng sẵn nào không làm thay đổi gì là lỗi viết bài (hay gặp: sửa đối tượng của slide không đang
+  // mở — reducer bỏ qua im lặng, và bài mở ra thiếu chữ mà không test nào kêu).
+  const prepared = (o.setup ? o.setup(fresh) : []).reduce((s, a, i) => {
+    const next = pptSim.reducePpt(s, a);
+    if (next === s) throw new Error(`pptPractice "${o.task.slice(0, 40)}…": setup bước ${i + 1} (${a.type}) không làm gì`);
+    return next;
+  }, fresh);
   const initial: pptSim.PptState = { ...prepared, past: [], sel: null, editing: null, editBackup: null };
   return {
     kind: 'practice',

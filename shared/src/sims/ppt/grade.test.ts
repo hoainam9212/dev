@@ -177,6 +177,13 @@ describe('gradePpt – check của 5B', () => {
     expect(msg(pptInitial(), { kind: 'elFormat', slide: 1, role: 'title', fmt: { size: 54 } })).toContain('40');
   });
 
+  it('elFormat gọi màu bằng tên tiếng Việt trong bảng màu, không đọc mã hex', () => {
+    const m = msg(pptInitial(), { kind: 'elFormat', slide: 1, role: 'title', fmt: { color: '#D2691E' } });
+    expect(m).toContain('Cam Mochi');
+    expect(m).toContain('tự động');
+    expect(m).not.toContain('#');
+  });
+
   it('presented: chưa chiếu trượt, đang chiếu dở nhắc Esc, chiếu xong và thoát thì đạt', () => {
     const s0 = deck();
     expect(msg(s0, { kind: 'presented' })).toContain('từ slide đầu tới slide cuối');

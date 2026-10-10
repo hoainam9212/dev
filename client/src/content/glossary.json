@@ -417,6 +417,16 @@
     ]
   },
   {
+    "id": "theme",
+    "term": "Theme",
+    "say": "thim",
+    "vi": "Chủ đề trang trí",
+    "explain": "Bộ màu nền, màu chữ và kiểu chữ dùng chung cho mọi slide. Đổi theme là cả bài trình chiếu đổi áo trong một lần bấm, ở thẻ Design.",
+    "lessonIds": [
+      "ppt.theme"
+    ]
+  },
+  {
     "id": "ai",
     "term": "AI (Artificial Intelligence)",
     "say": "ây-ai",

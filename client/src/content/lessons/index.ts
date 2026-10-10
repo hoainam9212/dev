@@ -19,7 +19,8 @@ import { EXCEL_DATA } from './excel-data';
 import { EXCEL_PROJECT } from './excel-project';
 import { PPT_BASICS } from './ppt-basics';
 import { PPT_OBJECTS } from './ppt-objects';
+import { PPT_DESIGN } from './ppt-design';
 
-const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS];
+const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS, ...PPT_DESIGN];
 
 export const LESSONS: Record<string, Lesson> = Object.fromEntries(ALL.map((l) => [l.id, l]));
