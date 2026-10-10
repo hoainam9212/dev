@@ -40,7 +40,7 @@ export const SHOTS = {
     'excel-10-column-menu',
     'excel-11-save-as',
   ],
-  ppt: ['ppt-01-window', 'ppt-02-home', 'ppt-03-layout-menu', 'ppt-04-insert', 'ppt-05-shapes-menu', 'ppt-06-design'],
+  ppt: ['ppt-01-window', 'ppt-02-home', 'ppt-03-layout-menu', 'ppt-04-insert', 'ppt-05-shapes-menu', 'ppt-06-design', 'ppt-07-transitions', 'ppt-08-slideshow'],
 };
 
 /** argv sau tên script. Không ghi app thì là 'word' (cách gọi cũ vẫn chạy). */

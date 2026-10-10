@@ -1,5 +1,5 @@
 import { pptSim, type Lesson } from '@office-neko/shared';
-import { pptPractice } from '../lessonKit';
+import { pptChain as chain, pptPractice, pptTypeInto as typeInto } from '../lessonKit';
 
 const CREDIT = 'Ảnh chụp Microsoft PowerPoint';
 const HOME_SHOT = '/images/real/ppt-02-home.png';
@@ -7,31 +7,6 @@ const LAYOUT_SHOT = '/images/real/ppt-03-layout-menu.png';
 const DESIGN_SHOT = '/images/real/ppt-06-design.png';
 /** Màu cam trong bảng Font Color của app — lấy từ bảng màu, không tự đặt mã. */
 const ORANGE = pptSim.PPT_COLORS.find((c) => c.vi === 'Cam Mochi')!.id;
-
-type Act = pptSim.PptAction;
-
-/**
- * Gõ chữ vào chỗ dành sẵn có vai trò `role` của slide thứ `slide` (đếm từ 0). Id tìm từ state, không đoán.
- * Phải mở đúng slide trước: reducer chỉ sửa đối tượng của slide ĐANG MỞ, gõ vào slide khác là phép không
- * — lỗi im lặng đã làm mất tiêu đề dựng sẵn của slide 2 (bắt được khi học thật bài `ppt.layout`).
- */
-function typeInto(s: pptSim.PptState, slide: number, role: pptSim.Role, text: string): Act[] {
-  const el = s.slides[slide]?.els.find((e) => e.role === role);
-  if (!el) throw new Error(`Slide ${slide + 1} không có chỗ ${role}`);
-  return [{ type: 'gotoSlide', index: slide }, { type: 'startEditEl', id: el.id }, { type: 'setText', text }, { type: 'commitEdit' }];
-}
-
-/** Chạy lần lượt các bước, mỗi bước được nhìn state hiện tại (để lấy id vừa sinh). */
-function chain(s0: pptSim.PptState, ...steps: ((s: pptSim.PptState) => Act[])[]): Act[] {
-  const out: Act[] = [];
-  let s = s0;
-  for (const step of steps) {
-    const acts = step(s);
-    out.push(...acts);
-    s = acts.reduce(pptSim.reducePpt, s);
-  }
-  return out;
-}
 
 /** Chương 3 — Cho đẹp mắt. */
 export const PPT_DESIGN: Lesson[] = [

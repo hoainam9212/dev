@@ -427,6 +427,26 @@
     ]
   },
   {
+    "id": "chuyen-canh",
+    "term": "Transition",
+    "say": "tren-di-sần",
+    "vi": "Chuyển cảnh",
+    "explain": "Hiệu ứng khi đổi từ slide này sang slide sau lúc trình chiếu: mờ dần, đẩy sang, phóng to. Chọn ở thẻ Transitions; nên dùng một kiểu cho cả bài.",
+    "lessonIds": [
+      "ppt.transition"
+    ]
+  },
+  {
+    "id": "trinh-chieu",
+    "term": "Slide Show",
+    "say": "slai sâu",
+    "vi": "Trình chiếu",
+    "explain": "Chế độ slide phủ kín màn hình để chiếu cho người khác xem. Bắt đầu bằng F5, sang slide sau bằng mũi tên →, thoát bằng Esc.",
+    "lessonIds": [
+      "ppt.present"
+    ]
+  },
+  {
     "id": "ai",
     "term": "AI (Artificial Intelligence)",
     "say": "ây-ai",

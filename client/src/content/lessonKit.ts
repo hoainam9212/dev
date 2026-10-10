@@ -160,6 +160,28 @@ export function excelPractice(o: {
  * Bước thực hành trên PowerPoint. `slides` dựng sẵn các bố cục đầu bài; `setup`
  * thêm nội dung có sẵn (không tính vào lịch sử hoàn tác); `solve` là lời giải mẫu.
  */
+/**
+ * Gõ chữ vào chỗ dành sẵn có vai trò `role` của slide thứ `slide` (đếm từ 0). Id tìm từ state, không đoán.
+ * Mở đúng slide trước: reducer chỉ sửa đối tượng của slide ĐANG MỞ, gõ vào slide khác là phép không.
+ */
+export function pptTypeInto(s: pptSim.PptState, slide: number, role: pptSim.Role, text: string): pptSim.PptAction[] {
+  const el = s.slides[slide]?.els.find((e) => e.role === role);
+  if (!el) throw new Error(`Slide ${slide + 1} không có chỗ ${role}`);
+  return [{ type: 'gotoSlide', index: slide }, { type: 'startEditEl', id: el.id }, { type: 'setText', text }, { type: 'commitEdit' }];
+}
+
+/** Chạy lần lượt các bước, mỗi bước được nhìn state sau bước trước (để lấy id vừa sinh). */
+export function pptChain(s0: pptSim.PptState, ...steps: ((s: pptSim.PptState) => pptSim.PptAction[])[]): pptSim.PptAction[] {
+  const out: pptSim.PptAction[] = [];
+  let s = s0;
+  for (const step of steps) {
+    const acts = step(s);
+    out.push(...acts);
+    s = acts.reduce(pptSim.reducePpt, s);
+  }
+  return out;
+}
+
 export function pptPractice(o: {
   slides?: pptSim.Layout[];
   task: string;
