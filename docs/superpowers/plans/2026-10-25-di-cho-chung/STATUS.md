@@ -3,7 +3,7 @@
 Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]`, ngày, hash ngắn, ghi chú ≤ 1 dòng.
 
 - [x] 01 scaffold — 2026-10-25, nhánh feat/v1; 3 test xanh, APK debug build được
-- [ ] 02 catalog-search
+- [x] 02 catalog-search — 2026-10-25, feat/v1; kho mẫu 20 món, tìm không dấu/sai chính tả/tiếng Nhật, 16 test xanh
 - [ ] 03 firebase-backend
 - [ ] 04 home-pairing
 - [ ] 05 pick-tab
