@@ -1,0 +1,25 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-10-25-di-cho-chung/00-overview.md
+Spec: docs/superpowers/specs/2026-10-25-di-cho-chung-design.md
+Ruling: plan is split per task file, so task-start/task-done scripts (single-file plans) are not used; brief = task-NN file, ledger kept by hand — cost if wrong: none, same record.
+Ruling: master holds only docs (736dce4); implementation runs on branch feat/v1 — skill forbids implementing on master without consent — cost if wrong: one merge at the end.
+Ruling: mockup thiet-ke-v2.html copied to docs/mockups/ because .superpowers/ is git-ignored — cost if wrong: none.
+Pre-flight: interfaces checked while writing plan; Task 07 relies on CurrentStore from Task 09 (passes null until then); Task 06 storage upload depends on Blaze (noted in brief).
+Task 1: complete (commits 736dce4..75c90db, tests: ./gradlew.bat :app:testDebugUnitTest :app:assembleDebug → 3/3 pass, BUILD SUCCESSFUL)
+Task 2: Ruling: fold strips only Latin combining marks U+0300–U+036F, not all \p{M} — stripping all marks after NFD would turn ブタ into ふた and break Japanese search — cost if wrong: none for Vietnamese, extra test fold_keepsJapaneseDakuten guards it.
+Task 2: Ruling: Category serialized by @SerialName key ("rau_cu") so items.json/Firestore use the key, not the enum name — cost if wrong: one JSON rename.
+Task 2: Ruling: suggestions need query ≥ 2 folded chars; a 1-char query with edit distance 1 would match every short key — cost if wrong: single-letter typos give no suggestion.
+Task 2: Ruling: đậu phụ placed in trung_sua (Japanese stores shelve tofu by dairy); tỏi in gia_vi — cost if wrong: Task 11 re-categorises.
+Task 2: complete (commits 75c90db..07c41dd, tests: ./gradlew.bat :app:testDebugUnitTest → 16/16 pass, BUILD SUCCESSFUL)
+Task 3: Ruling: project display name "Di Cho Chung" (no diacritics) — Cloud Resource Manager rejects "Đi Chợ Chung" as invalid characters — cost if wrong: rename in Console.
+Task 3: Ruling: Anonymous Auth not enabled — identitytoolkit initializeAuth returns BILLING_NOT_ENABLED; per brief fallback, user enables it in Console (STATUS) — cost if wrong: Task 04 sign-in fails until done.
+Task 3: Ruling: storage.rules written and emulator-tested but not deployed — Storage needs Console "Get started" (Blaze for new projects) — deploy after Blaze (Task 06/10) — cost if wrong: uploads denied until deployed.
+Task 3: Ruling: emulators run with portable JDK 21 (%LOCALAPPDATA%/Programs/jdk-21.0.12.1+1) — firebase-tools 15 refuses Java < 21; Gradle stays on JDK 17 — cost if wrong: none.
+Task 3: Ruling: android/app/google-services.json git-ignored and google-services plugin applied only if the file exists (same as app Vào Hang) — remote repo may be public — cost if wrong: a fresh clone needs firebase_get_sdk_config before Firebase works.
+Task 3: Ruling: join is a batch (home update + invite used=true); home rule reads invite with get() (pre-batch), invite rule checks getAfter(home) membership — cost if wrong: Task 04 must write the join as one batch.
+Task 3: complete (commits 07c41dd..5e866ff, tests: rules-test npm test → 13/13 pass; ./gradlew.bat :app:assembleDebug :app:testDebugUnitTest → 16/16 pass, BUILD SUCCESSFUL)
+Task 3: follow-up 2026-10-25 — user enabled Anonymous Auth + Blaze; default bucket created via firebasestorage v1alpha defaultBucket (ASIA-NORTHEAST1); storage.rules deployed; budget "di-cho-chung 100 yen" (JPY 100/month, 50/90/100%, project filter) created with --billing-project=di-cho-chung.
+Task 4: in progress (2026-10-25, máy gốc) — test đã viết và thấy FAIL đúng (chưa có mã): home/InviteCodeTest.kt, data/HomeModelTest.kt, home/OnboardingScreenshotTest.kt, home/HomeScreenScreenshotTest.kt. Test định nghĩa API: InviteCode.remainingLabel(expiresAt, now) "14:59"; InviteCode.joinError(exists, used, expiresAt, now) → thông điệp tiếng Việt hoặc null; Role.fromKey(key); OnboardingScreen(busy, error, onCreate(Role), onJoin(code chỉ lấy chữ số, tối đa 6), onScan) với testTag create_vo/create_chong/join_code_field/join_button; HomeScreen(home, myUid, invite, now, onInvite(replace), onCloseInvite, onRename) với testTag reinvite_button, nút "Mời <vai>", mã hiện nguyên chuỗi, "Hết hạn sau mm:ss".
+Task 4: Ruling (planned): người lạ không đọc được homes/{id}, nên join không đọc nhà; invite replace=true lưu thêm `replaceUid` (người tạo mã biết uid người giữ vai đó) để join xoá đúng members.<replaceUid> — cost if wrong: thêm 1 trường invite.
+Task 4: Ruling (planned): createHome chỉ ghi homes (không gộp invite vào cùng batch) vì luật invite dùng get() thấy trạng thái trước batch, nhà chưa tồn tại → bị chặn — cost if wrong: thêm 1 lượt ghi.
+Task 4: Ruling (planned): Onboarding hiện luôn cả hai thẻ (Tạo nhà mới + 2 nút vai; Nhập mã mời + ô 6 số + Quét QR) thay vì bấm rồi mới hiện — ảnh chụp thấy đủ, ít trạng thái ẩn — cost if wrong: đổi bố cục.
+Task 4: Ruling (planned): HomeRepository thêm `val homeId: StateFlow<String?>` (từ SharedPreferences "home") và `suspend fun renameMe(name)`; homeId != null mà home chưa về → màn chờ, bị gỡ khỏi nhà → xoá homeId, về Onboarding.

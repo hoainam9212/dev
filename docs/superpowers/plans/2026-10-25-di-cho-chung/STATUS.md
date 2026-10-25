@@ -13,7 +13,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [ ] 09 geofence
 - [ ] 10 push-functions — Blaze + ngân sách ¥100 đã có
 - [ ] 11 catalog-images — chờ user duyệt danh sách + 12 ảnh thử
-- [ ] 12 release
+- [ ] 12 release — có thêm Step 0: icon hiện đại vẽ bằng Gemini
 - [ ] 13 smoke-real-phones — làm cùng user
 
 ## Việc user cần làm (gom một chỗ)
@@ -21,6 +21,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 2026-10-25 user bật Anonymous Auth + gắn Blaze; Claude bật Storage, deploy storage.rules, đặt ngân sách ¥100/tháng (50/90/100%) cho riêng di-cho-chung.
 
 - [x] (Blaze) đã gắn thẻ 2026-10-25, cảnh báo ¥100 đã đặt.
+- [ ] (Task 12) Mở Chrome profile có **Gemini Pro** để vẽ icon app; chọn 1 trong các bản Claude vẽ.
 - [ ] (Task 11) Duyệt `catalog/items.csv` (danh sách món); duyệt 12 ảnh thử; mở Chrome profile có **Gemini Pro** khi Claude cần vẽ ảnh.
 - [ ] (Task 13) Hai máy S22 + S26 Ultra: cho phép cài app ngoài, cài APK, cấp quyền thông báo + vị trí "Luôn cho phép", Pin → Không hạn chế, thêm vào "Ứng dụng không bao giờ ngủ".
 - [ ] (Task 13) Ra một siêu thị thật: bấm "Lưu chỗ này là siêu thị", lần sau quay lại xem có thông báo.
