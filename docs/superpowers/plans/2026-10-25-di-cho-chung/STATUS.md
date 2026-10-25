@@ -5,7 +5,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 01 scaffold — 2026-10-25, nhánh feat/v1; 3 test xanh, APK debug build được
 - [x] 02 catalog-search — 2026-10-25, feat/v1; kho mẫu 20 món, tìm không dấu/sai chính tả/tiếng Nhật, 16 test xanh
 - [x] 03 firebase-backend — 2026-10-25, project `di-cho-chung`, Firestore asia-northeast1, luật Firestore đã deploy, 13 test luật xanh, Anonymous Auth bật, Storage (asia-northeast1) + storage.rules đã deploy
-- [ ] 04 home-pairing
+- [ ] 04 home-pairing — 2026-10-25 (cloud) mã viết xong, **chưa chạy test — chờ máy gốc chạy** `./gradlew.bat :app:recordRoborazziDebug :app:testDebugUnitTest :app:assembleDebug` rồi soi 4 ảnh onboarding*/home_* và đánh [x]; ghép đôi thật: kiểm ở Task 13 Step 2
 - [ ] 05 pick-tab
 - [ ] 06 add-edit-item
 - [ ] 07 list-tab
