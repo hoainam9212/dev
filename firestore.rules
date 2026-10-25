@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function homePath(homeId) {
+      return /databases/$(database)/documents/homes/$(homeId);
+    }
+
+    function isMember(homeId) {
+      return signedIn() && request.auth.uid in get(homePath(homeId)).data.members;
+    }
+
+    function validMember(m) {
+      return m is map && m.keys().hasAll(['role', 'name']) && m.role in ['vo', 'chong'] && m.name is string;
+    }
+
+    // A home has at most two members, so checking the first two keys covers every holder.
+    function holdsRole(members, i, role) {
+      return members.size() > i && members[members.keys()[i]].role == role;
+    }
+
+    function removedHolderOf(members, removed, role) {
+      return removed.size() == 1 && (
+        (members.size() > 0 && members.keys()[0] in removed && holdsRole(members, 0, role)) ||
+        (members.size() > 1 && members.keys()[1] in removed && holdsRole(members, 1, role)));
+    }
+
+    // Joining: a stranger adds themself to members with a fresh, unused invite of this home and role.
+    function isValidJoin(homeId) {
+      let uid = request.auth.uid;
+      let before = resource.data.members;
+      let after = request.resource.data.members;
+      let inv = get(/databases/$(database)/documents/invites/$(request.resource.data.joinCode)).data;
+      let diff = after.diff(before);
+      return !(uid in before)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'joinCode'])
+        && inv.homeId == homeId && inv.used == false && inv.expiresAt > request.time
+        && diff.addedKeys() == [uid].toSet() && diff.changedKeys().size() == 0
+        && validMember(after[uid]) && after[uid].role == inv.role
+        && (inv.replace == true
+              ? removedHolderOf(before, diff.removedKeys(), inv.role)
+              : diff.removedKeys().size() == 0 && before.size() < 2
+                && !holdsRole(before, 0, inv.role) && !holdsRole(before, 1, inv.role));
+    }
+
+    match /homes/{homeId} {
+      allow create: if signedIn()
+        && request.resource.data.members.keys().hasOnly([request.auth.uid])
+        && validMember(request.resource.data.members[request.auth.uid]);
+      allow read, delete: if signedIn() && request.auth.uid in resource.data.members;
+      // Members may edit the home but not let anyone new in; newcomers go through isValidJoin.
+      allow update: if signedIn() && (
+        (request.auth.uid in resource.data.members
+          && request.resource.data.members.keys().hasOnly(resource.data.members.keys())
+          && request.auth.uid in request.resource.data.members)
+        || isValidJoin(homeId));
+
+      match /{collection}/{docId} {
+        allow read, write: if isMember(homeId);
+      }
+    }
+
+    match /invites/{code} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if isMember(request.resource.data.homeId)
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.used == false
+        && request.resource.data.role in ['vo', 'chong'];
+      // The joiner burns the invite in the same batch that adds them to the home.
+      allow update: if signedIn()
+        && resource.data.used == false
+        && resource.data.expiresAt > request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used'])
+        && request.resource.data.used == true
+        && request.auth.uid in getAfter(homePath(resource.data.homeId)).data.members;
+      allow delete: if isMember(resource.data.homeId);
+    }
+  }
+}

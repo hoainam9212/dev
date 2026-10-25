@@ -22,3 +22,6 @@ ui-debug.log
 
 # Tools
 .superpowers/
+
+# Firebase client config (project di-cho-chung) — kept out of the public repo
+android/app/google-services.json

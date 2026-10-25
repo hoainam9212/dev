@@ -4,7 +4,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 
 - [x] 01 scaffold — 2026-10-25, nhánh feat/v1; 3 test xanh, APK debug build được
 - [x] 02 catalog-search — 2026-10-25, feat/v1; kho mẫu 20 món, tìm không dấu/sai chính tả/tiếng Nhật, 16 test xanh
-- [ ] 03 firebase-backend
+- [x] 03 firebase-backend — 2026-10-25, project `di-cho-chung`, Firestore asia-northeast1, luật Firestore đã deploy, 13 test luật xanh; còn chờ Blaze: bật Anonymous Auth + Storage (luật storage chưa deploy)
 - [ ] 04 home-pairing
 - [ ] 05 pick-tab
 - [ ] 06 add-edit-item
@@ -17,6 +17,8 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [ ] 13 smoke-real-phones — làm cùng user
 
 ## Việc user cần làm (gom một chỗ)
+
+- [ ] (**Ngay bây giờ**) Firebase Console → project `di-cho-chung` → Authentication → Get started → bật **Anonymous** (REST bị Google chặn khi chưa có billing). Sau khi gắn Blaze: Storage → Get started (vùng ASIA-NORTHEAST1), rồi báo Claude để deploy `storage.rules`.
 
 - [ ] (**Ngay sau Task 03 tạo project**, cần trước Task 06) Firebase Console → project `di-cho-chung` → Nâng cấp → gói **Blaze**, gắn thẻ. Kho ảnh (Storage, Task 06) và Cloud Functions (Task 10) đều cần. Báo Claude khi xong để đặt cảnh báo ¥100.
 - [ ] (Task 11) Duyệt `catalog/items.csv` (danh sách món); duyệt 12 ảnh thử; mở Chrome profile có **Gemini Pro** khi Claude cần vẽ ảnh.
