@@ -1,0 +1,24 @@
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.iml
+*.keystore
+android/keystore.properties
+release/
+
+# Node
+functions/node_modules/
+functions/lib/
+rules-test/node_modules/
+catalog/node_modules/
+
+# Firebase
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Tools
+.superpowers/
