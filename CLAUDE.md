@@ -16,7 +16,11 @@
 - Test luật Firebase: `cd rules-test && npm i && npm test` (cần firebase-tools 15 và **Java 21**).
 - Firebase project: `di-cho-chung` (gói Blaze, ngân sách ¥100/tháng). `android/app/google-services.json` **không
   commit**; thiếu file thì app vẫn build (plugin google-services chỉ bật khi có file).
+- **GitHub Actions** (`.github/workflows/android.yml`) chạy mỗi lần push lên `di-cho-gia-dinh/**`: toàn bộ unit
+  test + ghi ảnh Roborazzi (`recordRoborazziDebug`), build APK debug; artifact `test-report`, `snapshots`,
+  `dichochung-debug-apk`. `google-services.json` lấy từ secret `GOOGLE_SERVICES_JSON`.
 - Phiên **cloud**: không build APK phát hành, không tăng version, không deploy Firebase, không tạo keystore.
-  Nếu môi trường không có JDK 17/Android SDK để chạy Gradle thì vẫn viết test + mã, commit, và ghi rõ trong
-  `STATUS.md` là "chưa chạy test — chờ máy gốc chạy".
+  Nếu môi trường không chạy được Gradle thì push rồi **xem kết quả GitHub Actions** của commit đó (tải artifact
+  `snapshots` để soi ảnh); chỉ báo xong khi lần chạy xanh. Không xem được Actions thì ghi trong `STATUS.md`
+  "chưa chạy test — chờ CI/máy gốc". Push bị từ chối vì nhánh có commit mới thì `git pull --rebase` rồi push lại.
 - Không commit bí mật (keystore, mật khẩu, token, khoá service account).

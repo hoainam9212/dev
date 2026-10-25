@@ -1,0 +1,68 @@
+name: Đi Chợ Chung – Android
+
+on:
+  push:
+    branches: ["di-cho-gia-dinh/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: di-cho-chung-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    name: Test + ảnh chụp + APK debug
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Lấy google-services.json từ secret (nếu có)
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          if [ -n "$GOOGLE_SERVICES_JSON" ]; then
+            printf '%s' "$GOOGLE_SERVICES_JSON" > app/google-services.json
+            echo "Đã có google-services.json"
+          else
+            echo "Không có secret GOOGLE_SERVICES_JSON – build không kèm cấu hình Firebase"
+          fi
+
+      # recordRoborazziDebug chạy toàn bộ unit test (kể cả Robolectric) và ghi lại ảnh chụp.
+      - name: Unit test + chụp ảnh giao diện
+        run: ./gradlew :app:recordRoborazziDebug --stacktrace
+
+      - name: Build APK debug
+        run: ./gradlew :app:assembleDebug --stacktrace
+
+      - name: Báo cáo test
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: android/app/build/reports/tests/
+          if-no-files-found: ignore
+
+      - name: Ảnh chụp giao diện
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots
+          path: android/app/src/test/snapshots/
+          if-no-files-found: ignore
+
+      - name: APK debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: dichochung-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
