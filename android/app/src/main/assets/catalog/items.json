@@ -1,9 +1,9 @@
 [
   {"id": "trung_ga", "name": "Trứng gà", "aliases": ["trứng", "卵", "たまご"], "nameJa": "卵", "category": "trung_sua", "unit": "quả", "defaultQty": 10, "step": 1, "emoji": "🥚", "imageAsset": "catalog/icons/trung_ga.webp"},
   {"id": "sua_tuoi", "name": "Sữa tươi", "aliases": ["sữa", "牛乳", "ぎゅうにゅう", "milk"], "nameJa": "牛乳", "category": "trung_sua", "unit": "hộp", "defaultQty": 1, "step": 1, "emoji": "🥛", "imageAsset": "catalog/icons/sua_tuoi.webp"},
-  {"id": "ca_hoi", "name": "Cá hồi", "aliases": ["鮭", "さけ", "サーモン", "salmon"], "nameJa": "鮭", "category": "thit_ca", "unit": "g", "defaultQty": 300, "step": 100, "emoji": "🐟", "imageAsset": "catalog/icons/ca_hoi.webp"},
-  {"id": "thit_bo", "name": "Thịt bò", "aliases": ["牛肉", "ぎゅうにく", "beef"], "nameJa": "牛肉", "category": "thit_ca", "unit": "g", "defaultQty": 300, "step": 100, "emoji": "🥩", "imageAsset": "catalog/icons/thit_bo.webp"},
-  {"id": "thit_heo", "name": "Thịt heo", "aliases": ["thịt lợn", "豚肉", "ぶたにく", "pork"], "nameJa": "豚肉", "category": "thit_ca", "unit": "g", "defaultQty": 300, "step": 100, "emoji": "🥓", "imageAsset": "catalog/icons/thit_heo.webp"},
+  {"id": "ca_hoi", "name": "Cá hồi", "aliases": ["鮭", "さけ", "サーモン", "salmon"], "nameJa": "鮭", "category": "thit_ca", "unit": "khay", "defaultQty": 1, "step": 1, "emoji": "🐟", "imageAsset": "catalog/icons/ca_hoi.webp"},
+  {"id": "thit_bo", "name": "Thịt bò", "aliases": ["牛肉", "ぎゅうにく", "beef"], "nameJa": "牛肉", "category": "thit_ca", "unit": "khay", "defaultQty": 1, "step": 1, "emoji": "🥩", "imageAsset": "catalog/icons/thit_bo.webp"},
+  {"id": "thit_heo", "name": "Thịt heo", "aliases": ["thịt lợn", "豚肉", "ぶたにく", "pork"], "nameJa": "豚肉", "category": "thit_ca", "unit": "khay", "defaultQty": 1, "step": 1, "emoji": "🥓", "imageAsset": "catalog/icons/thit_heo.webp"},
   {"id": "ca_chua", "name": "Cà chua", "aliases": ["トマト", "tomato"], "nameJa": "トマト", "category": "rau_cu", "unit": "quả", "defaultQty": 3, "step": 1, "emoji": "🍅", "imageAsset": "catalog/icons/ca_chua.webp"},
   {"id": "rau_muong", "name": "Rau muống", "aliases": ["空芯菜", "くうしんさい"], "nameJa": "空芯菜", "category": "rau_cu", "unit": "bó", "defaultQty": 1, "step": 1, "emoji": "🥬", "imageAsset": "catalog/icons/rau_muong.webp"},
   {"id": "rau_cai", "name": "Rau cải", "aliases": ["cải", "cải ngọt", "小松菜", "こまつな"], "nameJa": "小松菜", "category": "rau_cu", "unit": "bó", "defaultQty": 1, "step": 1, "emoji": "🥗", "imageAsset": "catalog/icons/rau_cai.webp"},

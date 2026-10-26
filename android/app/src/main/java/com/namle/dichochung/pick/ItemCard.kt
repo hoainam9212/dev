@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -62,12 +63,14 @@ fun ItemCard(
             modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
         )
         if (qty == null) {
-            Text(
-                PickLabels.perUnit(item.unit),
-                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Medium),
-                color = AppColors.TextFaint,
-                modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-            )
+            // Cao đúng bằng thanh stepper để thẻ chọn / chưa chọn cùng hàng cao bằng nhau như mẫu.
+            Box(Modifier.padding(top = 6.dp).height(StepperHeight), contentAlignment = Alignment.Center) {
+                Text(
+                    PickLabels.perUnit(item.unit),
+                    style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Medium),
+                    color = AppColors.TextFaint,
+                )
+            }
         } else {
             Stepper(item.id, PickLabels.qty(qty, item.unit), onPlus, onMinus)
         }
@@ -80,6 +83,7 @@ private fun Stepper(itemId: String, label: String, onPlus: () -> Unit, onMinus: 
         Modifier
             .padding(top = 6.dp)
             .fillMaxWidth()
+            .height(StepperHeight)
             .clip(CircleShape)
             .background(AppColors.Green)
             .padding(3.dp),
@@ -115,3 +119,4 @@ private fun StepButton(symbol: String, onClick: () -> Unit, modifier: Modifier) 
 }
 
 private val Shadow = Color(0x1A14281E)
+private val StepperHeight = 26.dp

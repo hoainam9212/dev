@@ -29,12 +29,12 @@ class PickScreenScreenshotTest {
     private val items = listOf(
         Item("trung_ga", "Trứng gà", category = Category.TRUNG_SUA, unit = "quả", defaultQty = 10, emoji = "🥚", imageAsset = "catalog/icons/trung_ga.webp"),
         Item("sua_tuoi", "Sữa tươi", category = Category.TRUNG_SUA, unit = "hộp", emoji = "🥛", imageAsset = "catalog/icons/sua_tuoi.webp"),
-        Item("ca_hoi", "Cá hồi", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100, emoji = "🐟", imageAsset = "catalog/icons/ca_hoi.webp"),
-        Item("thit_bo", "Thịt bò", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100, emoji = "🥩", imageAsset = "catalog/icons/thit_bo.webp"),
+        Item("ca_hoi", "Cá hồi", category = Category.THIT_CA, unit = "khay", emoji = "🐟", imageAsset = "catalog/icons/ca_hoi.webp"),
+        Item("thit_bo", "Thịt bò", category = Category.THIT_CA, unit = "khay", emoji = "🥩", imageAsset = "catalog/icons/thit_bo.webp"),
         Item("ca_chua", "Cà chua", category = Category.RAU_CU, unit = "quả", defaultQty = 3, emoji = "🍅", imageAsset = "catalog/icons/ca_chua.webp"),
         Item("rau_muong", "Rau muống", category = Category.RAU_CU, unit = "bó", emoji = "🥬", imageAsset = "catalog/icons/rau_muong.webp"),
     )
-    private val selected = linkedMapOf("trung_ga" to 10, "sua_tuoi" to 2, "thit_bo" to 300, "rau_muong" to 1)
+    private val selected = linkedMapOf("trung_ga" to 10, "sua_tuoi" to 2, "thit_bo" to 1, "rau_muong" to 1)
     private val calls = mutableListOf<String>()
 
     private fun show(selection: Map<String, Int>, sendLabel: String = "Gửi cho Chồng 🚀") {
@@ -62,8 +62,8 @@ class PickScreenScreenshotTest {
         show(selected)
         compose.onNodeWithText("Gửi cho Chồng 🚀").assertIsDisplayed()
         compose.onNodeWithText("4 món").assertIsDisplayed()
-        compose.onNodeWithText("300 g").assertIsDisplayed()
-        compose.onNodeWithText("theo gam").assertIsDisplayed()
+        compose.onNodeWithText("1 khay").assertIsDisplayed()
+        compose.onNodeWithText("theo khay").assertIsDisplayed()
         compose.onNodeWithTag("chip_gia_vi").assertIsDisplayed()
         compose.onRoot().captureRoboImage("src/test/snapshots/pick.png")
     }

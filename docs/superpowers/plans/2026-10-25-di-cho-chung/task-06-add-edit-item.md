@@ -16,7 +16,7 @@
   class ItemWriter { suspend fun upsert(item: Item, photo: ByteArray?): Item   // ảnh → Storage homes/{id}/items/{itemId}.webp → imageUrl
                      suspend fun delete(itemId: String) }                     // đặt deleted = true (món kho gốc) hoặc xoá doc (món tự thêm)
   ```
-- `Guess.category`: lấy nhóm của món kho có tên `fold` chung từ đầu dài nhất (ví dụ "rau ngót" → RAU_CU nhờ "rau"); không có → KHAC. `Guess.unit`: THIT_CA → ("g",300,100); RAU_CU → ("bó",1,1); TRUNG_SUA → ("hộp",1,1); GIA_VI/DO_KHO/DO_UONG/KHAC → ("gói",1,1).
+- `Guess.category`: lấy nhóm của món kho có tên `fold` chung từ đầu dài nhất (ví dụ "rau ngót" → RAU_CU nhờ "rau"); không có → KHAC. `Guess.unit`: THIT_CA → ("khay",1,1) (siêu thị Nhật bán thịt cá theo khay, LEDGER Task 5); RAU_CU → ("bó",1,1); TRUNG_SUA → ("hộp",1,1); GIA_VI/DO_KHO/DO_UONG/KHAC → ("gói",1,1).
 - Id món mới: `"u_" + UUID ngắn 8 ký tự`.
 
 **Hành vi** (spec 4.2): gõ vào ô tìm → `SearchResults` hiện `matches`, rồi "Có phải bạn tìm: …" (`suggestions`), cuối cùng dòng `add_item_row` **"+ Thêm "<chữ đã gõ>""**. Chạm → `AddItemSheet`: ảnh (nút 📷 Chụp / 🖼️ Thư viện, mặc định emoji nhóm), tên (đã `normalizeName`), chip nhóm, đơn vị + mặc định + bước (điền theo `Guess`). Bấm **Thêm** → nếu `findDuplicate` có kết quả: hộp thoại "Đã có **X** rồi, dùng món này nhé?" — [Dùng món có sẵn] [Vẫn thêm mới]. Thêm xong: món được chọn luôn với `defaultQty`. Nhấn giữ thẻ ở lưới → `EditItemSheet` (cùng form + nút đỏ "Xoá món", hỏi xác nhận).
