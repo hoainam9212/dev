@@ -37,12 +37,13 @@ class PickScreenScreenshotTest {
     private val selected = linkedMapOf("trung_ga" to 10, "sua_tuoi" to 2, "thit_bo" to 300, "rau_muong" to 1)
     private val calls = mutableListOf<String>()
 
-    private fun show(selection: Map<String, Int>) {
+    private fun show(selection: Map<String, Int>, sendLabel: String = "Gửi cho Chồng 🚀") {
         compose.setContent {
             DiChoTheme {
                 PickScreen(
                     state = PickUiState(query = "", category = null, items = items, selection = selection),
                     caption = "Đi Chợ Chung · Thứ Bảy",
+                    sendLabel = sendLabel,
                     roleLabel = "Vợ",
                     roleEmoji = "👩",
                     onQuery = {},
@@ -59,7 +60,7 @@ class PickScreenScreenshotTest {
     @Test
     fun pickScreen_snapshot() {
         show(selected)
-        compose.onNodeWithText("Gửi cho cả nhà 🚀").assertIsDisplayed()
+        compose.onNodeWithText("Gửi cho Chồng 🚀").assertIsDisplayed()
         compose.onNodeWithText("4 món").assertIsDisplayed()
         compose.onNodeWithText("300 g").assertIsDisplayed()
         compose.onNodeWithText("theo gam").assertIsDisplayed()
@@ -82,5 +83,12 @@ class PickScreenScreenshotTest {
         compose.onNodeWithTag("stepper_minus_rau_muong").performClick()
         compose.onNodeWithTag("send_button").performClick()
         assertEquals(listOf("tap:ca_hoi", "plus:thit_bo", "minus:rau_muong", "send"), calls)
+    }
+
+    @Test
+    fun pickScreen_family_snapshot() {
+        show(selected, sendLabel = "Gửi cho cả nhà 🚀")
+        compose.onNodeWithText("Gửi cho cả nhà 🚀").assertIsDisplayed()
+        compose.onRoot().captureRoboImage("src/test/snapshots/pick_family.png")
     }
 }

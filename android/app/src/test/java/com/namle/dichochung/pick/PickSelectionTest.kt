@@ -55,4 +55,22 @@ class PickSelectionTest {
         assertEquals("Chủ Nhật", PickLabels.weekday(DayOfWeek.SUNDAY))
         assertEquals("Thứ Hai", PickLabels.weekday(DayOfWeek.MONDAY))
     }
+
+    @Test
+    fun sendLabel_namesTheOnlyOtherMember_elseWholeFamily() {
+        // 2 người: ghi đích danh người kia (tên hiển thị, mặc định là vai).
+        assertEquals("Gửi cho Chồng 🚀", PickLabels.sendButton(listOf("Chồng")))
+        assertEquals("Gửi cho Anh Bình 🚀", PickLabels.sendButton(listOf("Anh Bình")))
+        // Từ 3 người trở lên: cả nhà.
+        assertEquals("Gửi cho cả nhà 🚀", PickLabels.sendButton(listOf("Chồng", "Bé Na")))
+        // Mới có mình (chưa mời ai): vẫn đưa vào danh sách chung.
+        assertEquals("Gửi vào danh sách 🚀", PickLabels.sendButton(emptyList()))
+    }
+
+    @Test
+    fun sentMessage_matchesRecipients() {
+        assertEquals("Đã gửi 4 món cho Chồng", PickLabels.sentMessage(4, listOf("Chồng")))
+        assertEquals("Đã gửi 2 món cho cả nhà", PickLabels.sentMessage(2, listOf("Vợ", "Bé Na")))
+        assertEquals("Đã thêm 1 món vào danh sách", PickLabels.sentMessage(1, emptyList()))
+    }
 }

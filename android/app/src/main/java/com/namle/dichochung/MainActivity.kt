@@ -79,6 +79,7 @@ class MainActivity : ComponentActivity() {
                                     vm = pickVm,
                                     roleLabel = me?.name.orEmpty(),
                                     roleEmoji = me?.role?.emoji ?: "🏠",
+                                    recipients = currentHome.others(myUid).map { it.name },
                                     modifier = content,
                                 )
                                 Tab.HOME -> HomeScreen(

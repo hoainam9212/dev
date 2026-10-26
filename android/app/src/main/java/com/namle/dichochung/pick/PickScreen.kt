@@ -54,6 +54,7 @@ data class PickUiState(
 fun PickScreen(
     state: PickUiState,
     caption: String,
+    sendLabel: String,
     roleLabel: String,
     roleEmoji: String,
     onQuery: (String) -> Unit,
@@ -109,6 +110,7 @@ fun PickScreen(
         if (state.selection.isNotEmpty()) {
             SendBar(
                 count = state.selection.size,
+                label = sendLabel,
                 enabled = !state.sending,
                 onSend = onSend,
                 modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 16.dp, vertical = 12.dp),

@@ -55,14 +55,15 @@ class PickViewModel(
 
     fun minus(itemId: String) = change(itemId, PickSelection::minus)
 
-    fun send() {
+    /** [recipients] = tên hiển thị những người khác trong nhà, để báo "Đã gửi N món cho Chồng" / "cho cả nhà". */
+    fun send(recipients: List<String>) {
         val chosen = selection.value
         if (chosen.isEmpty()) return
         viewModelScope.launch {
             val message = try {
                 list.send(chosen, catalog.items.value)
                 updateSelection(emptyMap())
-                "Đã gửi ${chosen.size} món cho cả nhà"
+                PickLabels.sentMessage(chosen.size, recipients)
             } catch (e: Exception) {
                 "Chưa gửi được, thử lại"
             }

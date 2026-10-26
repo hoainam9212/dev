@@ -61,7 +61,7 @@ Mẫu giao diện đã chốt: `mau-ket-hop.png` và `.superpowers/brainstorm/*/
 - Mỗi món có **bước tăng** riêng: đếm được thì 1; tính gam thì 100 g **[Claude chọn]**.
 - "Hay mua" sắp theo số lần món đó từng được gửi, nhiều nhất lên đầu.
 - **Nhấn giữ thẻ**: sửa món trong kho — tên, ảnh, nhóm, đơn vị, bước tăng, hoặc xoá món. (Chỉ việc này; ghi chú nhập ở tab Cần mua.)
-- Thanh nổi trắng ở dưới: "Đã chọn **N món**" + nút cam **"Gửi cho cả nhà 🚀"**. Không có món nào chọn thì ẩn thanh.
+- Thanh nổi trắng ở dưới: "Đã chọn **N món**" + nút cam ghi theo người nhận (chủ dự án chốt 2026-10-26): nhà 2 người **"Gửi cho <tên người kia> 🚀"** (mặc định "Gửi cho Chồng" / "Gửi cho Vợ"), từ 3 người **"Gửi cho cả nhà 🚀"**, chưa mời ai "Gửi vào danh sách 🚀". Không có món nào chọn thì ẩn thanh.
 - **Gửi** = gộp các món đã chọn vào danh sách Cần mua chung (món đã có trong danh sách thì cộng dồn số lượng **[Claude chọn]**), xoá lựa chọn trên máy gửi, đẩy thông báo sang các máy khác trong nhà. "Gửi" là **lối duy nhất** để đưa món vào danh sách **[Claude chọn]**.
 
 ### 4.2 Tìm và thêm món mới

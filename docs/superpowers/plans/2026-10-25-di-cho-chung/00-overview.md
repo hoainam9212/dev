@@ -20,7 +20,7 @@
 - Build: Git Bash, trong `android/`: `export JAVA_HOME="$LOCALAPPDATA/Programs/jdk-17.0.20.1+1" ANDROID_HOME="$LOCALAPPDATA/Android/Sdk"; ./gradlew.bat <task>`. Không đổi biến môi trường hệ thống.
 - Toàn bộ chữ trên giao diện là **tiếng Việt**, đúng như spec. Font **Be Vietnam Pro** (400/500/600/700/800) đóng gói trong `res/font`, không dùng font hệ thống.
 - Màu (từ `thiet-ke-v2.html`): xanh chính `#2E9E62`, xanh dải đầu `#2E9E62→#6DBB5A`, nền `#F6F5F0`, chữ `#1B2420`, chữ phụ `#7A857F`, cam nút gửi `#FF8A3D→#F2683A`, đỏ huy hiệu `#F2545B`, xanh đậm nút hoàn thành `#1F7A4C`. Pastel nhóm: rau `#E7F4EA`, thịt cá `#FCE8EC`, trứng sữa `#E6F0FB`/`#FFF6D9`, củ quả `#FFF0E3`. Bo góc thẻ 18 dp, ô ảnh 16 dp.
-- Vai (2026-10-26, nhóm gia đình): `Role.VO` "Vợ", `CHONG` "Chồng", `CON` "Con", `ONG` "Ông", `BA` "Bà", `KHAC` "Khác" (tên mặc định "Người nhà"); vai được trùng. Nút gửi ghi "Gửi cho cả nhà". Thông báo đi tới mọi thành viên trừ người làm, mở đầu bằng tên hiển thị.
+- Vai (2026-10-26, nhóm gia đình): `Role.VO` "Vợ", `CHONG` "Chồng", `CON` "Con", `ONG` "Ông", `BA` "Bà", `KHAC` "Khác" (tên mặc định "Người nhà"); vai được trùng. Nút gửi: nhà 2 người "Gửi cho <tên người kia>", từ 3 người "Gửi cho cả nhà" (`PickLabels.sendButton`). Thông báo đi tới mọi thành viên trừ người làm, mở đầu bằng tên hiển thị.
 - Geofence bán kính **90 m**; không báo lại cùng siêu thị trong **2 giờ**; chỉ báo khi còn món `NEED`.
 - Mã mời: **6 chữ số**, hết hạn **15 phút**, dùng **một lần**. Một nhà tối đa **6** thành viên (`Home.MAX_MEMBERS`).
 - Firebase project dùng tài khoản **lehoainam.htd@gmail.com** (gcloud ADC đã đăng nhập sẵn tài khoản này). Gói Blaze + cảnh báo ngân sách **¥100**: user tự gắn thẻ (Task 10).

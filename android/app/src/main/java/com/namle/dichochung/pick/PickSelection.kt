@@ -25,6 +25,22 @@ object PickLabels {
 
     fun qty(qty: Int, unit: String): String = "$qty $unit"
 
+    /**
+     * Nhãn nút gửi theo người nhận ([others] = tên hiển thị những người khác trong nhà): nhà 2 người ghi đích danh
+     * "Gửi cho Chồng", từ 3 người trở lên "Gửi cho cả nhà", chưa mời ai thì "Gửi vào danh sách".
+     */
+    fun sendButton(others: List<String>): String = when (others.size) {
+        0 -> "Gửi vào danh sách 🚀"
+        1 -> "Gửi cho ${others.single()} 🚀"
+        else -> "Gửi cho cả nhà 🚀"
+    }
+
+    fun sentMessage(count: Int, others: List<String>): String = when (others.size) {
+        0 -> "Đã thêm $count món vào danh sách"
+        1 -> "Đã gửi $count món cho ${others.single()}"
+        else -> "Đã gửi $count món cho cả nhà"
+    }
+
     fun weekday(day: DayOfWeek): String = when (day) {
         DayOfWeek.MONDAY -> "Thứ Hai"
         DayOfWeek.TUESDAY -> "Thứ Ba"
