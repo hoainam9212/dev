@@ -13,6 +13,7 @@ import com.namle.dichochung.data.Member
 import com.namle.dichochung.data.Role
 import com.namle.dichochung.ui.theme.DiChoTheme
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,7 +31,9 @@ class HomeScreenScreenshotTest {
 
     private val vo = Member("a", Role.VO, "Vợ", null)
     private val chong = Member("b", Role.CHONG, "Anh Bình", null)
-    private var invited: Boolean? = null
+    private val con = Member("c", Role.CON, "Bé Na", null)
+    private var invited: Member? = null
+    private var inviteCalls = 0
 
     private fun show(home: Home, invite: Invite?, now: Long = 0) {
         compose.setContent {
@@ -40,7 +43,7 @@ class HomeScreenScreenshotTest {
                     myUid = "a",
                     invite = invite,
                     now = now,
-                    onInvite = { invited = it },
+                    onInvite = { invited = it; inviteCalls++ },
                     onCloseInvite = {},
                     onRename = {},
                 )
@@ -50,24 +53,33 @@ class HomeScreenScreenshotTest {
 
     @Test
     fun homeScreen_inviteShown_snapshot() {
-        show(Home("h1", listOf(vo)), Invite("042917", Role.CHONG, expiresAt = InviteCode.TTL_MS - 1000), now = 0)
+        show(Home("h1", listOf(vo)), Invite("042917", expiresAt = InviteCode.TTL_MS - 1000), now = 0)
         compose.onNodeWithText("042917").assertIsDisplayed()
         compose.onNodeWithText("Hết hạn sau 14:59").assertIsDisplayed()
         compose.onRoot().captureRoboImage("src/test/snapshots/home_invite.png")
     }
 
     @Test
-    fun homeScreen_paired_snapshot() {
-        show(Home("h1", listOf(vo, chong)), invite = null)
-        compose.onNodeWithTag("reinvite_button").performClick()
-        assertEquals(true, invited)
-        compose.onRoot().captureRoboImage("src/test/snapshots/home_paired.png")
+    fun homeScreen_family_snapshot() {
+        show(Home("h1", listOf(vo, chong, con)), invite = null)
+        compose.onNodeWithText("Thành viên (3/6)").assertIsDisplayed()
+        compose.onNodeWithTag("reinvite_c").performClick()
+        assertEquals(con, invited)
+        compose.onRoot().captureRoboImage("src/test/snapshots/home_family.png")
     }
 
     @Test
-    fun homeScreen_missingMember_invitesWithoutReplace() {
-        show(Home("h1", listOf(vo)), invite = null)
-        compose.onNodeWithText("Mời Chồng").performClick()
-        assertEquals(false, invited)
+    fun homeScreen_inviteMore_invitesWithoutReplace() {
+        show(Home("h1", listOf(vo, chong)), invite = null)
+        compose.onNodeWithText("Mời thêm người").performClick()
+        assertEquals(1, inviteCalls)
+        assertNull(invited)
+    }
+
+    @Test
+    fun homeScreen_full_hidesInviteButton() {
+        val six = listOf(vo, chong, con) + List(3) { Member("x$it", Role.CON, "Con $it", null) }
+        show(Home("h1", six), invite = null)
+        compose.onNodeWithTag("invite_button").assertDoesNotExist()
     }
 }

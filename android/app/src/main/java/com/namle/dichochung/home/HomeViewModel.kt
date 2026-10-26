@@ -8,6 +8,7 @@ import com.namle.dichochung.data.Home
 import com.namle.dichochung.data.HomeException
 import com.namle.dichochung.data.HomeRepository
 import com.namle.dichochung.data.Invite
+import com.namle.dichochung.data.Member
 import com.namle.dichochung.data.Role
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
@@ -69,23 +70,21 @@ class HomeViewModel(
 
     fun create(role: Role) = work { repo.createHome(role) }
 
-    fun join(code: String) {
+    fun join(code: String, role: Role) {
         val clean = InviteCode.clean(code)
         if (clean.length != InviteCode.LENGTH) {
             _ui.update { it.copy(error = "Mã không đúng") }
             return
         }
-        work { repo.join(clean).getOrThrow() }
+        work { repo.join(clean, role).getOrThrow() }
     }
 
-    /** Mời người còn thiếu ([replace] = false) hoặc mời lại người kia khi đổi máy ([replace] = true). */
-    fun invite(replace: Boolean) {
-        val uid = myUid ?: return
+    /** Mời thêm người ([replacing] = null) hoặc mời lại đúng người đó khi họ đổi máy. */
+    fun invite(replacing: Member?) {
         val home = home.value ?: return
-        val role = home.me(uid)?.role?.other ?: return
         _ui.value.invite?.let { repo.cancelInvite(it.code) }
         work {
-            val invite = repo.createInvite(role, replace)
+            val invite = repo.createInvite(replacing)
             membersAtInvite = home.members.map { it.uid }.toSet()
             _ui.update { it.copy(invite = invite) }
         }

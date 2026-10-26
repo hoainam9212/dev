@@ -12,20 +12,20 @@
 - Produces:
   ```ts
   export type HomeEvent = { type: "sent" | "finished"; by: string; itemNames?: string[]; wasEmpty?: boolean; picked?: number; total?: number };
-  export function messageFor(e: HomeEvent, senderRoleVi: "Vợ" | "Chồng"): { title: string; body: string };
+  export function messageFor(e: HomeEvent, senderName: string)  // tên hiển thị members[by].name (nhóm gia đình ≤ 6 người): { title: string; body: string };
   export const onHomeEvent = onDocumentCreated({ document: "homes/{homeId}/events/{eventId}", region: "asia-northeast1" }, handler);
   ```
   ```kotlin
   object TokenSync { suspend fun push(homeId: String, uid: String) }  // FirebaseMessaging.getInstance().token → members.{uid}.fcmToken
   ```
 - `messageFor` — chữ chính xác:
-  - `sent`, `wasEmpty` → title `"🧺 <Vai> vừa gửi <n> món cần mua"`, body = tối đa 3 tên nối ", " + (n>3 ? ` +<n-3> món` : "").
-  - `sent`, không `wasEmpty` → title `"<Vai> vừa thêm: <3 tên đầu>"` + (n>3 ? ` +<n-3> món` : ""), body `"Mở Cần mua để xem"`.
-  - `finished` → title `"<Vai> đã đi chợ xong"`, body `"Nhặt <picked>/<total> món"`.
+  - `sent`, `wasEmpty` → title `"🧺 <Tên> vừa gửi <n> món cần mua"`, body = tối đa 3 tên nối ", " + (n>3 ? ` +<n-3> món` : "").
+  - `sent`, không `wasEmpty` → title `"<Tên> vừa thêm: <3 tên đầu>"` + (n>3 ? ` +<n-3> món` : ""), body `"Mở Cần mua để xem"`.
+  - `finished` → title `"<Tên> đã đi chợ xong"`, body `"Nhặt <picked>/<total> món"`.
 - Handler: đọc `homes/{homeId}`, gửi tới mọi thành viên **khác** `by` có `fcmToken`; data payload `open_tab=list`; Android `notification.channelId = "partner"`; token hỏng (`messaging/registration-token-not-registered`) → xoá `fcmToken` của thành viên đó. Xoá event doc sau khi gửi.
 - `PushService.onMessageReceived` khi app đang mở: hiện thông báo kênh PARTNER như bình thường; `onNewToken` → `TokenSync.push`.
 
-- [ ] **Step 1: Viết test `message.test.ts`:** `sent_wasEmpty_listsUpToThreeNames`; `sent_moreThanThree_addsCount`; `sent_notEmpty_usesAddedWording`; `finished_showsPickedOverTotal`; `roleLabel_isVietnamese` (không ra "vo"/"chong").
+- [ ] **Step 1: Viết test `message.test.ts`:** `sent_wasEmpty_listsUpToThreeNames`; `sent_moreThanThree_addsCount`; `sent_notEmpty_usesAddedWording`; `finished_showsPickedOverTotal`; `senderName_isDisplayName` (dùng members[by].name, không ra "vo"/"chong"/uid).
 - [ ] **Step 2:** `cd functions && npm i && npx vitest run` → FAIL.
 - [ ] **Step 3:** Viết `message.ts` → PASS; viết `index.ts`; `npm run build` (tsc) → không lỗi.
 - [ ] **Step 4:** Viết `PushService`, `TokenSync`; `assembleDebug` → OK.

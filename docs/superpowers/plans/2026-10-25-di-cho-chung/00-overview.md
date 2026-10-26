@@ -4,7 +4,7 @@
 >
 > **Mỗi phiên chỉ đọc 3 file:** file này + `STATUS.md` + đúng một `task-NN-*.md`. Xong task thì cập nhật dòng của task đó trong `STATUS.md` **trong cùng commit**.
 
-**Goal:** App Android "Đi Chợ Chung" cho hai vợ chồng: chọn món → gửi sang máy kia → tick khi nhặt ở siêu thị, báo khi tới siêu thị đã lưu.
+**Goal:** App Android "Đi Chợ Chung" cho cả nhà (tối đa 6 người, trước mắt hai vợ chồng): chọn món → gửi sang các máy khác → tick khi nhặt ở siêu thị, báo khi tới siêu thị đã lưu.
 
 **Architecture:** Một app Kotlin + Jetpack Compose (single Activity, 3 tab, ViewModel + StateFlow, DI thủ công qua `AppContainer`). Dữ liệu chung nằm trên Cloud Firestore (cache offline bật sẵn), danh tính bằng Anonymous Auth, ảnh tự chụp ở Firebase Storage. Thông báo giữa hai máy do một Cloud Function (TypeScript) nghe `homes/{homeId}/events` rồi gửi FCM. Geofence + thông báo tới siêu thị chạy hoàn toàn trên máy.
 
@@ -20,9 +20,9 @@
 - Build: Git Bash, trong `android/`: `export JAVA_HOME="$LOCALAPPDATA/Programs/jdk-17.0.20.1+1" ANDROID_HOME="$LOCALAPPDATA/Android/Sdk"; ./gradlew.bat <task>`. Không đổi biến môi trường hệ thống.
 - Toàn bộ chữ trên giao diện là **tiếng Việt**, đúng như spec. Font **Be Vietnam Pro** (400/500/600/700/800) đóng gói trong `res/font`, không dùng font hệ thống.
 - Màu (từ `thiet-ke-v2.html`): xanh chính `#2E9E62`, xanh dải đầu `#2E9E62→#6DBB5A`, nền `#F6F5F0`, chữ `#1B2420`, chữ phụ `#7A857F`, cam nút gửi `#FF8A3D→#F2683A`, đỏ huy hiệu `#F2545B`, xanh đậm nút hoàn thành `#1F7A4C`. Pastel nhóm: rau `#E7F4EA`, thịt cá `#FCE8EC`, trứng sữa `#E6F0FB`/`#FFF6D9`, củ quả `#FFF0E3`. Bo góc thẻ 18 dp, ô ảnh 16 dp.
-- Vai: `Role.VO` hiển thị "Vợ", `Role.CHONG` hiển thị "Chồng". Nút gửi ghi "Gửi cho <vai người kia>".
+- Vai (2026-10-26, nhóm gia đình): `Role.VO` "Vợ", `CHONG` "Chồng", `CON` "Con", `ONG` "Ông", `BA` "Bà", `KHAC` "Khác" (tên mặc định "Người nhà"); vai được trùng. Nút gửi ghi "Gửi cho cả nhà". Thông báo đi tới mọi thành viên trừ người làm, mở đầu bằng tên hiển thị.
 - Geofence bán kính **90 m**; không báo lại cùng siêu thị trong **2 giờ**; chỉ báo khi còn món `NEED`.
-- Mã mời: **6 chữ số**, hết hạn **15 phút**, dùng **một lần**. Một nhà tối đa **2** thành viên.
+- Mã mời: **6 chữ số**, hết hạn **15 phút**, dùng **một lần**. Một nhà tối đa **6** thành viên (`Home.MAX_MEMBERS`).
 - Firebase project dùng tài khoản **lehoainam.htd@gmail.com** (gcloud ADC đã đăng nhập sẵn tài khoản này). Gói Blaze + cảnh báo ngân sách **¥100**: user tự gắn thẻ (Task 10).
 - testTag Compose: `snake_case`, có hậu tố id khi lặp: `tab_pick`, `tab_list`, `tab_home`, `item_card_<itemId>`, `stepper_plus_<itemId>`, `stepper_minus_<itemId>`, `send_button`, `list_row_<entryId>`, `tick_<entryId>`, `finish_button`, `search_field`, `add_item_row`.
 - Mỗi task UI phải có **ảnh chụp Roborazzi** của màn đã làm (lưu `android/app/src/test/snapshots/`), và người làm **tự mở ảnh soi** dấu tiếng Việt, chữ tràn, bố cục trước khi đánh dấu xong.

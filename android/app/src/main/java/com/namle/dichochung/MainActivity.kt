@@ -23,6 +23,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
+import com.namle.dichochung.data.Role
 import com.namle.dichochung.home.HomeScreen
 import com.namle.dichochung.home.HomeViewModel
 import com.namle.dichochung.home.OnboardingScreen
@@ -57,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         error = ui.error,
                         onCreate = vm::create,
                         onJoin = vm::join,
-                        onScan = { scanInvite(vm) },
+                        onScan = { role -> scanInvite(vm, role) },
                     )
                     currentHome == null || myUid == null -> Waiting()
                     else -> {
@@ -91,10 +92,10 @@ class MainActivity : ComponentActivity() {
     }
 
     /** Máy quét QR của Google Play services: tự mở camera, không cần xin quyền camera. */
-    private fun scanInvite(vm: HomeViewModel) {
+    private fun scanInvite(vm: HomeViewModel, role: Role) {
         val options = GmsBarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build()
         GmsBarcodeScanning.getClient(this, options).startScan()
-            .addOnSuccessListener { barcode -> vm.join(barcode.rawValue.orEmpty()) }
+            .addOnSuccessListener { barcode -> vm.join(barcode.rawValue.orEmpty(), role) }
             .addOnFailureListener { vm.showError("Không mở được máy quét, hãy nhập 6 số") }
     }
 

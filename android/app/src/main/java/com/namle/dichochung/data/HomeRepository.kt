@@ -38,11 +38,11 @@ interface HomeRepository {
     suspend fun ensureSignedIn(): String
     suspend fun createHome(role: Role): String
 
-    /** [role] là vai của người được mời; [replace] = mời người thay máy cũ đang giữ vai đó. */
-    suspend fun createInvite(role: Role, replace: Boolean): Invite
+    /** [replacing] null = mời thêm người; khác null = mời lại đúng người đó khi họ đổi máy (gỡ uid cũ). */
+    suspend fun createInvite(replacing: Member?): Invite
 
-    /** Vai lấy từ invite. Lỗi mang thông điệp tiếng Việt để hiện thẳng cho người dùng. */
-    suspend fun join(code: String): Result<Unit>
+    /** Người vào tự chọn [role]. Lỗi mang thông điệp tiếng Việt để hiện thẳng cho người dùng. */
+    suspend fun join(code: String, role: Role): Result<Unit>
 
     /** Đổi tên hiển thị của chính mình (≤ 20 ký tự). */
     suspend fun renameMe(name: String)
@@ -90,11 +90,11 @@ class FirestoreHomeRepository(
         return ref.id
     }
 
-    override suspend fun createInvite(role: Role, replace: Boolean): Invite {
+    override suspend fun createInvite(replacing: Member?): Invite {
         val me = ensureSignedIn()
         val homeId = _homeId.value ?: throw HomeException("Chưa có nhà")
         // Người lạ không đọc được nhà, nên người mời ghi sẵn uid cần gỡ để máy mới xoá đúng members.<uid>.
-        val replaceUid = if (replace) home.value?.holderOf(role)?.uid?.takeIf { it != me } else null
+        val replaceUid = replacing?.uid?.takeIf { it != me }
         repeat(MAX_CODE_TRIES) {
             val code = InviteCode.generate()
             val ref = db.collection(INVITES).document(code)
@@ -102,8 +102,7 @@ class FirestoreHomeRepository(
             val expiresAt = clock() + InviteCode.TTL_MS
             val data = buildMap<String, Any> {
                 put("homeId", homeId)
-                put("role", role.key)
-                put("replace", replace)
+                put("replace", replaceUid != null)
                 replaceUid?.let { put("replaceUid", it) }
                 put("expiresAt", Timestamp(Date(expiresAt)))
                 put("used", false)
@@ -111,12 +110,12 @@ class FirestoreHomeRepository(
                 put("createdAt", FieldValue.serverTimestamp())
             }
             ref.set(data).await()
-            return Invite(code, role, expiresAt)
+            return Invite(code, expiresAt, replacing.takeIf { replaceUid != null })
         }
         throw HomeException("Không tạo được mã mời, thử lại")
     }
 
-    override suspend fun join(code: String): Result<Unit> = runCatching {
+    override suspend fun join(code: String, role: Role): Result<Unit> = runCatching {
         val me = try {
             ensureSignedIn()
         } catch (e: Exception) {
@@ -131,9 +130,8 @@ class FirestoreHomeRepository(
         InviteCode.joinError(invite.exists(), invite.getBoolean("used") == true, expiresAt, clock())
             ?.let { throw HomeException(it) }
         val homeId = invite.getString("homeId") ?: throw HomeException(WRONG_CODE)
-        val role = Role.fromKey(invite.getString("role")) ?: throw HomeException(WRONG_CODE)
 
-        // Một batch: thêm mình vào nhà + đốt mã (luật Task 03 kiểm cả hai cùng lúc).
+        // Một batch: thêm mình vào nhà + đốt mã (luật kiểm cả hai cùng lúc, kể cả giới hạn 6 người).
         val homeUpdate = mutableMapOf<String, Any>(
             "members.$me" to memberData(role),
             "joinCode" to code,
@@ -204,7 +202,7 @@ class FirestoreHomeRepository(
         _homeId.value = id
     }
 
-    private fun memberData(role: Role) = mapOf("role" to role.key, "name" to role.vi)
+    private fun memberData(role: Role) = mapOf("role" to role.key, "name" to role.defaultName)
 
     companion object {
         private const val HOMES = "homes"
@@ -224,8 +222,8 @@ class FirestoreHomeRepository(
                 val uid = key as? String ?: return@mapNotNull null
                 val m = value as? Map<*, *> ?: return@mapNotNull null
                 val role = Role.fromKey(m["role"] as? String) ?: return@mapNotNull null
-                Member(uid, role, (m["name"] as? String)?.ifBlank { null } ?: role.vi, m["fcmToken"] as? String)
-            }.sortedBy { it.role.ordinal }
+                Member(uid, role, (m["name"] as? String)?.ifBlank { null } ?: role.defaultName, m["fcmToken"] as? String)
+            }.sortedWith(compareBy({ it.role.ordinal }, { it.name }, { it.uid }))
             return Home(snap.id, members)
         }
     }

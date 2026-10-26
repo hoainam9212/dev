@@ -23,6 +23,7 @@ let env: RulesTestEnvironment;
 
 const VO = { role: 'vo', name: 'An' };
 const CHONG = { role: 'chong', name: 'Bình' };
+const CON = { role: 'con', name: 'Bé Na' };
 const inMinutes = (m: number) => Timestamp.fromMillis(Date.now() + m * 60_000);
 
 beforeAll(async () => {
@@ -52,7 +53,7 @@ const db = (uid: string) => env.authenticatedContext(uid).firestore();
 
 async function seedInvite(code: string, over: Record<string, unknown> = {}) {
   await seed(`invites/${code}`, {
-    homeId: 'h1', role: 'chong', replace: false, expiresAt: inMinutes(15), used: false, createdBy: 'alice', ...over,
+    homeId: 'h1', replace: false, expiresAt: inMinutes(15), used: false, createdBy: 'alice', ...over,
   });
 }
 
@@ -110,25 +111,45 @@ describe('firestore', () => {
     await assertFails(joinBatch('bob', '123456', CHONG));
   });
 
-  test('join_wrongRole_fails', async () => {
+  test('join_invalidRole_fails', async () => {
     await seed('homes/h1', { members: { alice: VO } });
     await seedInvite('123456');
-    await assertFails(joinBatch('bob', '123456', { role: 'vo', name: 'Bình' }));
+    await assertFails(joinBatch('bob', '123456', { role: 'x', name: 'Bình' }));
   });
 
-  test('join_thirdMember_withoutReplace_fails', async () => {
-    await seed('homes/h1', { members: { alice: VO, bob: CHONG } });
+  test('join_sameRoleTwice_succeeds', async () => {
+    await seed('homes/h1', { members: { alice: VO, bob: CON } });
     await seedInvite('123456');
-    await assertFails(joinBatch('carol', '123456', CHONG));
+    await assertSucceeds(joinBatch('carol', '123456', CON));
   });
 
-  test('join_replace_removesOldMemberSameRole', async () => {
+  test('join_upToSixMembers_seventhFails', async () => {
+    const five = { m1: VO, m2: CHONG, m3: CON, m4: CON, m5: { role: 'ba', name: 'Bà' } };
+    await seed('homes/h1', { members: five });
+    await seedInvite('111111');
+    await assertSucceeds(joinBatch('m6', '111111', { role: 'ong', name: 'Ông' }));
+    await seedInvite('222222');
+    await assertFails(joinBatch('m7', '222222', { role: 'khac', name: 'Người nhà' }));
+  });
+
+  test('join_replace_removesOnlyNamedMember', async () => {
     await seed('homes/h1', { members: { alice: VO, bob: CHONG } });
-    await seedInvite('123456', { replace: true });
+    await seedInvite('123456', { replace: true, replaceUid: 'bob' });
     await assertFails(joinBatch('carol', '123456', CHONG, 'alice'));
     await assertFails(joinBatch('carol', '123456', CHONG));
     await assertSucceeds(joinBatch('carol', '123456', CHONG, 'bob'));
     await assertFails(getDoc(doc(db('bob'), 'homes/h1')));
+  });
+
+  test('invite_create_byMember_replaceMustNameMember', async () => {
+    await seed('homes/h1', { members: { alice: VO, bob: CHONG } });
+    const inv = (over: object) => ({
+      homeId: 'h1', replace: false, expiresAt: inMinutes(15), used: false, createdBy: 'alice', ...over,
+    });
+    await assertSucceeds(setDoc(doc(db('alice'), 'invites/100001'), inv({})));
+    await assertSucceeds(setDoc(doc(db('alice'), 'invites/100002'), inv({ replace: true, replaceUid: 'bob' })));
+    await assertFails(setDoc(doc(db('alice'), 'invites/100003'), inv({ replace: true, replaceUid: 'zed' })));
+    await assertFails(setDoc(doc(db('carol'), 'invites/100004'), inv({ createdBy: 'carol' })));
   });
 
   test('invite_listForbidden', async () => {

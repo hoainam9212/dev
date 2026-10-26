@@ -21,7 +21,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -37,20 +36,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.namle.dichochung.data.Home
 import com.namle.dichochung.data.Invite
 import com.namle.dichochung.data.Member
-import com.namle.dichochung.data.Role
 import com.namle.dichochung.ui.common.GreenHeader
 import com.namle.dichochung.ui.common.RaisedBody
 import com.namle.dichochung.ui.common.SectionCard
 import com.namle.dichochung.ui.theme.AppColors
 
 /**
- * Tab Nhà mình — phần ghép đôi. [onInvite] nhận `replace`: false = mời người còn thiếu,
- * true = mời lại người kia khi họ đổi máy. Thẻ "Siêu thị đã lưu" (Task 08) và "Quyền & pin" (Task 09) thêm sau.
+ * Tab Nhà mình — phần thành viên của nhóm gia đình (tối đa [Home.MAX_MEMBERS] người). [onInvite] nhận
+ * null = mời thêm người, hoặc một thành viên = mời lại người đó khi họ đổi máy.
+ * Thẻ "Siêu thị đã lưu" (Task 08) và "Quyền & pin" (Task 09) thêm sau.
  */
 @Composable
 fun HomeScreen(
@@ -58,13 +58,13 @@ fun HomeScreen(
     myUid: String,
     invite: Invite?,
     now: Long,
-    onInvite: (Boolean) -> Unit,
+    onInvite: (Member?) -> Unit,
     onCloseInvite: () -> Unit,
     onRename: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val me = home.me(myUid)
-    val missing = Role.entries.firstOrNull { home.holderOf(it) == null }
+    val members = listOfNotNull(me) + home.others(myUid)
     var renaming by rememberSaveable { mutableStateOf(false) }
 
     Column(modifier.fillMaxSize().background(AppColors.Background).verticalScroll(rememberScrollState())) {
@@ -79,47 +79,49 @@ fun HomeScreen(
                 Modifier.padding(start = 14.dp, end = 14.dp, bottom = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                SectionCard(title = "Thành viên") {
-                    Role.entries.forEachIndexed { index, role ->
+                SectionCard(title = "Thành viên (${home.members.size}/${Home.MAX_MEMBERS})") {
+                    members.forEachIndexed { index, member ->
                         if (index > 0) HorizontalDivider(color = AppColors.Divider, modifier = Modifier.padding(vertical = 8.dp))
-                        val member = home.holderOf(role)
-                        MemberRow(role, member, isMe = member != null && member.uid == myUid, onEdit = { renaming = true })
+                        val isMe = member.uid == myUid
+                        MemberRow(
+                            member = member,
+                            isMe = isMe,
+                            onEdit = { renaming = true },
+                            onReplace = { onInvite(member) },
+                        )
                     }
 
                     if (invite == null) {
-                        if (missing != null) {
+                        if (members.size > 1) {
+                            Text(
+                                "Bấm \"Đổi máy\" khi người đó cài lại app hoặc đổi điện thoại; danh sách vẫn giữ nguyên.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = AppColors.TextMuted,
+                                modifier = Modifier.padding(top = 10.dp),
+                            )
+                        }
+                        if (home.isFull) {
+                            Text(
+                                "Nhà đã đủ ${Home.MAX_MEMBERS} người.",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = AppColors.TextMuted,
+                                modifier = Modifier.padding(top = 10.dp),
+                            )
+                        } else {
                             Button(
-                                onClick = { onInvite(false) },
+                                onClick = { onInvite(null) },
                                 shape = RoundedCornerShape(14.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = AppColors.Green),
                                 modifier = Modifier.fillMaxWidth().padding(top = 14.dp).height(48.dp).testTag("invite_button"),
                             ) {
-                                Text("Mời ${missing.vi}", style = MaterialTheme.typography.labelLarge)
+                                Text("Mời thêm người", style = MaterialTheme.typography.labelLarge)
                             }
-                        } else if (me != null) {
-                            OutlinedButton(
-                                onClick = { onInvite(true) },
-                                shape = RoundedCornerShape(14.dp),
-                                modifier = Modifier.fillMaxWidth().padding(top = 14.dp).testTag("reinvite_button"),
-                            ) {
-                                Text(
-                                    "Mời lại ${me.role.other.vi} (đổi máy)",
-                                    style = MaterialTheme.typography.labelLarge,
-                                    color = AppColors.Green,
-                                )
-                            }
-                            Text(
-                                "Dùng khi ${me.role.other.vi.lowercase()} cài lại app hoặc đổi máy mới; danh sách vẫn giữ nguyên.",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = AppColors.TextMuted,
-                                modifier = Modifier.padding(top = 6.dp),
-                            )
                         }
                     }
                 }
 
                 if (invite != null) {
-                    InviteCard(invite, now, replacing = missing == null, onClose = onCloseInvite)
+                    InviteCard(invite, now, onClose = onCloseInvite)
                 }
             }
         }
@@ -138,29 +140,26 @@ fun HomeScreen(
 }
 
 @Composable
-private fun MemberRow(role: Role, member: Member?, isMe: Boolean, onEdit: () -> Unit) {
+private fun MemberRow(member: Member, isMe: Boolean, onEdit: () -> Unit, onReplace: () -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
             Modifier
                 .size(44.dp)
                 .clip(CircleShape)
-                .background(if (role == Role.VO) AppColors.PastelPink else AppColors.PastelBlue),
+                .background(member.role.tint),
             contentAlignment = Alignment.Center,
         ) {
-            Text(role.emoji, fontSize = 24.sp)
+            Text(member.role.emoji, fontSize = 24.sp)
         }
         Column(Modifier.weight(1f).padding(start = 12.dp)) {
             Text(
-                member?.name ?: role.vi,
+                member.name,
                 style = MaterialTheme.typography.titleSmall,
-                color = if (member == null) AppColors.TextFaint else AppColors.Text,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
             Text(
-                when {
-                    member == null -> "Chưa vào nhà"
-                    isMe -> "${role.vi} · máy này"
-                    else -> role.vi
-                },
+                if (isMe) "${member.role.vi} · máy này" else member.role.vi,
                 style = MaterialTheme.typography.bodySmall,
                 color = AppColors.TextMuted,
             )
@@ -176,15 +175,19 @@ private fun MemberRow(role: Role, member: Member?, isMe: Boolean, onEdit: () -> 
             ) {
                 Text("✏️", fontSize = 18.sp)
             }
+        } else {
+            TextButton(onClick = onReplace, modifier = Modifier.testTag("reinvite_${member.uid}")) {
+                Text("Đổi máy", style = MaterialTheme.typography.labelMedium, color = AppColors.Green)
+            }
         }
     }
 }
 
 @Composable
-private fun InviteCard(invite: Invite, now: Long, replacing: Boolean, onClose: () -> Unit) {
+private fun InviteCard(invite: Invite, now: Long, onClose: () -> Unit) {
     val expired = InviteCode.isExpired(invite.expiresAt, now)
     SectionCard(
-        title = if (replacing) "Mời lại ${invite.role.vi} (máy mới)" else "Mời ${invite.role.vi} vào nhà",
+        title = invite.replacing?.let { "Mời lại ${it.name} (máy mới)" } ?: "Mời người vào nhà",
         modifier = Modifier.testTag("invite_card"),
     ) {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -202,7 +205,7 @@ private fun InviteCard(invite: Invite, now: Long, replacing: Boolean, onClose: (
                 color = if (expired) AppColors.Red else AppColors.OrangeDeep,
             )
             Text(
-                "Trên máy ${invite.role.vi.lowercase()}: mở app → nhập 6 số này, hoặc bấm Quét QR.",
+                "Trên máy mới: mở app → chọn mình là ai → nhập 6 số này, hoặc bấm Quét QR.",
                 style = MaterialTheme.typography.bodySmall,
                 color = AppColors.TextMuted,
                 textAlign = TextAlign.Center,

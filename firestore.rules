@@ -15,21 +15,12 @@ service cloud.firestore {
     }
 
     function validMember(m) {
-      return m is map && m.keys().hasAll(['role', 'name']) && m.role in ['vo', 'chong'] && m.name is string;
+      return m is map && m.keys().hasAll(['role', 'name']) && m.name is string
+        && m.role in ['vo', 'chong', 'con', 'ong', 'ba', 'khac'];
     }
 
-    // A home has at most two members, so checking the first two keys covers every holder.
-    function holdsRole(members, i, role) {
-      return members.size() > i && members[members.keys()[i]].role == role;
-    }
-
-    function removedHolderOf(members, removed, role) {
-      return removed.size() == 1 && (
-        (members.size() > 0 && members.keys()[0] in removed && holdsRole(members, 0, role)) ||
-        (members.size() > 1 && members.keys()[1] in removed && holdsRole(members, 1, role)));
-    }
-
-    // Joining: a stranger adds themself to members with a fresh, unused invite of this home and role.
+    // Joining: a stranger adds themself to members with a fresh, unused invite of this home.
+    // A family home holds at most 6 members; a replace invite removes exactly the member it names (device change).
     function isValidJoin(homeId) {
       let uid = request.auth.uid;
       let before = resource.data.members;
@@ -40,11 +31,10 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'joinCode'])
         && inv.homeId == homeId && inv.used == false && inv.expiresAt > request.time
         && diff.addedKeys() == [uid].toSet() && diff.changedKeys().size() == 0
-        && validMember(after[uid]) && after[uid].role == inv.role
+        && validMember(after[uid])
         && (inv.replace == true
-              ? removedHolderOf(before, diff.removedKeys(), inv.role)
-              : diff.removedKeys().size() == 0 && before.size() < 2
-                && !holdsRole(before, 0, inv.role) && !holdsRole(before, 1, inv.role));
+              ? diff.removedKeys() == [inv.replaceUid].toSet()
+              : diff.removedKeys().size() == 0 && after.size() <= 6);
     }
 
     match /homes/{homeId} {
@@ -70,7 +60,8 @@ service cloud.firestore {
       allow create: if isMember(request.resource.data.homeId)
         && request.resource.data.createdBy == request.auth.uid
         && request.resource.data.used == false
-        && request.resource.data.role in ['vo', 'chong'];
+        && (request.resource.data.replace == false
+            || request.resource.data.replaceUid in get(homePath(request.resource.data.homeId)).data.members);
       // The joiner burns the invite in the same batch that adds them to the home.
       allow update: if signedIn()
         && resource.data.used == false

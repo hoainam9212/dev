@@ -41,7 +41,7 @@ App Android "Đi Chợ Chung" nối hai điện thoại:
 
 ## 3. Người dùng và thiết bị
 
-- Hai người, hai điện thoại **Samsung Galaxy S22** và **Galaxy S26 Ultra** (One UI, Android 14 trở lên). minSdk 29 **[Claude chọn]**, targetSdk theo SDK cài trên máy dev.
+- Cả nhà dùng chung, **tối đa 6 người** (chủ dự án chốt 2026-10-26: con lớn lên cũng vào được nhóm); trước mắt là hai vợ chồng với hai điện thoại **Samsung Galaxy S22** và **Galaxy S26 Ultra** (One UI, Android 14 trở lên). minSdk 29 **[Claude chọn]**, targetSdk theo SDK cài trên máy dev.
 - One UI hay đưa app ít dùng vào "Ứng dụng ngủ / ngủ sâu", làm geofence và thông báo bị trễ hoặc mất. Màn quyền ở tab Nhà mình phải hướng dẫn riêng cho Samsung: Pin → **Không hạn chế**, và thêm app vào **"Ứng dụng không bao giờ ngủ"**; có nút mở thẳng trang cài đặt pin của app.
 - Giao diện tiếng Việt. Tên món có thêm tên Nhật để tìm.
 - Cài bằng file APK ký sẵn, không qua Play Store.
@@ -61,8 +61,8 @@ Mẫu giao diện đã chốt: `mau-ket-hop.png` và `.superpowers/brainstorm/*/
 - Mỗi món có **bước tăng** riêng: đếm được thì 1; tính gam thì 100 g **[Claude chọn]**.
 - "Hay mua" sắp theo số lần món đó từng được gửi, nhiều nhất lên đầu.
 - **Nhấn giữ thẻ**: sửa món trong kho — tên, ảnh, nhóm, đơn vị, bước tăng, hoặc xoá món. (Chỉ việc này; ghi chú nhập ở tab Cần mua.)
-- Thanh nổi trắng ở dưới: "Đã chọn **N món**" + nút cam **"Gửi cho Chồng 🚀"** (hoặc "Gửi cho Vợ" tuỳ máy). Không có món nào chọn thì ẩn thanh.
-- **Gửi** = gộp các món đã chọn vào danh sách Cần mua chung (món đã có trong danh sách thì cộng dồn số lượng **[Claude chọn]**), xoá lựa chọn trên máy gửi, đẩy thông báo sang máy kia. "Gửi" là **lối duy nhất** để đưa món vào danh sách **[Claude chọn]**.
+- Thanh nổi trắng ở dưới: "Đã chọn **N món**" + nút cam **"Gửi cho cả nhà 🚀"**. Không có món nào chọn thì ẩn thanh.
+- **Gửi** = gộp các món đã chọn vào danh sách Cần mua chung (món đã có trong danh sách thì cộng dồn số lượng **[Claude chọn]**), xoá lựa chọn trên máy gửi, đẩy thông báo sang các máy khác trong nhà. "Gửi" là **lối duy nhất** để đưa món vào danh sách **[Claude chọn]**.
 
 ### 4.2 Tìm và thêm món mới
 
@@ -89,11 +89,11 @@ Mẫu giao diện đã chốt: `mau-ket-hop.png` và `.superpowers/brainstorm/*/
 
 ### 4.4 Tab Nhà mình
 
-- **Ghép đôi**: máy đầu tiên tạo "nhà", chọn mình là Vợ hay Chồng, bấm "Mời" để hiện **mã QR + mã 6 số**. Máy thứ hai quét / nhập mã, chọn vai còn lại. Không email, không mật khẩu. Một nhà đúng 2 thành viên.
-- **Cài lại / đổi máy** **[Claude chọn]**: máy cài lại mất uid ẩn danh. Máy còn lại vào Nhà mình → "Mời lại <Vợ|Chồng>" để tạo mã mời **thay thế**; máy mới nhập mã thì nhận đúng vai đó, uid cũ bị gỡ khỏi `members`. Mã mời hết hạn sau 15 phút, dùng một lần. Dữ liệu nhà (danh sách, siêu thị, món tự thêm) giữ nguyên vì nằm trên Firestore. Cả hai máy cùng mất thì tạo nhà mới (chấp nhận mất dữ liệu — hiếm).
+- **Vào nhà** (chủ dự án chốt 2026-10-26: nhóm gia đình, không chỉ vợ chồng): mỗi người chọn mình là ai — **Vợ, Chồng, Con, Ông, Bà, Khác** (vai được trùng, ví dụ hai con). Máy đầu tiên tạo "nhà"; người đã ở trong nhà bấm **"Mời thêm người"** để hiện **mã QR + mã 6 số**; máy mới chọn vai rồi quét / nhập mã. Không email, không mật khẩu. Một nhà **tối đa 6 người**.
+- **Cài lại / đổi máy** **[Claude chọn]**: máy cài lại mất uid ẩn danh. Người khác trong nhà vào Nhà mình → bấm "Đổi máy" cạnh tên người đó để tạo mã mời **thay thế**; máy mới nhập mã thì uid cũ của đúng người đó bị gỡ khỏi `members`. Mã mời hết hạn sau 15 phút, dùng một lần. Dữ liệu nhà (danh sách, siêu thị, món tự thêm) giữ nguyên vì nằm trên Firestore. Mọi máy cùng mất thì tạo nhà mới (chấp nhận mất dữ liệu — hiếm).
 - **Siêu thị đã lưu**: danh sách tên + khoảng cách; đổi tên; xoá.
 - **Cài đặt quyền**: trạng thái quyền vị trí "Luôn cho phép", quyền thông báo, tối ưu pin, kèm nút hướng dẫn bật từng cái.
-- Tên hiển thị / avatar của mỗi người (mặc định Vợ / Chồng) **[Claude chọn]**.
+- Tên hiển thị / avatar của mỗi người (mặc định theo vai: Vợ, Chồng, Con, Ông, Bà, "Người nhà" cho vai Khác; avatar là emoji của vai) **[Claude chọn]**.
 
 ### 4.5 Lưu siêu thị và báo khi tới nơi
 
@@ -106,9 +106,9 @@ Mẫu giao diện đã chốt: `mau-ket-hop.png` và `.superpowers/brainstorm/*/
 - Hai vòng đè nhau: lấy siêu thị gần nhất.
 - Android không cho app tự bật giao diện từ nền; **thông báo + một chạm** là cách đã chốt.
 
-### 4.6 Thông báo giữa hai máy
+### 4.6 Thông báo giữa các máy
 
-Cả hai loại dưới đều sinh ra từ cùng một hành động "Gửi"; khác nhau ở trạng thái danh sách lúc gửi **[Claude chọn]**:
+Thông báo đi tới **mọi người trong nhà trừ người làm**, mở đầu bằng tên hiển thị của người làm. Cả hai loại dưới đều sinh ra từ cùng một hành động "Gửi"; khác nhau ở trạng thái danh sách lúc gửi **[Claude chọn]**:
 - Danh sách **đang trống** (không còn món "need"): "🧺 Vợ vừa gửi 5 món cần mua".
 - Danh sách **còn món chưa nhặt**: "Vợ vừa thêm: Hành lá, Tỏi" (tối đa 3 tên, sau đó "+N món").
 - Người đi chợ **bấm Hoàn thành**: "Chồng đã đi chợ xong · nhặt 4/5 món".
@@ -137,7 +137,7 @@ Cả hai loại dưới đều sinh ra từ cùng một hành động "Gửi"; k
 
 ```
 homes/{homeId}
-  members: {uid: {role: "vo"|"chong", name, fcmToken}}
+  members: {uid: {role: "vo"|"chong"|"con"|"ong"|"ba"|"khac", name, fcmToken}}   // tối đa 6
   inviteCode, inviteExpiresAt
 homes/{homeId}/items/{itemId}        // kho món riêng của nhà (món tự thêm + món kho đã sửa)
 homes/{homeId}/list/{entryId}        // danh sách Cần mua

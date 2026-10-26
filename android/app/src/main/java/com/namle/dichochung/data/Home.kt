@@ -2,21 +2,23 @@ package com.namle.dichochung.data
 
 data class Member(val uid: String, val role: Role, val name: String, val fcmToken: String?) {
     companion object {
-        /** Tên hiển thị tối đa 20 ký tự; mặc định là tên vai ("Vợ"/"Chồng"). */
+        /** Tên hiển thị tối đa 20 ký tự; mặc định là [Role.defaultName]. */
         const val MAX_NAME = 20
     }
 }
 
-/** Một nhà có tối đa 2 thành viên, mỗi vai một người. */
+/** Một nhà là cả gia đình, tối đa [MAX_MEMBERS] người (luật Firestore kiểm lại khi có người vào). */
 data class Home(val id: String, val members: List<Member>) {
     fun me(uid: String): Member? = members.firstOrNull { it.uid == uid }
 
-    fun partner(uid: String): Member? = members.firstOrNull { it.uid != uid }
+    fun others(uid: String): List<Member> = members.filter { it.uid != uid }
 
-    fun holderOf(role: Role): Member? = members.firstOrNull { it.role == role }
+    val isFull: Boolean get() = members.size >= MAX_MEMBERS
 
-    val isPaired: Boolean get() = members.size >= 2
+    companion object {
+        const val MAX_MEMBERS = 6
+    }
 }
 
-/** Mã mời đang hiện trên máy người mời; [role] là vai của người được mời. */
-data class Invite(val code: String, val role: Role, val expiresAt: Long)
+/** Mã mời đang hiện trên máy người mời; [replacing] khác null = mời lại người đó khi họ đổi máy. */
+data class Invite(val code: String, val expiresAt: Long, val replacing: Member? = null)
