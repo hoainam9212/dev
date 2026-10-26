@@ -5,7 +5,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 01 scaffold — 2026-10-25, nhánh feat/v1; 3 test xanh, APK debug build được
 - [x] 02 catalog-search — 2026-10-25, feat/v1; kho mẫu 20 món, tìm không dấu/sai chính tả/tiếng Nhật, 16 test xanh
 - [x] 03 firebase-backend — 2026-10-25, project `di-cho-chung`, Firestore asia-northeast1, luật Firestore đã deploy, 13 test luật xanh, Anonymous Auth bật, Storage (asia-northeast1) + storage.rules đã deploy
-- [ ] 04 home-pairing — 2026-10-26 đổi sang **nhóm gia đình ≤ 6 người** (vai Vợ/Chồng/Con/Ông/Bà/Khác); chờ GitHub Actions xanh + soi ảnh onboarding*/home_invite/home_family; **luật Firestore mới cần deploy từ máy gốc**; ghép đôi thật: kiểm ở Task 13 Step 2
+- [x] 04 home-pairing — 2026-10-26, nhóm gia đình ≤ 6 người (Vợ/Chồng/Con/Ông/Bà/Khác); CI xanh (Actions run #4, 5230cf2), chủ dự án đã soi 4 ảnh; luật Firestore mới chờ deploy từ máy gốc; ghép đôi thật: kiểm ở Task 13 Step 2
 - [ ] 05 pick-tab
 - [ ] 06 add-edit-item
 - [ ] 07 list-tab
