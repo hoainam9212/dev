@@ -27,12 +27,12 @@ class PickScreenScreenshotTest {
     val compose = createComposeRule()
 
     private val items = listOf(
-        Item("trung_ga", "Trứng gà", category = Category.TRUNG_SUA, unit = "quả", defaultQty = 10),
-        Item("sua_tuoi", "Sữa tươi", category = Category.TRUNG_SUA, unit = "hộp"),
-        Item("ca_hoi", "Cá hồi", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100),
-        Item("thit_bo", "Thịt bò", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100),
-        Item("ca_chua", "Cà chua", category = Category.RAU_CU, unit = "quả", defaultQty = 3),
-        Item("rau_muong", "Rau muống", category = Category.RAU_CU, unit = "bó"),
+        Item("trung_ga", "Trứng gà", category = Category.TRUNG_SUA, unit = "quả", defaultQty = 10, emoji = "🥚"),
+        Item("sua_tuoi", "Sữa tươi", category = Category.TRUNG_SUA, unit = "hộp", emoji = "🥛"),
+        Item("ca_hoi", "Cá hồi", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100, emoji = "🐟"),
+        Item("thit_bo", "Thịt bò", category = Category.THIT_CA, unit = "g", defaultQty = 300, step = 100, emoji = "🥩"),
+        Item("ca_chua", "Cà chua", category = Category.RAU_CU, unit = "quả", defaultQty = 3, emoji = "🍅"),
+        Item("rau_muong", "Rau muống", category = Category.RAU_CU, unit = "bó", emoji = "🥬"),
     )
     private val selected = linkedMapOf("trung_ga" to 10, "sua_tuoi" to 2, "thit_bo" to 300, "rau_muong" to 1)
     private val calls = mutableListOf<String>()
@@ -63,6 +63,7 @@ class PickScreenScreenshotTest {
         compose.onNodeWithText("4 món").assertIsDisplayed()
         compose.onNodeWithText("300 g").assertIsDisplayed()
         compose.onNodeWithText("theo gam").assertIsDisplayed()
+        compose.onNodeWithTag("chip_gia_vi").assertIsDisplayed()
         compose.onRoot().captureRoboImage("src/test/snapshots/pick.png")
     }
 

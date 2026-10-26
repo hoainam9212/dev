@@ -22,6 +22,7 @@ object CatalogMerge {
         imageUrl = if ("imageUrl" in f) f.string("imageUrl") else base.imageUrl,
         sendCount = f.int("sendCount") ?: base.sendCount,
         deleted = f["deleted"] as? Boolean ?: base.deleted,
+        emoji = if ("emoji" in f) f.string("emoji") else base.emoji,
     )
 
     /** Món nhà tự thêm: thiếu tên, nhóm hoặc đơn vị thì bỏ qua (ví dụ doc chỉ có sendCount của món đã bị gỡ khỏi kho). */

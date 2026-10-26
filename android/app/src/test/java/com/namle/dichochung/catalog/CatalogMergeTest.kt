@@ -40,4 +40,13 @@ class CatalogMergeTest {
         assertEquals(null, merged["thieu"])
         assertEquals(3, merged.size)
     }
+
+    @Test
+    fun emoji_homeOverrides_andFallsBackToCategory() {
+        val merged = CatalogMerge.merge(bundled, mapOf("trung_ga" to mapOf("emoji" to "🍳"))).associateBy { it.id }
+        assertEquals("🍳", merged.getValue("trung_ga").displayEmoji)
+        // No emoji of its own → the category's.
+        assertEquals(Category.THIT_CA.emoji, merged.getValue("thit_bo").displayEmoji)
+        assertEquals("🥩", bundled[1].copy(emoji = "🥩").displayEmoji)
+    }
 }

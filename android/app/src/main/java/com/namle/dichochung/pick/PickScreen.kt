@@ -2,10 +2,11 @@ package com.namle.dichochung.pick
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -155,14 +155,16 @@ private fun SearchField(query: String, onQuery: (String) -> Unit) {
     )
 }
 
+/** Hai hàng chip để thấy đủ "Hay mua" + 7 nhóm (kể cả Gia vị) mà không phải vuốt ngang. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun CategoryChips(selected: Category?, onCategory: (Category?) -> Unit) {
-    Row(
+    FlowRow(
         Modifier
             .fillMaxWidth()
-            .horizontalScroll(rememberScrollState())
             .padding(start = 16.dp, end = 16.dp, top = 2.dp, bottom = 10.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         Chip("Hay mua", selected == null, "chip_hay_mua") { onCategory(null) }
         Category.entries.forEach { c ->
@@ -183,7 +185,7 @@ private fun Chip(label: String, on: Boolean, tag: String, onClick: () -> Unit) {
             .background(if (on) AppColors.Text else AppColors.Surface)
             .clickable(onClick = onClick)
             .testTag(tag)
-            .padding(horizontal = 13.dp, vertical = 7.dp),
+            .padding(horizontal = 12.dp, vertical = 7.dp),
     )
 }
 

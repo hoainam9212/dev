@@ -16,4 +16,8 @@ data class Item(
     val imageUrl: String? = null,
     val sendCount: Int = 0,
     val deleted: Boolean = false,
+    /** Hình tạm khi chưa có ảnh (Task 11); không có thì dùng emoji của nhóm. */
+    val emoji: String? = null,
 )
+
+val Item.displayEmoji: String get() = emoji?.takeIf { it.isNotBlank() } ?: category.emoji

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.namle.dichochung.catalog.Category
 import com.namle.dichochung.catalog.Item
+import com.namle.dichochung.catalog.displayEmoji
 import com.namle.dichochung.ui.theme.AppColors
 
 /** Nền pastel theo nhóm món (mẫu: rau xanh lá, thịt cá hồng, trứng sữa vàng / xanh dương, củ quả cam). */
@@ -31,7 +32,7 @@ val Category.tint: Color
         Category.KHAC -> AppColors.Divider
     }
 
-/** Ảnh món: ảnh đóng gói (Task 11) → ảnh nhà tự chụp (Task 06) → emoji của nhóm trên nền pastel. */
+/** Ảnh món: ảnh đóng gói (Task 11) → ảnh nhà tự chụp (Task 06) → emoji của món (hoặc của nhóm) trên nền pastel. */
 @Composable
 fun ItemImage(item: Item, size: Dp, modifier: Modifier = Modifier) {
     val corner = if (size >= 50.dp) 16.dp else 12.dp
@@ -43,7 +44,7 @@ fun ItemImage(item: Item, size: Dp, modifier: Modifier = Modifier) {
         if (model != null) {
             AsyncImage(model = model, contentDescription = item.name, contentScale = ContentScale.Crop, modifier = Modifier.size(size))
         } else {
-            Text(item.category.emoji, fontSize = (size.value * 0.58f).sp)
+            Text(item.displayEmoji, fontSize = (size.value * 0.58f).sp)
         }
     }
 }
