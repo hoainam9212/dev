@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.messaging)
+    implementation(libs.coil.compose)
     implementation(libs.zxing.core)
     implementation(libs.play.services.code.scanner)
     debugImplementation(libs.compose.ui.tooling)

@@ -23,10 +23,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
+import com.namle.dichochung.data.ListLogic
 import com.namle.dichochung.data.Role
 import com.namle.dichochung.home.HomeScreen
 import com.namle.dichochung.home.HomeViewModel
 import com.namle.dichochung.home.OnboardingScreen
+import com.namle.dichochung.pick.PickRoute
+import com.namle.dichochung.pick.PickViewModel
 import com.namle.dichochung.ui.MainScaffold
 import com.namle.dichochung.ui.Tab
 import com.namle.dichochung.ui.theme.AppColors
@@ -64,9 +67,20 @@ class MainActivity : ComponentActivity() {
                     else -> {
                         var tab by rememberSaveable { mutableStateOf(requestedTab ?: Tab.PICK) }
                         requestedTab?.let { tab = it; requestedTab = null }
-                        MainScaffold(selected = tab, onSelect = { tab = it }, listBadge = 0) { padding ->
+                        val pickVm: PickViewModel = viewModel(
+                            factory = PickViewModel.factory(container.catalogRepository, container.listRepository),
+                        )
+                        val entries by container.listRepository.entries.collectAsStateWithLifecycle()
+                        val me = currentHome.me(myUid)
+                        MainScaffold(selected = tab, onSelect = { tab = it }, listBadge = ListLogic.needCount(entries)) { padding ->
                             val content = Modifier.fillMaxSize().padding(padding)
                             when (tab) {
+                                Tab.PICK -> PickRoute(
+                                    vm = pickVm,
+                                    roleLabel = me?.name.orEmpty(),
+                                    roleEmoji = me?.role?.emoji ?: "🏠",
+                                    modifier = content,
+                                )
                                 Tab.HOME -> HomeScreen(
                                     home = currentHome,
                                     myUid = myUid,

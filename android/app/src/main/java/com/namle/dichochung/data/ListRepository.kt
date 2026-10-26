@@ -1,0 +1,114 @@
+package com.namle.dichochung.data
+
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import com.namle.dichochung.catalog.Item
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
+
+/** Danh sách Cần mua chung `homes/{id}/list`; cache offline của Firestore giữ thay đổi khi mất sóng. */
+@OptIn(ExperimentalCoroutinesApi::class)
+class ListRepository(
+    private val db: FirebaseFirestore,
+    private val homeRepository: HomeRepository,
+    scope: CoroutineScope,
+    private val clock: () -> Long = System::currentTimeMillis,
+) {
+    val entries: StateFlow<List<ListEntry>> = homeRepository.homeId
+        .flatMapLatest { id -> if (id == null) flowOf(emptyList()) else watch(id) }
+        .stateIn(scope, SharingStarted.Eagerly, emptyList())
+
+    /**
+     * Gửi món đã chọn: gộp vào danh sách theo [ListLogic.mergeSend], tăng `items/{id}.sendCount` ("Hay mua") và ghi
+     * event `sent` cho Cloud Function (Task 10) — tất cả trong một batch. Không chờ server: offline vẫn vào cache rồi
+     * tự đẩy lên khi có mạng. Trả về số món đã gửi.
+     */
+    fun send(selection: Map<String, Int>, catalog: List<Item>): Int {
+        val homeId = homeRepository.homeId.value ?: throw HomeException("Chưa có nhà")
+        val uid = homeRepository.uid ?: throw HomeException("Chưa đăng nhập")
+        val items = catalog.associateBy { it.id }
+        val home = db.collection("homes").document(homeId)
+        val list = home.collection("list")
+        val existing = entries.value
+        val now = clock()
+        val writes = ListLogic.mergeSend(existing, selection, items, by = uid, now = now, newId = { list.document().id })
+        if (writes.isEmpty()) return 0
+
+        val batch = db.batch()
+        writes.forEach { w ->
+            when (w) {
+                is EntryWrite.Create -> batch.set(list.document(w.entry.id), toData(w.entry))
+                // Chỉ đụng qty + updatedAt: người kia đang tick / sửa ghi chú cùng dòng không bị ghi đè.
+                is EntryWrite.AddQty -> batch.update(
+                    list.document(w.entryId),
+                    "qty", FieldValue.increment(w.added.toLong()),
+                    "updatedAt", w.updatedAt,
+                )
+            }
+        }
+        selection.keys.filter { it in items }.forEach { itemId ->
+            batch.set(home.collection("items").document(itemId), mapOf("sendCount" to FieldValue.increment(1L)), SetOptions.merge())
+        }
+        batch.set(
+            home.collection("events").document(),
+            mapOf(
+                "type" to "sent",
+                "by" to uid,
+                "itemNames" to selection.keys.mapNotNull { items[it]?.name },
+                "wasEmpty" to (ListLogic.needCount(existing) == 0),
+                "createdAt" to FieldValue.serverTimestamp(),
+            ),
+        )
+        batch.commit()
+        return writes.size
+    }
+
+    private fun watch(homeId: String) = callbackFlow<List<ListEntry>> {
+        val registration = db.collection("homes").document(homeId).collection("list")
+            .addSnapshotListener { snap, _ ->
+                if (snap != null) trySend(snap.documents.mapNotNull(::parse).sortedBy { it.addedAt })
+            }
+        awaitClose { registration.remove() }
+    }
+
+    companion object {
+        fun toData(e: ListEntry): Map<String, Any?> = mapOf(
+            "itemId" to e.itemId,
+            "qty" to e.qty,
+            "unit" to e.unit,
+            "note" to e.note,
+            "addedBy" to e.addedBy,
+            "addedAt" to e.addedAt,
+            "state" to e.state.key,
+            "outOfStockAt" to e.outOfStockStore,
+            "pickedBy" to e.pickedBy,
+            "updatedAt" to e.updatedAt,
+        )
+
+        fun parse(doc: DocumentSnapshot): ListEntry? {
+            val itemId = doc.getString("itemId") ?: return null
+            return ListEntry(
+                id = doc.id,
+                itemId = itemId,
+                qty = doc.getLong("qty")?.toInt() ?: return null,
+                unit = doc.getString("unit").orEmpty(),
+                note = doc.getString("note").orEmpty(),
+                addedBy = doc.getString("addedBy").orEmpty(),
+                addedAt = doc.getLong("addedAt") ?: 0L,
+                state = EntryState.fromKey(doc.getString("state")),
+                outOfStockStore = doc.getString("outOfStockAt"),
+                pickedBy = doc.getString("pickedBy"),
+                updatedAt = doc.getLong("updatedAt") ?: 0L,
+            )
+        }
+    }
+}

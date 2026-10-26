@@ -6,7 +6,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 02 catalog-search — 2026-10-25, feat/v1; kho mẫu 20 món, tìm không dấu/sai chính tả/tiếng Nhật, 16 test xanh
 - [x] 03 firebase-backend — 2026-10-25, project `di-cho-chung`, Firestore asia-northeast1, luật Firestore đã deploy, 13 test luật xanh, Anonymous Auth bật, Storage (asia-northeast1) + storage.rules đã deploy
 - [x] 04 home-pairing — 2026-10-26, nhóm gia đình ≤ 6 người (Vợ/Chồng/Con/Ông/Bà/Khác); CI xanh (Actions run #4, 5230cf2), chủ dự án đã soi 4 ảnh; luật Firestore mới chờ deploy từ máy gốc; ghép đôi thật: kiểm ở Task 13 Step 2
-- [ ] 05 pick-tab
+- [ ] 05 pick-tab — 2026-10-26 (cloud) mã xong; chờ GitHub Actions xanh + chủ dự án soi ảnh pick.png / pick_empty.png
 - [ ] 06 add-edit-item
 - [ ] 07 list-tab
 - [ ] 08 stores
