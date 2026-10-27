@@ -2,7 +2,9 @@ package com.namle.dichochung.pick
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +32,11 @@ import com.namle.dichochung.catalog.Item
 import com.namle.dichochung.ui.common.ItemImage
 import com.namle.dichochung.ui.theme.AppColors
 
-/** Thẻ món trong lưới 3 cột: chưa chọn ghi "theo <đơn vị>", đã chọn có viền xanh + thanh [−] 10 quả [+]. */
+/**
+ * Thẻ món trong lưới 3 cột: chưa chọn ghi "theo <đơn vị>", đã chọn có viền xanh + thanh [−] 10 quả [+].
+ * Nhấn giữ = sửa / xoá món ([onLongPress]).
+ */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ItemCard(
     item: Item,
@@ -39,6 +45,7 @@ fun ItemCard(
     onPlus: () -> Unit,
     onMinus: () -> Unit,
     modifier: Modifier = Modifier,
+    onLongPress: () -> Unit = {},
 ) {
     val shape = RoundedCornerShape(18.dp)
     val selected = qty != null
@@ -48,7 +55,7 @@ fun ItemCard(
             .clip(shape)
             .background(AppColors.Surface)
             .border(2.dp, if (selected) AppColors.Green else Color.Transparent, shape)
-            .clickable(onClick = onTap)
+            .combinedClickable(onLongClick = onLongPress, onClick = onTap)
             .testTag("item_card_${item.id}")
             .padding(start = 4.dp, end = 4.dp, top = 9.dp, bottom = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

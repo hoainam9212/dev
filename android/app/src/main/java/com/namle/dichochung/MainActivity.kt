@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                         var tab by rememberSaveable { mutableStateOf(requestedTab ?: Tab.PICK) }
                         requestedTab?.let { tab = it; requestedTab = null }
                         val pickVm: PickViewModel = viewModel(
-                            factory = PickViewModel.factory(container.catalogRepository, container.listRepository),
+                            factory = PickViewModel.factory(container.catalogRepository, container.listRepository, container.itemWriter),
                         )
                         val entries by container.listRepository.entries.collectAsStateWithLifecycle()
                         val me = currentHome.me(myUid)

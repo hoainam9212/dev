@@ -7,7 +7,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 03 firebase-backend — 2026-10-25, project `di-cho-chung`, Firestore asia-northeast1, luật Firestore đã deploy, 13 test luật xanh, Anonymous Auth bật, Storage (asia-northeast1) + storage.rules đã deploy
 - [x] 04 home-pairing — 2026-10-26, nhóm gia đình ≤ 6 người (Vợ/Chồng/Con/Ông/Bà/Khác); CI xanh (Actions run #4, 5230cf2), chủ dự án đã soi 4 ảnh; luật Firestore mới chờ deploy từ máy gốc; ghép đôi thật: kiểm ở Task 13 Step 2
 - [x] 05 pick-tab — 2026-10-27 (cloud) xong; CI run #10 xanh, chủ dự án duyệt pick.png (thẻ cao bằng nhau, "1 khay")
-- [ ] 06 add-edit-item
+- [ ] 06 add-edit-item — 2026-10-27 (cloud) mã xong; chờ GitHub Actions xanh + chủ dự án soi add_item.png / edit_item.png / search_suggest.png; upload ảnh thật kiểm ở Task 13
 - [ ] 07 list-tab
 - [ ] 08 stores
 - [ ] 09 geofence

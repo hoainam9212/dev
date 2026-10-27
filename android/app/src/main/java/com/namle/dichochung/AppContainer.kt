@@ -5,6 +5,7 @@ import com.namle.dichochung.data.CatalogRepository
 import com.namle.dichochung.data.FirebaseModule
 import com.namle.dichochung.data.FirestoreHomeRepository
 import com.namle.dichochung.data.HomeRepository
+import com.namle.dichochung.data.ItemWriter
 import com.namle.dichochung.data.ListRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,5 +25,9 @@ class AppContainer(private val context: Context) {
 
     val listRepository: ListRepository by lazy {
         ListRepository(FirebaseModule.db, homeRepository, appScope)
+    }
+
+    val itemWriter: ItemWriter by lazy {
+        ItemWriter(FirebaseModule.db, FirebaseModule.storage, homeRepository, appScope)
     }
 }

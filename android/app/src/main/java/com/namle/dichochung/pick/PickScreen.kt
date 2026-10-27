@@ -45,11 +45,16 @@ data class PickUiState(
     val query: String = "",
     val category: Category? = null,
     val items: List<Item> = emptyList(),
+    /** Đang tìm: món gần giống ("Có phải bạn tìm"), hiện sau [items]. */
+    val suggestions: List<Item> = emptyList(),
     val selection: Map<String, Int> = emptyMap(),
     val sending: Boolean = false,
 )
 
-/** Tab Chọn đồ (mẫu màn trái): tìm, chip nhóm, lưới 3 cột, thanh gửi nổi khi đã chọn món. */
+/**
+ * Tab Chọn đồ (mẫu màn trái): tìm, chip nhóm, lưới 3 cột, thanh gửi nổi khi đã chọn món.
+ * Đang tìm thì cuối lưới có dòng "+ Thêm" ([onAdd] nhận chữ đã gõ); nhấn giữ thẻ = sửa món ([onEdit]).
+ */
 @Composable
 fun PickScreen(
     state: PickUiState,
@@ -64,6 +69,8 @@ fun PickScreen(
     onMinus: (String) -> Unit,
     onSend: () -> Unit,
     modifier: Modifier = Modifier,
+    onAdd: (String) -> Unit = {},
+    onEdit: (String) -> Unit = {},
     snackbar: SnackbarHostState = remember { SnackbarHostState() },
 ) {
     Box(modifier.fillMaxSize().background(AppColors.Background)) {
@@ -72,15 +79,26 @@ fun PickScreen(
             RaisedBody(Modifier.weight(1f)) {
                 SearchField(state.query, onQuery)
                 CategoryChips(state.category, onCategory)
-                if (state.items.isEmpty()) {
+                val searching = state.query.isNotBlank()
+                if (!searching && state.items.isEmpty()) {
                     Text(
-                        if (state.query.isBlank()) "Chưa có món nào trong nhóm này" else "Không tìm thấy \"${state.query.trim()}\"",
+                        "Chưa có món nào trong nhóm này",
                         style = MaterialTheme.typography.bodyMedium,
                         color = AppColors.TextMuted,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
                     )
                 } else {
+                    val card: @Composable (Item) -> Unit = { item ->
+                        ItemCard(
+                            item = item,
+                            qty = state.selection[item.id],
+                            onTap = { onTap(item.id) },
+                            onPlus = { onPlus(item.id) },
+                            onMinus = { onMinus(item.id) },
+                            onLongPress = { onEdit(item.id) },
+                        )
+                    }
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
                         contentPadding = PaddingValues(
@@ -94,14 +112,10 @@ fun PickScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.fillMaxWidth().testTag("item_grid"),
                     ) {
-                        items(state.items, key = { it.id }) { item ->
-                            ItemCard(
-                                item = item,
-                                qty = state.selection[item.id],
-                                onTap = { onTap(item.id) },
-                                onPlus = { onPlus(item.id) },
-                                onMinus = { onMinus(item.id) },
-                            )
+                        if (searching) {
+                            searchResults(state.query, state.items, state.suggestions, card, onAdd)
+                        } else {
+                            items(state.items, key = { it.id }) { card(it) }
                         }
                     }
                 }
