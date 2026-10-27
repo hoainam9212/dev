@@ -7,6 +7,9 @@ import com.namle.dichochung.data.FirestoreHomeRepository
 import com.namle.dichochung.data.HomeRepository
 import com.namle.dichochung.data.ItemWriter
 import com.namle.dichochung.data.ListRepository
+import com.namle.dichochung.stores.LocationProvider
+import com.namle.dichochung.stores.OverpassClient
+import com.namle.dichochung.stores.StoreRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -30,4 +33,12 @@ class AppContainer(private val context: Context) {
     val itemWriter: ItemWriter by lazy {
         ItemWriter(FirebaseModule.db, FirebaseModule.storage, homeRepository, appScope)
     }
+
+    val storeRepository: StoreRepository by lazy {
+        StoreRepository(FirebaseModule.db, homeRepository, appScope)
+    }
+
+    val locationProvider: LocationProvider by lazy { LocationProvider(context) }
+
+    val overpassClient: OverpassClient by lazy { OverpassClient() }
 }

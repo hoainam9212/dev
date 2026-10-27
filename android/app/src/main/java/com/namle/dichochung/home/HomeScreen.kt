@@ -42,6 +42,8 @@ import androidx.compose.ui.unit.sp
 import com.namle.dichochung.data.Home
 import com.namle.dichochung.data.Invite
 import com.namle.dichochung.data.Member
+import com.namle.dichochung.stores.Store
+import com.namle.dichochung.stores.StoresCard
 import com.namle.dichochung.ui.common.GreenHeader
 import com.namle.dichochung.ui.common.RaisedBody
 import com.namle.dichochung.ui.common.SectionCard
@@ -50,7 +52,7 @@ import com.namle.dichochung.ui.theme.AppColors
 /**
  * Tab Nhà mình — phần thành viên của nhóm gia đình (tối đa [Home.MAX_MEMBERS] người). [onInvite] nhận
  * null = mời thêm người, hoặc một thành viên = mời lại người đó khi họ đổi máy.
- * Thẻ "Siêu thị đã lưu" (Task 08) và "Quyền & pin" (Task 09) thêm sau.
+ * Thẻ "Siêu thị đã lưu" (Task 08) có [here] = vị trí hiện tại để ghi "cách N m"; "Quyền & pin" (Task 09) thêm sau.
  */
 @Composable
 fun HomeScreen(
@@ -62,6 +64,11 @@ fun HomeScreen(
     onCloseInvite: () -> Unit,
     onRename: (String) -> Unit,
     modifier: Modifier = Modifier,
+    stores: List<Store> = emptyList(),
+    here: Pair<Double, Double>? = null,
+    onAddStore: () -> Unit = {},
+    onRenameStore: (String, String) -> Unit = { _, _ -> },
+    onDeleteStore: (String) -> Unit = {},
 ) {
     val me = home.me(myUid)
     val members = listOfNotNull(me) + home.others(myUid)
@@ -123,6 +130,8 @@ fun HomeScreen(
                 if (invite != null) {
                     InviteCard(invite, now, onClose = onCloseInvite)
                 }
+
+                StoresCard(stores, here, onAdd = onAddStore, onRename = onRenameStore, onDelete = onDeleteStore)
             }
         }
     }

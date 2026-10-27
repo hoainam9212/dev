@@ -9,11 +9,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -32,6 +38,8 @@ import com.namle.dichochung.list.ListRoute
 import com.namle.dichochung.list.ListViewModel
 import com.namle.dichochung.pick.PickRoute
 import com.namle.dichochung.pick.PickViewModel
+import com.namle.dichochung.stores.StoresViewModel
+import com.namle.dichochung.stores.rememberStoreSaver
 import com.namle.dichochung.ui.MainScaffold
 import com.namle.dichochung.ui.Tab
 import com.namle.dichochung.ui.theme.AppColors
@@ -75,37 +83,57 @@ class MainActivity : ComponentActivity() {
                         val listVm: ListViewModel = viewModel(
                             factory = ListViewModel.factory(container.listRepository, container.catalogRepository),
                         )
+                        val storesVm: StoresViewModel = viewModel(
+                            factory = StoresViewModel.factory(container.storeRepository, container.locationProvider, container.overpassClient),
+                        )
+                        val stores by storesVm.stores.collectAsStateWithLifecycle()
+                        val here by storesVm.here.collectAsStateWithLifecycle()
+                        // "📍 Lưu chỗ này là siêu thị" ở cả tab Nhà mình và tab Cần mua; thông báo hiện trên cùng màn.
+                        val saveStore = rememberStoreSaver(storesVm)
+                        val storeSnackbar = remember { SnackbarHostState() }
+                        LaunchedEffect(storesVm) { storesVm.messages.collect { storeSnackbar.showSnackbar(it) } }
                         val entries by container.listRepository.entries.collectAsStateWithLifecycle()
                         val me = currentHome.me(myUid)
-                        MainScaffold(selected = tab, onSelect = { tab = it }, listBadge = ListLogic.needCount(entries)) { padding ->
-                            val content = Modifier.fillMaxSize().padding(padding)
-                            when (tab) {
-                                Tab.PICK -> PickRoute(
-                                    vm = pickVm,
-                                    roleLabel = me?.name.orEmpty(),
-                                    roleEmoji = me?.role?.emoji ?: "🏠",
-                                    recipients = currentHome.others(myUid).map { it.name },
-                                    modifier = content,
-                                )
-                                Tab.LIST -> ListRoute(
-                                    vm = listVm,
-                                    roleLabel = me?.name.orEmpty(),
-                                    roleEmoji = me?.role?.emoji ?: "🏠",
-                                    names = currentHome.members.associate { it.uid to it.name },
-                                    modifier = content,
-                                )
-                                Tab.HOME -> HomeScreen(
-                                    home = currentHome,
-                                    myUid = myUid,
-                                    invite = ui.invite,
-                                    now = now,
-                                    onInvite = vm::invite,
-                                    onCloseInvite = vm::closeInvite,
-                                    onRename = vm::rename,
-                                    modifier = content,
-                                )
+                        Box(Modifier.fillMaxSize()) {
+                            MainScaffold(selected = tab, onSelect = { tab = it }, listBadge = ListLogic.needCount(entries)) { padding ->
+                                val content = Modifier.fillMaxSize().padding(padding)
+                                when (tab) {
+                                    Tab.PICK -> PickRoute(
+                                        vm = pickVm,
+                                        roleLabel = me?.name.orEmpty(),
+                                        roleEmoji = me?.role?.emoji ?: "🏠",
+                                        recipients = currentHome.others(myUid).map { it.name },
+                                        modifier = content,
+                                    )
+                                    Tab.LIST -> ListRoute(
+                                        vm = listVm,
+                                        roleLabel = me?.name.orEmpty(),
+                                        roleEmoji = me?.role?.emoji ?: "🏠",
+                                        names = currentHome.members.associate { it.uid to it.name },
+                                        modifier = content,
+                                        onSaveStore = saveStore,
+                                    )
+                                    Tab.HOME -> HomeScreen(
+                                        home = currentHome,
+                                        myUid = myUid,
+                                        invite = ui.invite,
+                                        now = now,
+                                        onInvite = vm::invite,
+                                        onCloseInvite = vm::closeInvite,
+                                        onRename = vm::rename,
+                                        modifier = content,
+                                        stores = stores,
+                                        here = here,
+                                        onAddStore = saveStore,
+                                        onRenameStore = storesVm::rename,
+                                        onDeleteStore = storesVm::delete,
+                                    )
+                                }
                             }
+                            SnackbarHost(storeSnackbar, Modifier.align(Alignment.TopCenter).statusBarsPadding().padding(top = 8.dp))
                         }
+                        // Khoảng cách tới siêu thị đã lưu: chỉ lấy vị trí khi đang ở tab Nhà mình (và đã có quyền).
+                        LaunchedEffect(tab) { if (tab == Tab.HOME) storesVm.refreshHere() }
                     }
                 }
             }

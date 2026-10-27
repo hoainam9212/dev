@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.namle.dichochung.catalog.Item
 import com.namle.dichochung.data.ListEntry
+import com.namle.dichochung.stores.SaveStoreButton
 import com.namle.dichochung.ui.common.GreenHeader
 import com.namle.dichochung.ui.common.RaisedBody
 import com.namle.dichochung.ui.theme.AppColors
@@ -63,6 +64,8 @@ fun ListScreen(
     onFinish: () -> Unit,
     modifier: Modifier = Modifier,
     freshSince: Long = Long.MAX_VALUE,
+    /** Nút nhỏ "📍 Lưu chỗ này là siêu thị" ở cuối danh sách (Task 08); null = không hiện. */
+    onSaveStore: (() -> Unit)? = null,
     snackbar: SnackbarHostState = remember { SnackbarHostState() },
 ) {
     Box(modifier.fillMaxSize().background(AppColors.Background)) {
@@ -73,6 +76,7 @@ fun ListScreen(
             RaisedBody(Modifier.weight(1f)) {
                 if (state.sections.isEmpty()) {
                     EmptyList()
+                    onSaveStore?.let { SaveStoreButton(it, Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp)) }
                 } else {
                     LazyColumn(
                         contentPadding = PaddingValues(
@@ -87,6 +91,11 @@ fun ListScreen(
                     ) {
                         items(state.sections, key = { it.category?.key ?: "out_of_stock" }) { section ->
                             SectionBlock(section, state, freshSince, onTick, onSwipe, onEdit)
+                        }
+                        onSaveStore?.let { save ->
+                            item(key = "save_store") {
+                                Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) { SaveStoreButton(save) }
+                            }
                         }
                     }
                 }

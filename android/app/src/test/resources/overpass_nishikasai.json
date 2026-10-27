@@ -1,0 +1,137 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-27T12:47:42Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 1940028226,
+  "lat": 35.6651556,
+  "lon": 139.8584548,
+  "tags": {
+    "addr:block_number": "15",
+    "addr:city": "江戸川区",
+    "addr:housenumber": "7",
+    "addr:neighbourhood": "西葛西三丁目",
+    "addr:postcode": "134-0088",
+    "addr:province": "東京都",
+    "atm": "yes",
+    "branch": "西葛西3丁目",
+    "brand": "セブン-イレブン",
+    "brand:en": "7-Eleven",
+    "brand:ja": "セブン-イレブン",
+    "brand:wikidata": "Q259340",
+    "brand:wikipedia": "en:7-Eleven",
+    "internet_access": "wlan",
+    "level": "0",
+    "name": "セブン-イレブン",
+    "name:en": "7-Eleven",
+    "name:ja": "セブン-イレブン",
+    "name:ja_rm": "Sebun Irebun",
+    "name:ko": "세븐일레븐",
+    "official_name:en": "Seven-Eleven",
+    "opening_hours": "24/7",
+    "operator": "セブンイレブン・ジャパン",
+    "phone": "+81-3-56059511",
+    "shop": "convenience",
+    "source": "Bing 2010;(URL)",
+    "website": "https://www.sej.co.jp/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3127070448,
+  "lat": 35.6642468,
+  "lon": 139.8586031,
+  "tags": {
+    "addr:block_number": "8",
+    "addr:city": "江戸川区",
+    "addr:housenumber": "1",
+    "addr:neighbourhood": "西葛西六丁目",
+    "addr:province": "東京都",
+    "branch": "西葛西駅南口店",
+    "brand": "ローソン",
+    "brand:en": "LAWSON",
+    "brand:ja": "ローソン",
+    "brand:wikidata": "Q1557223",
+    "brand:wikipedia": "ja:ローソン",
+    "name": "ローソン",
+    "name:en": "Lawson",
+    "name:ja": "ローソン",
+    "name:ko": "로손",
+    "phone": "+81 3-3877-0705",
+    "shop": "convenience",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 5539988154,
+  "lat": 35.6646808,
+  "lon": 139.8595158,
+  "tags": {
+    "brand": "ファミリーマート",
+    "brand:en": "FamilyMart",
+    "brand:ja": "ファミリーマート",
+    "brand:wikidata": "Q1191685",
+    "brand:wikipedia": "en:FamilyMart",
+    "check_date": "2024-05-21",
+    "name": "ファミリーマート",
+    "name:en": "FamilyMart",
+    "name:ja": "ファミリーマート",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 9563825573,
+  "lat": 35.6652390,
+  "lon": 139.8595509,
+  "tags": {
+    "branch": "西葛西駅北店",
+    "brand": "セブン-イレブン",
+    "brand:en": "7-Eleven",
+    "brand:ja": "セブン-イレブン",
+    "brand:wikidata": "Q259340",
+    "brand:wikipedia": "en:7-Eleven",
+    "level": "0",
+    "name": "セブン-イレブン",
+    "name:en": "7-Eleven",
+    "name:ja": "セブン-イレブン",
+    "official_name:en": "Seven-Eleven",
+    "shop": "convenience",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 510390306,
+  "center": {
+    "lat": 35.6653367,
+    "lon": 139.8587726
+  },
+  "tags": {
+    "brand": "ワイズマート",
+    "brand:en": "Y'smart",
+    "brand:ja": "ワイズマート",
+    "brand:wikidata": "Q11351175",
+    "brand:wikipedia": "ja:ワイズマート",
+    "building": "yes",
+    "name": "ワイズマート",
+    "name:en": "Y'smart",
+    "name:ja": "ワイズマート",
+    "shop": "supermarket",
+    "source": "Bing 2010",
+    "wheelchair": "yes"
+  }
+}
+
+  ]
+}

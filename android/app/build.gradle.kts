@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.zxing.core)
     implementation(libs.play.services.code.scanner)
+    implementation(libs.play.services.location)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 

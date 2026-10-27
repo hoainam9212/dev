@@ -11,7 +11,14 @@ import java.time.ZoneId
 
 /** Nối [ListViewModel] với [ListScreen]; [names] = uid → tên hiển thị trong nhà cho dòng "Vợ gửi lúc …". */
 @Composable
-fun ListRoute(vm: ListViewModel, roleLabel: String, roleEmoji: String, names: Map<String, String>, modifier: Modifier = Modifier) {
+fun ListRoute(
+    vm: ListViewModel,
+    roleLabel: String,
+    roleEmoji: String,
+    names: Map<String, String>,
+    modifier: Modifier = Modifier,
+    onSaveStore: (() -> Unit)? = null,
+) {
     val state by vm.state.collectAsStateWithLifecycle()
     val editing by vm.editing.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
@@ -30,6 +37,7 @@ fun ListRoute(vm: ListViewModel, roleLabel: String, roleEmoji: String, names: Ma
         onFinish = vm::finish,
         modifier = modifier,
         freshSince = openedAt,
+        onSaveStore = onSaveStore,
         snackbar = snackbar,
     )
 
