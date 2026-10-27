@@ -135,12 +135,14 @@ class StoresScreenshotTest {
     fun storesCard_renameAndDelete_askFirst() {
         showCard(stores)
         compose.onNodeWithTag("store_menu_s3").performClick()
-        compose.onNodeWithText("Đổi tên").performClick()
-        compose.onNodeWithTag("store_rename_field").performTextReplacement("Chợ Việt")
-        // Ô nhập đang focus trong hộp thoại: con trỏ nhấp nháy mãi nên Robolectric không bao giờ "idle" khi đồng hồ
-        // tự chạy (CI run #21: AppNotIdleException ở bước bấm Lưu). Tắt tự chạy đúng lúc bấm Lưu (tắt sớm hơn thì hộp
-        // thoại chưa kịp vẽ — run #22), rồi tua tay cho hộp thoại đóng hẳn.
+        // Ô nhập focus trong hộp thoại: con trỏ nhấp nháy mãi nên Robolectric không bao giờ "idle" khi đồng hồ tự chạy
+        // (CI run #21, #23: AppNotIdleException ở thao tác đầu tiên sau khi gõ). Suốt lúc hộp thoại mở, đồng hồ do test
+        // tự tua: tua cho hộp thoại hiện (run #22: tắt mà không tua thì hộp thoại chưa kịp vẽ), gõ, Lưu, tua cho đóng.
         compose.mainClock.autoAdvance = false
+        compose.onNodeWithText("Đổi tên").performClick()
+        compose.mainClock.advanceTimeBy(1_000)
+        compose.onNodeWithTag("store_rename_field").performTextReplacement("Chợ Việt")
+        compose.mainClock.advanceTimeBy(100)
         compose.onNodeWithTag("store_rename_save").performClick()
         compose.mainClock.advanceTimeBy(1_000)
         compose.mainClock.autoAdvance = true
