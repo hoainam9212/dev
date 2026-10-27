@@ -44,7 +44,8 @@ jobs:
 
       # recordRoborazziDebug chạy toàn bộ unit test (kể cả Robolectric) và ghi lại ảnh chụp.
       - name: Unit test + chụp ảnh giao diện
-        run: ./gradlew :app:recordRoborazziDebug --stacktrace
+        # Không --stacktrace: stack Gradle dài che mất tên test hỏng; chi tiết lỗi nằm trong test-results (đẩy lên nhánh ảnh).
+        run: ./gradlew :app:recordRoborazziDebug
 
       - name: Build APK debug
         run: ./gradlew :app:assembleDebug --stacktrace
@@ -84,6 +85,10 @@ jobs:
           [ -d app/src/test/snapshots ] || exit 0
           tmp=$(mktemp -d)
           cp -r app/src/test/snapshots/. "$tmp/"
+          # Kết quả test (XML) đi kèm để phiên cloud đọc được test nào hỏng và vì sao.
+          if [ -d app/build/test-results/testDebugUnitTest ]; then
+            mkdir -p "$tmp/test-results" && cp app/build/test-results/testDebugUnitTest/*.xml "$tmp/test-results/" || true
+          fi
           cd "$tmp"
           git init -q -b snapshots
           git config user.name "github-actions[bot]"
