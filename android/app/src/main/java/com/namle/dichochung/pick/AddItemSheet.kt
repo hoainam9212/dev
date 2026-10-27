@@ -260,7 +260,7 @@ private fun CategoryChip(category: Category, on: Boolean, onClick: () -> Unit) {
     )
 }
 
-/** Ô số nhỏ có [−] n [+], cùng chiều cao với ô nhập đơn vị bên cạnh. */
+/** Ô số nhỏ có [−] n [+], cao và viền giống ô nhập "Đơn vị" bên cạnh (OutlinedTextField cao 56 dp, viền outline). */
 @Composable
 private fun QtyField(label: String, value: Int, tag: String, modifier: Modifier, onChange: (Int) -> Unit) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -268,9 +268,9 @@ private fun QtyField(label: String, value: Int, tag: String, modifier: Modifier,
         Row(
             Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .border(1.dp, Color(0xFFCDD3CF), RoundedCornerShape(12.dp))
+                .height(56.dp)
+                .clip(MaterialTheme.shapes.extraSmall)
+                .border(1.dp, MaterialTheme.colorScheme.outline, MaterialTheme.shapes.extraSmall)
                 .testTag(tag),
             verticalAlignment = Alignment.CenterVertically,
         ) {

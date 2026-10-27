@@ -5,6 +5,10 @@ on:
     branches: ["di-cho-gia-dinh/**"]
   workflow_dispatch:
 
+# contents: write chỉ để bước cuối đẩy ảnh chụp lên nhánh ci-snapshots/… (nhánh này không khớp di-cho-gia-dinh/** nên không tự kích lại workflow).
+permissions:
+  contents: write
+
 concurrency:
   group: di-cho-chung-${{ github.ref }}
   cancel-in-progress: true
@@ -66,3 +70,24 @@ jobs:
         with:
           name: dichochung-debug-apk
           path: android/app/build/outputs/apk/debug/*.apk
+
+      # Phiên cloud không tải được artifact (blob storage bị chặn) nhưng git thì được: đẩy ảnh chụp lên nhánh riêng
+      # ci-snapshots/<nhánh> (một commit duy nhất, ghi đè mỗi lần) để Claude tự soi ảnh mà chủ dự án không phải tải.
+      - name: Đẩy ảnh chụp lên nhánh ci-snapshots
+        if: always() && github.event_name == 'push'
+        env:
+          SRC_SHA: ${{ github.sha }}
+          SRC_REF: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          [ -d app/src/test/snapshots ] || exit 0
+          tmp=$(mktemp -d)
+          cp -r app/src/test/snapshots/. "$tmp/"
+          cd "$tmp"
+          git init -q -b snapshots
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Snapshots for $SRC_REF @ $SRC_SHA"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "snapshots:refs/heads/ci-snapshots/$SRC_REF"

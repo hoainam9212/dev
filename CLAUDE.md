@@ -18,9 +18,11 @@
   commit**; thiếu file thì app vẫn build (plugin google-services chỉ bật khi có file).
 - **GitHub Actions** (`.github/workflows/android.yml`) chạy mỗi lần push lên `di-cho-gia-dinh/**`: toàn bộ unit
   test + ghi ảnh Roborazzi (`recordRoborazziDebug`), build APK debug; artifact `test-report`, `snapshots`,
-  `dichochung-debug-apk`. `google-services.json` lấy từ secret `GOOGLE_SERVICES_JSON`.
+  `dichochung-debug-apk`. `google-services.json` lấy từ secret `GOOGLE_SERVICES_JSON`. Ảnh chụp còn được đẩy lên
+  nhánh `ci-snapshots/<nhánh>` (vd. `ci-snapshots/di-cho-gia-dinh/feat/v1`, ghi đè mỗi lần chạy).
 - Phiên **cloud**: không build APK phát hành, không tăng version, không deploy Firebase, không tạo keystore.
-  Nếu môi trường không chạy được Gradle thì push rồi **xem kết quả GitHub Actions** của commit đó (tải artifact
-  `snapshots` để soi ảnh); chỉ báo xong khi lần chạy xanh. Không xem được Actions thì ghi trong `STATUS.md`
-  "chưa chạy test — chờ CI/máy gốc". Push bị từ chối vì nhánh có commit mới thì `git pull --rebase` rồi push lại.
+  Nếu môi trường không chạy được Gradle thì push rồi **xem kết quả GitHub Actions** của commit đó, rồi
+  **tự soi ảnh**: `git fetch origin ci-snapshots/<nhánh>` và mở PNG (commit ghi rõ sha nguồn) — không nhờ chủ dự án
+  tải artifact; chỉ gửi ảnh cho chủ dự án khi cần họ chọn kiểu dáng. Chỉ báo xong khi lần chạy xanh. Không xem
+  được Actions thì ghi trong `STATUS.md` "chưa chạy test — chờ CI/máy gốc". Push bị từ chối vì nhánh có commit mới thì `git pull --rebase` rồi push lại.
 - Không commit bí mật (keystore, mật khẩu, token, khoá service account).
