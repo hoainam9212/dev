@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -135,25 +136,18 @@ class StoresScreenshotTest {
     fun storesCard_renameAndDelete_askFirst() {
         showCard(stores)
         compose.onNodeWithTag("store_menu_s3").performClick()
-        // Ô nhập focus trong hộp thoại: con trỏ nhấp nháy mãi nên Robolectric không bao giờ "idle" khi đồng hồ tự chạy
-        // (CI run #21, #23: AppNotIdleException ở thao tác đầu tiên sau khi gõ). Suốt lúc hộp thoại mở, đồng hồ do test
-        // tự tua: tua cho hộp thoại hiện (run #22: tắt mà không tua thì hộp thoại chưa kịp vẽ), gõ, Lưu, tua cho đóng.
-        // Bấm "Đổi tên" khi đồng hồ còn tự chạy (menu cần khung hình để hiện — run #25), rồi mới tự tua cho hộp thoại vẽ.
         compose.onNodeWithText("Đổi tên").performClick()
-        compose.mainClock.autoAdvance = false
-        compose.mainClock.advanceTimeBy(1_000)
-        compose.onNodeWithTag("store_rename_field").performTextReplacement("Chợ Việt")
-        compose.mainClock.advanceTimeBy(100)
+        // Không gõ chữ trong hộp thoại: trên Robolectric, nhập chữ vào ô nằm trong AlertDialog treo "không idle" bất kể
+        // đồng hồ (CI run #21–#26); gõ chữ đã có test ở AddItem/ListEdit (không phải dialog), gõ trong dialog kiểm ở Task 13.
+        compose.onNodeWithTag("store_rename_field").assertIsDisplayed().assertTextContains("Chợ Việt Kasai")
         compose.onNodeWithTag("store_rename_save").performClick()
-        compose.mainClock.advanceTimeBy(1_000)
-        compose.mainClock.autoAdvance = true
 
         compose.onNodeWithTag("store_menu_s2").performClick()
         compose.onNodeWithText("Xoá").performClick()
-        assertEquals(listOf("rename:s3:Chợ Việt"), calls)
+        assertEquals(listOf("rename:s3:Chợ Việt Kasai"), calls)
         compose.onNodeWithText("Xoá \"ローソン 西葛西駅南口店\"?").assertIsDisplayed()
         compose.onNodeWithTag("store_delete_confirm").performClick()
-        assertEquals(listOf("rename:s3:Chợ Việt", "delete:s2"), calls)
+        assertEquals(listOf("rename:s3:Chợ Việt Kasai", "delete:s2"), calls)
     }
 
     @Test
