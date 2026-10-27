@@ -1,0 +1,40 @@
+name: Lấy fixture Overpass
+
+# Phiên cloud không gọi được overpass-api.de; runner GitHub thì được. Sửa file truy vấn trong tools/overpass/
+# rồi push → workflow chạy truy vấn, đẩy kết quả nguyên văn lên nhánh ci-fixtures/overpass để Claude `git fetch`.
+on:
+  push:
+    branches: ["di-cho-gia-dinh/**"]
+    paths: ["tools/overpass/*.query", ".github/workflows/overpass-fixture.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Chạy truy vấn Overpass
+        run: |
+          mkdir -p out
+          for q in tools/overpass/*.query; do
+            name=$(basename "$q" .query)
+            curl -sS --fail -m 60 -A "DiChoChung/0.1" --data-urlencode "data@$q" \
+              https://overpass-api.de/api/interpreter -o "out/overpass_$name.json"
+            echo "$name: $(grep -c '"name"' "out/overpass_$name.json") dòng có name"
+          done
+      - name: Đẩy lên nhánh ci-fixtures/overpass
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SRC_SHA: ${{ github.sha }}
+        run: |
+          cd out
+          git init -q -b fixtures
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Overpass fixtures @ $SRC_SHA"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "fixtures:refs/heads/ci-fixtures/overpass"
