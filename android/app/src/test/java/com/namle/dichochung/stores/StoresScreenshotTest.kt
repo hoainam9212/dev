@@ -138,8 +138,9 @@ class StoresScreenshotTest {
         // Ô nhập focus trong hộp thoại: con trỏ nhấp nháy mãi nên Robolectric không bao giờ "idle" khi đồng hồ tự chạy
         // (CI run #21, #23: AppNotIdleException ở thao tác đầu tiên sau khi gõ). Suốt lúc hộp thoại mở, đồng hồ do test
         // tự tua: tua cho hộp thoại hiện (run #22: tắt mà không tua thì hộp thoại chưa kịp vẽ), gõ, Lưu, tua cho đóng.
-        compose.mainClock.autoAdvance = false
+        // Bấm "Đổi tên" khi đồng hồ còn tự chạy (menu cần khung hình để hiện — run #25), rồi mới tự tua cho hộp thoại vẽ.
         compose.onNodeWithText("Đổi tên").performClick()
+        compose.mainClock.autoAdvance = false
         compose.mainClock.advanceTimeBy(1_000)
         compose.onNodeWithTag("store_rename_field").performTextReplacement("Chợ Việt")
         compose.mainClock.advanceTimeBy(100)
