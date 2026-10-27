@@ -17,8 +17,10 @@ val BeVietnamPro = FontFamily(
     Font(R.font.be_vietnam_pro_extrabold, FontWeight.ExtraBold),
 )
 
+// Không gắn màu vào kiểu chữ: màu đến từ LocalContentColor (DiChoTheme đặt AppColors.Text), để chữ trong nút
+// xanh tự lấy onPrimary (trắng) như mẫu thay vì bị kiểu chữ ép về màu tối.
 private fun style(size: Int, weight: FontWeight) =
-    TextStyle(fontFamily = BeVietnamPro, fontWeight = weight, fontSize = size.sp, color = AppColors.Text)
+    TextStyle(fontFamily = BeVietnamPro, fontWeight = weight, fontSize = size.sp)
 
 val AppTypography = Typography(
     headlineSmall = style(21, FontWeight.ExtraBold),

@@ -97,7 +97,7 @@ fun EntryEditContent(item: Item, entry: ListEntry, onSave: (qty: Int, note: Stri
         Button(
             onClick = { onSave(qty, note) },
             shape = RoundedCornerShape(14.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = AppColors.Green, contentColor = Color.White),
+            colors = ButtonDefaults.buttonColors(containerColor = AppColors.Green),
             modifier = Modifier.fillMaxWidth().height(48.dp).testTag("edit_save"),
         ) {
             Text("Lưu", style = MaterialTheme.typography.labelLarge)
