@@ -28,6 +28,8 @@ import com.namle.dichochung.data.Role
 import com.namle.dichochung.home.HomeScreen
 import com.namle.dichochung.home.HomeViewModel
 import com.namle.dichochung.home.OnboardingScreen
+import com.namle.dichochung.list.ListRoute
+import com.namle.dichochung.list.ListViewModel
 import com.namle.dichochung.pick.PickRoute
 import com.namle.dichochung.pick.PickViewModel
 import com.namle.dichochung.ui.MainScaffold
@@ -70,6 +72,9 @@ class MainActivity : ComponentActivity() {
                         val pickVm: PickViewModel = viewModel(
                             factory = PickViewModel.factory(container.catalogRepository, container.listRepository, container.itemWriter),
                         )
+                        val listVm: ListViewModel = viewModel(
+                            factory = ListViewModel.factory(container.listRepository, container.catalogRepository),
+                        )
                         val entries by container.listRepository.entries.collectAsStateWithLifecycle()
                         val me = currentHome.me(myUid)
                         MainScaffold(selected = tab, onSelect = { tab = it }, listBadge = ListLogic.needCount(entries)) { padding ->
@@ -82,6 +87,13 @@ class MainActivity : ComponentActivity() {
                                     recipients = currentHome.others(myUid).map { it.name },
                                     modifier = content,
                                 )
+                                Tab.LIST -> ListRoute(
+                                    vm = listVm,
+                                    roleLabel = me?.name.orEmpty(),
+                                    roleEmoji = me?.role?.emoji ?: "🏠",
+                                    names = currentHome.members.associate { it.uid to it.name },
+                                    modifier = content,
+                                )
                                 Tab.HOME -> HomeScreen(
                                     home = currentHome,
                                     myUid = myUid,
@@ -92,7 +104,6 @@ class MainActivity : ComponentActivity() {
                                     onRename = vm::rename,
                                     modifier = content,
                                 )
-                                else -> Box(content, contentAlignment = Alignment.Center) { Text(tab.label) }
                             }
                         }
                     }

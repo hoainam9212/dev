@@ -5,6 +5,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.namle.dichochung.catalog.Item
+import com.namle.dichochung.list.ListUpdates
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -71,6 +72,47 @@ class ListRepository(
         batch.commit()
         return writes.size
     }
+
+    /** Đánh dấu đã nhặt. Các thao tác dòng dưới đây chỉ `update` trường đổi và không chờ server (offline trong siêu thị). */
+    fun tick(entryId: String) = updateEntry(entryId, ListUpdates.tick(uid(), clock()))
+
+    /** Bỏ tick, hoặc đưa dòng hết hàng về "cần mua". */
+    fun untick(entryId: String) = updateEntry(entryId, ListUpdates.untick(clock()))
+
+    /** [storeName] = siêu thị đang đứng (Task 09); null → nhãn "Hết hàng". */
+    fun markOutOfStock(entryId: String, storeName: String?) = updateEntry(entryId, ListUpdates.outOfStock(storeName, clock()))
+
+    /** Sửa số lượng / ghi chú; tham số null = giữ nguyên. */
+    fun edit(entryId: String, qty: Int?, note: String?) = updateEntry(entryId, ListUpdates.edit(qty, note, clock()))
+
+    /** "Hoàn thành đi chợ": một batch xoá dòng đã nhặt + event `finished` cho thông báo (Task 10). */
+    fun finish(): FinishResult {
+        val result = ListLogic.finish(entries.value)
+        if (result.picked == 0) return result
+        val home = db.collection("homes").document(homeId())
+        val batch = db.batch()
+        result.deleteIds.forEach { batch.delete(home.collection("list").document(it)) }
+        batch.set(
+            home.collection("events").document(),
+            mapOf(
+                "type" to "finished",
+                "by" to uid(),
+                "picked" to result.picked,
+                "total" to result.total,
+                "createdAt" to FieldValue.serverTimestamp(),
+            ),
+        )
+        batch.commit()
+        return result
+    }
+
+    private fun updateEntry(entryId: String, fields: Map<String, Any?>) {
+        db.collection("homes").document(homeId()).collection("list").document(entryId).update(fields)
+    }
+
+    private fun homeId() = homeRepository.homeId.value ?: throw HomeException("Chưa có nhà")
+
+    private fun uid() = homeRepository.uid ?: throw HomeException("Chưa đăng nhập")
 
     private fun watch(homeId: String) = callbackFlow<List<ListEntry>> {
         val registration = db.collection("homes").document(homeId).collection("list")

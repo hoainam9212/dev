@@ -78,4 +78,20 @@ class ListLogicTest {
         assertEquals(EntryState.OUT_OF_STOCK, EntryState.fromKey("outOfStock"))
         assertEquals(EntryState.NEED, EntryState.fromKey(null))
     }
+
+    @Test
+    fun finish_deletesOnlyPicked() {
+        val entries = listOf(
+            entry("e1", "trung_ga", 10, EntryState.PICKED),
+            entry("e2", "thit_bo", 1, EntryState.NEED),
+            entry("e3", "trung_ga", 6, EntryState.PICKED),
+        )
+        assertEquals(FinishResult(deleteIds = listOf("e1", "e3"), picked = 2, total = 3), ListLogic.finish(entries))
+    }
+
+    @Test
+    fun finish_keepsNeedAndOutOfStock() {
+        val entries = listOf(entry("e1", "trung_ga", 10, EntryState.NEED), entry("e2", "thit_bo", 1, EntryState.OUT_OF_STOCK, store = "AEON"))
+        assertEquals(FinishResult(emptyList(), picked = 0, total = 2), ListLogic.finish(entries))
+    }
 }

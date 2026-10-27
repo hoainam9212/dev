@@ -2,6 +2,9 @@ package com.namle.dichochung.data
 
 import com.namle.dichochung.catalog.Item
 
+/** Kết quả "Hoàn thành đi chợ": [deleteIds] = các dòng đã nhặt; [picked]/[total] cho thông báo "nhặt N/M món". */
+data class FinishResult(val deleteIds: List<String>, val picked: Int, val total: Int)
+
 object ListLogic {
 
     /**
@@ -29,4 +32,10 @@ object ListLogic {
 
     /** Số món chưa mua: hết hàng vẫn tính là chưa mua (huy hiệu tab, "wasEmpty" của thông báo). */
     fun needCount(entries: List<ListEntry>): Int = entries.count { it.state != EntryState.PICKED }
+
+    /** Xoá dòng đã nhặt; giữ dòng cần mua và hết hàng cho lần đi chợ sau. */
+    fun finish(entries: List<ListEntry>): FinishResult {
+        val picked = entries.filter { it.state == EntryState.PICKED }
+        return FinishResult(picked.map { it.id }, picked.size, entries.size)
+    }
 }
