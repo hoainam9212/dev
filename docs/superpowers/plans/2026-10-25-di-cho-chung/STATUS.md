@@ -10,7 +10,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 06 add-edit-item — 2026-10-27 (cloud), b76c5f4; CI run #13 xanh, đã soi add_item/edit_item/search_suggest; upload ảnh thật kiểm ở Task 13
 - [x] 07 list-tab — 2026-10-27 (cloud), a718c58; CI run #16 xanh, đã soi list/list_empty/list_edit; nhãn "Hết ở <siêu thị>" chờ CurrentStore (Task 09)
 - [ ] 08 stores — 2026-10-27 (cloud) mã xong; chờ GitHub Actions xanh + tự soi save_store.png / stores_card.png; lấy vị trí + Overpass thật kiểm ở Task 13
-- [ ] 09 geofence
+- [ ] 09 geofence — 2026-10-27 (cloud) mã xong; chờ GitHub Actions xanh + tự soi permissions.png; geofence thật chỉ kiểm được ở Task 13
 - [ ] 10 push-functions — Blaze + ngân sách ¥100 đã có
 - [ ] 11 catalog-images — chờ user duyệt danh sách + 12 ảnh thử
 - [ ] 12 release — có thêm Step 0: icon hiện đại vẽ bằng Gemini

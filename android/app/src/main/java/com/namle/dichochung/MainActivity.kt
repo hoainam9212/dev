@@ -31,9 +31,11 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.namle.dichochung.data.ListLogic
 import com.namle.dichochung.data.Role
+import com.namle.dichochung.geo.CurrentStore
 import com.namle.dichochung.home.HomeScreen
 import com.namle.dichochung.home.HomeViewModel
 import com.namle.dichochung.home.OnboardingScreen
+import com.namle.dichochung.home.rememberPermissionsController
 import com.namle.dichochung.list.ListRoute
 import com.namle.dichochung.list.ListViewModel
 import com.namle.dichochung.pick.PickRoute
@@ -81,7 +83,9 @@ class MainActivity : ComponentActivity() {
                             factory = PickViewModel.factory(container.catalogRepository, container.listRepository, container.itemWriter),
                         )
                         val listVm: ListViewModel = viewModel(
-                            factory = ListViewModel.factory(container.listRepository, container.catalogRepository),
+                            factory = ListViewModel.factory(container.listRepository, container.catalogRepository) {
+                                CurrentStore.name(applicationContext)
+                            },
                         )
                         val storesVm: StoresViewModel = viewModel(
                             factory = StoresViewModel.factory(container.storeRepository, container.locationProvider, container.overpassClient),
@@ -90,6 +94,8 @@ class MainActivity : ComponentActivity() {
                         val here by storesVm.here.collectAsStateWithLifecycle()
                         // "📍 Lưu chỗ này là siêu thị" ở cả tab Nhà mình và tab Cần mua; thông báo hiện trên cùng màn.
                         val saveStore = rememberStoreSaver(storesVm)
+                        // Vừa bật "Luôn cho phép" trong Cài đặt rồi quay lại → đăng ký geofence ngay.
+                        val permissions = rememberPermissionsController { if (it.backgroundLocation) container.geofenceManager.resync() }
                         val storeSnackbar = remember { SnackbarHostState() }
                         LaunchedEffect(storesVm) { storesVm.messages.collect { storeSnackbar.showSnackbar(it) } }
                         val entries by container.listRepository.entries.collectAsStateWithLifecycle()
@@ -127,6 +133,11 @@ class MainActivity : ComponentActivity() {
                                         onAddStore = saveStore,
                                         onRenameStore = storesVm::rename,
                                         onDeleteStore = storesVm::delete,
+                                        permissions = permissions.state,
+                                        onNotifications = permissions.requestNotifications,
+                                        onLocation = permissions.requestLocation,
+                                        onBackgroundLocation = permissions.openBackgroundLocation,
+                                        onBattery = permissions.openBattery,
                                     )
                                 }
                             }

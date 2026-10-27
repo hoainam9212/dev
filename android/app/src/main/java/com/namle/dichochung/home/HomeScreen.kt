@@ -52,7 +52,8 @@ import com.namle.dichochung.ui.theme.AppColors
 /**
  * Tab Nhà mình — phần thành viên của nhóm gia đình (tối đa [Home.MAX_MEMBERS] người). [onInvite] nhận
  * null = mời thêm người, hoặc một thành viên = mời lại người đó khi họ đổi máy.
- * Thẻ "Siêu thị đã lưu" (Task 08) có [here] = vị trí hiện tại để ghi "cách N m"; "Quyền & pin" (Task 09) thêm sau.
+ * Thẻ "Siêu thị đã lưu" (Task 08) có [here] = vị trí hiện tại để ghi "cách N m"; thẻ "Quyền & pin" (Task 09) hiện khi
+ * có [permissions].
  */
 @Composable
 fun HomeScreen(
@@ -69,6 +70,11 @@ fun HomeScreen(
     onAddStore: () -> Unit = {},
     onRenameStore: (String, String) -> Unit = { _, _ -> },
     onDeleteStore: (String) -> Unit = {},
+    permissions: PermissionsState? = null,
+    onNotifications: () -> Unit = {},
+    onLocation: () -> Unit = {},
+    onBackgroundLocation: () -> Unit = {},
+    onBattery: () -> Unit = {},
 ) {
     val me = home.me(myUid)
     val members = listOfNotNull(me) + home.others(myUid)
@@ -132,6 +138,10 @@ fun HomeScreen(
                 }
 
                 StoresCard(stores, here, onAdd = onAddStore, onRename = onRenameStore, onDelete = onDeleteStore)
+
+                permissions?.let {
+                    PermissionsCard(it, onNotifications, onLocation, onBackgroundLocation, onBattery)
+                }
             }
         }
     }

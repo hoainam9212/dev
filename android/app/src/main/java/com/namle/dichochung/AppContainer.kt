@@ -7,6 +7,7 @@ import com.namle.dichochung.data.FirestoreHomeRepository
 import com.namle.dichochung.data.HomeRepository
 import com.namle.dichochung.data.ItemWriter
 import com.namle.dichochung.data.ListRepository
+import com.namle.dichochung.geo.GeofenceManager
 import com.namle.dichochung.stores.LocationProvider
 import com.namle.dichochung.stores.OverpassClient
 import com.namle.dichochung.stores.StoreRepository
@@ -41,4 +42,6 @@ class AppContainer(private val context: Context) {
     val locationProvider: LocationProvider by lazy { LocationProvider(context) }
 
     val overpassClient: OverpassClient by lazy { OverpassClient() }
+
+    val geofenceManager: GeofenceManager by lazy { GeofenceManager(context) }
 }

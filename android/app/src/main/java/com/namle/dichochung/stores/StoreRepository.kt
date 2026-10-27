@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 /**
@@ -25,8 +26,16 @@ class StoreRepository(
     private val homeRepository: HomeRepository,
     scope: CoroutineScope,
 ) {
-    val stores: StateFlow<List<Store>> = homeRepository.homeId
+    /**
+     * null = chưa tải xong lần đầu. Geofence (Task 09) chỉ đồng bộ từ đây, để danh sách rỗng lúc mới mở app
+     * không gỡ mất mọi vòng đã đăng ký. Rời nhà → danh sách rỗng thật (gỡ hết).
+     */
+    val loaded: StateFlow<List<Store>?> = homeRepository.homeId
         .flatMapLatest { id -> if (id == null) flowOf(emptyList()) else watch(id) }
+        .stateIn(scope, SharingStarted.Eagerly, null)
+
+    val stores: StateFlow<List<Store>> = loaded
+        .map { it.orEmpty() }
         .stateIn(scope, SharingStarted.Eagerly, emptyList())
 
     /** [candidate] = chỗ chọn từ OpenStreetMap (toạ độ + osmId của chỗ đó); null = tự nhập tên tại vị trí [lat], [lng]. */
@@ -56,7 +65,7 @@ class StoreRepository(
         .document(homeRepository.homeId.value ?: throw HomeException("Chưa có nhà"))
         .collection("stores")
 
-    private fun watch(homeId: String) = callbackFlow<List<Store>> {
+    private fun watch(homeId: String) = callbackFlow<List<Store>?> {
         val registration = db.collection("homes").document(homeId).collection("stores")
             .addSnapshotListener { snap, _ ->
                 if (snap != null) trySend(snap.documents.mapNotNull(::parse).sortedBy { it.name })

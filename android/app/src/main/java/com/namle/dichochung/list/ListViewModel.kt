@@ -83,8 +83,8 @@ class ListViewModel(
     }
 
     companion object {
-        fun factory(list: ListRepository, catalog: CatalogRepository) = viewModelFactory {
-            initializer { ListViewModel(list, catalog) }
+        fun factory(list: ListRepository, catalog: CatalogRepository, currentStore: () -> String?) = viewModelFactory {
+            initializer { ListViewModel(list, catalog, currentStore) }
         }
     }
 }
