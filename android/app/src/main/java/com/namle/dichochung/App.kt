@@ -1,8 +1,10 @@
 package com.namle.dichochung
 
 import android.app.Application
-import com.namle.dichochung.geo.GeofenceManager
+import android.util.Log
+import com.google.firebase.FirebaseApp
 import com.namle.dichochung.notify.Channels
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -14,12 +16,17 @@ class App : Application() {
     lateinit var container: AppContainer
         private set
 
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    // Đồng bộ geofence hỏng (Play services thiếu, Firestore lỗi…) thì ghi log, không làm sập app.
+    private val scope = CoroutineScope(
+        SupervisorJob() + Dispatchers.Main.immediate + CoroutineExceptionHandler { _, e -> Log.w(TAG, "geofence sync", e) },
+    )
 
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
         Channels.create(this)
+        // Không có Firebase (build thiếu google-services.json, test Robolectric) thì không có siêu thị để theo dõi.
+        if (FirebaseApp.getApps(this).isEmpty()) return
         // Mỗi khi danh sách siêu thị của nhà đổi (máy này hay máy kia lưu / xoá), đăng ký lại geofence phần khác đi.
         scope.launch {
             container.storeRepository.loaded
@@ -27,5 +34,9 @@ class App : Application() {
                 .distinctUntilChanged()
                 .collect { container.geofenceManager.sync(it) }
         }
+    }
+
+    private companion object {
+        const val TAG = "App"
     }
 }
