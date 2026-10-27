@@ -137,17 +137,18 @@ class StoresScreenshotTest {
         showCard(stores)
         compose.onNodeWithTag("store_menu_s3").performClick()
         compose.onNodeWithText("Đổi tên").performClick()
-        // Không gõ chữ trong hộp thoại: trên Robolectric, nhập chữ vào ô nằm trong AlertDialog treo "không idle" bất kể
-        // đồng hồ (CI run #21–#26); gõ chữ đã có test ở AddItem/ListEdit (không phải dialog), gõ trong dialog kiểm ở Task 13.
+        // Đổi tên ngay trên dòng (không còn hộp thoại — CI run #21–#27 treo với ô nhập trong AlertDialog).
         compose.onNodeWithTag("store_rename_field").assertIsDisplayed().assertTextContains("Chợ Việt Kasai")
+        compose.onNodeWithTag("store_rename_field").performTextReplacement("Chợ Việt")
         compose.onNodeWithTag("store_rename_save").performClick()
+        compose.onNodeWithTag("store_rename_field").assertDoesNotExist()
 
         compose.onNodeWithTag("store_menu_s2").performClick()
         compose.onNodeWithText("Xoá").performClick()
-        assertEquals(listOf("rename:s3:Chợ Việt Kasai"), calls)
+        assertEquals(listOf("rename:s3:Chợ Việt"), calls)
         compose.onNodeWithText("Xoá \"ローソン 西葛西駅南口店\"?").assertIsDisplayed()
         compose.onNodeWithTag("store_delete_confirm").performClick()
-        assertEquals(listOf("rename:s3:Chợ Việt Kasai", "delete:s2"), calls)
+        assertEquals(listOf("rename:s3:Chợ Việt", "delete:s2"), calls)
     }
 
     @Test

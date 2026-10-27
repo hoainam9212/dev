@@ -37,7 +37,7 @@ import com.namle.dichochung.ui.common.SectionCard
 import com.namle.dichochung.ui.theme.AppColors
 
 /**
- * Thẻ "Siêu thị đã lưu" ở tab Nhà mình: mỗi dòng tên + "cách N m" (khi biết [here]) + menu ⋮ Đổi tên / Xoá,
+ * Thẻ "Siêu thị đã lưu" ở tab Nhà mình: mỗi dòng tên + "cách N m" (khi biết [here]) + menu ⋮ Đổi tên (sửa ngay trên dòng) / Xoá,
  * cuối thẻ là nút "📍 Lưu chỗ này là siêu thị".
  */
 @Composable
@@ -62,26 +62,27 @@ fun StoresCard(
         }
         stores.forEachIndexed { index, store ->
             if (index > 0) HorizontalDivider(color = AppColors.Divider, modifier = Modifier.padding(vertical = 4.dp))
-            StoreRow(
-                store = store,
-                distance = here?.let { Geo.distanceLabel(Geo.distanceM(it.first, it.second, store.lat, store.lng)) },
-                onRename = { renaming = store.id },
-                onDelete = { deleting = store.id },
-            )
+            if (renaming == store.id) {
+                RenameRow(
+                    current = store.name,
+                    onCancel = { renaming = null },
+                    onSave = {
+                        onRename(store.id, it)
+                        renaming = null
+                    },
+                )
+            } else {
+                StoreRow(
+                    store = store,
+                    distance = here?.let { Geo.distanceLabel(Geo.distanceM(it.first, it.second, store.lat, store.lng)) },
+                    onRename = { renaming = store.id },
+                    onDelete = { deleting = store.id },
+                )
+            }
         }
         SaveStoreButton(onAdd, Modifier.padding(top = 6.dp))
     }
 
-    stores.firstOrNull { it.id == renaming }?.let { store ->
-        RenameStoreDialog(
-            current = store.name,
-            onDismiss = { renaming = null },
-            onSave = {
-                onRename(store.id, it)
-                renaming = null
-            },
-        )
-    }
     stores.firstOrNull { it.id == deleting }?.let { store ->
         AlertDialog(
             onDismissRequest = { deleting = null },
@@ -153,31 +154,29 @@ private fun StoreRow(store: Store, distance: String?, onRename: () -> Unit, onDe
     }
 }
 
+/**
+ * Đổi tên ngay trên dòng (không dùng hộp thoại): gọn trên điện thoại, và ô nhập trong AlertDialog làm test
+ * Robolectric không bao giờ "idle" (CI run #21–#27, LEDGER Task 8).
+ */
 @Composable
-private fun RenameStoreDialog(current: String, onDismiss: () -> Unit, onSave: (String) -> Unit) {
+private fun RenameRow(current: String, onCancel: () -> Unit, onSave: (String) -> Unit) {
     var name by rememberSaveable { mutableStateOf(current) }
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        containerColor = AppColors.Surface,
-        title = { Text("Tên siêu thị", style = MaterialTheme.typography.titleMedium) },
-        text = {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it.take(Store.MAX_NAME) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                modifier = Modifier.fillMaxWidth().testTag("store_rename_field"),
-            )
-        },
-        confirmButton = {
+    Column {
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = it.take(Store.MAX_NAME) },
+            label = { Text("Tên siêu thị") },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            modifier = Modifier.fillMaxWidth().testTag("store_rename_field"),
+        )
+        Row(Modifier.align(Alignment.End)) {
+            TextButton(onClick = onCancel) { Text("Huỷ", color = Color(0xFF56615B)) }
             TextButton(
                 onClick = { onSave(name.trim()) },
                 enabled = name.isNotBlank(),
                 modifier = Modifier.testTag("store_rename_save"),
-            ) { Text("Lưu", color = AppColors.Green) }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Huỷ", color = Color(0xFF56615B)) }
-        },
-    )
+            ) { Text("Lưu", color = AppColors.Green, fontWeight = FontWeight.SemiBold) }
+        }
+    }
 }
