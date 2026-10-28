@@ -11,7 +11,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 07 list-tab — 2026-10-27 (cloud), a718c58; CI run #16 xanh, đã soi list/list_empty/list_edit; nhãn "Hết ở <siêu thị>" chờ CurrentStore (Task 09)
 - [x] 08 stores — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh (137/137), đã soi save_store/stores_card; lấy vị trí + Overpass thật kiểm ở Task 13
 - [x] 09 geofence — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh, đã soi permissions.png; geofence thật chỉ kiểm được ở Task 13
-- [ ] 10 push-functions — 2026-10-28 (cloud) mã function + app xong (Step 1–4), chờ CI xanh; Step 5 deploy + Step 7 `send-test-event.mjs` làm ở máy gốc; ngân sách ¥100 đã có (Step 6 xong từ 2026-10-25)
+- [ ] 10 push-functions — 2026-10-28 (cloud) 8696524 mã function + app xong (Step 1–4), CI xanh (Android run #30 142/142, Functions run #1); Step 5 deploy + Step 7 `send-test-event.mjs` làm ở máy gốc; ngân sách ¥100 đã có (Step 6 xong từ 2026-10-25)
 - [ ] 11 catalog-images — chờ user duyệt danh sách + 12 ảnh thử
 - [ ] 12 release — có thêm Step 0: icon hiện đại vẽ bằng Gemini
 - [ ] 13 smoke-real-phones — làm cùng user
