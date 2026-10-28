@@ -26,3 +26,16 @@
   tải artifact; chỉ gửi ảnh cho chủ dự án khi cần họ chọn kiểu dáng. Chỉ báo xong khi lần chạy xanh. Không xem
   được Actions thì ghi trong `STATUS.md` "chưa chạy test — chờ CI/máy gốc". Push bị từ chối vì nhánh có commit mới thì `git pull --rebase` rồi push lại.
 - Không commit bí mật (keystore, mật khẩu, token, khoá service account).
+- Ảnh món: `catalog/` (CSV + script cắt tấm Gemini 2×2), xem `catalog/PROMPT.md`; sửa danh sách ở `catalog/items.csv`
+  rồi `cd catalog && npm run build`. Ảnh gốc `catalog/sheets|raw` chỉ có trên máy gốc.
+
+## Phát hành APK (chỉ máy gốc)
+
+- Khoá: `android/dichochung-release.keystore` + `android/keystore.properties` (git-ignore; chủ dự án giữ bản sao lưu).
+  Mất khoá = không cập nhật đè được app đã cài, phải gỡ và cài lại.
+- Chứng chỉ: `CN=Di Cho Chung`, SHA-256 `b891ff6821ac907ac8e95a90c1865a17d70e7319d8af4a039184abcee5281e99`
+  (SHA-1 `212271413b88fa415433b37592f39aa446c2ad76`, cả hai đã đăng ký trong Firebase app Android).
+- Mỗi bản mới: tăng `versionCode` (+1) và `versionName` trong `android/app/build.gradle.kts` →
+  `./gradlew.bat :app:testDebugUnitTest :app:assembleRelease` → kiểm `aapt dump badging` (gói, version, nhãn) và
+  `apksigner verify --print-certs` (SHA-256 phải trùng dòng trên) → chép sang `release/DiChoChung-<version>.apk`.
+- Phiên cloud không build bản phát hành, không tăng version, không tạo keystore.
