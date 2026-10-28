@@ -11,7 +11,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 07 list-tab — 2026-10-27 (cloud), a718c58; CI run #16 xanh, đã soi list/list_empty/list_edit; nhãn "Hết ở <siêu thị>" chờ CurrentStore (Task 09)
 - [x] 08 stores — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh (137/137), đã soi save_store/stores_card; lấy vị trí + Overpass thật kiểm ở Task 13
 - [x] 09 geofence — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh, đã soi permissions.png; geofence thật chỉ kiểm được ở Task 13
-- [ ] 10 push-functions — 2026-10-28 (cloud) 8696524 mã function + app xong (Step 1–4), CI xanh (Android run #30 142/142, Functions run #1); Step 5 deploy + Step 7 `send-test-event.mjs` làm ở máy gốc; ngân sách ¥100 đã có (Step 6 xong từ 2026-10-25)
+- [x] 10 push-functions — 2026-10-28, 8696524 (cloud) + máy gốc: onHomeEvent (asia-northeast1) đã deploy, dọn ảnh container > 1 ngày; send-test-event đạt (log "sent" failed:1 + "removed dead tokens"); nhận thông báo trên máy thật kiểm ở Task 13
 - [ ] 11 catalog-images — chờ user duyệt danh sách + 12 ảnh thử
 - [ ] 12 release — có thêm Step 0: icon hiện đại vẽ bằng Gemini
 - [ ] 13 smoke-real-phones — làm cùng user
@@ -21,8 +21,8 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 2026-10-25 user bật Anonymous Auth + gắn Blaze; Claude bật Storage, deploy storage.rules, đặt ngân sách ¥100/tháng (50/90/100%) cho riêng di-cho-chung.
 
 - [x] (Blaze) đã gắn thẻ 2026-10-25, cảnh báo ¥100 đã đặt.
-- [ ] (Task 04) Trên máy gốc: `firebase deploy --only firestore:rules --project di-cho-chung` (luật nhóm gia đình ≤ 6 người, 2026-10-26); chạy lại `cd rules-test && npm test` xem 2 test storage có xanh không.
-- [ ] (Task 10) Trên máy gốc: `cd functions && npm ci && npm run build && firebase deploy --only functions --project di-cho-chung`, rồi `node scripts/send-test-event.mjs test-home-1` (đạt khi in "✔ event đã bị function xoá") và `npm run logs` có dòng "sent".
+- [x] 2026-10-28 (Task 04) Đã deploy luật nhóm gia đình; rules-test 15/15 xanh (gồm 2 test storage, Java 21).
+- [x] 2026-10-28 (Task 10) Trên máy gốc: `cd functions && npm ci && npm run build && firebase deploy --only functions --project di-cho-chung`, rồi `node scripts/send-test-event.mjs test-home-1` (đạt khi in "✔ event đã bị function xoá") và `npm run logs` có dòng "sent".
 - [ ] (Task 12) Mở Chrome profile có **Gemini Pro** để vẽ icon app; chọn 1 trong các bản Claude vẽ.
 - [ ] (Task 11) Duyệt `catalog/items.csv` (danh sách món); duyệt 12 ảnh thử; mở Chrome profile có **Gemini Pro** khi Claude cần vẽ ảnh.
 - [ ] (Task 13) Hai máy S22 + S26 Ultra: cho phép cài app ngoài, cài APK, cấp quyền thông báo + vị trí "Luôn cho phép", Pin → Không hạn chế, thêm vào "Ứng dụng không bao giờ ngủ".
