@@ -1,0 +1,23 @@
+{
+  "name": "di-cho-chung-functions",
+  "private": true,
+  "main": "lib/index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "deploy": "firebase deploy --only functions --project di-cho-chung",
+    "logs": "firebase functions:log --only onHomeEvent --project di-cho-chung"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}
