@@ -14,7 +14,8 @@ Top left: <món 1>. Top right: <món 2>. Bottom left: <món 3>. Bottom right: <m
 ```
 
 Mô tả từng món (tiếng Anh, thêm chi tiết kiểu Nhật / Việt cho dễ nhận) nằm trong `sheets.json`; tấm `n ≥ 100` là lượt
-vẽ lại món sai. Đừng tả "túi nhỏ tinh thể trắng" (bột ngọt, muối, đường) — dễ bị chặn; tả lọ rắc / hộp / bát.
+vẽ lại món sai. Thịt cá vẽ món trần, **không khay / bao bì** (tấm 101–104) — khay xốp làm các món trông giống nhau.
+Đừng tả "túi nhỏ tinh thể trắng" (bột ngọt, muối, đường) — dễ bị chặn; tả lọ rắc / hộp / bát.
 
 ## Quy trình
 
