@@ -5,11 +5,12 @@ import java.time.DayOfWeek
 
 /** Lựa chọn trên máy (itemId → số lượng), giữ thứ tự chọn; chưa gửi thì không đồng bộ. */
 object PickSelection {
+    /** Chạm thẻ: chưa chọn → chọn với số mặc định; đã chọn → bỏ luôn (chọn nhầm khỏi bấm − nhiều lần). */
     fun tap(selection: Map<String, Int>, item: Item): Map<String, Int> =
-        if (item.id in selection) selection else selection + (item.id to item.defaultQty)
+        if (item.id in selection) selection - item.id else selection + (item.id to item.defaultQty)
 
     fun plus(selection: Map<String, Int>, item: Item): Map<String, Int> {
-        val current = selection[item.id] ?: return tap(selection, item)
+        val current = selection[item.id] ?: return selection + (item.id to item.defaultQty)
         return selection + (item.id to current + item.step)
     }
 
@@ -20,9 +21,6 @@ object PickSelection {
 }
 
 object PickLabels {
-    /** "theo gam" cho đơn vị g như mẫu; còn lại "theo <đơn vị>". */
-    fun perUnit(unit: String): String = "theo ${if (unit == "g") "gam" else unit}"
-
     fun qty(qty: Int, unit: String): String = "$qty $unit"
 
     /**

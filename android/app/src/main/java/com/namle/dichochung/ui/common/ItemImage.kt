@@ -33,6 +33,7 @@ import com.namle.dichochung.ui.theme.AppColors
 val Category.tint: Color
     get() = when (this) {
         Category.RAU_CU -> AppColors.PastelGreen
+        Category.HOA_QUA -> AppColors.PastelOrange
         Category.THIT_CA -> AppColors.PastelPink
         Category.TRUNG_SUA -> AppColors.PastelYellow
         Category.GIA_VI -> AppColors.PastelOrange

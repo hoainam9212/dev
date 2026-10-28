@@ -39,6 +39,7 @@ object Guess {
     fun unit(category: Category): Triple<String, Int, Int> = when (category) {
         Category.THIT_CA -> Triple("khay", 1, 1)
         Category.RAU_CU -> Triple("bó", 1, 1)
+        Category.HOA_QUA -> Triple("quả", 1, 1)
         Category.TRUNG_SUA -> Triple("hộp", 1, 1)
         Category.GIA_VI, Category.DO_KHO, Category.DO_UONG, Category.KHAC -> Triple("gói", 1, 1)
     }

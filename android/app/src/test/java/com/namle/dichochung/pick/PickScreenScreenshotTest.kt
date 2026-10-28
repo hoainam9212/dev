@@ -63,8 +63,10 @@ class PickScreenScreenshotTest {
         compose.onNodeWithText("Gửi cho Chồng 🚀").assertIsDisplayed()
         compose.onNodeWithText("4 món").assertIsDisplayed()
         compose.onNodeWithText("1 khay").assertIsDisplayed()
-        compose.onNodeWithText("theo khay").assertIsDisplayed()
+        // Thẻ chưa chọn chỉ có hình + tên, không ghi "theo <đơn vị>".
+        compose.onNodeWithText("theo khay").assertDoesNotExist()
         compose.onNodeWithTag("chip_gia_vi").assertIsDisplayed()
+        compose.onNodeWithTag("chip_hoa_qua").assertIsDisplayed()
         compose.onRoot().captureRoboImage("src/test/snapshots/pick.png")
     }
 

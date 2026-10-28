@@ -38,6 +38,15 @@ class BundledCatalogTest {
     }
 
     @Test
+    fun bundledCatalog_fruitsHaveTheirOwnGroup() {
+        val items = BundledCatalog.load(ApplicationProvider.getApplicationContext()).associateBy { it.id }
+        listOf("chuoi", "tao", "quyt", "chanh", "qua_bo").forEach { id ->
+            assertEquals(id, Category.HOA_QUA, items.getValue(id).category)
+        }
+        assertEquals(Category.RAU_CU, items.getValue("ca_chua").category)
+    }
+
+    @Test
     fun bundledCatalog_everyItemHasA3dIconThatExists() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val items = BundledCatalog.load(context)

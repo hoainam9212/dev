@@ -50,6 +50,7 @@ class GuessTest {
     fun guess_unit_byCategory() {
         assertEquals(Triple("khay", 1, 1), Guess.unit(Category.THIT_CA))
         assertEquals(Triple("bó", 1, 1), Guess.unit(Category.RAU_CU))
+        assertEquals(Triple("quả", 1, 1), Guess.unit(Category.HOA_QUA))
         assertEquals(Triple("hộp", 1, 1), Guess.unit(Category.TRUNG_SUA))
         listOf(Category.GIA_VI, Category.DO_KHO, Category.DO_UONG, Category.KHAC).forEach {
             assertEquals(Triple("gói", 1, 1), Guess.unit(it))

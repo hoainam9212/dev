@@ -171,7 +171,7 @@ private fun SearchField(query: String, onQuery: (String) -> Unit) {
     )
 }
 
-/** Hai hàng chip để thấy đủ "Hay mua" + 7 nhóm (kể cả Gia vị) mà không phải vuốt ngang. */
+/** Hai hàng chip để thấy đủ "Hay mua" + 8 nhóm (kể cả Gia vị) mà không phải vuốt ngang. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun CategoryChips(selected: Category?, onCategory: (Category?) -> Unit) {
@@ -201,7 +201,8 @@ private fun Chip(label: String, on: Boolean, tag: String, onClick: () -> Unit) {
             .background(if (on) AppColors.Text else AppColors.Surface)
             .clickable(onClick = onClick)
             .testTag(tag)
-            .padding(horizontal = 12.dp, vertical = 7.dp),
+            // Lề ngang vừa đủ để "Hay mua" + 8 nhóm nằm gọn hai hàng trên máy rộng 411 dp.
+            .padding(horizontal = 8.dp, vertical = 7.dp),
     )
 }
 

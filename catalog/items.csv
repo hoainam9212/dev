@@ -6,7 +6,7 @@ hanh_la,Hành lá,hành|ねぎ|葱|green onion,ねぎ,rau_cu,bó,1,1,🌱
 khoai_lang,Khoai lang,さつまいも|sweet potato,さつまいも,rau_cu,củ,3,1,🍠
 khoai_tay,Khoai tây,じゃがいも|potato,じゃがいも,rau_cu,củ,3,1,🥔
 ca_rot,Cà rốt,にんじん|人参|carrot,にんじん,rau_cu,củ,2,1,🥕
-chuoi,Chuối,バナナ|banana,バナナ,rau_cu,nải,1,1,🍌
+chuoi,Chuối,バナナ|banana,バナナ,hoa_qua,nải,1,1,🍌
 hanh_tay,Hành tây,玉ねぎ|たまねぎ|onion,玉ねぎ,rau_cu,củ,3,1,🧅
 bap_cai,Bắp cải,cải bắp|キャベツ|cabbage,キャベツ,rau_cu,cái,1,1,🥬
 cai_thao,Cải thảo,白菜|はくさい,白菜,rau_cu,cái,1,1,🥬
@@ -25,10 +25,10 @@ dau_bap,Đậu bắp,オクラ|okra,オクラ,rau_cu,túi,1,1,🫛
 dau_que,Đậu que,đậu cô ve|いんげん|green beans,いんげん,rau_cu,túi,1,1,🫛
 tia_to,Tía tô,lá tía tô|大葉|おおば|しそ|shiso,大葉,rau_cu,bó,1,1,🌿
 cai_bo_xoi,Cải bó xôi,rau chân vịt|ほうれん草|ほうれんそう|spinach,ほうれん草,rau_cu,bó,1,1,🥬
-tao,Táo,りんご|apple,りんご,rau_cu,quả,3,1,🍎
-quyt,Quýt,cam|みかん|mandarin,みかん,rau_cu,túi,1,1,🍊
-chanh,Chanh,chanh vàng|レモン|lemon,レモン,rau_cu,quả,2,1,🍋
-qua_bo,Quả bơ,bơ|アボカド|avocado,アボカド,rau_cu,quả,2,1,🥑
+tao,Táo,りんご|apple,りんご,hoa_qua,quả,3,1,🍎
+quyt,Quýt,cam|みかん|mandarin,みかん,hoa_qua,túi,1,1,🍊
+chanh,Chanh,chanh vàng|レモン|lemon,レモン,hoa_qua,quả,2,1,🍋
+qua_bo,Quả bơ,bơ|アボカド|avocado,アボカド,hoa_qua,quả,2,1,🥑
 ca_hoi,Cá hồi,鮭|さけ|サーモン|salmon,鮭,thit_ca,khay,1,1,🐟
 thit_bo,Thịt bò,牛肉|ぎゅうにく|beef,牛肉,thit_ca,khay,1,1,🥩
 thit_heo,Thịt heo,thịt lợn|豚肉|ぶたにく|pork,豚肉,thit_ca,khay,1,1,🥓

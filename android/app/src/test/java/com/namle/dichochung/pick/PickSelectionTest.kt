@@ -15,8 +15,13 @@ class PickSelectionTest {
     fun selection_tap_setsDefaultQty() {
         val s = PickSelection.tap(emptyMap(), trung)
         assertEquals(mapOf("trung_ga" to 10), s)
-        // Tapping a card that is already picked keeps its quantity; − / + change it.
-        assertEquals(mapOf("trung_ga" to 12), PickSelection.tap(mapOf("trung_ga" to 12), trung))
+    }
+
+    @Test
+    fun selection_tapAgain_unpicksWhateverTheQty() {
+        // Chọn nhầm "Bia 6 lon" thì chạm lại thẻ là bỏ, không phải bấm − sáu lần.
+        val s = mapOf("thit_bo" to 300, "trung_ga" to 12)
+        assertEquals(mapOf("thit_bo" to 300), PickSelection.tap(s, trung))
     }
 
     @Test
@@ -48,8 +53,6 @@ class PickSelectionTest {
 
     @Test
     fun labels_vietnamese() {
-        assertEquals("theo gam", PickLabels.perUnit("g"))
-        assertEquals("theo quả", PickLabels.perUnit("quả"))
         assertEquals("300 g", PickLabels.qty(300, "g"))
         assertEquals("Thứ Bảy", PickLabels.weekday(DayOfWeek.SATURDAY))
         assertEquals("Chủ Nhật", PickLabels.weekday(DayOfWeek.SUNDAY))

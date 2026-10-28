@@ -8,6 +8,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,8 +34,8 @@ import com.namle.dichochung.ui.common.ItemImage
 import com.namle.dichochung.ui.theme.AppColors
 
 /**
- * Thẻ món trong lưới 3 cột: chưa chọn ghi "theo <đơn vị>", đã chọn có viền xanh + thanh [−] 10 quả [+].
- * Nhấn giữ = sửa / xoá món ([onLongPress]).
+ * Thẻ món trong lưới 3 cột: chưa chọn chỉ có hình + tên, đã chọn có viền xanh + thanh [−] 10 quả [+].
+ * Chạm = chọn / bỏ chọn ([onTap]), nhấn giữ = sửa / xoá món ([onLongPress]).
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -70,14 +71,8 @@ fun ItemCard(
             modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
         )
         if (qty == null) {
-            // Cao đúng bằng thanh stepper để thẻ chọn / chưa chọn cùng hàng cao bằng nhau như mẫu.
-            Box(Modifier.padding(top = 6.dp).height(StepperHeight), contentAlignment = Alignment.Center) {
-                Text(
-                    PickLabels.perUnit(item.unit),
-                    style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Medium),
-                    color = AppColors.TextFaint,
-                )
-            }
+            // Chỗ trống cao đúng bằng thanh stepper để thẻ chọn / chưa chọn cùng hàng cao bằng nhau, lưới không nhảy.
+            Spacer(Modifier.padding(top = 6.dp).height(StepperHeight))
         } else {
             Stepper(item.id, PickLabels.qty(qty, item.unit), onPlus, onMinus)
         }
