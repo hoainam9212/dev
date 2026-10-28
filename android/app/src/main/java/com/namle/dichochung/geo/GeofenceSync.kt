@@ -10,6 +10,9 @@ object GeofenceSync {
     /** Toạ độ + bán kính của vòng; đổi tên không cần đăng ký lại, đổi chỗ / bán kính thì cần. */
     fun fingerprint(store: Store) = "${store.lat},${store.lng},${store.radiusM}"
 
+    /** Siêu thị cần theo dõi: chỉ khi danh sách còn món ([armed]); không thì gỡ hết. */
+    fun wanted(stores: List<Store>, armed: Boolean): List<Store> = if (armed) stores else emptyList()
+
     /** [registered] = id geofence đang đăng ký → [fingerprint] lúc đăng ký. Siêu thị dời chỗ → gỡ rồi thêm lại. */
     fun diff(registered: Map<String, String>, stores: List<Store>): GeofenceDiff {
         val wanted = stores.associateBy { it.id }

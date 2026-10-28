@@ -3,6 +3,7 @@ package com.namle.dichochung
 import android.app.Application
 import android.util.Log
 import com.google.firebase.FirebaseApp
+import com.namle.dichochung.geo.ArrivalPolicy
 import com.namle.dichochung.notify.Channels
 import com.namle.dichochung.notify.TokenSync
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -11,7 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class App : Application() {
@@ -35,6 +38,15 @@ class App : Application() {
                 .filterNotNull()
                 .distinctUntilChanged()
                 .collect { container.geofenceManager.sync(it) }
+        }
+        // Danh sách còn món thì theo dõi siêu thị, hết món thì gỡ (lúc app mở; app đóng thì nhờ tin FCM "sent" /
+        // "finished"). Bỏ giá trị rỗng ban đầu của StateFlow, chưa phải danh sách thật.
+        scope.launch {
+            container.listRepository.entries
+                .drop(1)
+                .map { entries -> ArrivalPolicy.hasNeed(entries.map { it.state }) }
+                .distinctUntilChanged()
+                .collect { container.geofenceManager.arm(it) }
         }
         // Có nhà (mới tạo, vừa vào, hay mở app) mà token máy này chưa lưu / đã cũ → ghi để người nhà gửi thông báo tới.
         scope.launch {

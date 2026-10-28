@@ -1,5 +1,6 @@
 package com.namle.dichochung.geo
 
+import com.namle.dichochung.data.EntryState
 import com.namle.dichochung.stores.Store
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -44,5 +45,18 @@ class ArrivalPolicyTest {
     fun message_textForNotification() {
         assertEquals("🛒 Đang ở ワイズマート", ArrivalPolicy.title("ワイズマート"))
         assertEquals("còn 3 món cần mua", ArrivalPolicy.body(3))
+    }
+
+    @Test
+    fun policy_waitsThreeMinutesInside_soPassingByIsSilent() {
+        assertEquals(3 * 60 * 1000, ArrivalPolicy.LOITER_MS)
+    }
+
+    @Test
+    fun watch_onlyWhileSomethingLeftToBuy() {
+        assertTrue(ArrivalPolicy.hasNeed(listOf(EntryState.PICKED, EntryState.NEED)))
+        assertTrue(ArrivalPolicy.hasNeed(listOf(EntryState.OUT_OF_STOCK)))
+        assertFalse(ArrivalPolicy.hasNeed(listOf(EntryState.PICKED, EntryState.PICKED)))
+        assertFalse(ArrivalPolicy.hasNeed(emptyList()))
     }
 }

@@ -13,7 +13,7 @@ import com.namle.dichochung.MainActivity
 import com.namle.dichochung.R
 
 /**
- * Thông báo từ người nhà khi app đang mở (FCM chỉ tự vẽ thông báo lúc app ở nền).
+ * Thông báo từ người nhà (tin FCM chỉ có data nên app tự vẽ, cả lúc mở lẫn lúc ở nền).
  * Mỗi tin một thông báo riêng; chạm → mở tab Cần mua.
  */
 object PartnerNotifier {

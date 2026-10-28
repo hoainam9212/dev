@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { displayName, isDeadToken, messageFor, parseEvent, recipients, type Members } from "../src/message";
+import { displayName, fcmMessage, isDeadToken, messageFor, parseEvent, recipients, type Members } from "../src/message";
 
 const members: Members = {
   u_vo: { role: "vo", name: "Lan", fcmToken: "tok_vo" },
@@ -89,5 +89,18 @@ describe("isDeadToken", () => {
     expect(isDeadToken("messaging/invalid-registration-token")).toBe(true);
     expect(isDeadToken("messaging/internal-error")).toBe(false);
     expect(isDeadToken(undefined)).toBe(false);
+  });
+});
+
+describe("fcmMessage", () => {
+  it("dataOnly_soAppSeesItInBackground", () => {
+    // Không có trường notification: app luôn nhận onMessageReceived (cả lúc ở nền) để tự vẽ thông báo và bật / tắt
+    // theo dõi siêu thị theo type.
+    expect(fcmMessage("tok", "sent", { title: "T", body: "B" })).toEqual({
+      token: "tok",
+      data: { type: "sent", title: "T", body: "B", open_tab: "list" },
+      android: { priority: "high" },
+    });
+    expect(fcmMessage("tok", "finished", { title: "T", body: "B" }).data?.type).toBe("finished");
   });
 });

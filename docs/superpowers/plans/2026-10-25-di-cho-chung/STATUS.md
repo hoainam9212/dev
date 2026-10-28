@@ -26,5 +26,6 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 2026-10-28 (Task 12) Chủ dự án chọn icon mẫu 20 (mèo = anh, dê = em).
 - [ ] (Task 12) Sao lưu `android/dichochung-release.keystore` + `android/keystore.properties` ra chỗ an toàn (Google Drive cá nhân) — mất là không cập nhật đè được app.
 - [x] 2026-10-28 (Task 11) Chủ dự án chọn icon 3D (vẽ lại cả món Fluent cũ cho đồng bộ), gộp 4 món / ảnh, món sai vẽ lại một lượt cuối; danh sách 132 món dùng luôn.
+- [ ] (2026-10-28) Lúc cài APK bản sau 1.0.0: deploy lại function **cùng lúc** (`cd functions && npm run build && npm run deploy`) — function mới gửi tin chỉ có data, APK 1.0.0 không hiện được loại tin này. Claude làm trên máy gốc khi build bản mới.
 - [ ] (Task 13) Hai máy S22 + S26 Ultra: cho phép cài app ngoài, cài APK, cấp quyền thông báo + vị trí "Luôn cho phép", Pin → Không hạn chế, thêm vào "Ứng dụng không bao giờ ngủ".
 - [ ] (Task 13) Ra một siêu thị thật: bấm "Lưu chỗ này là siêu thị", lần sau quay lại xem có thông báo.

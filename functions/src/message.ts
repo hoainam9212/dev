@@ -1,4 +1,5 @@
 /** Nội dung thông báo giữa người nhà — hàm thuần, không đụng Firebase để test được. */
+import type { Message } from "firebase-admin/messaging";
 
 export type HomeEvent = {
   type: "sent" | "finished";
@@ -61,6 +62,14 @@ export function parseEvent(data: Record<string, unknown> | undefined): HomeEvent
     return { type: "finished", by: data.by, picked: num(data.picked), total: num(data.total) };
   }
   return null;
+}
+
+/**
+ * Tin FCM chỉ có data (không có notification): app luôn nhận onMessageReceived, kể cả lúc ở nền, để tự vẽ thông
+ * báo và bật ("sent") / tắt ("finished") theo dõi siêu thị.
+ */
+export function fcmMessage(token: string, type: HomeEvent["type"], m: { title: string; body: string }): Message {
+  return { token, data: { type, title: m.title, body: m.body, open_tab: "list" }, android: { priority: "high" } };
 }
 
 /** Token không còn dùng được (gỡ app, đổi máy) → xoá members.<uid>.fcmToken. */

@@ -36,10 +36,17 @@ class GeofenceManager(context: Context) {
         resync()
     }
 
+    /** Danh sách còn món → bật theo dõi; hết món → gỡ hết geofence. Gọi khi danh sách đổi hoặc người nhà gửi / xong. */
+    fun arm(on: Boolean) {
+        if (store.armed == on) return
+        store.armed = on
+        resync()
+    }
+
     /** Đăng ký lại từ bản sao đã lưu (sau khi được cấp quyền, khởi động lại máy, cập nhật app). */
     fun resync() {
         if (!canRegister()) return
-        val diff = GeofenceSync.diff(store.registered, store.stores)
+        val diff = GeofenceSync.diff(store.registered, GeofenceSync.wanted(store.stores, store.armed))
         if (diff.removeIds.isEmpty()) {
             add(diff.add)
             return
@@ -63,7 +70,8 @@ class GeofenceManager(context: Context) {
         val batch = stores.take(room.coerceAtLeast(0))
         if (batch.isEmpty() || !canRegister()) return
         val request = GeofencingRequest.Builder()
-            .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+            // Đang đứng sẵn trong siêu thị lúc bật theo dõi (người nhà vừa gửi danh sách) thì vẫn báo sau 3 phút.
+            .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER or GeofencingRequest.INITIAL_TRIGGER_DWELL)
             .addGeofences(batch.map(::geofence))
             .build()
         client.addGeofences(request, pendingIntent).addOnSuccessListener {
@@ -75,7 +83,8 @@ class GeofenceManager(context: Context) {
         .setRequestId(s.id)
         .setCircularRegion(s.lat, s.lng, s.radiusM.toFloat())
         .setExpirationDuration(Geofence.NEVER_EXPIRE)
-        .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
+        .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_DWELL or Geofence.GEOFENCE_TRANSITION_EXIT)
+        .setLoiteringDelay(ArrivalPolicy.LOITER_MS)
         .build()
 
     /** Android 10+ chỉ cho thêm geofence khi có vị trí chính xác + "Luôn cho phép". */

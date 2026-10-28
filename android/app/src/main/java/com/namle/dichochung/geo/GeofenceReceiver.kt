@@ -17,7 +17,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Vào vòng siêu thị: đặt [CurrentStore], đếm món chưa mua (cache Firestore trước, không có mới hỏi server) và báo
+ * Vào vòng siêu thị: đặt [CurrentStore]. Ở trong vòng [ArrivalPolicy.LOITER_MS] (DWELL): đếm món chưa mua và báo
  * nếu [ArrivalPolicy.shouldNotify]. Ra vòng: xoá [CurrentStore].
  */
 class GeofenceReceiver : BroadcastReceiver() {
@@ -29,15 +29,21 @@ class GeofenceReceiver : BroadcastReceiver() {
         if (ids.isEmpty()) return
         val app = context.applicationContext
 
-        when (event.geofenceTransition) {
-            Geofence.GEOFENCE_TRANSITION_EXIT -> CurrentStore.exit(app, ids)
-            Geofence.GEOFENCE_TRANSITION_ENTER -> {
-                val geo = GeofenceStore(app)
-                val triggered = geo.stores.filter { it.id in ids }.ifEmpty { return }
-                val loc = event.triggeringLocation
-                val store = if (loc == null) triggered.first() else ArrivalPolicy.nearest(triggered, loc.latitude, loc.longitude)
+        val transition = event.geofenceTransition
+        if (transition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+            CurrentStore.exit(app, ids)
+            return
+        }
+        val geo = GeofenceStore(app)
+        val triggered = geo.stores.filter { it.id in ids }.ifEmpty { return }
+        val loc = event.triggeringLocation
+        val store = if (loc == null) triggered.first() else ArrivalPolicy.nearest(triggered, loc.latitude, loc.longitude)
+        when (transition) {
+            // Vào vòng: chỉ ghi nhớ siêu thị (nhãn "Hết ở <tên>"); có thể chỉ là đi ngang.
+            Geofence.GEOFENCE_TRANSITION_ENTER -> CurrentStore.enter(app, store.id, store.name)
+            // Ở trong vòng [ArrivalPolicy.LOITER_MS] → đang đi chợ thật: báo.
+            Geofence.GEOFENCE_TRANSITION_DWELL -> {
                 CurrentStore.enter(app, store.id, store.name)
-
                 val pending = goAsync()
                 scope.launch {
                     try {
@@ -47,6 +53,8 @@ class GeofenceReceiver : BroadcastReceiver() {
                             ArrivalNotifier.show(app, store, need)
                             geo.lastNotified = geo.lastNotified + (store.id to now)
                         }
+                        // Danh sách đã hết món mà máy chưa biết (lỡ tin "đi chợ xong") → gỡ theo dõi luôn.
+                        if (need == 0) GeofenceManager(app).arm(false)
                     } finally {
                         pending.finish()
                     }
@@ -55,12 +63,15 @@ class GeofenceReceiver : BroadcastReceiver() {
         }
     }
 
-    /** Số món chưa nhặt (hết hàng vẫn tính); không đọc được → null (không báo bừa). */
+    /**
+     * Số món chưa nhặt (hết hàng vẫn tính). Hỏi server trước (cache có thể cũ: người nhà đã mua xong lúc app đóng),
+     * mất mạng mới dùng cache; không đọc được → null (không báo bừa).
+     */
     private suspend fun needCount(context: Context): Int? {
         val homeId = context.getSharedPreferences("home", Context.MODE_PRIVATE).getString("homeId", null) ?: return null
         val list = FirebaseModule.db.collection("homes").document(homeId).collection("list")
-        val snap = runCatching { list.get(Source.CACHE).await() }.getOrNull()
-            ?: withTimeoutOrNull(SERVER_TIMEOUT_MS) { runCatching { list.get().await() }.getOrNull() }
+        val snap = withTimeoutOrNull(SERVER_TIMEOUT_MS) { runCatching { list.get(Source.SERVER).await() }.getOrNull() }
+            ?: runCatching { list.get(Source.CACHE).await() }.getOrNull()
             ?: return null
         return snap.documents.count { EntryState.fromKey(it.getString("state")) != EntryState.PICKED }
     }

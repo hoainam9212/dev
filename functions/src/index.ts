@@ -3,7 +3,7 @@ import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { getMessaging, type Message } from "firebase-admin/messaging";
 import { logger } from "firebase-functions";
 import { onDocumentCreated } from "firebase-functions/v2/firestore";
-import { displayName, isDeadToken, messageFor, parseEvent, recipients, type Members } from "./message";
+import { displayName, fcmMessage, isDeadToken, messageFor, parseEvent, recipients, type Members } from "./message";
 
 initializeApp();
 
@@ -29,13 +29,8 @@ export const onHomeEvent = onDocumentCreated(
     const members = (home.get("members") ?? {}) as Members;
     const to = recipients(members, homeEvent.by);
     if (to.length > 0) {
-      const { title, body } = messageFor(homeEvent, displayName(members, homeEvent.by));
-      const messages: Message[] = to.map(({ token }) => ({
-        token,
-        notification: { title, body },
-        data: { open_tab: "list" },
-        android: { priority: "high", notification: { channelId: "partner" } },
-      }));
+      const text = messageFor(homeEvent, displayName(members, homeEvent.by));
+      const messages: Message[] = to.map(({ token }) => fcmMessage(token, homeEvent.type, text));
       const result = await getMessaging().sendEach(messages);
       logger.info("sent", { homeId, type: homeEvent.type, ok: result.successCount, failed: result.failureCount });
 

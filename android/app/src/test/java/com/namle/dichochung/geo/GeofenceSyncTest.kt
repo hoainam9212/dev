@@ -29,6 +29,16 @@ class GeofenceSyncTest {
     }
 
     @Test
+    fun watch_listEmpty_removesAllFences_thenAddsBack() {
+        assertEquals(emptyList<Store>(), GeofenceSync.wanted(listOf(a, b), armed = false))
+        assertEquals(listOf(a, b), GeofenceSync.wanted(listOf(a, b), armed = true))
+        assertEquals(
+            GeofenceDiff(add = emptyList(), removeIds = listOf("a", "b")),
+            GeofenceSync.diff(registered(a, b), GeofenceSync.wanted(listOf(a, b), armed = false)),
+        )
+    }
+
+    @Test
     fun sync_renameOnly_noChange() {
         assertEquals(GeofenceDiff(emptyList(), emptyList()), GeofenceSync.diff(registered(a), listOf(a.copy(name = "Y's mart"))))
     }

@@ -19,6 +19,11 @@ class GeofenceStore(context: Context) {
         get() = pairs(KEY_REGISTERED)
         set(value) = putPairs(KEY_REGISTERED, value)
 
+    /** Danh sách còn món → theo dõi siêu thị ([GeofenceSync.wanted]). Mặc định bật cho tới khi biết danh sách. */
+    var armed: Boolean
+        get() = prefs.getBoolean(KEY_ARMED, true)
+        set(value) = prefs.edit().putBoolean(KEY_ARMED, value).apply()
+
     var lastNotified: Map<String, Long>
         get() = pairs(KEY_LAST_NOTIFIED).mapNotNull { (k, v) -> v.toLongOrNull()?.let { k to it } }.toMap()
         set(value) = putPairs(KEY_LAST_NOTIFIED, value.mapValues { it.value.toString() })
@@ -45,5 +50,6 @@ class GeofenceStore(context: Context) {
         const val KEY_STORES = "stores"
         const val KEY_REGISTERED = "registered"
         const val KEY_LAST_NOTIFIED = "lastNotified"
+        const val KEY_ARMED = "armed"
     }
 }
