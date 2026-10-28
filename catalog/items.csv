@@ -1,0 +1,133 @@
+id,name,aliases,nameJa,category,unit,defaultQty,step,emoji
+ca_chua,Cà chua,トマト|tomato,トマト,rau_cu,quả,3,1,🍅
+rau_muong,Rau muống,空芯菜|くうしんさい,空芯菜,rau_cu,bó,1,1,🥬
+rau_cai,Rau cải,cải|cải ngọt|小松菜|こまつな,小松菜,rau_cu,bó,1,1,🥗
+hanh_la,Hành lá,hành|ねぎ|葱|green onion,ねぎ,rau_cu,bó,1,1,🌱
+khoai_lang,Khoai lang,さつまいも|sweet potato,さつまいも,rau_cu,củ,3,1,🍠
+khoai_tay,Khoai tây,じゃがいも|potato,じゃがいも,rau_cu,củ,3,1,🥔
+ca_rot,Cà rốt,にんじん|人参|carrot,にんじん,rau_cu,củ,2,1,🥕
+chuoi,Chuối,バナナ|banana,バナナ,rau_cu,nải,1,1,🍌
+hanh_tay,Hành tây,玉ねぎ|たまねぎ|onion,玉ねぎ,rau_cu,củ,3,1,🧅
+bap_cai,Bắp cải,cải bắp|キャベツ|cabbage,キャベツ,rau_cu,cái,1,1,🥬
+cai_thao,Cải thảo,白菜|はくさい,白菜,rau_cu,cái,1,1,🥬
+xa_lach,Xà lách,rau diếp|レタス|lettuce,レタス,rau_cu,cái,1,1,🥬
+dua_chuot,Dưa chuột,dưa leo|きゅうり|cucumber,きゅうり,rau_cu,quả,3,1,🥒
+ca_tim,Cà tím,なす|茄子|eggplant,なす,rau_cu,quả,3,1,🍆
+bi_do,Bí đỏ,bí ngô|かぼちゃ|pumpkin,かぼちゃ,rau_cu,miếng,1,1,🎃
+cu_cai_trang,Củ cải trắng,大根|だいこん|daikon,大根,rau_cu,củ,1,1,🥕
+nam_huong,Nấm hương,nấm đông cô|しいたけ|椎茸|shiitake,しいたけ,rau_cu,khay,1,1,🍄
+nam_kim_cham,Nấm kim châm,えのき|enoki,えのき,rau_cu,gói,1,1,🍄
+gia_do,Giá đỗ,giá|もやし|bean sprouts,もやし,rau_cu,túi,1,1,🌱
+rau_mui,Rau mùi,ngò|ngò rí|パクチー|cilantro,パクチー,rau_cu,bó,1,1,🌿
+bong_cai_xanh,Bông cải xanh,súp lơ xanh|ブロッコリー|broccoli,ブロッコリー,rau_cu,cái,1,1,🥦
+ot_chuong,Ớt chuông,ピーマン|パプリカ|bell pepper,ピーマン,rau_cu,quả,3,1,🫑
+dau_bap,Đậu bắp,オクラ|okra,オクラ,rau_cu,túi,1,1,🫛
+dau_que,Đậu que,đậu cô ve|いんげん|green beans,いんげん,rau_cu,túi,1,1,🫛
+tia_to,Tía tô,lá tía tô|大葉|おおば|しそ|shiso,大葉,rau_cu,bó,1,1,🌿
+cai_bo_xoi,Cải bó xôi,rau chân vịt|ほうれん草|ほうれんそう|spinach,ほうれん草,rau_cu,bó,1,1,🥬
+tao,Táo,りんご|apple,りんご,rau_cu,quả,3,1,🍎
+quyt,Quýt,cam|みかん|mandarin,みかん,rau_cu,túi,1,1,🍊
+chanh,Chanh,chanh vàng|レモン|lemon,レモン,rau_cu,quả,2,1,🍋
+qua_bo,Quả bơ,bơ|アボカド|avocado,アボカド,rau_cu,quả,2,1,🥑
+ca_hoi,Cá hồi,鮭|さけ|サーモン|salmon,鮭,thit_ca,khay,1,1,🐟
+thit_bo,Thịt bò,牛肉|ぎゅうにく|beef,牛肉,thit_ca,khay,1,1,🥩
+thit_heo,Thịt heo,thịt lợn|豚肉|ぶたにく|pork,豚肉,thit_ca,khay,1,1,🥓
+ba_chi,Ba chỉ heo,thịt ba chỉ|ba rọi|豚バラ|ぶたばら|pork belly,豚バラ,thit_ca,khay,1,1,🥓
+suon_heo,Sườn heo,sườn lợn|スペアリブ|spare ribs,スペアリブ,thit_ca,khay,1,1,🍖
+thit_heo_xay,Thịt heo xay,thịt lợn băm|豚ひき肉|ground pork,豚ひき肉,thit_ca,khay,1,1,🥩
+thit_xay,Thịt xay bò heo,thịt băm|合いびき肉|あいびき,合いびき肉,thit_ca,khay,1,1,🥩
+thit_ga,Đùi gà,thịt gà|鶏もも|とりもも|chicken thigh,鶏もも肉,thit_ca,khay,1,1,🍗
+uc_ga,Ức gà,鶏むね|とりむね|chicken breast,鶏むね肉,thit_ca,khay,1,1,🍗
+canh_ga,Cánh gà,手羽先|てばさき|chicken wings,手羽先,thit_ca,khay,1,1,🍗
+thit_ga_xay,Thịt gà xay,gà băm|鶏ひき肉|とりひき,鶏ひき肉,thit_ca,khay,1,1,🍗
+xuc_xich,Xúc xích,ウインナー|ソーセージ|sausage,ウインナー,thit_ca,gói,1,1,🌭
+giam_bong,Giăm bông,thịt nguội|ハム|ham,ハム,thit_ca,gói,1,1,🥓
+thit_xong_khoi,Thịt xông khói,ベーコン|bacon,ベーコン,thit_ca,gói,1,1,🥓
+ca_thu,Cá thu,さば|鯖|mackerel,さば,thit_ca,khay,1,1,🐟
+ca_ngu,Cá ngừ sashimi,まぐろ|マグロ|刺身|tuna,まぐろ,thit_ca,khay,1,1,🍣
+ca_tuyet,Cá tuyết,たら|鱈|cod,たら,thit_ca,khay,1,1,🐟
+tom,Tôm,えび|海老|shrimp,えび,thit_ca,khay,1,1,🦐
+muc,Mực,いか|イカ|squid,いか,thit_ca,khay,1,1,🦑
+ngao,Ngao,nghêu|あさり|clams,あさり,thit_ca,khay,1,1,🐚
+thanh_cua,Thanh cua,カニカマ|crab stick,カニカマ,thit_ca,gói,1,1,🦀
+cha_ca,Chả cá,さつま揚げ|ちくわ|fish cake,さつま揚げ,thit_ca,gói,1,1,🍢
+trung_ga,Trứng gà,trứng|卵|たまご|egg,卵,trung_sua,quả,10,1,🥚
+sua_tuoi,Sữa tươi,sữa|牛乳|ぎゅうにゅう|milk,牛乳,trung_sua,hộp,1,1,🥛
+dau_phu,Đậu phụ,đậu hũ|tofu|豆腐|とうふ,豆腐,trung_sua,hộp,1,1,🧊
+dau_phu_chien,Đậu phụ chiên,đậu hũ chiên|厚揚げ|あつあげ,厚揚げ,trung_sua,gói,1,1,🧊
+natto,Natto,đậu tương lên men|納豆|なっとう,納豆,trung_sua,hộp,3,1,🫘
+sua_chua,Sữa chua,da ua|ヨーグルト|yogurt,ヨーグルト,trung_sua,hộp,1,1,🥛
+sua_chua_uong,Sữa chua uống,飲むヨーグルト|drinking yogurt,飲むヨーグルト,trung_sua,chai,1,1,🥛
+sua_dau_nanh,Sữa đậu nành,豆乳|とうにゅう|soy milk,豆乳,trung_sua,hộp,1,1,🥛
+pho_mai,Phô mai,phó mát|チーズ|cheese,チーズ,trung_sua,gói,1,1,🧀
+pho_mai_lat,Phô mai lát,スライスチーズ|sliced cheese,スライスチーズ,trung_sua,gói,1,1,🧀
+bo,Bơ,bơ lạt|バター|butter,バター,trung_sua,hộp,1,1,🧈
+bo_thuc_vat,Bơ thực vật,マーガリン|margarine,マーガリン,trung_sua,hộp,1,1,🧈
+kem_tuoi,Kem tươi,whipping cream|生クリーム|なまクリーム,生クリーム,trung_sua,hộp,1,1,🥛
+trung_cut,Trứng cút,うずら卵|うずらの卵|quail egg,うずら卵,trung_sua,gói,1,1,🥚
+toi,Tỏi,にんにく|garlic,にんにく,gia_vi,củ,1,1,🧄
+nuoc_mam,Nước mắm,mắm|ナンプラー|fish sauce,ナンプラー,gia_vi,chai,1,1,🫗
+dau_an,Dầu ăn,dầu|サラダ油|サラダあぶら|oil,サラダ油,gia_vi,chai,1,1,🫒
+muoi,Muối,塩|しお|salt,塩,gia_vi,gói,1,1,🧂
+duong,Đường,砂糖|さとう|sugar,砂糖,gia_vi,gói,1,1,🍬
+hat_nem,Hạt nêm,bột nêm|だしの素|ほんだし,だしの素,gia_vi,gói,1,1,🍲
+bot_ngot,Bột ngọt,mì chính|味の素|あじのもと|msg,味の素,gia_vi,gói,1,1,🥄
+tieu,Tiêu,hạt tiêu|胡椒|こしょう|pepper,胡椒,gia_vi,lọ,1,1,🫙
+ot,Ớt,ớt tươi|唐辛子|とうがらし|chili,唐辛子,gia_vi,gói,1,1,🌶️
+gung,Gừng,生姜|しょうが|ginger,生姜,gia_vi,củ,1,1,🫚
+sa,Sả,レモングラス|lemongrass,レモングラス,gia_vi,cây,3,1,🌿
+hanh_tim,Hành tím,hành khô|エシャロット|shallot,エシャロット,gia_vi,củ,5,1,🧅
+xi_dau,Xì dầu,nước tương|醤油|しょうゆ|soy sauce,醤油,gia_vi,chai,1,1,🥢
+dau_hao,Dầu hào,オイスターソース|oyster sauce,オイスターソース,gia_vi,chai,1,1,🦪
+tuong_ot,Tương ớt,チリソース|sriracha,チリソース,gia_vi,chai,1,1,🥫
+giam,Giấm,dấm|酢|す|vinegar,酢,gia_vi,chai,1,1,🍶
+dau_me,Dầu mè,dầu vừng|ごま油|ごまあぶら|sesame oil,ごま油,gia_vi,chai,1,1,🫗
+miso,Miso,tương miso|味噌|みそ,味噌,gia_vi,hộp,1,1,🥣
+mayonnaise,Mayonnaise,sốt mayo|マヨネーズ|mayo,マヨネーズ,gia_vi,chai,1,1,🥚
+tuong_ca,Tương cà,sốt cà chua|ケチャップ|ketchup,ケチャップ,gia_vi,chai,1,1,🍅
+gao,Gạo,米|こめ|お米|rice,米,do_kho,bao,1,1,🍚
+mi_goi,Mì gói,mì tôm|ラーメン|インスタントラーメン,インスタントラーメン,do_kho,gói,5,1,🍜
+banh_mi,Bánh mì,パン|食パン|bread,パン,do_kho,túi,1,1,🥖
+bun_kho,Bún khô,bún|ビーフン|rice vermicelli,ビーフン,do_kho,gói,1,1,🍜
+banh_pho,Bánh phở,phở khô|フォー|pho,フォー,do_kho,gói,1,1,🍜
+mien,Miến,春雨|はるさめ|glass noodles,春雨,do_kho,gói,1,1,🍜
+udon,Mì udon,うどん|udon,うどん,do_kho,gói,3,1,🍜
+soba,Mì soba,そば|蕎麦|soba,そば,do_kho,gói,1,1,🍜
+mi_y,Mì Ý,パスタ|スパゲッティ|pasta|spaghetti,パスタ,do_kho,gói,1,1,🍝
+bot_mi,Bột mì,小麦粉|こむぎこ|flour,小麦粉,do_kho,gói,1,1,🌾
+bot_chien,Bột chiên giòn,天ぷら粉|てんぷらこ|パン粉|tempura flour,天ぷら粉,do_kho,gói,1,1,🍤
+banh_trang,Bánh tráng,bánh đa nem|ライスペーパー|rice paper,ライスペーパー,do_kho,gói,1,1,🫓
+rong_bien,Rong biển,海苔|のり|seaweed,海苔,do_kho,gói,1,1,🍙
+wakame,Rong wakame,わかめ|wakame,わかめ,do_kho,gói,1,1,🌿
+vung,Vừng,mè|ごま|胡麻|sesame,ごま,do_kho,gói,1,1,🫘
+ca_ri,Viên cà ri,cà ri|カレールー|カレー|curry,カレールー,do_kho,hộp,1,1,🍛
+ca_ngu_hop,Cá ngừ hộp,ツナ缶|ツナ|canned tuna,ツナ缶,do_kho,hộp,3,1,🥫
+ngu_coc,Ngũ cốc,シリアル|グラノーラ|cereal,シリアル,do_kho,hộp,1,1,🥣
+banh_quy,Bánh quy,ビスケット|クッキー|cookies,ビスケット,do_kho,gói,1,1,🍪
+snack,Bim bim,snack|ポテトチップス|chips,ポテトチップス,do_kho,gói,2,1,🍟
+nuoc_loc,Nước lọc,nước suối|水|みず|ミネラルウォーター|water,水,do_uong,chai,6,1,💧
+tra_xanh,Trà xanh,お茶|緑茶|おちゃ|green tea,お茶,do_uong,chai,2,1,🍵
+tra_lua_mach,Trà lúa mạch,麦茶|むぎちゃ|barley tea,麦茶,do_uong,chai,2,1,🍵
+tra_den,Trà túi lọc,trà đen|紅茶|こうちゃ|tea bags,紅茶,do_uong,hộp,1,1,🫖
+ca_phe,Cà phê,コーヒー|coffee,コーヒー,do_uong,gói,1,1,☕
+nuoc_cam,Nước cam,オレンジジュース|orange juice,オレンジジュース,do_uong,hộp,1,1,🧃
+nuoc_ngot,Nước ngọt,コーラ|ジュース|soda|coke,コーラ,do_uong,chai,2,1,🥤
+nuoc_co_ga,Nước có ga,soda không đường|炭酸水|たんさんすい|sparkling water,炭酸水,do_uong,chai,2,1,🫧
+nuoc_the_thao,Nước thể thao,ポカリ|スポーツドリンク|pocari,スポーツドリンク,do_uong,chai,2,1,🧃
+bia,Bia,ビール|beer,ビール,do_uong,lon,6,1,🍺
+ruou_vang,Rượu vang,ワイン|wine,ワイン,do_uong,chai,1,1,🍷
+chuhai,Chuhai,rượu trái cây|チューハイ|サワー,チューハイ,do_uong,lon,3,1,🍹
+giay_ve_sinh,Giấy vệ sinh,トイレットペーパー|toilet paper,トイレットペーパー,khac,bịch,1,1,🧻
+khan_giay,Khăn giấy,giấy ăn|ティッシュ|tissue,ティッシュ,khac,bịch,1,1,🤧
+khan_uot,Khăn ướt,giấy ướt|ウェットティッシュ|wet wipes,ウェットティッシュ,khac,gói,1,1,🧻
+nuoc_rua_bat,Nước rửa bát,nước rửa chén|食器用洗剤|dish soap,食器用洗剤,khac,chai,1,1,🧴
+mieng_rua_bat,Miếng rửa bát,mút rửa chén|スポンジ|sponge,スポンジ,khac,gói,1,1,🧽
+bot_giat,Nước giặt,bột giặt|洗濯洗剤|せんたくせんざい|detergent,洗濯洗剤,khac,chai,1,1,🧺
+nuoc_xa_vai,Nước xả vải,柔軟剤|じゅうなんざい|softener,柔軟剤,khac,chai,1,1,🧴
+mang_boc,Màng bọc thực phẩm,ラップ|plastic wrap,ラップ,khac,cuộn,1,1,🎞️
+giay_bac,Giấy bạc,アルミホイル|foil,アルミホイル,khac,cuộn,1,1,🪙
+tui_rac,Túi rác,ゴミ袋|ごみぶくろ|trash bags,ゴミ袋,khac,gói,1,1,🗑️
+xa_phong,Xà phòng rửa tay,ハンドソープ|hand soap,ハンドソープ,khac,chai,1,1,🧼
+dau_goi,Dầu gội,シャンプー|shampoo,シャンプー,khac,chai,1,1,🧴
+kem_danh_rang,Kem đánh răng,歯磨き粉|はみがき|toothpaste,歯磨き粉,khac,tuýp,1,1,🪥
+ta_giay,Tã giấy,bỉm|おむつ|diapers,おむつ,khac,bịch,1,1,👶

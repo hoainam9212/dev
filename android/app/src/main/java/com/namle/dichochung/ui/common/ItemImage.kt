@@ -41,7 +41,7 @@ val Category.tint: Color
         Category.KHAC -> AppColors.Divider
     }
 
-/** Ảnh món trên nền pastel: ảnh nhà tự chụp → icon 3D đóng gói (Fluent Emoji) → emoji của món / nhóm. */
+/** Ảnh món trên nền pastel: ảnh nhà tự chụp → icon 3D đóng gói (Gemini, Task 11) → emoji của món / nhóm. */
 @Composable
 fun ItemImage(item: Item, size: Dp, modifier: Modifier = Modifier) {
     val corner = if (size >= 50.dp) 16.dp else 12.dp

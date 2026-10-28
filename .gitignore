@@ -14,6 +14,9 @@ functions/node_modules/
 functions/lib/
 rules-test/node_modules/
 catalog/node_modules/
+# Ảnh gốc Gemini (tấm 2×2) và ảnh cắt PNG: ~95 MB, chỉ giữ trên máy gốc; app dùng webp trong assets.
+catalog/sheets/
+catalog/raw/
 
 # Firebase
 firebase-debug.log

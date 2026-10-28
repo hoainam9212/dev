@@ -1,0 +1,13 @@
+{
+  "name": "di-cho-chung-catalog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cut": "node cut-sheets.mjs",
+    "build": "node build-catalog.mjs",
+    "check": "node build-catalog.mjs --check"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

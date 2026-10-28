@@ -21,8 +21,9 @@ class BundledCatalogTest {
     @Test
     fun bundledCatalog_parsesAllItems() {
         val items = BundledCatalog.load(ApplicationProvider.getApplicationContext())
-        assertEquals(33, items.size)
+        assertTrue("full catalog (Task 11) has ≥ 120 items, got ${items.size}", items.size >= 120)
         assertEquals(items.size, items.map { it.id }.toSet().size)
+        Category.entries.forEach { c -> assertTrue("$c has items", items.any { it.category == c }) }
         assertTrue("Task 02 ids are kept", items.map { it.id }.containsAll(firstTwenty))
         assertTrue(items.all { it.unit.isNotBlank() })
     }
@@ -44,7 +45,13 @@ class BundledCatalogTest {
             assertEquals("catalog/icons/${item.id}.webp", item.imageAsset)
             context.assets.open(item.imageAsset!!).use { assertTrue("${item.id} icon is empty", it.read() >= 0) }
         }
-        // Giấy phép MIT của Fluent Emoji phải đi kèm trong APK.
-        context.assets.open("catalog/icons/LICENSE-fluentui-emoji.txt").use { assertTrue(it.read() >= 0) }
+    }
+
+    @Test
+    fun bundledCatalog_noStrayIcons() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val ids = BundledCatalog.load(context).map { "${it.id}.webp" }.toSet()
+        val files = context.assets.list("catalog/icons").orEmpty().toSet()
+        assertEquals("icons without an item", emptySet<String>(), files - ids)
     }
 }

@@ -12,7 +12,7 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 08 stores — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh (137/137), đã soi save_store/stores_card; lấy vị trí + Overpass thật kiểm ở Task 13
 - [x] 09 geofence — 2026-10-27 (cloud), e3f10c7; CI run #28 xanh, đã soi permissions.png; geofence thật chỉ kiểm được ở Task 13
 - [x] 10 push-functions — 2026-10-28, 8696524 (cloud) + máy gốc: onHomeEvent (asia-northeast1) đã deploy, dọn ảnh container > 1 ngày; send-test-event đạt (log "sent" failed:1 + "removed dead tokens"); nhận thông báo trên máy thật kiểm ở Task 13
-- [ ] 11 catalog-images — chờ user duyệt danh sách + 12 ảnh thử
+- [x] 11 catalog-images — 2026-10-28, 132 món (CSV), icon 3D Gemini thay toàn bộ Fluent (tấm 2×2, cắt nền trong suốt, webp 256 px ~1,5 MB); 143 test xanh, đã soi pick/list; ảnh gốc chỉ ở máy gốc
 - [ ] 12 release — có thêm Step 0: icon hiện đại vẽ bằng Gemini
 - [ ] 13 smoke-real-phones — làm cùng user
 
@@ -24,6 +24,6 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 2026-10-28 (Task 04) Đã deploy luật nhóm gia đình; rules-test 15/15 xanh (gồm 2 test storage, Java 21).
 - [x] 2026-10-28 (Task 10) Trên máy gốc: `cd functions && npm ci && npm run build && firebase deploy --only functions --project di-cho-chung`, rồi `node scripts/send-test-event.mjs test-home-1` (đạt khi in "✔ event đã bị function xoá") và `npm run logs` có dòng "sent".
 - [ ] (Task 12) Mở Chrome profile có **Gemini Pro** để vẽ icon app; chọn 1 trong các bản Claude vẽ.
-- [ ] (Task 11) Duyệt `catalog/items.csv` (danh sách món); duyệt 12 ảnh thử; mở Chrome profile có **Gemini Pro** khi Claude cần vẽ ảnh.
+- [x] 2026-10-28 (Task 11) Chủ dự án chọn icon 3D (vẽ lại cả món Fluent cũ cho đồng bộ), gộp 4 món / ảnh, món sai vẽ lại một lượt cuối; danh sách 132 món dùng luôn.
 - [ ] (Task 13) Hai máy S22 + S26 Ultra: cho phép cài app ngoài, cài APK, cấp quyền thông báo + vị trí "Luôn cho phép", Pin → Không hạn chế, thêm vào "Ứng dụng không bao giờ ngủ".
 - [ ] (Task 13) Ra một siêu thị thật: bấm "Lưu chỗ này là siêu thị", lần sau quay lại xem có thông báo.
