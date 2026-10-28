@@ -11,6 +11,7 @@ const RES = here("../android/app/src/main/res/");
 const DENSITIES = { mdpi: 1, hdpi: 1.5, xhdpi: 2, xxhdpi: 3, xxxhdpi: 4 };
 const CANVAS_DP = 108;
 const CONTENT_DP = 64; // nhân vật nằm gọn trong vùng an toàn 66 dp
+const MONO_DP = 56; // hình nét phẳng trải ngang hơn — thu nhỏ để đuôi mèo, bánh xe không chạm mặt nạ tròn
 
 const src = sharp(here("./app-icon-source.jpg"));
 const { width: W, height: H } = await src.metadata();
@@ -72,19 +73,19 @@ const cut = await sharp(fg, { raw: { width: W, height: H, channels: 4 } })
   .extract({ left: fx0, top: fy0, width: fx1 - fx0 + 1, height: fy1 - fy0 + 1 })
   .png().toBuffer();
 
+// Monochrome (icon theo chủ đề Android 13+): hình nét phẳng đen-trắng Gemini vẽ riêng (app-icon-mono.jpg) —
+// lấy bóng từ ảnh 3D thì thành một khối loang lổ. Độ đen của nét → độ đặc của lớp trắng.
+const { data: g, info: gi } = await sharp(here("./app-icon-mono.jpg")).greyscale().raw().toBuffer({ resolveWithObject: true });
+const glyph = Buffer.alloc(gi.width * gi.height * 4);
+for (let i = 0; i < gi.width * gi.height; i++) {
+  glyph[i * 4] = glyph[i * 4 + 1] = glyph[i * 4 + 2] = 255;
+  glyph[i * 4 + 3] = Math.max(0, Math.min(255, (235 - g[i]) * 1.25));
+}
+const monoCut = await sharp(glyph, { raw: { width: gi.width, height: gi.height, channels: 4 } }).png().trim().toBuffer();
+
 async function layer(px108, mono) {
-  const content = Math.round((px108 * CONTENT_DP) / CANVAS_DP);
-  let img = sharp(cut).resize(content, content, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } });
-  if (mono) {
-    // Bóng trắng: bỏ thêm mọi điểm gần màu nền (nền lọt qua lưới xe đẩy) để không thành một khối đặc.
-    const { data: d, info } = await img.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-    for (let i = 0; i < d.length; i += 4) {
-      const dist = Math.min(...[top, bottom].map((c) => Math.abs(d[i] - c[0]) + Math.abs(d[i + 1] - c[1]) + Math.abs(d[i + 2] - c[2])));
-      if (dist < 45) d[i + 3] = 0;
-      d[i] = d[i + 1] = d[i + 2] = 255;
-    }
-    img = sharp(d, { raw: info });
-  }
+  const content = Math.round((px108 * (mono ? MONO_DP : CONTENT_DP)) / CANVAS_DP);
+  const img = sharp(mono ? monoCut : cut).resize(content, content, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } });
   const pad = Math.round((px108 - content) / 2);
   return sharp(await img.png().toBuffer())
     .extend({ top: pad, bottom: px108 - content - pad, left: pad, right: px108 - content - pad, background: { r: 0, g: 0, b: 0, alpha: 0 } })
@@ -155,7 +156,9 @@ if (process.argv.includes("--preview")) {
   const big = 220, small = 72;
   const tiles = [];
   let x = 16;
-  for (const s of [...shapes, monoView]) {
+  const circle = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${V}" height="${V}">${masks.circle}</svg>`);
+  const monoCircle = await sharp(monoView).composite([{ input: circle, blend: "dest-in" }]).png().toBuffer();
+  for (const s of [...shapes, monoView, monoCircle]) {
     tiles.push({ input: await sharp(s).resize(big, big).toBuffer(), left: x, top: 16 });
     tiles.push({ input: await sharp(s).resize(small, small).toBuffer(), left: x + (big - small) / 2, top: big + 40 });
     x += big + 24;
