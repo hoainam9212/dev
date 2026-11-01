@@ -9,9 +9,11 @@ interface Props {
   unlock: { trackUnlocked: Set<string>; lessonUnlocked: Set<string> };
   stars: Record<string, number>;
   currentId?: string;
+  /** Lộ trình có kiểm tra đầu vào: khi đang khoá thì hiện link tới `/placement`. */
+  placeable?: ReadonlySet<string>;
 }
 
-export function TrackMap({ tracks, lessons, os, unlock, stars, currentId }: Props) {
+export function TrackMap({ tracks, lessons, os, unlock, stars, currentId, placeable }: Props) {
   return (
     <div className="space-y-6">
       {[...tracks].sort((a, b) => a.order - b.order).map((t) => {
@@ -24,7 +26,15 @@ export function TrackMap({ tracks, lessons, os, unlock, stars, currentId }: Prop
             {ls.length === 0 ? (
               <p className="mt-3 rounded-2xl bg-cream p-3 text-muted">📝 Mochi đang soạn bài cho phần này, bạn chờ chút nhé!</p>
             ) : !open ? (
-              <p className="mt-3 text-muted">🔒 Hoàn thành phần trước để mở khoá.</p>
+              <p className="mt-3 text-muted">
+                🔒 Hoàn thành phần trước để mở khoá.
+                {placeable?.has(t.id) && (
+                  <>
+                    {' '}
+                    <Link to="/placement" className="font-semibold text-rose-ink underline">Đã biết rồi? Làm bài kiểm tra</Link>
+                  </>
+                )}
+              </p>
             ) : null}
             {ls.length > 0 && (
               <ol className="mt-6 flex flex-wrap gap-x-6 gap-y-10">

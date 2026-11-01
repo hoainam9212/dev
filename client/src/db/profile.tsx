@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo, type ReactNode } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { detectOs, type OS } from '@office-neko/shared';
 import { db, type Profile } from './db';
@@ -59,4 +59,14 @@ export function useOs(): OS {
 /** Người hướng dẫn đã bật "Mở khoá toàn bộ bài học" trong Cài đặt chưa. */
 export function useUnlockAll(): boolean {
   return useProfile()?.unlockAll ?? false;
+}
+
+const NO_TESTED_OUT: string[] = [];
+
+/** Lộ trình người đang học đã mở khoá bằng kiểm tra đầu vào. */
+export function useTestedOut(): ReadonlySet<string> {
+  const list = useProfile()?.testedOut ?? NO_TESTED_OUT;
+  const key = list.join('|');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => new Set(list), [key]);
 }

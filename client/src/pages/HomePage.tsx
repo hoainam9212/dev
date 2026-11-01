@@ -2,13 +2,16 @@ import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { unlockState, visibleLessons } from '@office-neko/shared';
 import { LESSONS, TRACKS } from '../content';
-import { useProfile } from '../db/profile';
+import { PLACEMENT_TRACKS } from '../content/placement';
+import { useProfile, useTestedOut } from '../db/profile';
 import { useCompleted, useStreak, useTodayMinutes } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
 import { TrackMap } from '../home/TrackMap';
 import { GoalRing } from '../home/GoalRing';
 import { BadgeShelf } from '../home/BadgeShelf';
 import { awardBadges, useBadges } from '../progress/badges';
+
+const PLACEABLE: ReadonlySet<string> = new Set(PLACEMENT_TRACKS);
 
 export function HomePage() {
   const profile = useProfile()!;
@@ -22,15 +25,18 @@ export function HomePage() {
   }, [profile.id]);
   const doneKey = [...completed].sort().join('|');
   const unlockAll = profile.unlockAll ?? false;
+  const testedOut = useTestedOut();
   const unlock = useMemo(
-    () => unlockState(TRACKS, LESSONS, profile.os, completed, unlockAll),
+    () => unlockState(TRACKS, LESSONS, profile.os, completed, unlockAll, testedOut),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [profile.os, doneKey, unlockAll],
+    [profile.os, doneKey, unlockAll, testedOut],
   );
-  const next = [...TRACKS]
+  const todo = [...TRACKS]
     .sort((a, b) => a.order - b.order)
     .flatMap((t) => visibleLessons(t, LESSONS, profile.os))
-    .find((l) => unlock.lessonUnlocked.has(l.id) && !completed.has(l.id));
+    .filter((l) => unlock.lessonUnlocked.has(l.id) && !completed.has(l.id));
+  // Lộ trình đã qua kiểm tra đầu vào thì "Học tiếp" nhảy sang phần kế tiếp; hết bài khác mới quay lại chúng.
+  const next = todo.find((l) => !testedOut.has(l.trackId)) ?? todo[0];
 
   return (
     <div className="mx-auto max-w-4xl space-y-6 p-4 pb-24">
@@ -57,7 +63,7 @@ export function HomePage() {
           <span className="block text-muted">Mở Word, Excel, PowerPoint để tự luyện, không chấm điểm.</span>
         </span>
       </Link>
-      <TrackMap tracks={TRACKS} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} />
+      <TrackMap tracks={TRACKS} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} placeable={PLACEABLE} />
     </div>
   );
 }

@@ -12,6 +12,7 @@ export function QuizView({
   onPick,
   onNext,
   onBack,
+  onChoose,
 }: {
   step: QuizStep;
   done: boolean;
@@ -20,10 +21,13 @@ export function QuizView({
   onPick: (correct: boolean) => void;
   onNext: (wrong: number[]) => void;
   onBack?: (wrong: number[]) => void;
+  /** Chế độ thi (kiểm tra đầu vào): chọn một lần là nộp, không báo đúng/sai, không giải thích. */
+  onChoose?: (choice: number) => void;
 }) {
   const [wrong, setWrong] = useState<number[]>(savedWrong ?? []);
   const sound = useSound();
   const pick = (i: number) => {
+    if (onChoose) return onChoose(i);
     if (done || wrong.includes(i)) return;
     const correct = i === step.answer;
     if (!correct) setWrong((w) => [...w, i]);
@@ -43,7 +47,7 @@ export function QuizView({
               ? 'animate-shake border-rose bg-rose/10 opacity-70'
               : 'border-peach/50 hover:border-peach hover:bg-peach/10';
           return (
-            <button key={i} type="button" onClick={() => pick(i)} className={`rounded-2xl border-2 px-4 py-3 text-left font-semibold transition ${cls}`}>
+            <button key={i} type="button" data-choice={i} onClick={() => pick(i)} className={`rounded-2xl border-2 px-4 py-3 text-left font-semibold transition ${cls}`}>
               {isRight ? '✅ ' : isWrong ? '❌ ' : ''}<InlineText text={c} />
             </button>
           );

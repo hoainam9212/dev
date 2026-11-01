@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { levelFromXp, newlyUnlocked, nextLessonId, unlockState, type AccessoryId } from '@office-neko/shared';
 import { db } from '../db/db';
 import { LESSONS, TRACKS } from '../content';
-import { useOs, useProfileId, useUnlockAll } from '../db/profile';
+import { useOs, useProfileId, useTestedOut, useUnlockAll } from '../db/profile';
 import { recordLessonResult } from '../progress/record';
 import { awardBadges } from '../progress/badges';
 import { useCompleted } from '../progress/useStats';
@@ -15,6 +15,7 @@ export function LessonPage({ id }: { id: string }) {
   const navigate = useNavigate();
   const os = useOs();
   const unlockAll = useUnlockAll();
+  const testedOut = useTestedOut();
   const [done, setDone] = useState<{
     result: LessonResult; xpGained: number; newBadges?: string[]; newAccessories?: AccessoryId[]; saveError?: string;
   } | null>(null);
@@ -57,7 +58,7 @@ export function LessonPage({ id }: { id: string }) {
     );
   }
   if (!loaded) return null;
-  if (!done && !unlockState(TRACKS, LESSONS, os, completed, unlockAll).lessonUnlocked.has(id)) {
+  if (!done && !unlockState(TRACKS, LESSONS, os, completed, unlockAll, testedOut).lessonUnlocked.has(id)) {
     return (
       <div className="card mx-auto mt-10 max-w-md space-y-3 p-6 text-center">
         <p className="text-lg font-bold">Bài này chưa mở khoá 🔒</p>

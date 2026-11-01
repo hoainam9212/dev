@@ -27,7 +27,8 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('radio', { name: /10 phút/ }));
     fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục' }));
     fireEvent.click(screen.getByRole('radio', { name: 'Mèo bạc hà' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Vào học thôi! 🎉' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Tiếp tục' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Học từ đầu' }));
     expect(await screen.findByRole('heading', { name: /Chào An/ })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: 'Làm quen máy tính' })).toBeInTheDocument();
     expect(await db.profiles.get('p1')).toMatchObject({ name: 'An', os: 'mac', dailyGoalMin: 10, avatar: 'mint' });

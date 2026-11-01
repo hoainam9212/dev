@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { searchItems, unlockState, type GlossaryEntry, type Lesson } from '@office-neko/shared';
 import { GLOSSARY, LESSONS, TRACKS } from '../content';
-import { useOs, useProfileId, useUnlockAll } from '../db/profile';
+import { useOs, useProfileId, useTestedOut, useUnlockAll } from '../db/profile';
 import { useCompleted } from '../progress/useStats';
 import { useHelp } from './helpStore';
 import { RichText } from './RichText';
@@ -12,7 +12,8 @@ function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () =>
   const os = useOs();
   const { completed } = useCompleted(useProfileId());
   const unlockAll = useUnlockAll();
-  const unlocked = unlockState(TRACKS, LESSONS, os, completed, unlockAll).lessonUnlocked;
+  const testedOut = useTestedOut();
+  const unlocked = unlockState(TRACKS, LESSONS, os, completed, unlockAll, testedOut).lessonUnlocked;
   const lessons = entry.lessonIds
     .map((id) => LESSONS[id])
     .filter((l): l is Lesson => !!l && (!l.os || l.os === os));

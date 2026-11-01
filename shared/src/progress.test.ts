@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import type { Lesson, Track } from './types';
-import { computeStars, computeStreak, dayKey, levelFromXp, nextLessonId, unlockState, visibleLessons, xpGain } from './progress';
+import type { Lesson, QuizStep, Track } from './types';
+import {
+  computeStars, computeStreak, dayKey, levelFromXp, nextLessonId, PLACEMENT_PASS, placementPassed, unlockState,
+  visibleLessons, xpGain,
+} from './progress';
 
 const L = (id: string, trackId: string, os?: 'win' | 'mac'): Lesson => ({
   id, trackId, chapterId: `${trackId}.c`, title: id, minutes: 3, os, steps: [],
@@ -133,5 +136,37 @@ describe('unlocking', () => {
     // … and the next track should unlock too, since track 'a' counts as finished.
     expect(s.trackUnlocked.has('b')).toBe(true);
     expect(s.lessonUnlocked.has('b1')).toBe(true);
+  });
+});
+
+describe('placement (testedOut)', () => {
+  it('counts a tested-out track as done, so the next track opens', () => {
+    const s = unlockState(tracks, lessons, 'win', new Set(), false, new Set(['a']));
+    expect(s.trackUnlocked.has('b')).toBe(true);
+    expect(s.lessonUnlocked.has('b1')).toBe(true);
+  });
+  it('opens every lesson of a tested-out track', () => {
+    const s = unlockState(tracks, lessons, 'win', new Set(), false, new Set(['a']));
+    expect([...s.lessonUnlocked]).toEqual(['a1', 'a2w', 'a3', 'b1']);
+  });
+  it('opens a tested-out track even when the tracks before it are not done', () => {
+    const s = unlockState(tracks, lessons, 'win', new Set(), false, new Set(['b']));
+    expect(s.trackUnlocked.has('b')).toBe(true);
+    expect(s.lessonUnlocked.has('b1')).toBe(true);
+    expect(s.lessonUnlocked.has('a2w')).toBe(false);
+  });
+  it('does not add anything to completed', () => {
+    const completed = new Set<string>();
+    unlockState(tracks, lessons, 'win', completed, false, new Set(['a']));
+    expect(completed.size).toBe(0);
+  });
+  const quiz: QuizStep[] = Array.from({ length: 6 }, (_, i) => ({ kind: 'quiz', question: `q${i}`, choices: ['x', 'y'], answer: i % 2, why: '' }));
+  it('passes with 5 of 6 right and fails with 4 of 6', () => {
+    expect(PLACEMENT_PASS).toBe(5);
+    expect(placementPassed([0, 1, 0, 1, 0, 0], quiz)).toBe(true);
+    expect(placementPassed([0, 1, 0, 1, 1, 0], quiz)).toBe(false);
+  });
+  it('fails when answers are missing', () => {
+    expect(placementPassed([0, 1, 0, 1], quiz)).toBe(false);
   });
 });

@@ -1,4 +1,4 @@
-import type { Lesson, OS, Track } from './types';
+import type { Lesson, OS, QuizStep, Track } from './types';
 
 export interface LessonOutcome {
   maxHintLevel: 0 | 1 | 2 | 3;
@@ -84,15 +84,21 @@ export function unlockState(
   completed: ReadonlySet<string>,
   /** Chế độ mở khoá toàn bộ: bỏ qua thứ tự học, nhưng vẫn ẩn bài của hệ điều hành khác. */
   unlockAll = false,
+  /**
+   * Lộ trình đã đạt kiểm tra đầu vào: mở mọi bài của nó và tính là "đã xong" để mở lộ trình kế tiếp.
+   * Chỉ mở khoá — không thêm gì vào `completed`.
+   */
+  testedOut: ReadonlySet<string> = new Set(),
 ): { trackUnlocked: Set<string>; lessonUnlocked: Set<string> } {
   const trackUnlocked = new Set<string>();
   const lessonUnlocked = new Set<string>();
   let prevDone = true;
   for (const t of byOrder(tracks)) {
     const ls = visibleLessons(t, lessons, os);
-    if (unlockAll) {
+    if (unlockAll || testedOut.has(t.id)) {
       trackUnlocked.add(t.id);
       ls.forEach((l) => lessonUnlocked.add(l.id));
+      prevDone = true;
       continue;
     }
     if (prevDone) {
@@ -104,6 +110,16 @@ export function unlockState(
     prevDone = prevDone && ls.every((l) => lessonSatisfied(l, completed));
   }
   return { trackUnlocked, lessonUnlocked };
+}
+
+/** Số câu đúng tối thiểu (trên 6) để đạt kiểm tra đầu vào một lộ trình. */
+export const PLACEMENT_PASS = 5;
+
+/** Đạt khi trả lời đủ mọi câu và đúng ít nhất `PLACEMENT_PASS` câu. */
+export function placementPassed(answers: number[], quiz: readonly QuizStep[]): boolean {
+  if (answers.length < quiz.length) return false;
+  const right = quiz.filter((q, i) => answers[i] === q.answer).length;
+  return right >= PLACEMENT_PASS;
 }
 
 export function nextLessonId(tracks: Track[], lessons: Record<string, Lesson>, os: OS, currentId: string): string | null {

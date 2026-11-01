@@ -9,6 +9,7 @@ import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SandboxPage } from './pages/SandboxPage';
+import { PlacementPage } from './pages/PlacementPage';
 import { SandboxDocPage } from './pages/SandboxDocPage';
 import { TypingHubPage } from './pages/TypingHubPage';
 import { SpeedTestPage } from './pages/SpeedTestPage';
@@ -50,6 +51,7 @@ export default function App() {
             <Route path="/typing/test/:min" element={<SpeedTestPage />} />
             <Route path="/typing/fish" element={<FishGamePage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/placement" element={<PlacementPage />} />
             <Route path="/sandbox" element={<SandboxPage />} />
             <Route path="/sandbox/:id" element={<SandboxDocPage />} />
           </Route>

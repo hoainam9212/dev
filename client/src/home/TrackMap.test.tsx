@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { unlockState, type Lesson, type Track } from '@office-neko/shared';
 import { TrackMap } from './TrackMap';
@@ -43,6 +43,21 @@ describe('TrackMap', () => {
     );
     expect(screen.getByRole('link', { name: 'Bài hai (tự chọn)' })).toBeInTheDocument();
     expect(screen.getByText('Tự chọn')).toBeInTheDocument();
+  });
+
+  it('offers the placement test on a locked track that has one', () => {
+    const withB = { ...lessons, b1: { ...L('b1', 'Bài B'), trackId: 'b' } };
+    const tracksB: Track[] = [tracks[0]!, { ...tracks[1]!, chapters: [{ id: 'b.c', title: 'C', lessonIds: ['b1'] }] }];
+    const unlock = unlockState(tracksB, withB, 'win', new Set());
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <TrackMap tracks={tracksB} lessons={withB} os="win" unlock={unlock} stars={{}} placeable={new Set(['b'])} />
+      </MemoryRouter>,
+    );
+    const b = screen.getByRole('region', { name: 'Lộ trình B' });
+    expect(within(b).getByRole('link', { name: 'Đã biết rồi? Làm bài kiểm tra' })).toHaveAttribute('href', '/placement');
+    const a = screen.getByRole('region', { name: 'Lộ trình A' });
+    expect(within(a).queryByRole('link', { name: /Làm bài kiểm tra/ })).not.toBeInTheDocument();
   });
 
   it('marks tracks without lessons as in preparation', () => {

@@ -16,6 +16,8 @@ export interface Profile {
   unlockAll?: boolean;
   /** Phụ kiện Mochi đang đeo; chỉ vẽ khi cấp đủ (xem `wearable`). Hồ sơ cũ không có trường này. */
   accessory?: AccessoryId | null;
+  /** Lộ trình đã mở khoá bằng kiểm tra đầu vào (chỉ mở khoá, không cho sao/XP). Hồ sơ cũ không có trường này. */
+  testedOut?: string[];
   xp: number;
   createdAt: string;
   lastActiveAt: string;

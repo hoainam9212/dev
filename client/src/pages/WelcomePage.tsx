@@ -30,14 +30,16 @@ export function WelcomePage() {
   const [avatar, setAvatar] = useState<AvatarId>('cam');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [after, setAfter] = useState<'/' | '/placement'>('/');
 
-  if (profile) return <Navigate to="/" replace />;
+  if (profile) return <Navigate to={after} replace />;
 
   // Không tự navigate() sau khi tạo hồ sơ: useProfile() phản ứng lại thay đổi của
-  // Dexie liveQuery, nên lần render tiếp theo sẽ tự nhảy sang "/" qua nhánh trên.
+  // Dexie liveQuery, nên lần render tiếp theo sẽ tự nhảy sang `after` qua nhánh trên.
   // Gọi navigate() thủ công ở đây tạo ra tình huống đua (điều hướng trước khi
   // profile cập nhật) khiến app nảy lại "/welcome" rồi mới quay lại "/".
-  const finish = async () => {
+  const finish = async (to: '/' | '/placement') => {
+    setAfter(to);
     setSaving(true);
     setError(null);
     try {
@@ -140,10 +142,27 @@ export function WelcomePage() {
             ))}
           </div>
           <div className="flex gap-3">
-            <button type="button" className="btn" onClick={() => setStep(3)} disabled={saving}>← Quay lại</button>
-            <button type="button" className="btn-primary" onClick={finish} disabled={saving}>
-              {saving ? 'Đang lưu…' : 'Vào học thôi! 🎉'}
+            <button type="button" className="btn" onClick={() => setStep(3)}>← Quay lại</button>
+            <button type="button" className="btn-primary" onClick={() => setStep(5)}>Tiếp tục</button>
+          </div>
+        </div>
+      )}
+      {step === 5 && (
+        <div className="w-full space-y-4">
+          <h1 className="text-2xl font-extrabold">Bạn đã biết dùng máy tính chưa?</h1>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <button type="button" aria-label="Học từ đầu" aria-describedby="start-fresh-desc" className={card(false)} onClick={() => void finish('/')} disabled={saving}>
+              <span className="block text-xl font-extrabold">🌱 Học từ đầu</span>
+              <span id="start-fresh-desc" className="block text-muted">Mochi dẫn bạn từ cách cầm chuột. Hợp với người mới hoàn toàn.</span>
             </button>
+            <button type="button" aria-label="Kiểm tra đầu vào" aria-describedby="placement-desc" className={card(false)} onClick={() => void finish('/placement')} disabled={saving}>
+              <span className="block text-xl font-extrabold">📝 Kiểm tra đầu vào</span>
+              <span id="placement-desc" className="block text-muted">Làm vài câu hỏi ngắn; phần nào đã biết sẽ được mở khoá luôn.</span>
+            </button>
+          </div>
+          <div className="flex gap-3">
+            <button type="button" className="btn" onClick={() => setStep(4)} disabled={saving}>← Quay lại</button>
+            {saving && <span className="self-center text-muted">Đang lưu…</span>}
           </div>
           {error && <p role="alert" className="font-semibold text-rose-ink">{error}</p>}
         </div>
