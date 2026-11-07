@@ -80,7 +80,7 @@ class StoreRepository(
                 name = doc.getString("name") ?: return null,
                 lat = doc.getDouble("lat") ?: return null,
                 lng = doc.getDouble("lng") ?: return null,
-                radiusM = doc.getLong("radius")?.toInt() ?: Store.DEFAULT_RADIUS_M,
+                radiusM = Store.effectiveRadius(doc.getLong("radius")?.toInt()),
                 osmId = doc.getString("osmId"),
             )
         }

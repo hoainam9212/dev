@@ -9,7 +9,9 @@ import com.namle.dichochung.data.ItemWriter
 import com.namle.dichochung.data.ListRepository
 import com.namle.dichochung.geo.GeofenceManager
 import com.namle.dichochung.stores.LocationProvider
+import com.namle.dichochung.stores.NominatimClient
 import com.namle.dichochung.stores.OverpassClient
+import com.namle.dichochung.stores.StoreFinder
 import com.namle.dichochung.stores.StoreRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +43,7 @@ class AppContainer(private val context: Context) {
 
     val locationProvider: LocationProvider by lazy { LocationProvider(context) }
 
-    val overpassClient: OverpassClient by lazy { OverpassClient() }
+    val storeFinder: StoreFinder by lazy { StoreFinder(OverpassClient(), NominatimClient()) }
 
     val geofenceManager: GeofenceManager by lazy { GeofenceManager(context) }
 }

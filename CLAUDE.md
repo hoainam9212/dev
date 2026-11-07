@@ -27,7 +27,14 @@
   được Actions thì ghi trong `STATUS.md` "chưa chạy test — chờ CI/máy gốc". Push bị từ chối vì nhánh có commit mới thì `git pull --rebase` rồi push lại.
 - Không commit bí mật (keystore, mật khẩu, token, khoá service account).
 - Ảnh món: `catalog/` (CSV + script cắt tấm Gemini 2×2), xem `catalog/PROMPT.md`; sửa danh sách ở `catalog/items.csv`
-  rồi `cd catalog && npm run build`. Ảnh gốc `catalog/sheets|raw` chỉ có trên máy gốc.
+  rồi `cd catalog && npm run build`. Ảnh gốc `catalog/sheets|raw` chỉ có trên máy gốc, nên vẽ icon món mới phải làm ở
+  máy gốc (`sh grab.sh N` lấy file Gemini mới tải trong `~/Downloads`; trên Gemini rê chuột vào ảnh trước rồi mới bấm
+  tải, chờ ~10 s). Sửa tên, alias, đơn vị thì làm ở đâu cũng được.
+- **Trước khi làm gì, đọc mục "Bàn giao cho phiên sau" trong `STATUS.md`**: chủ dự án đang test APK 1.0.0 và chưa cho
+  build bản mới. Commit trên `feat/v1` chưa chắc đã có trong APK trên máy họ.
+- Món tự thêm và siêu thị nằm ở Firestore (`homes/{id}/items`, `homes/{id}/stores`), ảnh tự chụp ở Firebase Storage;
+  kho có sẵn nằm trong APK. `CatalogMerge` phủ dữ liệu nhà lên kho theo id, nên món tự thêm (`u_…`) trùng tên món kho mới
+  sẽ hiện hai lần. Xoá dữ liệu thật phải hỏi chủ dự án trước.
 
 ## Phát hành APK (chỉ máy gốc)
 

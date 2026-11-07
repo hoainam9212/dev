@@ -22,7 +22,7 @@ object OverpassParser {
 
     private fun candidate(e: JsonObject, fromLat: Double, fromLng: Double): StoreCandidate? {
         val tags = e["tags"]?.jsonObject ?: return null
-        val name = tags.text("name") ?: tags.text("name:ja") ?: return null
+        val name = tags.text("name") ?: tags.text("name:ja") ?: tags.text("brand") ?: tags.text("brand:ja") ?: return null
         // node có lat/lon; way / relation có center (nhờ "out center").
         val point = e["center"]?.jsonObject ?: e
         val lat = point["lat"]?.jsonPrimitive?.doubleOrNull ?: return null

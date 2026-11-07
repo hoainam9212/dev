@@ -1,1 +1,1 @@
-[out:json][timeout:15];nwr(around:100,35.6646,139.8593)["shop"~"^(supermarket|greengrocer|wholesale|convenience)$"];out tags center;
+[out:json][timeout:15];nwr(around:100,35.6646,139.8593)["shop"~"^(supermarket|greengrocer|wholesale|convenience|department_store|mall)$"];out tags center;

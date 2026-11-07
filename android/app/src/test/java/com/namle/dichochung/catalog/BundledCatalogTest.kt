@@ -47,6 +47,30 @@ class BundledCatalogTest {
     }
 
     @Test
+    fun bundledCatalog_searchFindsGarlicChivesAndSkewers_notCoffee() {
+        val search = ItemSearch(BundledCatalog.load(ApplicationProvider.getApplicationContext()))
+        val chives = search.search("lá hẹ")
+        assertEquals(listOf("la_he"), chives.matches.map { it.id })
+        assertEquals(emptyList<Item>(), chives.suggestions)
+        assertEquals("la_he", search.search("ニラ").matches.first().id)
+        assertEquals("que_xien", search.search("竹串").matches.first().id)
+    }
+
+    @Test
+    fun bundledCatalog_searchFindsOffalAndLuonGa() {
+        val search = ItemSearch(BundledCatalog.load(ApplicationProvider.getApplicationContext()))
+        val first = { q: String -> search.search(q).matches.first().id }
+        assertEquals("chan_ga", first("chân gà"))
+        assertEquals("tim_ga", first("tim gà"))
+        assertEquals("gan_ga", first("gan gà"))
+        assertEquals("me_ga", first("mề gà"))
+        assertEquals("uc_ga", first("lườn gà"))
+        assertEquals("tim_heo", first("tim lợn"))
+        assertEquals("gan_heo", first("gan lợn"))
+        assertEquals("gan_ga", first("鶏レバー"))
+    }
+
+    @Test
     fun bundledCatalog_everyItemHasA3dIconThatExists() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val items = BundledCatalog.load(context)

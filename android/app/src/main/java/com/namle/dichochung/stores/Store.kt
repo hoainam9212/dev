@@ -10,9 +10,12 @@ data class Store(
     val osmId: String? = null,
 ) {
     companion object {
-        /** Khu 西葛西 siêu thị rất dày nên vòng nhỏ (spec 4.5). */
-        const val DEFAULT_RADIUS_M = 90
+        /** Khu 西葛西 siêu thị rất dày nên vòng nhỏ (spec 4.5). Nhỏ hơn nữa thì GPS trong nhà trôi ra ngoài vòng. */
+        const val DEFAULT_RADIUS_M = 60
         const val MAX_NAME = 40
+
+        /** Siêu thị đã lưu với vòng 90 m cũ cũng thu về vòng mới, không phải lưu lại. */
+        fun effectiveRadius(stored: Int?): Int = minOf(stored ?: DEFAULT_RADIUS_M, DEFAULT_RADIUS_M)
     }
 }
 

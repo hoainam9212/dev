@@ -14,7 +14,32 @@ Một dòng mỗi task. Cập nhật trong chính commit hoàn thành task: `[x]
 - [x] 10 push-functions — 2026-10-28, 8696524 (cloud) + máy gốc: onHomeEvent (asia-northeast1) đã deploy, dọn ảnh container > 1 ngày; send-test-event đạt (log "sent" failed:1 + "removed dead tokens"); nhận thông báo trên máy thật kiểm ở Task 13
 - [x] 11 catalog-images — 2026-10-28, 132 món (CSV), icon 3D Gemini thay toàn bộ Fluent (tấm 2×2, cắt nền trong suốt, webp 256 px ~1,5 MB); 143 test xanh, đã soi pick/list; ảnh gốc chỉ ở máy gốc
 - [x] 12 release — 2026-10-28, APK 1.0.0 ký khoá release (SHA-256 b891ff68…, đã vào Firebase), release/DiChoChung-1.0.0.apk; icon mẫu 20 Gemini (mèo là anh đẩy xe chở dê là em), adaptive + monochrome; 143 test xanh
-- [ ] 13 smoke-real-phones — làm cùng user
+- [ ] 13 smoke-real-phones — làm cùng user; đang test APK 1.0.0 trên máy thật, feedback xử lý trên feat/v1, xem mục dưới
+
+## Bàn giao cho phiên sau (cập nhật 2026-11-07)
+
+**Đang ở đâu:** chủ dự án đang test APK 1.0.0 và dặn **chưa build vội**: gom thay đổi rồi build một lần. Mọi thứ dưới đây đã có trên `feat/v1` (160 test xanh ở máy gốc) nhưng **chưa vào APK nào, chưa thử trên máy thật**:
+
+- 3471d98: báo "Đang ở siêu thị" sau 3 phút DWELL, chỉ theo dõi khi danh sách còn món (đây mới là sửa chính cho lỗi "đi qua cũng báo").
+- 4e95d57: chạm lại thẻ để bỏ chọn, nhóm Hoa quả.
+- Geofence 60 m, tìm tên siêu thị qua Overpass + Nominatim, tìm gần đúng siết lại, kho 140 món (chi tiết: Ruling 2026-11-07 trong `LEDGER.md`).
+
+**Phiên cloud làm được:** sửa mã + test (xem CI theo `CLAUDE.md`), sửa alias/tên/đơn vị trong `catalog/items.csv` rồi `cd catalog && npm run build`.
+
+**Phiên cloud không làm được, để cho máy gốc:** vẽ icon món mới (Gemini, `grab.sh`, cần `~/Downloads` + `catalog/sheets`), build/tăng version, deploy function, sửa dữ liệu Firestore.
+
+**Bản build tới (chỉ khi chủ dự án bảo, máy gốc):**
+
+1. Tăng `versionCode` lên 2 và `versionName`, build + kiểm theo mục "Phát hành APK" trong `CLAUDE.md`.
+2. Deploy function **cùng lúc** với cài APK (mục "Việc user cần làm" bên dưới).
+3. Cài đè trên cả hai máy, **không gỡ app** (gỡ = mất uid ẩn danh, phải mời lại vào nhà).
+4. Lúc cài xong, hỏi chủ dự án có xoá 3 món tự thêm nay đã trùng kho không: `u_9b1579ae` (Hẹ), `u_6aa800b8` (Que xiên), `u_7a9eb335` (Chân gà) trong `homes/{id}/items`. Đừng xoá sớm: APK 1.0.0 chưa có các món này trong kho. Chưa có câu trả lời, phải được chủ dự án đồng ý từng lần.
+
+**Chờ chủ dự án quyết:** thêm trái cây (dâu, nho, lê, đào, kiwi, dưa hấu; cần vẽ icon); tên app (đề xuất "Anh Ơi Mua Giùm" / "Chợ Nhà", hiện giữ "Đi Chợ Chung").
+
+**Chưa kiểm chứng:** nguyên nhân "hiện địa chỉ thay tên" là suy đoán từ Overpass lỗi 2026-11-07, chưa tái hiện trên điện thoại. Vòng 60 m có thể hụt báo nếu GPS trong nhà trôi. 3 siêu thị đã lưu không có liên kết OSM, tâm là điểm GPS lúc lưu, có thể nên lưu lại.
+
+**Sau Task 13:** review nhánh, rồi chỉ kết thúc nhánh khi chủ dự án đồng ý.
 
 ## Việc user cần làm (gom một chỗ)
 

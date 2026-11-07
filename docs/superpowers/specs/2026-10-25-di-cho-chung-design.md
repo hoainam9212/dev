@@ -100,7 +100,7 @@ Mẫu giao diện đã chốt: `mau-ket-hop.png` và `.superpowers/brainstorm/*/
 - Nút **"Lưu chỗ này là siêu thị"** (ở tab Nhà mình và tab Cần mua) lấy vị trí hiện tại, tìm siêu thị trong khoảng 100 m trên **OpenStreetMap** (Overpass API, `shop=supermarket|greengrocer|wholesale|convenience`), hiện danh sách tên + chi nhánh + khoảng cách để chọn, cuối cùng có "✏️ Tự nhập tên khác". Không có kết quả thì điền sẵn địa chỉ từ Geocoder của Android.
   - Đã kiểm tra 2026-10-25: quanh ga 西葛西 bán kính 1,5 km có 29 siêu thị + 1 tiệm rau trên OSM, tất cả có tên, khoảng một nửa có tên chi nhánh.
 - Siêu thị đã lưu dùng chung cho cả nhà (đồng bộ hai máy).
-- Mỗi siêu thị đã lưu là một **geofence** bán kính **90 m** **[Claude chọn, do khu 西葛西 siêu thị rất dày]**. Chỉ siêu thị đã lưu mới có geofence.
+- Mỗi siêu thị đã lưu là một **geofence** bán kính **60 m** **[Claude chọn, do khu 西葛西 siêu thị rất dày]**. Chỉ siêu thị đã lưu mới có geofence.
 - Khi vào vòng **và** danh sách Cần mua còn món chưa nhặt: thông báo "🛒 Đang ở <tên>, còn N món". Chạm → mở tab Cần mua. Danh sách trống thì không báo.
 - Không báo lại cùng một siêu thị trong 2 giờ **[Claude chọn]**.
 - Hai vòng đè nhau: lấy siêu thị gần nhất.

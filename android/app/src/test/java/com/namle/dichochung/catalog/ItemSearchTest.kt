@@ -43,6 +43,13 @@ class ItemSearchTest {
     }
 
     @Test
+    fun search_shortQuery_doesNotSuggestLookalikes() {
+        // "la he" và "ca phe" chỉ lệch 2 ký tự nhưng hoàn toàn khác món.
+        val r = ItemSearch(listOf(item("ca_phe", "Cà phê"))).search("lá hẹ")
+        assertTrue(r.suggestions.isEmpty())
+    }
+
+    @Test
     fun search_unrelated_returnsEmpty() {
         val r = search.search("xe máy")
         assertTrue(r.matches.isEmpty())

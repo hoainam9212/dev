@@ -1,6 +1,6 @@
 # Ảnh món (Task 11)
 
-132 món trong `items.csv`, mỗi món một icon 3D bóng kiểu "app icon", nền trong suốt, 256 px WebP ở
+140 món trong `items.csv`, mỗi món một icon 3D bóng kiểu "app icon", nền trong suốt, 256 px WebP ở
 `android/app/src/main/assets/catalog/icons/<id>.webp` (~1,5 MB tổng). Vẽ bằng **Gemini** (tài khoản Pro của chủ dự án),
 mỗi lượt một **tấm 2×2 = 4 món** (tấm 3×3 Gemini hay lỗi / từ chối).
 

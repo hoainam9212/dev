@@ -26,17 +26,12 @@ object Geo {
         else -> "cách ${(meters / 1000.0).roundToInt()} km"
     }
 
-    private val postalJa = Regex("〒?\\d{3}-\\d{4}\\s*")
-    private val countryPrefix = Regex("^(日本、|日本\\s+)")
-    private val countrySuffix = Regex(",?\\s*Japan$", RegexOption.IGNORE_CASE)
-
-    /** Dòng địa chỉ Geocoder làm tên tạm: bỏ "日本、", "〒134-0088", ", Japan" và mã bưu điện. */
-    fun cleanAddress(line: String): String =
-        line.trim()
-            .replace(countryPrefix, "")
-            .replace(countrySuffix, "")
-            .replace(postalJa, "")
-            .trim()
-            .trimEnd(',')
-            .trim()
+    /** Khung vuông cạnh 2 × [radiusM] quanh một điểm. */
+    fun viewbox(lat: Double, lng: Double, radiusM: Int): Viewbox {
+        val dLat = Math.toDegrees(radiusM / EARTH_RADIUS_M)
+        val dLng = dLat / cos(Math.toRadians(lat))
+        return Viewbox(west = lng - dLng, north = lat + dLat, east = lng + dLng, south = lat - dLat)
+    }
 }
+
+data class Viewbox(val west: Double, val north: Double, val east: Double, val south: Double)

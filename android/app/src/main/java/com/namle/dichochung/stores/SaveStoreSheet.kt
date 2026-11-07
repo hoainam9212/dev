@@ -46,7 +46,6 @@ import com.namle.dichochung.ui.theme.AppColors
 @Composable
 fun SaveStoreSheet(
     candidates: List<StoreCandidate>?,
-    suggestedName: String,
     saving: Boolean,
     onSave: (StoreCandidate?, String) -> Unit,
     onDismiss: () -> Unit,
@@ -56,7 +55,7 @@ fun SaveStoreSheet(
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
         containerColor = AppColors.Surface,
     ) {
-        if (candidates == null) Locating() else SaveStoreContent(candidates, suggestedName, saving, onSave)
+        if (candidates == null) Locating() else SaveStoreContent(candidates, saving, onSave)
     }
 }
 
@@ -77,19 +76,18 @@ private fun Locating() {
 
 /**
  * Danh sách chỗ trên OpenStreetMap gần nhất trước (chọn sẵn chỗ đầu) + "✏️ Tự nhập tên khác". Không có chỗ nào
- * (mất mạng, chưa có trên bản đồ) thì chỉ còn ô tên, điền sẵn [suggestedName] (địa chỉ từ Geocoder).
+ * (mất mạng, chưa có trên bản đồ) thì chỉ còn ô tên để trống: không lấy địa chỉ làm tên siêu thị.
  */
 @Composable
 fun SaveStoreContent(
     candidates: List<StoreCandidate>,
-    suggestedName: String,
     saving: Boolean,
     onSave: (StoreCandidate?, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     // -1 = tự nhập tên.
     var selected by rememberSaveable(candidates) { mutableIntStateOf(if (candidates.isEmpty()) CUSTOM else 0) }
-    var customName by rememberSaveable { mutableStateOf(suggestedName) }
+    var customName by rememberSaveable { mutableStateOf("") }
     val chosen = candidates.getOrNull(selected)
     val name = chosen?.label ?: customName.trim()
 
@@ -104,7 +102,7 @@ fun SaveStoreContent(
         Text("Bạn đang ở đâu?", style = MaterialTheme.typography.titleMedium)
         Text(
             if (candidates.isEmpty()) {
-                "Không tìm thấy siêu thị trên bản đồ quanh đây. Đặt tên cho chỗ này nhé."
+                "Không tìm thấy siêu thị trên bản đồ quanh đây. Nhập tên siêu thị nhé."
             } else {
                 "Chọn siêu thị bạn đang đứng; app sẽ nhắc khi bạn tới đây mà nhà còn món cần mua."
             },

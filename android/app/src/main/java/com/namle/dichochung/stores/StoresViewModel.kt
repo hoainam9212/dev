@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,14 +21,13 @@ sealed interface SaveStoreState {
         val lat: Double,
         val lng: Double,
         val candidates: List<StoreCandidate>,
-        val suggestedName: String,
     ) : SaveStoreState
 }
 
 class StoresViewModel(
     private val repo: StoreRepository,
     private val location: LocationProvider,
-    private val overpass: OverpassClient,
+    private val finder: StoreFinder,
 ) : ViewModel() {
 
     val stores: StateFlow<List<Store>> = repo.stores
@@ -49,7 +47,7 @@ class StoresViewModel(
 
     fun hasPermission() = location.hasPermission()
 
-    /** Gọi sau khi đã có quyền vị trí: lấy vị trí, tìm siêu thị trong 100 m; không thấy thì gợi ý địa chỉ. */
+    /** Gọi sau khi đã có quyền vị trí: lấy vị trí, tìm siêu thị quanh đó; không thấy thì để người dùng tự nhập tên. */
     fun locate() {
         locating?.cancel()
         _save.value = SaveStoreState.Locating
@@ -61,15 +59,7 @@ class StoresViewModel(
                 return@launch
             }
             _here.value = loc.latitude to loc.longitude
-            val candidates = try {
-                overpass.nearby(loc.latitude, loc.longitude)
-            } catch (e: CancellationException) {
-                throw e
-            } catch (e: Exception) {
-                emptyList()
-            }
-            val suggested = if (candidates.isEmpty()) location.address(loc.latitude, loc.longitude) else ""
-            _save.value = SaveStoreState.Choosing(loc.latitude, loc.longitude, candidates, suggested)
+            _save.value = SaveStoreState.Choosing(loc.latitude, loc.longitude, finder.nearby(loc.latitude, loc.longitude))
         }
     }
 
@@ -115,8 +105,8 @@ class StoresViewModel(
     }
 
     companion object {
-        fun factory(repo: StoreRepository, location: LocationProvider, overpass: OverpassClient) = viewModelFactory {
-            initializer { StoresViewModel(repo, location, overpass) }
+        fun factory(repo: StoreRepository, location: LocationProvider, finder: StoreFinder) = viewModelFactory {
+            initializer { StoresViewModel(repo, location, finder) }
         }
     }
 }

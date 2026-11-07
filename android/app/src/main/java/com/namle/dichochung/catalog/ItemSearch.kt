@@ -23,7 +23,8 @@ class ItemSearch(items: List<Item>) {
             .map { it.item }
             .take(limit)
 
-        val maxDist = if (q.length <= 4) 1 else 2
+        // Đếm chữ cái, không đếm dấu cách: "la he" chỉ có 4 chữ, cho lệch 2 là ra cả "ca phe".
+        val maxDist = if (q.count { it != ' ' } <= 5) 1 else 2
         val suggestions = if (q.length < 2) emptyList() else rest
             .mapNotNull { e -> e.keys.minOf { closestDistance(q, it) }.takeIf { it <= maxDist }?.let { e to it } }
             .sortedWith(compareBy<Pair<Entry, Int>> { it.second }.thenComparator { a, b -> byPopularity.compare(a.first.item, b.first.item) })

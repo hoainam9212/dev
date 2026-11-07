@@ -44,10 +44,10 @@ class StoresScreenshotTest {
     private var saved: Pair<StoreCandidate?, String>? = null
     private val calls = mutableListOf<String>()
 
-    private fun showSheet(list: List<StoreCandidate>, suggested: String = "") {
+    private fun showSheet(list: List<StoreCandidate>) {
         compose.setContent {
             DiChoTheme {
-                SaveStoreContent(candidates = list, suggestedName = suggested, saving = false, onSave = { c, n -> saved = c to n })
+                SaveStoreContent(candidates = list, saving = false, onSave = { c, n -> saved = c to n })
             }
         }
     }
@@ -87,17 +87,13 @@ class StoresScreenshotTest {
     }
 
     @Test
-    fun saveStoreSheet_noCandidates_prefillsAddress() {
-        showSheet(emptyList(), suggested = "東京都江戸川区西葛西6丁目14")
-        compose.onNodeWithText("東京都江戸川区西葛西6丁目14").assertIsDisplayed()
-        compose.onNodeWithTag("save_store_confirm").performClick()
-        assertEquals(null to "東京都江戸川区西葛西6丁目14", saved)
-    }
-
-    @Test
-    fun saveStoreSheet_blankCustomName_disablesSave() {
-        showSheet(emptyList(), suggested = "")
+    fun saveStoreSheet_noCandidates_asksForTheName() {
+        showSheet(emptyList())
+        compose.onNodeWithText("Không tìm thấy siêu thị trên bản đồ quanh đây. Nhập tên siêu thị nhé.").assertIsDisplayed()
         compose.onNodeWithTag("save_store_confirm").assertIsNotEnabled()
+        compose.onNodeWithTag("store_name_field").performTextReplacement("Chợ Việt Kasai")
+        compose.onNodeWithTag("save_store_confirm").performClick()
+        assertEquals(null to "Chợ Việt Kasai", saved)
     }
 
     private val stores = listOf(

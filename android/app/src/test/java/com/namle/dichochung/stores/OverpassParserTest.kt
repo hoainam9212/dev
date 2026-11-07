@@ -51,6 +51,22 @@ class OverpassParserTest {
     }
 
     @Test
+    fun parse_brandOnly_usesBrandAsName() {
+        val json = """{"elements":[
+          {"type":"node","id":9,"lat":35.6650,"lon":139.8593,"tags":{"shop":"supermarket","brand":"業務スーパー"}}
+        ]}"""
+        assertEquals("業務スーパー", parse(json).single().label)
+    }
+
+    @Test
+    fun query_coversLargeStores() {
+        val q = OverpassClient.query(35.0, 139.0, 200)
+        assertTrue("around:200" in q)
+        assertTrue("department_store" in q)
+        assertTrue("mall" in q)
+    }
+
+    @Test
     fun parse_badJson_isEmpty() {
         assertEquals(emptyList<StoreCandidate>(), parse("<html>rate limited</html>"))
         assertEquals(emptyList<StoreCandidate>(), parse("""{"remark":"timeout"}"""))

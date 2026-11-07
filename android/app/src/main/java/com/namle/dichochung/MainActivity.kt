@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
                             },
                         )
                         val storesVm: StoresViewModel = viewModel(
-                            factory = StoresViewModel.factory(container.storeRepository, container.locationProvider, container.overpassClient),
+                            factory = StoresViewModel.factory(container.storeRepository, container.locationProvider, container.storeFinder),
                         )
                         val stores by storesVm.stores.collectAsStateWithLifecycle()
                         val here by storesVm.here.collectAsStateWithLifecycle()

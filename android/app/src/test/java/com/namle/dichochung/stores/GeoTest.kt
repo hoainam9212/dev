@@ -30,9 +30,11 @@ class GeoTest {
     }
 
     @Test
-    fun cleanAddress_dropsCountryAndPostalCode() {
-        assertEquals("東京都江戸川区西葛西6丁目14", Geo.cleanAddress("日本、〒134-0088 東京都江戸川区西葛西6丁目14"))
-        assertEquals("東京都江戸川区西葛西6丁目14", Geo.cleanAddress("〒134-0088 東京都江戸川区西葛西6丁目14"))
-        assertEquals("6-14 Nishikasai, Edogawa City, Tokyo", Geo.cleanAddress("6-14 Nishikasai, Edogawa City, Tokyo 134-0088, Japan"))
+    fun viewbox_isSquareAroundPoint() {
+        val box = Geo.viewbox(35.6646, 139.8593, 200)
+        assertEquals(200.0, Geo.distanceM(35.6646, 139.8593, box.north, 139.8593).toDouble(), 1.0)
+        assertEquals(200.0, Geo.distanceM(35.6646, 139.8593, 35.6646, box.east).toDouble(), 1.0)
+        assertEquals(35.6646 - (box.north - 35.6646), box.south, 1e-9)
+        assertEquals(139.8593 - (box.east - 139.8593), box.west, 1e-9)
     }
 }

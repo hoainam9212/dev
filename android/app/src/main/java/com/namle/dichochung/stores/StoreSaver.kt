@@ -22,7 +22,6 @@ fun rememberStoreSaver(vm: StoresViewModel): () -> Unit {
         val choosing = state as? SaveStoreState.Choosing
         SaveStoreSheet(
             candidates = choosing?.candidates,
-            suggestedName = choosing?.suggestedName.orEmpty(),
             saving = false,
             onSave = vm::save,
             onDismiss = vm::dismiss,

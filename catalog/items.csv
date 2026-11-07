@@ -23,6 +23,7 @@ bong_cai_xanh,Bông cải xanh,súp lơ xanh|ブロッコリー|broccoli,ブロ�
 ot_chuong,Ớt chuông,ピーマン|パプリカ|bell pepper,ピーマン,rau_cu,quả,3,1,🫑
 dau_bap,Đậu bắp,オクラ|okra,オクラ,rau_cu,túi,1,1,🫛
 dau_que,Đậu que,đậu cô ve|いんげん|green beans,いんげん,rau_cu,túi,1,1,🫛
+la_he,Lá hẹ,hẹ|rau hẹ|ニラ|にら|韮|garlic chives,ニラ,rau_cu,bó,1,1,🌿
 tia_to,Tía tô,lá tía tô|大葉|おおば|しそ|shiso,大葉,rau_cu,bó,1,1,🌿
 cai_bo_xoi,Cải bó xôi,rau chân vịt|ほうれん草|ほうれんそう|spinach,ほうれん草,rau_cu,bó,1,1,🥬
 tao,Táo,りんご|apple,りんご,hoa_qua,quả,3,1,🍎
@@ -37,9 +38,15 @@ suon_heo,Sườn heo,sườn lợn|スペアリブ|spare ribs,スペアリブ,th
 thit_heo_xay,Thịt heo xay,thịt lợn băm|豚ひき肉|ground pork,豚ひき肉,thit_ca,khay,1,1,🥩
 thit_xay,Thịt xay bò heo,thịt băm|合いびき肉|あいびき,合いびき肉,thit_ca,khay,1,1,🥩
 thit_ga,Đùi gà,thịt gà|鶏もも|とりもも|chicken thigh,鶏もも肉,thit_ca,khay,1,1,🍗
-uc_ga,Ức gà,鶏むね|とりむね|chicken breast,鶏むね肉,thit_ca,khay,1,1,🍗
+uc_ga,Ức gà,lườn gà|鶏むね|とりむね|chicken breast,鶏むね肉,thit_ca,khay,1,1,🍗
 canh_ga,Cánh gà,手羽先|てばさき|chicken wings,手羽先,thit_ca,khay,1,1,🍗
 thit_ga_xay,Thịt gà xay,gà băm|鶏ひき肉|とりひき,鶏ひき肉,thit_ca,khay,1,1,🍗
+chan_ga,Chân gà,もみじ|鶏足|chicken feet,鶏もみじ,thit_ca,khay,1,1,🍗
+tim_ga,Tim gà,鶏ハツ|とりハツ|chicken heart,鶏ハツ,thit_ca,khay,1,1,🍗
+gan_ga,Gan gà,鶏レバー|とりレバー|chicken liver,鶏レバー,thit_ca,khay,1,1,🍗
+me_ga,Mề gà,砂肝|すなぎも|chicken gizzard,砂肝,thit_ca,khay,1,1,🍗
+tim_heo,Tim heo,tim lợn|豚ハツ|ぶたハツ|pork heart,豚ハツ,thit_ca,khay,1,1,🥩
+gan_heo,Gan heo,gan lợn|豚レバー|ぶたレバー|pork liver,豚レバー,thit_ca,khay,1,1,🥩
 xuc_xich,Xúc xích,ウインナー|ソーセージ|sausage,ウインナー,thit_ca,gói,1,1,🌭
 giam_bong,Giăm bông,thịt nguội|ハム|ham,ハム,thit_ca,gói,1,1,🥓
 thit_xong_khoi,Thịt xông khói,ベーコン|bacon,ベーコン,thit_ca,gói,1,1,🥓
@@ -131,3 +138,4 @@ xa_phong,Xà phòng rửa tay,ハンドソープ|hand soap,ハンドソープ,kh
 dau_goi,Dầu gội,シャンプー|shampoo,シャンプー,khac,chai,1,1,🧴
 kem_danh_rang,Kem đánh răng,歯磨き粉|はみがき|toothpaste,歯磨き粉,khac,tuýp,1,1,🪥
 ta_giay,Tã giấy,bỉm|おむつ|diapers,おむつ,khac,bịch,1,1,👶
+que_xien,Que xiên,xiên que|xiên nướng|que tre|竹串|たけぐし|串|skewers,竹串,khac,gói,1,1,🍢
