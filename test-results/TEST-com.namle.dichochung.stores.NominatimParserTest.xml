@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.stores.NominatimParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:55" hostname="runnervmwuk1x" time="0.018">
+  <properties/>
+  <testcase name="merge_keepsOverpassEntryAndDropsDuplicate" classname="com.namle.dichochung.stores.NominatimParserTest" time="0.001"/>
+  <testcase name="parse_badJson_isEmpty" classname="com.namle.dichochung.stores.NominatimParserTest" time="0.013"/>
+  <testcase name="parse_skipsUnnamed_neverFallsBackToAddress" classname="com.namle.dichochung.stores.NominatimParserTest" time="0.001"/>
+  <testcase name="parse_readsNameAndOsmId_nearestFirst" classname="com.namle.dichochung.stores.NominatimParserTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

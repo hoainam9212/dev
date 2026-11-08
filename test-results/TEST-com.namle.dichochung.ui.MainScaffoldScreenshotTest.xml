@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.ui.MainScaffoldScreenshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:56" hostname="runnervmwuk1x" time="0.618">
+  <properties/>
+  <testcase name="mainScaffold_tabClick_callsOnSelect" classname="com.namle.dichochung.ui.MainScaffoldScreenshotTest" time="0.118"/>
+  <testcase name="mainScaffold_listBadge_snapshot" classname="com.namle.dichochung.ui.MainScaffoldScreenshotTest" time="0.296"/>
+  <testcase name="mainScaffold_pickSelected_snapshot" classname="com.namle.dichochung.ui.MainScaffoldScreenshotTest" time="0.203"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.catalog.GuessTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:42" hostname="runnervmwuk1x" time="0.01">
+  <properties/>
+  <testcase name="guess_unit_byCategory" classname="com.namle.dichochung.catalog.GuessTest" time="0.001"/>
+  <testcase name="guess_category_withoutDiacritics_andAliases" classname="com.namle.dichochung.catalog.GuessTest" time="0.006"/>
+  <testcase name="guess_category_fromPrefix" classname="com.namle.dichochung.catalog.GuessTest" time="0.002"/>
+  <testcase name="guess_category_prefersSameDiacritics" classname="com.namle.dichochung.catalog.GuessTest" time="0.0"/>
+  <testcase name="guess_category_blank_isKhac" classname="com.namle.dichochung.catalog.GuessTest" time="0.0"/>
+  <testcase name="guess_category_longestPrefixWins" classname="com.namle.dichochung.catalog.GuessTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

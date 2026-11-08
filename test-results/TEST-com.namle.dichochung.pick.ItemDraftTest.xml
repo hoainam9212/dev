@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.pick.ItemDraftTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:54" hostname="runnervmwuk1x" time="0.001">
+  <properties/>
+  <testcase name="forNew_normalizesNameAndGuesses" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="invalid_whenNameOrUnitBlank" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.001"/>
+  <testcase name="withCategory_swapsGuessedUnit_keepsTypedUnit" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="toItem_edit_keepsIdAndArt" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="newId_hasPrefixAndEightChars" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="toItem_new_usesIdAndNormalizedName" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="quantities_stayInRange" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <testcase name="isUserItem_onlyForAddedIds" classname="com.namle.dichochung.pick.ItemDraftTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

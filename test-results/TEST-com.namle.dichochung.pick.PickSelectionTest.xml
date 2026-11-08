@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.pick.PickSelectionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:55" hostname="runnervmwuk1x" time="0.003">
+  <properties/>
+  <testcase name="selection_tap_setsDefaultQty" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.001"/>
+  <testcase name="selection_plusMinus_usesStep" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <testcase name="selection_minusToZero_removes" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <testcase name="sendLabel_namesTheOnlyOtherMember_elseWholeFamily" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.002"/>
+  <testcase name="sentMessage_matchesRecipients" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <testcase name="selection_tapAgain_unpicksWhateverTheQty" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <testcase name="selection_keepsPickOrder" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <testcase name="labels_vietnamese" classname="com.namle.dichochung.pick.PickSelectionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

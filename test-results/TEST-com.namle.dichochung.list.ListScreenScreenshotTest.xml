@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.list.ListScreenScreenshotTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:51" hostname="runnervmwuk1x" time="1.283">
+  <properties/>
+  <testcase name="entryEdit_snapshot_andSave" classname="com.namle.dichochung.list.ListScreenScreenshotTest" time="0.36"/>
+  <testcase name="listScreen_callbacks" classname="com.namle.dichochung.list.ListScreenScreenshotTest" time="0.348"/>
+  <testcase name="listScreen_noPicked_hidesFinish" classname="com.namle.dichochung.list.ListScreenScreenshotTest" time="0.101"/>
+  <testcase name="listScreen_empty_snapshot" classname="com.namle.dichochung.list.ListScreenScreenshotTest" time="0.229"/>
+  <testcase name="listScreen_snapshot" classname="com.namle.dichochung.list.ListScreenScreenshotTest" time="0.244"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

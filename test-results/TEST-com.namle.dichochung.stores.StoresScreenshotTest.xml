@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.stores.StoresScreenshotTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:55" hostname="runnervmwuk1x" time="1.446">
+  <properties/>
+  <testcase name="saveStoreSheet_snapshot" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.2"/>
+  <testcase name="saveStoreSheet_pickAnother" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.159"/>
+  <testcase name="storesCard_renameAndDelete_askFirst" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.279"/>
+  <testcase name="saveStoreSheet_noCandidates_asksForTheName" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.179"/>
+  <testcase name="saveStoreSheet_customName" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.17"/>
+  <testcase name="storesCard_snapshot" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.259"/>
+  <testcase name="saveStoreSheet_firstCandidatePreselected_savesIt" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.13"/>
+  <testcase name="storesCard_empty_offersAdd_noLocationHidesDistance" classname="com.namle.dichochung.stores.StoresScreenshotTest" time="0.066"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

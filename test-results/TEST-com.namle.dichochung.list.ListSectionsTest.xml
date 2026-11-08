@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.list.ListSectionsTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:52" hostname="runnervmwuk1x" time="0.002">
+  <properties/>
+  <testcase name="sections_empty_andUnknownItemGoesToKhac" classname="com.namle.dichochung.list.ListSectionsTest" time="0.001"/>
+  <testcase name="sections_pickedAfterNeedInGroup" classname="com.namle.dichochung.list.ListSectionsTest" time="0.0"/>
+  <testcase name="progress_countsPickedOverTotal" classname="com.namle.dichochung.list.ListSectionsTest" time="0.0"/>
+  <testcase name="sections_orderByCategory" classname="com.namle.dichochung.list.ListSectionsTest" time="0.0"/>
+  <testcase name="sections_outOfStockInLastSection" classname="com.namle.dichochung.list.ListSectionsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

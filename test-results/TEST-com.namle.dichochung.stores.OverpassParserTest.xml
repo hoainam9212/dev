@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.stores.OverpassParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:55" hostname="runnervmwuk1x" time="0.01">
+  <properties/>
+  <testcase name="parse_fixture_returnsNamedSortedByDistance" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.005"/>
+  <testcase name="parse_badJson_isEmpty" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.001"/>
+  <testcase name="parse_skipsUnnamed_sortsByDistance_dedupesOsmId" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.001"/>
+  <testcase name="query_coversLargeStores" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.003"/>
+  <testcase name="parse_brandOnly_usesBrandAsName" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.0"/>
+  <testcase name="candidate_label_withAndWithoutBranch" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.0"/>
+  <testcase name="parse_usesCenterForWays" classname="com.namle.dichochung.stores.OverpassParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

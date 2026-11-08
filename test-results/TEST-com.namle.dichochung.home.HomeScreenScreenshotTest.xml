@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.home.HomeScreenScreenshotTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:45" hostname="runnervmwuk1x" time="3.68">
+  <properties/>
+  <testcase name="homeScreen_full_hidesInviteButton" classname="com.namle.dichochung.home.HomeScreenScreenshotTest" time="1.633"/>
+  <testcase name="homeScreen_inviteMore_invitesWithoutReplace" classname="com.namle.dichochung.home.HomeScreenScreenshotTest" time="0.251"/>
+  <testcase name="homeScreen_family_snapshot" classname="com.namle.dichochung.home.HomeScreenScreenshotTest" time="1.47"/>
+  <testcase name="homeScreen_inviteShown_snapshot" classname="com.namle.dichochung.home.HomeScreenScreenshotTest" time="0.324"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

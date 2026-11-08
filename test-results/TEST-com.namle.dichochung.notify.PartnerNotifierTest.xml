@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.notify.PartnerNotifierTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:52" hostname="runnervmwuk1x" time="0.155">
+  <properties/>
+  <testcase name="show_withoutPermission_postsNothing" classname="com.namle.dichochung.notify.PartnerNotifierTest" time="0.039"/>
+  <testcase name="show_postsOnPartnerChannel_opensListTab" classname="com.namle.dichochung.notify.PartnerNotifierTest" time="0.082"/>
+  <testcase name="show_twoMessages_bothStay" classname="com.namle.dichochung.notify.PartnerNotifierTest" time="0.034"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

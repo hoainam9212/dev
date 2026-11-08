@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.catalog.TextNormTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:42" hostname="runnervmwuk1x" time="0.003">
+  <properties/>
+  <testcase name="fold_removesVietnameseDiacritics" classname="com.namle.dichochung.catalog.TextNormTest" time="0.001"/>
+  <testcase name="fold_keepsJapaneseDakuten" classname="com.namle.dichochung.catalog.TextNormTest" time="0.001"/>
+  <testcase name="fold_katakanaAndHalfWidthToHiragana" classname="com.namle.dichochung.catalog.TextNormTest" time="0.0"/>
+  <testcase name="normalizeName_trimsAndCapitalizes" classname="com.namle.dichochung.catalog.TextNormTest" time="0.0"/>
+  <testcase name="fold_collapsesSpaces" classname="com.namle.dichochung.catalog.TextNormTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

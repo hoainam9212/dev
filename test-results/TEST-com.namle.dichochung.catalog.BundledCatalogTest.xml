@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.catalog.BundledCatalogTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:36" hostname="runnervmwuk1x" time="6.154">
+  <properties/>
+  <testcase name="bundledCatalog_everyItemHasA3dIconThatExists" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="5.651"/>
+  <testcase name="bundledCatalog_fruitsHaveTheirOwnGroup" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.093"/>
+  <testcase name="bundledCatalog_searchFindsOffalAndLuonGa" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.132"/>
+  <testcase name="bundledCatalog_everyItemHasItsOwnEmoji_andSpicesAreCovered" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.038"/>
+  <testcase name="bundledCatalog_searchFindsGarlicChivesAndSkewers_notCoffee" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.082"/>
+  <testcase name="bundledCatalog_parsesAllItems" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.052"/>
+  <testcase name="bundledCatalog_noStrayIcons" classname="com.namle.dichochung.catalog.BundledCatalogTest" time="0.104"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

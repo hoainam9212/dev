@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.home.PermissionsCardScreenshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:50" hostname="runnervmwuk1x" time="0.621">
+  <properties/>
+  <testcase name="permissionsCard_buttonsOnlyForMissing" classname="com.namle.dichochung.home.PermissionsCardScreenshotTest" time="0.162"/>
+  <testcase name="permissionsCard_snapshot" classname="com.namle.dichochung.home.PermissionsCardScreenshotTest" time="0.303"/>
+  <testcase name="permissionsCard_allGood_showsSummary" classname="com.namle.dichochung.home.PermissionsCardScreenshotTest" time="0.154"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.catalog.ItemSearchTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:42" hostname="runnervmwuk1x" time="0.006">
+  <properties/>
+  <testcase name="search_unrelated_returnsEmpty" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.002"/>
+  <testcase name="findDuplicate_detectsNearName" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.0"/>
+  <testcase name="search_emptyQuery_sortsBySendCount" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.0"/>
+  <testcase name="search_withoutAccents_findsItem" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.003"/>
+  <testcase name="search_alias_findsItem" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.0"/>
+  <testcase name="search_typo_givesSuggestion" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.001"/>
+  <testcase name="search_excludesDeleted" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.0"/>
+  <testcase name="search_shortQuery_doesNotSuggestLookalikes" classname="com.namle.dichochung.catalog.ItemSearchTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

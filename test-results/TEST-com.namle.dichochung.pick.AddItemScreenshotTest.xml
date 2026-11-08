@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.pick.AddItemScreenshotTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:52" hostname="runnervmwuk1x" time="1.833">
+  <properties/>
+  <testcase name="searchResults_matchesOnly_noSuggestHeader_addRowLast" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.196"/>
+  <testcase name="longPressCard_opensEdit" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.129"/>
+  <testcase name="addItemSheet_callbacks" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.152"/>
+  <testcase name="duplicateDialog_offersExistingItem" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.197"/>
+  <testcase name="addItemSheet_blankName_disablesSave" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.158"/>
+  <testcase name="searchResults_nothing_stillOffersAdd" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.122"/>
+  <testcase name="addItemSheet_snapshot" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.207"/>
+  <testcase name="editItemSheet_snapshot_andDeleteAsksFirst" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.295"/>
+  <testcase name="addItemSheet_typingName_updatesDraft" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.148"/>
+  <testcase name="searchResults_withSuggestion_snapshot" classname="com.namle.dichochung.pick.AddItemScreenshotTest" time="0.226"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

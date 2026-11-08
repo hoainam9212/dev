@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.data.ListLogicTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:42" hostname="runnervmwuk1x" time="0.005">
+  <properties/>
+  <testcase name="mergeSend_newItem_createsNeed" classname="com.namle.dichochung.data.ListLogicTest" time="0.002"/>
+  <testcase name="mergeSend_outOfStock_addsQtyKeepsLabel" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="mergeSend_unknownItem_isSkipped" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="mergeSend_onlyPicked_createsNewNeed" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="needCount_countsNeedAndOutOfStock" classname="com.namle.dichochung.data.ListLogicTest" time="0.001"/>
+  <testcase name="finish_keepsNeedAndOutOfStock" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="finish_deletesOnlyPicked" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="mergeSend_existingNeed_addsQty" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <testcase name="entryState_firestoreKeys" classname="com.namle.dichochung.data.ListLogicTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

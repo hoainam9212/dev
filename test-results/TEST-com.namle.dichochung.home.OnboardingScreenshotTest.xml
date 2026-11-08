@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.namle.dichochung.home.OnboardingScreenshotTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-08T12:54:48" hostname="runnervmwuk1x" time="1.563">
+  <properties/>
+  <testcase name="onboarding_snapshot" classname="com.namle.dichochung.home.OnboardingScreenshotTest" time="0.519"/>
+  <testcase name="onboarding_noRole_buttonsDisabled" classname="com.namle.dichochung.home.OnboardingScreenshotTest" time="0.322"/>
+  <testcase name="onboarding_buttons_callBack" classname="com.namle.dichochung.home.OnboardingScreenshotTest" time="0.277"/>
+  <testcase name="onboarding_error_snapshot" classname="com.namle.dichochung.home.OnboardingScreenshotTest" time="0.444"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
