@@ -21,8 +21,8 @@ android {
         applicationId = "com.namle.dichochung"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
     }
 
     // Khoá ký bản phát hành chỉ có trên máy gốc (android/keystore.properties + .keystore, git-ignore).
