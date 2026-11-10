@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { TextToSpeech, QueueStrategy } from '@capacitor-community/text-to-speech';
+import { acquireAudioFocus, releaseAudioFocusSoon } from './audioFocus';
 
 // Android WebView does not implement window.speechSynthesis (crbug.com/40417848),
 // so inside the native app speech goes through the system TTS engine via a Capacitor plugin.
@@ -95,8 +96,10 @@ export function useStopSpeechOnUnmount(): void {
 
 export function stopSpeaking(): void {
   generation++;
-  if (isNative()) void TextToSpeech.stop().catch(() => {});
-  else if (hasWebSpeech()) window.speechSynthesis.cancel();
+  if (isNative()) {
+    void TextToSpeech.stop().catch(() => {});
+    releaseAudioFocusSoon();
+  } else if (hasWebSpeech()) window.speechSynthesis.cancel();
 }
 
 /** Speak Japanese text. Returns false when no speech engine is available. */
@@ -104,8 +107,12 @@ export function speak(text: string, opts: { rate?: number; lang?: string } = {})
   const lang = opts.lang ?? 'ja-JP';
   const rate = opts.rate ?? defaultRate;
   if (isNative()) {
-    generation++;
-    void speakNative(text, lang, rate);
+    const gen = ++generation;
+    void (async () => {
+      await acquireAudioFocus();
+      await speakNative(text, lang, rate);
+      if (gen === generation) releaseAudioFocusSoon();
+    })();
     return true;
   }
   if (!hasWebSpeech()) return false;
@@ -151,11 +158,14 @@ export function speakSequence(
 
   if (isNative()) {
     void (async () => {
+      await acquireAudioFocus();
       for (let i = 0; i < lines.length && alive(); i++) {
         opts.onLine?.(i);
         await speakNative(lines[i]!, lang, rate);
         if (alive() && gap > 0 && i < lines.length - 1) await new Promise((r) => setTimeout(r, gap));
       }
+      // a cancel/stop already released focus; a newer speak() holds it now
+      if (gen === generation) releaseAudioFocusSoon();
       resolveDone();
     })();
     return { cancel, done };

@@ -12,14 +12,31 @@ const { spoken, plugin } = vi.hoisted(() => {
   };
   return { spoken, plugin };
 });
+// Android audio focus: without it, music from other apps keeps playing under the app's speech.
+const { focusLog, focus } = vi.hoisted(() => {
+  const focusLog: string[] = [];
+  const focus = {
+    request: vi.fn(async () => {
+      focusLog.push('request');
+    }),
+    abandon: vi.fn(async () => {
+      focusLog.push('abandon');
+    }),
+  };
+  return { focusLog, focus };
+});
 
-vi.mock('@capacitor/core', () => ({ Capacitor: { isNativePlatform: () => true } }));
+vi.mock('@capacitor/core', () => ({
+  Capacitor: { isNativePlatform: () => true },
+  registerPlugin: () => focus,
+}));
 vi.mock('@capacitor-community/text-to-speech', () => ({ TextToSpeech: plugin, QueueStrategy: { Flush: 0, Add: 1 } }));
 
 import { canSpeak, speak, speakSequence, stopSpeaking } from './tts';
 
 beforeEach(() => {
   spoken.length = 0;
+  focusLog.length = 0;
   vi.clearAllMocks();
   // make sure the web API is absent, like in Android WebView
   delete (window as unknown as { speechSynthesis?: unknown }).speechSynthesis;
@@ -46,6 +63,36 @@ it('speakSequence plays lines in order through the plugin', async () => {
 it('stopSpeaking() stops the native engine', () => {
   stopSpeaking();
   expect(plugin.stop).toHaveBeenCalled();
+});
+
+it('speak() takes audio focus before speaking and gives it back afterwards', async () => {
+  // start with focus fully released (earlier tests may still hold it for the release delay)
+  stopSpeaking();
+  await vi.waitFor(() => expect(focus.abandon).toHaveBeenCalled(), { timeout: 2000 });
+  focusLog.length = 0;
+  plugin.speak.mockImplementationOnce(async (o) => {
+    focusLog.push('speak');
+    spoken.push(o);
+  });
+  speak('ねこ');
+  await vi.waitFor(() => expect(focusLog).toEqual(['request', 'speak', 'abandon']), { timeout: 2000 });
+});
+
+it('speakSequence keeps focus between lines and releases it once at the end', async () => {
+  plugin.speak.mockImplementation(async (o) => {
+    focusLog.push('speak');
+    spoken.push(o);
+  });
+  await speakSequence(['a', 'b', 'c'], { gapMs: 0 }).done;
+  await vi.waitFor(() => expect(focusLog.filter((x) => x === 'abandon')).toHaveLength(1), { timeout: 2000 });
+  expect(focusLog.slice(-4)).toEqual(['speak', 'speak', 'speak', 'abandon']);
+  expect(focusLog.indexOf('request')).toBeLessThan(focusLog.indexOf('speak'));
+  plugin.speak.mockReset();
+});
+
+it('stopSpeaking() gives the audio focus back', async () => {
+  stopSpeaking();
+  await vi.waitFor(() => expect(focus.abandon).toHaveBeenCalled(), { timeout: 2000 });
 });
 
 it('reports a missing Japanese voice instead of failing silently', async () => {
