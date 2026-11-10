@@ -8,7 +8,7 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
 - Phần còn lại của dự án nằm trong `docs/superpowers/plans/ROADMAP.md` (4 plan: 5B PowerPoint → 6A AI → 6B hoàn
-  thiện → dọn tồn đọng). 5B và 6A xong, đã gộp master 2026-10-10; 6B Task 1–5 xong.
+  thiện → dọn tồn đọng). 5B, 6A, 6B xong và đã gộp master (6B: 2026-11-10). Còn: đưa bản online + plan backlog.
 - **Từ 2026-11-10 phần còn lại chạy song song hai làn**: desktop (`office-neko/feat/lane-desktop`) và cloud
   (`office-neko/feat/lane-cloud`). Đọc `docs/superpowers/plans/2026-11-10-song-song/00-overview.md`: mỗi làn chỉ sửa
   file của mình, push sau mỗi commit, đọc STATUS làn kia qua `git show`, chỉ desktop gộp.

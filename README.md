@@ -3,7 +3,9 @@
 Ứng dụng web (PWA, chạy offline) dạy tin học văn phòng cho người mới: làm quen máy tính (Windows/Mac),
 gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Mochi.
 
-## Đã có (giai đoạn 1–6A)
+## Đã có (giai đoạn 1–6B)
+
+Sáu lộ trình: Làm quen máy tính · Gõ phím 10 ngón · Word · Excel · PowerPoint · Dùng AI.
 
 - Làm quen máy tính: phòng tập chuột (5 trò), bàn phím, thư mục & file cho Windows và Mac (dự án "Ảnh du lịch").
 - Gõ phím 10 ngón: 20 bài từ hàng cơ sở tới Telex/VNI, dự án 25 WPM.
@@ -31,6 +33,16 @@ gõ 10 ngón + Telex/VNI, Word, Excel, PowerPoint và dùng AI. Mascot: mèo Moc
   Cuối mọi bài có nút ribbon là bước **ảnh chụp thật** (`realShot`) có khung đỏ khoanh đúng nút vừa học.
 - Trợ giúp ở mọi màn hình: Từ điển (F1), Hỏi Mèo, chú thích khi rê chuột, gợi ý 3 bậc.
 - Nhiều người học trên một máy: mỗi người một thẻ tên và ảnh mèo riêng, tiến độ – sao – XP – chuỗi ngày – thống kê gõ tách biệt; đổi người ở thanh trên cùng; sao lưu một file cho cả máy (đọc được cả file bản cũ).
+- Hoàn thiện (giai đoạn 6B):
+  - **Huy hiệu**: 8 loại (bài đầu tiên, 40 WPM, dự án Word/PowerPoint/AI, công thức Excel, chuỗi 7 ngày, cấp 5).
+    Kệ huy hiệu ở trang chủ; màn kết bài báo huy hiệu mới.
+  - **Phụ kiện cho Mochi**: nơ, kính, khăn, mũ len, vương miện, mở theo cấp; đeo ở Cài đặt, hiện ở mọi chỗ có
+    ảnh người học.
+  - **Phòng tự do**: tạo tệp Word / Excel / PowerPoint, không đề bài, không chấm điểm; tự lưu, đổi tên, xoá; mỗi
+    người học thấy tệp của mình.
+  - **Kiểm tra đầu vào**: người đã biết có thể làm bài kiểm tra 6 câu (gõ phím: kiểm tra tốc độ) để mở khoá sớm
+    từng lộ trình, ngay ở màn chào hoặc từ trang chủ.
+  - **PWA**: báo "Có bản mới…" kèm nút Tải lại; nút "Cài vào máy" trong Cài đặt.
 
 ## Chạy
 

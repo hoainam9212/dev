@@ -4,7 +4,7 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 
 | Task | Xong | Commit | Ghi chú |
 |---|---|---|---|
-| D1 6B Task 6: đi một vòng, sao lưu, gộp master | ☐ | | |
+| D1 6B Task 6: đi một vòng, sao lưu, gộp master | ☑ | 55f03ff + (commit này) | 6B gộp `master` (ff) và đã push. Chi tiết ở `2026-10-10-phase6b-polish/STATUS.md` dòng 6. Không có lỗi nào trong file của làn cloud. |
 | D2 đưa bản online lên mạng | ☐ | | chờ người dùng chọn host + đăng nhập |
 | D3 bài Start/Taskbar, Dock/Spotlight | ☐ | | |
 | D4 copy + hoàn tác, Shift+click, menu không tràn, trợ năng FileArea/MouseSim | ☐ | | |

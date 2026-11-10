@@ -5,6 +5,7 @@ import { TABLES } from '../db/db';
 import { backupFileName, exportBackup, importBackup, parseBackup, profilesInBackup } from './backup';
 import { getCurrentProfileId, setCurrentProfileId } from '../profiles/current';
 import { resetDb } from '../test/utils';
+import { createDoc, getDoc, listDocs, putDocState } from '../sandbox/docs';
 
 describe('backup', () => {
   beforeEach(resetDb);
@@ -65,6 +66,42 @@ describe('backup', () => {
     expect((await db.profiles.toArray()).map((p) => p.name).sort()).toEqual(['An', 'Bình']);
     expect(await db.lessonProgress.get([c.id, 'l1'])).toMatchObject({ stars: 2 });
     expect(await db.profiles.get(a.id)).toBeDefined();
+  });
+
+  it('round-trips the 6B data: accessory, testedOut, badges and a sandbox file', async () => {
+    const p = await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
+    await db.profiles.update(p.id, { accessory: 'bow', testedOut: ['word'] });
+    await db.earnedBadges.bulkPut([
+      { profileId: p.id, id: 'first-step', earnedAt: '2026-11-10T00:00:00.000Z' },
+      { profileId: p.id, id: 'fast-fingers', earnedAt: '2026-11-10T00:00:00.000Z' },
+    ] as never);
+    const doc = await createDoc(p.id, 'excel');
+    await putDocState(doc, { marker: 'A1=123' });
+    const text = JSON.stringify(await exportBackup());
+    await resetDb();
+    await importBackup(parseBackup(text));
+    expect(await db.profiles.get(p.id)).toMatchObject({ accessory: 'bow', testedOut: ['word'] });
+    expect((await db.earnedBadges.where('profileId').equals(p.id).toArray()).map((b) => b.id).sort())
+      .toEqual(['fast-fingers', 'first-step']);
+    expect(await getDoc(p.id, doc.id)).toMatchObject({ name: doc.name, sim: 'excel', state: { marker: 'A1=123' } });
+  });
+
+  it('imports a version 2 file made before 6B (no accessory, testedOut, badges or files)', async () => {
+    const tables = Object.fromEntries(TABLES.map((t) => [t, [] as unknown[]]));
+    tables.profiles = [{
+      id: 'p1', name: 'Cũ', os: 'win', dailyGoalMin: 10, avatar: 'cam', xp: 120, streak: 2,
+      fontScale: 'md', sound: true, reducedMotion: false, createdAt: '2026-10-01T00:00:00.000Z',
+      lastActiveAt: '2026-10-05T00:00:00.000Z',
+    }];
+    tables.lessonProgress = [{ profileId: 'p1', lessonId: 'basics.welcome', stars: 3, hintsUsed: 0, bestTimeMs: 1, completedAt: 't' }];
+    const old = JSON.stringify({ app: 'office-neko', schemaVersion: 2, exportedAt: '2026-10-05T00:00:00.000Z', tables });
+    await importBackup(parseBackup(old));
+    const restored = await db.profiles.get('p1');
+    expect(restored).toMatchObject({ name: 'Cũ', xp: 120 });
+    expect(restored?.accessory).toBeUndefined();
+    expect(restored?.testedOut).toBeUndefined();
+    expect(await db.earnedBadges.count()).toBe(0);
+    expect(await listDocs('p1')).toEqual([]);
   });
 
   it('accepts a version 1 file and turns it into one learner', () => {
