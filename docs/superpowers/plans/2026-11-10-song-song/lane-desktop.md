@@ -46,7 +46,7 @@ việc ưu tiên.
 1. Gộp cloud vào nhánh desktop:
 
    ```bash
-   git fetch github && git merge --no-ff github/office-neko/feat/lane-cloud
+   git fetch github && git merge --no-ff github/<nhánh claude/* mới nhất của cloud>   # tên ở STATUS-cloud
    ```
 
 2. Chạy `npm test && npm run typecheck && npm run build`.

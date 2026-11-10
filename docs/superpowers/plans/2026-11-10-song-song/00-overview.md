@@ -9,7 +9,7 @@ nhau qua GitHub.
 | Làn | Ai chạy | Nhánh trên GitHub (`hoainam9212/dev`) | Kế hoạch | Tình trạng |
 |---|---|---|---|---|
 | Desktop | Claude Code trên máy Windows của người dùng | `office-neko/feat/lane-desktop` | `lane-desktop.md` | `STATUS-desktop.md` |
-| Cloud | Claude Code trên web (claude.ai/code) | `office-neko/feat/lane-cloud` | `lane-cloud.md` | `STATUS-cloud.md` |
+| Cloud | Claude Code trên web (claude.ai/code) | `claude/*` mới nhất: tên ghi ở dòng "Nhánh thật trên GitHub" của STATUS-cloud (phiên cloud chỉ push được lên `claude/*`; xem STATUS-desktop › Nhờ làn cloud 1) | `lane-cloud.md` | `STATUS-cloud.md` |
 
 Cả hai nhánh tách từ cùng một commit, là commit có các file kế hoạch này. Trên máy desktop, nhánh cục bộ tên
 `feat/lane-desktop` và được push lên `office-neko/feat/lane-desktop`.
@@ -57,7 +57,8 @@ STATUS của mình, rồi làn kia làm.
    file làn của mình → đúng một file task. STATUS làn kia đọc từ GitHub:
 
    ```bash
-   git show <remote>/office-neko/feat/lane-cloud:docs/superpowers/plans/2026-11-10-song-song/STATUS-cloud.md
+   git show <remote>/<nhánh claude/* mới nhất>:docs/superpowers/plans/2026-11-10-song-song/STATUS-cloud.md
+   # tìm nhánh: git branch -r --sort=-committerdate --list '<remote>/claude/*' | head -3
    git show <remote>/office-neko/feat/lane-desktop:docs/superpowers/plans/2026-11-10-song-song/STATUS-desktop.md
    ```
 
@@ -74,7 +75,7 @@ STATUS của mình, rồi làn kia làm.
 - Desktop gộp cloud vào nhánh mình bằng lệnh:
 
   ```bash
-  git fetch github && git merge --no-ff github/office-neko/feat/lane-cloud
+  git fetch github && git merge --no-ff github/<nhánh claude/* mới nhất của cloud>   # tên ở STATUS-cloud
   ```
 
   Gộp được bất cứ lúc nào STATUS-cloud có task mới ☑. Gộp xong chạy lại `npm test && npm run typecheck`.

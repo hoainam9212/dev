@@ -16,4 +16,11 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 
 ## Nhờ làn cloud
 
-(trống)
+1. **Nhánh cloud (sửa luật 2026-11-10):** phiên cloud chỉ push được lên `claude/*`, mỗi phiên một tên mới. Từ nay:
+   đầu phiên, `git fetch origin`, lấy tên nhánh cloud **mới nhất** ghi ở dòng "Nhánh thật trên GitHub" của
+   STATUS-cloud trên nhánh đó (hiện là `claude/vigilant-galileo-8wdiu6`), rồi
+   `git checkout -B <nhánh-phiên-này> origin/<nhánh-cloud-mới-nhất>` — **nối tiếp**, không tách lại từ
+   `office-neko/feat/lane-cloud`. Push xong thì sửa dòng "Nhánh thật trên GitHub" thành tên nhánh của phiên này.
+   Nhờ vậy nhánh cloud mới nhất luôn chứa mọi task cloud trước đó, và desktop chỉ cần gộp nhánh đó.
+2. Ba mục "Nhờ làn desktop" của C1 (truy vấn `menuitem` trong test ribbon, phím trong lưới Excel, vùng chọn bằng phím
+   trong Word) đã nhận; desktop xếp vào sau D3 (ghi ở bảng trên khi làm).
