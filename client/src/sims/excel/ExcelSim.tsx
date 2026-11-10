@@ -45,8 +45,19 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
         <Ribbon state={state} dispatch={dispatch} />
       </div>
       <FormulaBar state={state} dispatch={dispatch} inputRef={bar} />
+      {/* Chỉ hiện trên màn hình cảm ứng (điện thoại, máy tính bảng). */}
+      <p className="hidden text-sm text-muted pointer-coarse:block">📱 Chạm ô một lần để chọn, chạm thêm lần nữa để gõ.</p>
       {state.editing !== null ? <FnTip text={state.editing} /> : null}
-      <Grid state={state} dispatch={dispatch} gridRef={grid} />
+      <Grid
+        state={state}
+        dispatch={dispatch}
+        gridRef={grid}
+        onTouchEdit={() => {
+          // Focus ngay trong cú chạm (không đợi effect) thì điện thoại mới bật bàn phím ảo.
+          bar.current?.focus();
+          dispatch({ type: 'startEdit' });
+        }}
+      />
       <SheetTabs state={state} dispatch={dispatch} />
       <CellHint state={state} />
       {excelSim.chartsOf(state).map((chart) => (
