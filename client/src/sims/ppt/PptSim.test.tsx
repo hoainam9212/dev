@@ -17,6 +17,12 @@ describe('PptSim', () => {
     expect(screen.getByRole('option', { name: /Slide 2/ })).toBeInTheDocument();
   });
 
+  it('slide nằm trên vùng làm việc riêng (như PowerPoint), không lẫn vào nền trang', () => {
+    setup();
+    const stage = screen.getByTestId('ppt-canvas').closest('.ppt-stage')!;
+    expect(stage.parentElement).toHaveClass('ppt-workspace');
+  });
+
   it('khung slide giữ đúng tỉ lệ 16:9 của khổ 960x540', () => {
     setup();
     const canvas = screen.getByTestId('ppt-canvas');
