@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { ProfileProvider, useProfile } from './db/profile';
 import { AppShell } from './app/AppShell';
 import { ErrorBoundary } from './app/ErrorBoundary';
+import { UpdateToast } from './app/UpdateToast';
 import { WelcomePage } from './pages/WelcomePage';
 import { ProfilePicker } from './profiles/ProfilePicker';
 import { HomePage } from './pages/HomePage';
@@ -60,6 +61,7 @@ export default function App() {
         <HelpButton />
         <HelpDrawer />
         <HelpTooltipLayer />
+        <UpdateToast />
       </ProfileProvider>
     </ErrorBoundary>
   );

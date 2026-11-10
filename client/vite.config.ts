@@ -9,7 +9,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // 'prompt': bản mới chờ người học bấm "Tải lại" (UpdateToast), không tự tải lại giữa bài.
+      registerType: 'prompt',
       injectRegister: null,
       includeAssets: ['icons/*.png'],
       manifest: {

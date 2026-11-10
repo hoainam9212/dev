@@ -11,6 +11,7 @@ import { Toggle } from '../components/Toggle';
 import { Mochi } from '../components/Mochi';
 import { AVATARS, avatarSkin, wearable } from '../profiles/avatars';
 import { ProfileList } from '../profiles/ProfileList';
+import { isStandalone, useInstallPrompt } from '../app/useInstallPrompt';
 
 const LICENSES: [string, string][] = [
   ['React, React Router, Zustand', 'MIT'],
@@ -35,6 +36,8 @@ export function SettingsPage() {
   const [pending, setPending] = useState<BackupFile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const { canInstall, install } = useInstallPrompt();
+  const standalone = isStandalone();
 
   useEffect(() => {
     if (profile) setName(profile.name);
@@ -179,6 +182,21 @@ export function SettingsPage() {
           Bật lên để vào thẳng bất kỳ bài nào mà không cần học theo thứ tự — tiện khi bạn muốn xem trước nội dung hoặc
           kiểm tra một bài cụ thể. Sao và tiến độ vẫn được lưu như bình thường. Học viên nên tắt mục này để học đúng lộ trình.
         </p>
+      </Section>
+
+      <Section title="Ứng dụng">
+        {standalone ? (
+          <p className="text-muted">Bạn đang mở Tin Học Cùng Mochi như một phần mềm đã cài trên máy. 🎉</p>
+        ) : (
+          <>
+            <p className="text-muted">Cài app vào máy để mở như một phần mềm, không cần trình duyệt — có biểu tượng riêng và vẫn học được khi mất mạng.</p>
+            {canInstall && <button type="button" className="btn-mint" onClick={() => void install()}>Cài vào máy</button>}
+            <p className="text-sm text-muted">
+              {canInstall ? 'Cách khác:' : 'Không thấy nút cài?'} Trên máy tính, dùng Chrome hoặc Edge và bấm biểu tượng cài trên thanh địa chỉ.
+              Trên điện thoại, mở menu của trình duyệt › Thêm vào màn hình chính.
+            </p>
+          </>
+        )}
       </Section>
 
       <Section title="Sao lưu tiến độ">

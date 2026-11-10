@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { db } from '../db/db';
 import { ProfileProvider, createProfile } from '../db/profile';
@@ -146,5 +146,41 @@ describe('SettingsPage', () => {
     await waitFor(async () => expect((await db.profiles.get('p1'))?.name).toBe('Dũng'));
     // Khôi phục xong thì không còn ai "đang học": app quay về màn chọn người.
     await waitFor(() => expect(getCurrentProfileId()).toBeNull());
+  });
+
+  describe('Ứng dụng', () => {
+    const offerInstall = () => {
+      const prompt = vi.fn().mockResolvedValue(undefined);
+      const e = Object.assign(new Event('beforeinstallprompt', { cancelable: true }), {
+        prompt,
+        userChoice: Promise.resolve({ outcome: 'accepted' }),
+      });
+      act(() => void window.dispatchEvent(e));
+      return { e, prompt };
+    };
+    beforeEach(() => void window.dispatchEvent(new Event('appinstalled')));
+
+    it('hides "Cài vào máy" until the browser offers installation', async () => {
+      renderPage();
+      await screen.findByRole('heading', { name: 'Ứng dụng' });
+      expect(screen.queryByRole('button', { name: 'Cài vào máy' })).toBeNull();
+      expect(screen.getByText(/Thêm vào màn hình chính/)).toBeInTheDocument();
+    });
+
+    it('shows "Cài vào máy" after beforeinstallprompt and calls prompt() on click', async () => {
+      renderPage();
+      await screen.findByRole('heading', { name: 'Ứng dụng' });
+      const { e, prompt } = offerInstall();
+      expect(e.defaultPrevented).toBe(true);
+      fireEvent.click(await screen.findByRole('button', { name: 'Cài vào máy' }));
+      expect(prompt).toHaveBeenCalledOnce();
+      await waitFor(() => expect(screen.queryByRole('button', { name: 'Cài vào máy' })).toBeNull());
+    });
+
+    it('remembers an offer that arrived before the page opened', async () => {
+      offerInstall();
+      renderPage();
+      expect(await screen.findByRole('button', { name: 'Cài vào máy' })).toBeInTheDocument();
+    });
   });
 });

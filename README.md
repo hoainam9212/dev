@@ -43,6 +43,16 @@ npm run build      # client/dist, cài được như app
 npm run preview    # http://localhost:4174
 ```
 
+## Học trên web và cài vào máy
+
+App là trang tĩnh (không có server, tiến độ nằm trong trình duyệt), nên chỉ cần đưa `client/dist` lên một dịch vụ host
+tĩnh rồi gửi link cho người học.
+
+- **Cài vào máy:** Cài đặt › **Ứng dụng** › **Cài vào máy** (Chrome/Edge). App có biểu tượng riêng, mở cửa sổ riêng,
+  học được khi mất mạng. Điện thoại: menu trình duyệt › Thêm vào màn hình chính.
+- **Bản mới:** đưa bản build mới lên; người học thấy thông báo "Có bản mới…" và bấm **Tải lại** (không tự tải lại giữa bài).
+- Tiến độ **không** đồng bộ giữa các máy hay trình duyệt. Dùng Cài đặt › Sao lưu tiến độ để chuyển sang máy khác.
+
 ## Ảnh chụp Office thật
 
 Ảnh nằm ở `client/public/images/real/<app>-NN-*.png`; danh sách cần chụp và độ rộng đã dùng ở
