@@ -16,9 +16,18 @@ const no = (messageVi: string): CheckResult => ({ ok: false, messageVi });
 
 const VI = Object.fromEntries(CRITERIA.map((c) => [c.id, c.vi])) as Record<Criterion, string>;
 
+/** Prompt được tính điểm: tin của người dùng, và nếu bài có chủ đề thì phải đúng chủ đề. */
+const counted = (s: AiChatState) => s.messages.filter((m) => m.from === 'user' && m.onTopic !== false);
+
+/** Đã gửi mà không câu nào đúng chủ đề: nhắc chủ đề thay cho "hãy gõ prompt". */
+function offTopic(s: AiChatState): CheckResult | null {
+  if (!s.topic || counted(s).length > 0 || !s.messages.some((m) => m.from === 'user')) return null;
+  return no(`Câu vừa gửi chưa hỏi về ${s.topic.vi}. Hãy hỏi đúng chủ đề của bài nhé.`);
+}
+
 function gradePrompt(s: AiChatState, required: Criterion[], minScore: number): CheckResult {
-  const scores = s.messages.flatMap((m) => (m.from === 'user' && m.score ? [m.score] : []));
-  if (scores.length === 0) return no('Hãy gõ prompt rồi bấm Gửi.');
+  const scores = counted(s).flatMap((m) => (m.score ? [m.score] : []));
+  if (scores.length === 0) return offTopic(s) ?? no('Hãy gõ prompt rồi bấm Gửi.');
   // Chấm prompt gần đạt nhất: ít tiêu chí bắt buộc còn thiếu nhất, rồi điểm cao nhất.
   const ranked = scores
     .map((sc) => ({ sc, missing: CRITERIA.filter((c) => required.includes(c.id) && !sc.hits[c.id]).map((c) => c.id) }))
@@ -33,8 +42,9 @@ export const gradeAiChat: Grader<AiChatState, AiCheck> = (s, c) => {
   switch (c.kind) {
     case 'sent': {
       const min = c.min ?? 1;
-      const n = s.messages.filter((m) => m.from === 'user').length;
+      const n = counted(s).length;
       if (n >= min) return ok(`Đã gửi ${n} prompt.`);
+      if (n === 0) return offTopic(s) ?? no('Hãy gõ prompt rồi bấm Gửi.');
       return no(n === 0 ? 'Hãy gõ prompt rồi bấm Gửi.' : `Hãy gửi thêm ${min - n} prompt nữa.`);
     }
     case 'promptCriteria':

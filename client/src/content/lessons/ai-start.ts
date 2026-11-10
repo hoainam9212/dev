@@ -53,6 +53,7 @@ export const AI_START: Lesson[] = [
             '2. Đun sôi rồi hạ lửa vừa.\n3. Lòng đào: 6–7 phút. Chín kỹ: 10 phút.\n' +
             '4. Vớt ra ngâm nước lạnh 2 phút cho dễ bóc vỏ.',
         },
+        topic: { keywords: ['trung'], vi: 'cách luộc trứng' },
         task: 'Hãy gửi câu hỏi đầu tiên: hỏi AI **cách luộc trứng**.',
         checks: [{ kind: 'sent' }],
         spotlight: { helpId: 'ai.composer' },

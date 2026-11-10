@@ -96,3 +96,29 @@ describe('đăng ký', () => {
     expect(grade('aichat', chat(WEAK), [{ kind: 'sent' }]).pass).toBe(true);
   });
 });
+
+describe('chủ đề của bài', () => {
+  const topical = (...prompts: string[]): AiChatState =>
+    run(aiChatInitial({ replies: { good: 'ok' }, topic: { keywords: ['nghi phep', 'xin nghi'], vi: 'email xin nghỉ phép' } }), ...prompts.flatMap(send));
+  const OFF =
+    'Bạn là nhân viên hành chính giỏi viết thư. Tôi là trưởng phòng kế toán. ' +
+    'Hãy viết bài thơ về mùa thu, gồm 3 đoạn, không quá 150 chữ, giọng lịch sự.';
+  const ON =
+    'Bạn là nhân viên hành chính giỏi viết thư. Tôi là nhân viên kế toán. ' +
+    'Hãy viết email xin nghỉ phép 2 ngày, gồm 3 đoạn, không quá 150 chữ, giọng lịch sự.';
+  const all5: AiCheck = { kind: 'promptCriteria', required: ['role', 'context', 'task', 'format', 'limits'] };
+
+  it('"sent": gửi câu lạc đề không tính, có lời nhắc chủ đề', () => {
+    const r = gradeAiChat(topical('Bạn là ai'), { kind: 'sent' });
+    expect(r.ok).toBe(false);
+    expect(r.messageVi).toContain('email xin nghỉ phép');
+    expect(gradeAiChat(topical('Bạn là ai', 'cho tôi email xin nghỉ'), { kind: 'sent' }).ok).toBe(true);
+  });
+
+  it('"promptCriteria": prompt đủ 5 phần nhưng lạc đề vẫn chưa đạt', () => {
+    const r = gradeAiChat(topical(OFF), all5);
+    expect(r.ok).toBe(false);
+    expect(r.messageVi).toContain('email xin nghỉ phép');
+    expect(gradeAiChat(topical(OFF, ON), all5).ok).toBe(true);
+  });
+});

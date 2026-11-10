@@ -59,6 +59,7 @@ export const AI_WORK: Lesson[] = [
             'Việc gấp anh có thể gọi em qua số [số điện thoại].\n\n' +
             'Em cảm ơn anh đã xem xét.\n\nTrân trọng,\n[Tên của bạn]',
         },
+        topic: { keywords: ['nghi phep', 'xin nghi'], vi: 'email xin nghỉ phép' },
         task: 'Nhờ AI viết **email xin nghỉ phép 2 ngày** gửi trưởng phòng. Prompt cần đủ **cả năm phần**.',
         checks: [{ kind: 'promptCriteria', required: ['role', 'context', 'task', 'format', 'limits'] }],
         spotlight: { helpId: 'ai.criteria' },
@@ -153,6 +154,7 @@ export const AI_WORK: Lesson[] = [
             '- **Việc mới:** mở chi nhánh Đà Nẵng tháng 11 — chị Hoa tuyển 3 nhân viên.\n' +
             '- **Giữ nguyên:** ngân sách quảng cáo quý 4. Họp tiếp ngày 4/11.',
         },
+        topic: { keywords: ['tom tat', 'bien ban', 'cuoc hop'], vi: 'tóm tắt biên bản họp' },
         task:
           `Biên bản họp phòng kinh doanh: «${MINUTES}»\n\n` +
           'Nhờ AI tóm tắt biên bản này thành **3 gạch đầu dòng** cho **sếp** đọc.',
@@ -220,6 +222,7 @@ export const AI_WORK: Lesson[] = [
             'Bạn gõ vào ô **B9**: **=SUM(B2:B8)** rồi bấm Enter.\n\n' +
             'Hàm SUM cộng tất cả các số từ B2 đến B8. Sau này thêm hàng mới, nhớ sửa lại vùng ô cho đủ.',
         },
+        topic: { keywords: ['cong thuc', 'tong', 'sum', 'doanh so'], vi: 'công thức tính tổng doanh số' },
         task: 'Bảng có cột B là **Doanh số**, từ ô **B2** đến **B8**. Nhờ AI viết công thức tính **tổng doanh số** — nói rõ cột và hàng.',
         checks: [{ kind: 'promptCriteria', required: ['task', 'context'] }],
         spotlight: { helpId: 'ai.composer' },
@@ -297,6 +300,7 @@ export const AI_WORK: Lesson[] = [
             '**Slide 2 – Các vị bánh:** trà xanh, đậu đỏ, dâu tây, xoài.\n' +
             '**Slide 3 – Đặt hàng:** số điện thoại, địa chỉ cửa hàng, giờ mở cửa.',
         },
+        topic: { keywords: ['slide', 'dan y', 'trinh chieu', 'mochi'], vi: 'dàn ý slide giới thiệu bánh mochi' },
         task: 'Nhờ AI lên **dàn ý 3 slide** giới thiệu sản phẩm bánh mochi của cửa hàng.',
         checks: [{ kind: 'promptCriteria', required: ['task', 'format'] }],
         spotlight: { helpId: 'ai.composer' },

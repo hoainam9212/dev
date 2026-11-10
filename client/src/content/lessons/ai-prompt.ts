@@ -56,6 +56,7 @@ export const AI_PROMPT: Lesson[] = [
             'Thời gian: 16 giờ, Chủ nhật 20/10\nĐịa điểm: nhà bé Na, số 12 ngõ Hoa Sữa\n\n' +
             'Bố mẹ bé Na cảm ơn và rất mong các bạn đến chung vui!',
         },
+        topic: { keywords: ['sinh nhat', 'loi moi', 'thiep moi'], vi: 'lời mời sinh nhật' },
         task: 'Viết prompt nhờ AI soạn **lời mời sinh nhật** cho bé, có **Vai trò** và **Nhiệm vụ**.',
         checks: [{ kind: 'promptCriteria', required: ['role', 'task'] }],
         spotlight: { helpId: 'ai.criteria' },
@@ -120,6 +121,7 @@ export const AI_PROMPT: Lesson[] = [
             'Cửa hàng nghỉ từ 28 tháng Chạp đến hết mùng 5 Tết, mở cửa lại sáng mùng 6.\n' +
             'Cảm ơn quý khách đã ủng hộ suốt một năm qua — chúc cả nhà năm mới thật nhiều sức khoẻ và may mắn!',
         },
+        topic: { keywords: ['tet', 'nghi le'], vi: 'thông báo nghỉ Tết' },
         task: 'Nhờ AI viết **thông báo nghỉ Tết** dán ở cửa hàng. Prompt cần ít nhất **4 trên 5 phần**, trong đó phải có **Bối cảnh** và **Giới hạn**.',
         checks: [{ kind: 'promptCriteria', required: ['context', 'limits'], minScore: 4 }],
         spotlight: { helpId: 'ai.composer' },

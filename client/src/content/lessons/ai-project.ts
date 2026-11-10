@@ -43,6 +43,7 @@ export const AI_PROJECT: Lesson[] = [
             '**2. Vướng mắc**\n- Báo cáo chi phí tháng 9 bị trễ vì còn thiếu hoá đơn.\n\n' +
             '**3. Tuần sau**\n- Nộp báo cáo chi phí tháng 9.\n- Chuẩn bị hội chợ ngày 25/10.',
         },
+        topic: { keywords: ['bao cao', 'ghi chu'], vi: 'báo cáo tuần' },
         task:
           `Ghi chú tuần của bạn:\n\n${NOTES}\n\n` +
           'Nhờ AI viết **báo cáo tuần** gửi trưởng phòng từ ghi chú này. Prompt cần đủ **cả năm phần**.',
