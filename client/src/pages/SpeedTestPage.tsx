@@ -56,22 +56,28 @@ export function SpeedTestPage() {
     [minutes, profileId, placement],
   );
 
+  // Hồ sơ đọc qua ref: hồ sơ nạp muộn hay đổi giữa chừng không được reset bài/xoá kết quả.
+  const profileRef = useRef(profileId);
+  profileRef.current = profileId;
+
   useEffect(() => {
+    // Chỉ bài mới (làm lại, đổi 1 ↔ 3 phút) mới reset.
     saved.current = false;
     typed.current = null;
     setResult(null);
     // Rời trang (đổi trang trong app, hoặc đóng tab) khi chưa xong: chỉ cộng phút đã gõ, không ghi WPM.
     const leave = () => {
-      if (saved.current || !typed.current || !profileId) return;
+      const pid = profileRef.current;
+      if (saved.current || !typed.current || !pid) return;
       saved.current = true;
-      void recordTypingPractice({ profileId, elapsedMs: typedMs(), keyStats: typed.current.keyStats }).catch(() => undefined);
+      void recordTypingPractice({ profileId: pid, elapsedMs: typedMs(), keyStats: typed.current.keyStats }).catch(() => undefined);
     };
     window.addEventListener('pagehide', leave);
     return () => {
       window.removeEventListener('pagehide', leave);
       leave();
     };
-  }, [attempt, minutes, profileId]);
+  }, [attempt, minutes]);
 
   if (minutes === null) return <Navigate to="/typing" replace />;
 
