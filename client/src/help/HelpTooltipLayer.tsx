@@ -22,7 +22,22 @@ export function HelpTooltipLayer() {
       if (!entry) return;
       setTip({ entry, anchor: el.getBoundingClientRect() });
     };
+    // Chạm (điện thoại, bút) không có lúc "rời chuột", nên chú thích mở ra sẽ kẹt lại: chỉ mở khi rê chuột thật,
+    // hoặc khi focus đến bằng bàn phím. `touched` nhớ cú chạm gần nhất để bỏ qua focus do chính cú chạm đó.
+    let touched = false;
+    const isTouch = (e: Event) => {
+      const t = (e as PointerEvent).pointerType;
+      return t === 'touch' || t === 'pen';
+    };
+    const down = (e: Event) => {
+      touched = isTouch(e);
+      hide();
+    };
+    const key = () => {
+      touched = false;
+    };
     const over = (e: Event) => {
+      if (e.type === 'pointerover' ? isTouch(e) : touched) return;
       const target = e.target instanceof Element ? e.target : null;
       const el = target?.closest('[data-help-id]') ?? null;
       if (el === current) return;
@@ -38,13 +53,15 @@ export function HelpTooltipLayer() {
     };
     document.addEventListener('pointerover', over);
     document.addEventListener('focusin', over);
-    document.addEventListener('pointerdown', hide);
+    document.addEventListener('pointerdown', down);
+    document.addEventListener('keydown', key, true);
     document.addEventListener('scroll', hide, true);
     return () => {
       window.clearTimeout(timer);
       document.removeEventListener('pointerover', over);
       document.removeEventListener('focusin', over);
-      document.removeEventListener('pointerdown', hide);
+      document.removeEventListener('pointerdown', down);
+      document.removeEventListener('keydown', key, true);
       document.removeEventListener('scroll', hide, true);
     };
   }, []);

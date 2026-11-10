@@ -25,7 +25,6 @@ const setup = (s = base) => {
 };
 
 describe('Canvas', () => {
-
   it('bấm vào đối tượng thì chọn nó', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByTestId('ppt-el'));
