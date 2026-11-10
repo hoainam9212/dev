@@ -27,6 +27,15 @@ describe('SettingsPage', () => {
     setCurrentProfileId(p.id);
   });
 
+  it('mục Giới thiệu ghi rõ nhãn hiệu Microsoft, không liên kết với Microsoft, và đủ thư viện đang dùng', async () => {
+    renderPage();
+    const about = (await screen.findByRole('heading', { name: 'Giới thiệu & nguồn' })).closest('section')!;
+    expect(about).toHaveTextContent(/Microsoft, Windows, Word, Excel, PowerPoint.*nhãn hiệu của Microsoft Corporation/);
+    expect(about).toHaveTextContent(/không liên kết với Microsoft/);
+    expect(about).toHaveTextContent(/Ảnh chụp màn hình Office/);
+    for (const lib of ['Tiptap', 'Fluent UI']) expect(about).toHaveTextContent(lib);
+  });
+
   it('changes OS, font size and sound', async () => {
     renderPage();
     fireEvent.click(await screen.findByRole('radio', { name: 'Mac' }));
