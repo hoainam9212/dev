@@ -72,8 +72,15 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
     }
   };
 
+  // Ô tìm của Start menu / Spotlight biến mất khi đóng hay mở ứng dụng: trả focus về khung để phím tắt vẫn chạy.
+  const { menuOpen, launched } = state.shell;
+  useEffect(() => {
+    if (!menuOpen && (!document.activeElement || document.activeElement === document.body)) rootRef.current?.focus();
+  }, [menuOpen, launched]);
+
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (renamingId) return;
+    if (e.key === 'Escape' && menuOpen) return e.preventDefault(), dispatch({ type: 'toggleMenu' });
     const mod = isModPressed(e, os);
     const k = e.key.toLowerCase();
     const handled = () => e.preventDefault();
@@ -102,6 +109,8 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
     <div ref={rootRef} data-testid="desktop-sim" tabIndex={0} onKeyDown={onKeyDown} className="outline-none focus-visible:ring-4 focus-visible:ring-sky rounded-3xl">
       <Chrome
         os={os}
+        shell={state.shell}
+        onShell={dispatch}
         onTrash={() => dispatch({ type: 'open', id: state.fs.trashId })}
         onDropToTrash={dropToTrash}
       >

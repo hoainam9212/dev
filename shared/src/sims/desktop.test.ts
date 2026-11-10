@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as vfs from '../vfs';
-import { desktopInitial, gradeDesktop, idAt, reduceDesktop, uniqueName, type DesktopState } from './desktop';
+import { desktopInitial, gradeDesktop, idAt, reduceDesktop, SHELL_APPS, uniqueName, type DesktopState } from './desktop';
 
 const tree = [
   { name: 'Tài liệu', children: [{ name: 'hoa-don.pdf' }] },
@@ -135,5 +135,63 @@ describe('desktop sim', () => {
 
   it('idAt throws for missing paths', () => {
     expect(() => idAt(start().fs, '/khong-co')).toThrow(/khong-co/);
+  });
+});
+
+describe('desktop shell (Start / Dock / Spotlight)', () => {
+  it('starts with the menu closed, no query and no app open', () => {
+    expect(start().shell).toEqual({ menuOpen: false, query: '', launched: null });
+  });
+
+  it('toggles the Start menu / Spotlight open and closed', () => {
+    let s = reduceDesktop(start(), { type: 'toggleMenu' });
+    expect(s.shell.menuOpen).toBe(true);
+    s = reduceDesktop(s, { type: 'toggleMenu' });
+    expect(s.shell.menuOpen).toBe(false);
+  });
+
+  it('keeps the typed query', () => {
+    const s = reduceDesktop(reduceDesktop(start(), { type: 'toggleMenu' }), { type: 'setQuery', text: 'exc' });
+    expect(s.shell.query).toBe('exc');
+  });
+
+  it('closing the menu clears the query', () => {
+    let s = reduceDesktop(reduceDesktop(start(), { type: 'toggleMenu' }), { type: 'setQuery', text: 'wo' });
+    s = reduceDesktop(s, { type: 'toggleMenu' });
+    expect(s.shell.query).toBe('');
+  });
+
+  it('launch closes the menu, records the app and clears the query', () => {
+    let s = reduceDesktop(reduceDesktop(start(), { type: 'toggleMenu' }), { type: 'setQuery', text: 'exc' });
+    s = reduceDesktop(s, { type: 'launch', app: 'excel' });
+    expect(s.shell).toEqual({ menuOpen: false, query: '', launched: 'excel' });
+  });
+
+  it('closeApp puts launched back to null', () => {
+    const s = reduceDesktop(reduceDesktop(start(), { type: 'launch', app: 'word' }), { type: 'closeApp' });
+    expect(s.shell.launched).toBeNull();
+  });
+
+  it('does not touch files or undo history', () => {
+    const s0 = start();
+    const s = reduceDesktop(reduceDesktop(s0, { type: 'toggleMenu' }), { type: 'launch', app: 'ppt' });
+    expect(s.fs).toBe(s0.fs);
+    expect(s.past).toHaveLength(0);
+  });
+
+  it('lists the five apps with Windows and Mac names', () => {
+    expect(SHELL_APPS.map((a) => a.id)).toEqual(['word', 'excel', 'ppt', 'explorer', 'browser']);
+    expect(SHELL_APPS.find((a) => a.id === 'explorer')).toMatchObject({ win: 'File Explorer', mac: 'Finder' });
+    expect(SHELL_APPS.find((a) => a.id === 'browser')).toMatchObject({ win: 'Edge', mac: 'Safari' });
+  });
+
+  it('grades launched: passes for the right app, fails for none or another', () => {
+    const want = { kind: 'launched', app: 'excel' } as const;
+    expect(gradeDesktop(start(), want).ok).toBe(false);
+    expect(gradeDesktop(reduceDesktop(start(), { type: 'launch', app: 'word' }), want).ok).toBe(false);
+    const ok = gradeDesktop(reduceDesktop(start(), { type: 'launch', app: 'excel' }), want);
+    expect(ok.ok).toBe(true);
+    expect(ok.messageVi).toMatch(/Excel/);
+    expect(gradeDesktop(start('mac'), { kind: 'launched', app: 'explorer' }).messageVi).toMatch(/Finder/);
   });
 });

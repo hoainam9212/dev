@@ -8,6 +8,7 @@ export const TRACKS: Track[] = [
       { id: 'basics.start', title: 'Bắt đầu cùng Mochi', lessonIds: ['basics.welcome'] },
       { id: 'basics.mouse', title: 'Cầm chuột', lessonIds: ['basics.mouse.click', 'basics.mouse.double', 'basics.mouse.right', 'basics.mouse.drag', 'basics.mouse.scroll'] },
       { id: 'basics.keys', title: 'Làm quen bàn phím', lessonIds: ['basics.keys.special', 'basics.keys.shortcuts'] },
+      { id: 'basics.shell', title: 'Mở ứng dụng', lessonIds: ['basics.shell.win', 'basics.shell.mac'] },
       {
         id: 'basics.files',
         title: 'Thư mục và file',

@@ -6,7 +6,7 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 |---|---|---|---|
 | D1 6B Task 6: đi một vòng, sao lưu, gộp master | ☑ | 55f03ff + (commit này) | 6B gộp `master` (ff) và đã push. Chi tiết ở `2026-10-10-phase6b-polish/STATUS.md` dòng 6. Không có lỗi nào trong file của làn cloud. |
 | D2 đưa bản online lên mạng | ☐ | | chờ người dùng chọn host + đăng nhập |
-| D3 bài Start/Taskbar, Dock/Spotlight | ☐ | | |
+| D3 bài Start/Taskbar, Dock/Spotlight | ☑ | (commit này) | Chương "Mở ứng dụng" trước "Thư mục và file", 2 bài **tự chọn** (`optional`) để người đã xong basics không bị khoá lại Gõ phím; test mở khoá đặt ở `content.test.ts` (dùng lộ trình thật) thay vì `progress.test.ts`. Học thật cả hai bản trên Chrome, 390 px không tràn. D2 vẫn chờ host. |
 | D4 copy + hoàn tác, Shift+click, menu không tràn, trợ năng FileArea/MouseSim | ☐ | | |
 | D5 gộp lane-cloud, đi một vòng, kết thúc dự án | ☐ | | |
 

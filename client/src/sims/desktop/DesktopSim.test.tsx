@@ -115,3 +115,82 @@ describe('DesktopSim', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
   });
 });
+
+describe('DesktopSim shell', () => {
+  const menuApps = (label: string) =>
+    within(screen.getByRole('dialog', { name: label }))
+      .getAllByRole('button')
+      .map((b) => b.getAttribute('aria-label'));
+
+  it('Windows: the Start button opens a Start menu with a focused search box', () => {
+    setup('win');
+    const start = screen.getByRole('button', { name: 'Start' });
+    expect(start).toHaveAttribute('data-help-id', 'shell.start');
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+    fireEvent.click(start);
+    const box = screen.getByRole('searchbox', { name: 'Tìm ứng dụng' });
+    expect(box).toHaveAttribute('data-help-id', 'shell.search');
+    expect(document.activeElement).toBe(box);
+    expect(menuApps('Start menu')).toEqual(['Word', 'Excel', 'PowerPoint', 'File Explorer', 'Edge']);
+  });
+
+  it('Windows: typing "exc" (any case) leaves only Excel', () => {
+    setup('win');
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'EXC' } });
+    expect(menuApps('Start menu')).toEqual(['Excel']);
+  });
+
+  it('Windows: clicking Excel opens a pretend Excel window that can be closed', () => {
+    const { last } = setup('win');
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Start menu' })).getByRole('button', { name: 'Excel' }));
+    expect(last().shell.launched).toBe('excel');
+    expect(screen.queryByRole('dialog', { name: 'Start menu' })).not.toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: 'Excel' })).toHaveTextContent('Đang mở Excel');
+    fireEvent.click(screen.getByRole('button', { name: 'Đóng Excel' }));
+    expect(last().shell.launched).toBeNull();
+    expect(screen.queryByRole('dialog', { name: 'Excel' })).not.toBeInTheDocument();
+  });
+
+  it('Windows: pinned taskbar icons launch too', () => {
+    const { last } = setup('win');
+    const pinned = screen.getByRole('group', { name: 'Ứng dụng đã ghim' });
+    expect(pinned).toHaveAttribute('data-help-id', 'shell.taskbar');
+    fireEvent.click(within(pinned).getByRole('button', { name: 'Edge' }));
+    expect(last().shell.launched).toBe('browser');
+  });
+
+  it('Mac: has a Dock and a Spotlight magnifier, no Start button', () => {
+    const { last } = setup('mac');
+    expect(screen.queryByRole('button', { name: 'Start' })).not.toBeInTheDocument();
+    const dock = screen.getByRole('group', { name: 'Dock' });
+    expect(dock).toHaveAttribute('data-help-id', 'shell.dock');
+    fireEvent.click(within(dock).getByRole('button', { name: 'Word' }));
+    expect(last().shell.launched).toBe('word');
+    expect(screen.getByRole('button', { name: 'Spotlight' })).toHaveAttribute('data-help-id', 'shell.spotlight');
+  });
+
+  it('Mac: Spotlight opens the first result on Enter', () => {
+    const { last } = setup('mac');
+    fireEvent.click(screen.getByRole('button', { name: 'Spotlight' }));
+    const box = screen.getByRole('searchbox', { name: 'Tìm kiếm Spotlight' });
+    fireEvent.change(box, { target: { value: 'ex' } });
+    expect(menuApps('Spotlight')).toEqual(['Excel']);
+    fireEvent.keyDown(box, { key: 'Enter' });
+    expect(last().shell.launched).toBe('excel');
+    expect(screen.queryByRole('dialog', { name: 'Spotlight' })).not.toBeInTheDocument();
+  });
+
+  it('Escape closes the menu, and keys typed in the search box do not reach the file shortcuts', () => {
+    const onState = vi.fn();
+    render(<DesktopSim initial={desktopSim.desktopInitial(tree, 'win', '/Ảnh')} onState={onState} os="win" spotlight={null} />);
+    const last = () => onState.mock.calls.at(-1)![0] as desktopSim.DesktopState;
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    fireEvent.keyDown(screen.getByRole('searchbox'), { key: 'Backspace' });
+    expect(vfs.pathOf(last().fs, last().cwd)).toBe('/Ảnh');
+    fireEvent.keyDown(screen.getByRole('searchbox'), { key: 'Escape' });
+    expect(screen.queryByRole('dialog', { name: 'Start menu' })).not.toBeInTheDocument();
+    expect(last().shell.menuOpen).toBe(false);
+  });
+});

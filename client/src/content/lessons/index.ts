@@ -3,6 +3,7 @@ import { basicsWelcome } from './basics-welcome';
 import { basicsMouse } from './basics-mouse';
 import { basicsKeys } from './basics-keys';
 import { filesLessons } from './basics-files';
+import { shellLessons } from './basics-shell';
 import { typingLessons } from './typing';
 import { WORD_BASICS } from './word-basics';
 import { WORD_FORMAT } from './word-format';
@@ -27,6 +28,6 @@ import { AI_PROMPT } from './ai-prompt';
 import { AI_WORK } from './ai-work';
 import { AI_PROJECT } from './ai-project';
 
-const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS, ...PPT_DESIGN, ...PPT_SHOW, ...PPT_PROJECT, ...AI_START, ...AI_PROMPT, ...AI_WORK, ...AI_PROJECT];
+const ALL: Lesson[] = [basicsWelcome, ...basicsMouse, ...basicsKeys, ...shellLessons('win'), ...shellLessons('mac'), ...filesLessons('win'), ...filesLessons('mac'), ...typingLessons, ...WORD_BASICS, ...WORD_FORMAT, ...WORD_PARA, ...WORD_OBJECTS, ...WORD_LONG, ...WORD_PROJECT, ...EXCEL_BASICS, ...EXCEL_FORMAT, ...EXCEL_FORMULA, ...EXCEL_ABSOLUTE, ...EXCEL_LOOKUP, ...EXCEL_DATA, ...EXCEL_PROJECT, ...PPT_BASICS, ...PPT_OBJECTS, ...PPT_DESIGN, ...PPT_SHOW, ...PPT_PROJECT, ...AI_START, ...AI_PROMPT, ...AI_WORK, ...AI_PROJECT];
 
 export const LESSONS: Record<string, Lesson> = Object.fromEntries(ALL.map((l) => [l.id, l]));

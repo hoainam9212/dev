@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { extractTermKeys, grade, GRADERS, typingSim, type Lesson, type PracticeStep } from '@office-neko/shared';
+import { extractTermKeys, grade, GRADERS, typingSim, unlockState, type Lesson, type PracticeStep } from '@office-neko/shared';
 import { FAQ, GLOSSARY, HELP_IDS, LESSONS, TRACKS, findTerm } from './index';
 import { SIMS } from '../sims/registry';
 import { existsSync } from 'node:fs';
@@ -128,6 +128,19 @@ describe('content', () => {
       const shots = l.steps.filter((s) => s.kind === 'realShot');
       expect(shots.length, `${l.id}: no real screenshot`).toBeGreaterThan(0);
       for (const s of shots) expect(s.credit, `${l.id}: credit`).toBe('Ảnh chụp Microsoft PowerPoint');
+    }
+  });
+
+  it('keeps typing open for a learner who finished every basics lesson before the "Mở ứng dụng" chapter existed', () => {
+    const basics = TRACKS.find((t) => t.id === 'basics')!;
+    const shell = basics.chapters.find((c) => c.id === 'basics.shell');
+    expect(shell, 'chapter basics.shell').toBeDefined();
+    const old = basics.chapters.filter((c) => c !== shell).flatMap((c) => c.lessonIds);
+    for (const os of ['win', 'mac'] as const) {
+      const s = unlockState(TRACKS, LESSONS, os, new Set(old));
+      expect(s.trackUnlocked.has('typing'), os).toBe(true);
+      // Học xong chương "Bàn phím" mà chưa học bài mới: chương "Thư mục và file" vẫn mở.
+      expect(s.lessonUnlocked.has(`basics.files.open.${os}`), os).toBe(true);
     }
   });
 });

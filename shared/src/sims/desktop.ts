@@ -6,6 +6,29 @@ type Vfs = vfs.Vfs;
 
 export const UNDO_LIMIT = 30;
 
+export type AppId = 'word' | 'excel' | 'ppt' | 'explorer' | 'browser';
+
+/** Ứng dụng mở được từ Start menu / Dock / Spotlight, kèm tên trên Windows và Mac. */
+export const SHELL_APPS: readonly { id: AppId; win: string; mac: string }[] = [
+  { id: 'word', win: 'Word', mac: 'Word' },
+  { id: 'excel', win: 'Excel', mac: 'Excel' },
+  { id: 'ppt', win: 'PowerPoint', mac: 'PowerPoint' },
+  { id: 'explorer', win: 'File Explorer', mac: 'Finder' },
+  { id: 'browser', win: 'Edge', mac: 'Safari' },
+];
+
+export function appName(app: AppId, os: OS): string {
+  const a = SHELL_APPS.find((x) => x.id === app)!;
+  return os === 'win' ? a.win : a.mac;
+}
+
+/** Start menu (Windows) hoặc Spotlight (Mac), và ứng dụng vừa mở. */
+export interface ShellState {
+  menuOpen: boolean;
+  query: string;
+  launched: AppId | null;
+}
+
 export interface DesktopState {
   os: OS;
   fs: Vfs;
@@ -14,6 +37,7 @@ export interface DesktopState {
   clipboard: { ids: string[]; mode: 'copy' | 'cut' } | null;
   past: Vfs[];
   error: vfs.VfsError | null;
+  shell: ShellState;
 }
 
 export type DesktopAction =
@@ -30,13 +54,20 @@ export type DesktopAction =
   | { type: 'paste' }
   | { type: 'move'; ids: string[]; destId: string }
   | { type: 'undo' }
-  | { type: 'clearError' };
+  | { type: 'clearError' }
+  /** Windows: mở/đóng Start menu; Mac: mở/đóng Spotlight. */
+  | { type: 'toggleMenu' }
+  | { type: 'setQuery'; text: string }
+  /** Đóng menu, ghi ứng dụng vừa mở, xoá chữ tìm. */
+  | { type: 'launch'; app: AppId }
+  | { type: 'closeApp' };
 
 export type DesktopCheck =
   | { kind: 'pathExists'; path: string; type?: vfs.NodeType }
   | { kind: 'notExists'; path: string }
   | { kind: 'inTrash'; name: string }
-  | { kind: 'cwdIs'; path: string };
+  | { kind: 'cwdIs'; path: string }
+  | { kind: 'launched'; app: AppId };
 
 export function idAt(fs: Vfs, path: string): string {
   const n = vfs.findByPath(fs, path);
@@ -46,7 +77,16 @@ export function idAt(fs: Vfs, path: string): string {
 
 export function desktopInitial(tree: vfs.TreeSpec[], os: OS, cwdPath = '/'): DesktopState {
   const fs = vfs.fromTree(tree);
-  return { os, fs, cwd: idAt(fs, cwdPath), selected: [], clipboard: null, past: [], error: null };
+  return {
+    os,
+    fs,
+    cwd: idAt(fs, cwdPath),
+    selected: [],
+    clipboard: null,
+    past: [],
+    error: null,
+    shell: { menuOpen: false, query: '', launched: null },
+  };
 }
 
 export function uniqueName(fs: Vfs, parentId: string, base: string): string {
@@ -141,6 +181,14 @@ export function reduceDesktop(s: DesktopState, a: DesktopAction): DesktopState {
     }
     case 'clearError':
       return { ...s, error: null };
+    case 'toggleMenu':
+      return { ...s, shell: { ...s.shell, menuOpen: !s.shell.menuOpen, query: '' } };
+    case 'setQuery':
+      return { ...s, shell: { ...s.shell, query: a.text } };
+    case 'launch':
+      return { ...s, shell: { menuOpen: false, query: '', launched: a.app } };
+    case 'closeApp':
+      return { ...s, shell: { ...s.shell, launched: null } };
   }
 }
 
@@ -165,6 +213,11 @@ export function gradeDesktop(s: DesktopState, c: DesktopCheck): CheckResult {
       const here = vfs.pathOf(s.fs, s.cwd);
       const ok = here.toLowerCase() === c.path.toLowerCase();
       return { ok, messageVi: ok ? `Bạn đang mở ${c.path}.` : `Hãy mở ${c.path} (bạn đang ở ${here}).` };
+    }
+    case 'launched': {
+      const name = appName(c.app, s.os);
+      const ok = s.shell.launched === c.app;
+      return { ok, messageVi: ok ? `Đã mở ${name}.` : `Chưa mở ${name}.` };
     }
   }
 }

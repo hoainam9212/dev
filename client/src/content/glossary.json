@@ -238,6 +238,7 @@
     "explain": "Thanh dài ở cạnh dưới màn hình Windows, chứa nút Start và các ứng dụng đang mở.",
     "os": "win",
     "lessonIds": [
+      "basics.shell.win",
       "basics.files.open.win"
     ]
   },
@@ -248,7 +249,9 @@
     "vi": "Menu Start",
     "explain": "Bấm nút Start (hình ô cửa sổ) trên thanh tác vụ để tìm và mở ứng dụng.",
     "os": "win",
-    "lessonIds": []
+    "lessonIds": [
+      "basics.shell.win"
+    ]
   },
   {
     "id": "dock",
@@ -258,7 +261,19 @@
     "explain": "Thanh chứa biểu tượng ứng dụng ở cạnh dưới màn hình Mac. Bấm một biểu tượng để mở ứng dụng.",
     "os": "mac",
     "lessonIds": [
+      "basics.shell.mac",
       "basics.files.open.mac"
+    ]
+  },
+  {
+    "id": "spotlight",
+    "term": "Spotlight",
+    "say": "x-pót-lai",
+    "vi": "Ô tìm kiếm của Mac",
+    "explain": "Bấm kính lúp ở góc phải thanh menu (hoặc nhấn ⌘ Space), gõ tên ứng dụng hay file rồi nhấn Return để mở.",
+    "os": "mac",
+    "lessonIds": [
+      "basics.shell.mac"
     ]
   },
   {
