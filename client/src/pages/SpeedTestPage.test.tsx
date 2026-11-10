@@ -1,22 +1,25 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { db } from '../db/db';
+import { db, type Profile } from '../db/db';
 import { makeProfile, resetDb } from '../test/utils';
 import { ProfileContext } from '../db/profile';
 import { speedTestText } from '../content/typing-texts';
 import { SpeedTestPage } from './SpeedTestPage';
 
-const renderAt = (min: 1 | 3) =>
-  render(
-    <MemoryRouter initialEntries={[`/typing/test/${min}`]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ProfileContext.Provider value={makeProfile()}>
-        <Routes>
-          <Route path="/typing/test/:min" element={<SpeedTestPage />} />
-        </Routes>
-      </ProfileContext.Provider>
-    </MemoryRouter>,
-  );
+const page = (min: 1 | 3, profile: Profile | null) => (
+  <MemoryRouter initialEntries={[`/typing/test/${min}`]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <ProfileContext.Provider value={profile}>
+      <Routes>
+        <Route path="/typing/test/:min" element={<SpeedTestPage />} />
+      </Routes>
+    </ProfileContext.Provider>
+  </MemoryRouter>
+);
+const renderAt = (min: 1 | 3, profile: Profile | null = makeProfile()) => {
+  const r = render(page(min, profile));
+  return { ...r, setProfile: (p: Profile | null) => r.rerender(page(min, p)) };
+};
 
 /** Gõ `n` ký tự đúng của bài, mỗi phím cách nhau `gapMs` (đồng hồ giả). */
 function typeFor(min: 1 | 3, n: number, gapMs: number) {
@@ -72,6 +75,34 @@ describe('SpeedTestPage – thời gian học', () => {
     unmount();
     await new Promise((r) => setTimeout(r, 50));
     expect(await minutesToday()).toBe(1);
+  });
+
+  it('đã có kết quả rồi hồ sơ mới đổi/nạp lại: kết quả vẫn còn, không ghi thêm', async () => {
+    const { setProfile, unmount } = renderAt(1);
+    typeFor(1, 11, 1_000);
+    act(() => {
+      vi.advanceTimersByTime(61_000);
+    });
+    vi.useRealTimers();
+    expect(await screen.findByText(/Kết quả/)).toBeInTheDocument();
+    await waitFor(async () => expect(await db.typingRuns.count()).toBe(1));
+    setProfile(makeProfile({ id: 'p2' }));
+    await new Promise((r) => setTimeout(r, 50));
+    expect(screen.getByText(/Kết quả/)).toBeInTheDocument();
+    unmount();
+    await new Promise((r) => setTimeout(r, 50));
+    expect(await db.typingRuns.count()).toBe(1);
+    expect(await minutesToday()).toBe(1);
+  });
+
+  it('hồ sơ nạp muộn giữa bài: phút đã gõ vẫn được cộng cho hồ sơ đó khi rời trang', async () => {
+    const { setProfile, unmount } = renderAt(1, null);
+    typeFor(1, 11, 1_000);
+    setProfile(makeProfile());
+    unmount();
+    vi.useRealTimers();
+    await waitFor(async () => expect(await minutesToday()).toBe(1));
+    expect((await db.dailyActivity.toArray()).every((r) => r.profileId === 'p1')).toBe(true);
   });
 
   it('chưa gõ phím nào mà rời trang: không ghi gì', async () => {
