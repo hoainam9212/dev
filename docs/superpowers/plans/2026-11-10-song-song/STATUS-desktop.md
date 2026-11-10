@@ -36,3 +36,9 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
    Tab ở lưới khi không sửa thì ra khỏi lưới (không kẹt), Home / Ctrl+Home, `role="grid"` "Bảng tính" +
    `aria-activedescendant` + `aria-selected`, nút ô/đầu cột/đầu hàng `tabIndex=-1` (cả lưới một điểm dừng Tab).
    Chrome thật: 25 Tab từ đầu trang tới lưới, Ctrl+Home → ↓×4 gõ `=SUM(B2:B4)` vào đúng B5 (37300000).
+5. **Mục 3 (vùng chọn bằng phím trong Word) XONG.** Chỉ lộ ra khi bấm phím **liền nhau** (công cụ tự động qua CDP;
+   nghỉ 150 ms giữa các phím thì luôn đúng). Nguyên nhân gốc ở ProseMirror: Shift+End/Home/↓ do trình duyệt tự dời
+   con trỏ, ProseMirror chỉ đọc vùng chọn mới khi `selectionchange` tới; keydown của nó chỉ `forceFlush` khi có thay
+   đổi nội dung chờ. Ctrl+U đến trước sự kiện đó → gạch chân vùng chọn cũ. Sửa: `editorProps.handleKeyDown` (chạy trước
+   keymap) lấy vùng chọn trên màn hình nếu khác (bỏ qua bộ gõ keyCode 229 và vùng chọn ảnh/ô bảng). Chrome thật bấm liền
+   6/6 lần đúng (bản build + dev); Hoàn tác ribbon, bôi đen chuột + I, gõ nhanh vẫn đúng.

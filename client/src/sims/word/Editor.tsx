@@ -13,6 +13,8 @@ import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Image from '@tiptap/extension-image';
+import { TextSelection } from '@tiptap/pm/state';
+import type { EditorView } from '@tiptap/pm/view';
 import type { wordSim } from '@office-neko/shared';
 
 interface Props {
@@ -58,6 +60,33 @@ const LineHeight = Extension.create({
   },
 });
 
+/**
+ * Phím di chuyển con trỏ (Shift+End, Home, ↓) do trình duyệt tự làm; ProseMirror chỉ đọc vùng chọn mới khi sự kiện
+ * `selectionchange` tới, và lúc keydown nó không đọc lại nếu không có thay đổi nội dung chờ. Phím tắt đến trước sự
+ * kiện ấy (công cụ tự động, trình đọc màn hình, người gõ cực nhanh) sẽ in đậm / gạch chân nhầm vùng chọn CŨ. Nên trước
+ * mỗi phím, nếu vùng chọn trên màn hình khác vùng chọn ProseMirror đang giữ thì lấy cái trên màn hình.
+ * Bỏ qua khi đang gõ dấu bằng bộ gõ (keyCode 229) và khi đang chọn ảnh / ô bảng (không phải TextSelection).
+ */
+function syncDomSelection(view: EditorView, event: KeyboardEvent): boolean {
+  if (event.isComposing || event.keyCode === 229) return false;
+  const current = view.state.selection;
+  if (!(current instanceof TextSelection)) return false;
+  const dom = view.dom.ownerDocument.getSelection();
+  if (!dom?.anchorNode || !dom.focusNode) return false;
+  if (!view.dom.contains(dom.anchorNode) || !view.dom.contains(dom.focusNode)) return false;
+  let anchor: number;
+  let head: number;
+  try {
+    anchor = view.posAtDOM(dom.anchorNode, dom.anchorOffset);
+    head = view.posAtDOM(dom.focusNode, dom.focusOffset);
+  } catch {
+    return false;
+  }
+  if (current.anchor === anchor && current.head === head) return false;
+  view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, anchor, head)));
+  return false;
+}
+
 const extensions = [
   StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
   Underline,
@@ -97,6 +126,8 @@ export function Editor({ state, dispatch }: Props) {
       dispatch({ type: 'setSelection', from, to });
     },
     editorProps: {
+      // Chạy trước mọi keymap của extension (Ctrl+B/I/U…), nên phím tắt luôn thấy vùng chọn đúng.
+      handleKeyDown: syncDomSelection,
       attributes: { class: 'word-prose outline-none', 'data-help-id': 'word.editor', 'aria-label': 'Vùng soạn thảo' },
     },
   });
