@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { SpotlightOverlay } from './SpotlightOverlay';
 
 const rect = (left: number, top: number, width = 30, height = 20) =>
@@ -115,6 +117,19 @@ describe('SpotlightOverlay – bám theo sự kiện, không hỏi vòng', () =>
     root.querySelector<HTMLElement>('[data-testid="cell-B5"]')!.getBoundingClientRect = () => rect(70, 90);
     render(<SpotlightOverlay target={{ cell: 'B5' }} root={root} />);
     await waitFor(() => expect(overlay()?.style.left).toBe('64px'));
+  });
+
+  it('vòng đặc không dùng box-shadow, vì hiệu ứng spotlight-pulse chiếm box-shadow và đè mất nó', async () => {
+    const css = readFileSync(resolve(process.cwd(), 'src/styles/theme.css'), 'utf8');
+    expect(css).toMatch(/@keyframes spotlight-pulse\s*\{[^}]*box-shadow/);
+    const root = mount('<button data-help-id="x">B</button>');
+    root.querySelector('button')!.getBoundingClientRect = () => rect(10, 20);
+    render(<SpotlightOverlay target={{ helpId: 'x' }} root={root} />);
+    await waitFor(() => expect(overlay()).not.toBeNull());
+    const ring = document.querySelector<HTMLElement>('.spotlight-ring')!;
+    const cls = [...ring.classList];
+    expect(cls.filter((c) => /^(ring|shadow)(-|$)/.test(c))).toEqual([]);
+    expect(cls).toEqual(expect.arrayContaining(['border-4', 'border-rose']));
   });
 
   it('không có spotlight thì không tạo observer nào', () => {

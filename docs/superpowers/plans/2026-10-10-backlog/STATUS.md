@@ -15,9 +15,11 @@ build sạch.
 
 ## Việc còn treo
 
-- **Vòng hồng của spotlight không hiện** (`styles/theme.css`): keyframes `spotlight-pulse` đặt `box-shadow`, đè
-  `ring-4 ring-rose` (cũng là `box-shadow`), nên chỉ còn quầng mờ + nhãn "Ở đây nè!". Có từ trước làn song song; sửa:
-  vòng đặc bằng `outline`, quầng để keyframes. Chi tiết: STATUS-desktop "Nhờ làn cloud" 8.
+(trống)
+
+- ~~Vòng hồng của spotlight không hiện~~ **đã sửa** (nhánh `feat/spotlight-ring`, sau D5): keyframes `spotlight-pulse`
+  đặt `box-shadow`, đè `ring-4 ring-rose` (cũng là `box-shadow`). Vòng đặc nay là `border-4 border-rose`, box-shadow để
+  cho quầng (test `SpotlightOverlay.test`). Chrome thật: border 4px rgb(255,122,154) bao ô B2 ở 1280 + 390 px.
 
 ## Cố ý KHÔNG làm
 

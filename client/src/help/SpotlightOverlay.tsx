@@ -75,7 +75,8 @@ export function SpotlightOverlay({ target, root }: { target: Spotlight | null; r
   if (!target || !box) return null;
   return (
     <div aria-hidden className="pointer-events-none fixed z-40" style={{ left: box.left, top: box.top, width: box.width, height: box.height }}>
-      <div className="spotlight-ring absolute inset-0 rounded-xl ring-4 ring-rose" />
+      {/* Vòng đặc là border: box-shadow để dành cho quầng nhấp nháy `spotlight-pulse` (dùng ring-* thì bị đè mất). */}
+      <div className="spotlight-ring absolute inset-0 rounded-xl border-4 border-rose" />
       <div className="spotlight-paw absolute -top-9 left-1/2 whitespace-nowrap rounded-full bg-rose px-2 py-0.5 text-sm font-bold text-white">
         🐾 Ở đây nè!
       </div>
