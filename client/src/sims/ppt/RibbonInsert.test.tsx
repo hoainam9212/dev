@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { pptSim } from '@office-neko/shared';
 import { describe, expect, it, vi } from 'vitest';
 import { RibbonInsert } from './RibbonInsert';
+
+/** Mục trong bảng thả xuống đang mở, tìm theo nhãn: đúng cả khi mục mang vai trò `button` lẫn `menuitem`. */
+const menuItem = (name: string | RegExp) => within(screen.getByRole('menu')).getByLabelText(name);
 
 const setup = () => {
   const dispatch = vi.fn();
@@ -22,7 +25,7 @@ describe('RibbonInsert', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Slide mới' }));
     expect(dispatch).toHaveBeenCalledWith({ type: 'addSlide' });
     await userEvent.click(screen.getByRole('button', { name: 'Chọn bố cục cho slide mới' }));
-    expect(screen.getByRole('button', { name: 'Nhân đôi slide đang chọn' })).toBeInTheDocument();
+    expect(menuItem('Nhân đôi slide đang chọn')).toBeInTheDocument();
   });
 
   it('Text Box chèn hộp chữ ở vị trí định sẵn, trong khung', async () => {
@@ -50,9 +53,9 @@ describe('RibbonInsert', () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: 'Hình khối' }));
     for (const vi of ['Hình chữ nhật', 'Hình tròn', 'Mũi tên', 'Ngôi sao']) {
-      expect(screen.getByRole('button', { name: vi })).toBeInTheDocument();
+      expect(menuItem(vi)).toBeInTheDocument();
     }
-    await userEvent.click(screen.getByRole('button', { name: 'Ngôi sao' }));
+    await userEvent.click(menuItem('Ngôi sao'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'addShape', shape: 'star', x: 400, y: 216, w: 160, h: 160 });
   });
 
@@ -61,7 +64,7 @@ describe('RibbonInsert', () => {
     const sizes: Record<string, [number, number]> = { 'Hình chữ nhật': [240, 128], 'Hình tròn': [160, 160], 'Mũi tên': [200, 96], 'Ngôi sao': [160, 160] };
     for (const [vi, [w, h]] of Object.entries(sizes)) {
       await userEvent.click(screen.getByRole('button', { name: 'Hình khối' }));
-      await userEvent.click(screen.getByRole('button', { name: vi }));
+      await userEvent.click(menuItem(vi));
       const a = dispatch.mock.calls.at(-1)?.[0];
       expect(a, vi).toMatchObject({ w, h });
       // Cùng tâm với chỗ đặt cũ, nằm trọn trong slide.

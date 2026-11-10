@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { pptSim } from '@office-neko/shared';
 import { describe, expect, it, vi } from 'vitest';
@@ -8,6 +8,10 @@ const withShape = pptSim.reducePpt(pptSim.pptInitial(), { type: 'addShape', shap
 /** Id phần tử cuối của slide đang mở — không hardcode id (bài học Task 2 của 5A). */
 const lastElId = (s: pptSim.PptState) => pptSim.slideOf(s).els.at(-1)!.id;
 const firstElId = (s: pptSim.PptState) => pptSim.slideOf(s).els[0]!.id;
+
+/** Mục trong bảng thả xuống đang mở, tìm theo nhãn: đúng cả khi mục mang vai trò `button` lẫn `menuitem`. */
+const menu = () => within(screen.getByRole('menu'));
+const menuItem = (name: string | RegExp) => menu().getByLabelText(name);
 
 const setup = (s = pptSim.pptInitial()) => {
   const dispatch = vi.fn();
@@ -31,22 +35,22 @@ describe('Thẻ Home của PowerPoint', () => {
   it('New Slide ▾ chọn bố cục thì thêm slide rồi đặt bố cục', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: 'Chọn bố cục cho slide mới' }));
-    for (const l of pptSim.PPT_LAYOUTS) expect(screen.getByRole('button', { name: new RegExp(l.vi) })).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: /Hai cột nội dung/ }));
+    for (const l of pptSim.PPT_LAYOUTS) expect(menuItem(new RegExp(l.vi))).toBeInTheDocument();
+    await userEvent.click(menuItem(/Hai cột nội dung/));
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'addSlide' }, { type: 'setLayout', layout: 'twoContent' }]);
   });
 
   it('New Slide ▾ › Duplicate Selected Slides nhân đôi slide', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: 'Chọn bố cục cho slide mới' }));
-    await userEvent.click(screen.getByRole('button', { name: 'Nhân đôi slide đang chọn' }));
+    await userEvent.click(menuItem('Nhân đôi slide đang chọn'));
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'duplicateSlide' }]);
   });
 
   it('Layout ▾ đổi bố cục slide đang mở', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: 'Bố cục' }));
-    await userEvent.click(screen.getByRole('button', { name: /Hai cột nội dung/ }));
+    await userEvent.click(menuItem(/Hai cột nội dung/));
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'setLayout', layout: 'twoContent' }]);
   });
 
@@ -69,21 +73,21 @@ describe('Thẻ Home của PowerPoint', () => {
   it('chọn cỡ chữ phát setFmt size', async () => {
     const { dispatch } = setup(withShape);
     await userEvent.click(screen.getByRole('button', { name: 'Cỡ chữ' }));
-    await userEvent.click(screen.getByRole('button', { name: '32' }));
+    await userEvent.click(menuItem('32'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { size: 32 } });
   });
 
   it('chọn màu chữ phát setFmt color, tên màu đọc được bằng tiếng Việt', async () => {
     const { dispatch } = setup(withShape);
     await userEvent.click(screen.getByRole('button', { name: 'Màu chữ' }));
-    await userEvent.click(screen.getByRole('button', { name: /Cam Mochi/ }));
+    await userEvent.click(menuItem(/Cam Mochi/));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { color: '#D2691E' } });
   });
 
   it('Font Color › Automatic trả chữ về màu của theme', async () => {
     const { dispatch } = setup(withShape);
     await userEvent.click(screen.getByRole('button', { name: 'Màu chữ' }));
-    const items = screen.getAllByRole('button', { name: /Tự động/ });
+    const items = menu().getAllByLabelText(/Tự động/);
     expect(items).toHaveLength(1);
     await userEvent.click(items[0]!);
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { color: undefined } });
@@ -101,17 +105,17 @@ describe('Thẻ Home của PowerPoint', () => {
     cleanup();
     const { dispatch } = setup(withShape);
     await userEvent.click(screen.getByRole('button', { name: 'Màu nền hình' }));
-    await userEvent.click(screen.getByRole('button', { name: /Nền Xanh biển/ }));
+    await userEvent.click(menuItem(/Nền Xanh biển/));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFmt', fmt: { fill: '#3B82F6' } });
   });
 
   it('Arrange ▾ đưa đối tượng lên trên cùng / xuống dưới cùng', async () => {
     const { dispatch } = setup({ ...withShape, sel: lastElId(withShape) });
     await userEvent.click(screen.getByRole('button', { name: 'Sắp xếp lớp' }));
-    await userEvent.click(screen.getByRole('button', { name: 'Đưa lên trên cùng' }));
+    await userEvent.click(menuItem('Đưa lên trên cùng'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'bringToFront' });
     await userEvent.click(screen.getByRole('button', { name: 'Sắp xếp lớp' }));
-    await userEvent.click(screen.getByRole('button', { name: 'Đưa xuống dưới cùng' }));
+    await userEvent.click(menuItem('Đưa xuống dưới cùng'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'sendToBack' });
   });
 
