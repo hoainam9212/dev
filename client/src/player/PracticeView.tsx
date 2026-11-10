@@ -85,13 +85,16 @@ export function PracticeView({ step, state, dispatch }: { step: PracticeStep; st
       </div>
       <SpotlightOverlay target={spotlight} root={root} />
       {state.stepHint > 0 && !state.stepDone && <HintPanel step={step} level={state.stepHint} />}
-      {report && (
-        <ul aria-label="Kết quả chấm" className="space-y-1">
-          {report.results.map((r, i) => (
-            <li key={i} className={r.ok ? 'text-excel-ink' : 'text-rose-ink'}>{r.ok ? '✅' : '❌'} {r.messageVi}</li>
-          ))}
-        </ul>
-      )}
+      {/* Vùng aria-live phải có sẵn từ đầu: trình đọc màn hình chỉ đọc nội dung ĐỔI trong vùng đã có. */}
+      <div role="status" aria-live="polite">
+        {report && (
+          <ul aria-label="Kết quả chấm" className="space-y-1">
+            {report.results.map((r, i) => (
+              <li key={i} className={r.ok ? 'text-excel-ink' : 'text-rose-ink'}>{r.ok ? '✅' : '❌'} {r.messageVi}</li>
+            ))}
+          </ul>
+        )}
+      </div>
       {state.reviewing && (
         <p className="rounded-2xl bg-sky/30 p-3 text-sm">👀 Bạn đang xem lại bài đã làm xong: cứ bấm thử thoải mái, không ảnh hưởng điểm và sao.</p>
       )}

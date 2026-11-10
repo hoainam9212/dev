@@ -283,6 +283,15 @@ body {
     text-align: left;
   }
   .ribbon-menu-item:hover { background: var(--color-cream, #FFF6EC); }
+  /* Vòng focus khi đi bằng bàn phím: viền tối + quầng trắng, thấy được trên nút sáng, nút đang bấm và mục menu. */
+  .ribbon-btn:focus-visible,
+  .ribbon-menu-item:focus-visible {
+    outline: 2px solid #1F1F1F;
+    outline-offset: 1px;
+    box-shadow: 0 0 0 4px #FFFFFF;
+    position: relative;
+    z-index: 1;
+  }
   /* Trợ lý AI mô phỏng: tin mình bên phải nền màu nhấn nhạt, tin AI bên trái nền xám nhạt. */
   .ai-bubble {
     max-width: 85%;

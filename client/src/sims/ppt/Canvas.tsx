@@ -82,6 +82,9 @@ export function Canvas({
           else if (e.key === 'ArrowDown') dispatch({ type: 'moveEl', dx: 0, dy: step });
           else if (e.key === 'ArrowUp') dispatch({ type: 'moveEl', dx: 0, dy: -step });
           else if (e.key === 'Delete' || e.key === 'Backspace') dispatch({ type: 'deleteEl' });
+          // Enter/F2 như PowerPoint: vào chế độ gõ chữ bằng bàn phím, thay cho nháy đúp. Ảnh không có chữ.
+          else if ((e.key === 'Enter' || e.key === 'F2') && slide.els.find((el) => el.id === state.sel)?.kind !== 'image')
+            dispatch({ type: 'startEditEl', id: state.sel });
           else return;
           e.preventDefault();
         }}

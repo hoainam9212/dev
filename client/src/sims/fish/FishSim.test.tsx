@@ -52,3 +52,13 @@ describe('FishSim', () => {
     expect(onState.mock.calls.length).toBeGreaterThan(before);
   });
 });
+
+describe('FishSim – trợ năng', () => {
+  it('báo điểm và từ kế tiếp qua aria-live', () => {
+    render(<FishSim {...props()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Bắt đầu' }));
+    const live = screen.getByRole('status');
+    expect(live).toHaveAttribute('aria-live', 'polite');
+    expect(live).toHaveTextContent('Điểm 0. Từ kế tiếp: meo');
+  });
+});

@@ -76,6 +76,16 @@ describe('Canvas', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'selectEl', id: null });
   });
 
+  it('Enter hoặc F2 trên đối tượng đang chọn thì bắt đầu gõ chữ, như PowerPoint (không cần nháy đúp)', async () => {
+    const { dispatch } = setup({ ...base, sel: shapeId });
+    screen.getByTestId('ppt-canvas').focus();
+    await userEvent.keyboard('{Enter}');
+    expect(dispatch).toHaveBeenCalledWith({ type: 'startEditEl', id: shapeId });
+    dispatch.mockClear();
+    await userEvent.keyboard('{F2}');
+    expect(dispatch).toHaveBeenCalledWith({ type: 'startEditEl', id: shapeId });
+  });
+
   it('mũi tên không dời gì khi chưa chọn đối tượng nào', async () => {
     const { dispatch } = setup(unsel);
     screen.getByTestId('ppt-canvas').focus();

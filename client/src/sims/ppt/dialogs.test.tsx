@@ -49,3 +49,23 @@ describe('PptDialogs', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'closeDialog' });
   });
 });
+
+describe('PptDialogs – trợ năng', () => {
+  it('có tên theo tiêu đề, mở thì focus ô đầu tiên, Tab đi vòng bên trong', async () => {
+    open('save');
+    const dlg = screen.getByRole('dialog', { name: 'Lưu bài trình chiếu' });
+    expect(dlg).toHaveAttribute('aria-modal', 'true');
+    expect(dlg).toHaveAttribute('aria-labelledby');
+    expect(screen.getByLabelText('Tên tệp')).toHaveFocus();
+    await userEvent.tab();
+    expect(screen.getByRole('button', { name: 'Lưu' })).toHaveFocus();
+    await userEvent.tab();
+    expect(screen.getByRole('button', { name: 'Đóng' })).toHaveFocus();
+  });
+
+  it('Esc đóng hộp thoại', async () => {
+    const { dispatch } = open('print');
+    await userEvent.keyboard('{Escape}');
+    expect(dispatch).toHaveBeenCalledWith({ type: 'closeDialog' });
+  });
+});

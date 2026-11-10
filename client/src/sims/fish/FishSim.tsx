@@ -70,9 +70,18 @@ export function FishSim({ initial, onState }: SimProps<fishGame.FishState>) {
 
   const target = fishGame.targetFish(state);
   const catX = target ? target.x : 0.5;
+  // Từ kế tiếp: con đang gõ dở, chưa gõ thì con thấp nhất (sắp rơi tới đáy). Câu này chỉ đổi khi
+  // bắt được cá / cá kế tiếp đổi, không theo từng khung hình, nên trình đọc màn hình không bị dội.
+  const next = target ?? state.fish.reduce<fishGame.Fish | undefined>((low, f) => (!low || f.y > low.y ? f : low), undefined);
+  const announce = !started
+    ? ''
+    : state.over
+      ? `Hết lượt! Điểm ${state.score}, bắt được ${state.caught} con cá.`
+      : `Điểm ${state.score}. Từ kế tiếp: ${next?.word ?? 'chờ cá mới'}`;
 
   return (
     <div className="space-y-3" data-help-id="fish.pond">
+      <p role="status" aria-live="polite" className="sr-only">{announce}</p>
       <div className="card flex flex-wrap items-center gap-4 p-3 font-bold">
         <span>Điểm: {state.score}</span>
         <span>Cấp: {state.level}</span>

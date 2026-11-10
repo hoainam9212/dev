@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { useDialogFocus } from '../../lib/useDialogFocus';
 import { excelSim, formula } from '@office-neko/shared';
 import { sortTarget } from './RibbonData';
 
@@ -17,13 +18,16 @@ function Shell({ title, onClose, children }: { title: string; onClose: () => voi
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+  const box = useRef<HTMLDivElement>(null);
+  const titleId = useId();
+  useDialogFocus(box, true);
 
   return (
     <div className="fixed inset-0 z-40 grid place-items-center bg-black/20 p-4">
-      <div role="dialog" aria-modal="true" aria-label={title} className="card w-full max-w-lg space-y-3 p-5">
+      <div ref={box} role="dialog" aria-modal="true" aria-labelledby={titleId} className="card w-full max-w-lg space-y-3 p-5">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-extrabold">{title}</h2>
-          <button type="button" aria-label="Đóng" className="btn ml-auto !px-3 !py-1" onClick={onClose}>✕</button>
+          <h2 id={titleId} className="text-lg font-extrabold">{title}</h2>
+          <button type="button" aria-label="Đóng" data-dialog-close className="btn ml-auto !px-3 !py-1" onClick={onClose}>✕</button>
         </div>
         {children}
       </div>

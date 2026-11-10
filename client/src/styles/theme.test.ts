@@ -67,4 +67,16 @@ describe('theme.css', () => {
     const outside = css.replace(componentsLayer(css), '');
     expect(outside.includes('.card')).toBe(false);
   });
+
+  /**
+   * Học bằng bàn phím phải thấy mình đang đứng ở nút nào. Vòng hai lớp (viền tối + quầng trắng)
+   * thấy được cả trên nút sáng lẫn nút đang bấm (nền xám) và mục menu.
+   */
+  it('gives ribbon buttons and menu items a visible :focus-visible ring', () => {
+    const inLayer = componentsLayer(css);
+    const rule = /\.ribbon-btn:focus-visible,\s*\.ribbon-menu-item:focus-visible\s*\{([^}]*)\}/.exec(inLayer);
+    expect(rule, 'thiếu luật :focus-visible cho .ribbon-btn và .ribbon-menu-item').not.toBeNull();
+    expect(rule![1]).toMatch(/outline:\s*2px solid/);
+    expect(rule![1]).toMatch(/box-shadow:[^;]*#fff/i);
+  });
 });
