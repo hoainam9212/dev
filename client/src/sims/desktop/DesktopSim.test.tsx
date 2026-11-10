@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, cleanup } from '@testing-library/react';
 import { desktopSim, vfs } from '@office-neko/shared';
 import { DesktopSim } from './DesktopSim';
 
@@ -13,7 +13,7 @@ function setup(os: 'win' | 'mac' = 'win') {
   const onState = vi.fn();
   render(<DesktopSim initial={desktopSim.desktopInitial(tree, os)} onState={onState} os={os} spotlight={null} />);
   const last = () => onState.mock.calls.at(-1)![0] as desktopSim.DesktopState;
-  const item = (name: string) => within(screen.getByTestId('file-area')).getByRole('button', { name: new RegExp(name) });
+  const item = (name: string) => within(screen.getByTestId('file-area')).getByRole('option', { name: new RegExp(name) });
   const area = () => screen.getByTestId('desktop-sim');
   return { last, item, area };
 }
@@ -113,6 +113,103 @@ describe('DesktopSim', () => {
     expect(menu.style.top).toBe('45px');
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+});
+
+describe('DesktopSim vùng file: chọn nhiều và bàn phím', () => {
+  const six = [{ name: 'Tải về', children: ['a.jpg', 'b.jpg', 'c.jpg', 'd.jpg', 'e.jpg', 'f.jpg'].map((name) => ({ name })) }];
+
+  function setupSix(os: 'win' | 'mac' = 'win') {
+    const onState = vi.fn();
+    render(<DesktopSim initial={desktopSim.desktopInitial(six, os, '/Tải về')} onState={onState} os={os} spotlight={null} />);
+    const last = () => onState.mock.calls.at(-1)![0] as desktopSim.DesktopState;
+    const names = () => last().selected.map((id) => last().fs.nodes[id]!.name);
+    const opt = (n: string) => screen.getByRole('option', { name: new RegExp(n) });
+    return { names, opt };
+  }
+
+  it('is a labelled multi-select listbox whose options report aria-selected', () => {
+    const { opt } = setupSix();
+    const list = screen.getByRole('listbox', { name: 'Các file và thư mục' });
+    expect(list).toHaveAttribute('aria-multiselectable', 'true');
+    fireEvent.click(opt('b.jpg'));
+    expect(opt('b.jpg')).toHaveAttribute('aria-selected', 'true');
+    expect(opt('a.jpg')).toHaveAttribute('aria-selected', 'false');
+  });
+
+  it('Shift+click selects the whole run from the last plain click, in display order', () => {
+    const { names, opt } = setupSix();
+    fireEvent.click(opt('b.jpg'));
+    fireEvent.click(opt('e.jpg'), { shiftKey: true });
+    expect(names()).toEqual(['b.jpg', 'c.jpg', 'd.jpg', 'e.jpg']);
+    // Shift+click lần nữa vẫn tính từ mốc cũ (b), kể cả ngược chiều.
+    fireEvent.click(opt('a.jpg'), { shiftKey: true });
+    expect(names()).toEqual(['a.jpg', 'b.jpg']);
+  });
+
+  it('Ctrl+click (⌘ on Mac) adds or removes one item and moves the anchor', () => {
+    for (const os of ['win', 'mac'] as const) {
+      const { names, opt } = setupSix(os);
+      const mod = os === 'win' ? { ctrlKey: true } : { metaKey: true };
+      fireEvent.click(opt('b.jpg'));
+      fireEvent.click(opt('d.jpg'), { shiftKey: true });
+      fireEvent.click(opt('c.jpg'), mod);
+      expect(names(), os).toEqual(['b.jpg', 'd.jpg']);
+      fireEvent.click(opt('f.jpg'), mod);
+      expect(names(), os).toEqual(['b.jpg', 'd.jpg', 'f.jpg']);
+      fireEvent.click(opt('e.jpg'), { shiftKey: true });
+      expect(names(), os).toEqual(['e.jpg', 'f.jpg']);
+      cleanup();
+    }
+  });
+
+  it('is one Tab stop; arrows move the selection, Shift+arrows extend it, Home/End jump', () => {
+    const { names, opt } = setupSix();
+    const tabbable = screen.getAllByRole('option').filter((o) => o.tabIndex === 0);
+    expect(tabbable).toEqual([opt('a.jpg')]);
+    opt('a.jpg').focus();
+    fireEvent.keyDown(opt('a.jpg'), { key: 'ArrowRight' });
+    expect(names()).toEqual(['b.jpg']);
+    expect(opt('b.jpg')).toHaveFocus();
+    expect(opt('b.jpg').tabIndex).toBe(0);
+    expect(opt('a.jpg').tabIndex).toBe(-1);
+    fireEvent.keyDown(opt('b.jpg'), { key: 'ArrowDown', shiftKey: true });
+    fireEvent.keyDown(opt('c.jpg'), { key: 'ArrowRight', shiftKey: true });
+    expect(names()).toEqual(['b.jpg', 'c.jpg', 'd.jpg']);
+    fireEvent.keyDown(opt('d.jpg'), { key: 'End' });
+    expect(names()).toEqual(['f.jpg']);
+    expect(opt('f.jpg')).toHaveFocus();
+    fireEvent.keyDown(opt('f.jpg'), { key: 'Home', shiftKey: true });
+    expect(names()).toEqual(['a.jpg', 'b.jpg', 'c.jpg', 'd.jpg', 'e.jpg', 'f.jpg']);
+  });
+
+  it('Shift+F10 opens the item menu from the keyboard; arrows move, Escape closes and returns focus', () => {
+    const { names, opt } = setupSix();
+    opt('c.jpg').focus();
+    fireEvent.keyDown(opt('c.jpg'), { key: 'F10', shiftKey: true });
+    expect(names()).toEqual(['c.jpg']);
+    const items = within(screen.getByRole('menu')).getAllByRole('menuitem');
+    expect(items[0]).toHaveFocus();
+    fireEvent.keyDown(items[0]!, { key: 'ArrowDown' });
+    expect(items[1]).toHaveFocus();
+    fireEvent.keyDown(items[1]!, { key: 'Escape' });
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    expect(opt('c.jpg')).toHaveFocus();
+  });
+
+  it('Enter on a menu item runs it (and does not reach the file shortcuts); Tab closes the menu', () => {
+    const { names, opt } = setupSix();
+    opt('c.jpg').focus();
+    fireEvent.keyDown(opt('c.jpg'), { key: 'ContextMenu' });
+    fireEvent.keyDown(within(screen.getByRole('menu')).getAllByRole('menuitem')[0]!, { key: 'Tab' });
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    fireEvent.keyDown(opt('c.jpg'), { key: 'ContextMenu' });
+    const del = screen.getByRole('menuitem', { name: 'Xoá' });
+    const ev = fireEvent.keyDown(del, { key: 'Enter' });
+    expect(ev).toBe(true); // không bị preventDefault → trình duyệt bấm nút như thường
+    fireEvent.click(del);
+    expect(screen.queryByRole('option', { name: /c\.jpg/ })).not.toBeInTheDocument();
+    expect(names()).toEqual([]);
   });
 });
 

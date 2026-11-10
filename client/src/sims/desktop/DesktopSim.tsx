@@ -72,11 +72,12 @@ export function DesktopSim({ initial, onState }: SimProps<S>) {
     }
   };
 
-  // Ô tìm của Start menu / Spotlight biến mất khi đóng hay mở ứng dụng: trả focus về khung để phím tắt vẫn chạy.
+  // Ô tìm của Start menu / Spotlight biến mất khi đóng hay mở ứng dụng, mục đang focus biến mất khi xoá/chuyển/mở
+  // thư mục: trả focus về khung để phím tắt vẫn chạy.
   const { menuOpen, launched } = state.shell;
   useEffect(() => {
     if (!menuOpen && (!document.activeElement || document.activeElement === document.body)) rootRef.current?.focus();
-  }, [menuOpen, launched]);
+  }, [menuOpen, launched, state.cwd, state.fs]);
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (renamingId) return;

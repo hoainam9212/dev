@@ -12,7 +12,7 @@ export const TRACKS: Track[] = [
       {
         id: 'basics.files',
         title: 'Thư mục và file',
-        lessonIds: ['open', 'newfolder', 'rename', 'move', 'trash', 'project'].flatMap((x) => [`basics.files.${x}.win`, `basics.files.${x}.mac`]),
+        lessonIds: ['open', 'newfolder', 'rename', 'move', 'copy', 'trash', 'project'].flatMap((x) => [`basics.files.${x}.win`, `basics.files.${x}.mac`]),
       },
     ],
   },

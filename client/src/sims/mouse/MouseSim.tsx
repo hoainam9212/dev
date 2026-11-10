@@ -1,7 +1,9 @@
-import { useEffect, useReducer, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
+import { useEffect, useLayoutEffect, useReducer, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { mouseSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { Mochi } from '../../components/Mochi';
+import { menuKeyDown } from '../../components/ribbon';
+import { clampMenuIn, isMenuKey } from '../../lib/clampMenu';
 
 type S = mouseSim.MouseState;
 
@@ -19,9 +21,26 @@ const ICON: Record<mouseSim.MouseGame, string> = { click: '🫧', double: '🎁'
 export function MouseSim({ initial, onState, os }: SimProps<S>) {
   const [state, dispatch] = useReducer(mouseSim.reduceMouse, initial);
   const [tip, setTip] = useState<string | null>(null);
-  const [menuFor, setMenuFor] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [menuFor, setMenuFor] = useState<{ id: string; x: number; y: number; byKeys: boolean } | null>(null);
+  const [menuPos, setMenuPos] = useState<{ left: number; top: number } | null>(null);
   const dragging = useRef<string | null>(null);
   const areaRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
+
+  // Kẹp menu trong khung trò chơi (khung `overflow-hidden` nên menu tràn là bị cắt mất).
+  useLayoutEffect(() => {
+    setMenuPos(menuFor ? clampMenuIn(areaRef.current, menuRef.current, menuFor.x, menuFor.y) : null);
+  }, [menuFor]);
+  // Mở bằng phím thì focus mục đầu.
+  useEffect(() => {
+    if (menuFor?.byKeys) menuRef.current?.querySelector<HTMLElement>('[data-menu-item]')?.focus();
+  }, [menuFor]);
+  /** Đóng menu và trả focus về chỗ đã mở (Esc, Tab). */
+  const closeMenu = () => {
+    setMenuFor(null);
+    if (opener.current?.isConnected) opener.current.focus();
+  };
 
   useEffect(() => {
     onState(state);
@@ -137,8 +156,16 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
                 onContextMenu={(e) => {
                   if (game !== 'right') return;
                   e.preventDefault();
+                  opener.current = e.currentTarget;
                   const rect = areaRef.current?.getBoundingClientRect();
-                  setMenuFor({ id, x: rect ? e.clientX - rect.left : e.clientX, y: rect ? e.clientY - rect.top : e.clientY });
+                  setMenuFor({ id, x: rect ? e.clientX - rect.left : e.clientX, y: rect ? e.clientY - rect.top : e.clientY, byKeys: false });
+                }}
+                onKeyDown={(e) => {
+                  if (game !== 'right' || !isMenuKey(e)) return;
+                  e.preventDefault();
+                  const el = e.currentTarget;
+                  opener.current = el;
+                  setMenuFor({ id, x: el.offsetLeft, y: el.offsetTop + el.offsetHeight, byKeys: true });
                 }}
               >
                 {ICON[game]}
@@ -161,12 +188,25 @@ export function MouseSim({ initial, onState, os }: SimProps<S>) {
             </div>
           )}
           {menuFor && (
-            <ul role="menu" className="card absolute z-10 w-44 p-2" style={{ left: menuFor.x, top: menuFor.y }}>
+            <ul
+              ref={menuRef}
+              role="menu"
+              aria-label="Menu chuột phải"
+              className="card absolute z-10 w-44 p-2"
+              style={{ left: menuPos?.left ?? menuFor.x, top: menuPos?.top ?? menuFor.y }}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  e.preventDefault();
+                  closeMenu();
+                } else menuKeyDown(e, closeMenu);
+              }}
+            >
               {['Mở', '🎁 Mở quà', 'Đổi tên'].map((label) => (
-                <li key={label}>
+                <li key={label} role="none">
                   <button
                     type="button"
                     role="menuitem"
+                    data-menu-item
                     className="w-full rounded-xl px-3 py-2 text-left hover:bg-peach/30"
                     onClick={(e) => {
                       e.stopPropagation();

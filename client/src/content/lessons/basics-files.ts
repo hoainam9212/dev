@@ -120,6 +120,55 @@ export function filesLessons(os: OS): Lesson[] {
     },
     {
       ...base,
+      id: `basics.files.copy.${os}`,
+      title: 'Sao chép và hoàn tác',
+      // Thêm sau khi chương đã có người học xong: tự chọn để không khoá lại bài sau hay lộ trình Gõ phím.
+      optional: true,
+      steps: [
+        {
+          kind: 'explain',
+          body: `[[copy|Sao chép]] khác [[cut|cắt]] ở chỗ **file gốc vẫn còn nguyên**, bạn có thêm một bản ở chỗ mới.\n\n- Chọn file, nhấn {{mod+c}}, mở thư mục đích, rồi nhấn {{mod+v}} để [[paste|dán]].\n- Hoặc chuột phải vào file › **Sao chép**, rồi chuột phải vào chỗ trống ở thư mục đích › **Dán**.`,
+        },
+        {
+          kind: 'explain',
+          mood: 'happy',
+          body: `Lỡ tay xoá, đổi tên hay chuyển nhầm? Nhấn {{mod+z}} để [[undo|hoàn tác]], tức là quay lại đúng như trước khi làm. Nhấn nhiều lần thì lùi được nhiều bước.`,
+        },
+        desktopPractice({
+          os,
+          tree: HOME,
+          cwd: '/Tải về',
+          task: 'Chép **bang-luong.xlsx** sang thư mục **Tài liệu**, nhưng vẫn giữ bản gốc trong **Tải về**.',
+          checks: [
+            { kind: 'pathExists', path: '/Tài liệu/bang-luong.xlsx', type: 'file' },
+            { kind: 'pathExists', path: '/Tải về/bang-luong.xlsx', type: 'file' },
+          ],
+          spotlight: { path: '/Tải về/bang-luong.xlsx' },
+          hint: 'Dùng “📋 Sao chép”, không dùng “✂️ Cắt” — cắt sẽ mang file gốc đi mất.',
+          steps: ['Nhấp chọn bang-luong.xlsx.', 'Bấm “📋 Sao chép”.', 'Bấm “📁 Tài liệu” ở thanh bên.', 'Bấm “📥 Dán”.'],
+          solve: (s) => [
+            { type: 'copy', ids: [idAt(s.fs, '/Tải về/bang-luong.xlsx')] },
+            { type: 'open', id: idAt(s.fs, '/Tài liệu') },
+            { type: 'paste' },
+          ],
+        }),
+        desktopPractice({
+          os,
+          tree: HOME,
+          cwd: '/Tài liệu',
+          setup: (s) => [{ type: 'remove', ids: [idAt(s.fs, '/Tài liệu/don-xin-viec.docx')] }],
+          undoableSetup: true,
+          task: 'Bạn vừa lỡ xoá **don-xin-viec.docx**. Lấy lại bằng **hoàn tác**.',
+          checks: [{ kind: 'pathExists', path: '/Tài liệu/don-xin-viec.docx', type: 'file' }],
+          spotlight: { helpId: 'desktop.undo' },
+          hint: `Nhấn {{mod+z}}, hoặc bấm “↩️ Hoàn tác” trên thanh công cụ.`,
+          steps: ['Bấm “↩️ Hoàn tác” (hoặc nhấn Ctrl+Z, trên Mac là ⌘Z).', 'Xem don-xin-viec.docx hiện lại trong Tài liệu.'],
+          solve: () => [{ type: 'undo' }],
+        }),
+      ],
+    },
+    {
+      ...base,
       id: `basics.files.trash.${os}`,
       title: 'Xoá và khôi phục',
       steps: [

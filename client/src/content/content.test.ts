@@ -144,6 +144,20 @@ describe('content', () => {
     }
   });
 
+  it('adds the copy + undo lesson right after "move" without locking anything a learner had already opened', () => {
+    const files = TRACKS.find((t) => t.id === 'basics')!.chapters.find((c) => c.id === 'basics.files')!;
+    for (const os of ['win', 'mac'] as const) {
+      const ids = files.lessonIds.filter((id) => id.endsWith(`.${os}`));
+      expect(ids.indexOf(`basics.files.copy.${os}`), os).toBe(ids.indexOf(`basics.files.move.${os}`) + 1);
+      // Học xong mọi bài basics trước khi có bài này: Gõ phím và các bài sau "move" vẫn mở.
+      const old = TRACKS.find((t) => t.id === 'basics')!.chapters.flatMap((c) => c.lessonIds).filter((id) => !id.startsWith('basics.files.copy.'));
+      const s = unlockState(TRACKS, LESSONS, os, new Set(old));
+      expect(s.trackUnlocked.has('typing'), os).toBe(true);
+      expect(s.lessonUnlocked.has(`basics.files.copy.${os}`), os).toBe(true);
+      expect(s.lessonUnlocked.has(`basics.files.trash.${os}`), os).toBe(true);
+    }
+  });
+
   it('a brand-new learner only has the very first basics lesson open (no lesson jumps the queue after an optional one)', () => {
     for (const os of ['win', 'mac'] as const) {
       const s = unlockState(TRACKS, LESSONS, os, new Set());

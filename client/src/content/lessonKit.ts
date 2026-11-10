@@ -54,13 +54,15 @@ export function desktopPractice(o: {
   spotlight: Spotlight;
   hint: string;
   steps: string[];
-  /** Thao tác chuẩn bị trước (vd. bỏ sẵn một file vào thùng rác); không tính vào lịch sử hoàn tác. */
+  /** Thao tác chuẩn bị trước (vd. bỏ sẵn một file vào thùng rác); không tính vào lịch sử hoàn tác… */
   setup?: (s0: desktopSim.DesktopState) => desktopSim.DesktopAction[];
+  /** …trừ khi bật cờ này: bài "hoàn tác" cần lỡ tay của `setup` nằm trong lịch sử. */
+  undoableSetup?: boolean;
   solve: (s0: desktopSim.DesktopState) => desktopSim.DesktopAction[];
 }): PracticeStep<desktopSim.DesktopState, desktopSim.DesktopCheck, desktopSim.DesktopAction> {
   const fresh = desktopSim.desktopInitial(o.tree, o.os, o.cwd ?? '/');
   const prepared = (o.setup ? o.setup(fresh) : []).reduce(desktopSim.reduceDesktop, fresh);
-  const initial = { ...prepared, past: [], selected: [], clipboard: null };
+  const initial = { ...prepared, past: o.undoableSetup ? prepared.past : [], selected: [], clipboard: null };
   return {
     kind: 'practice',
     sim: 'desktop',

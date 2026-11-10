@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent as RME } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent as RKE, type MouseEvent as RME } from 'react';
 import { vfs, type OS } from '@office-neko/shared';
-import { placePopover, type PopoverPosition } from '../../help/placement';
+import { menuKeyDown } from '../../components/ribbon';
+import { clampMenuIn, isMenuKey } from '../../lib/clampMenu';
 
 export type MenuAction = 'open' | 'rename' | 'copy' | 'cut' | 'remove' | 'restore' | 'newFolder' | 'paste';
 
@@ -31,25 +32,88 @@ function iconFor(n: vfs.VNode): string {
 }
 
 export function FileArea(p: Props) {
-  const [menu, setMenu] = useState<{ id: string | null; x: number; y: number } | null>(null);
-  const [menuPos, setMenuPos] = useState<PopoverPosition | null>(null);
+  const [menu, setMenu] = useState<{ id: string | null; x: number; y: number; byKeys: boolean } | null>(null);
+  const [menuPos, setMenuPos] = useState<{ left: number; top: number } | null>(null);
+  /** Mục giữ điểm dừng Tab của danh sách (roving tabindex). */
+  const [activeId, setActiveId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  /** Mốc của Shift+click / Shift+mũi tên: mục bấm thường hoặc Ctrl/⌘+click gần nhất. */
+  const anchor = useRef<string | null>(null);
+  const itemEls = useRef(new Map<string, HTMLButtonElement>());
   const inTrash = p.cwd === p.fs.trashId;
   const items = vfs.childrenOf(p.fs, p.cwd);
+  const order = items.map((n) => n.id);
+  const tabStop = activeId && order.includes(activeId) ? activeId : (order.find((id) => p.selected.includes(id)) ?? order[0]);
 
+  const placeMenu = (id: string | null, x: number, y: number, byKeys: boolean, from: HTMLElement) => {
+    if (id && !p.selected.includes(id)) p.onSelect([id]);
+    opener.current = from;
+    setMenu({ id, x, y, byKeys });
+  };
   const openMenu = (e: RME, id: string | null) => {
     e.preventDefault();
     e.stopPropagation();
-    if (id && !p.selected.includes(id)) p.onSelect([id]);
     const rect = containerRef.current?.getBoundingClientRect();
-    setMenu({ id, x: rect ? e.clientX - rect.left : e.clientX, y: rect ? e.clientY - rect.top : e.clientY });
+    placeMenu(id, rect ? e.clientX - rect.left : e.clientX, rect ? e.clientY - rect.top : e.clientY, false, e.currentTarget as HTMLElement);
   };
-  const closeMenu = () => setMenu(null);
+  /** Đóng menu; `refocus` thì trả focus về chỗ đã mở (Esc, Tab, chọn một mục). */
+  const closeMenu = (refocus = false) => {
+    setMenu(null);
+    if (refocus && opener.current?.isConnected) opener.current.focus();
+  };
   const choose = (action: MenuAction) => {
     const id = menu?.id ?? null;
-    closeMenu();
+    closeMenu(true);
     p.onMenu(action, id);
+  };
+
+  /** Chọn mọi mục từ `from` tới `to` theo thứ tự đang hiện. */
+  const selectRange = (from: string, to: string) => {
+    const [a, b] = [order.indexOf(from), order.indexOf(to)].sort((x, y) => x - y);
+    p.onSelect(a! < 0 ? [to] : order.slice(a, b! + 1));
+  };
+  const toggle = (id: string) => p.onSelect(p.selected.includes(id) ? p.selected.filter((x) => x !== id) : [...p.selected, id]);
+  const focusItem = (id: string) => {
+    setActiveId(id);
+    itemEls.current.get(id)?.focus();
+  };
+
+  const onItemKeyDown = (e: RKE<HTMLButtonElement>, id: string) => {
+    if (isMenuKey(e)) {
+      e.preventDefault();
+      e.stopPropagation();
+      const el = e.currentTarget;
+      placeMenu(id, el.offsetLeft + 8, el.offsetTop + el.offsetHeight, true, el);
+      return;
+    }
+    const mod = p.os === 'mac' ? e.metaKey : e.ctrlKey;
+    if (e.key === ' ') {
+      e.preventDefault();
+      if (mod) toggle(id);
+      else p.onSelect([id]);
+      anchor.current = id;
+      return;
+    }
+    // Alt+↑ (Windows) và ⌘+mũi tên (Mac) là phím tắt của cả khung (lên thư mục cha, mở mục), để chúng đi tiếp.
+    if (e.altKey || e.metaKey) return;
+    const i = order.indexOf(id);
+    const to =
+      e.key === 'ArrowRight' || e.key === 'ArrowDown' ? i + 1
+      : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? i - 1
+      : e.key === 'Home' ? 0
+      : e.key === 'End' ? order.length - 1
+      : null;
+    if (to === null) return;
+    e.preventDefault();
+    const target = order[Math.max(0, Math.min(order.length - 1, to))]!;
+    if (e.shiftKey) selectRange(anchor.current ?? id, target);
+    else if (!e.ctrlKey) {
+      p.onSelect([target]);
+      anchor.current = target;
+    }
+    focusItem(target);
   };
 
   const menuItems: [MenuAction, string][] = menu?.id
@@ -78,25 +142,14 @@ export function FileArea(p: Props) {
     };
   }, [menu]);
 
-  // Giữ menu trong vùng nhìn thấy được — chỉ kẹp toạ độ khi đã đo được kích thước
-  // thật của vùng chứa/menu (trong test jsdom không có layout nên bỏ qua, dùng
-  // thẳng toạ độ chuột đã lưu).
+  // Giữ menu trọn trong vùng file (jsdom chưa đo được thì dùng thẳng toạ độ chuột).
   useLayoutEffect(() => {
-    if (!menu) {
-      setMenuPos(null);
-      return;
-    }
-    const container = containerRef.current;
-    const menuEl = menuRef.current;
-    const cw = container?.clientWidth ?? 0;
-    const ch = container?.clientHeight ?? 0;
-    if (!container || !menuEl || cw === 0 || ch === 0) {
-      setMenuPos({ left: menu.x, top: menu.y, above: false });
-      return;
-    }
-    const anchor = { left: menu.x, top: menu.y, right: menu.x, bottom: menu.y, width: 0, height: 0 };
-    setMenuPos(placePopover(anchor, { width: menuEl.offsetWidth, height: menuEl.offsetHeight }, { width: cw, height: ch }, { gap: 0, margin: 4 }));
+    setMenuPos(menu ? clampMenuIn(containerRef.current, menuRef.current, menu.x, menu.y) : null);
   }, [menu, menuItems.length]);
+  // Mở bằng phím thì focus mục bấm được đầu tiên.
+  useEffect(() => {
+    if (menu?.byKeys) menuRef.current?.querySelector<HTMLElement>('[data-menu-item]:not([disabled])')?.focus();
+  }, [menu]);
 
   return (
     <div
@@ -112,11 +165,16 @@ export function FileArea(p: Props) {
       onContextMenu={(e) => openMenu(e, null)}
     >
       {items.length === 0 && <p className="p-4 text-muted">{inTrash ? 'Thùng rác đang trống.' : 'Thư mục này đang trống.'}</p>}
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(7rem,1fr))] gap-2">
+      <ul
+        role="listbox"
+        aria-label="Các file và thư mục"
+        aria-multiselectable="true"
+        className="grid grid-cols-[repeat(auto-fill,minmax(7rem,1fr))] gap-2"
+      >
         {items.map((n) => {
           const selected = p.selected.includes(n.id);
           return (
-            <li key={n.id}>
+            <li key={n.id} role="none">
               {p.renamingId === n.id ? (
                 <div className="flex flex-col items-center gap-1 rounded-xl p-2">
                   <span className="text-4xl" aria-hidden>{iconFor(n)}</span>
@@ -139,16 +197,28 @@ export function FileArea(p: Props) {
                 </div>
               ) : (
                 <button
+                  ref={(el) => {
+                    if (el) itemEls.current.set(n.id, el);
+                    else itemEls.current.delete(n.id);
+                  }}
                   type="button"
+                  role="option"
+                  aria-selected={selected}
+                  tabIndex={n.id === tabStop ? 0 : -1}
                   data-path={vfs.pathOf(p.fs, n.id)}
-                  aria-pressed={selected}
                   draggable
-                  className={`flex w-full flex-col items-center gap-1 rounded-xl p-2 text-sm ${selected ? 'bg-sky/40 ring-2 ring-sky' : 'hover:bg-sky/15'}`}
+                  className={`flex w-full select-none flex-col items-center gap-1 rounded-xl p-2 text-sm ${selected ? 'bg-sky/40 ring-2 ring-sky' : 'hover:bg-sky/15'}`}
+                  onMouseDown={(e) => e.shiftKey && e.preventDefault()}
+                  onFocus={() => setActiveId(n.id)}
+                  onKeyDown={(e) => onItemKeyDown(e, n.id)}
                   onClick={(e) => {
                     e.stopPropagation();
                     closeMenu();
+                    setActiveId(n.id);
                     const add = p.os === 'mac' ? e.metaKey : e.ctrlKey;
-                    if (add) p.onSelect(selected ? p.selected.filter((x) => x !== n.id) : [...p.selected, n.id]);
+                    if (e.shiftKey) return selectRange(anchor.current ?? n.id, n.id);
+                    anchor.current = n.id;
+                    if (add) toggle(n.id);
                     else p.onSelect([n.id]);
                   }}
                   onDoubleClick={() => p.onOpen(n.id)}
@@ -176,14 +246,24 @@ export function FileArea(p: Props) {
         <ul
           ref={menuRef}
           role="menu"
+          aria-label="Menu chuột phải"
           className="card absolute z-20 w-48 p-2"
           style={{ left: menuPos?.left ?? menu.x, top: menuPos?.top ?? menu.y }}
+          onKeyDown={(e) => {
+            // Phím trong menu không lọt ra phím tắt của khung (Enter mở file, Delete xoá…).
+            e.stopPropagation();
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              closeMenu(true);
+            } else menuKeyDown(e, () => closeMenu(true));
+          }}
         >
           {menuItems.map(([action, label]) => (
-            <li key={action}>
+            <li key={action} role="none">
               <button
                 type="button"
                 role="menuitem"
+                data-menu-item
                 disabled={action === 'paste' && !p.canPaste}
                 onClick={() => choose(action)}
                 className="w-full rounded-xl px-3 py-1.5 text-left hover:bg-peach/30 disabled:opacity-40"

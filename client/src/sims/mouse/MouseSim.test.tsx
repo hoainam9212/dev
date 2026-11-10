@@ -52,6 +52,56 @@ describe('MouseSim', () => {
     expect(menu.style.top).toBe('88px');
   });
 
+  it('right: a menu opened near the right/bottom edge stays inside the play area', () => {
+    // jsdom không có bố cục: giả cỡ khung 400×288 và cỡ menu 176×120.
+    const dims = (el: HTMLElement, w: number, h: number) => {
+      Object.defineProperty(el, 'clientWidth', { configurable: true, value: w });
+      Object.defineProperty(el, 'clientHeight', { configurable: true, value: h });
+    };
+    const offset = vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(function (this: HTMLElement) {
+      return this.getAttribute('role') === 'menu' ? 176 : 0;
+    });
+    const offsetH = vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(function (this: HTMLElement) {
+      return this.getAttribute('role') === 'menu' ? 120 : 0;
+    });
+    setup('right', 1, 'win');
+    dims(screen.getByTestId('mouse-area'), 400, 288);
+    fireEvent.contextMenu(screen.getByRole('button', { name: /Thùng/ }), { clientX: 395, clientY: 280 });
+    const menu = screen.getByRole('menu');
+    expect(parseFloat(menu.style.left) + 176).toBeLessThanOrEqual(400);
+    expect(parseFloat(menu.style.top) + 120).toBeLessThanOrEqual(288);
+    offset.mockRestore();
+    offsetH.mockRestore();
+  });
+
+  it('right: Shift+F10 opens the menu from the keyboard; arrows move, Escape closes and returns focus', () => {
+    const { last } = setup('right', 1, 'win');
+    const box = screen.getByRole('button', { name: /Thùng/ });
+    box.focus();
+    fireEvent.keyDown(box, { key: 'F10', shiftKey: true });
+    const items = screen.getAllByRole('menuitem');
+    expect(items[0]).toHaveFocus();
+    fireEvent.keyDown(items[0]!, { key: 'ArrowDown' });
+    expect(items[1]).toHaveFocus();
+    fireEvent.keyDown(items[1]!, { key: 'ArrowUp' });
+    fireEvent.keyDown(items[0]!, { key: 'ArrowUp' });
+    expect(items[2]).toHaveFocus();
+    fireEvent.keyDown(items[2]!, { key: 'Escape' });
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    expect(box).toHaveFocus();
+    fireEvent.keyDown(box, { key: 'ContextMenu' });
+    fireEvent.click(screen.getByRole('menuitem', { name: '🎁 Mở quà' }));
+    expect(last().hitIds).toEqual(['t1']);
+  });
+
+  it('right: Tab out of the menu closes it', () => {
+    setup('right', 1, 'win');
+    const box = screen.getByRole('button', { name: /Thùng/ });
+    fireEvent.keyDown(box, { key: 'F10', shiftKey: true });
+    fireEvent.keyDown(screen.getAllByRole('menuitem')[0]!, { key: 'Tab' });
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+
   it('drag: dropping a fish in the basket is a hit', () => {
     const { last } = setup('drag', 1);
     const fish = screen.getByRole('img', { name: /Cá số 1/ });
