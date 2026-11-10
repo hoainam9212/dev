@@ -1,6 +1,7 @@
 # Giai đoạn 6B (hoàn thiện) – tình trạng
 
-Đang làm trên nhánh `feat/phase6b-polish` (từ master 4c142d4).
+Task 1–5 làm trên nhánh `feat/phase6b-polish` (từ master 4c142d4). Từ 2026-11-10 Task 6 chạy trên `feat/lane-desktop`
+(làn desktop, xem `../2026-11-10-song-song/`).
 
 Cập nhật **một dòng** sau mỗi task, trong cùng commit. Dòng đầu tiên chưa ☑ là task kế tiếp.
 

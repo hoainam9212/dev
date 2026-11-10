@@ -8,8 +8,10 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
 - Phần còn lại của dự án nằm trong `docs/superpowers/plans/ROADMAP.md` (4 plan: 5B PowerPoint → 6A AI → 6B hoàn
-  thiện → dọn tồn đọng). 5B và 6A xong, đã gộp master 2026-10-10; kế tiếp là Task 1 của `2026-10-10-phase6b-polish/`.
-  Nhánh mới: `office-neko/feat/<tên>`, tạo từ `office-neko/master`.
+  thiện → dọn tồn đọng). 5B và 6A xong, đã gộp master 2026-10-10; 6B Task 1–5 xong.
+- **Từ 2026-11-10 phần còn lại chạy song song hai làn**: desktop (`office-neko/feat/lane-desktop`) và cloud
+  (`office-neko/feat/lane-cloud`). Đọc `docs/superpowers/plans/2026-11-10-song-song/00-overview.md`: mỗi làn chỉ sửa
+  file của mình, push sau mỗi commit, đọc STATUS làn kia qua `git show`, chỉ desktop gộp.
 - **Commit bằng email `lehoainam.htd@gmail.com`**, không bao giờ dùng email công ty. Soát `git config user.email` trước commit đầu tiên.
 - Dòng cuối commit message: `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 

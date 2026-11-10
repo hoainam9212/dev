@@ -10,6 +10,10 @@ Bốn plan dưới đây làm nốt toàn bộ dự án theo spec `specs/2026-09
 | 3 | `2026-10-10-phase6b-polish/` | `feat/phase6b-polish` | 6 | Huy hiệu, phụ kiện Mochi, Phòng tự do, kiểm tra đầu vào, `Start Tin Hoc.bat`, PWA |
 | 4 | `2026-10-10-backlog/` | `feat/backlog` | 6 | Dọn tồn đọng từ giai đoạn 2–5A: bài vỏ máy tính, trợ năng, bàn phím ảo, lỗi chấm gõ phím |
 
+> **Từ 2026-11-10: phần còn lại (6B Task 6 + đưa bản online + toàn bộ plan 4) chạy SONG SONG hai làn,
+> desktop và cloud. Đọc `2026-11-10-song-song/00-overview.md` trước tiên.** Luật trong đó thắng luật ở dưới khi hai
+> bên khác nhau (nhánh, gộp, push, thứ tự plan).
+
 Plan sau chỉ bắt đầu khi plan trước đã gộp `master`. Mỗi plan tạo nhánh riêng tại chỗ (không git worktree,
 kẻo preview cổng 5174 hỏng) và kết thúc bằng `git merge --ff-only` vào `master`.
 
@@ -20,7 +24,7 @@ kẻo preview cổng 5174 hỏng) và kết thúc bằng `git merge --ff-only` v
   dòng `STATUS.md`) thì **DỪNG** và nhắn người dùng đúng một câu: *"Task N xong — gõ `/compact` rồi gõ `tiếp`."*
   Claude không tự chạy được `/compact`; người dùng chạy.
 - **Sau compact hoặc ở phiên mới**, đọc theo thứ tự và chỉ chừng này:
-  1. file này (`ROADMAP.md`) để biết đang ở plan nào;
+  1. file này (`ROADMAP.md`) để biết đang ở plan nào (đang song song: đọc tiếp `2026-11-10-song-song/00-overview.md`);
   2. `00-overview.md` của plan đó;
   3. `STATUS.md` của plan đó (dòng đầu tiên chưa ☑ là task kế tiếp);
   4. đúng một file `task-NN-*.md`.
