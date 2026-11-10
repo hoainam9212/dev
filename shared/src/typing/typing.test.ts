@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { accuracy, compareText, countCorrect, recordKey, weakestKeys, wpm } from './index';
+import { accuracy, compareText, composedAccuracy, countCorrect, recordKey, weakestKeys, wpm } from './index';
+import { reduceTyping, typedText, typingInitial } from '../sims/typingSession';
 
 describe('compareText', () => {
   it('marks each target char', () => {
@@ -37,5 +38,40 @@ describe('key stats', () => {
     for (let i = 0; i < 4; i++) s = recordKey(s, 'k', i < 3);
     s = recordKey(s, 'q', false);
     expect(weakestKeys(s, 5, 3)).toEqual(['j', 'k']);
+  });
+});
+
+describe('composedAccuracy (bài có Telex/VNI)', () => {
+  /** Chạy phím qua reducer thật, rồi tính như `typingMetrics` sẽ tính khi nối dây. */
+  const run = (target: string, keys: string[], ime: 'telex' | 'vni' = 'telex') => {
+    let s = typingInitial({ target, ime });
+    keys.forEach((key, i) => (s = reduceTyping(s, { type: 'key', key, at: i * 100 })));
+    return composedAccuracy(target, typedText(s), s.keystrokes - s.correctKeys);
+  };
+
+  it('gõ đúng "đường" bằng Telex (dduwowngf) → 100% dù 9 phím cho 5 chữ', () => {
+    expect(run('đường', [...'dduwowngf'])).toBe(100);
+  });
+
+  it('gõ "dương" thay cho "đường" → 3/5 chữ đúng = 60% (đếm theo chữ đích, không theo phím)', () => {
+    expect(run('đường ', [...'duwowng '])).toBe(Math.round((4 / 6) * 100));
+    expect(composedAccuracy('đường', 'dương', 0)).toBe(60);
+  });
+
+  it('VNI: d9u7o7ng2 → 100%', () => {
+    expect(run('đường', [...'d9u7o7ng2'], 'vni')).toBe(100);
+  });
+
+  it('sửa bằng Backspace khi chữ chưa chốt thì không tính sai', () => {
+    expect(run('đi ', ['d', 'd', 'a', 'Backspace', 'i', ' '])).toBe(100);
+  });
+
+  it('chữ sai đã chốt (đi qua rồi mới sửa) vẫn tính một lỗi', () => {
+    // "da " chốt sai chữ "a", xoá về rồi gõ lại "đi ": 3 chữ đúng + 1 lỗi đã chốt → 75%.
+    expect(run('đi ', ['d', 'a', ' ', 'Backspace', 'Backspace', 'Backspace', 'd', 'd', 'i', ' '])).toBe(75);
+  });
+
+  it('chưa gõ gì → 100%', () => {
+    expect(composedAccuracy('đường', '', 0)).toBe(100);
   });
 });

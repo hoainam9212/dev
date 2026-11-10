@@ -3,6 +3,33 @@ import Dexie, { liveQuery } from 'dexie';
 import { dayKey, type KeyStats } from '@office-neko/shared';
 import { db, type KeyStatRow, type TypingRun } from '../db/db';
 
+/** Dưới mức này coi như chưa luyện (lỡ tay mở bài rồi thoát). */
+const MIN_PRACTICE_MS = 5_000;
+
+/**
+ * Số phút cộng vào mục tiêu hôm nay cho `elapsedMs` gõ **thật** (từ phím đầu tới phím cuối): làm tròn xuống, nhưng đã
+ * luyện từ 5 giây thì tính ít nhất 1 phút (vòng mục tiêu đếm phút nguyên).
+ */
+export function practiceMinutes(elapsedMs: number): number {
+  if (elapsedMs < MIN_PRACTICE_MS) return 0;
+  return Math.max(1, Math.floor(elapsedMs / 60_000));
+}
+
+type TypingTx = { profileId: string; elapsedMs: number; keyStats: KeyStats; now: Date };
+
+async function addPractice(r: TypingTx): Promise<void> {
+  for (const [key, s] of Object.entries(r.keyStats)) {
+    const prev = await db.keyPractice.get([r.profileId, key]);
+    await db.keyPractice.put({ profileId: r.profileId, key, hit: (prev?.hit ?? 0) + s.hit, miss: (prev?.miss ?? 0) + s.miss });
+  }
+  const minutes = practiceMinutes(r.elapsedMs);
+  if (minutes === 0) return;
+  const day = dayKey(r.now);
+  const act = (await db.dailyActivity.get([r.profileId, day])) ?? { profileId: r.profileId, day, minutes: 0, xp: 0 };
+  await db.dailyActivity.put({ ...act, minutes: act.minutes + minutes });
+}
+
+/** Một lượt gõ **xong** (có WPM thật). `elapsedMs`: thời gian gõ thật, không phải độ dài bài. */
 export async function recordTypingRun(r: {
   profileId: string;
   mode: string;
@@ -15,14 +42,18 @@ export async function recordTypingRun(r: {
   const now = r.now ?? new Date();
   await db.transaction('rw', db.typingRuns, db.keyPractice, db.dailyActivity, async () => {
     await db.typingRuns.add({ profileId: r.profileId, at: now.toISOString(), mode: r.mode, wpm: r.wpm, accuracy: r.accuracy });
-    for (const [key, s] of Object.entries(r.keyStats)) {
-      const prev = await db.keyPractice.get([r.profileId, key]);
-      await db.keyPractice.put({ profileId: r.profileId, key, hit: (prev?.hit ?? 0) + s.hit, miss: (prev?.miss ?? 0) + s.miss });
-    }
-    const day = dayKey(now);
-    const act = (await db.dailyActivity.get([r.profileId, day])) ?? { profileId: r.profileId, day, minutes: 0, xp: 0 };
-    await db.dailyActivity.put({ ...act, minutes: act.minutes + Math.max(1, Math.round(r.elapsedMs / 60_000)) });
+    await addPractice({ ...r, now });
   });
+}
+
+/**
+ * Bài bỏ dở: cộng phút đã gõ thật và thống kê phím, **không** ghi `typingRuns` (chưa có WPM thật). Dưới 5 giây thì
+ * không ghi gì.
+ */
+export async function recordTypingPractice(r: { profileId: string; elapsedMs: number; keyStats: KeyStats; now?: Date }): Promise<void> {
+  if (r.elapsedMs < MIN_PRACTICE_MS) return;
+  const now = r.now ?? new Date();
+  await db.transaction('rw', db.keyPractice, db.dailyActivity, () => addPractice({ ...r, now }));
 }
 
 /**
