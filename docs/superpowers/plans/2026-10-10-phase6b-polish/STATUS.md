@@ -16,9 +16,8 @@ Cập nhật **một dòng** sau mỗi task, trong cùng commit. Dòng đầu ti
 
 ## Việc còn treo
 
-- **Đưa bản online lên mạng** (Task 5): chờ người dùng chọn host (Cloudflare Pages / Netlify) và tự đăng nhập. Khi
-  đưa lên: thêm luật SPA (mọi đường dẫn → `index.html`) nếu host cần, kiểm link thật (mở `/sandbox/<id>` trực tiếp,
-  toast, nút cài), ghi link vào README.
+- ~~Đưa bản online lên mạng~~ — XONG 2026-11-10 ở làn desktop (D2): <https://mochi-office.pages.dev>, xem
+  `2026-11-10-song-song/STATUS-desktop.md`.
 
 ## Cố ý KHÔNG làm
 

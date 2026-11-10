@@ -60,6 +60,15 @@ npm run preview    # http://localhost:4174
 App là trang tĩnh (không có server, tiến độ nằm trong trình duyệt), nên chỉ cần đưa `client/dist` lên một dịch vụ host
 tĩnh rồi gửi link cho người học.
 
+**Bản online: <https://mochi-office.pages.dev>** (Cloudflare Pages, project `mochi-office`). Đưa bản mới lên — build
+từ code đã xanh test, máy đã `npx wrangler@4 login`:
+
+```bash
+npm run build -w client && npx wrangler@4 pages deploy client/dist --project-name mochi-office --branch main
+```
+
+Cloudflare tự trả `index.html` cho mọi đường dẫn (vì `dist` không có `404.html`), nên mở thẳng `/lesson/...` được.
+
 - **Cài vào máy:** Cài đặt › **Ứng dụng** › **Cài vào máy** (Chrome/Edge). App có biểu tượng riêng, mở cửa sổ riêng,
   học được khi mất mạng. Điện thoại: menu trình duyệt › Thêm vào màn hình chính.
 - **Bản mới:** đưa bản build mới lên; người học thấy thông báo "Có bản mới…" và bấm **Tải lại** (không tự tải lại giữa bài).
