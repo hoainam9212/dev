@@ -54,6 +54,12 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 7. **Mục "Nhờ làn desktop" của STATUS-cloud:** 1 xong (`baaf407`), 2 xong (`1375d4e`), 3 xong (`ce080c5`),
    **4 xong** (`typingMetrics` dùng `composedAccuracy` khi có `ime`; test `typingSession.test`: Telex đúng 100%,
    "dương " thay "đường " 67%), **7 xong** (`MENU_ITEM_ROLE = 'menuitem'`, cả bộ xanh không phải sửa test nào).
-   5 (`data-cell` cho ô Excel) và 6 (nút "?" ở 390 px) để D4 hoặc task riêng. Chrome thật: Tab tới "Giãn dòng",
+   **5, 6 xong (task riêng sau D4):** nút ô lưới Excel có `data-cell={name}` (test `ExcelSim.test`); nút "?" màn hẹp
+   `h-11 w-11` sát góc `bottom-3 right-3`, từ `sm` trở lên giữ `h-14` (Chrome thật: 47 px ở 390, 60 px ở 1280; spotlight
+   `excel.enter` gợi ý 2 bao đúng ô B2 ở cả hai cỡ). Chrome thật: Tab tới "Giãn dòng",
    Enter mở menu, focus vào `menuitem` "Giãn dòng 1,0", ↓ sang 1,5, Esc đóng và trả focus về nút; `typing.telex2`
    gõ đúng 100%, "hocs" (hóc) thay "hocj" → 92% (12/13 chữ).
+8. **Lỗi có sẵn, file của cloud (`styles/theme.css`):** `.spotlight-ring` chạy `spotlight-pulse` (keyframes đặt
+   `box-shadow`) đè lên `ring-4 ring-rose` của Tailwind (cũng là `box-shadow`), nên vòng hồng đặc không bao giờ hiện,
+   chỉ còn quầng mờ (Chrome thật: alpha 0,03–0,38). Sửa gợi ý: vòng đặc bằng `outline`/`border`, hoặc keyframes giữ
+   `0 0 0 4px` rồi thêm lớp quầng. Cloud đã xong làn; để người dùng quyết ở D5.

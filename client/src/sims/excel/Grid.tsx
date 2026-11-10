@@ -168,6 +168,7 @@ export function Grid({ state, dispatch, gridRef }: Props) {
                   {...(arrow ? {} : cellRole)}
                   tabIndex={-1}
                   data-testid={`cell-${name}`}
+                  data-cell={name}
                   onClick={(e) => dispatch(e.shiftKey
                     ? { type: 'selectRange', range: `${excelSim.refName(sel.from)}:${name}` }
                     : { type: 'select', cell: name })}

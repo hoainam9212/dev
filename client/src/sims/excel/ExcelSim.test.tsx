@@ -14,6 +14,11 @@ describe('ExcelSim', () => {
     expect(screen.getByTestId('colhead-A')).toBeInTheDocument();
   });
 
+  it('ô mang data-cell để spotlight { cell } tìm thẳng', () => {
+    const { container } = show();
+    expect(container.querySelector('[data-cell="B2"]')).toBe(screen.getByTestId('cell-B2'));
+  });
+
   it('bấm vào ô thì Name Box đổi theo', () => {
     show();
     fireEvent.click(screen.getByTestId('cell-B2'));
