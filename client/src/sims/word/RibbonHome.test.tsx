@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { menuItem } from '../../test/menu';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { wordSim } from '@office-neko/shared';
 import { RibbonHome } from './RibbonHome';
@@ -38,7 +39,7 @@ describe('RibbonHome', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={withSelection()} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Giãn dòng' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Giãn dòng 1,5' }));
+    fireEvent.click(menuItem('Giãn dòng 1,5'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setLineHeight', value: '1.5' });
   });
 

@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { menuItem } from '../../test/menu';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { excelSim } from '@office-neko/shared';
 import { ChartView } from './ChartView';
@@ -127,7 +128,7 @@ describe('Thẻ Insert › Charts', () => {
     const s = excelSim.reduceExcel(months(), { type: 'selectRange', range: 'A1:B3' });
     render(<RibbonInsert state={s} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ tròn' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Pie' }));
+    fireEvent.click(menuItem('Pie'));
     expect(dispatch).toHaveBeenCalledWith({
       type: 'insertChart',
       chart: { id: 'chart-0', type: 'pie', range: 'A1:B3', title: 'Chart Title' },
@@ -138,10 +139,10 @@ describe('Thẻ Insert › Charts', () => {
     const dispatch = vi.fn();
     render(<RibbonInsert state={months()} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ cột hoặc thanh' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Clustered Bar' }));
+    fireEvent.click(menuItem('Clustered Bar'));
     expect(dispatch).toHaveBeenLastCalledWith(expect.objectContaining({ chart: expect.objectContaining({ type: 'bar' }) }));
     fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ đường' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Line' }));
+    fireEvent.click(menuItem('Line'));
     expect(dispatch).toHaveBeenLastCalledWith(expect.objectContaining({ chart: expect.objectContaining({ type: 'line' }) }));
   });
 

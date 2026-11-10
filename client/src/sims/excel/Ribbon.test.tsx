@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { menuItem, menuItems } from '../../test/menu';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { excelSim } from '@office-neko/shared';
 import { Ribbon } from './Ribbon';
@@ -26,7 +27,7 @@ describe('Thanh tab ribbon', () => {
     show();
     fireEvent.click(screen.getByRole('tab', { name: 'Formulas' }));
     fireEvent.click(screen.getByRole('button', { name: 'Lookup & Reference' }));
-    expect(screen.getByRole('button', { name: /^VLOOKUP/ })).toBeInTheDocument();
+    expect(menuItem(/^VLOOKUP/)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /in đậm/i })).toBeNull();
   });
 
@@ -34,7 +35,7 @@ describe('Thanh tab ribbon', () => {
     const dispatch = show();
     fireEvent.click(screen.getByRole('tab', { name: 'Formulas' }));
     fireEvent.click(screen.getByRole('button', { name: 'AutoSum' }));
-    fireEvent.click(screen.getByRole('button', { name: /^SUM —/ }));
+    fireEvent.click(menuItem(/^SUM —/));
     expect(dispatch).toHaveBeenCalledWith({ type: 'startEdit', text: '=SUM(' });
   });
 
@@ -45,7 +46,7 @@ describe('Thanh tab ribbon', () => {
     const seen: string[] = [];
     for (const m of MENUS) {
       fireEvent.click(screen.getByRole('button', { name: m }));
-      seen.push(...within(screen.getByRole('menu')).getAllByRole('button').map((b) => b.textContent!.replace(/^Statistical › /, '')));
+      seen.push(...menuItems().map((b) => b.textContent!.replace(/^Statistical › /, '')));
       fireEvent.click(screen.getByRole('button', { name: m }));
     }
     expect(seen).toEqual(ALL); // mỗi hàm đúng một chỗ, không sót, không trùng
@@ -55,7 +56,7 @@ describe('Thanh tab ribbon', () => {
     const dispatch = show();
     fireEvent.click(screen.getByRole('tab', { name: 'Formulas' }));
     fireEvent.click(screen.getByRole('button', { name: 'Math & Trig' }));
-    fireEvent.click(screen.getByRole('button', { name: /^SUMIF/ }));
+    fireEvent.click(menuItem(/^SUMIF/));
     expect(dispatch).toHaveBeenCalledWith({ type: 'startEdit', text: '=SUMIF(' });
   });
 
@@ -80,7 +81,7 @@ describe('Thanh tab ribbon', () => {
     const dispatch = show(excelSim.reduceExcel(state, { type: 'selectRange', range: 'A2:B5' }));
     fireEvent.click(screen.getByRole('tab', { name: 'Insert' }));
     fireEvent.click(screen.getByRole('button', { name: 'Biểu đồ cột hoặc thanh' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Clustered Column' }));
+    fireEvent.click(menuItem('Clustered Column'));
     expect(dispatch).toHaveBeenCalledWith({
       type: 'insertChart',
       chart: { id: 'chart-0', type: 'column', range: 'A2:B5', title: 'Chart Title' },

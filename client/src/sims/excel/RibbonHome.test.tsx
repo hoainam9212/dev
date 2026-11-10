@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { menuItem } from '../../test/menu';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { excelSim } from '@office-neko/shared';
 import { RibbonHome } from './RibbonHome';
@@ -32,11 +33,11 @@ describe('Ribbon Home', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={state} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Fill' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Fill xuống' }));
+    fireEvent.click(menuItem('Fill xuống'));
     fireEvent.click(screen.getByRole('button', { name: 'Fill' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Fill sang phải' }));
+    fireEvent.click(menuItem('Fill sang phải'));
     fireEvent.click(screen.getByRole('button', { name: 'Xoá' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Xoá nội dung' }));
+    fireEvent.click(menuItem('Xoá nội dung'));
     expect(dispatch.mock.calls.map((c) => c[0].type)).toEqual(['fillDown', 'fillRight', 'clear']);
   });
 
@@ -44,9 +45,9 @@ describe('Ribbon Home', () => {
     const dispatch = vi.fn();
     render(<RibbonHome state={state} dispatch={dispatch} />);
     fireEvent.click(screen.getByRole('button', { name: 'Viền ô' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Kẻ mọi viền' }));
+    fireEvent.click(menuItem('Kẻ mọi viền'));
     fireEvent.click(screen.getByRole('button', { name: 'Viền ô' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Bỏ viền' }));
+    fireEvent.click(menuItem('Bỏ viền'));
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { border: 'all' } });
     expect(dispatch).toHaveBeenCalledWith({ type: 'setFormat', fmt: { border: 'none' } });
   });

@@ -12,7 +12,8 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 
 ## Đã gộp từ lane-cloud
 
-(chưa)
+- 2026-11-10: C1 + C2 từ `claude/vigilant-galileo-8wdiu6` (merge `2302f2d`), sạch, chỉ file của cloud; shared 551 /
+  client 511 xanh.
 
 ## Nhờ làn cloud
 
@@ -24,3 +25,8 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
    Nhờ vậy nhánh cloud mới nhất luôn chứa mọi task cloud trước đó, và desktop chỉ cần gộp nhánh đó.
 2. Ba mục "Nhờ làn desktop" của C1 (truy vấn `menuitem` trong test ribbon, phím trong lưới Excel, vùng chọn bằng phím
    trong Word) đã nhận; desktop xếp vào sau D3 (ghi ở bảng trên khi làm).
+3. **Mục 1 (test ribbon) XONG — cloud đặt được `MENU_ITEM_ROLE = 'menuitem'`.** 10 test Excel/Word giờ tìm mục menu
+   bằng `menuItem()`/`menuItems()` trong `client/src/test/menu.ts` (`within(getByRole('menu')).getByLabelText`). Desktop
+   đã thử bật `'menuitem'` tại chỗ (không commit): mọi test của desktop xanh. Còn **11 test đỏ trong file của cloud**,
+   cloud sửa cùng lúc bật: `components/ribbon.test.tsx` (SplitButton, 1), `ppt/RibbonHome.test.tsx` (8),
+   `ppt/RibbonInsert.test.tsx` (2). Dùng lại `menuItem` từ `../../test/menu` được.
