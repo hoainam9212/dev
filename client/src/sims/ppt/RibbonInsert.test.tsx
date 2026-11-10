@@ -56,6 +56,23 @@ describe('RibbonInsert', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'addShape', shape: 'star', x: 400, y: 216, w: 160, h: 160 });
   });
 
+  it('mỗi loại hình có cỡ mặc định riêng: chữ nhật nằm ngang, không vuông', async () => {
+    const { dispatch } = setup();
+    const sizes: Record<string, [number, number]> = { 'Hình chữ nhật': [240, 128], 'Hình tròn': [160, 160], 'Mũi tên': [200, 96], 'Ngôi sao': [160, 160] };
+    for (const [vi, [w, h]] of Object.entries(sizes)) {
+      await userEvent.click(screen.getByRole('button', { name: 'Hình khối' }));
+      await userEvent.click(screen.getByRole('button', { name: vi }));
+      const a = dispatch.mock.calls.at(-1)?.[0];
+      expect(a, vi).toMatchObject({ w, h });
+      // Cùng tâm với chỗ đặt cũ, nằm trọn trong slide.
+      expect(a.x + a.w / 2).toBe(480);
+      expect(a.y + a.h / 2).toBe(296);
+      expect(a.x + a.w).toBeLessThanOrEqual(pptSim.SLIDE_W);
+      expect(a.y + a.h).toBeLessThanOrEqual(pptSim.SLIDE_H);
+    }
+    expect(dispatch.mock.calls[0]?.[0].w).toBeGreaterThan(dispatch.mock.calls[0]?.[0].h);
+  });
+
   it('Pictures mở hộp thoại chèn ảnh', async () => {
     const { dispatch } = setup();
     await userEvent.click(screen.getByRole('button', { name: 'Chèn ảnh' }));

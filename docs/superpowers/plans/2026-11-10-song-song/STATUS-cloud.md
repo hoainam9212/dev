@@ -11,7 +11,9 @@ cho `lane-cloud`: `git fetch github && git merge --no-ff github/claude/vigilant-
 | C1 trợ năng (trừ FileArea/MouseSim) | ☑ | (commit này) | menu ribbon + menu slide bằng phím, `useDialogFocus`, listbox slide + Alt+↑/↓, Enter/F2 gõ chữ, aria-live, vòng focus. `ppt.textbox` học trọn bằng phím trên Chromium. Mục menu ribbon tạm giữ vai trò `button` (xem Nhờ làn desktop 1) |
 | C2 bàn phím ảo theo HĐH + bàn tay | ☑ | (commit này) | `keyboardRows(os)` đủ 5 hàng (Win `Ctrl ⊞ Alt`, Mac `⌃ ⌥ ⌘`), phím co theo đơn vị bề rộng; `fingersForChar` dùng chung; `Hands` SVG tô ngón (+ út tay kia khi Shift). `typing.home1` cả hai HĐH, 1280 + 390px không tràn (đã xem ảnh). `KeyHeatmap` (desktop) vẫn dùng `KEY_ROWS` cũ, không đổi |
 | C3 Telex/VNI, bài tốc độ bỏ dở, spotlight | ☑ | (commit này) | (1) `composedAccuracy` trong `shared/src/typing` (đếm theo chữ đã ghép), **chưa nối dây**: `typingSession.ts` của desktop (Nhờ làn desktop 4). (2) phút = thời gian gõ thật (phím đầu → phím cuối), làm tròn xuống, ≥ 5 s thì ít nhất 1 phút; bỏ dở chỉ cộng phút, không ghi `typingRun`. (3) spotlight theo resize/scroll/ResizeObserver/MutationObserver + rAF; sửa luôn spotlight ô Excel không tìm thấy ô. Chromium: gõ 10 s rồi rời bài → vòng 0→1 phút; khung B5 bám đúng khi cuộn/đổi cỡ |
-| C4 lỗi PowerPoint mục 1–2 | ☐ | | |
+| C4 lỗi PowerPoint mục 1–2 | ☑ | (commit này) | (2) cỡ hình mặc định theo loại, cùng tâm (480, 296): `rect` 240×128, `ellipse` 160×160, `arrow` 200×96, `star` 160×160. (1) **không tái hiện được** trên mã hiện tại: Chromium `ppt.shape` 390/768/1280, khung slide luôn kết thúc trên nút Kiểm tra (390: đáy khung 661, nút 721); thêm test bố cục trong `PracticeView.test` để giữ. Mục 3 "Kết thúc" là việc desktop |
+
+**Làn cloud xong** (C1–C4 ☑), desktop gộp được.
 
 ## Nhờ làn desktop
 
@@ -34,6 +36,8 @@ cho `lane-cloud`: `git fetch github && git merge --no-ff github/claude/vigilant-
 5. **Lưới Excel**: ô không có `data-cell`, nên spotlight `{ cell }` (gợi ý bậc 2) trước giờ không hiện. Cloud đã cho
    `spotlightSelector` tìm cả `[data-testid="cell-B5"]`, chạy được rồi; nếu desktop thêm `data-cell={name}` vào nút ô thì
    gọn hơn (không bắt buộc).
+6. **Nút "?" (`help/HelpButton.tsx`, `fixed bottom-5 right-5`)**: ở 390px khi cuộn khung slide xuống đáy màn hình,
+   nút che góc dưới phải của slide (không che nút Kiểm tra). Không bắt buộc; nếu muốn thì thu nhỏ ở màn hẹp.
 
 ## Cần desktop soi ảnh
 
