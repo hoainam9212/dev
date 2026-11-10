@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 import { excelSim, formula } from '@office-neko/shared';
 import { ChevronDown12Regular } from '@fluentui/react-icons';
 import { FilterMenu } from './FilterMenu';
@@ -70,9 +70,16 @@ export function Grid({ state, dispatch, gridRef }: Props) {
         e.preventDefault();
         // Đang sửa thì ghi lại rồi xuống; không sửa thì chỉ xuống một ô.
         return dispatch(state.editing !== null ? { type: 'commitEdit', move: 'down' } : { type: 'moveSel', dRow: 1, dCol: 0 });
-      case 'Tab':
+      case 'Home':
+        // Home về cột A của hàng đang đứng, Ctrl/⌘+Home về A1 — như Excel.
         e.preventDefault();
-        return dispatch(state.editing !== null ? { type: 'commitEdit', move: 'right' } : { type: 'moveSel', dRow: 0, dCol: 1 });
+        return dispatch({ type: 'select', cell: e.ctrlKey || e.metaKey ? 'A1' : `A${sel.from.row + 1}` });
+      case 'Tab':
+        // Đang sửa thì ghi lại rồi sang phải (Excel). Không sửa thì để Tab đưa con trỏ ra khỏi lưới,
+        // kẻo người dùng bàn phím bị kẹt trong lưới. Gõ xong một ô rồi Tab vẫn sang phải (ở thanh công thức).
+        if (state.editing === null) return;
+        e.preventDefault();
+        return dispatch({ type: 'commitEdit', move: 'right' });
       case 'Escape':
         e.preventDefault();
         return dispatch({ type: 'cancelEdit' });
@@ -92,21 +99,31 @@ export function Grid({ state, dispatch, gridRef }: Props) {
     }
   }
 
+  // Con trỏ ở khung lưới, ô đang chọn báo cho trình đọc màn hình qua aria-activedescendant.
+  const uid = useId();
+  const cellId = (name: string) => `${uid}-${name}`;
+
   return (
     <div
       ref={gridRef}
       data-testid="grid"
+      role="grid"
+      aria-label="Bảng tính"
+      aria-multiselectable="true"
+      aria-activedescendant={cellId(excelSim.refName(sel.from))}
       tabIndex={0}
       onKeyDown={onKeyDown}
       className="overflow-auto rounded-xl border border-black/10 bg-white outline-none focus:ring-2 focus:ring-excel-ink/40"
     >
       <div className="inline-block min-w-full">
-        <div className="flex sticky top-0 z-10">
-          <div className="gridhead shrink-0" style={{ width: 44, height: ROW_H }} />
+        <div role="row" className="flex sticky top-0 z-10">
+          <div aria-hidden="true" className="gridhead shrink-0" style={{ width: 44, height: ROW_H }} />
           {cols.map((col) => (
             <button
               key={col}
               type="button"
+              role="columnheader"
+              tabIndex={-1}
               data-testid={`colhead-${formula.colToName(col)}`}
               onClick={() => dispatch({ type: 'selectRange', range: `${formula.colToName(col)}1:${formula.colToName(col)}${formula.MAX_ROWS}` })}
               className="gridhead shrink-0"
@@ -117,9 +134,11 @@ export function Grid({ state, dispatch, gridRef }: Props) {
           ))}
         </div>
         {rows.map((row) => (
-          <div key={row} className="flex">
+          <div key={row} role="row" className="flex">
             <button
               type="button"
+              role="rowheader"
+              tabIndex={-1}
               data-testid={`rowhead-${row + 1}`}
               onClick={() => dispatch({ type: 'selectRange', range: `A${row + 1}:${formula.colToName(formula.MAX_COLS - 1)}${row + 1}` })}
               className="gridhead shrink-0"
@@ -134,10 +153,20 @@ export function Grid({ state, dispatch, gridRef }: Props) {
               const align = fmt.align ?? formula.defaultAlign(value);
               const anchored = sel.from.row === row && sel.from.col === col;
               const arrow = hasArrow(row, col);
+              const shown = formula.displayValue(value, fmt);
+              // Ô có mũi tên lọc thì khung bọc ngoài mới là gridcell (nút ô + nút ▾ nằm trong), còn lại chính nút ô.
+              const cellRole = {
+                id: cellId(name),
+                role: 'gridcell',
+                'aria-selected': inSel(row, col),
+                'aria-label': `${name} ${shown}`.trim(),
+              } as const;
               const cell = (
                 <button
                   key={col}
                   type="button"
+                  {...(arrow ? {} : cellRole)}
+                  tabIndex={-1}
                   data-testid={`cell-${name}`}
                   onClick={(e) => dispatch(e.shiftKey
                     ? { type: 'selectRange', range: `${excelSim.refName(sel.from)}:${name}` }
@@ -158,7 +187,7 @@ export function Grid({ state, dispatch, gridRef }: Props) {
                     backgroundColor: fmt.fill,
                   }}
                 >
-                  {formula.displayValue(value, fmt)}
+                  {shown}
                 </button>
               );
               if (!arrow) return cell;
@@ -166,7 +195,7 @@ export function Grid({ state, dispatch, gridRef }: Props) {
               const colName = formula.colToName(col);
               const label = `Mở menu lọc cột ${colName}`;
               return (
-                <div key={col} className="relative shrink-0">
+                <div key={col} {...cellRole} className="relative shrink-0">
                   {cell}
                   <button
                     type="button"

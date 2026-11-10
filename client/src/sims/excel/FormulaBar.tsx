@@ -17,7 +17,8 @@ export function FormulaBar({ state, dispatch, inputRef }: Props) {
     if (e.key === 'Enter') {
       e.preventDefault();
       dispatch({ type: 'commitEdit', move: 'down' });
-    } else if (e.key === 'Tab') {
+    } else if (e.key === 'Tab' && state.editing !== null) {
+      // Chưa sửa gì thì để Tab đi tiếp ra lưới; chặn ở đây là bẫy người dùng bàn phím ở thanh công thức.
       e.preventDefault();
       dispatch({ type: 'commitEdit', move: 'right' });
     } else if (e.key === 'Escape') {

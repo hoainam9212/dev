@@ -23,16 +23,20 @@ export function ExcelSim({ initial, onState }: SimProps<excelSim.WorkbookState>)
   /**
    * Gõ một ký tự vào lưới là bắt đầu sửa ô — nhưng con trỏ vẫn ở lưới, nên các
    * ký tự sau rơi vào hư không. Đưa con trỏ sang thanh công thức, và trả về lưới
-   * khi sửa xong, để bàn phím không bao giờ "mất chỗ".
+   * khi sửa xong, để bàn phím không bao giờ "mất chỗ". Lúc mới mở thì KHÔNG giật
+   * con trỏ vào lưới: người dùng bàn phím phải Tab tới, và lần Tab đó không được
+   * rơi vào lưới mà dời ô chọn.
    */
+  const wasEditing = useRef(editing);
   useEffect(() => {
     if (editing) {
       bar.current?.focus();
       const end = bar.current?.value.length ?? 0;
       bar.current?.setSelectionRange(end, end);
-    } else {
+    } else if (wasEditing.current) {
       grid.current?.focus();
     }
+    wasEditing.current = editing;
   }, [editing]);
 
   return (

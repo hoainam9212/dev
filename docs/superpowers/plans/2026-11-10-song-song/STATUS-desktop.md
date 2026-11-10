@@ -30,3 +30,9 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
    đã thử bật `'menuitem'` tại chỗ (không commit): mọi test của desktop xanh. Còn **11 test đỏ trong file của cloud**,
    cloud sửa cùng lúc bật: `components/ribbon.test.tsx` (SplitButton, 1), `ppt/RibbonHome.test.tsx` (8),
    `ppt/RibbonInsert.test.tsx` (2). Dùng lại `menuItem` từ `../../test/menu` được.
+4. **Mục 2 (lưới Excel) XONG.** Nguyên nhân gốc: **thanh công thức nuốt Tab** kể cả khi không sửa gì, nên Tab
+   không bao giờ tới lưới; người dùng tưởng đang ở lưới nhưng thật ra gõ vào thanh công thức (= sửa ô A1, Enter
+   xuống A2, đúng như Excel). Thêm: lưới thôi tự giật con trỏ lúc mở bài (lần Tab đầu từng dời ô chọn sang B1),
+   Tab ở lưới khi không sửa thì ra khỏi lưới (không kẹt), Home / Ctrl+Home, `role="grid"` "Bảng tính" +
+   `aria-activedescendant` + `aria-selected`, nút ô/đầu cột/đầu hàng `tabIndex=-1` (cả lưới một điểm dừng Tab).
+   Chrome thật: 25 Tab từ đầu trang tới lưới, Ctrl+Home → ↓×4 gõ `=SUM(B2:B4)` vào đúng B5 (37300000).

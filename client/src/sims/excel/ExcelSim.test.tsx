@@ -108,3 +108,75 @@ describe('ExcelSim', () => {
     expect(screen.getByTestId('cell-A1').className).toContain('text-left');
   });
 });
+
+describe('ExcelSim lưới bằng bàn phím', () => {
+  const grid = () => screen.getByRole('grid', { name: 'Bảng tính' });
+
+  it('lưới là role grid có tên, ô đang chọn là activedescendant và aria-selected', () => {
+    show();
+    fireEvent.click(screen.getByTestId('cell-B2'));
+    const active = document.getElementById(grid().getAttribute('aria-activedescendant')!);
+    expect(active).toHaveAttribute('role', 'gridcell');
+    expect(active).toHaveAccessibleName(/B2/);
+    expect(active).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByTestId('cell-A1')).toHaveAttribute('aria-selected', 'false');
+  });
+
+  it('cả lưới là MỘT điểm dừng Tab: nút ô, đầu cột, đầu hàng không nhận Tab', () => {
+    show();
+    for (const id of ['cell-A1', 'colhead-A', 'rowhead-1']) {
+      expect(screen.getByTestId(id)).toHaveAttribute('tabindex', '-1');
+    }
+  });
+
+  it('mở bài không tự giật con trỏ vào lưới', () => {
+    show();
+    expect(document.activeElement).not.toBe(grid());
+  });
+
+  it('Ctrl+Home về A1, Home về cột A của hàng đang đứng', () => {
+    show();
+    fireEvent.click(screen.getByTestId('cell-C3'));
+    fireEvent.keyDown(grid(), { key: 'Home' });
+    expect(screen.getByTestId('name-box')).toHaveTextContent('A3');
+    fireEvent.click(screen.getByTestId('cell-C3'));
+    fireEvent.keyDown(grid(), { key: 'Home', ctrlKey: true });
+    expect(screen.getByTestId('name-box')).toHaveTextContent('A1');
+  });
+
+  it('Tab khi không sửa ô thì để trình duyệt đưa con trỏ ra khỏi lưới (không kẹt), ô chọn đứng yên', () => {
+    show();
+    fireEvent.click(screen.getByTestId('cell-A1'));
+    const notCancelled = fireEvent.keyDown(grid(), { key: 'Tab' });
+    expect(notCancelled).toBe(true);
+    expect(screen.getByTestId('name-box')).toHaveTextContent('A1');
+  });
+
+  it('Tab ở thanh công thức khi chưa sửa gì thì đi tiếp ra lưới, không kẹt lại', () => {
+    show();
+    const notCancelled = fireEvent.keyDown(screen.getByTestId('formula-input'), { key: 'Tab' });
+    expect(notCancelled).toBe(true);
+  });
+
+  it('Tab ở thanh công thức khi đang sửa thì ghi ô rồi sang phải, như Excel', () => {
+    show();
+    fireEvent.click(screen.getByTestId('cell-C1'));
+    fireEvent.keyDown(grid(), { key: '9' });
+    fireEvent.keyDown(screen.getByTestId('formula-input'), { key: 'Tab' });
+    expect(screen.getByTestId('cell-C1')).toHaveTextContent('9');
+    expect(screen.getByTestId('name-box')).toHaveTextContent('D1');
+  });
+
+  it('Ctrl+Home, →, ↓×4 rồi gõ =SUM(B2:B4) Enter thì công thức vào B5', () => {
+    const s = excelSim.excelInitial({ cells: { B1: 'Doanh thu', B2: '1', B3: '2', B4: '3' } });
+    show(s);
+    fireEvent.click(screen.getByTestId('cell-D7'));
+    fireEvent.keyDown(grid(), { key: 'Home', ctrlKey: true });
+    fireEvent.keyDown(grid(), { key: 'ArrowRight' });
+    for (let i = 0; i < 4; i++) fireEvent.keyDown(grid(), { key: 'ArrowDown' });
+    fireEvent.keyDown(grid(), { key: '=' });
+    fireEvent.change(screen.getByTestId('formula-input'), { target: { value: '=SUM(B2:B4)' } });
+    fireEvent.keyDown(screen.getByTestId('formula-input'), { key: 'Enter' });
+    expect(screen.getByTestId('cell-B5')).toHaveTextContent('6');
+  });
+});
