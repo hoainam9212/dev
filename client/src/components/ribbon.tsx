@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode, type RefObject } from 'react';
 import { nativeTitle } from '../help/nativeTitle';
 
 /**
@@ -39,6 +39,8 @@ export function ToolButton({
   large,
   pressed,
   disabled,
+  menu,
+  onKeyDown,
   onClick,
   children,
 }: {
@@ -51,6 +53,9 @@ export function ToolButton({
   large?: boolean;
   pressed?: boolean;
   disabled?: boolean;
+  /** Nút mở menu: `aria-haspopup` + `aria-expanded` (= `pressed`) thay cho `aria-pressed`. */
+  menu?: boolean;
+  onKeyDown?: (e: KeyboardEvent<HTMLButtonElement>) => void;
   onClick: () => void;
   children: ReactNode;
 }) {
@@ -65,12 +70,15 @@ export function ToolButton({
       aria-label={label}
       title={nativeTitle(helpId, tooltip ?? label)}
       data-help-id={helpId}
-      aria-pressed={pressed ?? false}
+      aria-pressed={menu ? undefined : (pressed ?? false)}
+      aria-haspopup={menu ? 'menu' : undefined}
+      aria-expanded={menu ? (pressed ?? false) : undefined}
       disabled={disabled}
       // Giữ vùng chọn khi bấm nút, nếu không định dạng không biết áp vào đâu.
       onMouseDown={(e) => e.preventDefault()}
+      onKeyDown={onKeyDown}
       onClick={onClick}
-      className={`grid place-items-center text-sm transition disabled:cursor-not-allowed disabled:opacity-40 ${look}`}
+      className={`ribbon-btn grid place-items-center text-sm transition disabled:cursor-not-allowed disabled:opacity-40 ${look}`}
     >
       {children}
     </button>
@@ -144,11 +152,11 @@ export function MenuButton({
   items: MenuItem[];
   onPick: (value: string) => void;
 }) {
-  const { open, setOpen, root } = useDropdown();
+  const { open, toggle, root, viaKey, onTriggerKey, close } = useDropdown();
 
   return (
     <div ref={root} className="relative">
-      <ToolButton helpId={helpId} label={label} variant={variant} large={large} pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+      <ToolButton helpId={helpId} label={label} variant={variant} large={large} pressed={open} disabled={disabled} menu onKeyDown={onTriggerKey} onClick={toggle}>
         {large ? (
           button
         ) : (
@@ -158,43 +166,122 @@ export function MenuButton({
           </span>
         )}
       </ToolButton>
-      {open ? <DropdownMenu label={label} items={items} onPick={onPick} close={() => setOpen(false)} /> : null}
+      {open ? <DropdownMenu label={label} items={items} onPick={onPick} close={close} autoFocus={viaKey.current} /> : null}
     </div>
   );
 }
 
 type MenuItem = { value: string; label: string; content: ReactNode };
 
-/** Mở/đóng một bảng thả xuống: đóng khi bấm ra ngoài `root` hoặc nhấn Esc. */
+/**
+ * Mở/đóng một bảng thả xuống: đóng khi bấm ra ngoài `root` hoặc nhấn Esc. Mở bằng phím
+ * (Enter/Space/↓ trên nút) thì `viaKey` bật để menu focus mục đầu; mở bằng chuột thì không
+ * focus, kẻo cướp vùng chọn trong trang Word.
+ */
 function useDropdown() {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
+  const viaKey = useRef(false);
+
+  /** Đóng; nếu focus đang ở trong menu thì trả focus về nút đã mở (Esc, chọn mục, Tab). */
+  const close = useCallback(() => {
+    const inside = root.current?.contains(document.activeElement) ?? false;
+    setOpen(false);
+    viaKey.current = false;
+    if (inside) root.current?.querySelector<HTMLElement>('[aria-haspopup="menu"]')?.focus();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
     const away = (e: PointerEvent) => {
-      if (!root.current?.contains(e.target as Node)) setOpen(false);
+      if (root.current?.contains(e.target as Node)) return;
+      setOpen(false);
+      viaKey.current = false;
     };
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    const esc = (e: globalThis.KeyboardEvent) => e.key === 'Escape' && close();
     document.addEventListener('pointerdown', away);
     document.addEventListener('keydown', esc);
     return () => {
       document.removeEventListener('pointerdown', away);
       document.removeEventListener('keydown', esc);
     };
-  }, [open]);
+  }, [open, close]);
 
-  return { open, setOpen, root };
+  const onTriggerKey = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') viaKey.current = !open;
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      viaKey.current = true;
+      setOpen(true);
+    }
+  };
+  const toggle = () => {
+    setOpen((o) => !o);
+  };
+
+  return { open, toggle, root, viaKey, onTriggerKey, close };
 }
 
+/**
+ * Phím trong một menu (`role="menu"`, mục `role="menuitem"`): ↑/↓ đi vòng, Home/End về đầu/cuối,
+ * Tab thì đóng (focus về nút mở rồi để trình duyệt Tab tiếp như thường). Esc do chỗ mở menu lo.
+ * Dùng chung cho menu ribbon và menu chuột phải của cột slide.
+ */
+export function menuKeyDown(e: KeyboardEvent<HTMLElement>, close: () => void) {
+  const items = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[data-menu-item]:not([disabled])'));
+  const at = items.indexOf(document.activeElement as HTMLElement);
+  const go = (i: number) => {
+    e.preventDefault();
+    items[(i + items.length) % items.length]?.focus();
+  };
+  if (e.key === 'ArrowDown') go(at + 1);
+  else if (e.key === 'ArrowUp') go(at < 0 ? -1 : at - 1);
+  else if (e.key === 'Home') go(0);
+  else if (e.key === 'End') go(-1);
+  else if (e.key === 'Tab') close();
+}
+
+/** Mở bằng phím thì focus mục bấm được đầu tiên của menu. */
+export function useFocusFirstItem(menu: RefObject<HTMLElement | null>, enabled: boolean) {
+  useEffect(() => {
+    if (enabled) menu.current?.querySelector<HTMLElement>('[data-menu-item]:not([disabled])')?.focus();
+    // Chỉ lúc menu vừa mở.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
+/**
+ * Vai trò của mục trong bảng thả xuống ribbon. Đúng chuẩn phải là `menuitem`; tạm để `undefined`
+ * (giữ vai trò `button`) vì test Excel/Word của làn desktop còn tìm mục menu bằng `button`.
+ * Desktop đổi các test đó xong thì đặt `'menuitem'` (xem STATUS-cloud › Nhờ làn desktop).
+ */
+const MENU_ITEM_ROLE: 'menuitem' | undefined = undefined;
+
 /** Bảng thả xuống dùng chung của `MenuButton` và `SplitButton`. */
-function DropdownMenu({ label, items, onPick, close }: { label: string; items: MenuItem[]; onPick: (value: string) => void; close: () => void }) {
+function DropdownMenu({
+  label,
+  items,
+  onPick,
+  close,
+  autoFocus,
+}: {
+  label: string;
+  items: MenuItem[];
+  onPick: (value: string) => void;
+  close: () => void;
+  autoFocus: boolean;
+}) {
+  const box = useRef<HTMLDivElement>(null);
+  useFocusFirstItem(box, autoFocus);
   return (
-    <div role="menu" aria-label={label} className="ribbon-menu">
+    <div ref={box} role="menu" aria-label={label} className="ribbon-menu" onKeyDown={(e) => menuKeyDown(e, close)}>
       {items.map((it) => (
         <button
           key={it.value}
           type="button"
+          role={MENU_ITEM_ROLE}
+          data-menu-item
+          tabIndex={-1}
           aria-label={it.label}
           title={it.label}
           onMouseDown={(e) => e.preventDefault()}
@@ -236,7 +323,7 @@ export function SplitButton({
   items: MenuItem[];
   onPick: (value: string) => void;
 }) {
-  const { open, setOpen, root } = useDropdown();
+  const { open, toggle, root, viaKey, onTriggerKey, close } = useDropdown();
 
   return (
     // Nửa trên chỉ có icon nên thấp hơn nút lớn thường (min-h-16): hai nửa cộng lại vẫn vừa
@@ -245,10 +332,10 @@ export function SplitButton({
       <ToolButton helpId={helpId} label={label} variant="office" large disabled={disabled} onClick={onClick}>
         {icon}
       </ToolButton>
-      <ToolButton helpId={helpId} label={menuLabel} variant="office" pressed={open} disabled={disabled} onClick={() => setOpen((o) => !o)}>
+      <ToolButton helpId={helpId} label={menuLabel} variant="office" pressed={open} disabled={disabled} menu onKeyDown={onTriggerKey} onClick={toggle}>
         <span className="whitespace-nowrap text-[0.72rem]">{text} ▾</span>
       </ToolButton>
-      {open ? <DropdownMenu label={menuLabel} items={items} onPick={onPick} close={() => setOpen(false)} /> : null}
+      {open ? <DropdownMenu label={menuLabel} items={items} onPick={onPick} close={close} autoFocus={viaKey.current} /> : null}
     </div>
   );
 }
@@ -290,7 +377,7 @@ export function RibbonTabs<T extends string>({
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => onPick(name)}
             style={open ? { color: accent, borderColor: accent } : ctx ? { color: accent } : undefined}
-            className={`-mb-px border-b-[3px] px-3 py-1 text-sm transition ${
+            className={`ribbon-btn -mb-px border-b-[3px] px-3 py-1 text-sm transition ${
               open ? 'font-semibold' : `border-transparent hover:bg-neutral-100 ${ctx ? '' : 'text-neutral-700'}`
             }`}
           >

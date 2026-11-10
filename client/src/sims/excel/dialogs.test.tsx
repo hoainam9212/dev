@@ -59,3 +59,11 @@ describe('Hộp thoại Lưu / In', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: 'openDialog', dialog: null });
   });
 });
+
+describe('Hộp thoại – trợ năng', () => {
+  it('Sort mở thì focus ô Sort by, hộp thoại có nhãn', () => {
+    render(<ExcelDialogs state={open('sort')} dispatch={() => {}} now={0} />);
+    expect(screen.getByRole('dialog', { name: 'Sort' })).toHaveAttribute('aria-labelledby');
+    expect(screen.getByLabelText('Sắp theo cột')).toHaveFocus();
+  });
+});

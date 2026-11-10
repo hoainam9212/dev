@@ -13,8 +13,8 @@ const setup = (initial = pptSim.pptInitial({ slides: ['title', 'titleContent'] }
 describe('PptSim', () => {
   it('vẽ đúng số thumbnail, đánh số từ 1', () => {
     setup();
-    expect(screen.getByRole('button', { name: /Slide 1/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Slide 2/ })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Slide 1/ })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Slide 2/ })).toBeInTheDocument();
   });
 
   it('khung slide giữ đúng tỉ lệ 16:9 của khổ 960x540', () => {
@@ -26,7 +26,7 @@ describe('PptSim', () => {
 
   it('bấm thumbnail thì mở slide đó và báo state ra ngoài', async () => {
     const { onState } = setup();
-    await userEvent.click(screen.getByRole('button', { name: /Slide 2/ }));
+    await userEvent.click(screen.getByRole('option', { name: /Slide 2/ }));
     expect(onState).toHaveBeenLastCalledWith(expect.objectContaining({ active: 1 }));
   });
 
@@ -49,7 +49,7 @@ describe('PptSim', () => {
     const box = screen.getByRole('textbox', { name: 'Nội dung đối tượng' });
     fireEvent.keyDown(box, { key: 'Delete' });
     fireEvent.keyDown(box, { key: 'Backspace' });
-    expect(screen.getAllByRole('button', { name: /^Slide \d+$/ })).toHaveLength(2);
+    expect(screen.getAllByRole('option', { name: /^Slide \d+$/ })).toHaveLength(2);
     expect(onState).toHaveBeenLastCalledWith(expect.objectContaining({ slides: expect.any(Array) }));
     expect(onState.mock.lastCall?.[0].slides).toHaveLength(2);
   });

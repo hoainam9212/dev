@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { activeTab, RibbonPanel, RibbonTabs, SplitButton } from './ribbon';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { activeTab, MenuButton, RibbonPanel, RibbonTabs, SplitButton } from './ribbon';
 
 describe('SplitButton', () => {
   const show = (onClick = vi.fn(), onPick = vi.fn(), disabled = false) => {
@@ -17,7 +18,7 @@ describe('SplitButton', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Mục A' }));
     expect(onPick).toHaveBeenCalledWith('a');
     expect(onClick).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('button', { name: 'Mục A' })).toBeNull();
+    expect(screen.queryByRole('menu')).toBeNull();
   });
 
   it('menu đóng khi bấm ra ngoài hoặc Esc, như MenuButton', () => {
@@ -73,5 +74,85 @@ describe('RibbonPanel', () => {
     // 108px: nút lớn có nhãn hai dòng (Lookup & Reference ▾) cao hơn 96px; mọi thẻ phải bằng nhau.
     render(<RibbonPanel><span>nội dung</span></RibbonPanel>);
     expect(screen.getByText('nội dung').parentElement).toHaveClass('min-h-[6.75rem]');
+  });
+});
+
+describe('Menu thả xuống – bàn phím', () => {
+  const item = (name: string) => within(screen.getByRole('menu')).getByLabelText(name);
+  const items = [
+    { value: 'a', label: 'Mục A', content: 'A' },
+    { value: 'b', label: 'Mục B', content: 'B' },
+    { value: 'c', label: 'Mục C', content: 'C' },
+  ];
+  const show = (onPick = vi.fn()) => {
+    render(
+      <>
+        <MenuButton helpId="x.menu" label="Màu chữ" button="A" items={items} onPick={onPick} />
+        <button type="button">Sau</button>
+      </>,
+    );
+    return { onPick, trigger: screen.getByRole('button', { name: 'Màu chữ' }) };
+  };
+
+  it('nút có aria-haspopup và aria-expanded; bảng là menu, mục có data-menu-item', async () => {
+    const { trigger } = show();
+    expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(trigger);
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('menu', { name: 'Màu chữ' })).toBeInTheDocument();
+    expect(screen.getByRole('menu').querySelectorAll('[data-menu-item]')).toHaveLength(3);
+  });
+
+  it.each(['{Enter}', ' ', '{ArrowDown}'])('mở bằng %s thì focus mục đầu', async (key) => {
+    const { trigger } = show();
+    trigger.focus();
+    await userEvent.keyboard(key);
+    expect(item('Mục A')).toHaveFocus();
+  });
+
+  it('↑/↓ đi vòng, Enter chọn', async () => {
+    const { trigger, onPick } = show();
+    trigger.focus();
+    await userEvent.keyboard('{ArrowDown}{ArrowUp}');
+    expect(item('Mục C')).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
+    expect(item('Mục A')).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}{Enter}');
+    expect(onPick).toHaveBeenCalledWith('b');
+    expect(screen.queryByRole('menu')).toBeNull();
+  });
+
+  it('Esc đóng và trả focus về nút', async () => {
+    const { trigger } = show();
+    trigger.focus();
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Escape}');
+    expect(screen.queryByRole('menu')).toBeNull();
+    expect(trigger).toHaveFocus();
+  });
+
+  it('Tab ra ngoài thì đóng menu', async () => {
+    const { trigger } = show();
+    trigger.focus();
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.tab();
+    expect(screen.queryByRole('menu')).toBeNull();
+    expect(screen.getByRole('button', { name: 'Sau' })).toHaveFocus();
+  });
+
+  it('SplitButton: nửa mở menu cũng có aria-haspopup và mở bằng phím', async () => {
+    render(<SplitButton helpId="ppt.newSlide" label="Slide mới" menuLabel="Chọn bố cục" icon={<span />} text="New Slide"
+      onClick={vi.fn()} items={items} onPick={vi.fn()} />);
+    const half = screen.getByRole('button', { name: 'Chọn bố cục' });
+    expect(half).toHaveAttribute('aria-haspopup', 'menu');
+    expect(screen.getByRole('button', { name: 'Slide mới' })).not.toHaveAttribute('aria-haspopup');
+    half.focus();
+    await userEvent.keyboard('{ArrowDown}');
+    expect(item('Mục A')).toHaveFocus();
+  });
+
+  it('nút ribbon mang lớp ribbon-btn để có vòng focus rõ', () => {
+    show();
+    expect(screen.getByRole('button', { name: 'Màu chữ' })).toHaveClass('ribbon-btn');
   });
 });

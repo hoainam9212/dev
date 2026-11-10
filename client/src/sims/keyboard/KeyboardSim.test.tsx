@@ -31,6 +31,18 @@ describe('KeyboardSim', () => {
     expect(document.querySelector('[data-key="shift-right"]')).toHaveAttribute('data-next', 'true');
   });
 
+  it('hình bàn tay dưới bàn phím đổi ngón theo phím kế tiếp', () => {
+    const { type } = setup({ target: 'fj' });
+    expect(screen.getByRole('img', { name: /ngón trỏ tay trái/i })).toBeInTheDocument();
+    type('f');
+    expect(screen.getByRole('img', { name: /ngón trỏ tay phải/i })).toBeInTheDocument();
+  });
+
+  it('không hiện hình bàn tay khi gõ Telex (không có phím kế tiếp)', () => {
+    setup({ target: 'tiếng', ime: 'telex' });
+    expect(screen.queryByRole('img', { name: /tay/i })).toBeNull();
+  });
+
   it('ignores shortcut keys and finishes', () => {
     const { type, box, last } = setup({ target: 'ok' });
     fireEvent.keyDown(box, { key: 'c', ctrlKey: true });

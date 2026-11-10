@@ -16,32 +16,32 @@ const setup = (slides: pptSim.Layout[] = ['title', 'titleContent']) => {
 describe('SlideList', () => {
   it('đánh số thumbnail từ 1', () => {
     setup(['title', 'titleContent', 'blank']);
-    expect(screen.getAllByRole('button', { name: /^Slide \d+$/ }).map((b) => b.getAttribute('aria-label'))).toEqual([
+    expect(screen.getAllByRole('option', { name: /^Slide \d+$/ }).map((b) => b.getAttribute('aria-label'))).toEqual([
       'Slide 1',
       'Slide 2',
       'Slide 3',
     ]);
   });
 
-  it('slide đang mở có aria-current', async () => {
+  it('slide đang mở có aria-selected', async () => {
     setup();
-    expect(screen.getByRole('button', { name: 'Slide 1' })).toHaveAttribute('aria-current', 'true');
-    await userEvent.click(screen.getByRole('button', { name: 'Slide 2' }));
-    expect(screen.getByRole('button', { name: 'Slide 2' })).toHaveAttribute('aria-current', 'true');
-    expect(screen.getByRole('button', { name: 'Slide 1' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('option', { name: 'Slide 1' })).toHaveAttribute('aria-selected', 'true');
+    await userEvent.click(screen.getByRole('option', { name: 'Slide 2' }));
+    expect(screen.getByRole('option', { name: 'Slide 2' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('option', { name: 'Slide 1' })).toHaveAttribute('aria-selected', 'false');
   });
 
   it('bấm nút thêm slide thì số thumbnail tăng 1', async () => {
     setup(['title']);
     await userEvent.click(screen.getByRole('button', { name: /^\+ Slide mới/ }));
-    expect(screen.getAllByRole('button', { name: /^Slide \d+$/ })).toHaveLength(2);
+    expect(screen.getAllByRole('option', { name: /^Slide \d+$/ })).toHaveLength(2);
   });
 
   it('chuột phải trên slide 2 rồi Delete Slide thì xoá đúng slide 2', () => {
     const dispatch = vi.fn();
     render(<SlideList state={twoSlides} dispatch={dispatch} />);
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 2' }), { clientX: 50, clientY: 50 });
-    fireEvent.click(screen.getByRole('button', { name: 'Xoá slide' }));
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 2' }), { clientX: 50, clientY: 50 });
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Xoá slide' }));
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'gotoSlide', index: 1 }, { type: 'deleteSlide' }]);
     expect(screen.queryByRole('menu')).toBeNull();
   });
@@ -49,41 +49,41 @@ describe('SlideList', () => {
   it('chuột phải › Duplicate Slide nhân đôi đúng slide được bấm', () => {
     const dispatch = vi.fn();
     render(<SlideList state={twoSlides} dispatch={dispatch} />);
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
-    fireEvent.click(screen.getByRole('button', { name: 'Nhân đôi slide' }));
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Nhân đôi slide' }));
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'gotoSlide', index: 0 }, { type: 'duplicateSlide' }]);
   });
 
   it('không xoá được slide cuối cùng, kể cả bằng phím Delete', () => {
     const dispatch = vi.fn();
     render(<SlideList state={pptSim.pptInitial()} dispatch={dispatch} />);
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
-    expect(screen.getByRole('button', { name: 'Xoá slide' })).toBeDisabled();
-    fireEvent.keyDown(screen.getByRole('button', { name: 'Slide 1' }), { key: 'Delete' });
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
+    expect(screen.getByRole('menuitem', { name: 'Xoá slide' })).toBeDisabled();
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 1' }), { key: 'Delete' });
     expect(dispatch).not.toHaveBeenCalledWith({ type: 'deleteSlide' });
   });
 
   it('phím Delete trên hình thu nhỏ đang focus xoá đúng slide đó', () => {
     const dispatch = vi.fn();
     render(<SlideList state={twoSlides} dispatch={dispatch} />);
-    fireEvent.keyDown(screen.getByRole('button', { name: 'Slide 1' }), { key: 'Backspace' });
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 1' }), { key: 'Backspace' });
     expect(dispatch.mock.calls.map((c) => c[0])).toEqual([{ type: 'gotoSlide', index: 0 }, { type: 'deleteSlide' }]);
   });
 
   it('menu bấm sát mép phải vẫn nằm trong màn hình', () => {
     render(<SlideList state={twoSlides} dispatch={vi.fn()} />);
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 1' }), { clientX: window.innerWidth - 2, clientY: 10 });
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 1' }), { clientX: window.innerWidth - 2, clientY: 10 });
     expect(parseFloat(screen.getByRole('menu').style.left)).toBeLessThan(window.innerWidth - 2);
   });
 
   it('menu nằm ngoài cột slide (portal) và đóng khi Esc hoặc bấm ra ngoài', () => {
     render(<SlideList state={twoSlides} dispatch={vi.fn()} />);
     const list = document.querySelector('[data-help-id="ppt.slideList"]')!;
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
     expect(list.contains(screen.getByRole('menu'))).toBe(false);
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(screen.queryByRole('menu')).toBeNull();
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 1' }), { clientX: 50, clientY: 50 });
     fireEvent.pointerDown(document.body);
     expect(screen.queryByRole('menu')).toBeNull();
   });
@@ -91,7 +91,7 @@ describe('SlideList', () => {
   it('cột tự cuộn khi menu vừa mở thì menu vẫn còn; lăn chuột thì đóng', () => {
     render(<SlideList state={twoSlides} dispatch={vi.fn()} />);
     const list = document.querySelector('[data-help-id="ppt.slideList"]')!;
-    fireEvent.contextMenu(screen.getByRole('button', { name: 'Slide 2' }), { clientX: 50, clientY: 50 });
+    fireEvent.contextMenu(screen.getByRole('option', { name: 'Slide 2' }), { clientX: 50, clientY: 50 });
     fireEvent.scroll(list);
     expect(screen.getByRole('menu')).toBeInTheDocument();
     fireEvent.wheel(list);
@@ -107,7 +107,7 @@ describe('SlideList', () => {
     const s = pptSim.reducePpt(twoSlides, { type: 'setTransition', transition: 'fade' });
     render(<SlideList state={s} dispatch={vi.fn()} />);
     expect(screen.getAllByLabelText('Có hiệu ứng chuyển cảnh')).toHaveLength(1);
-    expect(screen.getByRole('button', { name: 'Slide 2' })).toContainElement(screen.getByLabelText('Có hiệu ứng chuyển cảnh'));
+    expect(screen.getByRole('option', { name: 'Slide 2' })).toContainElement(screen.getByLabelText('Có hiệu ứng chuyển cảnh'));
   });
 
   it('thumbnail vẽ theo theme của bài', () => {
@@ -115,5 +115,57 @@ describe('SlideList', () => {
     const thumbs = [...document.querySelectorAll('.ppt-thumb-canvas')];
     expect(thumbs).toHaveLength(2);
     expect(thumbs.every((t) => t.getAttribute('data-theme') === 'hoa')).toBe(true);
+  });
+
+  it('cột thumbnail là listbox có nhãn, mỗi slide là option', () => {
+    render(<SlideList state={twoSlides} dispatch={vi.fn()} />);
+    const list = screen.getByRole('listbox', { name: 'Danh sách slide' });
+    expect(list).toContainElement(screen.getByRole('option', { name: 'Slide 1' }));
+    expect(screen.getByRole('option', { name: 'Slide 2' })).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('Alt+↑ / Alt+↓ đổi thứ tự slide đang focus', () => {
+    const dispatch = vi.fn();
+    render(<SlideList state={twoSlides} dispatch={dispatch} />);
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 2' }), { key: 'ArrowUp', altKey: true });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'moveSlide', from: 1, to: 0 });
+    dispatch.mockClear();
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 1' }), { key: 'ArrowDown', altKey: true });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'moveSlide', from: 0, to: 1 });
+    dispatch.mockClear();
+    // Slide đầu không lên được nữa, slide cuối không xuống được nữa.
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 1' }), { key: 'ArrowUp', altKey: true });
+    fireEvent.keyDown(screen.getByRole('option', { name: 'Slide 2' }), { key: 'ArrowDown', altKey: true });
+    expect(dispatch).not.toHaveBeenCalled();
+  });
+
+  it('↑/↓ (không Alt) mở slide kề bên và chuyển focus theo', async () => {
+    setup(['title', 'titleContent']);
+    screen.getByRole('option', { name: 'Slide 1' }).focus();
+    await userEvent.keyboard('{ArrowDown}');
+    expect(screen.getByRole('option', { name: 'Slide 2' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('option', { name: 'Slide 2' })).toHaveFocus();
+  });
+
+  it('Alt+↑ trong PptSim giữ focus trên slide vừa dời', async () => {
+    setup(['title', 'titleContent']);
+    screen.getByRole('option', { name: 'Slide 2' }).focus();
+    await userEvent.keyboard('{Alt>}{ArrowUp}{/Alt}');
+    const first = screen.getAllByRole('option')[0]!;
+    expect(first).toHaveFocus();
+    expect(first).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('menu chuột phải mở bằng phím: focus mục đầu, ↓ đi tiếp, Esc trả focus về hình thu nhỏ', async () => {
+    render(<SlideList state={twoSlides} dispatch={vi.fn()} />);
+    const thumb = screen.getByRole('option', { name: 'Slide 2' });
+    thumb.focus();
+    fireEvent.contextMenu(thumb, { clientX: 0, clientY: 0 });
+    expect(screen.getByRole('menuitem', { name: 'Nhân đôi slide' })).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
+    expect(screen.getByRole('menuitem', { name: 'Xoá slide' })).toHaveFocus();
+    await userEvent.keyboard('{Escape}');
+    expect(screen.queryByRole('menu')).toBeNull();
+    expect(thumb).toHaveFocus();
   });
 });

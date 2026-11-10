@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useRef, useState, type KeyboardEvent } from 'react';
-import { compareText, typingSim } from '@office-neko/shared';
+import { compareText, fingersForChar, typingSim } from '@office-neko/shared';
 import type { SimProps } from '../types';
 import { Mochi } from '../../components/Mochi';
+import { Hands } from './Hands';
 import { OnScreenKeyboard } from './OnScreenKeyboard';
 
 type S = typingSim.TypingState;
@@ -51,6 +52,7 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
   const targetChars = [...state.target];
   const m = typingSim.typingMetrics(state);
   const next = state.ime || state.finished ? null : (targetChars[textLen] ?? null);
+  const nextFingers = next ? fingersForChar(next) : null;
   const left =
     state.durationSec !== null
       ? Math.max(0, Math.ceil(state.durationSec - (state.startedAt !== null && state.lastAt !== null ? (now - state.startedAt) / 1000 : 0)))
@@ -100,7 +102,12 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
           ✍️ Kiểu gõ {state.ime === 'telex' ? 'Telex: aa → â, dd → đ, w → ư/ơ/ă, s f r x j → sắc huyền hỏi ngã nặng' : 'VNI: 1–5 → dấu, 6 → mũ, 7 → móc, 8 → trăng, 9 → đ'}
         </p>
       ) : null}
-      {!state.ime && <OnScreenKeyboard os={os} next={next} />}
+      {!state.ime && (
+        <>
+          <OnScreenKeyboard os={os} next={next} />
+          <Hands finger={nextFingers?.key.finger ?? null} shift={nextFingers?.shiftFinger ?? null} />
+        </>
+      )}
     </div>
   );
 }
