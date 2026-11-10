@@ -15,7 +15,8 @@ describe('SplitButton', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Slide mới' }));
     expect(onClick).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole('button', { name: 'Chọn bố cục' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Mục A' }));
+    // Tìm mục theo nhãn trong bảng thả xuống: đúng cả khi mục mang vai trò `button` lẫn `menuitem`.
+    fireEvent.click(within(screen.getByRole('menu')).getByLabelText('Mục A'));
     expect(onPick).toHaveBeenCalledWith('a');
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(screen.queryByRole('menu')).toBeNull();

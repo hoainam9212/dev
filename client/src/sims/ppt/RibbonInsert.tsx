@@ -19,7 +19,17 @@ const SHAPES: { id: pptSim.ShapeKind; vi: string }[] = [
 
 /** Chỗ đặt đối tượng mới: trong khung, không đè chỗ dành sẵn của bố cục Tiêu đề và nội dung. */
 const NEW_TEXT = { x: 80, y: 400, w: 480, h: 80 };
-const NEW_SHAPE = { x: 400, y: 216, w: 160, h: 160 };
+/** PowerPoint thật vẽ hình theo kéo chuột; ở đây mỗi loại có cỡ mặc định (bội số 8), cùng tâm (480, 296). */
+const SHAPE_SIZE: Record<pptSim.ShapeKind, { w: number; h: number }> = {
+  rect: { w: 240, h: 128 },
+  ellipse: { w: 160, h: 160 },
+  arrow: { w: 200, h: 96 },
+  star: { w: 160, h: 160 },
+};
+const newShape = (shape: pptSim.ShapeKind) => {
+  const { w, h } = SHAPE_SIZE[shape];
+  return { x: 480 - w / 2, y: 296 - h / 2, w, h };
+};
 
 /** Thẻ Insert theo PowerPoint 365: Slides | Images | Illustrations | Text. */
 export function RibbonInsert({ state, dispatch }: Props) {
@@ -60,7 +70,7 @@ export function RibbonInsert({ state, dispatch }: Props) {
               </span>
             ),
           }))}
-          onPick={(shape) => dispatch({ type: 'addShape', shape: shape as pptSim.ShapeKind, ...NEW_SHAPE })}
+          onPick={(shape) => dispatch({ type: 'addShape', shape: shape as pptSim.ShapeKind, ...newShape(shape as pptSim.ShapeKind) })}
         />
       </Group>
 

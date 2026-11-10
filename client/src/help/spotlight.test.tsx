@@ -5,7 +5,7 @@ import { SpotlightOverlay, spotlightSelector } from './SpotlightOverlay';
 describe('spotlightSelector', () => {
   it('maps each spotlight kind', () => {
     expect(spotlightSelector({ helpId: 'home.bold' })).toBe('[data-help-id="home.bold"]');
-    expect(spotlightSelector({ cell: 'B11' })).toBe('[data-cell="B11"]');
+    expect(spotlightSelector({ cell: 'B11' })).toBe('[data-cell="B11"], [data-testid="cell-B11"]');
     expect(spotlightSelector({ path: '/Tài liệu' })).toBe('[data-path="/Tài liệu"]');
     expect(spotlightSelector({ key: '"' })).toBe('[data-key="\\""]');
   });

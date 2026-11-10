@@ -5,7 +5,8 @@ const esc = (v: string) => v.replace(/["\\]/g, '\\$&');
 
 export function spotlightSelector(s: Spotlight): string {
   if ('helpId' in s) return `[data-help-id="${esc(s.helpId)}"]`;
-  if ('cell' in s) return `[data-cell="${esc(s.cell)}"]`;
+  // Lưới Excel đánh dấu ô bằng `data-testid="cell-B5"` (không có `data-cell`), nên tìm cả hai.
+  if ('cell' in s) return `[data-cell="${esc(s.cell)}"], [data-testid="cell-${esc(s.cell)}"]`;
   if ('path' in s) return `[data-path="${esc(s.path)}"]`;
   return `[data-key="${esc(s.key)}"]`;
 }
@@ -27,8 +28,16 @@ export function SpotlightOverlay({ target, root }: { target: Spotlight | null; r
       return;
     }
     const sel = spotlightSelector(target);
+    // Theo dõi phần tử đích đang vẽ; đích có thể bị thay (React vẽ lại) nên đổi theo mỗi lần tính.
+    let watched: Element | null = null;
+    const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(() => schedule());
     const update = () => {
       const el = root.querySelector(sel);
+      if (el !== watched) {
+        if (watched) ro?.unobserve(watched);
+        if (el) ro?.observe(el);
+        watched = el;
+      }
       if (!el) {
         setBox(null);
         return;
@@ -39,12 +48,28 @@ export function SpotlightOverlay({ target, root }: { target: Spotlight | null; r
         prev && prev.left === next.left && prev.top === next.top && prev.width === next.width && prev.height === next.height ? prev : next,
       );
     };
+    // Nhiều sự kiện trong một khung hình (cuộn, DOM đổi liên tục) chỉ tính lại một lần.
+    let frame = 0;
+    function schedule() {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    }
     update();
-    const id = window.setInterval(update, 250);
-    window.addEventListener('resize', update);
+    // Không hỏi vòng: tính lại khi cửa sổ đổi cỡ, khi bất kỳ vùng nào cuộn (capture bắt cả vùng cuộn bên trong như
+    // lưới Excel), khi đích đổi cỡ, và khi DOM của sim đổi (đích xuất hiện, dời chỗ).
+    const mo = new MutationObserver(schedule);
+    mo.observe(root, { childList: true, subtree: true, attributes: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('scroll', schedule, true);
     return () => {
-      window.clearInterval(id);
-      window.removeEventListener('resize', update);
+      if (frame) cancelAnimationFrame(frame);
+      mo.disconnect();
+      ro?.disconnect();
+      window.removeEventListener('resize', schedule);
+      window.removeEventListener('scroll', schedule, true);
     };
   }, [target, root]);
   if (!target || !box) return null;

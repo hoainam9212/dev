@@ -6,7 +6,7 @@ import { speedTestText, TYPING_TEXTS } from '../content/typing-texts';
 import { TYPING_PLACEMENT } from '../content/placement';
 import { markTestedOut } from '../progress/placement';
 import { KeyboardSim } from '../sims/keyboard/KeyboardSim';
-import { recordTypingRun } from '../progress/typing';
+import { recordTypingPractice, recordTypingRun } from '../progress/typing';
 import { awardBadges } from '../progress/badges';
 import { Mochi } from '../components/Mochi';
 
@@ -32,15 +32,24 @@ export function SpeedTestPage() {
   const initial = useMemo(() => makeInitial(minutes ?? 1, attempt), [minutes, attempt]);
   const [result, setResult] = useState<ReturnType<typeof typingSim.typingMetrics> | null>(null);
   const saved = useRef(false);
+  /**
+   * Thời gian gõ thật: từ phím đầu tới phím **cuối cùng**. Hết giờ thì reducer đặt `lastAt` = hết giờ, nên lấy
+   * `lastAt` ở lần `keystrokes` tăng gần nhất, không lấy ở state đã xong.
+   */
+  const typed = useRef<{ keystrokes: number; startedAt: number; lastKeyAt: number; keyStats: typingSim.TypingState['keyStats'] } | null>(null);
+  const typedMs = () => (typed.current ? typed.current.lastKeyAt - typed.current.startedAt : 0);
 
   const onState = useCallback(
     (s: typingSim.TypingState) => {
+      if (s.startedAt !== null && s.lastAt !== null && s.keystrokes !== (typed.current?.keystrokes ?? 0)) {
+        typed.current = { keystrokes: s.keystrokes, startedAt: s.startedAt, lastKeyAt: s.lastAt, keyStats: s.keyStats };
+      }
       if (!s.finished || saved.current || minutes === null || !profileId) return;
       saved.current = true;
       const m = typingSim.typingMetrics(s);
       setResult(m);
       if (placement && typingPlacementPassed(m)) void markTestedOut(profileId, 'typing').catch(() => undefined);
-      void recordTypingRun({ profileId, mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: m.elapsedMs, keyStats: s.keyStats })
+      void recordTypingRun({ profileId, mode: `test-${minutes}`, wpm: m.wpm, accuracy: m.accuracy, elapsedMs: typedMs(), keyStats: s.keyStats })
         .then(() => awardBadges(profileId))
         .catch(() => undefined);
     },
@@ -49,8 +58,20 @@ export function SpeedTestPage() {
 
   useEffect(() => {
     saved.current = false;
+    typed.current = null;
     setResult(null);
-  }, [attempt, minutes]);
+    // Rời trang (đổi trang trong app, hoặc đóng tab) khi chưa xong: chỉ cộng phút đã gõ, không ghi WPM.
+    const leave = () => {
+      if (saved.current || !typed.current || !profileId) return;
+      saved.current = true;
+      void recordTypingPractice({ profileId, elapsedMs: typedMs(), keyStats: typed.current.keyStats }).catch(() => undefined);
+    };
+    window.addEventListener('pagehide', leave);
+    return () => {
+      window.removeEventListener('pagehide', leave);
+      leave();
+    };
+  }, [attempt, minutes, profileId]);
 
   if (minutes === null) return <Navigate to="/typing" replace />;
 
