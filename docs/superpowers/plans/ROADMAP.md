@@ -8,9 +8,12 @@ Bốn plan dưới đây làm nốt toàn bộ dự án theo spec `specs/2026-09
 | 1 ☑ | `2026-10-10-phase5b-ppt/` | `feat/phase5b-ppt` | 9 | PowerPoint đủ 12 bài: theme, chuyển cảnh, trình chiếu, dự án |
 | 2 ☑ | `2026-10-10-phase6a-ai/` | `feat/phase6a-ai` | 9 | Lộ trình "Dùng AI" 10 bài trên trình mô phỏng chat |
 | 3 ☑ | `2026-10-10-phase6b-polish/` | `feat/phase6b-polish` → `feat/lane-desktop` | 6 | Huy hiệu, phụ kiện Mochi, Phòng tự do, kiểm tra đầu vào, `Start Tin Hoc.bat`, PWA |
-| 4 | `2026-10-10-backlog/` | `feat/backlog` | 6 | Dọn tồn đọng từ giai đoạn 2–5A: bài vỏ máy tính, trợ năng, bàn phím ảo, lỗi chấm gõ phím |
+| 4 ☑ | `2026-10-10-backlog/` | `feat/lane-desktop` + `feat/lane-cloud` (song song) | 6 | Dọn tồn đọng từ giai đoạn 2–5A: bài vỏ máy tính, trợ năng, bàn phím ảo, lỗi chấm gõ phím |
 
-> **Từ 2026-11-10: phần còn lại (6B Task 6 + đưa bản online + toàn bộ plan 4) chạy SONG SONG hai làn,
+> **XONG 2026-11-10: cả bốn plan đã gộp `master`, dự án hoàn tất theo spec.** Không có nhánh làm dở. Việc lẻ còn treo
+> ghi ở `2026-10-10-backlog/STATUS.md` › Việc còn treo.
+
+> (Lịch sử) **Từ 2026-11-10: phần còn lại (6B Task 6 + đưa bản online + toàn bộ plan 4) chạy SONG SONG hai làn,
 > desktop và cloud. Đọc `2026-11-10-song-song/00-overview.md` trước tiên.** Luật trong đó thắng luật ở dưới khi hai
 > bên khác nhau (nhánh, gộp, push, thứ tự plan).
 

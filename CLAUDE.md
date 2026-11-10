@@ -7,12 +7,11 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
-- Phần còn lại của dự án nằm trong `docs/superpowers/plans/ROADMAP.md` (4 plan: 5B PowerPoint → 6A AI → 6B hoàn
-  thiện → dọn tồn đọng). 5B, 6A, 6B xong và đã gộp master (6B: 2026-11-10). Bản online: https://mochi-office.pages.dev
-  (Cloudflare Pages, lệnh đưa bản mới ở README; deploy là việc ra ngoài, hỏi trước). Còn: plan backlog.
-- **Từ 2026-11-10 phần còn lại chạy song song hai làn**: desktop (`office-neko/feat/lane-desktop`) và cloud
-  (`office-neko/feat/lane-cloud`). Đọc `docs/superpowers/plans/2026-11-10-song-song/00-overview.md`: mỗi làn chỉ sửa
-  file của mình, push sau mỗi commit, đọc STATUS làn kia qua `git show`, chỉ desktop gộp.
+- **Không có nhánh làm dở; mọi plan trong ROADMAP đã xong** (2026-11-10, dự án hoàn tất theo spec). Việc lẻ còn
+  treo: `docs/superpowers/plans/2026-10-10-backlog/STATUS.md` › Việc còn treo. Việc mới thì tạo nhánh
+  `feat/<tên>` từ `master`, gộp `--ff-only`.
+- Bản online: https://mochi-office.pages.dev (Cloudflare Pages, lệnh đưa bản mới ở README; deploy là việc ra ngoài,
+  hỏi trước).
 - **Commit bằng email `lehoainam.htd@gmail.com`**, không bao giờ dùng email công ty. Soát `git config user.email` trước commit đầu tiên.
 - Dòng cuối commit message: `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
