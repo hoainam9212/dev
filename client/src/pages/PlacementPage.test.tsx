@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { db } from '../db/db';
-import { ProfileProvider, createProfile } from '../db/profile';
+import { ProfileProvider, createProfile, useProfileId } from '../db/profile';
 import { setCurrentProfileId } from '../profiles/current';
 import { resetDb } from '../test/utils';
 import { PLACEMENT_QUIZ } from '../content/placement';
@@ -10,10 +10,19 @@ import { speedTestText } from '../content/typing-texts';
 import { PlacementPage } from './PlacementPage';
 import { SpeedTestPage } from './SpeedTestPage';
 
+/**
+ * Hiện ra khi hồ sơ đã nạp xong. Trên app thật hồ sơ nạp xong từ lâu trước khi gõ hết một phút; trong test (gõ và
+ * tua đồng hồ đồng bộ) thì phải chờ, kẻo bài xong khi `profileId` còn null.
+ */
+function ProfileReady() {
+  return useProfileId() ? <span data-testid="profile-ready" /> : null;
+}
+
 const renderAt = (path: string) =>
   render(
     <MemoryRouter initialEntries={[path]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ProfileProvider>
+        <ProfileReady />
         <Routes>
           <Route path="/" element={<p>Trang chủ</p>} />
           <Route path="/placement" element={<PlacementPage />} />
@@ -90,6 +99,7 @@ describe('PlacementPage', () => {
     vi.setSystemTime(new Date(2026, 10, 1, 9));
     renderAt('/typing/test/1?placement=1');
     const box = await screen.findByRole('textbox', { name: 'Vùng gõ phím' });
+    await screen.findByTestId('profile-ready');
     // 140 ký tự đúng trong 1 phút = 28 WPM, 100% chính xác.
     for (const key of [...speedTestText(1).slice(0, 140)]) fireEvent.keyDown(box, { key });
     act(() => {
@@ -105,6 +115,7 @@ describe('PlacementPage', () => {
     vi.setSystemTime(new Date(2026, 10, 1, 9));
     renderAt('/typing/test/1?placement=1');
     const box = await screen.findByRole('textbox', { name: 'Vùng gõ phím' });
+    await screen.findByTestId('profile-ready');
     for (const key of [...speedTestText(1).slice(0, 20)]) fireEvent.keyDown(box, { key });
     act(() => {
       vi.advanceTimersByTime(61_000);

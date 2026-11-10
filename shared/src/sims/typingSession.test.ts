@@ -94,6 +94,14 @@ describe('typing session (Telex/VNI)', () => {
     expect(typedText(s)).toBe('được');
     expect(s.finished).toBe(true);
   });
+
+  it('độ chính xác Telex đếm theo chữ đã ghép: gõ đúng 100%, sai dấu thì tụt theo chữ chứ không theo phím', () => {
+    const right = typeAll(typingInitial({ target: 'đường ', ime: 'telex' }), [...'dduwowngf ']);
+    expect(typingMetrics(right).accuracy).toBe(100);
+    // "dương " thay "đường ": đúng 4/6 chữ → 67% (đếm theo phím thì 7/8 = 88%).
+    const wrong = typeAll(typingInitial({ target: 'đường ', ime: 'telex' }), [...'duwowng ']);
+    expect(typingMetrics(wrong).accuracy).toBe(67);
+  });
 });
 
 describe('gradeTyping', () => {

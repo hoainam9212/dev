@@ -14,6 +14,11 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
 
 - 2026-11-10: C1 + C2 từ `claude/vigilant-galileo-8wdiu6` (merge `2302f2d`), sạch, chỉ file của cloud; shared 551 /
   client 511 xanh.
+- 2026-11-10: C3 + C4 + C1b từ `claude/vigilant-galileo-8wdiu6` @ `33ed155` (merge `676bd2e`), không xung đột. Cloud
+  thêm 6 test shared + 18 test client. Ngoài file của cloud chỉ đụng `help/spotlight.test.tsx` (1 dòng, test của
+  `SpotlightOverlay` cloud sửa ở C3) — giữ nguyên. Gộp xong **2 test `PlacementPage` đỏ**: bài gõ kết thúc khi hồ sơ
+  chưa nạp, rồi effect reset của `SpeedTestPage` (deps nay có `profileId`) xoá kết quả. Sửa test của desktop: chờ hồ sơ
+  nạp xong rồi mới gõ (như app thật); lỗi tiềm ẩn ghi ở "Nhờ làn cloud" 6. Sau gộp + mục 4, 7: shared 559 / client 539.
 
 ## Nhờ làn cloud
 
@@ -42,3 +47,13 @@ Nhánh: `office-neko/feat/lane-desktop`. Chỉ làn desktop sửa file này. M�
    đổi nội dung chờ. Ctrl+U đến trước sự kiện đó → gạch chân vùng chọn cũ. Sửa: `editorProps.handleKeyDown` (chạy trước
    keymap) lấy vùng chọn trên màn hình nếu khác (bỏ qua bộ gõ keyCode 229 và vùng chọn ảnh/ô bảng). Chrome thật bấm liền
    6/6 lần đúng (bản build + dev); Hoàn tác ribbon, bôi đen chuột + I, gõ nhanh vẫn đúng.
+6. **Nhờ cloud — `SpeedTestPage.tsx`:** effect `[attempt, minutes, profileId]` vừa reset (`saved=false`,
+   `setResult(null)`) vừa gắn `pagehide`. Hồ sơ đổi hoặc nạp muộn sau khi bài đã xong thì kết quả bị xoá (con chạy
+   `onState` trước, effect cha reset sau). Nên tách: reset theo `[attempt, minutes]`, listener rời trang theo
+   `profileId` (đọc qua ref). Không gấp: trên app thật hồ sơ nạp xong từ lâu trước khi gõ hết giờ.
+7. **Mục "Nhờ làn desktop" của STATUS-cloud:** 1 xong (`baaf407`), 2 xong (`1375d4e`), 3 xong (`ce080c5`),
+   **4 xong** (`typingMetrics` dùng `composedAccuracy` khi có `ime`; test `typingSession.test`: Telex đúng 100%,
+   "dương " thay "đường " 67%), **7 xong** (`MENU_ITEM_ROLE = 'menuitem'`, cả bộ xanh không phải sửa test nào).
+   5 (`data-cell` cho ô Excel) và 6 (nút "?" ở 390 px) để D4 hoặc task riêng. Chrome thật: Tab tới "Giãn dòng",
+   Enter mở menu, focus vào `menuitem` "Giãn dòng 1,0", ↓ sang 1,5, Esc đóng và trả focus về nút; `typing.telex2`
+   gõ đúng 100%, "hocs" (hóc) thay "hocj" → 92% (12/13 chữ).

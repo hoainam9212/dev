@@ -251,11 +251,10 @@ export function useFocusFirstItem(menu: RefObject<HTMLElement | null>, enabled: 
 }
 
 /**
- * Vai trò của mục trong bảng thả xuống ribbon. Đúng chuẩn phải là `menuitem`. Test của cloud đã không phụ thuộc vai
- * trò; test Excel/Word đã đổi trên nhánh desktop (`baaf407`) nhưng nhánh cloud chưa có, nên ở đây còn `undefined`
- * (vai trò `button`). Desktop gộp nhánh cloud xong thì đặt `'menuitem'` (STATUS-cloud › Nhờ làn desktop 7).
+ * Vai trò của mục trong bảng thả xuống ribbon: `menuitem`, đúng chuẩn. Test tìm mục theo nhãn trong `role="menu"`
+ * (`client/src/test/menu.ts`), không phụ thuộc vai trò.
  */
-const MENU_ITEM_ROLE: 'menuitem' | undefined = undefined;
+const MENU_ITEM_ROLE: 'menuitem' | undefined = 'menuitem';
 
 /** Bảng thả xuống dùng chung của `MenuButton` và `SplitButton`. */
 function DropdownMenu({

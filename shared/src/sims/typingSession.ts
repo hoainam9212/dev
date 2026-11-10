@@ -1,6 +1,6 @@
 import type { CheckResult } from '../grading/core';
 import { emptyIme, imeBackspace, imeInput, imeText, type ImeMethod, type ImeState } from '../ime';
-import { accuracy, compareText, countCorrect, recordKey, wpm, type KeyStats } from '../typing';
+import { accuracy, compareText, composedAccuracy, countCorrect, recordKey, wpm, type KeyStats } from '../typing';
 
 export type TypingMode = 'drill' | 'words' | 'sentences' | 'passage' | 'test';
 
@@ -115,7 +115,8 @@ export function typingMetrics(s: TypingState): { wpm: number; accuracy: number; 
   if (s.durationSec !== null) elapsedMs = Math.min(elapsedMs, s.durationSec * 1000);
   return {
     wpm: wpm(correctChars, elapsedMs),
-    accuracy: accuracy(s.correctKeys, s.keystrokes),
+    // Telex/VNI: nhiều phím ghép một chữ, nên đếm theo chữ đã ghép (C3 của làn cloud), không theo phím.
+    accuracy: s.ime ? composedAccuracy(s.target, text, s.keystrokes - s.correctKeys) : accuracy(s.correctKeys, s.keystrokes),
     correctChars,
     elapsedMs,
     complete: text === s.target,
