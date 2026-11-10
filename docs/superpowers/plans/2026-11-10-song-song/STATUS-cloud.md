@@ -9,7 +9,7 @@ cho `lane-cloud`: `git fetch github && git merge --no-ff github/claude/vigilant-
 | Task | Xong | Commit | Ghi chú |
 |---|---|---|---|
 | C1 trợ năng (trừ FileArea/MouseSim) | ☑ | (commit này) | menu ribbon + menu slide bằng phím, `useDialogFocus`, listbox slide + Alt+↑/↓, Enter/F2 gõ chữ, aria-live, vòng focus. `ppt.textbox` học trọn bằng phím trên Chromium. Mục menu ribbon tạm giữ vai trò `button` (xem Nhờ làn desktop 1) |
-| C2 bàn phím ảo theo HĐH + bàn tay | ☐ | | |
+| C2 bàn phím ảo theo HĐH + bàn tay | ☑ | (commit này) | `keyboardRows(os)` đủ 5 hàng (Win `Ctrl ⊞ Alt`, Mac `⌃ ⌥ ⌘`), phím co theo đơn vị bề rộng; `fingersForChar` dùng chung; `Hands` SVG tô ngón (+ út tay kia khi Shift). `typing.home1` cả hai HĐH, 1280 + 390px không tràn (đã xem ảnh). `KeyHeatmap` (desktop) vẫn dùng `KEY_ROWS` cũ, không đổi |
 | C3 Telex/VNI, bài tốc độ bỏ dở, spotlight | ☐ | | |
 | C4 lỗi PowerPoint mục 1–2 | ☐ | | |
 
