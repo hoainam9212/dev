@@ -110,6 +110,24 @@ describe('unlocking', () => {
     expect(s.lessonUnlocked.has('a2')).toBe(false);
   });
 
+  it('does not let a lesson right after an optional one jump the queue', () => {
+    // Bài tự chọn chỉ "trong suốt": a3 mở khi a2 đã tới lượt (a1 xong), không mở sẵn cho người mới.
+    const lessonsWithOptional: Record<string, Lesson> = {
+      a0: L('a0', 'a'),
+      a1: L('a1', 'a'),
+      a2: { ...L('a2', 'a'), optional: true },
+      a3: L('a3', 'a'),
+    };
+    const tracksWithOptional: Track[] = [
+      { id: 'a', order: 0, title: 'A', emoji: '', blurb: '', color: '', chapters: [{ id: 'a.c', title: '', lessonIds: ['a0', 'a1', 'a2', 'a3'] }] },
+    ];
+    const fresh = unlockState(tracksWithOptional, lessonsWithOptional, 'win', new Set());
+    expect([...fresh.lessonUnlocked]).toEqual(['a0']);
+    const half = unlockState(tracksWithOptional, lessonsWithOptional, 'win', new Set(['a0']));
+    expect(half.lessonUnlocked.has('a2')).toBe(false);
+    expect(half.lessonUnlocked.has('a3')).toBe(false);
+  });
+
   it('finds the next lesson across tracks', () => {
     expect(nextLessonId(tracks, lessons, 'mac', 'a2m')).toBe('a3');
     expect(nextLessonId(tracks, lessons, 'mac', 'a3')).toBe('b1');

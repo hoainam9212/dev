@@ -70,11 +70,16 @@ function siblingLessonId(l: Lesson): string | null {
  * Một bài học đã "xong" nếu chính nó hoặc bài chị em cùng cặp OS đã hoàn thành.
  * Bài tự chọn luôn coi như xong khi xét mở khoá — nó không được phép chặn ai.
  */
-function lessonSatisfied(l: Lesson, completed: ReadonlySet<string>): boolean {
-  if (l.optional) return true;
+/** Đã học xong bài này (hoặc bản HĐH kia của nó). */
+function lessonDone(l: Lesson, completed: ReadonlySet<string>): boolean {
   if (completed.has(l.id)) return true;
   const sibling = siblingLessonId(l);
   return sibling !== null && completed.has(sibling);
+}
+
+/** Đủ điều kiện để qua lộ trình: đã học xong, hoặc là bài tự chọn. */
+function lessonSatisfied(l: Lesson, completed: ReadonlySet<string>): boolean {
+  return !!l.optional || lessonDone(l, completed);
 }
 
 export function unlockState(
@@ -103,8 +108,15 @@ export function unlockState(
     }
     if (prevDone) {
       trackUnlocked.add(t.id);
+      // Bài mở khi bài trước đã học xong. Bài trước là bài tự chọn chưa học thì nó "trong suốt": bài này mở theo
+      // đúng lượt của bài tự chọn đó — KHÔNG mở sẵn (lỗi cũ: lessonSatisfied coi bài tự chọn luôn xong, nên bài
+      // ngay sau nó mở cho cả người mới).
+      let prevOpen = false;
       ls.forEach((l, i) => {
-        if (i === 0 || lessonSatisfied(ls[i - 1]!, completed)) lessonUnlocked.add(l.id);
+        const prev = ls[i - 1];
+        const open = !prev || lessonDone(prev, completed) || (!!prev.optional && prevOpen);
+        if (open) lessonUnlocked.add(l.id);
+        prevOpen = open;
       });
     }
     prevDone = prevDone && ls.every((l) => lessonSatisfied(l, completed));

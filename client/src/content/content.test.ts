@@ -143,4 +143,11 @@ describe('content', () => {
       expect(s.lessonUnlocked.has(`basics.files.open.${os}`), os).toBe(true);
     }
   });
+
+  it('a brand-new learner only has the very first basics lesson open (no lesson jumps the queue after an optional one)', () => {
+    for (const os of ['win', 'mac'] as const) {
+      const s = unlockState(TRACKS, LESSONS, os, new Set());
+      expect([...s.lessonUnlocked], os).toEqual(['basics.welcome']);
+    }
+  });
 });
