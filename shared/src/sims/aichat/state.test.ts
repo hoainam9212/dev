@@ -68,3 +68,45 @@ describe('clearChat', () => {
     expect(s.messages).toEqual([{ from: 'ai', text: 'Chào bạn' }]);
   });
 });
+
+describe('chủ đề của bài', () => {
+  const TOPIC = { keywords: ['trung'], vi: 'cách luộc trứng' };
+  const egg = () => aiChatInitial({ greeting: 'Chào bạn', replies: REPLIES, topic: TOPIC });
+  const lastAi = (s: AiChatState) => s.messages.at(-1)!.text;
+
+  it('hỏi đúng chủ đề (có dấu hay không dấu) thì nhận câu trả lời soạn sẵn theo mức prompt', () => {
+    expect(lastAi(run(egg(), ...send('Cách luộc trứng như thế nào?')))).toBe(REPLIES.weak);
+    expect(lastAi(run(egg(), ...send('cach luoc trung')))).toBe(REPLIES.weak);
+    expect(run(egg(), ...send('cach luoc trung')).messages.at(-2)!.onTopic).toBe(true);
+  });
+
+  it('hỏi "Bạn là ai" thì AI tự giới thiệu là bản mô phỏng và gợi ý chủ đề, không trả lời chuyện trứng', () => {
+    const s = run(egg(), ...send('Bạn là ai'));
+    expect(lastAi(s)).toMatch(/mô phỏng/);
+    expect(lastAi(s)).toContain('cách luộc trứng');
+    expect(lastAi(s)).not.toBe(REPLIES.weak);
+    expect(s.messages.at(-2)!.onTopic).toBe(false);
+  });
+
+  it('chào và cảm ơn có câu đáp riêng', () => {
+    expect(lastAi(run(egg(), ...send('xin chào')))).toMatch(/^Chào bạn/);
+    expect(lastAi(run(egg(), ...send('cảm ơn nhé')))).toMatch(/Không có gì/);
+  });
+
+  it('câu lạc đề khác: nói thật là chưa hiểu, nhắc chủ đề của bài', () => {
+    const s = run(egg(), ...send('Thời tiết hôm nay thế nào?'));
+    expect(lastAi(s)).toMatch(/chưa hiểu/);
+    expect(lastAi(s)).toContain('cách luộc trứng');
+  });
+
+  it('từ khoá khớp theo từ, không khớp giữa chữ khác', () => {
+    const s = run(aiChatInitial({ replies: REPLIES, topic: { keywords: ['tet'], vi: 'nghỉ Tết' } }), ...send('mạng internet chậm quá'));
+    expect(s.messages.at(-2)!.onTopic).toBe(false);
+  });
+
+  it('bài không khai chủ đề thì giữ cách cũ: mọi prompt nhận câu soạn sẵn', () => {
+    const s = run(aiChatInitial({ replies: REPLIES }), ...send('Bạn là ai'));
+    expect(lastAi(s)).toBe(REPLIES.weak);
+    expect(s.messages.at(-2)!.onTopic).toBeUndefined();
+  });
+});

@@ -38,7 +38,8 @@ export function PptSim({ initial, onState }: SimProps<pptSim.PptState>) {
       </div>
       <div className="flex flex-col gap-3 sm:flex-row">
         <SlideList state={state} dispatch={dispatch} />
-        <div className="min-w-0 flex-1">
+        {/* Vùng làm việc xám như PowerPoint: slide nền sáng (theme Mochi gần trùng nền trang) vẫn nổi rõ. */}
+        <div className="ppt-workspace min-w-0 flex-1">
           <Canvas state={state} dispatch={dispatch} preview={preview} />
         </div>
       </div>

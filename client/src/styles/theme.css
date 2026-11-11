@@ -113,19 +113,29 @@ body {
   /* Trình chiếu: khung slide 960x540 co giãn bằng container query. Khung cha
      phải có `container-type` và `aspect-ratio`, nếu không `100cqw` vô nghĩa và
      slide đè lên thứ nằm dưới. */
+  /* Vùng làm việc quanh slide, xám như PowerPoint, để slide nền sáng không lẫn vào nền trang. */
+  .ppt-workspace {
+    padding: 12px;
+    border-radius: 16px;
+    background: #E4E1E6;
+  }
+  @media (min-width: 640px) {
+    .ppt-workspace { padding: 20px; }
+  }
+  /* Viền và bóng đặt ở khung (không bị `overflow: hidden` của chính nó cắt như khi đặt ở `.ppt-canvas`). */
   .ppt-stage {
     container-type: inline-size;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.18);
   }
   .ppt-canvas {
     position: relative;
     transform-origin: top left;
     transform: scale(calc(100cqw / 960px));
     background: var(--app-surface);
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     user-select: none;
   }

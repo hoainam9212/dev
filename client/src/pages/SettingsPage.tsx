@@ -16,6 +16,8 @@ import { isStandalone, useInstallPrompt } from '../app/useInstallPrompt';
 const LICENSES: [string, string][] = [
   ['React, React Router, Zustand', 'MIT'],
   ['Dexie.js', 'Apache-2.0'],
+  ['Tiptap / ProseMirror (trình soạn Word mô phỏng)', 'MIT'],
+  ['Biểu tượng Fluent UI (@fluentui/react-icons)', 'MIT'],
   ['Tailwind CSS', 'MIT'],
   ['vite-plugin-pwa / Workbox', 'MIT'],
   ['Phông chữ Nunito', 'SIL Open Font License 1.1'],
@@ -253,6 +255,12 @@ export function SettingsPage() {
             <li key={lib}>{lib} — {lic}</li>
           ))}
         </ul>
+        <p className="text-sm text-muted">
+          Microsoft, Windows, Word, Excel, PowerPoint và Microsoft 365 là nhãn hiệu của Microsoft Corporation. Tin Học
+          Cùng Mochi là ứng dụng học tập độc lập, không liên kết với Microsoft và không được Microsoft bảo trợ. Giao diện
+          Word, Excel, PowerPoint trong bài là bản mô phỏng tự vẽ để luyện tập. Ảnh chụp màn hình Office thật chỉ dùng để
+          minh hoạ trong bài hướng dẫn, đã che thông tin cá nhân.
+        </p>
       </Section>
     </div>
   );

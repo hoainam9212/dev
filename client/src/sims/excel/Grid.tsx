@@ -1,4 +1,4 @@
-import { useCallback, useId, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useRef, useState } from 'react';
 import { excelSim, formula } from '@office-neko/shared';
 import { ChevronDown12Regular } from '@fluentui/react-icons';
 import { FilterMenu } from './FilterMenu';
@@ -14,14 +14,21 @@ interface Props {
   state: excelSim.WorkbookState;
   dispatch: (a: excelSim.ExcelAction) => void;
   gridRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * Chạm (điện thoại) vào ô đang chọn: sửa ô như Excel trên điện thoại. Lưới không phải ô nhập nên chạm vào nó không
+   * bật bàn phím ảo; hàm này phải đưa con trỏ vào thanh công thức NGAY trong cú chạm thì bàn phím mới hiện.
+   */
+  onTouchEdit?: () => void;
 }
 
 function window1(anchor: number, span: number, max: number): number {
   return Math.max(0, Math.min(max - span, anchor - Math.floor(span / 2)));
 }
 
-export function Grid({ state, dispatch, gridRef }: Props) {
+export function Grid({ state, dispatch, gridRef, onTouchEdit }: Props) {
   const sel = state.sel;
+  /** Loại con trỏ của cú bấm gần nhất trên ô: `click` không cho biết là chuột hay ngón tay. */
+  const pointerType = useRef('mouse');
   const rowStart = window1(sel.from.row, VIEW_ROWS, formula.MAX_ROWS);
   const colStart = window1(sel.from.col, VIEW_COLS, formula.MAX_COLS);
 
@@ -169,9 +176,19 @@ export function Grid({ state, dispatch, gridRef }: Props) {
                   tabIndex={-1}
                   data-testid={`cell-${name}`}
                   data-cell={name}
-                  onClick={(e) => dispatch(e.shiftKey
-                    ? { type: 'selectRange', range: `${excelSim.refName(sel.from)}:${name}` }
-                    : { type: 'select', cell: name })}
+                  onPointerDown={(e) => {
+                    pointerType.current = e.pointerType || 'mouse';
+                  }}
+                  onClick={(e) => {
+                    const single = sel.from.row === sel.to.row && sel.from.col === sel.to.col;
+                    if (pointerType.current === 'touch' && !e.shiftKey && single && excelSim.refName(sel.from) === name && state.editing === null) {
+                      onTouchEdit?.();
+                      return;
+                    }
+                    dispatch(e.shiftKey
+                      ? { type: 'selectRange', range: `${excelSim.refName(sel.from)}:${name}` }
+                      : { type: 'select', cell: name });
+                  }}
                   onDoubleClick={() => dispatch({ type: 'startEdit' })}
                   className={[
                     'cellbox shrink-0',

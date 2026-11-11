@@ -7,6 +7,34 @@ const initial = excelSim.excelInitial({ cells: { A1: 'Họ tên', B1: '10', B2: 
 const show = (state = initial, onState: (s: excelSim.WorkbookState) => void = () => {}) =>
   render(<ExcelSim initial={state} onState={onState} os="win" spotlight={null} />);
 
+describe('ExcelSim trên màn hình cảm ứng', () => {
+  const tap = (el: Element) => {
+    fireEvent.pointerDown(el, { pointerType: 'touch' });
+    fireEvent.pointerUp(el, { pointerType: 'touch' });
+    fireEvent.click(el);
+  };
+
+  it('chạm một lần chỉ chọn ô; chạm lại ô đang chọn thì sửa ô, con trỏ vào thanh công thức (bàn phím ảo hiện)', () => {
+    show();
+    const bar = screen.getByLabelText('Thanh công thức');
+    tap(screen.getByTestId('cell-B2'));
+    expect(screen.getByTestId('name-box')).toHaveTextContent('B2');
+    expect(bar).not.toHaveFocus();
+    tap(screen.getByTestId('cell-B2'));
+    expect(bar).toHaveFocus();
+    fireEvent.change(bar, { target: { value: '25' } });
+    fireEvent.keyDown(bar, { key: 'Enter' });
+    expect(screen.getByTestId('cell-B2')).toHaveTextContent('25');
+  });
+
+  it('chuột bấm lại ô đang chọn thì không vào chế độ sửa (như Excel máy tính)', () => {
+    show();
+    fireEvent.click(screen.getByTestId('cell-B2'));
+    fireEvent.click(screen.getByTestId('cell-B2'));
+    expect(screen.getByLabelText('Thanh công thức')).not.toHaveFocus();
+  });
+});
+
 describe('ExcelSim', () => {
   it('hiện chữ trong ô và tên cột', () => {
     show();
