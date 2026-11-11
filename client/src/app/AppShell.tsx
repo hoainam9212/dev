@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import { levelFromXp } from '@office-neko/shared';
-import { useProfile } from '../db/profile';
+import { updateProfile, useProfile } from '../db/profile';
 import { avatarSkin, wearable } from '../profiles/avatars';
 import { useStreak } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
@@ -34,6 +34,17 @@ export function AppShell() {
           <Link to="/typing" data-help-id="app.typing" aria-label="Luyện gõ" className="rounded-full bg-sky/50 px-2.5 py-1 sm:px-3">
             ⌨️<span className="hidden sm:inline"> Luyện gõ</span>
           </Link>
+          {/* Bật/tắt tiếng nhanh: cùng `profile.sound` với công tắc Âm thanh trong Cài đặt. */}
+          <button
+            type="button"
+            aria-label="Âm thanh"
+            aria-pressed={profile.sound}
+            title={profile.sound ? 'Đang bật tiếng — bấm để tắt' : 'Đang tắt tiếng — bấm để bật'}
+            onClick={() => void updateProfile(profile.id, { sound: !profile.sound })}
+            className="rounded-full bg-white px-2.5 py-1 shadow sm:px-3"
+          >
+            {profile.sound ? '🔊' : '🔇'}
+          </button>
           <Link to="/settings" data-help-id="app.settings" aria-label="Cài đặt" className="rounded-full bg-white px-2.5 py-1 shadow sm:px-3">⚙️</Link>
         </div>
       </header>
