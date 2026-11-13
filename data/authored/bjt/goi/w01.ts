@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+// Week 1 — tôn kính ngữ, khiêm nhường ngữ, chào hỏi công việc.
+export const V01: BjtVocab[] = [
+  ...vocab(1, 'Tôn kính ngữ', 'sonkei', [
+    ['いらっしゃる', 'いらっしゃる', 'đi, đến, ở (tôn kính)', '部長は第二会議室にいらっしゃいます。', 'Trưởng phòng đang ở phòng họp số 2.'],
+    ['おっしゃる', 'おっしゃる', 'nói (tôn kính)', '先ほど課長がおっしゃったとおり、締め切りは金曜日です。', 'Như trưởng phòng vừa nói, hạn chót là thứ Sáu.'],
+    ['召し上がる', 'めしあがる', 'ăn, uống (tôn kính)', 'お飲み物は何を召し上がりますか。', 'Quý khách dùng đồ uống gì ạ?'],
+    ['ご覧になる', 'ごらんになる', 'xem (tôn kính)', '昨日お送りした資料はご覧になりましたか。', 'Anh đã xem tài liệu tôi gửi hôm qua chưa ạ?'],
+    ['お見えになる', 'おみえになる', '(khách) đến', '受付に吉田様がお見えになりました。', 'Ông Yoshida đã đến quầy lễ tân.'],
+    ['お越しになる', 'おこしになる', 'đến, ghé (tôn kính)', '明日は何時ごろお越しになりますか。', 'Ngày mai khoảng mấy giờ anh ghé ạ?'],
+    ['ご存じ', 'ごぞんじ', 'biết (tôn kính)', '新しい担当者のことはご存じでしょうか。', 'Không biết anh đã biết về người phụ trách mới chưa ạ?'],
+    ['なさる', 'なさる', 'làm (tôn kính của する)', '会議の後はどうなさいますか。', 'Sau cuộc họp anh định làm gì ạ?'],
+    ['お気に召す', 'おきにめす', 'hài lòng, vừa ý (tôn kính)', 'お気に召しましたら幸いです。', 'Nếu quý khách vừa ý thì chúng tôi rất vui.'],
+    ['ご足労', 'ごそくろう', 'sự phiền đi lại (của đối phương)', '本日はご足労いただき、ありがとうございました。', 'Cảm ơn anh hôm nay đã cất công đến tận nơi.'],
+    ['ご多忙', 'ごたぼう', 'sự bận rộn (của đối phương)', 'ご多忙のところ恐縮ですが、ご確認をお願いいたします。', 'Xin lỗi làm phiền lúc anh bận, mong anh kiểm tra giúp.'],
+    ['お手すき', 'おてすき', 'lúc rảnh tay', 'お手すきの際に、お電話をいただけますか。', 'Khi rảnh tay, anh có thể gọi lại cho tôi được không?'],
+    ['ご配慮', 'ごはいりょ', 'sự quan tâm, châm chước', '格別のご配慮をいただき、ありがとうございます。', 'Cảm ơn anh đã đặc biệt quan tâm.'],
+    ['お休みになる', 'おやすみになる', 'nghỉ, ngủ (tôn kính)'],
+  ]),
+  ...vocab(1, 'Khiêm nhường ngữ', 'kenjo', [
+    ['伺う', 'うかがう', 'đến thăm; hỏi; nghe (khiêm nhường)', '来週の火曜日に御社へ伺う予定です。', 'Thứ Ba tuần sau tôi dự định đến quý công ty.'],
+    ['参ります', 'まいります', 'đi, đến (khiêm nhường)', '担当の者がすぐに参ります。', 'Người phụ trách sẽ đến ngay ạ.'],
+    ['申します', 'もうします', 'tên là, nói (khiêm nhường)', '営業部の田中と申します。', 'Tôi là Tanaka ở phòng kinh doanh.'],
+    ['拝見する', 'はいけんする', 'xem, đọc (khiêm nhường)', '企画書を拝見しました。', 'Tôi đã đọc bản kế hoạch.'],
+    ['お目にかかる', 'おめにかかる', 'gặp (khiêm nhường)', 'お目にかかれて光栄です。', 'Rất hân hạnh được gặp anh.'],
+    ['存じております', 'ぞんじております', 'tôi có biết (khiêm nhường)', 'その件でしたら存じております。', 'Nếu là việc đó thì tôi có biết.'],
+    ['頂戴する', 'ちょうだいする', 'nhận (khiêm nhường)', 'お名刺を頂戴してもよろしいでしょうか。', 'Tôi xin phép nhận danh thiếp của anh được không ạ?'],
+    ['承りました', 'うけたまわりました', 'tôi đã nhận, đã rõ (khiêm nhường)', 'ご注文、確かに承りました。', 'Tôi đã nhận đơn đặt hàng của quý khách.'],
+    ['申し上げる', 'もうしあげる', 'nói, thưa (khiêm nhường)', '心より御礼申し上げます。', 'Xin chân thành cảm ơn.'],
+    ['お邪魔する', 'おじゃまする', 'đến làm phiền, ghé thăm', '来週、事務所にお邪魔してもよろしいでしょうか。', 'Tuần sau tôi ghé văn phòng anh có được không ạ?'],
+    ['拝借する', 'はいしゃくする', 'mượn (khiêm nhường)', 'ペンを拝借してもよろしいですか。', 'Tôi mượn cây bút được không ạ?'],
+    ['差し上げる', 'さしあげる', 'biếu, làm cho (khiêm nhường)', '後ほどこちらからお電話を差し上げます。', 'Lát nữa phía chúng tôi sẽ gọi lại cho anh.'],
+    ['拝受する', 'はいじゅする', 'nhận (thư, tài liệu, khiêm nhường)', 'お送りいただいた資料、拝受いたしました。', 'Tôi đã nhận được tài liệu anh gửi.'],
+    ['弊社', 'へいしゃ', 'công ty chúng tôi (khiêm nhường)', '弊社の新製品をご紹介いたします。', 'Xin giới thiệu sản phẩm mới của công ty chúng tôi.'],
+  ]),
+  ...vocab(1, 'Chào hỏi công việc', 'aisatsu', [
+    ['お世話になっております', 'おせわになっております', 'cảm ơn quý vị đã luôn giúp đỡ (câu chào)', 'いつもお世話になっております。', 'Cảm ơn anh vì luôn giúp đỡ chúng tôi.'],
+    ['ご無沙汰しております', 'ごぶさたしております', 'lâu rồi không liên lạc', '大変ご無沙汰しております。', 'Đã lâu lắm rồi tôi không liên lạc với anh.'],
+    ['お先に失礼します', 'おさきにしつれいします', 'tôi xin phép về trước'],
+    ['恐れ入ります', 'おそれいります', 'xin lỗi làm phiền; cảm ơn (rất lịch sự)', '恐れ入りますが、お名前を伺えますか。', 'Xin lỗi, cho tôi hỏi tên anh được không ạ?'],
+    ['恐縮です', 'きょうしゅくです', 'thật ngại quá, xin lỗi', 'お忙しいところ恐縮ですが、よろしくお願いいたします。', 'Thật ngại làm phiền lúc anh bận, mong anh giúp cho.'],
+    ['今後ともよろしくお願いいたします', 'こんごともよろしくおねがいいたします', 'mong tiếp tục được giúp đỡ'],
+    ['名刺交換', 'めいしこうかん', 'trao đổi danh thiếp', '名刺交換では、目下の者から先に差し出します。', 'Khi trao danh thiếp, người dưới đưa trước.'],
+    ['着任', 'ちゃくにん', 'nhận chức, đến nhiệm sở mới', '本日着任いたしました小野です。', 'Tôi là Ono, hôm nay mới nhận nhiệm vụ.'],
+    ['配属', 'はいぞく', 'phân công về bộ phận', '四月から経理部に配属されました。', 'Từ tháng Tư tôi được phân về phòng kế toán.'],
+    ['後任', 'こうにん', 'người kế nhiệm', '後任の小野をご紹介いたします。', 'Xin giới thiệu Ono, người kế nhiệm tôi.'],
+    ['異動', 'いどう', 'chuyển công tác', '四月一日付で名古屋支店へ異動になります。', 'Từ ngày 1/4 tôi chuyển sang chi nhánh Nagoya.'],
+    ['ご厚情', 'ごこうじょう', 'tình cảm, sự quan tâm hậu hĩnh', '在任中のご厚情に深く感謝いたします。', 'Tôi xin cảm ơn sâu sắc sự quan tâm trong thời gian tôi tại nhiệm.'],
+  ]),
+];

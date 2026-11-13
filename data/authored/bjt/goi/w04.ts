@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+// Week 4 — họp nội bộ và 報連相.
+export const V04: BjtVocab[] = [
+  ...vocab(4, 'Họp', 'kaigi', [
+    ['議題', 'ぎだい', 'chủ đề cuộc họp', '本日の議題は三つございます。', 'Hôm nay có ba chủ đề cần bàn.'],
+    ['議事録', 'ぎじろく', 'biên bản cuộc họp', '議事録は明日までに共有します。', 'Biên bản họp sẽ được chia sẻ trước ngày mai.'],
+    ['司会', 'しかい', 'người chủ trì, dẫn chương trình', '本日の会議の司会を務めます、松本です。', 'Tôi là Matsumoto, chủ trì cuộc họp hôm nay.'],
+    ['定例会議', 'ていれいかいぎ', 'cuộc họp định kỳ', '定例会議は毎週月曜日の十時からです。', 'Họp định kỳ bắt đầu lúc 10 giờ mỗi thứ Hai.'],
+    ['持ち越し', 'もちこし', 'dời sang lần sau', '結論は次回に持ち越しとなりました。', 'Kết luận được dời sang lần họp sau.'],
+    ['異議', 'いぎ', 'ý kiến phản đối', '異議がなければ、この案で進めます。', 'Nếu không ai phản đối thì ta làm theo phương án này.'],
+    ['採決', 'さいけつ', 'biểu quyết', '挙手で採決を行います。', 'Chúng ta biểu quyết bằng giơ tay.'],
+    ['合意', 'ごうい', 'sự đồng thuận', '両部署の合意を得てから発表する。', 'Công bố sau khi hai phòng đã đồng thuận.'],
+    ['発言', 'はつげん', 'phát biểu', '発言の際は、お名前をおっしゃってください。', 'Khi phát biểu, xin nói tên của mình.'],
+    ['叩き台', 'たたきだい', 'bản nháp để bàn', 'この案を叩き台にして議論しましょう。', 'Hãy lấy phương án này làm bản nháp để thảo luận.'],
+    ['根回し', 'ねまわし', 'vận động, dàn xếp trước', '会議の前に、関係部署に根回しをしておく。', 'Trước cuộc họp, dàn xếp trước với các phòng liên quan.'],
+    ['招集', 'しょうしゅう', 'triệu tập', '部長が臨時会議を招集した。', 'Trưởng phòng đã triệu tập một cuộc họp bất thường.'],
+    ['棚上げ', 'たなあげ', 'gác lại (chưa giải quyết)', 'その問題はいったん棚上げにしましょう。', 'Vấn đề đó tạm gác lại đã.'],
+    ['取りまとめる', 'とりまとめる', 'tổng hợp, gom lại', '各課の意見を取りまとめて報告します。', 'Tôi sẽ tổng hợp ý kiến các tổ rồi báo cáo.'],
+  ]),
+  ...vocab(4, 'Báo cáo, liên lạc, bàn bạc', 'horenso', [
+    ['報連相', 'ほうれんそう', 'báo cáo, liên lạc, bàn bạc', 'チーム内の報連相を徹底してください。', 'Hãy thực hiện triệt để báo cáo, liên lạc, bàn bạc trong nhóm.'],
+    ['進捗', 'しんちょく', 'tiến độ', '毎週金曜日に進捗を報告する。', 'Báo cáo tiến độ vào mỗi thứ Sáu.'],
+    ['経過', 'けいか', 'diễn biến, quá trình', 'その後の経過をお知らせください。', 'Xin cho biết diễn biến sau đó.'],
+    ['承認', 'しょうにん', 'phê duyệt', '部長の承認を得てから発注する。', 'Đặt hàng sau khi được trưởng phòng phê duyệt.'],
+    ['決裁', 'けっさい', 'phê chuẩn (của người có thẩm quyền)', 'ようやく社長の決裁が下りた。', 'Cuối cùng giám đốc cũng đã phê chuẩn.'],
+    ['稟議', 'りんぎ', 'tờ trình xin duyệt', '新しいパソコンの購入について稟議を上げた。', 'Tôi đã trình tờ xin duyệt mua máy tính mới.'],
+    ['指示を仰ぐ', 'しじをあおぐ', 'xin chỉ thị (của cấp trên)', '判断に迷ったら、上司の指示を仰ぐこと。', 'Khi phân vân thì xin chỉ thị của cấp trên.'],
+    ['共有する', 'きょうゆうする', 'chia sẻ (thông tin)', '会議の結果をチーム全員と共有する。', 'Chia sẻ kết quả họp với cả nhóm.'],
+    ['相談に乗る', 'そうだんにのる', 'lắng nghe, góp ý cho ai', '先輩が仕事の相談に乗ってくれた。', 'Đàn anh đã lắng nghe và góp ý chuyện công việc cho tôi.'],
+    ['念のため', 'ねんのため', 'để cho chắc', '念のため、もう一度ご確認ください。', 'Để cho chắc, xin anh kiểm tra lại một lần nữa.'],
+    ['見通し', 'みとおし', 'triển vọng, dự đoán', '年内に完成する見通しが立った。', 'Đã có thể dự đoán sẽ xong trong năm nay.'],
+    ['懸念', 'けねん', 'mối lo ngại', '納期に間に合うかどうか懸念があります。', 'Tôi lo không biết có kịp hạn giao không.'],
+    ['後回し', 'あとまわし', 'để sau, làm sau', '急ぎでない仕事は後回しにする。', 'Việc không gấp thì để làm sau.'],
+    ['事後報告', 'じごほうこく', 'báo cáo sau khi đã làm', '事後報告になってしまい、申し訳ありません。', 'Xin lỗi vì tôi làm rồi mới báo cáo.'],
+  ]),
+  ...vocab(4, 'Tiến độ và phân công', 'shinko', [
+    ['締め切り', 'しめきり', 'hạn chót', '報告書の締め切りは金曜日です。', 'Hạn chót của bản báo cáo là thứ Sáu.'],
+    ['前倒し', 'まえだおし', 'làm sớm hơn kế hoạch', '工事の日程を一週間前倒しする。', 'Đẩy lịch thi công lên sớm một tuần.'],
+    ['先送り', 'さきおくり', 'trì hoãn, dời lại', '結論の先送りはもうできない。', 'Không thể trì hoãn kết luận thêm nữa.'],
+    ['手配', 'てはい', 'sắp xếp, chuẩn bị (phòng, xe, vé…)', '会議室と弁当の手配をお願いします。', 'Nhờ anh sắp xếp phòng họp và cơm hộp.'],
+    ['段取り', 'だんどり', 'trình tự, kế hoạch các bước', '当日の段取りを確認しておこう。', 'Hãy kiểm tra trước trình tự công việc ngày hôm đó.'],
+    ['目処', 'めど', 'triển vọng, mốc dự kiến', '来週には完成の目処が立ちます。', 'Tuần sau sẽ có mốc hoàn thành.'],
+    ['差し支えない', 'さしつかえない', 'không có trở ngại, không sao', '差し支えなければ、ご連絡先を教えていただけますか。', 'Nếu không phiền, anh cho tôi xin thông tin liên lạc được không?'],
+    ['分担', 'ぶんたん', 'phân chia công việc', '作業を三人で分担した。', 'Ba người đã chia nhau công việc.'],
+    ['引き受ける', 'ひきうける', 'nhận lời làm', '新しいプロジェクトのリーダーを引き受けた。', 'Tôi đã nhận làm trưởng dự án mới.'],
+    ['抱え込む', 'かかえこむ', 'ôm đồm một mình', '一人で仕事を抱え込まないでください。', 'Đừng ôm đồm công việc một mình.'],
+    ['期限', 'きげん', 'thời hạn', '提出期限を過ぎないよう注意してください。', 'Chú ý đừng để quá hạn nộp.'],
+    ['完了', 'かんりょう', 'hoàn tất', 'データの移行作業が完了しました。', 'Việc chuyển dữ liệu đã hoàn tất.'],
+  ]),
+];

@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+// Week 3 — email và thư tín.
+export const V03: BjtVocab[] = [
+  ...vocab(3, 'Mở đầu và kết thư', 'shokan', [
+    ['拝啓', 'はいけい', 'kính gửi (mở đầu thư trang trọng)', '拝啓で始めた手紙は、敬具で結ぶ。', 'Thư mở đầu bằng 拝啓 thì kết bằng 敬具.'],
+    ['敬具', 'けいぐ', 'kính thư (kết thư, đi với 拝啓)'],
+    ['前略', 'ぜんりゃく', 'xin miễn phần chào hỏi (mở đầu thư gấp)', '急ぎの手紙では前略を使うこともある。', 'Thư gấp đôi khi dùng 前略.'],
+    ['時下', 'じか', 'dạo này (lời chào hợp mọi mùa)', '時下ますますご清栄のこととお慶び申し上げます。', 'Kính chúc quý công ty dạo này ngày càng hưng thịnh.'],
+    ['ご清栄', 'ごせいえい', 'sự hưng thịnh (chúc trong thư)'],
+    ['平素は', 'へいそは', 'thường ngày, lâu nay', '平素は格別のお引き立てを賜り、厚く御礼申し上げます。', 'Xin chân thành cảm ơn sự ủng hộ đặc biệt lâu nay.'],
+    ['格別の', 'かくべつの', 'đặc biệt', '格別のご高配を賜り、誠にありがとうございます。', 'Chân thành cảm ơn sự quan tâm đặc biệt của quý vị.'],
+    ['ご高配', 'ごこうはい', 'sự quan tâm chu đáo (của đối phương)'],
+    ['お引き立て', 'おひきたて', 'sự ủng hộ, chiếu cố', '今後ともお引き立てのほど、よろしくお願い申し上げます。', 'Mong quý vị tiếp tục ủng hộ.'],
+    ['貴社', 'きしゃ', 'quý công ty (văn viết)', '貴社の新製品を拝見し、大変興味を持ちました。', 'Tôi đã xem sản phẩm mới của quý công ty và rất quan tâm.'],
+    ['御社', 'おんしゃ', 'quý công ty (văn nói)', '御社の説明会に参加させていただきました。', 'Tôi đã được tham dự buổi giới thiệu của quý công ty.'],
+    ['取り急ぎ', 'とりいそぎ', 'viết vội trước (cuối thư)', 'まずは取り急ぎ、ご報告まで。', 'Viết vội để báo trước.'],
+    ['略儀ながら', 'りゃくぎながら', 'xin phép dùng cách giản lược', '略儀ながら、メールにてご挨拶申し上げます。', 'Xin phép được chào qua email cho giản tiện.'],
+    ['晩秋の候', 'ばんしゅうのこう', 'tiết cuối thu (lời chào mùa, tháng 11)', '晩秋の候、皆様におかれましてはご健勝のことと存じます。', 'Tiết cuối thu, chắc hẳn quý vị vẫn mạnh khỏe.'],
+  ]),
+  ...vocab(3, 'Nhờ vả và từ chối', 'irai', [
+    ['ご査収', 'ごさしゅう', 'xin kiểm tra và nhận', '見積書をお送りしますので、ご査収ください。', 'Tôi gửi bảng báo giá, xin anh kiểm tra và nhận.'],
+    ['ご確認のほど', 'ごかくにんのほど', 'xin vui lòng kiểm tra', 'ご確認のほど、よろしくお願いいたします。', 'Xin anh vui lòng kiểm tra giúp.'],
+    ['幸いです', 'さいわいです', 'nếu được thì tôi rất vui (lời nhờ nhẹ)', 'ご返信いただけますと幸いです。', 'Nếu anh hồi âm thì tôi rất vui.'],
+    ['ご検討', 'ごけんとう', 'sự xem xét', 'ご検討いただけますでしょうか。', 'Anh có thể xem xét giúp không ạ?'],
+    ['お手数ですが', 'おてすうですが', 'phiền anh, nhưng…', 'お手数ですが、ご記入のうえご返送ください。', 'Phiền anh điền rồi gửi lại giúp.'],
+    ['ご容赦', 'ごようしゃ', 'sự lượng thứ', '何卒ご容赦くださいますよう、お願い申し上げます。', 'Kính mong quý vị lượng thứ.'],
+    ['ご期待に沿えず', 'ごきたいにそえず', 'không đáp ứng được kỳ vọng', 'ご期待に沿えず、誠に申し訳ございません。', 'Thật xin lỗi vì không đáp ứng được kỳ vọng.'],
+    ['見送る', 'みおくる', 'gác lại, không làm lần này', '今回は出展を見送ることにしました。', 'Lần này chúng tôi quyết định không tham gia triển lãm.'],
+    ['いたしかねる', 'いたしかねる', 'không thể (từ chối lịch sự)', 'そのご要望にはお応えいたしかねます。', 'Chúng tôi không thể đáp ứng yêu cầu đó.'],
+    ['あしからず', 'あしからず', 'xin đừng phật lòng', '定員に達し次第締め切りますので、あしからずご了承ください。', 'Đủ người sẽ đóng đăng ký, mong quý vị thông cảm.'],
+    ['ご了承', 'ごりょうしょう', 'sự thông cảm, chấp thuận', '予めご了承ください。', 'Xin quý vị thông cảm trước.'],
+    ['ご一読', 'ごいちどく', 'sự đọc qua', 'ご一読いただけますと幸いです。', 'Mong anh đọc qua giúp.'],
+    ['ご教示', 'ごきょうじ', 'sự chỉ dạy, cho biết', '手続きの方法をご教示いただけますでしょうか。', 'Anh có thể chỉ giúp cách làm thủ tục không ạ?'],
+  ]),
+  ...vocab(3, 'Từ ngữ email', 'meru', [
+    ['件名', 'けんめい', 'tiêu đề email', '件名には用件を短く書きましょう。', 'Hãy viết ngắn nội dung chính vào tiêu đề.'],
+    ['添付', 'てんぷ', 'đính kèm (tệp)', '会議の資料を添付いたします。', 'Tôi xin đính kèm tài liệu cuộc họp.'],
+    ['同封', 'どうふう', 'gửi kèm trong phong bì', '申込書を同封いたしましたので、ご記入ください。', 'Tôi gửi kèm đơn đăng ký trong phong bì, xin anh điền.'],
+    ['宛先', 'あてさき', 'người nhận, địa chỉ nhận', '送信前に宛先をもう一度確認する。', 'Trước khi gửi, kiểm tra lại người nhận.'],
+    ['CC', 'シーシー', 'đồng gửi (CC)', '課長にもCCで共有します。', 'Tôi CC cho cả trưởng phòng.'],
+    ['一斉送信', 'いっせいそうしん', 'gửi hàng loạt cùng lúc', '一斉送信の際はBCCを使ってください。', 'Khi gửi hàng loạt hãy dùng BCC.'],
+    ['誤送信', 'ごそうしん', 'gửi nhầm', '誤送信を防ぐため、送信は1分間保留されます。', 'Để tránh gửi nhầm, thư được giữ lại 1 phút.'],
+    ['ご返信', 'ごへんしん', 'thư trả lời (của đối phương)', 'ご返信をお待ちしております。', 'Tôi chờ thư trả lời của anh.'],
+    ['転送', 'てんそう', 'chuyển tiếp (thư)', 'このメールを担当者に転送しておきます。', 'Tôi sẽ chuyển tiếp thư này cho người phụ trách.'],
+    ['署名', 'しょめい', 'chữ ký cuối thư', 'メールの最後には必ず署名を入れる。', 'Cuối email luôn có phần chữ ký.'],
+    ['訂正', 'ていせい', 'đính chính', '先ほどのメールの内容を訂正いたします。', 'Tôi xin đính chính nội dung thư vừa gửi.'],
+    ['下記', 'かき', 'dưới đây', '下記のとおりご案内申し上げます。', 'Xin thông báo như dưới đây.'],
+    ['受領', 'じゅりょう', 'nhận (giấy tờ, hàng)', '請求書を確かに受領いたしました。', 'Tôi đã nhận được hóa đơn.'],
+  ]),
+];

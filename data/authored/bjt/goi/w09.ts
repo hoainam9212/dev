@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 9 — complaints and apologies. */
+export const V09: BjtVocab[] = [
+  ...vocab(9, 'Khiếu nại của khách', 'kujo', [
+    ['苦情', 'くじょう', 'lời phàn nàn, khiếu nại', '新商品の味について、お客様から苦情が寄せられた。', 'Đã có khách hàng phàn nàn về vị của sản phẩm mới.'],
+    ['クレーム対応', 'くれーむたいおう', 'xử lý khiếu nại', 'クレーム対応の基本は、まずお客様の話を最後まで聞くことだ。', 'Nguyên tắc cơ bản khi xử lý khiếu nại là trước hết nghe khách nói cho hết.'],
+    ['申し出', 'もうしで', 'lời đề nghị, lời báo (của khách)', '返品のお申し出は、商品到着後七日以内にお願いいたします。', 'Xin quý khách báo trả hàng trong vòng bảy ngày sau khi nhận hàng.'],
+    ['指摘を受ける', 'してきをうける', 'bị chỉ ra (lỗi, thiếu sót)', '取引先から請求金額の誤りについて指摘を受けた。', 'Chúng tôi bị đối tác chỉ ra sai sót về số tiền trên hoá đơn.'],
+    ['不手際', 'ふてぎわ', 'sơ suất, xử lý vụng về (lỗi phía mình)', '弊社の不手際により、ご注文の品が届かず大変失礼いたしました。', 'Do sơ suất của công ty chúng tôi mà hàng quý khách đặt chưa tới, chúng tôi thật thất lễ.'],
+    ['破損', 'はそん', 'hư hỏng, vỡ', '配送中に破損した商品は、送料当社負担にて交換いたします。', 'Hàng bị hư hỏng trong lúc vận chuyển sẽ được đổi, công ty chịu phí gửi.'],
+    ['誤配送', 'ごはいそう', 'giao nhầm (hàng, địa chỉ)', '誤配送を防ぐため、出荷ラベルの読み取りを二回行っている。', 'Để tránh giao nhầm, nhãn xuất hàng được quét hai lần.'],
+    ['欠品', 'けっぴん', 'thiếu hàng, hết hàng (trong lô giao)', '届いた箱を開けたところ、付属品が欠品していた。', 'Mở thùng hàng ra thì thấy thiếu phụ kiện.'],
+    ['異物混入', 'いぶつこんにゅう', 'lẫn dị vật (vào sản phẩm)'],
+    ['返金', 'へんきん', 'hoàn tiền'],
+    ['代替品', 'だいたいひん', 'hàng thay thế'],
+    ['お客様相談室', 'おきゃくさまそうだんしつ', 'phòng tư vấn khách hàng'],
+    ['ごもっともです', 'ごもっともです', '(quý khách nói) rất đúng ạ, hoàn toàn có lý'],
+    ['ご立腹', 'ごりっぷく', 'sự tức giận (của người trên, của khách)'],
+  ]),
+  ...vocab(9, 'Lời xin lỗi', 'owabi', [
+    ['陳謝する', 'ちんしゃする', 'tạ lỗi, xin lỗi chính thức', '社長が記者会見を開き、今回の事故について陳謝した。', 'Giám đốc mở họp báo và chính thức xin lỗi về sự cố lần này.'],
+    ['深くお詫び申し上げます', 'ふかくおわびもうしあげます', 'xin thành thật xin lỗi', 'ご心配をおかけしましたことを、深くお詫び申し上げます。', 'Chúng tôi thành thật xin lỗi vì đã khiến quý vị lo lắng.'],
+    ['弁解の余地もございません', 'べんかいのよちもございません', 'không có gì để biện minh', '確認を怠った私どもの責任であり、弁解の余地もございません。', 'Đây là trách nhiệm của chúng tôi vì đã lơ là kiểm tra, không có gì để biện minh.'],
+    ['ご不快な思いをおかけし', 'ごふかいなおもいをおかけし', 'đã khiến quý khách khó chịu', 'スタッフの言葉遣いでご不快な思いをおかけし、申し訳ございません。', 'Xin lỗi quý khách vì cách ăn nói của nhân viên đã khiến quý khách khó chịu.'],
+    ['遺憾', 'いかん', 'đáng tiếc (trang trọng; bên có lỗi chỉ nói 遺憾 thì bị coi là chưa xin lỗi)', '取引先の対応は誠に遺憾であり、契約の見直しも検討している。', 'Cách xử lý của đối tác thật đáng tiếc, chúng tôi đang tính cả việc xem lại hợp đồng.'],
+    ['誠意をもって', 'せいいをもって', 'với thiện chí, thành ý', '今後とも誠意をもって対応させていただきます。', 'Từ nay chúng tôi sẽ tiếp tục xử lý với tất cả thành ý.'],
+    ['至らない点', 'いたらないてん', 'chỗ còn thiếu sót (khiêm tốn)', '至らない点が多々あり、ご迷惑をおかけいたしました。', 'Có nhiều chỗ thiếu sót, chúng tôi đã làm phiền quý vị.'],
+    ['監督不行き届き', 'かんとくふゆきとどき', 'thiếu sự giám sát (của cấp trên)', '部下のミスは、私の監督不行き届きによるものです。', 'Lỗi của cấp dưới là do tôi đã không giám sát chu đáo.'],
+    ['お騒がせする', 'おさわがせする', 'làm náo động, gây phiền', 'このたびは世間をお騒がせし、誠に申し訳ございません。', 'Chúng tôi thật sự xin lỗi vì lần này đã làm dư luận xôn xao.'],
+    ['謝罪文', 'しゃざいぶん', 'thư xin lỗi'],
+    ['平身低頭', 'へいしんていとう', 'cúi rạp người, hết sức nhún nhường'],
+    ['猛省する', 'もうせいする', 'tự kiểm điểm nghiêm khắc'],
+    ['重く受け止める', 'おもくうけとめる', 'coi là chuyện hệ trọng, tiếp nhận nghiêm túc'],
+  ]),
+  ...vocab(9, 'Nguyên nhân và phòng ngừa', 'boshi', [
+    ['再発防止策', 'さいはつぼうしさく', 'biện pháp phòng ngừa tái diễn', '来週中に再発防止策をまとめ、お客様にご報告いたします。', 'Trong tuần sau chúng tôi sẽ tổng hợp biện pháp phòng ngừa tái diễn và báo cáo khách hàng.'],
+    ['原因究明', 'げんいんきゅうめい', 'làm rõ nguyên nhân', '現在、専門の部署が原因究明を急いでおります。', 'Hiện bộ phận chuyên môn đang khẩn trương làm rõ nguyên nhân.'],
+    ['是正措置', 'ぜせいそち', 'biện pháp khắc phục', '監査で指摘された点について、是正措置を講じた。', 'Đã áp dụng biện pháp khắc phục cho các điểm bị chỉ ra trong đợt kiểm toán.'],
+    ['自主回収', 'じしゅかいしゅう', 'tự nguyện thu hồi (sản phẩm)', '表示の誤りが見つかったため、該当商品を自主回収することになった。', 'Vì phát hiện ghi nhãn sai nên công ty quyết định tự nguyện thu hồi sản phẩm liên quan.'],
+    ['顛末書', 'てんまつしょ', 'bản tường trình đầu đuôi sự cố', '事故の顛末書を、明日までに部長に提出してください。', 'Hãy nộp bản tường trình sự cố cho trưởng bộ phận trước ngày mai.'],
+    ['暫定対応', 'ざんていたいおう', 'xử lý tạm thời', '暫定対応として、手作業でのチェックを追加した。', 'Để xử lý tạm thời, đã thêm bước kiểm tra bằng tay.'],
+    ['恒久対策', 'こうきゅうたいさく', 'biện pháp lâu dài, triệt để', '恒久対策として、検査装置を新しいものに入れ替える。', 'Biện pháp lâu dài là thay thiết bị kiểm tra bằng máy mới.'],
+    ['再点検', 'さいてんけん', 'kiểm tra lại toàn bộ', '同じ型の機械をすべて再点検した。', 'Đã kiểm tra lại toàn bộ máy cùng loại.'],
+    ['水平展開', 'すいへいてんかい', 'áp dụng (biện pháp) sang các bộ phận khác', 'この対策は、ほかの工場にも水平展開する予定だ。', 'Biện pháp này dự kiến được áp dụng sang cả các nhà máy khác.'],
+    ['ヒヤリハット', 'ひやりはっと', 'sự cố suýt xảy ra (giật mình nhưng chưa thành tai nạn)'],
+    ['根本原因', 'こんぽんげんいん', 'nguyên nhân gốc rễ'],
+    ['二次被害', 'にじひがい', 'thiệt hại thứ cấp, thiệt hại kéo theo'],
+    ['管理体制', 'かんりたいせい', 'cơ chế quản lý'],
+  ]),
+];

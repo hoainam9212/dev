@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 10 — contracts, delivery and payment. */
+export const V10: BjtVocab[] = [
+  ...vocab(10, 'Hợp đồng', 'keiyaku', [
+    ['締結する', 'ていけつする', 'ký kết (hợp đồng, hiệp định)', '来月、海外の販売代理店と契約を締結する予定だ。', 'Tháng sau dự kiến ký hợp đồng với đại lý bán hàng ở nước ngoài.'],
+    ['取り交わす', 'とりかわす', 'trao đổi cho nhau (văn bản đã ký)', '正式な発注の前に、双方で覚書を取り交わした。', 'Trước khi đặt hàng chính thức, hai bên đã trao đổi biên bản ghi nhớ.'],
+    ['条項', 'じょうこう', 'điều khoản', '契約書の秘密保持の条項を、法務部に確認してもらった。', 'Đã nhờ phòng pháp chế kiểm tra điều khoản bảo mật trong hợp đồng.'],
+    ['甲', 'こう', 'bên A (trong hợp đồng)', '甲は、乙に対し業務の対価を毎月支払うものとする。', 'Bên A thanh toán thù lao công việc cho bên B hằng tháng.'],
+    ['乙', 'おつ', 'bên B (trong hợp đồng)', '乙は、本業務で知り得た情報を第三者に漏らしてはならない。', 'Bên B không được tiết lộ cho bên thứ ba thông tin biết được trong công việc này.'],
+    ['但し書き', 'ただしがき', 'câu ngoại lệ (phần bắt đầu bằng ただし)', '第五条の但し書きにより、この場合は違約金が発生しない。', 'Theo câu ngoại lệ ở điều 5, trường hợp này không phát sinh tiền phạt.'],
+    ['覚書', 'おぼえがき', 'biên bản ghi nhớ, phụ lục thoả thuận', '価格の変更については、別途覚書で定める。', 'Việc thay đổi giá sẽ quy định riêng bằng biên bản ghi nhớ.'],
+    ['自動更新', 'じどうこうしん', 'tự động gia hạn', 'この契約は、解約の申し出がなければ自動更新される。', 'Hợp đồng này tự động gia hạn nếu không có đề nghị chấm dứt.'],
+    ['契約解除', 'けいやくかいじょ', 'huỷ, chấm dứt hợp đồng', '支払いが三か月以上遅れた場合、契約解除となることがある。', 'Nếu chậm thanh toán trên ba tháng, hợp đồng có thể bị chấm dứt.'],
+    ['損害賠償', 'そんがいばいしょう', 'bồi thường thiệt hại'],
+    ['秘密保持契約', 'ひみつほじけいやく', 'thoả thuận bảo mật (NDA)'],
+    ['不可抗力', 'ふかこうりょく', 'bất khả kháng'],
+    ['履行する', 'りこうする', 'thực hiện (nghĩa vụ hợp đồng)'],
+    ['割印', 'わりいん', 'dấu giáp lai (đóng chồng lên hai bản hợp đồng)'],
+  ]),
+  ...vocab(10, 'Giao nhận hàng', 'nohin', [
+    ['納品書', 'のうひんしょ', 'phiếu giao hàng', '商品と一緒に納品書を同封しておりますので、ご確認ください。', 'Phiếu giao hàng được để kèm cùng hàng, xin quý khách kiểm tra.'],
+    ['検収', 'けんしゅう', 'nghiệm thu (kiểm tra rồi nhận hàng)', '検収が完了した月の末日を締め日として請求いたします。', 'Chúng tôi lập hoá đơn với ngày chốt là cuối tháng hoàn tất nghiệm thu.'],
+    ['一括納品', 'いっかつのうひん', 'giao hàng một lần (toàn bộ)', '倉庫に余裕がないため、一括納品ではなく分けて届けてほしい。', 'Kho không còn chỗ nên muốn giao chia ra chứ không giao một lần.'],
+    ['入荷', 'にゅうか', 'hàng về (kho, cửa hàng)', '人気の型番は、次回の入荷が来月中旬になります。', 'Mẫu bán chạy sẽ có hàng về đợt tới vào giữa tháng sau.'],
+    ['納入先', 'のうにゅうさき', 'nơi nhận hàng giao', '納入先が本社から新しい倉庫に変わりました。', 'Nơi nhận hàng đã đổi từ trụ sở chính sang kho mới.'],
+    ['受領書', 'じゅりょうしょ', 'giấy xác nhận đã nhận hàng', '受領書に署名のうえ、配送員にお渡しください。', 'Xin ký vào giấy xác nhận nhận hàng rồi đưa cho nhân viên giao hàng.'],
+    ['梱包', 'こんぽう', 'đóng gói', '精密機器ですので、梱包には十分ご注意ください。', 'Vì là thiết bị chính xác, xin hết sức cẩn thận khi đóng gói.'],
+    ['先方負担', 'せんぽうふたん', 'phía đối tác chịu (chi phí)', '返品の送料は先方負担ということで合意した。', 'Đã thống nhất phí gửi trả hàng do phía đối tác chịu.'],
+    ['出荷指示', 'しゅっかしじ', 'lệnh xuất hàng'],
+    ['在庫引当', 'ざいこひきあて', 'giữ hàng tồn kho cho đơn hàng'],
+    ['遅配', 'ちはい', 'giao chậm'],
+    ['着荷', 'ちゃっか', 'hàng đến nơi'],
+    ['送料別', 'そうりょうべつ', 'chưa gồm phí gửi hàng'],
+  ]),
+  ...vocab(10, 'Thanh toán', 'shiharai', [
+    ['締め日', 'しめび', 'ngày chốt sổ', '当社の締め日は毎月二十日です。', 'Ngày chốt sổ của công ty chúng tôi là ngày 20 hằng tháng.'],
+    ['支払期日', 'しはらいきじつ', 'hạn thanh toán', '支払期日を過ぎても入金が確認できない。', 'Đã quá hạn thanh toán mà vẫn chưa thấy tiền về.'],
+    ['振込手数料', 'ふりこみてすうりょう', 'phí chuyển khoản', '振込手数料は貴社にてご負担いただけますようお願いいたします。', 'Mong quý công ty chịu phí chuyển khoản.'],
+    ['買掛金', 'かいかけきん', 'khoản phải trả (cho nhà cung cấp)', '月末に買掛金の残高を仕入先ごとに確認する。', 'Cuối tháng kiểm tra số dư khoản phải trả theo từng nhà cung cấp.'],
+    ['前払い', 'まえばらい', 'trả trước', '初めてのお取引の場合は、前払いでお願いしております。', 'Với giao dịch lần đầu, chúng tôi đề nghị trả trước.'],
+    ['入金確認', 'にゅうきんかくにん', 'xác nhận tiền đã về', '入金確認後、三営業日以内に商品を発送いたします。', 'Sau khi xác nhận tiền về, hàng sẽ được gửi trong vòng ba ngày làm việc.'],
+    ['督促', 'とくそく', 'đôn đốc, nhắc nợ', '二度督促しても、先方から支払いがない。', 'Đã nhắc nợ hai lần mà phía bên kia vẫn chưa trả.'],
+    ['相殺する', 'そうさいする', 'bù trừ (công nợ)', '返品分の金額は、来月の請求と相殺させていただきます。', 'Số tiền hàng trả lại sẽ được bù trừ vào hoá đơn tháng sau.'],
+    ['後払い', 'あとばらい', 'trả sau'],
+    ['支払サイト', 'しはらいさいと', 'thời hạn từ lúc chốt sổ đến lúc trả tiền'],
+    ['与信', 'よしん', 'cấp tín dụng cho khách (cho mua chịu)'],
+    ['手付金', 'てつけきん', 'tiền đặt cọc'],
+    ['収入印紙', 'しゅうにゅういんし', 'tem thuế (dán lên biên lai, hợp đồng)'],
+  ]),
+];
