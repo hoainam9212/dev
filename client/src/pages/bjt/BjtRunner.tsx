@@ -131,7 +131,7 @@ export function BjtRunner({ title, items, exam = false, setId, onExit }: Props) 
         </p>
       </div>
       <p className="text-sm font-bold text-rose">
-        {section.ja} <span className="font-normal text-muted">· {title}</span>
+        {section.ja} {title !== section.ja && <span className="font-normal text-muted">· {title}</span>}
       </p>
 
       {hasAudio && (

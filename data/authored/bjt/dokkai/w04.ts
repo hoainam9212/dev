@@ -99,7 +99,7 @@ export const W04: BjtItem[] = [
         'この会議に出る課長が、事前にしなければならないことは何ですか。',
         ['11月28日までに、実績資料を共有フォルダに入れる', '会議の当日に、実績資料を人数分配る', '来期の重点商品を決めて報告する', '代理の出席者を必ず決めておく'],
         0,
-        'Đáp án 1. Thư yêu cầu lưu tài liệu vào thư mục chung trước thứ Sáu 28/11 để mọi người đọc trước. Lựa chọn 2 dễ nhầm, nhưng thư nói rõ 当日配るのではなく: không phát vào hôm họp. Mặt hàng trọng điểm được quyết trong cuộc họp, còn người thay chỉ cần khi tổ trưởng vắng.',
+        'Đáp án 1. Thư yêu cầu lưu tài liệu vào thư mục chung trước thứ Sáu 28/11 để mọi người đọc trước. Lựa chọn 2 dễ nhầm, nhưng thư nói rõ 当日配るのではなく: không phát vào hôm họp. Mặt hàng trọng điểm được quyết trong cuộc họp, còn người thay chỉ cần khi trưởng phòng vắng.',
       ],
     ],
     points: [
