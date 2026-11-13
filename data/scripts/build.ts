@@ -23,6 +23,7 @@ import { buildKana } from '../src/kana';
 import { READING } from '../authored/reading';
 import { LISTENING } from '../authored/listening';
 import { BUSINESS } from '../authored/business';
+import { BJT } from '../authored/bjt';
 
 const read = (p: string) => fs.readFileSync(path.join(RAW_DIR, p), 'utf8');
 const readSvg = (ch: string): string | null => {
@@ -152,6 +153,8 @@ async function main() {
   write('kana.json', buildKana(readSvg));
   write('business/index.json', BUSINESS);
   console.log('business items', BUSINESS.reduce((n, t) => n + t.items.length, 0));
+  write('bjt/index.json', BJT);
+  console.log('bjt items', BJT.items.length, '· questions', BJT.items.reduce((n, x) => n + x.questions.length, 0), '· vocab', BJT.vocab.length);
   const index: ContentIndex = { builtAt: new Date().toISOString(), counts };
   write('index.json', index);
 

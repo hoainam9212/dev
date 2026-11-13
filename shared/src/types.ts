@@ -188,3 +188,115 @@ export interface ContentIndex {
   builtAt: string;
   counts: Record<string, Partial<Record<Level, number>>>;
 }
+
+// ---------------- BJT (ビジネス日本語能力テスト) ----------------
+
+export type BjtPart = 'chokai' | 'chodokkai' | 'dokkai';
+export type BjtSection =
+  | 'bamen'
+  | 'hatsugen'
+  | 'sogo-chokai'
+  | 'jokyo'
+  | 'shiryo'
+  | 'sogo-chodokkai'
+  | 'goi'
+  | 'hyogen'
+  | 'sogo-dokkai';
+
+/** The nine section types in exam order, with the number of questions each has in the real test (80 in total). */
+export const BJT_SECTIONS: { id: BjtSection; part: BjtPart; ja: string; count: number }[] = [
+  { id: 'bamen', part: 'chokai', ja: '場面把握', count: 5 },
+  { id: 'hatsugen', part: 'chokai', ja: '発言聴解', count: 10 },
+  { id: 'sogo-chokai', part: 'chokai', ja: '総合聴解', count: 10 },
+  { id: 'jokyo', part: 'chodokkai', ja: '状況把握', count: 5 },
+  { id: 'shiryo', part: 'chodokkai', ja: '資料聴読解', count: 10 },
+  { id: 'sogo-chodokkai', part: 'chodokkai', ja: '総合聴読解', count: 10 },
+  { id: 'goi', part: 'dokkai', ja: '語彙・文法', count: 10 },
+  { id: 'hyogen', part: 'dokkai', ja: '表現読解', count: 10 },
+  { id: 'sogo-dokkai', part: 'dokkai', ja: '総合読解', count: 10 },
+];
+export const BJT_PARTS: { id: BjtPart; ja: string; minutes: number }[] = [
+  { id: 'chokai', ja: '聴解', minutes: 45 },
+  { id: 'chodokkai', ja: '聴読解', minutes: 30 },
+  { id: 'dokkai', ja: '読解', minutes: 30 },
+];
+export const bjtPartOf = (s: BjtSection): BjtPart => BJT_SECTIONS.find((x) => x.id === s)!.part;
+
+/** What the learner looks at: the photo of the real test is replaced by a description (`scene`). */
+export type BjtMaterial =
+  | { kind: 'scene'; vi: string }
+  | { kind: 'text'; title?: string; body: string }
+  | { kind: 'table'; title?: string; head: string[]; rows: string[][]; note?: string }
+  | { kind: 'bars'; title?: string; unit?: string; labels: string[]; series: { name: string; values: number[] }[] };
+
+export interface BjtQuestion {
+  id: string;
+  prompt: string;
+  choices: string[];
+  answer: number;
+  /** Why the answer is right and why the tempting ones are wrong (Vietnamese). */
+  explain: string;
+}
+
+export interface BjtPoint {
+  ja: string;
+  reading: string;
+  vi: string;
+}
+
+/** One exam item: an optional recording and/or material, then one or more questions on it. */
+export interface BjtItem {
+  id: string;
+  section: BjtSection;
+  /** `demo`, `w01`…`w16` (weekly practice) or `mock1`…`mock3` (full tests). */
+  set: string;
+  script?: ListeningLine[];
+  material?: BjtMaterial;
+  /** The choices are heard, not printed (場面把握 / 発言聴解 in the real test). */
+  spokenChoices?: boolean;
+  questions: BjtQuestion[];
+  /** Words and expressions worth keeping from this item. */
+  points?: BjtPoint[];
+}
+
+export interface BjtVocab {
+  id: string;
+  week: number;
+  /** Theme label (Vietnamese), e.g. "Điện thoại". */
+  tag: string;
+  ja: string;
+  reading: string;
+  vi: string;
+  example?: { ja: string; vi: string };
+}
+
+export interface BjtWeek {
+  week: number;
+  title: string;
+  goal: string;
+  focus: BjtSection[];
+  tasks: string[];
+  /** Set id of the full test taken this week, if any. */
+  mock?: string;
+}
+
+export interface BjtGuide {
+  section: BjtSection;
+  what: string;
+  how: string[];
+  traps: string[];
+}
+
+export interface BjtBundle {
+  weeks: BjtWeek[];
+  guides: BjtGuide[];
+  items: BjtItem[];
+  vocab: BjtVocab[];
+}
+
+/** Rough score on the 0–800 scale from a share of correct answers. The real test uses IRT; this is only a guide. */
+export function bjtEstimate(correct: number, total: number): { score: number; level: string } {
+  const score = total > 0 ? Math.round((correct / total) * 800) : 0;
+  const level = score >= 600 ? 'J1+' : score >= 530 ? 'J1' : score >= 420 ? 'J2' : score >= 320 ? 'J3' : score >= 200 ? 'J4' : 'J5';
+  return { score, level };
+}
