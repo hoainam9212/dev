@@ -2,10 +2,12 @@
 // node cli.mjs scan  <books folder>
 // node cli.mjs build <books folder> [pack folder]     (default: <books folder>/_pack)
 // node cli.mjs check [pack folder]
+// node cli.mjs zip   <pack folder> [zip folder]       (default: <pack folder>/../_zip) one .zip per indexed book
 import fs from 'node:fs';
 import path from 'node:path';
-import { audioFile, groupBooks, mergeBook, pageFile, validateBook } from './lib.mjs';
-import { audioInfo, pdfInfo, readJson, renderPdf, signature, walk, writeJson } from './io.mjs';
+import zlib from 'node:zlib';
+import { audioFile, groupBooks, inkBox, mergeBook, pageFile, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
+import { audioInfo, grayPixels, pdfInfo, readJson, renderPdf, signature, walk, writeJson } from './io.mjs';
 
 const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
 const clock = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
@@ -144,13 +146,71 @@ function check(out) {
   if (failed) process.exitCode = 1;
 }
 
+/** One stored .zip per sound book, for "Nhập sách" in the app. */
+function zip(out, dest) {
+  assertOutsideGit(dest);
+  fs.mkdirSync(dest, { recursive: true });
+  for (const id of fs.readdirSync(out)) {
+    const dir = path.join(out, id);
+    const bookPath = path.join(dir, 'book.json');
+    if (!fs.existsSync(bookPath)) continue;
+    const book = readJson(bookPath);
+    if (!book.tests?.length) {
+      console.log(`· ${book.title}: no test indexed yet, skipped`);
+      continue;
+    }
+    const problems = validateBook(book);
+    if (problems.length) {
+      console.log(`✗ ${book.title}: index has problems, run check first`);
+      process.exitCode = 1;
+      continue;
+    }
+    // where the print is on each page, so the app can leave out the white margins (kept in book.json)
+    const pagesDir = path.join(dir, 'pages');
+    const boxes = { ...(book.boxes ?? {}) };
+    let measured = 0;
+    for (const f of fs.existsSync(pagesDir) ? fs.readdirSync(pagesDir) : []) {
+      const n = Number(/^p(\d+)\./.exec(f)?.[1]);
+      if (!n || boxes[n]) continue;
+      const { gray, w, h } = grayPixels(path.join(pagesDir, f));
+      boxes[n] = inkBox(gray, w, h);
+      measured++;
+    }
+    if (measured) {
+      book.boxes = boxes;
+      writeJson(bookPath, book);
+      console.log(`  measured margins of ${measured} page(s)`);
+    }
+    const target = path.join(dest, `${id}.zip`);
+    const fd = fs.openSync(`${target}.part`, 'w');
+    const central = [];
+    let offset = 0;
+    for (const name of zipEntries(walk(dir))) {
+      const data = fs.readFileSync(path.join(dir, name));
+      const crc = zlib.crc32(data);
+      const local = zipLocalHeader(name, data.length, crc);
+      central.push(zipCentralHeader(name, data.length, crc, offset));
+      fs.writeSync(fd, local);
+      fs.writeSync(fd, data);
+      offset += local.length + data.length;
+    }
+    const cd = Buffer.concat(central);
+    fs.writeSync(fd, cd);
+    fs.writeSync(fd, zipEnd(central.length, cd.length, offset));
+    fs.closeSync(fd);
+    fs.renameSync(`${target}.part`, target);
+    console.log(`✓ ${book.title} → ${target} (${central.length} files, ${(fs.statSync(target).size / 1048576).toFixed(1)} MB)`);
+  }
+}
+
 const [cmd, a, b] = process.argv.slice(2);
 try {
   if (cmd === 'scan' && a) await scan(path.resolve(a));
   else if (cmd === 'build' && a) await build(path.resolve(a), path.resolve(b ?? path.join(a, '_pack')));
   else if (cmd === 'check' && a) check(path.resolve(a));
+  else if (cmd === 'zip' && a) zip(path.resolve(a), path.resolve(b ?? path.join(a, '..', '_zip')));
   else {
-    console.log('usage:\n  node cli.mjs scan  <books folder>\n  node cli.mjs build <books folder> [pack folder]\n  node cli.mjs check <pack folder>');
+    console.log('usage:\n  node cli.mjs scan  <books folder>\n  node cli.mjs build <books folder> [pack folder]\n  node cli.mjs check <pack folder>\n  node cli.mjs zip   <pack folder> [zip folder]');
     process.exitCode = 2;
   }
 } catch (e) {

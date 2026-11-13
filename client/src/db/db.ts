@@ -31,10 +31,30 @@ export interface Writing {
   createdAt: string;
 }
 
+/** A BJT prep book the learner imported from a .zip made by tools/book-import (stays on the device). */
+export interface StoredBook {
+  id: string;
+  title: string;
+  /** book.json as imported (see pages/bjt/books/book.ts). */
+  book: unknown;
+  bytes: number;
+  importedAt: string;
+}
+
+/** One page image or recording of an imported book; key = `<bookId>/<path>`. */
+export interface BookFile {
+  key: string;
+  bookId: string;
+  type: string;
+  data: ArrayBuffer;
+}
+
 export class NihongoDB extends Dexie {
   progress!: Table<ProgressItem, string>;
   sessions!: Table<SessionLog, number>;
   writings!: Table<Writing, number>;
+  books!: Table<StoredBook, string>;
+  bookFiles!: Table<BookFile, string>;
 
   constructor(name = 'nihongo-sensei') {
     super(name);
@@ -44,6 +64,10 @@ export class NihongoDB extends Dexie {
     });
     this.version(2).stores({
       writings: '++id, grammarId, createdAt, level',
+    });
+    this.version(3).stores({
+      books: 'id, importedAt',
+      bookFiles: 'key, bookId',
     });
   }
 }

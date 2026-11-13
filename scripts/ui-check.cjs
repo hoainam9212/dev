@@ -5,7 +5,7 @@
 const puppeteer = require(process.env.APPDATA + '/npm/node_modules/@modelcontextprotocol/server-puppeteer/node_modules/puppeteer-core');
 const os = require('os'), path = require('path'), fs = require('fs');
 
-const ROUTES = ['/', '/kana', '/vocab', '/kanji', '/review', '/grammar', '/reading', '/listening', '/speaking', '/writing', '/business', '/bjt', '/progress', '/settings', '/login', '/register'];
+const ROUTES = ['/', '/kana', '/vocab', '/kanji', '/review', '/grammar', '/reading', '/listening', '/speaking', '/writing', '/business', '/bjt', '/bjt/sach','/progress', '/settings', '/login', '/register'];
 
 function arg(name, fallback) {
   const i = process.argv.indexOf('--' + name);

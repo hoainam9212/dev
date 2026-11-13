@@ -25,8 +25,16 @@ tên xếp **sau** các file cũ (nếu không số trang và số băng sẽ l�
 node cli.mjs scan  "../../../bjt-sach"          # kiểm kê: số trang, PDF có chữ hay bản quét, độ dài từng băng
 node cli.mjs build "../../../bjt-sach"          # tạo gói ở bjt-sach/_pack/<mã sách>/
 node cli.mjs check "../../../bjt-sach/_pack"    # soát mục lục
+node cli.mjs zip   "../../../bjt-sach/_pack"    # mỗi cuốn đã có đề → bjt-sach/_zip/<mã sách>.zip (đo lề trang luôn)
 npm test
 ```
+
+## Đưa sách vào app
+
+1. `node cli.mjs zip …` tạo một file `.zip` cho mỗi cuốn đã đánh mục lục (không nén, đo sẵn vùng chữ để app bỏ lề trắng).
+2. Chép file `.zip` sang điện thoại (cáp USB, Google Drive của bạn…).
+3. Trong app: **Luyện thi BJT → 📚 Sách của tôi → Chọn file .zip**. Sách nằm trong bộ nhớ app trên máy đó,
+   không tải lên đâu; xoá được bằng nút "Xoá sách".
 
 ## Gói sách
 
@@ -61,4 +69,4 @@ _pack/<mã sách>/
 ## Chưa làm
 
 - Âm thanh `.wma`/`.flac` chỉ được báo, chưa tự đổi sang mp3 (máy chưa có ffmpeg).
-- Màn hình trong app để mở gói sách (xem trang, nghe đúng đoạn, chấm theo đáp án): làm sau khi có sách thật.
+- Một băng chứa nhiều câu (cần mốc giây `at`): app hiện phát cả track; sách đầu tiên mỗi câu một track nên chưa cần.

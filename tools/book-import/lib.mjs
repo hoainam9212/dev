@@ -165,6 +165,91 @@ export function validateBook(book) {
   return problems;
 }
 
+/**
+ * Where the printed content of a scanned page is, as fractions [x0, y0, x1, y1] of its width and height,
+ * so the app can leave out the white margins. `gray` holds one byte per pixel (0 black … 255 white).
+ * A row or column counts as content when more than `minInk` of its pixels are darker than `threshold`
+ * (specks of scanner dust stay below it). A blank page gives the whole page.
+ */
+export function inkBox(gray, w, h, { threshold = 200, minInk = 0.004, pad = 0.015 } = {}) {
+  const rows = new Uint32Array(h);
+  const cols = new Uint32Array(w);
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++)
+      if (gray[y * w + x] < threshold) {
+        rows[y]++;
+        cols[x]++;
+      }
+  const first = (a, need) => a.findIndex((v) => v > need);
+  const lastOf = (a, need) => a.length - 1 - [...a].reverse().findIndex((v) => v > need);
+  const rowNeed = Math.max(2, w * minInk);
+  const colNeed = Math.max(2, h * minInk);
+  const y0 = first(rows, rowNeed);
+  const x0 = first(cols, colNeed);
+  if (y0 < 0 || x0 < 0) return [0, 0, 1, 1];
+  const y1 = lastOf(rows, rowNeed) + 1;
+  const x1 = lastOf(cols, colNeed) + 1;
+  const r = (v) => Math.round(Math.min(1, Math.max(0, v)) * 1000) / 1000;
+  return [r(x0 / w - pad), r(y0 / h - pad), r(x1 / w + pad), r(y1 / h + pad)];
+}
+
+// --- a "stored" zip (no compression: pages are JPEG and audio is MP3 already) -----------------------
+// The app reads it straight from the picked file with Blob.slice, so nothing is held in memory twice.
+
+const DOS_DATE = ((2026 - 1980) << 9) | (1 << 5) | 1; // fixed date: the same pack gives the same zip
+
+/** Local file header that precedes each file's bytes. */
+export function zipLocalHeader(name, size, crc) {
+  const n = Buffer.from(name, 'utf8');
+  const h = Buffer.alloc(30);
+  h.writeUInt32LE(0x04034b50, 0);
+  h.writeUInt16LE(20, 4); // version needed
+  h.writeUInt16LE(0x0800, 6); // UTF-8 names
+  h.writeUInt16LE(0, 8); // stored
+  h.writeUInt16LE(0, 10);
+  h.writeUInt16LE(DOS_DATE, 12);
+  h.writeUInt32LE(crc >>> 0, 14);
+  h.writeUInt32LE(size, 18);
+  h.writeUInt32LE(size, 22);
+  h.writeUInt16LE(n.length, 26);
+  h.writeUInt16LE(0, 28);
+  return Buffer.concat([h, n]);
+}
+
+/** Central directory entry for one file, pointing at its local header. */
+export function zipCentralHeader(name, size, crc, offset) {
+  const n = Buffer.from(name, 'utf8');
+  const h = Buffer.alloc(46);
+  h.writeUInt32LE(0x02014b50, 0);
+  h.writeUInt16LE(20, 4);
+  h.writeUInt16LE(20, 6);
+  h.writeUInt16LE(0x0800, 8);
+  h.writeUInt16LE(0, 10);
+  h.writeUInt16LE(0, 12);
+  h.writeUInt16LE(DOS_DATE, 14);
+  h.writeUInt32LE(crc >>> 0, 16);
+  h.writeUInt32LE(size, 20);
+  h.writeUInt32LE(size, 24);
+  h.writeUInt16LE(n.length, 28);
+  h.writeUInt32LE(offset, 42);
+  return Buffer.concat([h, n]);
+}
+
+/** End of central directory record. */
+export function zipEnd(count, cdSize, cdOffset) {
+  if (count > 0xffff || cdOffset + cdSize > 0xffffffff) throw new Error('book too large for a plain zip (over 4 GB or 65535 files)');
+  const h = Buffer.alloc(22);
+  h.writeUInt32LE(0x06054b50, 0);
+  h.writeUInt16LE(count, 8);
+  h.writeUInt16LE(count, 10);
+  h.writeUInt32LE(cdSize, 12);
+  h.writeUInt32LE(cdOffset, 16);
+  return h;
+}
+
+/** Files of a built book that go into its zip: the index, pages and audio, never the build state. */
+export const zipEntries = (files) => files.filter((f) => f === 'book.json' || /^(pages|audio)\//.test(f)).sort(naturalCompare);
+
 /** Keep everything a person (or Claude) wrote into an existing book.json; refresh only what the build knows. */
 export function mergeBook(existing, built) {
   return {
@@ -175,5 +260,6 @@ export function mergeBook(existing, built) {
     audio: built.audio.map((a) => ({ ...a, title: existing?.audio?.find((x) => x.file === a.file)?.title ?? a.title })),
     tests: existing?.tests ?? [],
     ...(existing?.notes ? { notes: existing.notes } : {}),
+    ...(existing?.boxes ? { boxes: existing.boxes } : {}),
   };
 }

@@ -21,6 +21,21 @@ export function signature(file) {
   return `${s.size}:${Math.round(s.mtimeMs)}`;
 }
 
+/** A page image (JPEG/PNG) as one gray byte per pixel. */
+export function grayPixels(file) {
+  const pix = new mupdf.Image(fs.readFileSync(file)).toPixmap();
+  const w = pix.getWidth();
+  const h = pix.getHeight();
+  const n = pix.getNumberOfComponents() + (pix.getAlpha() ? 1 : 0);
+  const src = pix.getPixels();
+  const gray = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i++) {
+    const p = i * n;
+    gray[i] = n >= 3 ? (src[p] * 3 + src[p + 1] * 6 + src[p + 2]) / 10 : src[p];
+  }
+  return { gray, w, h };
+}
+
 export function openPdf(file) {
   return mupdf.Document.openDocument(fs.readFileSync(file), 'application/pdf');
 }

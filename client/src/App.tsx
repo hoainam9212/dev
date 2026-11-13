@@ -14,6 +14,7 @@ import { SpeakingPage } from './pages/speaking/SpeakingPage';
 import { WritingPage } from './pages/writing/WritingPage';
 import { BusinessPage } from './pages/business/BusinessPage';
 import { BjtPage } from './pages/bjt/BjtPage';
+import { BooksPage } from './pages/bjt/books/BooksPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { LoginPage } from './pages/LoginPage';
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/writing" element={<WritingPage />} />
         <Route path="/business" element={<BusinessPage />} />
         <Route path="/bjt" element={<BjtPage />} />
+        <Route path="/bjt/sach" element={<BooksPage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/login" element={<LoginPage mode="login" />} />

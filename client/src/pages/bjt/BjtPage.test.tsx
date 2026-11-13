@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import type { BjtBundle, BjtItem, BjtSection } from '@nihongo/shared';
 
 const mk = (id: string, section: BjtSection, set: string): BjtItem => ({
@@ -35,7 +36,7 @@ beforeEach(() => useBjt.setState({ answers: {}, runs: {}, startDate: null }));
 const tab = (name: string) => fireEvent.click(screen.getByRole('tab', { name }));
 
 it('plan: shows each week with its own questions, and a week without content says so', () => {
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   const w1 = within(screen.getByTestId('bjt-week-1'));
   expect(w1.getByText('Tuần một')).toBeInTheDocument();
   expect(w1.getByRole('button', { name: dict.bjt.practiceWeek(2) })).toBeInTheDocument();
@@ -49,7 +50,7 @@ it('plan: shows each week with its own questions, and a week without content say
 });
 
 it('plan: marks the current week once the plan is started', () => {
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   expect(screen.queryByText(dict.bjt.thisWeek)).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: dict.bjt.startPlan }));
   expect(within(screen.getByTestId('bjt-week-1')).getByText(dict.bjt.thisWeek)).toBeInTheDocument();
@@ -57,7 +58,7 @@ it('plan: marks the current week once the plan is started', () => {
 
 it('plan: offers the questions last answered wrong, and only those', () => {
   useBjt.setState({ answers: { 'a1-q1': false, 'a2-q1': true } });
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   expect(screen.getByTestId('bjt-wrong')).toHaveTextContent(dict.bjt.wrongPool(1));
   fireEvent.click(screen.getByRole('button', { name: dict.bjt.redoWrong }));
   expect(screen.getByTestId('bjt-prompt')).toHaveTextContent('問 a1');
@@ -65,7 +66,7 @@ it('plan: offers the questions last answered wrong, and only those', () => {
 });
 
 it('sections: counts practice questions without the mock tests and opens the guide', () => {
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   tab(dict.bjt.tabs.sections);
   const goi = within(screen.getByTestId('bjt-section-goi'));
   expect(screen.getByTestId('bjt-section-goi')).toHaveTextContent(`· ${dict.bjt.pool(2)} ·`); // d1 + a1, not m1
@@ -75,7 +76,7 @@ it('sections: counts practice questions without the mock tests and opens the gui
 });
 
 it('vocab: lists the words of the chosen week', () => {
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   tab(dict.bjt.tabs.vocab);
   expect(screen.getByText('査収')).toBeInTheDocument();
   expect(screen.getByText('kiểm tra và nhận')).toBeInTheDocument();
@@ -86,7 +87,7 @@ it('vocab: lists the words of the chosen week', () => {
 
 it('mock: a written test can be started, an unwritten one cannot, and the last score is shown', () => {
   useBjt.setState({ runs: { mock1: [{ at: '2026-11-13T00:00:00Z', correct: 60, total: 80, seconds: 100 }] } });
-  render(<BjtPage />);
+  render(<BjtPage />, { wrapper: MemoryRouter });
   tab(dict.bjt.tabs.mock);
   expect(within(screen.getByTestId('bjt-mock-mock2')).getByRole('button', { name: dict.bjt.startMock })).toBeDisabled();
   const m1 = within(screen.getByTestId('bjt-mock-mock1'));

@@ -1,6 +1,64 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { audioFile, bookId, groupBooks, kindOf, mergeBook, naturalCompare, pageFile, seconds, validateBook } from './lib.mjs';
+import zlib from 'node:zlib';
+import { audioFile, bookId, groupBooks, inkBox, kindOf, mergeBook, naturalCompare, pageFile, seconds, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
+
+test('stored zip headers: every file can be found again from the central directory', () => {
+  const files = [['book.json', Buffer.from('{"id":"b"}')], ['pages/p0001.jpg', Buffer.from([1, 2, 3, 4, 5])], ['音声/a.mp3', Buffer.alloc(0)]];
+  const parts = [];
+  const central = [];
+  let offset = 0;
+  for (const [name, data] of files) {
+    const crc = zlib.crc32(data);
+    const local = zipLocalHeader(name, data.length, crc);
+    central.push(zipCentralHeader(name, data.length, crc, offset));
+    parts.push(local, data);
+    offset += local.length + data.length;
+  }
+  const cd = Buffer.concat(central);
+  const zip = Buffer.concat([...parts, cd, zipEnd(files.length, cd.length, offset)]);
+
+  // read it back the way the app does: end record → central directory → local header → data
+  const end = zip.length - 22;
+  assert.equal(zip.readUInt32LE(end), 0x06054b50);
+  const count = zip.readUInt16LE(end + 10);
+  let p = zip.readUInt32LE(end + 16);
+  const got = [];
+  for (let i = 0; i < count; i++) {
+    assert.equal(zip.readUInt32LE(p), 0x02014b50);
+    const size = zip.readUInt32LE(p + 24);
+    const nameLen = zip.readUInt16LE(p + 28);
+    const local = zip.readUInt32LE(p + 42);
+    const name = zip.subarray(p + 46, p + 46 + nameLen).toString('utf8');
+    assert.equal(zip.readUInt32LE(local), 0x04034b50);
+    const start = local + 30 + zip.readUInt16LE(local + 26) + zip.readUInt16LE(local + 28);
+    got.push([name, zip.subarray(start, start + size)]);
+    p += 46 + nameLen;
+  }
+  assert.deepEqual(got, files);
+  assert.throws(() => zipEnd(70000, 0, 0), /too large/);
+});
+
+test('inkBox finds the printed area, ignores a speck of dust, keeps a blank page whole', () => {
+  const w = 100;
+  const h = 200;
+  const page = new Uint8Array(w * h).fill(255);
+  for (let y = 40; y < 160; y++) for (let x = 20; x < 80; x++) page[y * w + x] = 0; // printed block
+  page[5 * w + 95] = 0; // one dark speck in the margin
+  assert.deepEqual(inkBox(page, w, h, { pad: 0 }), [0.2, 0.2, 0.8, 0.8]);
+  assert.deepEqual(inkBox(page, w, h), [0.185, 0.185, 0.815, 0.815]);
+  assert.deepEqual(inkBox(new Uint8Array(w * h).fill(255), w, h), [0, 0, 1, 1]);
+});
+
+test('zipEntries keeps the index, pages and audio, drops the build state', () => {
+  assert.deepEqual(zipEntries(['.state.json', 'audio/a002.mp3', 'book.json', 'pages/p0010.jpg', 'pages/p0002.jpg', 'audio/a001.mp3', 'notes.txt']), [
+    'audio/a001.mp3',
+    'audio/a002.mp3',
+    'book.json',
+    'pages/p0002.jpg',
+    'pages/p0010.jpg',
+  ]);
+});
 
 test('kindOf sorts files into what the import does with them', () => {
   assert.equal(kindOf('a/b/Book.PDF'), 'pdf');

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BJT_PARTS, BJT_SECTIONS, bjtEstimate, type BjtBundle, type BjtItem, type BjtSection } from '@nihongo/shared';
 import { useJson } from '../../content/loader';
 import { LoadingCat, ErrorCat } from '../../components/LoadingCat';
@@ -87,6 +88,15 @@ export function BjtPage() {
 
       {data && tab === 'plan' && (
         <div className="space-y-3">
+          <section className="card flex flex-wrap items-center justify-between gap-3 p-4" data-testid="bjt-books">
+            <div className="min-w-0">
+              <p className="font-black">{t.bjt.myBooks}</p>
+              <p className="text-sm text-muted">{t.bjt.myBooksDesc}</p>
+            </div>
+            <Link to="/bjt/sach" className="btn-primary">
+              {t.bjt.openBooks}
+            </Link>
+          </section>
           <section className="card flex flex-wrap items-center justify-between gap-3 p-4">
             <div>
               <p className="font-black">{t.bjt.demoTitle}</p>
