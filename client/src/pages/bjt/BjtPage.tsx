@@ -8,6 +8,7 @@ import { useBjt } from '../../store/bjt';
 import { useT } from '../../i18n';
 import { BjtRunner } from './BjtRunner';
 import { currentWeek, examOrder, examSeconds, pickPractice, questionCount, weekSet } from './bjt';
+import { useBookStats } from './useBookStats';
 
 type Tab = 'plan' | 'sections' | 'vocab' | 'mock';
 interface Run {
@@ -41,6 +42,7 @@ export function BjtPage() {
   const runs = useBjt((s) => s.runs);
   const startDate = useBjt((s) => s.startDate);
   const setStartDate = useBjt((s) => s.setStartDate);
+  const bookStats = useBookStats();
 
   if (run) {
     return (
@@ -56,6 +58,9 @@ export function BjtPage() {
   // items with a question last answered wrong, to do again
   const wrongItems = examOrder(data?.items.filter((x) => x.questions.some((q) => answers[q.id] === false)) ?? []);
   const wrongCount = wrongItems.reduce((n, x) => n + x.questions.filter((q) => answers[q.id] === false).length, 0);
+  // runs are newest first, so the first one is the latest timed book run
+  const lastBookRun = bookStats.runs[0];
+  const lastBookEst = lastBookRun && bjtEstimate(lastBookRun.last.correct, lastBookRun.last.total);
 
   return (
     <div className="space-y-4">
@@ -92,6 +97,8 @@ export function BjtPage() {
             <div className="min-w-0">
               <p className="font-black">{t.bjt.myBooks}</p>
               <p className="text-sm text-muted">{t.bjt.myBooksDesc}</p>
+              {bookStats.wrong > 0 && <p className="text-sm font-bold">{t.bjt.bookWrong(bookStats.wrong)}</p>}
+              {lastBookEst && <p className="text-sm font-bold text-emerald-600">{t.bjt.bookLastMock(lastBookEst.score, lastBookEst.level)}</p>}
             </div>
             <Link to="/bjt/sach" className="btn-primary">
               {t.bjt.openBooks}
@@ -190,6 +197,7 @@ export function BjtPage() {
                 const guide = data.guides.find((g) => g.section === s.id);
                 const round = pickPractice(items, answers, PRACTICE_SIZE);
                 const open = openGuide === s.id;
+                const fromBooks = bookStats.bySection[s.id];
                 return (
                   <div key={s.id} className="space-y-2 rounded-2xl bg-cream p-3 dark:bg-bg" data-testid={`bjt-section-${s.id}`}>
                     <div className="flex flex-wrap items-center justify-between gap-2">
@@ -199,6 +207,7 @@ export function BjtPage() {
                           {t.bjt.realCount(s.count)} · {t.bjt.pool(done.total)} ·{' '}
                           {done.answered ? t.bjt.accuracy(Math.round((done.correct / done.answered) * 100)) : t.bjt.notTried}
                         </p>
+                        {fromBooks.answered > 0 && <p className="text-xs text-muted">{t.bjt.bookAccuracy(fromBooks.correct, fromBooks.answered)}</p>}
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <button type="button" className="btn-soft text-sm" aria-expanded={open} onClick={() => setOpenGuide(open ? null : s.id)}>
@@ -310,6 +319,27 @@ export function BjtPage() {
               </section>
             );
           })}
+          {bookStats.runs.length > 0 && (
+            <section className="card space-y-2 p-4" data-testid="bjt-book-runs">
+              <p className="font-black">{t.bjt.bookMocks}</p>
+              <ul className="space-y-2">
+                {bookStats.runs.map((r) => {
+                  const est = bjtEstimate(r.last.correct, r.last.total);
+                  return (
+                    <li key={r.key} className="rounded-2xl bg-cream p-3 dark:bg-bg" data-testid={`bjt-book-run-${r.key}`}>
+                      <p className="font-bold break-words">
+                        {r.book} <span className="font-normal text-muted">· {r.test}</span>
+                      </p>
+                      <p className="text-sm font-bold text-emerald-600">{t.bjt.bookRunLine(est.score, est.level, t.common.shortDate(new Date(r.last.at)))}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+              <Link to="/bjt/sach" className="btn-soft inline-block text-sm">
+                {t.bjt.openBooks}
+              </Link>
+            </section>
+          )}
         </div>
       )}
     </div>

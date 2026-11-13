@@ -435,6 +435,11 @@ export const vi = {
     myBooks: '📚 Sách của tôi',
     myBooksDesc: 'Làm đề trong sách luyện thi bạn đã nhập: ảnh trang thật, băng thật, lời giải tiếng Việt.',
     openBooks: 'Mở tủ sách',
+    bookAccuracy: (c: number, n: number) => `Sách: đúng ${c}/${n}`,
+    bookWrong: (n: number) => `Câu sai trong sách: ${n}`,
+    bookLastMock: (s: number, l: string) => `Thi thử sách gần nhất: ${s} điểm (${l})`,
+    bookMocks: 'Thi thử từ sách của tôi',
+    bookRunLine: (s: number, l: string, d: string) => `Lần gần nhất: ${s} điểm (${l}) · ${d}`,
   },
   bjtBooks: {
     title: 'Sách của tôi',
