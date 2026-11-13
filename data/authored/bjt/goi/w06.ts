@@ -37,8 +37,8 @@ export const V06: BjtVocab[] = [
   ...vocab(6, 'Thủ tục và giấy tờ', 'procedure', [
     ['所定の', 'しょていの', 'theo mẫu quy định', '所定の用紙に記入してください。', 'Hãy điền vào mẫu đơn quy định.'],
     ['届け出る', 'とどけでる', 'trình báo, khai báo', '住所が変わったら人事部に届け出てください。', 'Nếu đổi địa chỉ hãy khai báo với phòng nhân sự.'],
-    ['決裁', 'けっさい', 'phê duyệt (cấp có thẩm quyền)', '部長の決裁が下りるまで発注できない。', 'Chưa có phê duyệt của trưởng bộ phận thì chưa đặt hàng được.'],
-    ['稟議', 'りんぎ', 'tờ trình xin duyệt (luân chuyển)', '新しいソフトの購入について稟議を上げた。', 'Tôi đã gửi tờ trình xin duyệt mua phần mềm mới.'],
+    ['起案', 'きあん', 'soạn dự thảo (văn bản trình duyệt)', '新しい規程の起案は総務部が担当する。', 'Phòng tổng vụ phụ trách soạn dự thảo quy định mới.'],
+    ['原本', 'げんぽん', 'bản gốc', '契約書の原本は総務部で保管しています。', 'Bản gốc hợp đồng được phòng tổng vụ lưu giữ.'],
     ['押印', 'おういん', 'đóng dấu'],
     ['差し戻す', 'さしもどす', 'trả lại (hồ sơ để sửa)', '記入漏れがあり、申請書を差し戻した。', 'Đơn thiếu mục nên tôi đã trả lại.'],
     ['不備', 'ふび', 'thiếu sót (giấy tờ)', '書類に不備がないか確認してください。', 'Hãy kiểm tra xem hồ sơ có thiếu sót gì không.'],

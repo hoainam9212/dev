@@ -27,7 +27,7 @@ export const V05: BjtVocab[] = [
     ['上半期', 'かみはんき', 'nửa đầu năm (tài chính)'],
     ['通期', 'つうき', 'cả năm tài chính', '通期の見通しは据え置いた。', 'Dự báo cả năm được giữ nguyên.'],
     ['実績', 'じっせき', 'kết quả thực tế, thành tích', '今月の実績を明日までにまとめてください。', 'Hãy tổng hợp kết quả tháng này trước ngày mai.'],
-    ['見通し', 'みとおし', 'dự báo, triển vọng', '来期も厳しい見通しだ。', 'Kỳ sau dự báo vẫn khó khăn.'],
+    ['試算', 'しさん', 'tính thử, ước tính', '試算では年間二百万円の削減になる。', 'Theo tính thử, mỗi năm giảm được hai triệu yên.'],
     ['中央値', 'ちゅうおうち', 'trung vị'],
     ['推移', 'すいい', 'diễn biến (theo thời gian)', '過去五年の推移をグラフで示します。', 'Tôi trình bày diễn biến năm năm qua bằng biểu đồ.'],
     ['内訳', 'うちわけ', 'chi tiết phân loại', '経費の内訳を添付します。', 'Tôi gửi kèm bảng chi tiết các khoản chi phí.'],
