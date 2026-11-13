@@ -1,0 +1,17 @@
+{
+  "name": "book-import",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turns the learner's own prep books (PDF / page images) and their audio into a local pack: page images, audio and an index of where each question is. The pack never goes into git.",
+  "scripts": {
+    "test": "node --test",
+    "scan": "node cli.mjs scan",
+    "build": "node cli.mjs build",
+    "check": "node cli.mjs check"
+  },
+  "dependencies": {
+    "mupdf": "^1.3.0",
+    "music-metadata": "^10.5.0"
+  }
+}
