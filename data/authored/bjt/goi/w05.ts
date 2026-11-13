@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 5 — numbers, charts and trends. */
+export const V05: BjtVocab[] = [
+  ...vocab(5, 'Xu hướng tăng giảm', 'trend', [
+    ['上回る', 'うわまわる', 'vượt, cao hơn (mốc)', '受注件数は三か月連続で前年を上回った。', 'Số đơn hàng ba tháng liền cao hơn năm trước.'],
+    ['下回る', 'したまわる', 'thấp hơn (mốc)', '来場者数は予想を大きく下回った。', 'Số khách tham quan thấp hơn dự đoán nhiều.'],
+    ['横ばい', 'よこばい', 'đi ngang, không đổi', '国内の売上は前年から横ばいで推移している。', 'Doanh thu trong nước đi ngang so với năm trước.'],
+    ['頭打ち', 'あたまうち', 'chững lại, chạm trần', '会員数の伸びが頭打ちになってきた。', 'Đà tăng số hội viên đã bắt đầu chững lại.'],
+    ['底を打つ', 'そこをうつ', 'chạm đáy (rồi hồi lại)', '市況は春に底を打ったとみられる。', 'Thị trường được cho là đã chạm đáy vào mùa xuân.'],
+    ['右肩上がり', 'みぎかたあがり', 'tăng đều đặn', '通販部門の売上は右肩上がりが続いている。', 'Doanh thu mảng bán hàng trực tuyến tiếp tục tăng đều.'],
+    ['急増する', 'きゅうぞうする', 'tăng vọt', '円安の影響で海外からの注文が急増した。', 'Do đồng yên yếu, đơn hàng từ nước ngoài tăng vọt.'],
+    ['激減する', 'げきげんする', 'giảm mạnh'],
+    ['伸び悩む', 'のびなやむ', 'tăng chậm, khó tăng', '新商品の販売が伸び悩んでいる。', 'Doanh số sản phẩm mới tăng chậm.'],
+    ['落ち込む', 'おちこむ', 'sụt giảm', '天候不順で夏物の売上が落ち込んだ。', 'Thời tiết thất thường khiến doanh thu hàng hè sụt giảm.'],
+    ['回復に転じる', 'かいふくにてんじる', 'chuyển sang hồi phục', '下期に入り、受注は回復に転じた。', 'Sang nửa cuối năm, đơn hàng đã chuyển sang hồi phục.'],
+    ['微増', 'びぞう', 'tăng nhẹ'],
+    ['微減', 'びげん', 'giảm nhẹ'],
+    ['高止まり', 'たかどまり', 'đứng ở mức cao, không giảm', '燃料価格の高止まりが利益を圧迫している。', 'Giá nhiên liệu đứng ở mức cao đang chèn ép lợi nhuận.'],
+  ]),
+  ...vocab(5, 'Số liệu và tỉ lệ', 'figures', [
+    ['前年同期比', 'ぜんねんどうきひ', 'so với cùng kỳ năm trước', '売上高は前年同期比7％増となった。', 'Doanh thu tăng 7% so với cùng kỳ năm trước.'],
+    ['構成比', 'こうせいひ', 'tỉ trọng trong tổng thể', '海外売上の構成比は3割を超えた。', 'Tỉ trọng doanh thu nước ngoài đã vượt 30%.'],
+    ['占める', 'しめる', 'chiếm (một phần)', '上位三社で市場の半分を占めている。', 'Ba công ty đứng đầu chiếm một nửa thị trường.'],
+    ['市場占有率', 'しじょうせんゆうりつ', 'thị phần'],
+    ['上半期', 'かみはんき', 'nửa đầu năm (tài chính)'],
+    ['通期', 'つうき', 'cả năm tài chính', '通期の見通しは据え置いた。', 'Dự báo cả năm được giữ nguyên.'],
+    ['実績', 'じっせき', 'kết quả thực tế, thành tích', '今月の実績を明日までにまとめてください。', 'Hãy tổng hợp kết quả tháng này trước ngày mai.'],
+    ['見通し', 'みとおし', 'dự báo, triển vọng', '来期も厳しい見通しだ。', 'Kỳ sau dự báo vẫn khó khăn.'],
+    ['中央値', 'ちゅうおうち', 'trung vị'],
+    ['推移', 'すいい', 'diễn biến (theo thời gian)', '過去五年の推移をグラフで示します。', 'Tôi trình bày diễn biến năm năm qua bằng biểu đồ.'],
+    ['内訳', 'うちわけ', 'chi tiết phân loại', '経費の内訳を添付します。', 'Tôi gửi kèm bảng chi tiết các khoản chi phí.'],
+    ['概算', 'がいさん', 'ước tính sơ bộ', '概算で三百万円ほどかかります。', 'Ước tính sơ bộ tốn khoảng ba triệu yên.'],
+    ['端数', 'はすう', 'số lẻ', '端数は切り捨てて表示しています。', 'Số lẻ được làm tròn xuống khi hiển thị.'],
+    ['四捨五入', 'ししゃごにゅう', 'làm tròn (lên từ 5)'],
+  ]),
+  ...vocab(5, 'Báo cáo kết quả kinh doanh', 'results', [
+    ['増収増益', 'ぞうしゅうぞうえき', 'doanh thu và lợi nhuận cùng tăng', '同社は五期連続の増収増益となった。', 'Công ty đó đạt năm kỳ liên tiếp tăng cả doanh thu lẫn lợi nhuận.'],
+    ['減収減益', 'げんしゅうげんえき', 'doanh thu và lợi nhuận cùng giảm'],
+    ['営業利益', 'えいぎょうりえき', 'lợi nhuận kinh doanh', '営業利益は前年の二倍に増えた。', 'Lợi nhuận kinh doanh tăng gấp đôi năm trước.'],
+    ['売上高', 'うりあげだか', 'doanh thu'],
+    ['下方修正', 'かほうしゅうせい', 'điều chỉnh giảm (dự báo)', '業績予想を下方修正することになった。', 'Công ty phải điều chỉnh giảm dự báo kết quả kinh doanh.'],
+    ['上方修正', 'じょうほうしゅうせい', 'điều chỉnh tăng (dự báo)'],
+    ['達成率', 'たっせいりつ', 'tỉ lệ hoàn thành (chỉ tiêu)', '大阪支店の達成率は95％だった。', 'Tỉ lệ hoàn thành chỉ tiêu của chi nhánh Osaka là 95%.'],
+    ['要因', 'よういん', 'nguyên nhân, yếu tố', '減益の主な要因は為替です。', 'Nguyên nhân chính khiến lợi nhuận giảm là tỉ giá.'],
+    ['予算を消化する', 'よさんをしょうかする', 'tiêu hết ngân sách'],
+    ['前年並み', 'ぜんねんなみ', 'ngang mức năm trước', 'ボーナスの支給額は前年並みとなる見込みだ。', 'Mức thưởng dự kiến ngang năm trước.'],
+    ['好調', 'こうちょう', 'thuận lợi, khả quan', '新店舗の売上は好調だ。', 'Doanh thu cửa hàng mới đang khả quan.'],
+    ['伸び率', 'のびりつ', 'tỉ lệ tăng trưởng'],
+  ]),
+];
