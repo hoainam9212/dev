@@ -464,6 +464,8 @@ export const en: Dict = {
     questions: (n) => `${n} questions`,
     sectionDone: (right, seen, n) => `${right}/${seen} right · ${n} questions`,
     practice:'Practice, see answers at once',
+    redoWrong: (n) => `Redo wrong answers (${n})`,
+    j1plusOnly: (n) => `J1+ questions only (${n})`,
     exam: (m) => `Timed test, ${m} min`,
     examRules: 'Timed test: each recording plays once, no answers shown, no going back.',
     last: (s, l, c, n) => `Last time: ${s} points (${l}) · ${c}/${n} right`,

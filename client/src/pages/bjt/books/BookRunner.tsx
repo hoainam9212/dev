@@ -18,6 +18,8 @@ interface Props {
   exam?: boolean;
   /** Practice only these sections (practice mode). */
   sections?: BjtSection[];
+  /** Practice only these question numbers (redo wrong answers, J1+ only). */
+  only?: number[];
   onExit: () => void;
 }
 
@@ -29,11 +31,12 @@ const CHOICE: Record<string, string> = {
 };
 
 /** Runs one test of an imported book: page image, the book's own recording, answer 1–4. */
-export function BookRunner({ book, test, exam = false, sections, onExit }: Props) {
+export function BookRunner({ book, test, exam = false, sections, only, onExit }: Props) {
   const t = useT();
   const questions = useMemo(
-    () => (sections?.length ? test.questions.filter((q) => sections.includes(q.section)) : test.questions),
-    [test, sections],
+    () =>
+      test.questions.filter((q) => (!sections?.length || sections.includes(q.section)) && (!only || only.includes(q.no))),
+    [test, sections, only],
   );
   const run: PackTest = useMemo(() => ({ ...test, questions }), [test, questions]);
   const [i, setI] = useState(0);

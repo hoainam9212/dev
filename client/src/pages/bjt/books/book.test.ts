@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { answerKey, bookExamSeconds, cropStyle, filesNeeded, pagePath, parseBook, scoreTest, sectionsOf } from './book';
+import { answerKey, bookExamSeconds, cropStyle, filesNeeded, j1plusNos, pagePath, parseBook, scoreTest, sectionsOf, wrongNos } from './book';
 import type { PackTest } from './book';
 
 const q = (no: number, section: string, answer: number, extra: object = {}) => ({ no, section, n: no, page: 9, answer, ...extra });
@@ -84,5 +84,20 @@ describe('scoring', () => {
 
   it('answerKey is stable and separate from the app’s own questions', () => {
     expect(answerKey('q4', 'mogi', 7)).toBe('book:q4:mogi:7');
+  });
+});
+
+describe('picking questions to redo', () => {
+  const test = parseBook(
+    JSON.stringify(raw([q(1, 'goi', 1), q(2, 'goi', 2, { j1plus: true }), q(3, 'goi', 3), q(4, 'hyogen', 4, { j1plus: true })])),
+  ).tests[0] as PackTest;
+
+  it('wrongNos: questions whose latest answer was wrong, unanswered ones left out', () => {
+    const answers = { 'book:q4:mogi:1': false, 'book:q4:mogi:2': true, 'book:q4:mogi:4': false, 'book:other:mogi:3': false };
+    expect(wrongNos('q4', test, answers)).toEqual([1, 4]);
+  });
+
+  it('j1plusNos: the questions that sort J1 from J1+', () => {
+    expect(j1plusNos(test)).toEqual([2, 4]);
   });
 });

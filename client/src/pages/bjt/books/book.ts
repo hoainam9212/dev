@@ -110,6 +110,13 @@ export function filesNeeded(b: PackBook): string[] {
 /** Key under which a book answer is kept in the BJT store, apart from the app's own question ids. */
 export const answerKey = (bookId: string, testId: string, no: number) => `book:${bookId}:${testId}:${no}`;
 
+/** Questions of `test` whose latest saved answer is wrong (never-answered ones are not counted). */
+export const wrongNos = (bookId: string, test: PackTest, answers: Record<string, boolean>): number[] =>
+  test.questions.filter((q) => answers[answerKey(bookId, test.id, q.no)] === false).map((q) => q.no);
+
+/** Questions marked as the ones that sort J1 from J1+. */
+export const j1plusNos = (test: PackTest): number[] => test.questions.filter((q) => q.j1plus).map((q) => q.no);
+
 /** Sections present in the test, in the order of the real exam. */
 export const sectionsOf = (t: PackTest): BjtSection[] =>
   [...new Set(t.questions.map((q) => q.section))].sort((a, b) => ORDER.get(a)! - ORDER.get(b)!);

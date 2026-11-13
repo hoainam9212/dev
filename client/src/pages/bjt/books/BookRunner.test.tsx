@@ -76,6 +76,12 @@ describe('BookRunner, practice', () => {
     expect(screen.getByText('Câu 1/1')).toBeInTheDocument();
     expect(screen.queryByTestId('book-audio')).toBeNull();
   });
+
+  it('can practise a chosen list of questions only', () => {
+    render(<BookRunner book={book} test={test0} only={[2]} onExit={() => {}} />);
+    expect(screen.getByText('Câu 1/1')).toBeInTheDocument();
+    expect(screen.getByText(/語彙・文法 · 1番/)).toBeInTheDocument();
+  });
 });
 
 describe('BookRunner, timed test', () => {
@@ -104,6 +110,19 @@ describe('BooksPage', () => {
     expect(card).toHaveTextContent('Quyển 4');
     expect(within(card).getByRole('button', { name: /Thi thử 75 phút/ })).toBeInTheDocument();
     fireEvent.click(within(card).getByRole('button', { name: /語彙・文法/ }));
+    expect(screen.getByTestId('book-runner')).toHaveTextContent('語彙・文法 · 1番');
+  });
+
+  it('offers J1+ questions, and redoing wrong answers once there are some', async () => {
+    render(<BooksPage />, { wrapper: MemoryRouter });
+    const card = await screen.findByTestId('book-card');
+    expect(within(card).queryByRole('button', { name: /Làm lại câu sai/ })).toBeNull();
+    act(() => useBjt.getState().record({ 'book:q4:mogi:1': false, 'book:q4:mogi:2': true }));
+    fireEvent.click(within(card).getByRole('button', { name: /Làm lại câu sai \(1\)/ }));
+    expect(screen.getByText('Câu 1/1')).toBeInTheDocument();
+    expect(screen.getByTestId('book-runner')).toHaveTextContent('場面把握 · 1番');
+    fireEvent.click(screen.getByRole('button', { name: /Thoát|Dừng/ }));
+    fireEvent.click(within(await screen.findByTestId('book-card')).getByRole('button', { name: /Chỉ câu J1\+ \(1\)/ }));
     expect(screen.getByTestId('book-runner')).toHaveTextContent('語彙・文法 · 1番');
   });
 

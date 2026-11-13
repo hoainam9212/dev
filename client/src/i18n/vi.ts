@@ -459,6 +459,8 @@ export const vi = {
     questions: (n: number) => `${n} câu`,
     sectionDone: (right: number, seen: number, n: number) => `đúng ${right}/${seen} · ${n} câu`,
     practice: 'Luyện, xem lời giải ngay',
+    redoWrong: (n: number) => `Làm lại câu sai (${n})`,
+    j1plusOnly: (n: number) => `Chỉ câu J1+ (${n})`,
     exam: (m: number) => `Thi thử ${m} phút`,
     examRules: 'Thi thử: băng tự phát một lần, không xem lời giải, không quay lại câu trước.',
     last: (s: number, l: string, c: number, n: number) => `Lần gần nhất: ${s} điểm (${l}) · đúng ${c}/${n}`,

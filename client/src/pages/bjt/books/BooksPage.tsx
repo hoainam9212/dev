@@ -5,7 +5,7 @@ import { BJT_SECTIONS, bjtEstimate, type BjtSection } from '@nihongo/shared';
 import { db, type StoredBook } from '../../../db/db';
 import { useBjt } from '../../../store/bjt';
 import { useT } from '../../../i18n';
-import { answerKey, bookExamSeconds, sectionsOf, type PackBook, type PackTest } from './book';
+import { answerKey, bookExamSeconds, j1plusNos, sectionsOf, wrongNos, type PackBook, type PackTest } from './book';
 import { deleteBook, importBook } from './library';
 import { BookRunner } from './BookRunner';
 
@@ -14,6 +14,7 @@ interface Run {
   test: PackTest;
   exam: boolean;
   sections?: BjtSection[];
+  only?: number[];
 }
 
 /** /bjt/sach: the learner's own prep books, imported from .zip and kept on the device. */
@@ -27,7 +28,7 @@ export function BooksPage() {
   if (run) {
     return (
       <section className="card p-4 md:p-6">
-        <BookRunner key={`${run.test.id}-${run.exam}-${run.sections?.join()}`} {...run} onExit={() => setRun(null)} />
+        <BookRunner key={`${run.test.id}-${run.exam}-${run.sections?.join()}-${run.only?.join()}`} {...run} onExit={() => setRun(null)} />
       </section>
     );
   }
@@ -122,6 +123,8 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
         const last = runs[`book:${book.id}:${test.id}`]?.at(-1);
         const est = last && bjtEstimate(last.correct, last.total);
         const minutes = bookExamSeconds(test) / 60;
+        const wrong = wrongNos(book.id, test, answers);
+        const plus = j1plusNos(test);
         return (
           <div key={test.id} className="space-y-2 rounded-2xl bg-cream p-3 dark:bg-bg">
             <p className="font-bold">
@@ -135,6 +138,16 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
               <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false })}>
                 {t.bjtBooks.practice}
               </button>
+              {wrong.length > 0 && (
+                <button type="button" className="btn-sky text-sm" onClick={() => onRun({ book, test, exam: false, only: wrong })}>
+                  {t.bjtBooks.redoWrong(wrong.length)}
+                </button>
+              )}
+              {plus.length > 0 && (
+                <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false, only: plus })}>
+                  {t.bjtBooks.j1plusOnly(plus.length)}
+                </button>
+              )}
             </div>
             <p className="text-xs text-muted">{t.bjtBooks.examRules}</p>
             <ul className="grid grid-cols-1 gap-1 sm:grid-cols-3">
