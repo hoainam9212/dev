@@ -245,8 +245,48 @@ export function questionBands(gray, w, h, box, k, { threshold = 160, strip = 0.0
   if (labels.length < k) return null;
   const tops = labels.slice(-k).map(([a]) => (ys + a) / h);
   const r = (v) => Math.round(Math.min(1, Math.max(0, v)) * 1000) / 1000;
-  // the first band starts at the top of the print: it keeps the section heading or instructions with it
-  return tops.map((t, i) => [r(i === 0 ? by0 : t - pad), r(i + 1 < k ? tops[i + 1] - pad : by1 - footer)]);
+  // the first band starts where the body starts: it keeps the instructions above the first label but not
+  // the running head; the last one ends with the body, without the page number
+  const [top, end] = bodyRange(gray, w, h, box);
+  return tops.map((t, i) => [r(i === 0 ? Math.min(top, t - pad) : t - pad), r(i + 1 < k ? tops[i + 1] - pad : end)]);
+}
+
+/**
+ * Top and bottom of a page's body as fractions of its height: the printed area without the running head
+ * (a thin line of print at the very top, then white space) and without the page number (a small mark at
+ * the very bottom after white space). Either is kept when it is not clearly apart from the body.
+ */
+export function bodyRange(gray, w, h, box, { threshold = 160, edge = 0.04, gap = 0.012, bridge = 0.004, pad = 0.006 } = {}) {
+  const [bx0, by0, bx1, by1] = box;
+  const xs = Math.floor(bx0 * w);
+  const xe = Math.min(w, Math.ceil(bx1 * w));
+  const ys = Math.floor(by0 * h);
+  const ye = Math.min(h, Math.ceil(by1 * h));
+  const runs = [];
+  let start = -1;
+  let last = -1;
+  for (let y = ys; y < ye; y++) {
+    let n = 0;
+    for (let x = xs; x < xe && n < 2; x++) if (gray[y * w + x] < threshold) n++;
+    if (n < 2) continue;
+    if (start < 0) start = y;
+    else if (y - last > bridge * h) {
+      runs.push([start, last]);
+      start = y;
+    }
+    last = y;
+  }
+  if (start >= 0) runs.push([start, last]);
+  const r = (v) => Math.round(Math.min(1, Math.max(0, v)) * 1000) / 1000;
+  if (!runs.length) return [by0, by1];
+  // the running head can be several runs (its text, then a rule under it): all of them end near the top
+  let first = 0;
+  while (first < runs.length - 1 && runs[first][1] < ys + edge * h) first++;
+  if (first > 0 && runs[first][0] - runs[first - 1][1] < gap * h) first = 0; // not clearly apart: keep it
+  let lastRun = runs.length - 1;
+  while (lastRun > first && runs[lastRun][0] > ye - edge * h) lastRun--;
+  if (lastRun < runs.length - 1 && runs[lastRun + 1][0] - runs[lastRun][1] < gap * h) lastRun = runs.length - 1;
+  return [r(runs[first][0] / h - pad), r(runs[lastRun][1] / h + pad)];
 }
 
 // --- a "stored" zip (no compression: pages are JPEG and audio is MP3 already) -----------------------

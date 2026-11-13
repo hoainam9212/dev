@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import zlib from 'node:zlib';
-import { audioFile, bookId, groupBooks, inkBox, kindOf, questionBands, mergeBook, naturalCompare, pageFile, seconds, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
+import { audioFile, bodyRange, bookId, groupBooks, inkBox, kindOf, questionBands, mergeBook, naturalCompare, pageFile, seconds, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
 
 test('stored zip headers: every file can be found again from the central directory', () => {
   const files = [['book.json', Buffer.from('{"id":"b"}')], ['pages/p0001.jpg', Buffer.from([1, 2, 3, 4, 5])], ['音声/a.mp3', Buffer.alloc(0)]];
@@ -66,11 +66,34 @@ test('questionBands cuts a page above each 「N番」 label, ignoring heading, p
   const box = inkBox(page, w, h);
   const bands = questionBands(page, w, h, box, 2);
   assert.equal(bands.length, 2);
-  assert.equal(bands[0][0], box[1]); // first band keeps the heading
+  assert.ok(bands[0][0] > 0.103 && bands[0][0] <= 0.15, `first band starts below the running head: ${bands[0][0]}`);
   assert.ok(Math.abs(bands[1][0] - 0.492) < 0.003, `second band starts just above 2番: ${bands[1][0]}`);
   assert.equal(bands[0][1], bands[1][0]);
   assert.ok(bands[1][1] < 0.88, 'page number left out');
   assert.equal(questionBands(page, w, h, box, 3), null); // only two labels on the page
+});
+
+test('bodyRange leaves out the running head and the page number, keeps instructions', () => {
+  const w = 200;
+  const h = 1000;
+  const page = new Uint8Array(w * h).fill(255);
+  const ink = (x0, y0, x1, y1) => {
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) page[y * w + x] = 0;
+  };
+  ink(20, 100, 60, 106); // running head: its text…
+  ink(20, 113, 180, 114); // …and a thin rule under it
+  ink(20, 140, 170, 150); // instructions
+  ink(20, 170, 170, 800); // body
+  ink(30, 870, 45, 885); // page number
+  const box = inkBox(page, w, h);
+  const [top, end] = bodyRange(page, w, h, box);
+  assert.ok(Math.abs(top - 0.134) < 0.003, `top ${top}`);
+  assert.ok(Math.abs(end - 0.806) < 0.003, `end ${end}`);
+  // a page whose print starts with the body itself loses nothing
+  const plain = new Uint8Array(w * h).fill(255);
+  for (let y = 100; y < 800; y++) for (let x = 20; x < 170; x++) plain[y * w + x] = 0;
+  const pb = inkBox(plain, w, h);
+  assert.deepEqual(bodyRange(plain, w, h, pb), [0.094, 0.805]); // last inked row 799 → 0.799 + pad
 });
 
 test('zipEntries keeps the index, pages and audio, drops the build state', () => {
