@@ -386,6 +386,8 @@ export const vi = {
     demoTitle: '9 câu mẫu',
     demoDesc: 'Mỗi dạng một câu, để biết đề thi hỏi gì.',
     tryDemo: 'Làm thử',
+    wrongPool: (n: number) => `Câu từng sai: ${n}`,
+    redoWrong: 'Làm lại câu sai',
     guideWhat: 'Dạng này hỏi gì',
     guideHow: 'Cách làm',
     guideTraps: 'Bẫy hay gặp',

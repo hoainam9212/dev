@@ -17,6 +17,7 @@ interface Run {
 }
 
 const PRACTICE_SIZE = 10;
+const REDO_SIZE = 15;
 const today = () => {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -51,6 +52,9 @@ export function BjtPage() {
   const bySet = (set: string) => examOrder(data?.items.filter((x) => x.set === set) ?? []);
   const now = currentWeek(startDate);
   const demo = bySet('demo');
+  // items with a question last answered wrong, to do again
+  const wrongItems = examOrder(data?.items.filter((x) => x.questions.some((q) => answers[q.id] === false)) ?? []);
+  const wrongCount = wrongItems.reduce((n, x) => n + x.questions.filter((q) => answers[q.id] === false).length, 0);
 
   return (
     <div className="space-y-4">
@@ -92,6 +96,14 @@ export function BjtPage() {
               {t.bjt.tryDemo}
             </button>
           </section>
+          {wrongItems.length > 0 && (
+            <section className="card flex flex-wrap items-center justify-between gap-3 p-4" data-testid="bjt-wrong">
+              <p className="font-black">{t.bjt.wrongPool(wrongCount)}</p>
+              <button type="button" className="btn-sky" onClick={() => setRun({ title: t.bjt.redoWrong, items: wrongItems.slice(0, REDO_SIZE) })}>
+                {t.bjt.redoWrong}
+              </button>
+            </section>
+          )}
           <section className="card flex flex-wrap items-center justify-between gap-3 p-4">
             <p className="text-sm text-muted">{startDate ? t.bjt.planStarted(startDate) : t.bjt.planIntro}</p>
             <button type="button" className="btn-soft text-sm" onClick={() => setStartDate(today())}>

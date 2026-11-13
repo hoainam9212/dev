@@ -391,6 +391,8 @@ export const en: Dict = {
     demoTitle: '9 sample questions',
     demoDesc: 'One per question type, to see what the test asks.',
     tryDemo: 'Try them',
+    wrongPool: (n) => `Answered wrong: ${n}`,
+    redoWrong: 'Redo wrong ones',
     guideWhat: 'What it asks',
     guideHow: 'How to do it',
     guideTraps: 'Common traps',
