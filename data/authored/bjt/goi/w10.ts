@@ -17,7 +17,7 @@ export const V10: BjtVocab[] = [
     ['秘密保持契約', 'ひみつほじけいやく', 'thoả thuận bảo mật (NDA)'],
     ['不可抗力', 'ふかこうりょく', 'bất khả kháng'],
     ['履行する', 'りこうする', 'thực hiện (nghĩa vụ hợp đồng)'],
-    ['押印', 'おういん', 'đóng dấu'],
+    ['割印', 'わりいん', 'dấu giáp lai (đóng chồng lên hai bản hợp đồng)'],
   ]),
   ...vocab(10, 'Giao nhận hàng', 'nohin', [
     ['納品書', 'のうひんしょ', 'phiếu giao hàng', '商品と一緒に納品書を同封しておりますので、ご確認ください。', 'Phiếu giao hàng được để kèm cùng hàng, xin quý khách kiểm tra.'],
@@ -47,6 +47,6 @@ export const V10: BjtVocab[] = [
     ['支払サイト', 'しはらいさいと', 'thời hạn từ lúc chốt sổ đến lúc trả tiền'],
     ['与信', 'よしん', 'hạn mức tín dụng cấp cho khách'],
     ['手付金', 'てつけきん', 'tiền đặt cọc'],
-    ['領収書', 'りょうしゅうしょ', 'biên lai, giấy biên nhận đã thu tiền'],
+    ['収入印紙', 'しゅうにゅういんし', 'tem thuế (dán lên biên lai, hợp đồng)'],
   ]),
 ];

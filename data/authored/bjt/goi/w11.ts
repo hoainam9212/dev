@@ -11,7 +11,7 @@ export const V11: BjtVocab[] = [
     ['単身赴任', 'たんしんふにん', 'đi làm xa nhà một mình (để gia đình ở lại)', '子どもの学校の都合で、福岡へは単身赴任することにした。', 'Vì việc học của con, tôi quyết định một mình đi nhận việc ở Fukuoka.'],
     ['出向', 'しゅっこう', 'biệt phái sang công ty khác (thường là công ty con)', '彼は三年間、子会社に出向していた。', 'Anh ấy đã được biệt phái sang công ty con trong ba năm.'],
     ['昇進', 'しょうしん', 'thăng chức', '課長への昇進が決まり、部下が八人になった。', 'Tôi được thăng lên trưởng phòng và có tám cấp dưới.'],
-    ['後任', 'こうにん', 'người kế nhiệm', '私の後任は、隣の課の山口さんに決まりました。', 'Người kế nhiệm tôi đã được chọn là anh Yamaguchi ở phòng bên.'],
+    ['引き継ぎ', 'ひきつぎ', 'bàn giao công việc', '異動の前に、担当業務の引き継ぎを済ませておいてください。', 'Trước khi chuyển công tác, hãy bàn giao xong phần việc mình phụ trách.'],
     ['欠員', 'けついん', 'vị trí còn trống (do thiếu người)', '急な退職で生じた欠員を、中途採用で補う。', 'Vị trí trống do nghỉ việc đột ngột sẽ được bù bằng tuyển dụng giữa chừng.'],
     ['中途採用', 'ちゅうとさいよう', 'tuyển người đã có kinh nghiệm (không phải sinh viên mới)'],
     ['降格', 'こうかく', 'giáng chức'],
