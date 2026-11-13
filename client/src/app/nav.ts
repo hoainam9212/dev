@@ -9,6 +9,7 @@ export type NavKey =
   | 'speaking'
   | 'writing'
   | 'business'
+  | 'bjt'
   | 'review'
   | 'progress'
   | 'settings';
@@ -31,6 +32,7 @@ export const NAV: NavItem[] = [
   { to: '/speaking', icon: '🎤', key: 'speaking' },
   { to: '/writing', icon: '✍️', key: 'writing' },
   { to: '/business', icon: '💼', key: 'business' },
+  { to: '/bjt', icon: '🏅', key: 'bjt' },
   { to: '/review', icon: '🔁', key: 'review' },
   { to: '/progress', icon: '📈', key: 'progress' },
   { to: '/settings', icon: '⚙️', key: 'settings' },
