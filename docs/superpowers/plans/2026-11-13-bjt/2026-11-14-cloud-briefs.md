@@ -16,8 +16,8 @@ làm đúng phạm vi file của khối đó.
 | local (máy người dùng) | `nihongo-sensei/master` | `tools/book-import/**`, `client/src/pages/bjt/books/**`, `client/src/db/**`, gộp nhánh, APK |
 | cloud C — zoom ảnh | `nihongo-sensei/feat/zoom-image` | `client/src/components/ZoomImage.tsx` (+ test), cuối khối `common` trong i18n |
 | cloud D — thống kê sách | `nihongo-sensei/feat/bjt-book-stats` | `client/src/pages/bjt/BjtPage.tsx`, `bjt.ts`, `useBookStats.ts` (+ test), cuối khối `bjt` trong i18n |
-| cloud A — đề nghe | `nihongo-sensei/feat/bjt-content-listening` | `data/authored/bjt/chokai*`, `chodokkai*` (đã đẩy tới đợt 3, chờ local soát) |
-| cloud B — đề đọc + từ vựng | `nihongo-sensei/feat/bjt-content-reading` | `data/authored/bjt/dokkai*`, `goi*` (chưa chạy; brief ở `docs/superpowers/specs/2026-11-13-bjt-design.md` phần quyền sở hữu file) |
+| cloud A — đề nghe | `nihongo-sensei/feat/bjt-content-listening` | `data/authored/bjt/chokai*`, `chodokkai*` (tuần 1–7, 9–11 + nghe của mock1/mock2; local đang soát rồi gộp) |
+| cloud B1/B2/B3 — đề đọc + từ vựng | `nihongo-sensei/feat/bjt-content-reading-1`, `-2`, `-3` | file tuần riêng trong `data/authored/bjt/dokkai/`, `goi/` + dòng của mình trong `dokkai.ts`, `goi.ts` — brief: `2026-11-14-brief-b-reading.md` |
 
 Repo này PUBLIC: không đưa sách luyện thi, băng, chữ chép từ sách, vị trí thật hay bí mật vào commit.
 
