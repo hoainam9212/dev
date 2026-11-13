@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 11 — HR, appraisal and training. */
+export const V11: BjtVocab[] = [
+  ...vocab(11, 'Nhân sự và điều động', 'jinji', [
+    ['人事異動', 'じんじいどう', 'điều chuyển nhân sự', '四月の人事異動で、営業部から経理部へ移ることになった。', 'Trong đợt điều chuyển nhân sự tháng 4, tôi sẽ chuyển từ phòng kinh doanh sang phòng kế toán.'],
+    ['辞令', 'じれい', 'quyết định bổ nhiệm, điều động (văn bản)', '社長から直接辞令を受け取った。', 'Tôi nhận quyết định bổ nhiệm trực tiếp từ giám đốc.'],
+    ['内示', 'ないじ', 'báo trước không chính thức (về điều động)', '来月、大阪支社への転勤の内示があった。', 'Tôi được báo trước (không chính thức) sẽ chuyển sang chi nhánh Osaka vào tháng sau.'],
+    ['着任する', 'ちゃくにんする', 'nhận chức, đến nhận nhiệm sở', '新しい支店長が来週着任する。', 'Trưởng chi nhánh mới sẽ nhận chức vào tuần sau.'],
+    ['単身赴任', 'たんしんふにん', 'đi làm xa nhà một mình (để gia đình ở lại)', '子どもの学校の都合で、福岡へは単身赴任することにした。', 'Vì việc học của con, tôi quyết định một mình đi nhận việc ở Fukuoka.'],
+    ['出向', 'しゅっこう', 'biệt phái sang công ty khác (thường là công ty con)', '彼は三年間、子会社に出向していた。', 'Anh ấy đã được biệt phái sang công ty con trong ba năm.'],
+    ['昇進', 'しょうしん', 'thăng chức', '課長への昇進が決まり、部下が八人になった。', 'Tôi được thăng lên trưởng phòng và có tám cấp dưới.'],
+    ['後任', 'こうにん', 'người kế nhiệm', '私の後任は、隣の課の山口さんに決まりました。', 'Người kế nhiệm tôi đã được chọn là anh Yamaguchi ở phòng bên.'],
+    ['欠員', 'けついん', 'vị trí còn trống (do thiếu người)', '急な退職で生じた欠員を、中途採用で補う。', 'Vị trí trống do nghỉ việc đột ngột sẽ được bù bằng tuyển dụng giữa chừng.'],
+    ['中途採用', 'ちゅうとさいよう', 'tuyển người đã có kinh nghiệm (không phải sinh viên mới)'],
+    ['降格', 'こうかく', 'giáng chức'],
+    ['定年退職', 'ていねんたいしょく', 'nghỉ hưu đúng tuổi quy định'],
+    ['退職届', 'たいしょくとどけ', 'đơn xin nghỉ việc'],
+    ['育児休業', 'いくじきゅうぎょう', 'nghỉ chăm con nhỏ'],
+  ]),
+  ...vocab(11, 'Đánh giá nhân sự', 'hyoka', [
+    ['人事考課', 'じんじこうか', 'đánh giá nhân sự (định kỳ)', '人事考課の結果は、来年度の昇給に反映される。', 'Kết quả đánh giá nhân sự sẽ được phản ánh vào mức tăng lương năm tới.'],
+    ['査定', 'さてい', 'thẩm định, chấm điểm (để quyết lương, thưởng)', '今期の査定では、新規顧客の開拓が高く評価された。', 'Trong đợt chấm điểm kỳ này, việc tìm khách hàng mới được đánh giá cao.'],
+    ['目標管理', 'もくひょうかんり', 'quản lý theo mục tiêu (MBO)', '目標管理では、期初に上司と話し合って目標を決める。', 'Trong quản lý theo mục tiêu, đầu kỳ bàn với cấp trên để đặt mục tiêu.'],
+    ['自己評価', 'じこひょうか', 'tự đánh giá', '自己評価が上司の評価より低い人も少なくない。', 'Không ít người tự đánh giá thấp hơn đánh giá của cấp trên.'],
+    ['昇給', 'しょうきゅう', 'tăng lương', '今年は全社員一律で三パーセントの昇給となった。', 'Năm nay toàn bộ nhân viên được tăng lương đồng loạt 3%.'],
+    ['賞与', 'しょうよ', 'tiền thưởng (thưởng kỳ)', '賞与は年二回、六月と十二月に支給される。', 'Tiền thưởng được trả hai lần một năm, vào tháng 6 và tháng 12.'],
+    ['達成度', 'たっせいど', 'mức độ đạt (mục tiêu)', '目標の達成度を五段階で評価する。', 'Đánh giá mức độ đạt mục tiêu theo năm bậc.'],
+    ['年功序列', 'ねんこうじょれつ', 'chế độ thâm niên (lên lương, chức theo tuổi nghề)', '年功序列をやめ、若手でも成果次第で管理職になれる制度にした。', 'Công ty bỏ chế độ thâm niên, để người trẻ cũng có thể làm quản lý tuỳ theo thành tích.'],
+    ['評価基準', 'ひょうかきじゅん', 'tiêu chí đánh giá', '部署によって評価基準がばらばらだという不満が出ている。', 'Có bất mãn rằng tiêu chí đánh giá mỗi phòng một kiểu.'],
+    ['成果主義', 'せいかしゅぎ', 'chủ nghĩa (trả lương theo) thành tích'],
+    ['評価面談', 'ひょうかめんだん', 'buổi trao đổi đánh giá với cấp trên'],
+    ['期初', 'きしょ', 'đầu kỳ'],
+    ['加点', 'かてん', 'cộng điểm'],
+  ]),
+  ...vocab(11, 'Đào tạo và phát triển', 'kenshu', [
+    ['新人研修', 'しんじんけんしゅう', 'đào tạo nhân viên mới', '新人研修では、名刺交換や電話応対から学ぶ。', 'Trong khoá đào tạo nhân viên mới, học từ trao đổi danh thiếp và nghe điện thoại.'],
+    ['集合研修', 'しゅうごうけんしゅう', 'đào tạo tập trung', '集合研修とオンライン研修を組み合わせて実施する。', 'Kết hợp đào tạo tập trung với đào tạo trực tuyến.'],
+    ['指導役', 'しどうやく', 'người hướng dẫn, kèm cặp', '新人一人に、先輩社員が一人ずつ指導役として付く。', 'Mỗi nhân viên mới có một đàn anh, đàn chị kèm làm người hướng dẫn.'],
+    ['人材育成', 'じんざいいくせい', 'phát triển nguồn nhân lực', '人材育成に力を入れる企業ほど、離職率が低い傾向がある。', 'Doanh nghiệp càng chú trọng phát triển nhân lực thì tỉ lệ nghỉ việc càng có xu hướng thấp.'],
+    ['自己啓発', 'じこけいはつ', 'tự học, tự phát triển bản thân', '自己啓発のための講座の費用を、会社が半額補助している。', 'Công ty hỗ trợ một nửa học phí các khoá học tự phát triển bản thân.'],
+    ['資格取得', 'しかくしゅとく', 'lấy chứng chỉ', '資格取得の支援制度を利用して、簿記の勉強を始めた。', 'Tôi tận dụng chế độ hỗ trợ lấy chứng chỉ để bắt đầu học kế toán.'],
+    ['即戦力', 'そくせんりょく', 'người làm được việc ngay', '即戦力となる経験者を中途で採用したい。', 'Muốn tuyển giữa chừng người có kinh nghiệm làm được việc ngay.'],
+    ['底上げ', 'そこあげ', 'nâng mặt bằng chung', '全社員の語学力の底上げを図る。', 'Nhằm nâng mặt bằng chung năng lực ngoại ngữ của toàn nhân viên.'],
+    ['キャリア形成', 'きゃりあけいせい', 'xây dựng con đường sự nghiệp', '若手のキャリア形成を支援するため、面談の機会を増やした。', 'Để hỗ trợ người trẻ xây dựng sự nghiệp, công ty tăng số buổi trao đổi riêng.'],
+    ['実務研修', 'じつむけんしゅう', 'đào tạo nghiệp vụ thực tế'],
+    ['メンター', 'めんたー', 'người cố vấn, đỡ đầu (mentor)'],
+    ['受講料', 'じゅこうりょう', 'học phí (khoá đào tạo)'],
+    ['研修報告書', 'けんしゅうほうこくしょ', 'báo cáo sau khoá đào tạo'],
+  ]),
+];
