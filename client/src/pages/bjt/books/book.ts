@@ -26,6 +26,8 @@ export interface PackQuestion {
   j1plus?: boolean;
   /** Page of the book's own explanation. */
   explainPage?: number;
+  /** Part of `page` that holds only this question [x0, y0, x1, y1], when the page holds several. */
+  crop?: [number, number, number, number];
 }
 
 export interface PackTest {

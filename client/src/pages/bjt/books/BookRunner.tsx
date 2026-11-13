@@ -113,10 +113,10 @@ export function BookRunner({ book, test, exam = false, sections, onExit }: Props
 
       {q.audio && <Recording key={q.no} bookId={book.id} path={q.audio} exam={exam} />}
 
-      <PageImage book={book} page={q.page} />
+      <PageImage book={book} page={q.page} box={q.crop} />
 
       <div>
-        <p className="mb-1 text-xs font-bold text-muted">{t.bjtBooks.pickAnswer}</p>
+        <p className="mb-1 text-xs font-bold text-muted">{t.bjtBooks.pickAnswer(q.n)}</p>
         <div className="grid grid-cols-4 gap-2">
           {[1, 2, 3, 4].map((c) => (
             <button
@@ -180,12 +180,12 @@ function Recording({ bookId, path, exam }: { bookId: string; path: string; exam:
 }
 
 /** A page image without its white margins, full width; zoom doubles it inside a scrolling frame. */
-export function PageImage({ book, page }: { book: PackBook; page: number }) {
+export function PageImage({ book, page, box }: { book: PackBook; page: number; box?: [number, number, number, number] }) {
   const t = useT();
   const url = useBookFile(book.id, pagePath(page));
   const [zoom, setZoom] = useState(false);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
-  const crop = size ? cropStyle(book.boxes?.[page], size.w, size.h) : null;
+  const crop = size ? cropStyle(box ?? book.boxes?.[page], size.w, size.h) : null;
   return (
     <div className="space-y-1">
       <div className={`overflow-auto rounded-2xl bg-white ring-1 ring-sakura/40 ${zoom ? 'max-h-[70vh]' : ''}`}>
@@ -313,7 +313,7 @@ function BookResult({ book, test, picked, exam, onExit }: { book: PackBook; test
               <button type="button" className="btn-soft text-xs" onClick={() => setOpen(open === q.no ? null : q.no)}>
                 {t.bjtBooks.showPage}
               </button>
-              {open === q.no && <PageImage book={book} page={q.page} />}
+              {open === q.no && <PageImage book={book} page={q.page} box={q.crop} />}
             </li>
           ))}
         </ul>

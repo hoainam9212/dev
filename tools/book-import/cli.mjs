@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
-import { audioFile, groupBooks, inkBox, mergeBook, pageFile, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
+import { audioFile, groupBooks, inkBox, mergeBook, pageFile, questionBands, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
 import { audioInfo, grayPixels, pdfInfo, readJson, renderPdf, signature, walk, writeJson } from './io.mjs';
 
 const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
@@ -176,10 +176,34 @@ function zip(out, dest) {
       boxes[n] = inkBox(gray, w, h);
       measured++;
     }
-    if (measured) {
-      book.boxes = boxes;
+    if (measured) book.boxes = boxes;
+    // a page holding several questions: give each question its own band, so the app shows only that question
+    let cut = 0;
+    for (const t of book.tests) {
+      const byPage = new Map();
+      for (const q of t.questions) byPage.set(q.page, [...(byPage.get(q.page) ?? []), q]);
+      for (const [page, qs] of byPage) {
+        if (qs.length < 2 || qs.every((q) => q.crop) || !boxes[page]) continue;
+        const { gray, w, h } = grayPixels(path.join(dir, pageFile(page)));
+        const bands = questionBands(gray, w, h, boxes[page], qs.length);
+        if (!bands) {
+          console.log(`  ! ${t.id} page ${page}: could not find ${qs.length} 「N番」 labels, the app shows the whole page`);
+          continue;
+        }
+        qs.forEach((q, i) => {
+          // narrow each band to its own print, so a short text question is not shown at full page width
+          const [y0, y1] = bands[i];
+          const top = Math.floor(y0 * h);
+          const rows = Math.max(1, Math.ceil(y1 * h) - top);
+          const [x0, , x1] = inkBox(gray.subarray(top * w, (top + rows) * w), w, rows, { pad: 0.02 });
+          q.crop = [Math.max(x0, boxes[page][0] - 0.02), y0, Math.min(x1, boxes[page][2] + 0.02), y1];
+        });
+        cut += qs.length;
+      }
+    }
+    if (measured || cut) {
       writeJson(bookPath, book);
-      console.log(`  measured margins of ${measured} page(s)`);
+      console.log(`  measured margins of ${measured} page(s), cut ${cut} question(s) out of shared pages`);
     }
     const target = path.join(dest, `${id}.zip`);
     const fd = fs.openSync(`${target}.part`, 'w');

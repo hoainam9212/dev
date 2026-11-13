@@ -472,7 +472,7 @@ export const vi = {
     play: '▶ Phát băng',
     playing: 'Đang phát…',
     played: 'Băng đã phát',
-    pickAnswer: 'Chọn đáp án',
+    pickAnswer: (n: number) => `Chọn đáp án cho ${n}番`,
     correct: 'Chính xác',
     wrong: (a: number) => `Chưa đúng. Đáp án: ${a}`,
     explain: 'Lời giải',

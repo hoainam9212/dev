@@ -477,7 +477,7 @@ export const en: Dict = {
     play: '▶ Play recording',
     playing: 'Playing…',
     played: 'Recording played',
-    pickAnswer: 'Choose your answer',
+    pickAnswer: (n) => `Your answer to ${n}番`,
     correct: 'Correct',
     wrong: (a) => `Not quite. Answer: ${a}`,
     explain: 'Explanation',

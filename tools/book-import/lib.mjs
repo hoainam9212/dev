@@ -193,6 +193,62 @@ export function inkBox(gray, w, h, { threshold = 200, minInk = 0.004, pad = 0.01
   return [r(x0 / w - pad), r(y0 / h - pad), r(x1 / w + pad), r(y1 / h + pad)];
 }
 
+/**
+ * Split a page that holds `k` questions into one band per question.
+ * Every question starts with a 「N番」 label at the left edge of the printed area; the left strip holds
+ * nothing else except, above the first label, the section heading or instructions, and the page number at
+ * the bottom. So: find the runs of ink in that strip, drop the page number, keep the lowest `k` runs as
+ * labels, and cut just above each label. Returns k [y0, y1] fractions of the page height, top to bottom,
+ * or null when the strip does not show k labels (the caller then keeps the whole page).
+ */
+export function questionBands(gray, w, h, box, k, { threshold = 160, strip = 0.05, minGap = 0.006, minRun = 0.008, maxRun = 0.03, footer = 0.04, pad = 0.008 } = {}) {
+  const [bx0, by0, bx1, by1] = box;
+  const ys = Math.floor(by0 * h);
+  const ye = Math.min(h, Math.ceil(by1 * h));
+  // the labels' left edge: leftmost ink below the running head and above the page number
+  // (the page number sits further left on some pages, the head line spans the whole width)
+  const bodyTop = ys + Math.round(0.03 * h);
+  const bodyEnd = ye - Math.round(footer * h);
+  let xs = -1;
+  for (let x = Math.floor(bx0 * w); x < Math.ceil(bx1 * w) && xs < 0; x++) {
+    let n = 0;
+    for (let y = bodyTop; y < bodyEnd; y++) if (gray[y * w + x] < threshold && ++n >= 3) break;
+    if (n >= 3) xs = x;
+  }
+  if (xs < 0) return null;
+  const xe = Math.min(w, xs + Math.ceil(strip * w));
+  const inked = [];
+  for (let y = ys; y < ye; y++) {
+    let n = 0;
+    for (let x = xs; x < xe; x++) if (gray[y * w + x] < threshold) n++;
+    inked.push(n >= 2);
+  }
+  // runs of inked rows, bridging gaps shorter than minGap
+  const runs = [];
+  const gapRows = Math.round(minGap * h);
+  let start = -1;
+  let lastInk = -1;
+  inked.forEach((v, i) => {
+    if (!v) return;
+    if (start < 0) start = i;
+    else if (i - lastInk > gapRows) {
+      runs.push([start, lastInk]);
+      start = i;
+    }
+    lastInk = i;
+  });
+  if (start >= 0) runs.push([start, lastInk]);
+  const height = ye - ys;
+  const labels = runs
+    .filter(([a, b]) => b - a + 1 >= minRun * h && b - a + 1 <= maxRun * h) // specks; photos at the left edge
+    .filter(([a]) => a < height * (1 - footer)); // page number
+  if (labels.length < k) return null;
+  const tops = labels.slice(-k).map(([a]) => (ys + a) / h);
+  const r = (v) => Math.round(Math.min(1, Math.max(0, v)) * 1000) / 1000;
+  // the first band starts at the top of the print: it keeps the section heading or instructions with it
+  return tops.map((t, i) => [r(i === 0 ? by0 : t - pad), r(i + 1 < k ? tops[i + 1] - pad : by1 - footer)]);
+}
+
 // --- a "stored" zip (no compression: pages are JPEG and audio is MP3 already) -----------------------
 // The app reads it straight from the picked file with Blob.slice, so nothing is held in memory twice.
 

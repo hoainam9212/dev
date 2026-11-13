@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import zlib from 'node:zlib';
-import { audioFile, bookId, groupBooks, inkBox, kindOf, mergeBook, naturalCompare, pageFile, seconds, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
+import { audioFile, bookId, groupBooks, inkBox, kindOf, questionBands, mergeBook, naturalCompare, pageFile, seconds, validateBook, zipCentralHeader, zipEnd, zipEntries, zipLocalHeader } from './lib.mjs';
 
 test('stored zip headers: every file can be found again from the central directory', () => {
   const files = [['book.json', Buffer.from('{"id":"b"}')], ['pages/p0001.jpg', Buffer.from([1, 2, 3, 4, 5])], ['音声/a.mp3', Buffer.alloc(0)]];
@@ -48,6 +48,29 @@ test('inkBox finds the printed area, ignores a speck of dust, keeps a blank page
   assert.deepEqual(inkBox(page, w, h, { pad: 0 }), [0.2, 0.2, 0.8, 0.8]);
   assert.deepEqual(inkBox(page, w, h), [0.185, 0.185, 0.815, 0.815]);
   assert.deepEqual(inkBox(new Uint8Array(w * h).fill(255), w, h), [0, 0, 1, 1]);
+});
+
+test('questionBands cuts a page above each 「N番」 label, ignoring heading, photos and page number', () => {
+  const w = 200;
+  const h = 1000;
+  const page = new Uint8Array(w * h).fill(255);
+  const ink = (x0, y0, x1, y1) => {
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) page[y * w + x] = 0;
+  };
+  ink(20, 100, 180, 102); // running head line across the page
+  ink(40, 150, 60, 165); // label 1番
+  ink(40, 180, 120, 400); // a photo touching the left edge (too tall to be a label)
+  ink(40, 500, 60, 515); // label 2番
+  ink(70, 520, 170, 700); // its text, indented
+  ink(30, 880, 45, 895); // page number, further left, at the bottom
+  const box = inkBox(page, w, h);
+  const bands = questionBands(page, w, h, box, 2);
+  assert.equal(bands.length, 2);
+  assert.equal(bands[0][0], box[1]); // first band keeps the heading
+  assert.ok(Math.abs(bands[1][0] - 0.492) < 0.003, `second band starts just above 2番: ${bands[1][0]}`);
+  assert.equal(bands[0][1], bands[1][0]);
+  assert.ok(bands[1][1] < 0.88, 'page number left out');
+  assert.equal(questionBands(page, w, h, box, 3), null); // only two labels on the page
 });
 
 test('zipEntries keeps the index, pages and audio, drops the build state', () => {

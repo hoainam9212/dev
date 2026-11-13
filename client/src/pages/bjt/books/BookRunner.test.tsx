@@ -66,6 +66,11 @@ describe('BookRunner, practice', () => {
     await waitFor(() => expect(within(fb).getByTestId('book-page')).toBeInTheDocument());
   });
 
+  it('says which question the answer row is for', () => {
+    render(<BookRunner book={book} test={test0} sections={['goi']} onExit={() => {}} />);
+    expect(screen.getByText('Chọn đáp án cho 1番')).toBeInTheDocument();
+  });
+
   it('can practise one section only', () => {
     render(<BookRunner book={book} test={test0} sections={['goi']} onExit={() => {}} />);
     expect(screen.getByText('Câu 1/1')).toBeInTheDocument();

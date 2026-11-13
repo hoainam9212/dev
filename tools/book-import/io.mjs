@@ -65,7 +65,8 @@ export function pdfInfo(file, sample = 8) {
 }
 
 /** Render every page of a PDF to JPEG files `name(pageNumber)` under `outDir`, `width` pixels wide. */
-export function renderPdf(file, firstPage, outDir, name, { width = 1400, quality = 72, onPage } = {}) {
+export function renderPdf(file, firstPage, outDir, name, { width = 1400, quality = 90, onPage } = {}) {
+  // quality 90: at 72 the small print of 150-dpi scans got a visible halo when zoomed on a phone
   const doc = openPdf(file);
   try {
     const pages = doc.countPages();
