@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 6 — internal documents and notices. */
+export const V06: BjtVocab[] = [
+  ...vocab(6, 'Thông báo nội bộ', 'notice', [
+    ['周知', 'しゅうち', 'phổ biến cho mọi người biết', '新しいルールを部内に周知してください。', 'Hãy phổ biến quy định mới trong phòng.'],
+    ['通達', 'つうたつ', 'chỉ thị, thông tư (từ cấp trên)', '本社から経費削減の通達が出た。', 'Trụ sở chính đã ra chỉ thị cắt giảm chi phí.'],
+    ['回覧', 'かいらん', 'chuyền tay đọc (văn bản)', 'この資料は課内で回覧してください。', 'Tài liệu này hãy chuyền tay đọc trong ban.'],
+    ['掲示', 'けいじ', 'dán thông báo', '詳細は社内掲示板に掲示しています。', 'Chi tiết đã được dán trên bảng tin công ty.'],
+    ['下記のとおり', 'かきのとおり', 'như dưới đây'],
+    ['別紙', 'べっし', 'tài liệu đính kèm riêng', '日程は別紙にまとめました。', 'Lịch trình đã được tổng hợp ở tài liệu kèm.'],
+    ['追って', 'おって', 'sau đó (sẽ báo)', '詳細は追ってご連絡します。', 'Chi tiết tôi sẽ liên lạc sau.'],
+    ['社外秘', 'しゃがいひ', 'mật, không đưa ra ngoài công ty', 'この資料は社外秘として扱ってください。', 'Hãy xử lý tài liệu này như tài liệu mật nội bộ.'],
+    ['問い合わせ先', 'といあわせさき', 'nơi liên hệ hỏi đáp'],
+    ['担当窓口', 'たんとうまどぐち', 'đầu mối phụ trách', '担当窓口を営業部に一本化した。', 'Đầu mối phụ trách đã được gom về phòng kinh doanh.'],
+    ['随時', 'ずいじ', 'bất cứ lúc nào, liên tục', '質問は随時受け付けています。', 'Câu hỏi được tiếp nhận bất cứ lúc nào.'],
+    ['速やかに', 'すみやかに', 'nhanh chóng, không chậm trễ', '異常があれば速やかに報告すること。', 'Nếu có bất thường phải báo cáo ngay.'],
+    ['遅滞なく', 'ちたいなく', 'không chậm trễ (văn viết)'],
+  ]),
+  ...vocab(6, 'Quy định và ngoại lệ', 'rules', [
+    ['施行', 'しこう', 'đưa vào thi hành', '改正規程は4月1日から施行される。', 'Quy định sửa đổi được thi hành từ 1/4.'],
+    ['適用', 'てきよう', 'áp dụng', 'この割引は正社員にのみ適用されます。', 'Mức giảm này chỉ áp dụng cho nhân viên chính thức.'],
+    ['対象外', 'たいしょうがい', 'ngoài đối tượng'],
+    ['原則として', 'げんそくとして', 'về nguyên tắc', '原則として残業は事前申請が必要です。', 'Về nguyên tắc, làm thêm giờ phải đăng ký trước.'],
+    ['この限りではない', 'このかぎりではない', 'không áp dụng (ngoại lệ)'],
+    ['特例', 'とくれい', 'trường hợp đặc biệt, ngoại lệ', '災害時は特例として在宅勤務を認める。', 'Khi có thiên tai, cho phép làm tại nhà như trường hợp đặc biệt.'],
+    ['留意する', 'りゅういする', 'lưu ý', '個人情報の扱いには十分留意してください。', 'Hãy hết sức lưu ý khi xử lý thông tin cá nhân.'],
+    ['遵守する', 'じゅんしゅする', 'tuân thủ', '社員は就業規則を遵守しなければならない。', 'Nhân viên phải tuân thủ nội quy lao động.'],
+    ['厳守', 'げんしゅ', 'nghiêm chỉnh giữ (giờ, hạn)', '提出期限は厳守でお願いします。', 'Xin giữ đúng hạn nộp.'],
+    ['義務付ける', 'ぎむづける', 'bắt buộc', '来客には入館証の着用を義務付けている。', 'Khách bắt buộc phải đeo thẻ ra vào.'],
+    ['改定', 'かいてい', 'sửa đổi (mức, quy định)'],
+    ['廃止', 'はいし', 'bãi bỏ', '紙の出勤簿は今月末で廃止します。', 'Sổ chấm công giấy bị bãi bỏ từ cuối tháng này.'],
+    ['撤廃', 'てっぱい', 'xoá bỏ hẳn (hạn chế)'],
+    ['移行', 'いこう', 'chuyển sang (chế độ mới)', '来月から新システムに移行します。', 'Từ tháng sau sẽ chuyển sang hệ thống mới.'],
+  ]),
+  ...vocab(6, 'Thủ tục và giấy tờ', 'procedure', [
+    ['所定の', 'しょていの', 'theo mẫu quy định', '所定の用紙に記入してください。', 'Hãy điền vào mẫu đơn quy định.'],
+    ['届け出る', 'とどけでる', 'trình báo, khai báo', '住所が変わったら人事部に届け出てください。', 'Nếu đổi địa chỉ hãy khai báo với phòng nhân sự.'],
+    ['起案', 'きあん', 'soạn dự thảo (văn bản trình duyệt)', '新しい規程の起案は総務部が担当する。', 'Phòng tổng vụ phụ trách soạn dự thảo quy định mới.'],
+    ['原本', 'げんぽん', 'bản gốc', '契約書の原本は総務部で保管しています。', 'Bản gốc hợp đồng được phòng tổng vụ lưu giữ.'],
+    ['押印', 'おういん', 'đóng dấu'],
+    ['差し戻す', 'さしもどす', 'trả lại (hồ sơ để sửa)', '記入漏れがあり、申請書を差し戻した。', 'Đơn thiếu mục nên tôi đã trả lại.'],
+    ['不備', 'ふび', 'thiếu sót (giấy tờ)', '書類に不備がないか確認してください。', 'Hãy kiểm tra xem hồ sơ có thiếu sót gì không.'],
+    ['経費精算', 'けいひせいさん', 'thanh toán chi phí'],
+    ['立て替える', 'たてかえる', 'trả hộ trước', 'タクシー代は私が立て替えておきます。', 'Tiền taxi để tôi trả trước cho.'],
+    ['領収書', 'りょうしゅうしょ', 'hoá đơn, biên lai'],
+    ['持ち出し禁止', 'もちだしきんし', 'cấm mang ra ngoài'],
+    ['情報漏えい', 'じょうほうろうえい', 'rò rỉ thông tin', '情報漏えいを防ぐため、USBの使用を禁止した。', 'Để ngăn rò rỉ thông tin, công ty cấm dùng USB.'],
+    ['貸与', 'たいよ', 'cho mượn (đồ của công ty)', 'ノートパソコンを全社員に貸与している。', 'Công ty cho toàn bộ nhân viên mượn laptop.'],
+  ]),
+];
