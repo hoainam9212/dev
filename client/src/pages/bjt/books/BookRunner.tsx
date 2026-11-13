@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BJT_SECTIONS, bjtPartOf, type BjtSection } from '@nihongo/shared';
 import { Mascot } from '../../../components/Mascot';
+import { ZoomImage } from '../../../components/ZoomImage';
 import { useProgress } from '../../../store/progress';
 import { useBjt } from '../../../store/bjt';
 import { useT } from '../../../i18n';
@@ -182,39 +183,27 @@ function Recording({ bookId, path, exam }: { bookId: string; path: string; exam:
   );
 }
 
-/** A page image without its white margins, full width; zoom doubles it inside a scrolling frame. */
+/** A page image without its white margins, full width; pinch, double-tap or the corner buttons zoom it. */
 export function PageImage({ book, page, box }: { book: PackBook; page: number; box?: [number, number, number, number] }) {
   const t = useT();
   const url = useBookFile(book.id, pagePath(page));
-  const [zoom, setZoom] = useState(false);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   const crop = size ? cropStyle(box ?? book.boxes?.[page], size.w, size.h) : null;
+  if (!url) return <p className="rounded-2xl bg-white p-6 text-center text-sm text-muted ring-1 ring-sakura/40">{t.bjtBooks.loading}</p>;
   return (
-    <div className="space-y-1">
-      <div className={`overflow-auto rounded-2xl bg-white ring-1 ring-sakura/40 ${zoom ? 'max-h-[70vh]' : ''}`}>
-        {url ? (
-          <div style={zoom ? { width: '200%' } : undefined}>
-            <div style={crop?.frame}>
-              <img
-                src={url}
-                alt={`p.${page}`}
-                className={crop ? '' : 'w-full'}
-                style={crop?.img}
-                onLoad={(e) => setSize({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })}
-                data-testid="book-page"
-              />
-            </div>
-          </div>
-        ) : (
-          <p className="p-6 text-center text-sm text-muted">{t.bjtBooks.loading}</p>
-        )}
+    <ZoomImage className="rounded-2xl bg-white ring-1 ring-sakura/40">
+      <div style={crop?.frame}>
+        <img
+          src={url}
+          alt={`p.${page}`}
+          className={crop ? '' : 'w-full'}
+          style={crop?.img}
+          draggable={false}
+          onLoad={(e) => setSize({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })}
+          data-testid="book-page"
+        />
       </div>
-      <div className="flex justify-end">
-        <button type="button" className="btn-soft text-xs" onClick={() => setZoom((z) => !z)}>
-          {zoom ? t.bjtBooks.zoomOut : t.bjtBooks.zoomIn}
-        </button>
-      </div>
-    </div>
+    </ZoomImage>
   );
 }
 

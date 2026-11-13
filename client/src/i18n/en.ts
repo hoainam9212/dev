@@ -482,8 +482,6 @@ export const en: Dict = {
     questionOf: (i, n) => `Question ${i}/${n}`,
     sectionNo: (ja, n) => `${ja} · ${n}番`,
     loading: 'Opening the page…',
-    zoomIn: '🔍 Zoom in',
-    zoomOut: '🔍 Zoom out',
     play: '▶ Play recording',
     playing: 'Playing…',
     played: 'Recording played',

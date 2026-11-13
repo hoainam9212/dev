@@ -66,6 +66,13 @@ describe('BookRunner, practice', () => {
     await waitFor(() => expect(within(fb).getByTestId('book-page')).toBeInTheDocument());
   });
 
+  it('shows the page in a pinch-zoom frame with zoom buttons', async () => {
+    render(<BookRunner book={book} test={test0} onExit={() => {}} />);
+    const page = await screen.findByTestId('book-page');
+    expect(page.closest('[data-testid="zoom-frame"]')).not.toBeNull();
+    expect(screen.getByRole('button', { name: 'Phóng to' })).toBeInTheDocument();
+  });
+
   it('says which question the answer row is for', () => {
     render(<BookRunner book={book} test={test0} sections={['goi']} onExit={() => {}} />);
     expect(screen.getByText('Chọn đáp án cho 1番')).toBeInTheDocument();

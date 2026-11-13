@@ -477,8 +477,6 @@ export const vi = {
     questionOf: (i: number, n: number) => `Câu ${i}/${n}`,
     sectionNo: (ja: string, n: number) => `${ja} · ${n}番`,
     loading: 'Đang mở trang…',
-    zoomIn: '🔍 Phóng to',
-    zoomOut: '🔍 Thu nhỏ',
     play: '▶ Phát băng',
     playing: 'Đang phát…',
     played: 'Băng đã phát',
