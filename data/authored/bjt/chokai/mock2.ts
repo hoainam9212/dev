@@ -361,7 +361,7 @@ export const MOCK2: BjtItem[] = [
     ],
     questions: [
       [
-        '客が心配していることは何ですか。',
+        '客が最初に心配していたことは何ですか。',
         ['プロジェクターの大きさ', '昼間、部屋に日が入って明るいこと', '値段が高いこと', '照明が暗いこと'],
         1,
         'Phòng có cửa sổ lớn, ban ngày nắng chiếu vào nhiều. Giá chỉ thành vấn đề sau khi được giới thiệu mẫu đắt hơn. Phòng thì sáng, không tối.',

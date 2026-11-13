@@ -19,15 +19,15 @@ export const W03: BjtItem[] = [
       ['女', '朝からメールがたまっちゃって。どれから返事しようかな。', 'Từ sáng email dồn lại nhiều quá. Trả lời cái nào trước đây.'],
       ['男', '「至急」って書いてあるのがあるじゃない。', 'Có cái ghi "khẩn" kìa.'],
       ['女', 'ああ、それは小松様ともう電話で話したから、大丈夫なの。', 'À, cái đó tôi đã nói chuyện qua điện thoại với anh Komatsu rồi, không sao.'],
-      ['男', 'じゃあ、課長のは？会議、午後だよね。', 'Thế của trưởng phòng thì sao? Họp vào buổi chiều mà.'],
-      ['女', '課長のはお昼までに見ればいいって。それより、配送の件は今日の三時までに返事しないと、来週のトラックが押さえられないの。', 'Cái của trưởng phòng thì xem trước trưa là được. Quan trọng hơn là vụ vận chuyển: không trả lời trước ba giờ hôm nay thì không giữ được xe tải tuần sau.'],
+      ['男', 'じゃあ、課長のは？会議の資料でしょう。', 'Thế của trưởng phòng thì sao? Tài liệu họp mà.'],
+      ['女', '課長のは明日の会議の分だから、夕方までに見ればいいって。それより、配送の件は今日の三時までに返事しないと、来週のトラックが押さえられないの。', 'Cái của trưởng phòng là cho cuộc họp ngày mai, xem trước chiều tối là được. Quan trọng hơn là vụ vận chuyển: không trả lời trước ba giờ hôm nay thì không giữ được xe tải tuần sau.'],
     ],
     questions: [
       [
         '女の人が最初に返事をするメールはどれですか。',
         ['③', '④', '①', '②'],
         2,
-        'Thư "khẩn" ③ đã xử lý qua điện thoại. Thư ④ chỉ cần xem trước trưa. Còn thư ① về lịch vận chuyển là thư phải trả lời trước, vì có hạn ba giờ và liên quan tới việc giữ xe. Thư ② không ai nhắc tới.',
+        'Thư "khẩn" ③ đã xử lý qua điện thoại. Thư ④ là tài liệu cho cuộc họp ngày mai, chỉ cần xem trước chiều tối. Còn thư ① về lịch vận chuyển là thư phải trả lời trước, vì có hạn ba giờ và liên quan tới việc giữ xe. Thư ② không ai nhắc tới.',
       ],
     ],
     points: [

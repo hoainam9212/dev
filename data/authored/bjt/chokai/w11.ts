@@ -164,9 +164,9 @@ export const W11: BjtItem[] = [
     questions: [
       [
         '女の人は田中さんのどんな点を問題だと思っていますか。',
-        ['途中で相談しないこと', '返事をしないこと', '期限を守らないことが多いこと', '仕事が遅いこと'],
+        ['途中で相談しないこと', '返事をしないこと', '指示をよく聞いていないこと', '仕事が遅いこと'],
         0,
-        'Điều chị tiếc là 途中で一言相談してくれれば: giá mà cậu ấy hỏi giữa chừng. Chuyện trễ hạn chỉ là hậu quả, và mới xảy ra "vài lần", nên lựa chọn 3 chưa đúng trọng tâm. Cậu ấy dạ vâng rất hăng hái.',
+        'Điều chị tiếc là 途中で一言相談してくれれば: giá mà cậu ấy hỏi giữa chừng. Cậu ấy dạ vâng rất hăng hái, nên lựa chọn 2 sai. Không ai nói cậu ấy không nghe chỉ thị hay làm chậm; việc sát hạn mới báo không làm được chỉ là hậu quả của việc ôm việc một mình.',
       ],
       [
         '女の人は来週から何をしますか。',

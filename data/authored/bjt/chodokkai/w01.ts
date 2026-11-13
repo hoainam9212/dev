@@ -106,7 +106,7 @@ export const W01: BjtItem[] = [
       series: [{ name: '回答の割合', values: [38, 45, 30, 12] }],
     },
     script: [
-      ['男', '今年の新入社員アンケートの結果です。最も多かったのは敬語でしたが、これは研修のカリキュラムで十分に扱います。', 'Đây là kết quả khảo sát nhân viên mới năm nay. Nhiều nhất là kính ngữ, nhưng phần này đã được dạy kỹ trong chương trình đào tạo.'],
+      ['男', '今年の新入社員アンケートの結果です。最も多かったのは敬語でしたが、これは研修のカリキュラムで十分に扱います。', 'Đây là kết quả khảo sát nhân viên mới năm nay. Nhiều nhất là kính ngữ, nhưng phần này sẽ được dạy kỹ trong chương trình đào tạo.'],
       ['男', 'そこで今年は、二番目に多かった項目について、先輩社員による個別の練習会を設けることにしました。', 'Vì vậy năm nay, với mục nhiều thứ hai, chúng tôi sẽ mở buổi luyện tập riêng do nhân viên đi trước hướng dẫn.'],
     ],
     questions: [

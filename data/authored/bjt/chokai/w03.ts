@@ -116,7 +116,7 @@ export const W03: BjtItem[] = [
   }),
   item('w03', 'hatsugen', 4, {
     script: [
-      ['状況', '同僚から「明日までに会議の議事録、メールで送ってもらえる？」と頼まれましたが、明日は難しそうです。何と言いますか。', 'Đồng nghiệp nhờ: "Gửi giúp tôi biên bản cuộc họp qua email trước ngày mai được không?", nhưng ngày mai thì có vẻ khó. Bạn nói gì?'],
+      ['状況', '同僚から「明日までに会議の議事録、メールで送ってもらえる？」と頼まれましたが、明日は難しそうです。何と言いますか。', 'Đồng nghiệp nhờ: "Gửi giúp tôi biên bản cuộc họp qua email, chậm nhất là ngày mai, được không?", nhưng ngày mai thì có vẻ khó. Bạn nói gì?'],
     ],
     spokenChoices: true,
     questions: [

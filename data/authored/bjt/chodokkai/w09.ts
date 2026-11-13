@@ -153,13 +153,13 @@ export const W09: BjtItem[] = [
         '代わりの用紙はどうやって届けますか。',
         ['明日、宅配便で送る', '明日、小林様が取りに来る', '今日、男の人が直接持っていく', '今日、宅配便で送る'],
         2,
-        'Biên bản ghi gửi chuyển phát ngày 6, nhưng trưởng phòng đổi thành hôm nay, tự anh mang tới. Lựa chọn 1 là kế hoạch ban đầu, đã bị sửa.',
+        'Biên bản ghi gửi chuyển phát ngày 6, nhưng người phụ nữ (cấp trên) đổi thành hôm nay, tự anh mang tới. Lựa chọn 1 là kế hoạch ban đầu, đã bị sửa.',
       ],
       [
         '男の人がみどり不動産でほかにすることは何ですか。',
         ['小林様に電話でお詫びする', 'ほかの箱が濡れていないか確認する', '濡れた箱を持ち帰って調べる', '新しい注文を受ける'],
         1,
-        'Trưởng phòng dặn ほかの箱の状態も一緒に見てきて. Gọi điện xin lỗi đã làm rồi (お詫び済み). Không ai bảo mang thùng ướt về.',
+        'Người phụ nữ dặn ほかの箱の状態も一緒に見てきて. Gọi điện xin lỗi đã làm rồi (お詫び済み). Không ai bảo mang thùng ướt về.',
       ],
     ],
     points: [

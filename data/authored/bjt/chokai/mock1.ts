@@ -155,9 +155,9 @@ export const MOCK1: BjtItem[] = [
     questions: [
       [
         '何と言いますか。',
-        ['部長が遅刻なので、待ちます。', '恐れ入りますが、部長がまもなくまいりますので、五分ほどお待ちいただけますでしょうか。', '部長がいらっしゃらないので、始めてもいいですか。', 'では、部長抜きで始めましょう。'],
+        ['部長が遅刻なので、待ちます。', '恐れ入りますが、部長がまもなくいらっしゃいますので、五分ほどお待ちいただけますでしょうか。', '部長がいらっしゃらないので、始めてもいいですか。', 'では、部長抜きで始めましょう。'],
         1,
-        'Xin mọi người đợi, nói rõ lý do và thời gian. Câu 1 nói thẳng "đến muộn", không khéo. Câu 3 và 4 đi ngược tình huống: trưởng bộ phận sắp đến thì nên đợi.',
+        'Xin mọi người đợi, nói rõ lý do và thời gian. Họp nội bộ nên nói về trưởng bộ phận bằng tôn kính ngữ (いらっしゃる), không dùng まいる như khi nói với khách. Câu 1 nói thẳng "đến muộn", không khéo. Câu 3 và 4 đi ngược tình huống: trưởng bộ phận sắp đến thì nên đợi.',
       ],
     ],
     points: [

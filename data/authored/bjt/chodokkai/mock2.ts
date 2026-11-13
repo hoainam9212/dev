@@ -170,13 +170,13 @@ export const MOCK2: BjtItem[] = [
         ['飲食', '飲み物のみ可'],
       ],
     },
-    script: [['女', '来月の研修で、朝九時から夕方四時まで、この会議室を使いたいんです。お昼はお弁当を出す予定で。予約は来週にでも入れようと思っています。', 'Khoá đào tạo tháng sau, tôi muốn dùng phòng họp này từ chín giờ sáng đến bốn giờ chiều. Buổi trưa dự định phát cơm hộp. Tôi định đặt phòng vào tuần sau.']],
+    script: [['女', '来週の金曜日の研修で、朝九時から夕方四時まで、この会議室を使いたいんです。お昼はお弁当を出す予定で。予約は今日のうちに入れようと思っています。', 'Khoá đào tạo thứ sáu tuần sau, tôi muốn dùng phòng họp này từ chín giờ sáng đến bốn giờ chiều. Buổi trưa dự định phát cơm hộp. Tôi định đặt phòng ngay trong hôm nay.']],
     questions: [
       [
         'このままではルールに合わないのはどれですか。',
         ['予約の時期だけ', 'キャンセルの方法', '利用時間と飲食', '飲み物'],
         2,
-        'Từ 9 giờ đến 16 giờ là 7 tiếng, vượt mức tối đa 3 tiếng. Cơm hộp là đồ ăn, mà quy định chỉ cho đồ uống. Đặt phòng vào tuần sau thì đã trong vòng hai tuần trước ngày dùng, nên hợp lệ.',
+        'Từ 9 giờ đến 16 giờ là 7 tiếng, vượt mức tối đa 3 tiếng. Cơm hộp là đồ ăn, mà quy định chỉ cho đồ uống. Đặt phòng hôm nay cho thứ sáu tuần sau là trong vòng hai tuần trước ngày dùng, nên hợp lệ.',
       ],
     ],
     points: [['飲食', 'いんしょく', 'ăn uống']],

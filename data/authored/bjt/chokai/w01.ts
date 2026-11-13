@@ -110,7 +110,7 @@ export const W01: BjtItem[] = [
   }),
   item('w01', 'hatsugen', 4, {
     script: [
-      ['状況', '取引先の人から「このたびは課長にご昇進されたそうで、おめでとうございます」と言われました。何と言いますか。', 'Người bên đối tác nói: "Nghe nói anh vừa được thăng chức trưởng phòng, xin chúc mừng." Bạn nói gì?'],
+      ['状況', '取引先の人から「このたびは課長にご昇進なさったそうで、おめでとうございます」と言われました。何と言いますか。', 'Người bên đối tác nói: "Nghe nói anh vừa được thăng chức trưởng phòng, xin chúc mừng." Bạn nói gì?'],
     ],
     spokenChoices: true,
     questions: [
