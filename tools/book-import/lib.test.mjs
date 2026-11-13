@@ -79,6 +79,14 @@ test('validateBook accepts a sound index', () => {
   assert.deepEqual(validateBook(b), []);
 });
 
+test('validateBook accepts an audio-only folder but not a page in it', () => {
+  const cds = { id: 'cd', title: 'CD', pages: 0, audio: [{ file: 'audio/a001.mp3', seconds: 60 }], tests: [] };
+  assert.deepEqual(validateBook(cds), []);
+  assert.ok(validateBook({ ...cds, pages: -1 }).some((p) => p.includes('pages must be a whole number')));
+  const withQ = { ...cds, tests: [{ id: 't', title: 'T', questions: [{ no: 1, section: 'bamen', page: 1, audio: 'audio/a001.mp3', answer: 1 }] }] };
+  assert.ok(validateBook(withQ).some((p) => p.includes('page 1 is outside')));
+});
+
 test('validateBook reports what is wrong, by test and question', () => {
   const problems = validateBook(
     book(

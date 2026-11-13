@@ -118,7 +118,8 @@ export function validateBook(book) {
   if (!book || typeof book !== 'object') return ['book.json is not an object'];
   if (!book.id) bad('missing id');
   if (!book.title) bad('missing title');
-  if (!Number.isInteger(book.pages) || book.pages < 1) bad('pages must be a positive integer');
+  // 0 is fine: an audio-only folder (CDs whose book is not downloaded yet)
+  if (!Number.isInteger(book.pages) || book.pages < 0) bad('pages must be a whole number');
   const audio = new Map((book.audio ?? []).map((a) => [a.file, a]));
   const inRange = (p) => Number.isInteger(p) && p >= 1 && p <= book.pages;
   const range = (r, label) => {
