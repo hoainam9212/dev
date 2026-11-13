@@ -51,6 +51,9 @@ export const vi = {
     turn: (i: number, n: number) => `Lượt ${i} / ${n}`,
     hint: '💡 Gợi ý',
     hideHint: 'Ẩn gợi ý',
+    zoomIn: 'Phóng to',
+    zoomOut: 'Thu nhỏ',
+    zoomReset: 'Vừa khung (1:1)',
   },
   app: {
     ttsNoJapaneseVoice: 'Điện thoại chưa có giọng đọc tiếng Nhật. Hãy cài "Tiếng Nhật" trong Google Text-to-Speech.',

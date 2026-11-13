@@ -52,6 +52,9 @@ export const en: Dict = {
     turn: (i, n) => `Turn ${i} / ${n}`,
     hint: '💡 Hint',
     hideHint: 'Hide hint',
+    zoomIn: 'Zoom in',
+    zoomOut: 'Zoom out',
+    zoomReset: 'Fit width (1:1)',
   },
   app: {
     ttsNoJapaneseVoice: 'Your phone has no Japanese voice yet. Install "Japanese" in Google Text-to-Speech.',
