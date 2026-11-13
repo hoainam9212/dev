@@ -5,14 +5,14 @@ import { vocab } from '../helpers';
 export const V01: BjtVocab[] = [
   ...vocab(1, 'Tôn kính ngữ', 'sonkei', [
     ['いらっしゃる', 'いらっしゃる', 'đi, đến, ở (tôn kính)', '部長は第二会議室にいらっしゃいます。', 'Trưởng phòng đang ở phòng họp số 2.'],
-    ['おっしゃる', 'おっしゃる', 'nói (tôn kính)', '先ほど課長がおっしゃったとおり、締め切りは金曜日です。', 'Như tổ trưởng vừa nói, hạn chót là thứ Sáu.'],
+    ['おっしゃる', 'おっしゃる', 'nói (tôn kính)', '先ほど課長がおっしゃったとおり、締め切りは金曜日です。', 'Như trưởng phòng vừa nói, hạn chót là thứ Sáu.'],
     ['召し上がる', 'めしあがる', 'ăn, uống (tôn kính)', 'お飲み物は何を召し上がりますか。', 'Quý khách dùng đồ uống gì ạ?'],
     ['ご覧になる', 'ごらんになる', 'xem (tôn kính)', '昨日お送りした資料はご覧になりましたか。', 'Anh đã xem tài liệu tôi gửi hôm qua chưa ạ?'],
     ['お見えになる', 'おみえになる', '(khách) đến', '受付に吉田様がお見えになりました。', 'Ông Yoshida đã đến quầy lễ tân.'],
     ['お越しになる', 'おこしになる', 'đến, ghé (tôn kính)', '明日は何時ごろお越しになりますか。', 'Ngày mai khoảng mấy giờ anh ghé ạ?'],
     ['ご存じ', 'ごぞんじ', 'biết (tôn kính)', '新しい担当者のことはご存じでしょうか。', 'Không biết anh đã biết về người phụ trách mới chưa ạ?'],
     ['なさる', 'なさる', 'làm (tôn kính của する)', '会議の後はどうなさいますか。', 'Sau cuộc họp anh định làm gì ạ?'],
-    ['お気に召す', 'おきにめす', 'hài lòng, vừa ý (tôn kính)', 'お気に召していただけましたら幸いです。', 'Nếu quý khách vừa ý thì chúng tôi rất vui.'],
+    ['お気に召す', 'おきにめす', 'hài lòng, vừa ý (tôn kính)', 'お気に召しましたら幸いです。', 'Nếu quý khách vừa ý thì chúng tôi rất vui.'],
     ['ご足労', 'ごそくろう', 'sự phiền đi lại (của đối phương)', '本日はご足労いただき、ありがとうございました。', 'Cảm ơn anh hôm nay đã cất công đến tận nơi.'],
     ['ご多忙', 'ごたぼう', 'sự bận rộn (của đối phương)', 'ご多忙のところ恐縮ですが、ご確認をお願いいたします。', 'Xin lỗi làm phiền lúc anh bận, mong anh kiểm tra giúp.'],
     ['お手すき', 'おてすき', 'lúc rảnh tay', 'お手すきの際に、お電話をいただけますか。', 'Khi rảnh tay, anh có thể gọi lại cho tôi được không?'],

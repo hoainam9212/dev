@@ -120,7 +120,7 @@ export const W04: BjtItem[] = [
         '松本さんが高田課長に求めていることは何ですか。',
         ['工場に200箱を用意するよう頼んでほしい', '村上さんに、直接事情を説明してほしい', '明日の午前中に、村上さんに返事をしてほしい', '自分の考えた納品の案で客に提案してよいか、今日中に決めてほしい'],
         3,
-        'Đáp án 4. ご提案してもよろしいでしょうか và 本日中にご判断いただけますと助かります: Matsumoto xin tổ trưởng duyệt phương án của mình trong hôm nay. Lựa chọn 3 dễ nhầm vì "sáng mai" có trong thư, nhưng đó là lúc chính Matsumoto trả lời khách. Xưởng đã nói tối đa 150 hộp, nên nhờ chuẩn bị 200 hộp (1) là không thực tế.',
+        'Đáp án 4. ご提案してもよろしいでしょうか và 本日中にご判断いただけますと助かります: Matsumoto xin trưởng phòng duyệt phương án của mình trong hôm nay. Lựa chọn 3 dễ nhầm vì "sáng mai" có trong thư, nhưng đó là lúc chính Matsumoto trả lời khách. Xưởng đã nói tối đa 150 hộp, nên nhờ chuẩn bị 200 hộp (1) là không thực tế.',
       ],
     ],
     points: [
@@ -187,7 +187,7 @@ export const W04: BjtItem[] = [
         '月の最初の会議は、どのように行われますか。',
         ['会議室に集まって、60分で行う', 'オンラインで、30分で行う', 'オンラインで、60分で行う', '会議室に集まって、30分で行う'],
         0,
-        'Đáp án 1. Phần ただし ở mục 1: cuộc họp đầu tháng có báo cáo tháng của các tổ nên vẫn họp tại phòng và kéo dài 60 phút như cũ. Lựa chọn 2 dễ nhầm vì đó là quy tắc mới cho các tuần khác. 3 và 4 trộn một nửa quy tắc cũ với một nửa quy tắc mới.',
+        'Đáp án 1. Phần ただし ở mục 1: cuộc họp đầu tháng có báo cáo tháng của các phòng nên vẫn họp tại phòng và kéo dài 60 phút như cũ. Lựa chọn 2 dễ nhầm vì đó là quy tắc mới cho các tuần khác. 3 và 4 trộn một nửa quy tắc cũ với một nửa quy tắc mới.',
       ],
       [
         'この見直しの内容と合っているものはどれですか。',

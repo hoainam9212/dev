@@ -37,9 +37,9 @@ export const W07: BjtItem[] = [
     questions: [
       [
         'ご提案いただいた条件につきましては、社内で前向きに検討させて＿＿＿。',
-        ['くださいます', 'さしあげます', 'いただきます', 'もらいます'],
+        ['くださいます', 'さしあげます', 'いただきます', 'あげます'],
         2,
-        '～させていただきます = xin phép được làm (khiêm nhường, việc của mình) → câu 3. Câu 1 dễ nhầm vì cũng là kính ngữ, nhưng くださる lấy người kia làm chủ ngữ, đi với させて thì thành "người kia cho phép" và không hợp với câu tuyên bố của mình. さしあげる là cho người khác; もらいます đúng hướng nhưng quá suồng sã với khách.',
+        '～させていただきます = xin phép được làm (khiêm nhường, việc của mình) → câu 3. Câu 1 dễ nhầm vì cũng là kính ngữ, nhưng くださる lấy người kia làm chủ ngữ, đi với させて thì thành "người kia cho phép" và không hợp với câu tuyên bố của mình. Câu 2 さしあげる và câu 4 あげる là "làm cho người khác", ghép với させて thành "cho phép khách xem xét" — sai nghĩa và thất lễ.',
       ],
     ],
     points: [

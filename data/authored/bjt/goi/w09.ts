@@ -24,7 +24,7 @@ export const V09: BjtVocab[] = [
     ['深くお詫び申し上げます', 'ふかくおわびもうしあげます', 'xin thành thật xin lỗi', 'ご心配をおかけしましたことを、深くお詫び申し上げます。', 'Chúng tôi thành thật xin lỗi vì đã khiến quý vị lo lắng.'],
     ['弁解の余地もございません', 'べんかいのよちもございません', 'không có gì để biện minh', '確認を怠った私どもの責任であり、弁解の余地もございません。', 'Đây là trách nhiệm của chúng tôi vì đã lơ là kiểm tra, không có gì để biện minh.'],
     ['ご不快な思いをおかけし', 'ごふかいなおもいをおかけし', 'đã khiến quý khách khó chịu', 'スタッフの言葉遣いでご不快な思いをおかけし、申し訳ございません。', 'Xin lỗi quý khách vì cách ăn nói của nhân viên đã khiến quý khách khó chịu.'],
-    ['遺憾', 'いかん', 'đáng tiếc (văn trang trọng)', 'このような事態を招きましたことは、誠に遺憾でございます。', 'Việc để xảy ra tình trạng như thế này thật đáng tiếc.'],
+    ['遺憾', 'いかん', 'đáng tiếc (trang trọng; bên có lỗi chỉ nói 遺憾 thì bị coi là chưa xin lỗi)', '取引先の対応は誠に遺憾であり、契約の見直しも検討している。', 'Cách xử lý của đối tác thật đáng tiếc, chúng tôi đang tính cả việc xem lại hợp đồng.'],
     ['誠意をもって', 'せいいをもって', 'với thiện chí, thành ý', '今後とも誠意をもって対応させていただきます。', 'Từ nay chúng tôi sẽ tiếp tục xử lý với tất cả thành ý.'],
     ['至らない点', 'いたらないてん', 'chỗ còn thiếu sót (khiêm tốn)', '至らない点が多々あり、ご迷惑をおかけいたしました。', 'Có nhiều chỗ thiếu sót, chúng tôi đã làm phiền quý vị.'],
     ['監督不行き届き', 'かんとくふゆきとどき', 'thiếu sự giám sát (của cấp trên)', '部下のミスは、私の監督不行き届きによるものです。', 'Lỗi của cấp dưới là do tôi đã không giám sát chu đáo.'],

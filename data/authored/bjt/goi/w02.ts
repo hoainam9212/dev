@@ -42,7 +42,7 @@ export const V02: BjtVocab[] = [
     ['お納めください', 'おおさめください', 'xin nhận cho (khi tặng quà)', 'ささやかですが、どうぞお納めください。', 'Chút quà mọn, xin anh nhận cho.'],
     ['お構いなく', 'おかまいなく', 'xin đừng bận tâm (khi được mời)', 'どうぞお構いなく。すぐに失礼しますので。', 'Xin đừng bận tâm, tôi đi ngay đây.'],
     ['ご用意する', 'ごよういする', 'chuẩn bị sẵn (khiêm nhường)', '資料は人数分ご用意しております。', 'Tài liệu đã chuẩn bị đủ cho mọi người.'],
-    ['面会', 'めんかい', 'gặp mặt (theo yêu cầu)', '部長との面会をご希望の方がいらしています。', 'Có người muốn gặp trưởng phòng đang đến.'],
+    ['面会', 'めんかい', 'gặp mặt (theo yêu cầu)', '部長との面会をご希望の方がいらしています。', 'Có một vị khách muốn gặp trưởng phòng đã đến ạ.'],
     ['先約', 'せんやく', 'hẹn trước (đã có)', 'あいにくその日は先約がございまして。', 'Thật không may, hôm đó tôi đã có hẹn trước.'],
     ['ご来社', 'ごらいしゃ', 'việc (khách) đến công ty', 'ご来社を心よりお待ちしております。', 'Chúng tôi rất mong được đón anh đến công ty.'],
     ['お足元の悪い中', 'おあしもとのわるいなか', 'trong lúc thời tiết xấu, đường khó đi', 'お足元の悪い中、お越しいただきありがとうございます。', 'Cảm ơn anh đã đến trong lúc thời tiết xấu.'],

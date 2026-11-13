@@ -39,7 +39,7 @@ export const V03: BjtVocab[] = [
     ['添付', 'てんぷ', 'đính kèm (tệp)', '会議の資料を添付いたします。', 'Tôi xin đính kèm tài liệu cuộc họp.'],
     ['同封', 'どうふう', 'gửi kèm trong phong bì', '申込書を同封いたしましたので、ご記入ください。', 'Tôi gửi kèm đơn đăng ký trong phong bì, xin anh điền.'],
     ['宛先', 'あてさき', 'người nhận, địa chỉ nhận', '送信前に宛先をもう一度確認する。', 'Trước khi gửi, kiểm tra lại người nhận.'],
-    ['CC', 'シーシー', 'đồng gửi (CC)', '課長にもCCで共有します。', 'Tôi CC cho cả tổ trưởng.'],
+    ['CC', 'シーシー', 'đồng gửi (CC)', '課長にもCCで共有します。', 'Tôi CC cho cả trưởng phòng.'],
     ['一斉送信', 'いっせいそうしん', 'gửi hàng loạt cùng lúc', '一斉送信の際はBCCを使ってください。', 'Khi gửi hàng loạt hãy dùng BCC.'],
     ['誤送信', 'ごそうしん', 'gửi nhầm', '誤送信を防ぐため、送信は1分間保留されます。', 'Để tránh gửi nhầm, thư được giữ lại 1 phút.'],
     ['ご返信', 'ごへんしん', 'thư trả lời (của đối phương)', 'ご返信をお待ちしております。', 'Tôi chờ thư trả lời của anh.'],

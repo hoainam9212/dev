@@ -45,7 +45,7 @@ export const V10: BjtVocab[] = [
     ['相殺する', 'そうさいする', 'bù trừ (công nợ)', '返品分の金額は、来月の請求と相殺させていただきます。', 'Số tiền hàng trả lại sẽ được bù trừ vào hoá đơn tháng sau.'],
     ['後払い', 'あとばらい', 'trả sau'],
     ['支払サイト', 'しはらいさいと', 'thời hạn từ lúc chốt sổ đến lúc trả tiền'],
-    ['与信', 'よしん', 'hạn mức tín dụng cấp cho khách'],
+    ['与信', 'よしん', 'cấp tín dụng cho khách (cho mua chịu)'],
     ['手付金', 'てつけきん', 'tiền đặt cọc'],
     ['収入印紙', 'しゅうにゅういんし', 'tem thuế (dán lên biên lai, hợp đồng)'],
   ]),

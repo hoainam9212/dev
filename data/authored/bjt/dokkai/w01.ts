@@ -37,7 +37,7 @@ export const W01: BjtItem[] = [
         '（取引先への電話の最初に）東和工業の村井でございます。いつも大変お世話に＿＿＿。',
         ['なっております', 'いたしております', 'されております', 'させております'],
         0,
-        'Đáp án 1. お世話になっております là câu chào cố định với khách hàng: mình là người được đối phương giúp đỡ. Lựa chọn 2 (お世話いたしております) ngược hướng: thành ra mình là người chăm lo cho đối phương, nghe thất lễ. 3 và 4 không phải cách nói tồn tại.',
+        'Đáp án 1. お世話になっております là câu chào cố định với khách hàng: mình là người được đối phương giúp đỡ. Lựa chọn 2 (お世話いたしております) ngược hướng: thành ra mình là người chăm lo cho đối phương, nghe thất lễ. 3 và 4 không phải cách nói có thật trong tiếng Nhật.',
       ],
     ],
     points: [
@@ -120,12 +120,12 @@ export const W01: BjtItem[] = [
         '国内の取引先を訪問する社員がしなければならないことはどれですか。',
         ['手土産を自分で買っておく', '訪問の予定を直接、営業企画課に送る', '訪問先と日時を課で決め、課長を通して提出する', '1月13日以降になる訪問は取りやめる'],
         2,
-        'Đáp án 3. Thông báo yêu cầu các tổ tự sắp lịch rồi nộp qua tổ trưởng (課長経由). Lựa chọn dễ nhầm là 2: nơi nhận đúng là 営業企画課 nhưng không được gửi thẳng, phải đi qua 課長. Quà do 営業企画課 chuẩn bị chung, chỉ khách nước ngoài mới tự lo. Lịch sau ngày 13/1 vẫn nộp như thường, không bị hủy.',
+        'Đáp án 3. Thông báo yêu cầu các phòng tự sắp lịch rồi nộp qua trưởng phòng (課長経由). Lựa chọn dễ nhầm là 2: nơi nhận đúng là 営業企画課 nhưng không được gửi thẳng, phải đi qua 課長. Quà do 営業企画課 chuẩn bị chung, chỉ khách nước ngoài mới tự lo. Lịch sau ngày 13/1 vẫn nộp như thường, không bị hủy.',
       ],
     ],
     points: [
       ['挨拶回り', 'あいさつまわり', 'đi chào các nơi (đầu năm, nhận chức)'],
-      ['課長経由で', 'かちょうけいゆで', 'thông qua tổ trưởng'],
+      ['課長経由で', 'かちょうけいゆで', 'thông qua trưởng phòng'],
       ['一括して', 'いっかつして', 'gộp lại một lần, làm chung'],
       ['手土産', 'てみやげ', 'quà mang theo khi đến thăm'],
     ],

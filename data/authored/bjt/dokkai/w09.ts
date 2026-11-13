@@ -7,9 +7,9 @@ export const W09: BjtItem[] = [
     questions: [
       [
         'このたびは弊社の＿＿＿により、多大なるご迷惑をおかけいたしましたこと、心よりお詫び申し上げます。',
-        ['不手際', '不都合', '不具合', '不調法'],
+        ['不手際', '不得手', '不具合', '不調法'],
         0,
-        'Câu 1: 不手際 = sơ suất trong cách làm, cách xử lý; doanh nghiệp xin lỗi vì 弊社の不手際 là cụm cố định. Câu 3 (不具合) dễ nhầm nhất nhưng chỉ dùng cho máy móc, sản phẩm bị trục trặc, không dùng cho "công ty". 不都合 là sự bất tiện, thường nói về phía khách (ご不都合). 不調法 là vụng về, cổ và không hợp văn xin lỗi doanh nghiệp.',
+        'Câu 1: 不手際 = sơ suất trong cách làm, cách xử lý; doanh nghiệp xin lỗi vì 弊社の不手際 là cụm cố định. Câu 3 (不具合) dễ nhầm nhất nhưng chỉ dùng cho máy móc, sản phẩm bị trục trặc, không dùng cho "công ty". 不得手 là sở đoản, không giỏi việc gì (英語が不得手だ), không làm nguyên nhân gây phiền được. 不調法 là vụng về, cổ và không hợp văn xin lỗi doanh nghiệp.',
       ],
     ],
     points: [
