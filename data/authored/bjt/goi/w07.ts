@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 7 — negotiation and client meetings. */
+export const V07: BjtVocab[] = [
+  ...vocab(7, 'Giá cả và điều kiện', 'price', [
+    ['値引き', 'ねびき', 'giảm giá, chiết khấu', '大口注文には値引きで対応しています。', 'Với đơn hàng lớn, chúng tôi áp dụng chiết khấu.'],
+    ['単価', 'たんか', 'đơn giá', '単価を5円下げていただけませんか。', 'Có thể giảm đơn giá 5 yên được không ạ?'],
+    ['数量割引', 'すうりょうわりびき', 'giảm giá theo số lượng'],
+    ['据え置く', 'すえおく', 'giữ nguyên (giá, mức)', '来年度も価格は据え置く予定です。', 'Năm tới giá dự kiến vẫn giữ nguyên.'],
+    ['上乗せする', 'うわのせする', 'cộng thêm vào', '送料分を価格に上乗せした。', 'Tiền vận chuyển đã được cộng thêm vào giá.'],
+    ['転嫁する', 'てんかする', 'chuyển (chi phí) sang giá', '燃料費の上昇を運賃に転嫁する。', 'Chuyển phần tăng giá nhiên liệu vào cước vận chuyển.'],
+    ['相場', 'そうば', 'giá thị trường, mặt bằng giá', 'この価格は業界の相場より高めだ。', 'Mức giá này cao hơn mặt bằng của ngành.'],
+    ['採算が合わない', 'さいさんがあわない', 'không có lãi, không bõ'],
+    ['赤字覚悟', 'あかじかくご', 'chấp nhận lỗ'],
+    ['費用対効果', 'ひようたいこうか', 'hiệu quả so với chi phí', '費用対効果を数字で示してください。', 'Hãy cho thấy hiệu quả so với chi phí bằng con số.'],
+    ['相見積もり', 'あいみつもり', 'lấy báo giá từ nhiều nơi để so', '三社から相見積もりを取った。', 'Tôi đã lấy báo giá của ba công ty để so sánh.'],
+    ['取引条件', 'とりひきじょうけん', 'điều kiện giao dịch'],
+    ['初回限定', 'しょかいげんてい', 'chỉ áp dụng lần đầu'],
+  ]),
+  ...vocab(7, 'Thương lượng và nhượng bộ', 'nego', [
+    ['折り合う', 'おりあう', 'thoả thuận được, khớp nhau', '価格の面でなかなか折り合わない。', 'Mãi không thoả thuận được về giá.'],
+    ['歩み寄る', 'あゆみよる', 'nhượng bộ lẫn nhau', '双方が歩み寄り、契約がまとまった。', 'Hai bên nhượng bộ nhau và hợp đồng đã được chốt.'],
+    ['譲歩', 'じょうほ', 'nhượng bộ', 'これ以上の譲歩は難しい。', 'Nhượng bộ thêm nữa thì khó.'],
+    ['妥協案', 'だきょうあん', 'phương án thoả hiệp'],
+    ['落としどころ', 'おとしどころ', 'điểm dừng có thể chấp nhận', '今回の交渉の落としどころを考えておこう。', 'Hãy nghĩ trước điểm dừng cho cuộc đàm phán lần này.'],
+    ['条件を詰める', 'じょうけんをつめる', 'chốt chi tiết các điều kiện', '来週、細かい条件を詰めましょう。', 'Tuần sau mình chốt các điều kiện chi tiết nhé.'],
+    ['打診する', 'だしんする', 'thăm dò ý (trước khi đề nghị)', '先方に値上げを打診した。', 'Tôi đã thăm dò ý đối tác về việc tăng giá.'],
+    ['感触', 'かんしょく', 'cảm nhận, phản ứng ban đầu', '先方の感触は悪くなかった。', 'Phản ứng của đối tác không tệ.'],
+    ['押し切る', 'おしきる', 'ép tới cùng, áp đặt'],
+    ['足元を見る', 'あしもとをみる', 'lợi dụng thế yếu của người khác', '急ぎの注文だと足元を見られる。', 'Đơn gấp thì dễ bị người ta lợi dụng thế yếu.'],
+    ['痛み分け', 'いたみわけ', 'hai bên cùng chịu thiệt'],
+    ['決め手', 'きめて', 'yếu tố quyết định', '保守体制の充実が受注の決め手になった。', 'Hệ thống bảo trì đầy đủ là yếu tố quyết định để nhận đơn.'],
+    ['競合', 'きょうごう', 'đối thủ cạnh tranh', '今回は競合が三社いる。', 'Lần này có ba đối thủ cạnh tranh.'],
+    ['一任する', 'いちにんする', 'giao toàn quyền'],
+  ]),
+  ...vocab(7, 'Gặp khách và trả lời khéo', 'meeting', [
+    ['商談', 'しょうだん', 'đàm phán kinh doanh', '午後から新規の商談が入っている。', 'Chiều nay có một buổi đàm phán với khách mới.'],
+    ['先方', 'せんぽう', 'phía đối tác', '先方のご都合を伺ってください。', 'Hãy hỏi lịch thuận tiện của phía đối tác.'],
+    ['当方', 'とうほう', 'phía chúng tôi'],
+    ['提案書', 'ていあんしょ', 'bản đề xuất'],
+    ['持ち帰る', 'もちかえる', 'mang về (công ty) để xem xét', '一度持ち帰って、社内で相談いたします。', 'Tôi xin mang về bàn trong công ty đã.'],
+    ['前向きに検討する', 'まえむきにけんとうする', 'xem xét theo hướng tích cực', '前向きに検討させていただきます。', 'Chúng tôi xin xem xét theo hướng tích cực.'],
+    ['善処する', 'ぜんしょする', 'xử lý thích đáng (hứa chung chung)'],
+    ['見送る', 'みおくる', 'hoãn, không thực hiện (lần này)', '今回の導入は見送ることになった。', 'Lần này đã quyết định không đưa vào dùng.'],
+    ['ご期待に沿えず', 'ごきたいにそえず', 'không đáp ứng được kỳ vọng', 'ご期待に沿えず、申し訳ございません。', 'Rất xin lỗi vì không đáp ứng được kỳ vọng của quý vị.'],
+    ['難色を示す', 'なんしょくをしめす', 'tỏ ý không đồng ý', '部長は追加予算に難色を示した。', 'Trưởng bộ phận tỏ ý không đồng ý với ngân sách bổ sung.'],
+    ['即答しかねる', 'そくとうしかねる', 'khó trả lời ngay'],
+    ['検討の余地', 'けんとうのよち', 'chỗ để cân nhắc thêm', '納期については検討の余地があります。', 'Về hạn giao hàng thì còn có thể cân nhắc.'],
+    ['切り出す', 'きりだす', 'mở lời (chuyện khó nói)'],
+  ]),
+];
