@@ -1,5 +1,6 @@
 import type { BjtItem, BjtSection } from '@nihongo/shared';
-import { audioLines, clock, currentWeek, examOrder, examSeconds, pickPractice, sectionStats, toSteps, weekSet } from './bjt';
+import { audioLines, bookRuns, bookSectionStats, clock, currentWeek, examOrder, examSeconds, pickPractice, sectionStats, toSteps, weekSet } from './bjt';
+import type { PackBook } from './books/book';
 
 function mk(id: string, section: BjtSection, nq = 1, extra: Partial<BjtItem> = {}): BjtItem {
   return {
@@ -69,4 +70,54 @@ it('formats set ids and the clock', () => {
   expect(weekSet(12)).toBe('w12');
   expect(clock(605)).toBe('10:05');
   expect(clock(-4)).toBe('0:00');
+});
+
+const BOOK: PackBook = {
+  id: 'b1',
+  title: 'Book one',
+  pages: 3,
+  audio: [],
+  tests: [
+    {
+      id: 't1',
+      title: 'Test 1',
+      questions: [
+        { no: 1, section: 'bamen', n: 1, page: 1, answer: 1, audio: 'a/1.mp3' },
+        { no: 2, section: 'bamen', n: 2, page: 1, answer: 2, audio: 'a/1.mp3' },
+        { no: 3, section: 'goi', n: 1, page: 2, answer: 3 },
+      ],
+    },
+    { id: 't2', title: 'Test 2', questions: [{ no: 1, section: 'goi', n: 1, page: 3, answer: 4 }] },
+  ],
+};
+
+it('counts book answers per section, only for questions of stored books', () => {
+  const answers = {
+    'book:b1:t1:1': true,
+    'book:b1:t1:2': false,
+    'book:b1:t1:3': false,
+    'book:b1:t2:1': true,
+    'book:gone:t1:1': true, // a removed book is not counted
+    'g1-q1': true, // the app's own questions are not counted
+  };
+  const s = bookSectionStats([{ book: BOOK }], answers);
+  expect(s.bamen).toEqual({ answered: 2, correct: 1 });
+  expect(s.goi).toEqual({ answered: 2, correct: 1 });
+  expect(s.hatsugen).toEqual({ answered: 0, correct: 0 });
+  expect(bookSectionStats([{ book: { id: 'x' } }], answers).goi).toEqual({ answered: 0, correct: 0 }); // malformed index
+});
+
+it('lists the latest timed run of each book test, newest first, with titles', () => {
+  const run = (at: string, correct: number) => ({ at, correct, total: 4, seconds: 60 });
+  const runs = {
+    'book:b1:t1': [run('2026-11-01T00:00:00Z', 1), run('2026-11-10T00:00:00Z', 3)],
+    'book:b1:t2': [run('2026-11-12T00:00:00Z', 2)],
+    'book:gone:t1': [run('2026-11-13T00:00:00Z', 4)],
+    mock1: [run('2026-11-13T00:00:00Z', 4)],
+  };
+  expect(bookRuns([{ book: BOOK }], runs)).toEqual([
+    { key: 'book:b1:t2', book: 'Book one', test: 'Test 2', last: run('2026-11-12T00:00:00Z', 2) },
+    { key: 'book:b1:t1', book: 'Book one', test: 'Test 1', last: run('2026-11-10T00:00:00Z', 3) },
+  ]);
+  expect(bookRuns([], runs)).toEqual([]);
 });

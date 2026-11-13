@@ -1,4 +1,6 @@
 import { BJT_PARTS, BJT_SECTIONS, bjtPartOf, type BjtItem, type BjtQuestion, type BjtSection } from '@nihongo/shared';
+import type { BjtRunResult } from '../../store/bjt';
+import { answerKey, type PackBook, type PackTest } from './books/book';
 
 /** One screen of a run: a question together with the item it belongs to. */
 export interface Step {
@@ -88,6 +90,59 @@ export function currentWeek(startDate: string | null, today = new Date()): numbe
 }
 
 export const weekSet = (week: number) => `w${String(week).padStart(2, '0')}`;
+
+export interface BookStat {
+  answered: number;
+  correct: number;
+}
+
+/** Tests of a stored book index, or none when the index is not a usable PackBook. */
+function testsOf(book: unknown): { id: string; title: string; tests: PackTest[] } | null {
+  const b = book as Partial<PackBook> | null;
+  if (!b || typeof b.id !== 'string' || !Array.isArray(b.tests)) return null;
+  return { id: b.id, title: typeof b.title === 'string' ? b.title : b.id, tests: b.tests.filter((t) => t && Array.isArray(t.questions)) };
+}
+
+/** Per BJT section, how many questions of the stored books were answered and how many right (book answers only). */
+export function bookSectionStats(books: { book: unknown }[], answers: Record<string, boolean>): Record<BjtSection, BookStat> {
+  const out = Object.fromEntries(BJT_SECTIONS.map((s) => [s.id, { answered: 0, correct: 0 }])) as Record<BjtSection, BookStat>;
+  for (const { book } of books) {
+    const b = testsOf(book);
+    if (!b) continue;
+    for (const t of b.tests)
+      for (const q of t.questions) {
+        const k = answerKey(b.id, t.id, q.no);
+        const stat = out[q.section];
+        if (!stat || !(k in answers)) continue;
+        stat.answered++;
+        if (answers[k]) stat.correct++;
+      }
+  }
+  return out;
+}
+
+export interface BookRun {
+  /** Key of the run in the BJT store: `book:<bookId>:<testId>`. */
+  key: string;
+  book: string;
+  test: string;
+  last: BjtRunResult;
+}
+
+/** Latest timed run of each test of the stored books, newest first; runs of removed books are left out. */
+export function bookRuns(books: { book: unknown }[], runs: Record<string, BjtRunResult[]>): BookRun[] {
+  const out: BookRun[] = [];
+  for (const { book } of books) {
+    const b = testsOf(book);
+    if (!b) continue;
+    for (const t of b.tests) {
+      const key = `book:${b.id}:${t.id}`;
+      const last = runs[key]?.at(-1);
+      if (last) out.push({ key, book: b.title, test: typeof t.title === 'string' ? t.title : t.id, last });
+    }
+  }
+  return out.sort((a, b) => (a.last.at < b.last.at ? 1 : a.last.at > b.last.at ? -1 : 0));
+}
 
 export function clock(seconds: number): string {
   const s = Math.max(0, seconds);

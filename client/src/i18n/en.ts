@@ -443,6 +443,11 @@ export const en: Dict = {
     myBooks: '📚 My books',
     myBooksDesc: 'Sit the tests from prep books you imported: real pages, real recordings, Vietnamese explanations.',
     openBooks: 'Open my books',
+    bookAccuracy: (c, n) => `Books: ${c}/${n} right`,
+    bookWrong: (n) => `Wrong in your books: ${n}`,
+    bookLastMock: (s, l) => `Latest book mock: ${s} points (${l})`,
+    bookMocks: 'Mock tests from my books',
+    bookRunLine: (s, l, d) => `Last time: ${s} points (${l}) · ${d}`,
   },
   bjtBooks: {
     title: 'My books',
