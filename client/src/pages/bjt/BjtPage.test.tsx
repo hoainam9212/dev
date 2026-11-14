@@ -173,6 +173,41 @@ describe('results from the learner\'s own books', () => {
     expect(screen.getByTestId('bjt-mock-mock3').compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
+  it('plan: lists each book test with wrong answers, each opening its redo run in /bjt/sach', async () => {
+    useBjt.setState({ answers: { 'book:tb:t1:1': false, 'book:tb:t1:3': false, 'book:tb:t1:2': true } });
+    render(<BjtPage />, { wrapper: MemoryRouter });
+    const list = await screen.findByTestId('bjt-book-wrong');
+    expect(list).toHaveTextContent(dict.bjt.bookWrongList);
+    const row = within(list).getByTestId('bjt-book-wrong-tb:t1');
+    expect(row).toHaveTextContent('Test book');
+    expect(row).toHaveTextContent('Test 1');
+    expect(row).toHaveTextContent(dict.bjt.bookWrongRow(2));
+    expect(within(row).getByRole('link', { name: dict.bjt.bookRedo })).toHaveAttribute('href', '/bjt/sach?redo=tb%3At1');
+    // next to the app's own redo
+    expect(screen.queryByTestId('bjt-wrong')).toBeNull();
+  });
+
+  it('plan: no book wrong list without wrong book answers', async () => {
+    useBjt.setState({ answers: { 'book:tb:t1:1': true } });
+    render(<BjtPage />, { wrapper: MemoryRouter });
+    await waitFor(() => expect(screen.getByTestId('bjt-books')).toBeInTheDocument());
+    expect(screen.queryByTestId('bjt-book-wrong')).toBeNull();
+  });
+
+  it('old-format book tests show the raw score, never an estimate', async () => {
+    await db.books.put({ id: 'tb', title: 'Test book', book: { ...book, tests: [{ ...book.tests[0]!, legacy: true }] }, bytes: 1, importedAt: '2026-11-13T00:00:00Z' });
+    useBjt.setState({ runs: { 'book:tb:t1': [{ at: '2026-11-12T10:00:00Z', correct: 2, total: 3, seconds: 60 }] } });
+    render(<BjtPage />, { wrapper: MemoryRouter });
+    const card = screen.getByTestId('bjt-books');
+    expect(await within(card).findByText(dict.bjt.bookLastLegacy(2, 3))).toBeInTheDocument();
+    expect(card).not.toHaveTextContent('điểm');
+    tab(dict.bjt.tabs.mock);
+    const row = await screen.findByTestId('bjt-book-run-book:tb:t1');
+    expect(row).toHaveTextContent(dict.bjt.bookRunLegacy(2, 3, dict.common.shortDate(new Date('2026-11-12T10:00:00Z'))));
+    expect(row).toHaveTextContent(dict.bjt.legacyNote);
+    expect(row).not.toHaveTextContent('điểm');
+  });
+
   it('mock: no book section without timed book runs', async () => {
     render(<BjtPage />, { wrapper: MemoryRouter });
     tab(dict.bjt.tabs.mock);
