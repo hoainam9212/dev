@@ -443,6 +443,7 @@ export const vi = {
     bookLastMock: (s: number, l: string) => `Thi thử sách gần nhất: ${s} điểm (${l})`,
     bookMocks: 'Thi thử từ sách của tôi',
     bookRunLine: (s: number, l: string, d: string) => `Lần gần nhất: ${s} điểm (${l}) · ${d}`,
+    positionMark: (n: string) => `vị trí ${n}`,
   },
   bjtBooks: {
     title: 'Sách của tôi',

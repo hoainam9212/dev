@@ -6,6 +6,7 @@ import { useProgress } from '../../store/progress';
 import { useBjt } from '../../store/bjt';
 import { useT } from '../../i18n';
 import { BjtMaterialView } from './BjtMaterialView';
+import { Marked } from './PositionMark';
 import { audioLines, clock, examSeconds, sectionStats, toSteps, type Step } from './bjt';
 
 const XP_PER_CORRECT = 2;
@@ -146,7 +147,7 @@ export function BjtRunner({ title, items, exam = false, setId, onExit }: Props) 
       {item.material && <BjtMaterialView material={item.material} />}
 
       <p className="text-lg font-bold leading-relaxed" data-testid="bjt-prompt">
-        {q.prompt}
+        <Marked text={q.prompt} />
       </p>
       {hideChoices && <p className="text-xs text-muted">{t.bjt.choicesSpoken}</p>}
       <div className={hideChoices ? 'grid grid-cols-4 gap-2' : 'flex flex-col gap-2'}>
@@ -162,7 +163,13 @@ export function BjtRunner({ title, items, exam = false, setId, onExit }: Props) 
               hideChoices ? 'text-center text-xl' : ''
             } ${CHOICE[state(ci)]}`}
           >
-            {hideChoices ? ci + 1 : `${ci + 1}. ${c}`}
+            {hideChoices ? (
+              ci + 1
+            ) : (
+              <>
+                {ci + 1}. <Marked text={c} />
+              </>
+            )}
           </button>
         ))}
       </div>
@@ -268,10 +275,14 @@ function BjtResult({ title, steps, picked, exam, onExit }: { title: string; step
             return (
               <li key={q.id} className="space-y-1 rounded-2xl bg-cream p-3 dark:bg-bg">
                 <p className="text-xs font-bold text-rose">{BJT_SECTIONS.find((s) => s.id === item.section)!.ja}</p>
-                <p className="font-bold">{q.prompt}</p>
-                <p className="text-sm text-muted">{mine === undefined ? t.bjt.noAnswer : t.bjt.yourAnswer(`${mine + 1}. ${q.choices[mine]}`)}</p>
+                <p className="font-bold">
+                  <Marked text={q.prompt} />
+                </p>
+                <p className="text-sm text-muted">
+                  <Marked text={mine === undefined ? t.bjt.noAnswer : t.bjt.yourAnswer(`${mine + 1}. ${q.choices[mine]}`)} />
+                </p>
                 <p className="text-sm font-bold text-emerald-600">
-                  ✓ {q.answer + 1}. {q.choices[q.answer]}
+                  ✓ {q.answer + 1}. <Marked text={q.choices[q.answer]!} />
                 </p>
                 <p className="text-sm">{q.explain}</p>
               </li>

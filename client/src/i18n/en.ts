@@ -448,6 +448,7 @@ export const en: Dict = {
     bookLastMock: (s, l) => `Latest book mock: ${s} points (${l})`,
     bookMocks: 'Mock tests from my books',
     bookRunLine: (s, l, d) => `Last time: ${s} points (${l}) · ${d}`,
+    positionMark: (n) => `position ${n}`,
   },
   bjtBooks: {
     title: 'My books',
