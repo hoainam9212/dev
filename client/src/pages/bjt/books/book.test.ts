@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { answerKey, bookExamSeconds, cropStyle, filesNeeded, j1plusNos, pagePath, parseBook, scoreTest, sectionsOf, wrongNos } from './book';
+import { answerKey, bookExamSeconds, cropStyle, filesNeeded, groupsOf, j1plusNos, pagePath, pagesOf, parseBook, scoreTest, sectionName, sectionsOf, wrongNos } from './book';
 import type { PackTest } from './book';
 
 const q = (no: number, section: string, answer: number, extra: object = {}) => ({ no, section, n: no, page: 9, answer, ...extra });
@@ -99,5 +99,66 @@ describe('picking questions to redo', () => {
 
   it('j1plusNos: the questions that sort J1 from J1+', () => {
     expect(j1plusNos(test)).toEqual([2, 4]);
+  });
+});
+
+describe('old-format tests (100 questions, 120 minutes)', () => {
+  const L1 = '第1部 セクション1 描写問題';
+  const L2 = '第2部 セクション1 状況把握';
+  const questions = [
+    q(1, 'bamen', 1, { audio: 'audio/a004.mp3', label: L1 }),
+    q(2, 'jokyo', 2, { audio: 'audio/a005.mp3', label: L2 }),
+    q(3, 'shiryo', 3, { audio: 'audio/a005.mp3', label: L2, pages: [7, 8], page: 8 }),
+    q(4, 'goi', 4, { label: '第3部 セクション1 語彙・文法', textPage: 5, page: 6 }),
+  ];
+  const extras = [{ title: '第1部 · 練習', audio: 'audio/a003.mp3' }];
+  const old = parseBook(
+    JSON.stringify({ ...raw([]), tests: [{ id: 't', title: '体験テスト', minutes: 120, legacy: true, extras, questions }] }),
+  );
+  const t = old.tests[0]!;
+
+  it('keeps the optional fields and uses the official minutes', () => {
+    expect(t.legacy).toBe(true);
+    expect(t.extras).toEqual([{ title: '第1部 · 練習', audio: 'audio/a003.mp3' }]);
+    expect(bookExamSeconds(t)).toBe(120 * 60);
+  });
+
+  it('pagesOf: pages in order, textPage above page, else the single page', () => {
+    expect(t.questions.map(pagesOf)).toEqual([[9], [9], [7, 8], [5, 6]]);
+  });
+
+  it('filesNeeded includes every page of a question and the extra recordings', () => {
+    expect(filesNeeded(old)).toEqual(['audio/a003.mp3', 'audio/a004.mp3', 'audio/a005.mp3', 'pages/p0005.jpg', 'pages/p0006.jpg', 'pages/p0007.jpg', 'pages/p0008.jpg', 'pages/p0009.jpg']);
+  });
+
+  it('sectionName: the printed label first, else the Japanese section name', () => {
+    expect(sectionName(t.questions[0]!)).toBe(L1);
+    expect(sectionName({ ...t.questions[0]!, label: undefined })).toBe('場面把握');
+  });
+
+  it('groupsOf: by label when the test has labels, so one old section spans two ids', () => {
+    expect(groupsOf(t).map((g) => [g.name, g.nos])).toEqual([
+      [L1, [1]],
+      [L2, [2, 3]],
+      ['第3部 セクション1 語彙・文法', [4]],
+    ]);
+    expect(scoreTest(t, { 2: 2 }).bySection.map((s) => [s.ja, s.correct, s.total])).toEqual([
+      [L1, 0, 1],
+      [L2, 1, 2],
+      ['第3部 セクション1 語彙・文法', 0, 1],
+    ]);
+  });
+
+  it('groupsOf: by section in exam order without labels', () => {
+    const plain = parseBook(JSON.stringify(raw([q(1, 'goi', 1), q(2, 'bamen', 2, { audio: 'a.mp3' }), q(3, 'goi', 3)]))).tests[0]!;
+    expect(groupsOf(plain).map((g) => [g.name, g.nos])).toEqual([
+      ['場面把握', [2]],
+      ['語彙・文法', [1, 3]],
+    ]);
+  });
+
+  it('refuses broken optional fields', () => {
+    expect(() => parseBook(JSON.stringify(raw([q(1, 'goi', 1, { pages: ['x'] })])))).toThrow('bad-book');
+    expect(() => parseBook(JSON.stringify(raw([q(1, 'goi', 1, { pages: [] })])))).toThrow('bad-book');
   });
 });

@@ -22,6 +22,7 @@ it('is empty without books, then follows the stored books and the book answers',
   expect(result.current.bySection.goi).toEqual({ answered: 0, correct: 0 });
   expect(result.current.wrong).toBe(0);
   expect(result.current.runs).toEqual([]);
+  expect(result.current.wrongTests).toEqual([]);
 
   await act(async () => {
     await db.books.put({ id: 'tb', title: 'Test book', book, bytes: 1, importedAt: '2026-11-13T00:00:00Z' });
@@ -32,5 +33,6 @@ it('is empty without books, then follows the stored books and the book answers',
   });
   await waitFor(() => expect(result.current.bySection.goi).toEqual({ answered: 2, correct: 1 }));
   expect(result.current.wrong).toBe(1);
+  expect(result.current.wrongTests).toEqual([{ bookId: 'tb', testId: 't1', book: 'Test book', test: 'Test 1', nos: [2] }]);
   expect(result.current.runs.map((r) => [r.book, r.test, r.last.correct])).toEqual([['Test book', 'Test 1', 1]]);
 });
