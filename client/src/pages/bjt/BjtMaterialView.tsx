@@ -39,7 +39,7 @@ export function BjtMaterialView({ material }: { material: BjtMaterial }) {
           </p>
         )}
         {/* a floor plan or a simple map: equal columns that always fit the screen, no header */}
-        <table data-grid className="w-full table-fixed border-separate border-spacing-1 text-xs sm:text-sm">
+        <table data-grid className="w-full table-fixed border-separate border-spacing-0.5 text-[11px] sm:border-spacing-1 sm:text-sm">
           <colgroup>
             {Array.from({ length: cols }, (_, i) => (
               <col key={i} style={{ width: `${100 / cols}%` }} />
