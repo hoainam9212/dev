@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 16 — high-value keigo and set phrases not yet covered in weeks 1-14. */
+export const V16: BjtVocab[] = [
+  ...vocab(16, 'Kính ngữ nâng cao', 'keigo', [
+    ['賜る', 'たまわる', 'nhận được (từ người trên, rất trang trọng)', '平素より格別のご愛顧を賜り、厚く御礼申し上げます。', 'Xin chân thành cảm ơn quý vị lâu nay đã đặc biệt ủng hộ.'],
+    ['拝察する', 'はいさつする', 'đoán, hiểu (tâm tư người trên, khiêm nhường)', 'ご多用のことと拝察いたしますが、ご出席いただければ幸いです。', 'Tôi đoán quý vị rất bận, nhưng mong quý vị tham dự.'],
+    ['拝聴する', 'はいちょうする', 'lắng nghe (khiêm nhường)', '先生のご講演を拝聴し、大変勉強になりました。', 'Được nghe bài giảng của thầy, tôi đã học được rất nhiều.'],
+    ['拝読する', 'はいどくする', 'đọc (khiêm nhường)', 'ご著書を拝読いたしました。', 'Tôi đã đọc cuốn sách của ông.'],
+    ['申し伝える', 'もうしつたえる', 'chuyển lời (cho người phía mình)', '田中が戻りましたら、その旨申し伝えます。', 'Khi Tanaka về, tôi sẽ chuyển lời đó.'],
+    ['参上する', 'さんじょうする', 'đến (rất khiêm nhường)', '明日、改めてご挨拶に参上いたします。', 'Ngày mai tôi xin đến chào lại.'],
+    ['お申し付けください', 'おもうしつけください', 'xin cứ sai bảo, cứ yêu cầu', 'ご用の際は、何なりとお申し付けください。', 'Khi cần gì, xin quý khách cứ yêu cầu.'],
+    ['承知いたしました', 'しょうちいたしました', 'tôi đã rõ, xin vâng', '日程変更の件、承知いたしました。', 'Việc đổi lịch, tôi đã rõ.'],
+    ['かしこまりました', 'かしこまりました', 'vâng, tôi hiểu rồi (với khách)', 'かしこまりました。すぐにお持ちいたします。', 'Vâng, tôi mang đến ngay.'],
+    ['お手を煩わせる', 'おてをわずらわせる', 'làm phiền (đối phương) mất công', 'お手を煩わせてしまい、申し訳ございません。', 'Xin lỗi vì đã làm phiền anh mất công.'],
+    ['ご尽力', 'ごじんりょく', 'sự tận lực (của đối phương)', '皆様のご尽力により、無事に完成いたしました。', 'Nhờ sự tận lực của mọi người, công trình đã hoàn thành suôn sẻ.'],
+    ['お力添え', 'おちからぞえ', 'sự giúp sức', '今後ともお力添えのほど、よろしくお願いいたします。', 'Mong quý vị tiếp tục giúp sức.'],
+    ['ご意向', 'ごいこう', 'ý muốn, dự định (của đối phương)', 'お客様のご意向を確認したうえで進めます。', 'Chúng tôi sẽ tiến hành sau khi xác nhận ý muốn của khách.'],
+    ['ご厚意', 'ごこうい', 'lòng tốt (của đối phương)', 'ご厚意に甘えて、車で送っていただいた。', 'Nhận lòng tốt của đối phương, tôi được đưa về bằng xe.'],
+  ]),
+  ...vocab(16, 'Câu cố định trong thư', 'kotei', [
+    ['ご放念ください', 'ごほうねんください', 'xin đừng bận tâm (bỏ qua thư trước)', '行き違いでお支払い済みの場合は、ご放念ください。', 'Nếu quý vị đã thanh toán trước khi thư này đến, xin bỏ qua.'],
+    ['お含みおきください', 'おふくみおきください', 'xin lưu ý cho', '当日は混雑が予想されますので、お含みおきください。', 'Hôm đó dự kiến đông, xin quý vị lưu ý cho.'],
+    ['ご承知おきください', 'ごしょうちおきください', 'xin nắm trước (điều này)', '締め切り後の変更はできませんので、ご承知おきください。', 'Sau hạn chót không thể thay đổi, xin quý vị nắm trước.'],
+    ['ご笑納ください', 'ごしょうのうください', 'xin vui lòng nhận (món quà nhỏ)', '心ばかりの品ですが、ご笑納ください。', 'Chỉ là chút quà mọn, xin vui lòng nhận cho.'],
+    ['ご自愛ください', 'ごじあいください', 'xin giữ gìn sức khỏe (cuối thư)', '寒さ厳しき折、どうぞご自愛ください。', 'Trời đang rét đậm, xin quý vị giữ gìn sức khỏe.'],
+    ['ご健勝', 'ごけんしょう', 'sức khỏe dồi dào (chúc trong thư)', '皆様のご健勝をお祈り申し上げます。', 'Kính chúc quý vị dồi dào sức khỏe.'],
+    ['ご鞭撻', 'ごべんたつ', 'sự chỉ bảo, khích lệ', '今後ともご指導ご鞭撻のほど、よろしくお願い申し上げます。', 'Kính mong quý vị tiếp tục chỉ bảo và khích lệ.'],
+    ['末筆ながら', 'まっぴつながら', 'cuối thư xin được (chúc)', '末筆ながら、貴社のますますのご発展をお祈りいたします。', 'Cuối thư, xin chúc quý công ty ngày càng phát triển.'],
+    ['何卒', 'なにとぞ', 'kính mong, xin hãy (rất trang trọng)', '何卒よろしくお願い申し上げます。', 'Kính mong quý vị giúp đỡ.'],
+    ['重ねて', 'かさねて', 'một lần nữa (xin lỗi, cảm ơn)', '重ねてお詫び申し上げます。', 'Một lần nữa, tôi xin lỗi.'],
+    ['ご一報', 'ごいっぽう', 'tin báo ngắn', '到着されましたら、ご一報いただけますか。', 'Khi đến nơi, anh báo cho tôi một tiếng được không?'],
+    ['お心遣い', 'おこころづかい', 'sự quan tâm, chu đáo', '温かいお心遣いをいただき、ありがとうございます。', 'Cảm ơn sự quan tâm ân cần của quý vị.'],
+    ['痛み入ります', 'いたみいります', 'thật cảm kích (và áy náy)', 'ご丁寧なお手紙をいただき、痛み入ります。', 'Nhận được bức thư chu đáo, tôi thật cảm kích.'],
+  ]),
+  ...vocab(16, 'Nói khéo, làm mềm', 'kusshon', [
+    ['僭越ながら', 'せんえつながら', 'xin mạn phép', '僭越ながら、乾杯の音頭を取らせていただきます。', 'Xin mạn phép được hô nâng ly.'],
+    ['差し出がましい', 'さしでがましい', 'xen vào, vượt phận', '差し出がましいようですが、一言申し上げてもよろしいでしょうか。', 'E là hơi vượt phận, nhưng tôi xin nói một câu được không?'],
+    ['ご無理を申し上げる', 'ごむりをもうしあげる', 'đưa ra yêu cầu khó (với đối phương)', 'ご無理を申し上げて恐縮ですが、納期を三日早めていただけないでしょうか。', 'Thật ngại khi yêu cầu khó, nhưng có thể giao sớm ba ngày không ạ?'],
+    ['心ばかり', 'こころばかり', 'chút lòng thành', '心ばかりの品をお送りいたしました。', 'Tôi đã gửi một món quà nhỏ gọi là chút lòng thành.'],
+    ['お役に立てず', 'おやくにたてず', 'không giúp được gì', 'お役に立てず、申し訳ございません。', 'Xin lỗi vì đã không giúp được gì.'],
+    ['ご迷惑をおかけする', 'ごめいわくをおかけする', 'gây phiền phức (cho đối phương)', 'ご迷惑をおかけしており、誠に申し訳ございません。', 'Thật xin lỗi vì đang gây phiền phức cho quý vị.'],
+    ['勝手を申しまして', 'かってをもうしまして', 'xin lỗi vì đã đề nghị theo ý mình', '勝手を申しまして恐縮ですが、日程の変更をお願いできますか。', 'Xin lỗi vì đề nghị theo ý mình, nhưng có thể đổi lịch được không ạ?'],
+    ['折り入って', 'おりいって', '(nhờ việc) quan trọng, đặc biệt', '折り入ってご相談したいことがございます。', 'Tôi có việc quan trọng muốn bàn với anh.'],
+    ['ぶしつけ', 'ぶしつけ', 'đường đột, thất lễ', 'ぶしつけなお願いで恐縮ですが、ご紹介いただけないでしょうか。', 'Xin lỗi vì lời nhờ đường đột, anh có thể giới thiệu giúp không ạ?'],
+    ['お言葉に甘えて', 'おことばにあまえて', 'xin nhận lời tốt của anh', 'では、お言葉に甘えてお先に失礼します。', 'Vậy xin nhận lời anh, tôi xin phép về trước.'],
+    ['身に余る', 'みにあまる', 'quá sức mình xứng đáng', '身に余るお言葉をいただき、恐縮しております。', 'Được nhận lời khen quá mức xứng đáng, tôi thật ngại.'],
+    ['恐れ多い', 'おそれおおい', 'không dám nhận, quá vinh dự', '社長から直接お礼を言われるとは、恐れ多いことです。', 'Được giám đốc trực tiếp cảm ơn, tôi thật không dám nhận.'],
+    ['お手柔らかに', 'おてやわらかに', 'xin nương tay', '初めての交渉ですので、どうぞお手柔らかにお願いします。', 'Đây là lần đầu đàm phán, xin anh nương tay cho.'],
+  ]),
+];
