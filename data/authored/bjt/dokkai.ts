@@ -9,9 +9,10 @@ import { W07 } from './dokkai/w07';
 import { W09 } from './dokkai/w09';
 import { W10 } from './dokkai/w10';
 import { W11 } from './dokkai/w11';
+import { W13 } from './dokkai/w13';
 import { MOCK1 } from './dokkai/mock1';
 import { MOCK2 } from './dokkai/mock2';
 
 // 読解 (語彙・文法, 表現読解, 総合読解): weekly practice w01…w16 and full tests mock1…mock3.
 // Rules and targets: docs/superpowers/specs/2026-11-13-bjt-design.md
-export const BJT_DOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...MOCK1, ...MOCK2];
+export const BJT_DOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...MOCK1, ...MOCK2];
