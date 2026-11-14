@@ -203,7 +203,7 @@ export const W14: BjtItem[] = [
         '女の人の発言から分かることは何ですか。',
         ['タブレットの値段が高すぎると考えている', '提案そのものに反対している', '資料の「効果」の部分は正確ではないと考えている', '社外向けの資料もタブレットで見せるべきだと考えている'],
         2,
-        'Lựa chọn 3: 効果のところは書き直したほうがいい là cách nói nhẹ rằng phần hiệu quả (thu hồi vốn 14 tháng) đang tính quá lạc quan: tiền tiết kiệm ít hơn thì thời gian thu hồi dài hơn. Lựa chọn 2 dễ chọn, nhưng người nói nói 趣旨はよくわかりました và chỉ góp ý một điểm, không phản đối cả đề xuất.',
+        'Lựa chọn 3: 効果のところは書き直したほうがいい là cách nói nhẹ rằng phần hiệu quả (thu hồi vốn khoảng 13 tháng) đang tính quá lạc quan: tiền tiết kiệm ít hơn thì thời gian thu hồi dài hơn. Lựa chọn 2 dễ chọn, nhưng người nói nói 趣旨はよくわかりました và chỉ góp ý một điểm, không phản đối cả đề xuất.',
       ],
     ],
     points: [
