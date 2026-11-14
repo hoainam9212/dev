@@ -132,9 +132,9 @@ export const W16: BjtItem[] = [
     questions: [
       [
         '空欄に入る最も適当なものはどれですか。',
-        ['いただいた', 'さしあげた', 'いたした', 'なさった'],
+        ['いただいた', 'さしあげた', 'いたした', 'になられた'],
         0,
-        'Mình được khách mời → お招きいただいた → lựa chọn 1. Lựa chọn 3 dễ nhầm vì いたす cũng là khiêm nhường ngữ, nhưng お招きいたした nghĩa là chính mình mời khách, ngược vai. さしあげる cũng là mình làm cho khách; お～なさった là dạng kính ngữ sai.',
+        'Mình được khách mời → お招きいただいた → lựa chọn 1. Lựa chọn 3 dễ nhầm vì いたす cũng là khiêm nhường ngữ, nhưng お招きいたした nghĩa là chính mình mời khách, ngược vai. さしあげる cũng là mình làm cho khách; お招きになられた là kính ngữ kép (お～になる + られる).',
       ],
     ],
     points: [

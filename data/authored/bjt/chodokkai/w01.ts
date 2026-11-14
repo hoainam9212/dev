@@ -153,7 +153,7 @@ export const W01: BjtItem[] = [
         ['', '', '', '', ''],
         ['駅', '', '公園', '', '【4】'],
       ],
-      note: '空欄は道路。上が北。【1】〜【4】は駐車場。',
+      note: '空欄は道路（本社ビルの前の東西の道は大通り）。上が北。【1】〜【4】は駐車場。',
     },
     script: [
       ['男', 'あのう、明日の十時に伺うことになっております、山口工業の佐野と申しますが、車で伺っても大丈夫でしょうか。', 'Xin lỗi, tôi là Sano của Yamaguchi Kogyo, có hẹn đến lúc mười giờ ngày mai. Tôi đi ô tô đến có được không ạ?'],
@@ -190,7 +190,7 @@ export const W01: BjtItem[] = [
       ['女', '先ほど連絡がありまして、成田に着く便が二時間近く遅れるそうです。そのため、本社への到着は十一時過ぎになる見込みです。', 'Vừa có liên lạc cho biết chuyến bay đến Narita trễ gần hai tiếng. Vì vậy dự kiến đoàn đến trụ sở sau mười một giờ.'],
       ['女', 'まず、工場見学ですが、工場のほうに確認したところ、午後は三時以降でしたら対応できるとのことでした。そこで、工場見学と、最後に予定していた品質管理部の説明とを入れ替えることにします。', 'Trước hết là tham quan nhà máy: tôi đã hỏi phía nhà máy, họ nói buổi chiều thì từ ba giờ trở đi có thể đón được. Vì vậy, đổi chỗ tham quan nhà máy với phần giới thiệu của bộ phận quản lý chất lượng vốn xếp cuối cùng.'],
       ['女', 'ただ、ご覧のとおり、午前の最初の枠には到着が間に合いません。ですので、品質管理部の説明は、ショールーム見学を予定していた時間に移します。品質管理部の部長には、もうご了承いただいております。', 'Có điều, như mọi người thấy, đoàn đến không kịp khung giờ đầu tiên buổi sáng. Nên phần giới thiệu của quản lý chất lượng sẽ chuyển sang giờ vốn dành cho tham quan phòng trưng bày. Trưởng bộ phận quản lý chất lượng đã đồng ý rồi.'],
-      ['女', 'ショールームのほうは、歓迎会の前に、五時から三十分ほどご案内する形にします。営業部との打ち合わせは予定どおりです。社長のごあいさつは、到着後すぐ、短めにお願いすることになりました。以上です。', 'Còn phòng trưng bày thì sẽ dẫn đoàn đi khoảng ba mươi phút từ năm giờ, trước tiệc chào mừng. Buổi họp với phòng kinh doanh giữ nguyên. Lời chào của giám đốc sẽ diễn ra ngắn gọn ngay sau khi đoàn đến.'],
+      ['女', 'ショールームのほうは、歓迎会の前に、五時から三十分ほどご案内する形にします。営業部との打ち合わせは予定どおりです。社長のごあいさつは、到着後すぐ、短めにお願いすることになりました。', 'Còn phòng trưng bày thì sẽ dẫn đoàn đi khoảng ba mươi phút từ năm giờ, trước tiệc chào mừng. Buổi họp với phòng kinh doanh giữ nguyên. Lời chào của giám đốc sẽ diễn ra ngắn gọn ngay sau khi đoàn đến.'],
       ['女', '工場までのバスは、打ち合わせが終わる三時ちょうどに、正面玄関に回してもらいます。変更後の予定表は、今日中に皆さんにメールでお送りします。以上です。', 'Xe buýt đi nhà máy sẽ được đưa đến cửa chính đúng ba giờ, lúc buổi họp kết thúc. Lịch sau khi thay đổi tôi sẽ gửi email cho mọi người trong hôm nay. Hết.'],
     ],
     questions: [

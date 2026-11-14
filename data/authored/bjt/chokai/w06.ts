@@ -80,7 +80,7 @@ export const W06: BjtItem[] = [
         '何と言いますか。',
         ['課長、展示会には参られますか。', '課長、展示会にはいらっしゃいましたか。', '課長、展示会にはお招きになりますか。', '課長、展示会にはいらっしゃいますか。'],
         3,
-        'Hỏi việc đi của cấp trên trong tương lai: tôn kính いらっしゃいますか. Lựa chọn 1 đúng ý nhưng 参る là khiêm nhường, thêm られる cũng không thành tôn kính. Lựa chọn 2 chia quá khứ, trong khi triển lãm là tháng sau. Lựa chọn 4 hỏi trưởng phòng có mời ai không, sai nội dung.',
+        'Hỏi việc đi của cấp trên trong tương lai: tôn kính いらっしゃいますか (lựa chọn 4). Lựa chọn 1 đúng ý nhưng 参る là khiêm nhường, thêm られる cũng không thành tôn kính. Lựa chọn 2 chia quá khứ, trong khi triển lãm là tháng sau. Lựa chọn 3 hỏi trưởng phòng có mời ai không, sai nội dung.',
       ],
     ],
     points: [

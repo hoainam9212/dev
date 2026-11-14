@@ -146,7 +146,7 @@ export const W03: BjtItem[] = [
       ['男', '西田さん、ミナト企画さんへのメール、見たよ。日程変更の理由が書いてないね。', 'Nishida, anh xem email gửi Minato Kikaku rồi. Không ghi lý do đổi lịch nhỉ.'],
       ['女', 'はい。社内の事情なので、書かないほうがいいかと思いまして。', 'Vâng. Vì là chuyện nội bộ nên em nghĩ không ghi thì hơn.'],
       ['男', '細かく書く必要はないけど、何もないと、先方も「何かあったのかな」って気になるでしょう。「当日、急きょ社内で検査が入ることになり」くらいは入れたほうがいいね。', 'Không cần viết chi tiết, nhưng không có gì thì bên kia sẽ băn khoăn "có chuyện gì à". Nên thêm cỡ câu "hôm đó nội bộ đột xuất có đợt kiểm tra".'],
-      ['女', 'わかりました。では、最後の、候補日を書いたところの後ろに入れましょうか。', 'Em hiểu rồi. Vậy em thêm vào sau phần ghi các ngày đề xuất ở cuối nhé?'],
+      ['女', 'わかりました。では、最後の、ご都合をお尋ねする文の後ろに入れましょうか。', 'Em hiểu rồi. Vậy em thêm vào sau câu hỏi lịch thuận tiện của bên kia ở cuối nhé?'],
       ['男', 'いや、お願いをしてから理由を言うと、言い訳みたいに聞こえるからね。先にわけを言って、それからお願い、の順番にしよう。', 'Không, nhờ trước rồi mới nói lý do thì nghe như biện bạch. Nói lý do trước, rồi mới đến lời nhờ, theo thứ tự đó.'],
       ['女', 'はい。お詫びの言葉も足したほうがいいでしょうか。', 'Vâng. Có nên thêm lời xin lỗi không ạ?'],
       ['男', '「誠に勝手ながら」が入っているから、そこはこのままでいいよ。それより、候補日がもう一日あると、先方も選びやすいね。十四日の月曜日が空いてるか、確認してみて。', '"Thành thật xin lỗi vì sự tùy tiện" đã có rồi nên chỗ đó để nguyên. Quan trọng hơn là có thêm một ngày đề xuất thì bên kia dễ chọn. Em xem thứ hai ngày mười bốn có trống không.'],
@@ -158,7 +158,7 @@ export const W03: BjtItem[] = [
         '日程変更の理由を書いた文は、どこに入れますか。',
         ['【1】', '【2】', '【3】', '【4】'],
         1,
-        'Người nam muốn "nói lý do trước, rồi mới nhờ": lý do phải đứng sau câu nhắc đến cuộc họp và trước câu xin đổi lịch, tức 【2】. 【4】 là chỗ người nữ đề xuất (sau phần ngày đề xuất) và đã bị bác vì nghe như biện bạch. 【3】 nằm sau lời nhờ nên cũng sai thứ tự.',
+        'Người nam muốn "nói lý do trước, rồi mới nhờ": lý do phải đứng sau câu nhắc đến cuộc họp và trước câu xin đổi lịch, tức 【2】. 【4】 là chỗ người nữ đề xuất (sau câu hỏi lịch thuận tiện ở cuối) và đã bị bác vì nghe như biện bạch. 【3】 nằm sau lời nhờ nên cũng sai thứ tự.',
       ],
     ],
     points: [

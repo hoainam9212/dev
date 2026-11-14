@@ -102,7 +102,7 @@ export const W16: BjtItem[] = [
         '何と言いますか。',
         ['前任の田村さんより、担当を引き継ぎました。', '前任の田村より、担当を引き継がれました。', '前任の田村より、担当を引き継ぎました。', '前任の田村より、担当を引き継いでくださいました。'],
         2,
-        'Nói với người ngoài thì gọi đồng nghiệp công ty mình bằng họ, không thêm さん; người nhận bàn giao là mình nên dùng thể thường 引き継ぎました (lựa chọn 3). Lựa chọn 1 dễ chọn vì đúng nghĩa và nghe lịch sự, nhưng thêm さん cho người nhà mình trước mặt đối tác là sai chủ thể kính ngữ. Lựa chọn 2 dùng thể kính trọng/bị động cho việc của mình. Lựa chọn 4 dùng くださる cho đồng nghiệp, lại đảo người nhận.',
+        'Nói với người ngoài thì gọi đồng nghiệp công ty mình bằng họ, không thêm さん; người nhận bàn giao là mình nên chỉ cần thể lịch sự 引き継ぎました (lựa chọn 3). Lựa chọn 1 dễ chọn vì đúng nghĩa và nghe lịch sự, nhưng thêm さん cho người nhà mình trước mặt đối tác là sai chủ thể kính ngữ. Lựa chọn 2 dùng thể kính trọng/bị động cho việc của mình. Lựa chọn 4 dùng くださる cho đồng nghiệp, lại đảo người nhận.',
       ],
     ],
     points: [

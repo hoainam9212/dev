@@ -103,14 +103,14 @@ export const W13: BjtItem[] = [
     questions: [
       [
         '何と言いますか。',
-        ['会長にくれぐれもよろしくお伝えします。', '会長にくれぐれもよろしくお伝えください。', '会長にくれぐれもお大事にとお伝えください。', '会長にくれぐれもよろしく申し伝えてください。'],
+        ['会長にお祝いの言葉をお伝えします。', '会長にお祝いの言葉をお伝えください。', '会長にお見舞いの言葉をお伝えください。', '会長にお祝いの言葉を申し伝えてください。'],
         1,
-        'Người chuyển lời là người phụ trách bên đối tác, nên nhờ: お伝えください (lựa chọn 2). Lựa chọn 4 dễ chọn vì 申し伝える cũng có nghĩa "chuyển lời", nhưng đó là khiêm nhường ngữ dùng cho việc chuyển lời tới người NHÀ MÌNH; không thể bảo người ngoài 申し伝えて với chủ tịch của họ. Lựa chọn 1 thành "tôi sẽ chuyển lời". Lựa chọn 3 là lời thăm người ốm, sai tình huống.',
+        'Người chuyển lời chúc mừng là người phụ trách bên đối tác, nên nhờ: お祝いの言葉をお伝えください (lựa chọn 2). Lựa chọn 4 dễ chọn vì 申し伝える cũng có nghĩa "chuyển lời", nhưng đó là khiêm nhường ngữ dùng cho việc chuyển lời tới người NHÀ MÌNH; không thể bảo người ngoài 申し伝えて với chủ tịch của họ. Lựa chọn 1 thành "tôi sẽ chuyển lời". Lựa chọn 3 お見舞い là lời thăm hỏi người ốm, gặp nạn, sai tình huống.',
       ],
     ],
     points: [
       ['受賞する', 'じゅしょうする', 'nhận giải thưởng'],
-      ['くれぐれも', 'くれぐれも', 'thật lòng, hết sức (nhấn mạnh lời nhờ)'],
+      ['お祝いの言葉', 'おいわいのことば', 'lời chúc mừng'],
       ['申し伝える', 'もうしつたえる', '(tôi) chuyển lời — khiêm nhường ngữ'],
     ],
   }),

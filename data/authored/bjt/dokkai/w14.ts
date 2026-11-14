@@ -153,7 +153,7 @@ export const W14: BjtItem[] = [
         '西村さんは、発表資料をいつまでに送らなければなりませんか。',
         ['12月11日の正午', '12月10日の正午', '12月14日の正午', '12月9日の正午'],
         3,
-        'Họp ngày thứ Hai 14/12; đếm lùi ngày làm việc: thứ Sáu 11/12 (1), thứ Năm 10/12 (2), thứ Tư 9/12 (3) → trưa 9/12, lựa chọn 4. Lựa chọn 1 dễ nhầm vì là ngày làm việc liền trước, chỉ là "1 ngày làm việc trước". Lựa chọn 2 là đếm 3 ngày lịch có cả thứ Bảy, Chủ nhật.',
+        'Họp ngày thứ Hai 14/12; đếm lùi ngày làm việc: thứ Sáu 11/12 (1), thứ Năm 10/12 (2), thứ Tư 9/12 (3) → trưa 9/12, lựa chọn 4. Lựa chọn 1 dễ nhầm vì là đếm 3 ngày lịch (14 − 3 = 11), tính cả thứ Bảy, Chủ nhật; thực ra đó chỉ là 1 ngày làm việc trước. Lựa chọn 2 mới là 2 ngày làm việc trước.',
       ],
     ],
     points: [

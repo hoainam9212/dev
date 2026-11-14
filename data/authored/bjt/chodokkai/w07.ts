@@ -165,7 +165,7 @@ export const W07: BjtItem[] = [
       ['女', 'それが、今は工事中で、中は通れないんです。ですから、公園の手前の道を右に行って、銀行の角を左に曲がってください。', 'Chuyện là bây giờ đang thi công nên không đi qua bên trong được. Vì vậy anh theo con đường phía trước công viên đi sang phải, rồi rẽ trái ở góc ngân hàng.'],
       ['男', '銀行の角を左、ですね。', 'Rẽ trái ở góc ngân hàng, phải không ạ.'],
       ['女', 'ええ、角にATMのある銀行です。曲がると少し上り坂になりますけど、そのまま北へまっすぐです。', 'Ừ, ngân hàng có máy ATM ở góc. Rẽ vào thì đường hơi dốc lên một chút, nhưng cứ đi thẳng về hướng bắc.'],
-      ['女', 'ええ。そのまましばらく行くと、左側にホテルがあります。三和精機さんは、そのホテルの向かいのビルです。一階がコンビニなので、すぐわかると思いますよ。', 'Ừ. Cứ đi thẳng một lúc sẽ thấy khách sạn bên tay trái. Sanwa Seiki ở toà nhà đối diện khách sạn đó. Tầng một là cửa hàng tiện lợi nên chắc anh sẽ nhận ra ngay.'],
+      ['女', 'そのまましばらく行くと、左側にホテルがあります。三和精機さんは、そのホテルの向かいのビルです。一階がコンビニなので、すぐわかると思いますよ。', 'Cứ đi thẳng một lúc sẽ thấy khách sạn bên tay trái. Sanwa Seiki ở toà nhà đối diện khách sạn đó. Tầng một là cửa hàng tiện lợi nên chắc anh sẽ nhận ra ngay.'],
       ['男', 'あれ、駅前の、公園の向かいのビルじゃありませんでしたっけ。名刺の住所がそうなっていたような……。', 'Ơ, chẳng phải là toà nhà trước ga, đối diện công viên sao ạ? Hình như địa chỉ trên danh thiếp ghi như vậy…'],
       ['女', 'ああ、それは去年までです。移転されたんですよ。古い名刺だと、住所が前のままなんです。', 'À, đó là đến năm ngoái thôi. Họ đã chuyển văn phòng rồi. Danh thiếp cũ thì địa chỉ vẫn là chỗ cũ.'],
       ['男', 'そうでしたか。危ないところでした。ありがとうございます。', 'Ra vậy. Suýt nữa thì nhầm. Cảm ơn chị.'],

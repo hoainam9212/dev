@@ -184,7 +184,7 @@ export const W02: BjtItem[] = [
       body: '23日（月・祝）休み\n【1】24日（火）10:00〜12:00　空き\n【2】24日（火）14:00〜16:00　空き\n25日（水）終日　名古屋出張\n【3】26日（木）10:00〜12:00　空き\n【4】27日（金）14:00〜16:00　空き',
     },
     script: [
-      ['男', 'お世話になっております。中央設備の森田でございます。木村様、先日はご提案いただいた打ち合わせの日程の件で、お電話いたしました。', 'Xin chào, tôi là Morita của Chuo Setsubi. Anh/chị Kimura, tôi gọi về việc lịch họp mà anh/chị đã đề xuất hôm trước.'],
+      ['男', 'お世話になっております。中央設備の森田でございます。木村様、先日ご提案いただいた打ち合わせの日程の件で、お電話いたしました。', 'Xin chào, tôi là Morita của Chuo Setsubi. Anh/chị Kimura, tôi gọi về việc lịch họp mà anh/chị đã đề xuất hôm trước.'],
       ['男', 'ご提案いただいた中では、火曜日の午前…と申し上げたいところなんですが、あいにく、その時間に社内の会議が入ってしまいまして。', 'Trong các lịch anh/chị đề xuất, tôi muốn nói là sáng thứ ba… nhưng không may giờ đó lại có cuộc họp nội bộ.'],
       ['男', '同じ火曜日の午後でしたら、と思ったんですが、午後は現場の立ち会いがございまして、長引くこともあるものですから、お約束しにくいんです。', 'Tôi cũng nghĩ đến chiều thứ ba, nhưng buổi chiều tôi phải có mặt ở công trường, có khi kéo dài, nên khó hẹn chắc được.'],
       ['男', 'それで、木曜日の午前ですと、弊社の部長も同席できるとのことですので、できましたら、こちらでお願いできればと存じます。', 'Vì vậy, nếu là sáng thứ năm thì trưởng bộ phận bên chúng tôi cũng có thể cùng dự, nên nếu được, tôi mong chọn giờ này.'],

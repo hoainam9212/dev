@@ -164,11 +164,11 @@ export const W04: BjtItem[] = [
   }),
   item('w04', 'sogo-chokai', 2, {
     script: [
-      ['女', '山下さん、ちょっといいですか。月曜の営業会議のことなんですけど、最近、毎回一時間半近くかかってますよね。', 'Anh Yamashita, có chút thời gian không? Chuyện cuộc họp kinh doanh sáng thứ Hai, dạo này lần nào cũng mất gần một tiếng rưỡi nhỉ.'],
+      ['女', '山下さん、ちょっといいですか。月曜の営業会議のことなんですけど、最近、毎回一時間半近くかかってますよね。', 'Anh Yamashita, có chút thời gian không? Chuyện cuộc họp kinh doanh thứ Hai, dạo này lần nào cũng mất gần một tiếng rưỡi nhỉ.'],
       ['男', 'ええ、僕もそれは気になってました。半分以上が、各自の売上の数字を読み上げる時間なんですよね。', 'Vâng, tôi cũng đang để ý chuyện đó. Hơn một nửa là thời gian từng người đọc số doanh thu của mình.'],
       ['女', 'そうなの。それで、思い切って隔週にしたらどうかと思ってるんですけど。', 'Đúng thế. Nên tôi đang nghĩ hay là mạnh dạn chuyển sang hai tuần một lần.'],
       ['男', 'うーん、隔週ですか。うちは毎週お客様の状況が変わるので、二週間空くと、相談したいことが古くなっちゃうんですよ。', 'Ừm, hai tuần một lần à. Bên mình tình hình khách hàng thay đổi hằng tuần, cách hai tuần thì chuyện cần bàn đã cũ mất rồi.'],
-      ['女', 'ああ、そうか。それは困るわね。かといって、時間を短くしようと言っても、結局みんなの話が長くなるのよね。前にも一度、一時間で終わらせようって決めたけど、一か月もしたら元に戻っちゃったし。', 'À, ra vậy. Thế thì không ổn. Nhưng mà bảo rút ngắn thời gian thì rốt cuộc ai cũng nói dài. Trước đây cũng từng quyết là xong trong một tiếng, vậy mà chưa tới một tháng đã trở lại như cũ.'],
+      ['女', 'ああ、そうか。それは困るわね。かといって、時間を短くしようと言っても、結局みんなの話が長くなるのよね。前にも一度、一時間で終わらせようって決めたけど、一か月もしたら元に戻っちゃったし。', 'À, ra vậy. Thế thì không ổn. Nhưng mà bảo rút ngắn thời gian thì rốt cuộc ai cũng nói dài. Trước đây cũng từng quyết là xong trong một tiếng, vậy mà được chừng một tháng đã trở lại như cũ.'],
       ['男', 'ありましたね、それ。', 'Đúng là đã có chuyện đó.'],
       ['男', 'あのう、数字の報告は、会議の前日までに共有のシートに各自で入れておく、というのはどうでしょう。会議では、それを見たうえで、困っている案件だけ話すんです。', 'Hay là thế này: số liệu thì mỗi người tự điền vào bảng dùng chung trước ngày họp. Trong cuộc họp, xem bảng đó xong thì chỉ bàn những vụ đang gặp khó.'],
       ['女', 'なるほど。それなら読み上げる時間はいらないですね。でも、シートに入れ忘れる人が出ないかしら。', 'Ra vậy. Thế thì không cần thời gian đọc số nữa. Nhưng liệu có người quên điền không nhỉ.'],
