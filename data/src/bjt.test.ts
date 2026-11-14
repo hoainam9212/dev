@@ -139,7 +139,23 @@ describe('BJT vocabulary', () => {
       expect(v.tag.length, v.id).toBeGreaterThan(0);
       expect(seen.has(v.ja), `${v.id}: ${v.ja} appears twice`).toBe(false);
       seen.add(v.ja);
-      if (v.example) expect(v.example.ja, `${v.id}: the example should use the word`).toContain(v.ja.replace(/する$/, '').slice(0, 2));
+      if (v.example) expect(v.example.ja, `${v.id}: the example should use the word`).toContain(wordStem(v.ja));
     }
   });
+
+  it('wordStem keeps the kanji part, so a conjugated verb in the example still matches', () => {
+    expect(wordStem('参る')).toBe('参');
+    expect(wordStem('承る')).toBe('承');
+    expect(wordStem('検討する')).toBe('検討');
+    expect(wordStem('申し上げる')).toBe('申し');
+    expect(wordStem('おっしゃる')).toBe('おっ');
+    expect(wordStem('CC')).toBe('CC');
+  });
 });
+
+/** First two characters of the word without する and without trailing okurigana (all-kana words keep theirs). */
+function wordStem(ja: string): string {
+  const base = ja.replace(/する$/, '');
+  const kanji = base.replace(/[ぁ-ゖ]+$/, '');
+  return (kanji || base).slice(0, 2);
+}
