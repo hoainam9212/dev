@@ -2,7 +2,7 @@
 
 Nội dung BJT tự soạn (w01–w16, mock1–mock3, 668 câu) đúng đáp án nhưng lệch khung đề thật ở vài dạng. Quy tắc
 mới nằm ở `docs/superpowers/specs/2026-11-13-bjt-design.md`, mục **"Hiệu chỉnh theo đề chính thức"** (12 quy
-tắc). Test chặt đã có sẵn trong `data/src/bjt.test.ts` (`calibrationErrors`). Test chỉ áp cho các bộ được ghi
+tắc). Bộ kiểm `calibrationErrors` nằm ở `data/src/bjt-calibration.ts`; `data/src/bjt.test.ts` chỉ áp nó cho các bộ được ghi
 trong danh sách `CHOKAI_CALIBRATED` / `CHODOKKAI_CALIBRATED` / `DOKKAI_CALIBRATED` ở đầu các file gom
 `chokai.ts`, `chodokkai.ts`, `dokkai.ts`.
 
@@ -10,8 +10,10 @@ Cách dùng: New session → Cloud → repo `hoainam9212/dev`, gõ: *"Đọc
 docs/superpowers/plans/2026-11-13-bjt/2026-11-14-brief-calibration.md trên nhánh nihongo-sensei/master và làm R1"*
 (hoặc F, R2…R6).
 
-**Mức "Sửa thiết yếu"** = F + R1 + R2 + R3: ba đề thi thử đúng khung đề thật. **Mức "Làm lại toàn bộ"** = thêm
-R4a, R4b, R5, R6: các tuần luyện. Mọi phiên chạy song song được, vì không phiên nào sửa file của phiên khác.
+Người dùng chọn **"Làm lại toàn bộ"** (2026-11-14). Chia đều: **cloud làm F, R1, R2, R3** (giao diện + ba đề
+thi thử); **phiên local làm R4a, R4b, R5, R6** (13 tuần luyện) bằng subagent trên nhánh
+`nihongo-sensei/feat/bjt-cal-weeks`. Cloud KHÔNG làm R4–R6. Mọi phiên chạy song song được, vì không phiên nào
+sửa file của phiên khác (riêng dòng mảng `*_CALIBRATED` sẽ xung đột nhẹ, phiên local tự giải khi gộp).
 
 | Phiên | Nhánh | Phần việc | Được sửa |
 |---|---|---|---|
@@ -19,10 +21,10 @@ R4a, R4b, R5, R6: các tuần luyện. Mọi phiên chạy song song được, v
 | R1 — nghe, đề | `nihongo-sensei/feat/bjt-cal-chokai-mocks` | 聴解 của mock1–3: `hatsugen`, `sogo-chokai` (soát `bamen`) | `chokai/mock1,mock2,mock3.ts` + mảng `CHOKAI_CALIBRATED` |
 | R2 — nghe đọc, đề | `nihongo-sensei/feat/bjt-cal-chodokkai-mocks` | 聴読解 của mock1–3: `jokyo`, `sogo-chodokkai`, quy tắc 9 cho `shiryo` | `chodokkai/mock1,mock2,mock3.ts` + mảng `CHODOKKAI_CALIBRATED` |
 | R3 — đọc, đề | `nihongo-sensei/feat/bjt-cal-dokkai-mocks` | 読解 của mock1–3: `hyogen`, `sogo-dokkai` | `dokkai/mock1,mock2,mock3.ts` + mảng `DOKKAI_CALIBRATED` |
-| R4a — nghe, tuần | `nihongo-sensei/feat/bjt-cal-chokai-weeks-1` | 聴解 w01–w07: `hatsugen`, `sogo-chokai` | `chokai/w01…w07.ts` + mảng `CHOKAI_CALIBRATED` |
-| R4b — nghe, tuần | `nihongo-sensei/feat/bjt-cal-chokai-weeks-2` | 聴解 w09–w11, w13, w14, w16: như R4a | `chokai/w09…w16.ts` + mảng `CHOKAI_CALIBRATED` |
-| R5 — nghe đọc, tuần | `nihongo-sensei/feat/bjt-cal-chodokkai-weeks` | 聴読解 cả 13 tuần: `jokyo`, `sogo-chodokkai` | `chodokkai/w*.ts` + mảng `CHODOKKAI_CALIBRATED` |
-| R6 — đọc, tuần | `nihongo-sensei/feat/bjt-cal-dokkai-weeks` | 読解 cả 13 tuần: `hyogen`, `sogo-dokkai` | `dokkai/w*.ts` + mảng `DOKKAI_CALIBRATED` |
+| R4a — nghe, tuần (local) | `nihongo-sensei/feat/bjt-cal-weeks` | 聴解 w01–w07: `hatsugen`, `sogo-chokai` | `chokai/w01…w07.ts` + mảng `CHOKAI_CALIBRATED` |
+| R4b — nghe, tuần (local) | `nihongo-sensei/feat/bjt-cal-weeks` | 聴解 w09–w11, w13, w14, w16: như R4a | `chokai/w09…w16.ts` + mảng `CHOKAI_CALIBRATED` |
+| R5 — nghe đọc, tuần (local) | `nihongo-sensei/feat/bjt-cal-weeks` | 聴読解 cả 13 tuần: `jokyo`, `sogo-chodokkai` | `chodokkai/w*.ts` + mảng `CHODOKKAI_CALIBRATED` |
+| R6 — đọc, tuần (local) | `nihongo-sensei/feat/bjt-cal-weeks` | 読解 cả 13 tuần: `hyogen`, `sogo-dokkai` | `dokkai/w*.ts` + mảng `DOKKAI_CALIBRATED` |
 | local | `nihongo-sensei/master` | soát mù, gộp, APK khi người dùng bảo | mọi thứ còn lại |
 
 R4a và R4b cùng thêm vào `CHOKAI_CALIBRATED`; khi gộp, phiên local tự giải xung đột của dòng đó.
@@ -43,7 +45,8 @@ only the sections named for your part; leave the other sections of your files as
 Read first, in this order: CLAUDE.md; docs/superpowers/specs/2026-11-13-bjt-design.md, ESPECIALLY the section
 "Hiệu chỉnh theo đề chính thức (2026-11-14)" — its 12 rules override older rules above it;
 data/authored/bjt/guides.ts (what the learner is told about each section; already updated to the new frame);
-data/src/bjt.test.ts (calibrationErrors = exactly what the test checks); data/authored/bjt/helpers.ts;
+data/src/bjt-calibration.ts (calibrationErrors = exactly what the test checks) and data/src/bjt.test.ts;
+data/authored/bjt/helpers.ts;
 the files you rewrite.
 
 Keep: item ids for items you keep, the set, the week theme from plan.ts, the total number of QUESTIONS per
