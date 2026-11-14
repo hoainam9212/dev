@@ -63,6 +63,10 @@ _pack/<mã sách>/
 }
 ```
 
+Đề mẫu cũ (100 câu, 120 phút) thêm các trường không bắt buộc: ở đề `minutes` (tổng phút), `legacy: true`
+(không quy đổi điểm sang J1), `extras: [{ title, audio }]` (băng hướng dẫn và bài mẫu 練習); ở câu `label` (tên
+mục in trong sách, ví dụ `第1部 セクション1 描写問題`). Mỗi mục cũ được gán vào mã gần nhất trong 9 mã dưới đây.
+
 `section` dùng 9 mã của app (`bamen`, `hatsugen`, `sogo-chokai`, `jokyo`, `shiryo`, `sogo-chodokkai`, `goi`,
 `hyogen`, `sogo-dokkai`). Câu nghe phải có `audio`, `at` là giây hoặc `m:ss`; `answer` là 1–4.
 
