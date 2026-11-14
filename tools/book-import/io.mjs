@@ -23,17 +23,24 @@ export function signature(file) {
 
 /** A page image (JPEG/PNG) as one gray byte per pixel. */
 export function grayPixels(file) {
-  const pix = new mupdf.Image(fs.readFileSync(file)).toPixmap();
-  const w = pix.getWidth();
-  const h = pix.getHeight();
-  const n = pix.getNumberOfComponents() + (pix.getAlpha() ? 1 : 0);
-  const src = pix.getPixels();
-  const gray = new Uint8Array(w * h);
-  for (let i = 0; i < w * h; i++) {
-    const p = i * n;
-    gray[i] = n >= 3 ? (src[p] * 3 + src[p + 1] * 6 + src[p + 2]) / 10 : src[p];
+  // mupdf objects live in the WebAssembly heap: free them, or a few hundred pages exhaust it
+  const img = new mupdf.Image(fs.readFileSync(file));
+  const pix = img.toPixmap();
+  try {
+    const w = pix.getWidth();
+    const h = pix.getHeight();
+    const n = pix.getNumberOfComponents() + (pix.getAlpha() ? 1 : 0);
+    const src = pix.getPixels();
+    const gray = new Uint8Array(w * h);
+    for (let i = 0; i < w * h; i++) {
+      const p = i * n;
+      gray[i] = n >= 3 ? (src[p] * 3 + src[p + 1] * 6 + src[p + 2]) / 10 : src[p];
+    }
+    return { gray, w, h };
+  } finally {
+    pix.destroy();
+    img.destroy();
   }
-  return { gray, w, h };
 }
 
 export function openPdf(file) {
