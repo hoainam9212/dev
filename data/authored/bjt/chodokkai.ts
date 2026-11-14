@@ -14,7 +14,8 @@ import { W14 } from './chodokkai/w14';
 import { W16 } from './chodokkai/w16';
 import { MOCK1 } from './chodokkai/mock1';
 import { MOCK2 } from './chodokkai/mock2';
+import { MOCK3 } from './chodokkai/mock3';
 
 // 聴読解 (状況把握, 資料聴読解, 総合聴読解): weekly practice w01…w16 and full tests mock1…mock3.
 // Rules and targets: docs/superpowers/specs/2026-11-13-bjt-design.md
-export const BJT_CHODOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...W16, ...MOCK1, ...MOCK2];
+export const BJT_CHODOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...W16, ...MOCK1, ...MOCK2, ...MOCK3];
