@@ -11,9 +11,10 @@ import { W10 } from './chokai/w10';
 import { W11 } from './chokai/w11';
 import { W13 } from './chokai/w13';
 import { W14 } from './chokai/w14';
+import { W16 } from './chokai/w16';
 import { MOCK1 } from './chokai/mock1';
 import { MOCK2 } from './chokai/mock2';
 
 // 聴解 (場面把握, 発言聴解, 総合聴解): weekly practice w01…w16 and full tests mock1…mock3.
 // Rules and targets: docs/superpowers/specs/2026-11-13-bjt-design.md
-export const BJT_CHOKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...MOCK1, ...MOCK2];
+export const BJT_CHOKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...W16, ...MOCK1, ...MOCK2];
