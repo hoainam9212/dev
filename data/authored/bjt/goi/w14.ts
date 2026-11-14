@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 14 — presentations, meetings and debate. */
+export const V14: BjtVocab[] = [
+  ...vocab(14, 'Thuyết trình', 'happyo', [
+    ['登壇する', 'とうだんする', 'lên bục (trình bày)', '午後の部では、三名の担当者が登壇します。', 'Phần buổi chiều có ba người phụ trách lên trình bày.'],
+    ['質疑応答', 'しつぎおうとう', 'phần hỏi đáp', '発表の後、十分間の質疑応答を設けます。', 'Sau bài trình bày có mười phút hỏi đáp.'],
+    ['配布資料', 'はいふしりょう', 'tài liệu phát tay', '詳しい数字は配布資料をご覧ください。', 'Số liệu chi tiết xin xem trong tài liệu phát tay.'],
+    ['要点', 'ようてん', 'điểm chính', '要点を三つに絞って説明します。', 'Tôi xin tóm gọn thành ba điểm chính.'],
+    ['結論から申し上げますと', 'けつろんからもうしあげますと', 'xin nói kết luận trước', '結論から申し上げますと、A案をお勧めします。', 'Xin nói kết luận trước: chúng tôi khuyến nghị phương án A.'],
+    ['補足する', 'ほそくする', 'nói thêm, bổ sung (ý)', '先ほどの説明に一点補足いたします。', 'Tôi xin bổ sung một điểm cho phần giải thích vừa rồi.'],
+    ['具体例', 'ぐたいれい', 'ví dụ cụ thể', '具体例を挙げてご説明します。', 'Tôi xin đưa ví dụ cụ thể để giải thích.'],
+    ['根拠', 'こんきょ', 'căn cứ', 'その数字の根拠を教えていただけますか。', 'Anh có thể cho biết căn cứ của con số đó không?'],
+    ['裏付け', 'うらづけ', 'bằng chứng xác thực', '調査結果が、この仮説の裏付けとなっている。', 'Kết quả khảo sát là bằng chứng cho giả thuyết này.'],
+    ['説得力', 'せっとくりょく', 'sức thuyết phục', '実際の事例があると、提案の説得力が増す。', 'Có ví dụ thực tế thì đề xuất thuyết phục hơn.'],
+    ['聞き手', 'ききて', 'người nghe', '聞き手の関心に合わせて話の順序を変える。', 'Đổi thứ tự trình bày theo mối quan tâm của người nghe.'],
+    ['図表', 'ずひょう', 'biểu đồ và bảng', '図表を使うと、変化がひと目でわかる。', 'Dùng biểu đồ và bảng thì thấy ngay sự thay đổi.'],
+    ['冒頭', 'ぼうとう', 'phần mở đầu', '発表の冒頭で目的をはっきり示す。', 'Nêu rõ mục đích ngay phần mở đầu bài trình bày.'],
+    ['締めくくる', 'しめくくる', 'kết thúc, khép lại', '最後に今後の計画を述べて、発表を締めくくった。', 'Bài trình bày khép lại bằng kế hoạch sắp tới.'],
+  ]),
+  ...vocab(14, 'Tranh luận', 'giron', [
+    ['論点', 'ろんてん', 'điểm tranh luận', '論点を整理してから議論を始めましょう。', 'Hãy sắp xếp các điểm tranh luận rồi mới bắt đầu bàn.'],
+    ['反論', 'はんろん', 'phản bác', '彼の意見に、すぐに反論する人はいなかった。', 'Không ai phản bác ngay ý kiến của người đó.'],
+    ['賛否両論', 'さんぴりょうろん', 'ý kiến tán thành và phản đối đều có', '新しい制度には賛否両論がある。', 'Chế độ mới có cả ý kiến tán thành lẫn phản đối.'],
+    ['一理ある', 'いちりある', 'có phần đúng, có lý', '彼の指摘にも一理ある。', 'Ý kiến của người đó cũng có phần đúng.'],
+    ['懸案', 'けんあん', 'vấn đề tồn đọng chưa giải quyết', '長年の懸案だった倉庫の移転が決まった。', 'Việc chuyển kho, vấn đề tồn đọng nhiều năm, đã được quyết định.'],
+    ['平行線', 'へいこうせん', '(tranh luận) không ai nhượng ai', '労使の話し合いは平行線のままだ。', 'Đàm phán giữa chủ và thợ vẫn chưa ai nhượng ai.'],
+    ['折衷案', 'せっちゅうあん', 'phương án dung hòa', '二つの案のよいところを取った折衷案を出す。', 'Đưa ra phương án dung hòa lấy điểm hay của cả hai.'],
+    ['異論', 'いろん', 'ý kiến khác, phản đối', 'この方針に異論のある方はいらっしゃいますか。', 'Có ai có ý kiến khác về phương châm này không ạ?'],
+    ['歩調を合わせる', 'ほちょうをあわせる', 'đồng bộ bước đi, phối hợp', '他部署と歩調を合わせて準備を進める。', 'Chuẩn bị đồng bộ với các phòng khác.'],
+    ['水を差す', 'みずをさす', 'dội nước lạnh, làm cụt hứng', '盛り上がっているところに水を差すようですが、予算が足りません。', 'Nói ra thì như dội nước lạnh lúc đang hào hứng, nhưng ngân sách không đủ.'],
+    ['議論が白熱する', 'ぎろんがはくねつする', 'tranh luận trở nên sôi nổi', '価格の話になると、議論が白熱した。', 'Đến chuyện giá cả thì cuộc tranh luận trở nên sôi nổi.'],
+    ['本題', 'ほんだい', 'vấn đề chính', 'では、本題に入りましょう。', 'Vậy chúng ta vào vấn đề chính.'],
+    ['論破する', 'ろんぱする', 'bác bỏ hoàn toàn (bằng lý lẽ)', '相手を論破しても、交渉がまとまるとは限らない。', 'Bác bỏ được đối phương chưa chắc đàm phán đã thành.'],
+    ['一石を投じる', 'いっせきをとうじる', 'gây tiếng vang, khơi vấn đề', '彼の発言は、業界の慣行に一石を投じた。', 'Phát biểu của người đó đã khơi vấn đề với thông lệ trong ngành.'],
+  ]),
+  ...vocab(14, 'Phản đối khéo, hàm ý', 'enkyoku', [
+    ['おっしゃることはわかりますが', 'おっしゃることはわかりますが', 'tôi hiểu điều anh nói, nhưng…', 'おっしゃることはわかりますが、費用の面で難しいかと思います。', 'Tôi hiểu điều anh nói, nhưng về chi phí thì e là khó.'],
+    ['いかがなものか', 'いかがなものか', 'không biết có ổn không (phản đối mềm)', '全員に同じ目標を課すのは、いかがなものでしょうか。', 'Áp cùng một chỉ tiêu cho tất cả mọi người, không biết có ổn không?'],
+    ['再考の余地', 'さいこうのよち', 'còn chỗ để xem xét lại', 'スケジュールには再考の余地があると思います。', 'Tôi nghĩ lịch trình vẫn còn chỗ để xem xét lại.'],
+    ['慎重論', 'しんちょうろん', 'ý kiến thận trọng', '役員の間では慎重論が根強い。', 'Trong ban điều hành, ý kiến thận trọng vẫn còn mạnh.'],
+    ['時期尚早', 'じきしょうそう', 'còn quá sớm', '全店への導入は時期尚早だという声が多い。', 'Nhiều người cho rằng áp dụng cho mọi cửa hàng là còn quá sớm.'],
+    ['現実的ではない', 'げんじつてきではない', 'không thực tế', '一か月で完成させるのは、現実的ではないでしょう。', 'Hoàn thành trong một tháng có lẽ là không thực tế.'],
+    ['一概には言えない', 'いちがいにはいえない', 'không thể nói chung chung là', '価格が高いから売れないとは、一概には言えない。', 'Không thể nói chung chung là giá cao nên không bán được.'],
+    ['必ずしも', 'かならずしも', 'không hẳn, chưa chắc (đi với phủ định)', '経験が長い人が、必ずしも適任とは限らない。', 'Người làm lâu năm chưa chắc đã là người phù hợp.'],
+    ['言わんとする', 'いわんとする', 'điều muốn nói', '部長の言わんとすることは、よくわかります。', 'Tôi hiểu rõ điều trưởng bộ phận muốn nói.'],
+    ['含み', 'ふくみ', 'hàm ý, ý ngầm', '「検討します」という返事には、断りの含みがある。', 'Câu trả lời "để chúng tôi xem xét" có hàm ý từ chối.'],
+    ['腑に落ちない', 'ふにおちない', 'không thấy thông, khó hiểu', '急に方針が変わった理由が、どうも腑に落ちない。', 'Lý do đột nhiên đổi phương châm, tôi vẫn không thấy thông.'],
+    ['釈然としない', 'しゃくぜんとしない', 'chưa thỏa đáng, còn ấm ức', '説明は受けたが、まだ釈然としない。', 'Đã được giải thích nhưng tôi vẫn thấy chưa thỏa đáng.'],
+  ]),
+];
