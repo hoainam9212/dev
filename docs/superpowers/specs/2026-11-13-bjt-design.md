@@ -100,6 +100,55 @@ Thứ tự giao: đợt 1 = tuần 1–4; đợt 2 = tuần 5–7 + `mock1`; đ�
 - 場面把握: `material.kind = 'scene'`, mô tả ảnh bằng tiếng Việt, đủ chi tiết để có lựa chọn "đúng đồ vật, sai hành động".
 - 語彙・文法: chỗ trống ghi `＿＿＿` (ba dấu gạch toàn chiều rộng), mỗi mục một câu hỏi.
 
+## Hiệu chỉnh theo đề chính thức (2026-11-14) — áp dụng cho mọi đợt soạn lại
+
+So nội dung đã soạn với một đề thi thử chính thức (sách riêng của người dùng, không đưa vào repo) thấy ba dạng
+sai khung và nhiều dạng quá ngắn, quá dễ. Các quy tắc dưới đây THAY các dòng tương ứng ở mục trên. Hướng dẫn
+từng dạng cho người học nằm ở `data/authored/bjt/guides.ts` và đã sửa theo.
+
+1. **Khung từng dạng.**
+   - `jokyo` = `material.kind = 'scene'` (mô tả ảnh cảnh làm việc) + băng ngắn + 4 lựa chọn IN SẴN, chung phần
+     đầu, chỉ khác một danh từ là chủ đề cuộc trao đổi (vd 「〜の件」). Không phải bảng, không phải tính toán.
+   - `hyogen` = MỘT câu hoặc hội thoại A/B ngắn có chỗ trống `＿＿＿`, chọn kính ngữ / câu đệm / cách nhờ, từ
+     chối. Không phải bài đọc email.
+   - `sogo-dokkai` = văn bản công việc (email, thư, thông báo, biên bản). Không bài báo, không văn nghị luận.
+   - `sogo-chodokkai` = tài liệu có các vị trí đánh số 1–4 NGAY TRÊN tài liệu, và chính các vị trí đó là lựa
+     chọn (đường đi trên sơ đồ, ô trong lịch, mục trong danh mục, chỗ chèn câu trong bản thảo). Cần kiểu tài liệu
+     mới (Brief F); trước khi có, đừng soạn lại dạng này.
+2. **Một câu hỏi mỗi mục** cho `sogo-chokai`, `sogo-chodokkai`, `sogo-dokkai`; đề thi thử 10 mục mỗi dạng, tuần
+   luyện 4 mục × 1 câu (thay 2 mục × 2 câu) để giữ nguyên số câu mỗi tuần.
+3. **Độ dài** (số ký tự tiếng Nhật, tính cả dấu): `sogo-chokai` băng 450–750 (70–110 giây), 2–3 người, có đổi ý
+   hoặc đề án bị bác; `sogo-chodokkai` băng 400–750, khoảng 3/10 là độc thoại (thông báo, hướng dẫn); `jokyo` băng
+   150–250; `hatsugen` tình huống 40–70, mỗi lựa chọn 12–25; `hyogen` câu 25–50 (hội thoại A/B tới 80), mỗi
+   lựa chọn 4–14 (test chấp nhận 3–16); `sogo-dokkai` văn bản 150–300.
+4. **`hatsugen`:** bốn lựa chọn cùng khung câu, độ dài chênh không quá ±20%, chỉ khác một điểm kính ngữ hay cách
+   nói. Có ít nhất một câu "đúng ý nhưng sai chủ thể kính ngữ". Không có câu sai thô lỗ, lộ liễu.
+5. **Dạng có lựa chọn là câu** (`bamen`, `hatsugen`, `sogo-chokai`, `sogo-dokkai`; nên theo ở mọi dạng): đáp án
+   đúng là câu dài nhất không quá 30% số câu của dạng đó trong một bộ (test kiểm khi dạng có từ 8 câu trong bộ);
+   không lựa chọn nào dài từ 1,5 lần trung bình ba câu kia trở lên.
+6. **`sogo-chokai` — câu sai:** là điều CÓ nói trong băng nhưng của người khác, của lần trước, đã bị bác, hoặc là
+   bước làm sau. Đáp án diễn đạt lại, không lặp nguyên chữ của băng.
+7. **`sogo-chokai` — loại câu hỏi** trong 10 câu: khoảng 3 "làm gì trước / sẽ làm gì", 2 "X coi trọng gì",
+   2 "cuối cùng chốt thế nào", 1 "lợi ích lớn nhất", 1 "mục tiêu từ nay", 1 "sửa, đổi cái gì".
+8. **`jokyo`:** đáp án là từ KHÔNG có nguyên chữ trong băng, phải suy ra; bẫy là lựa chọn có chữ trùng với lời
+   thoại.
+9. **`shiryo`:** tối đa 4/10 câu cần tính (có bẫy đơn vị, ghi chú ※); ít nhất 4/10 câu suy ra loại tài liệu hoặc
+   mục đích; thông tin quyết định nằm trên tài liệu.
+10. **`sogo-chodokkai`:** mỗi đề ít nhất một sơ đồ chỉ đường, một lịch bị xếp lại, một câu tổ hợp (②③…), một câu
+    "mục nào CHƯA xong"; khoảng 4/10 là mức J1+.
+11. **`hyogen` — bẫy:** kính ngữ kép, sai thì hoặc thể, câu đệm gần nghĩa nhưng sai hoàn cảnh, 様 thừa, câu của
+    chủ nhà đem dùng cho khách.
+12. **`sogo-dokkai`:** không hỏi "nội dung nào khớp" (内容と合う); hỏi mục đích văn bản, việc người nhận phải
+    làm, hạn chót, con số ở phần 記. Mỗi đề ít nhất một thư trang trọng (拝啓 hoặc 前略) và một thư từ chối khéo.
+
+Chủ đề nên rộng hơn: sản xuất, bán lẻ, tổng vụ (đại hội cổ đông, FAX, ghi lời nhắn), tuyển dụng, đào tạo, triển
+lãm; bớt chính sách công ty kiểu mới và bài báo.
+
+**Cách kiểm:** mỗi file gom (`chokai.ts`, `chodokkai.ts`, `dokkai.ts`) xuất một danh sách `…_CALIBRATED` gồm các
+`set` đã soạn lại theo mục này. `data/src/bjt.test.ts` áp quy tắc chặt (khung, một câu mỗi mục, độ dài, câu dài
+nhất) chỉ cho các bộ trong danh sách đó; bộ chưa soạn lại vẫn theo quy tắc cũ. Soạn lại xong bộ nào thì thêm
+`set` đó vào danh sách của phần mình, rồi cho test chạy xanh.
+
 ## Màn hình (máy gốc làm)
 
 Trang `/bjt`, thêm vào thanh điều hướng:

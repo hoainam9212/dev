@@ -15,15 +15,15 @@ export const BJT_GUIDES: BjtGuide[] = [
   },
   {
     section: 'sogo-chokai',
-    what: 'Nghe một đoạn hội thoại hoặc độc thoại dài hơn, rồi trả lời câu hỏi về nội dung, ý định hoặc việc sẽ làm tiếp theo.',
-    how: ['Đọc câu hỏi và bốn lựa chọn trước khi băng chạy.', 'Kết luận thường nằm ở cuối: nghe kỹ sau では, じゃあ, ということで.', 'Ghi nhanh con số, ngày giờ, tên người.'],
-    traps: ['Phương án được nêu ra giữa chừng rồi bị bác.', 'Từ chối nói vòng: ちょっと難しいですね, 検討させていただきます.'],
+    what: 'Nghe một cuộc họp hoặc trao đổi dài (khoảng 1,5–2,5 phút, 2–3 người, có khi là độc thoại), rồi trả lời MỘT câu hỏi: sẽ làm gì trước, ai coi trọng điều gì, cuối cùng chốt thế nào. Câu hỏi và lựa chọn được đọc thành tiếng.',
+    how: ['Nghe kỹ câu hỏi đọc trước băng: nó cho biết cần bắt ý của ai, ở thời điểm nào.', 'Theo dõi các phương án được đưa ra rồi bị bác; kết luận thường nằm sau では, じゃあ, ということで.', 'Đáp án hiếm khi lặp nguyên văn: tìm câu diễn đạt lại ý đã chốt.'],
+    traps: ['Lựa chọn là điều CÓ nói trong băng nhưng của người khác, của lần trước, hoặc đã bị bác.', 'Việc sẽ làm SAU, trong khi câu hỏi hỏi việc làm TRƯỚC.', 'Từ chối nói vòng: ちょっと難しいですね, 検討させていただきます.'],
   },
   {
     section: 'jokyo',
-    what: 'Nhìn tranh, sơ đồ hoặc ảnh chụp màn hình và nghe hội thoại. Chọn phương án khớp với cả hình lẫn lời nói.',
-    how: ['Xem bốn lựa chọn trên hình trước, tìm điểm khác nhau giữa chúng.', 'Nghe để loại dần theo từng điểm khác nhau đó.'],
-    traps: ['Thông tin đúng với hình nhưng trái với lời nói ở cuối đoạn.', 'Chỉ dẫn vị trí: 手前, 奥, 向かって右.'],
+    what: 'Nhìn một bức ảnh cảnh làm việc và nghe một đoạn trao đổi ngắn. Bốn lựa chọn in sẵn, chung phần đầu và chỉ khác một danh từ (chủ đề của cuộc trao đổi). Chọn điều họ đang nói tới.',
+    how: ['Đọc bốn lựa chọn trước, gạch chân phần khác nhau.', 'Đáp án thường không được nói thẳng: suy ra từ các chi tiết trong lời thoại và trong ảnh.'],
+    traps: ['Lựa chọn có từ trùng với từ nghe được trong băng nhưng không phải chủ đề chính.', 'Chi tiết đúng với ảnh nhưng không phải điều đang được bàn.'],
   },
   {
     section: 'shiryo',
@@ -33,9 +33,9 @@ export const BJT_GUIDES: BjtGuide[] = [
   },
   {
     section: 'sogo-chodokkai',
-    what: 'Tài liệu dài hơn kèm hội thoại dài hơn. Thường hỏi việc cần làm tiếp theo hoặc kết luận chung.',
-    how: ['Đọc câu hỏi trước để biết cần tìm gì trong tài liệu.', 'Tách bạch: điều tài liệu nói và điều người nói muốn đổi.'],
-    traps: ['Chọn theo tài liệu mà bỏ qua điều kiện mới nêu trong lời nói.'],
+    what: 'Tài liệu (sơ đồ đường đi, mặt bằng, lịch, danh mục, bản thảo) được đánh số 1–4 ngay trên giấy: chính các vị trí đó là lựa chọn. Nghe hội thoại hoặc độc thoại dài (khoảng 1,5 phút) rồi chọn vị trí đúng. Mỗi bài một câu hỏi.',
+    how: ['Trước khi nghe, xem 1–4 nằm ở đâu và khác nhau thế nào.', 'Dò theo lời nói trên tài liệu: rẽ ở đâu, mục nào bị đổi, ô nào còn trống.', 'Tách bạch điều tài liệu ghi và điều người nói muốn đổi.'],
+    traps: ['Vị trí đúng theo tài liệu gốc nhưng đã bị đổi trong lời nói.', 'Câu tổ hợp (②③…) chỉ đúng một nửa.', 'Hỏi mục CHƯA làm xong trong khi phần lớn lời nói kể những mục đã xong.'],
   },
   {
     section: 'goi',
@@ -45,14 +45,14 @@ export const BJT_GUIDES: BjtGuide[] = [
   },
   {
     section: 'hyogen',
-    what: 'Đọc đoạn văn ngắn (email, thông báo) và chọn cách diễn đạt phù hợp hoặc ý nghĩa của một câu trong đó.',
-    how: ['Xác định người viết, người nhận và mục đích trước.', 'Đọc câu ngay trước và ngay sau chỗ được hỏi.'],
-    traps: ['Diễn đạt đúng ngữ pháp nhưng sai mức lịch sự với người nhận.', 'Câu phủ định kép và ～ないわけではない.'],
+    what: 'Đọc một câu hoặc một đoạn hội thoại A/B ngắn (khoảng 25–50 chữ) có chỗ trống ＿＿＿, chọn cách nói phù hợp nhất: kính ngữ, câu đệm, cách nhờ vả hoặc từ chối.',
+    how: ['Xác định ai nói với ai (khách, cấp trên, người ngoài công ty) trước khi đọc lựa chọn.', 'Hỏi: hành động trong chỗ trống là của ai? Từ đó chọn tôn kính ngữ hay khiêm nhường ngữ.'],
+    traps: ['Kính ngữ kép (おっしゃられる, お伺いさせていただく).', 'Câu đệm gần nghĩa nhưng sai hoàn cảnh (恐れ入りますが và 申し訳ございませんが).', 'Thêm 様 thừa, hoặc câu chủ nhà nói lại dùng cho khách.'],
   },
   {
     section: 'sogo-dokkai',
-    what: 'Đọc văn bản dài hơn (báo cáo, bài báo kinh tế, hợp đồng) và trả lời câu hỏi về nội dung hoặc ý người viết.',
-    how: ['Đọc câu hỏi trước, rồi đọc lướt tìm đoạn liên quan.', 'Chú ý từ nối đổi hướng: しかし, ただし, 一方, もっとも.', 'Dành 12–13 phút cuối cho phần này.'],
-    traps: ['Lựa chọn đúng một nửa: phần đầu khớp, phần sau sai.', 'Điều kiện ngoại lệ sau ただし và なお.'],
+    what: 'Đọc một văn bản công việc ngắn (email, thư, thông báo, biên bản; khoảng 150–300 chữ) và trả lời MỘT câu hỏi: mục đích của văn bản, người nhận phải làm gì, hạn chót, hoặc con số trong phần 記.',
+    how: ['Đọc câu hỏi trước, rồi tìm câu then chốt trong thân văn bản.', 'Thư trang trọng (拝啓, 前略): bỏ qua câu chào hỏi theo mùa, ý chính nằm sau さて.', 'Chú ý ただし, なお và phần 記 ở cuối.'],
+    traps: ['Lựa chọn đúng một nửa: phần đầu khớp, phần sau sai.', 'Việc của người gửi bị đưa thành việc của người nhận.', 'Thư từ chối khéo: không có chữ 断る nhưng ý là từ chối.'],
   },
 ];
