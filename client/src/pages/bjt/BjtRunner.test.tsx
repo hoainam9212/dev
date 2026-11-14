@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import type { BjtItem } from '@nihongo/shared';
 
 const { sequences } = vi.hoisted(() => ({ sequences: [] as string[][] }));
@@ -95,4 +95,26 @@ it('exam: time running out ends the run', () => {
   } finally {
     vi.useRealTimers();
   }
+});
+
+it('choices that name positions 【n】 show badges, also in the result', () => {
+  const item: BjtItem = {
+    id: 's1',
+    section: 'sogo-chodokkai',
+    set: 'demo',
+    material: { kind: 'text', body: '【1】【2】【3】【4】' },
+    questions: [{ id: 's1-q1', prompt: 'どこですか。', choices: ['【1】', '【2】と【3】', '【3】', '【4】の前'], answer: 1, explain: 'vì' }],
+  };
+  render(<BjtRunner title="T" items={[item]} exam onExit={() => {}} />);
+  const choices = screen.getAllByRole('button', { name: /^\d\./ });
+  // a choice made only of marks shows just the badges
+  expect(within(choices[0]!).getAllByTestId('bjt-mark').map((b) => b.textContent)).toEqual(['1']);
+  expect(choices[0]).not.toHaveTextContent('【');
+  expect(within(choices[1]!).getAllByTestId('bjt-mark').map((b) => b.textContent)).toEqual(['2', '3']);
+  expect(choices[3]).toHaveTextContent('の前');
+  fireEvent.click(choices[0]!);
+  fireEvent.click(screen.getByRole('button', { name: dict.bjt.finish }));
+  const result = screen.getByTestId('bjt-result');
+  expect(within(result).getAllByTestId('bjt-mark').map((b) => b.textContent)).toEqual(['1', '2', '3']);
+  expect(result).not.toHaveTextContent('【');
 });
