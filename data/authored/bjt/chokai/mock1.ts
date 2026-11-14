@@ -4,6 +4,8 @@ import { item } from '../helpers';
 /**
  * Full test 1 (week 8), 聴解: 5 場面把握 + 10 発言聴解 + 10 総合聴解 questions = 25.
  * Mixes the themes of weeks 1–7; about 30% of the questions are J1+ (implied meaning, indirect refusals).
+ * 発言聴解 and 総合聴解 follow the 2026-11-14 calibration rules (spec): one keigo point per 発言 choice set,
+ * one question per 総合 item, scripts of 450–750 characters.
  */
 export const MOCK1: BjtItem[] = [
   // ── 場面把握 ──
@@ -37,9 +39,9 @@ export const MOCK1: BjtItem[] = [
     questions: [
       [
         'この場面について、正しい説明はどれですか。',
-        ['ベルトコンベアが動いています。', '二人とも製品を検査しています。', '作業員がヘルメットを脱いでいます。', '一人がルーペで製品を調べ、もう一人が記録を取っています。'],
+        ['ベルトコンベアが動いています。', '二人とも製品を検査しています。', '作業員がヘルメットを脱いでいます。', '一人がルーペで製品を見ています。'],
         3,
-        'Hai người làm hai việc: một người soi bằng kính lúp, một người ghi chép. Câu 2 sai vì chỉ một người kiểm tra. Băng chuyền đang dừng. Cả hai vẫn đội mũ.',
+        'Một người soi sản phẩm bằng kính lúp (ルーペ), người kia ghi chép. Lựa chọn 2 sai vì chỉ một người kiểm tra, người còn lại đang ghi. Băng chuyền đang dừng, và cả hai vẫn đội mũ.',
       ],
     ],
     points: [
@@ -77,9 +79,9 @@ export const MOCK1: BjtItem[] = [
     questions: [
       [
         'この場面について、正しい説明はどれですか。',
-        ['二人が料理を注文しています。', '二人がテレビを見ています。', '一人がスマートフォンを見ながら食事をしています。', '二人が食器を片付けています。'],
+        ['二人が料理を注文しています。', '二人がテレビを見ています。', '一人が携帯を見ながら食べています。', '二人が食器を片付けています。'],
         2,
-        'Một người vừa ăn vừa nhìn điện thoại: ～ながら食事をしている. Tivi bật nhưng không ai xem. Cơm đã có và đang ăn dở, nên không phải gọi món hay dọn khay.',
+        'Một người vừa ăn vừa nhìn điện thoại: ～ながら食べている. Tivi bật nhưng không ai xem, nên lựa chọn 2 sai. Cơm đã có và đang ăn dở, nên không phải gọi món hay dọn khay.',
       ],
     ],
     points: [
@@ -111,293 +113,425 @@ export const MOCK1: BjtItem[] = [
 
   // ── 発言聴解 ──
   item('mock1', 'hatsugen', 1, {
-    script: [['状況', '来客が帰るので、エレベーターの前まで見送りました。最後に何と言いますか。', 'Khách ra về, bạn tiễn đến trước thang máy. Câu cuối cùng bạn nói gì?']],
+    script: [['状況', '取引先の人が来社しました。あなたの上司の山田課長は、あと十分ほどで会議から戻ります。何と言いますか。', 'Người của đối tác đến công ty. Cấp trên của bạn là trưởng phòng Yamada khoảng mười phút nữa mới họp xong quay về. Bạn nói gì?']],
     spokenChoices: true,
     questions: [
       [
         '何と言いますか。',
-        ['お疲れさまでした。', 'またいらっしゃってくださいね。じゃあ。', '本日はありがとうございました。どうぞお気をつけてお帰りください。', 'お帰りになりましたら、ご連絡いたします。'],
-        2,
-        'Tiễn khách: cảm ơn rồi chúc về cẩn thận (お気をつけてお帰りください). お疲れさまでした dùng trong nội bộ công ty. Câu 2 thân mật quá mức với khách. Câu 4 không có nghĩa trong tình huống này.',
-      ],
-    ],
-    points: [['見送る', 'みおくる', 'tiễn']],
-  }),
-  item('mock1', 'hatsugen', 2, {
-    script: [['状況', '上司に頼まれた資料のコピーが終わりました。上司に渡します。何と言いますか。', 'Bạn đã photo xong tài liệu cấp trên nhờ. Bạn đưa cho cấp trên. Bạn nói gì?']],
-    spokenChoices: true,
-    questions: [
-      [
-        '何と言いますか。',
-        ['お待たせいたしました。ご依頼の資料を十部、コピーしてまいりました。', 'コピーしてあげました。', 'コピーいたしましたので、確認していただきます。', 'コピー、遅くなりましたけど、仕方なかったです。'],
-        0,
-        'お待たせいたしました + nói rõ đã làm gì (mười bản). Câu 2: てあげる với cấp trên nghe như ban ơn. Câu 3: ～ていただきます ở thể khẳng định là áp đặt. Câu 4 biện minh thay vì xin lỗi.',
-      ],
-    ],
-    points: [['てまいりました', 'てまいりました', 'đã (đi làm việc gì) về (khiêm nhường)']],
-  }),
-  item('mock1', 'hatsugen', 3, {
-    script: [['状況', '取引先に電話をしたら、話したい部長は不在だと言われました。伝言を頼みたいです。何と言いますか。', 'Bạn gọi điện cho đối tác thì được biết trưởng bộ phận bạn cần gặp không có mặt. Bạn muốn nhờ nhắn lại. Bạn nói gì?']],
-    spokenChoices: true,
-    questions: [
-      [
-        '何と言いますか。',
-        ['じゃあ、伝言しておいてください。', '部長様にお伝えしてもよろしいでしょうか。', '部長が戻られたら、私に電話するように言ってください。', 'それでは、恐れ入りますが、ご伝言をお願いできますでしょうか。'],
-        3,
-        'Nhờ nhắn bằng 恐れ入りますが…お願いできますでしょうか. Câu 1 trống không. Câu 2 sai hướng: お伝えする là việc của người bên kia, mình không xin phép làm. Câu 3 ra lệnh cho trưởng bộ phận của đối tác.',
-      ],
-    ],
-    points: [['ご伝言', 'ごでんごん', 'lời nhắn (lịch sự)']],
-  }),
-  item('mock1', 'hatsugen', 4, {
-    script: [['状況', 'あなたは社内会議の司会です。開始時間になりましたが、部長がまだ来ていません。部長はもうすぐ来るそうです。出席者に何と言いますか。', 'Bạn là người chủ trì cuộc họp nội bộ. Đã đến giờ bắt đầu nhưng trưởng bộ phận chưa tới, nghe nói sắp tới rồi. Bạn nói gì với người dự họp?']],
-    spokenChoices: true,
-    questions: [
-      [
-        '何と言いますか。',
-        ['部長が遅刻なので、待ちます。', '恐れ入りますが、部長がまもなくいらっしゃいますので、五分ほどお待ちいただけますでしょうか。', '部長がいらっしゃらないので、始めてもいいですか。', 'では、部長抜きで始めましょう。'],
+        ['山田はあと十分ほどでお戻りになります。', '山田はあと十分ほどで戻ってまいります。', '山田はあと十分ほどでお戻りになられます。', '山田はあと十分ほどで戻っていただきます。'],
         1,
-        'Xin mọi người đợi, nói rõ lý do và thời gian. Họp nội bộ nên nói về trưởng bộ phận bằng tôn kính ngữ (いらっしゃる), không dùng まいる như khi nói với khách. Câu 1 nói thẳng "đến muộn", không khéo. Câu 3 và 4 đi ngược tình huống: trưởng bộ phận sắp đến thì nên đợi.',
+        'Nói với người ngoài công ty về cấp trên của mình thì gọi trống tên (山田) và dùng khiêm nhường: 戻ってまいります. Lựa chọn 1 đúng ý nhưng dùng tôn kính ngữ お戻りになる cho người bên mình. Lựa chọn 3 vừa sai hướng vừa là kính ngữ kép. Lựa chọn 4 nghe như mình bắt trưởng phòng quay về.',
       ],
     ],
     points: [
-      ['まもなく', 'まもなく', 'sắp, chẳng bao lâu nữa'],
-      ['司会', 'しかい', 'người chủ trì'],
+      ['戻ってまいります', 'もどってまいります', 'sẽ quay lại (khiêm nhường, nói về người bên mình)'],
+      ['来社', 'らいしゃ', 'đến công ty (khách)'],
+    ],
+  }),
+  item('mock1', 'hatsugen', 2, {
+    script: [['状況', '出張の報告書を書き終えました。部長に目を通してほしいです。部長は今、手が空いているようです。何と言いますか。', 'Bạn đã viết xong báo cáo công tác. Bạn muốn trưởng bộ phận đọc qua. Trưởng bộ phận lúc này có vẻ đang rảnh. Bạn nói gì?']],
+    spokenChoices: true,
+    questions: [
+      [
+        '何と言いますか。',
+        ['報告書をご確認いただけませんでしょうか。', '報告書をご確認してもらえませんでしょうか。', '報告書を拝見していただけませんでしょうか。', '報告書をご確認いたしませんでしょうか。'],
+        0,
+        'Việc xem là của trưởng bộ phận, nên dùng ご確認いただく (mình nhận việc người trên làm). Lựa chọn 3 đúng ý nhưng 拝見する là khiêm nhường ngữ, chỉ dùng cho việc mình xem. Lựa chọn 2 dùng ご～する (khiêm nhường) cho hành động của cấp trên. Lựa chọn 4 dùng いたす cho người trên.',
+      ],
+    ],
+    points: [
+      ['目を通す', 'めをとおす', 'đọc qua'],
+      ['拝見する', 'はいけんする', 'xem (khiêm nhường, việc của mình)'],
+    ],
+  }),
+  item('mock1', 'hatsugen', 3, {
+    script: [['状況', '取引先の佐藤さんから電話で質問されましたが、資料が手元にありません。後でこちらからかけ直したいです。何と言いますか。', 'Anh Sato bên đối tác hỏi bạn qua điện thoại, nhưng bạn không có tài liệu trong tay. Bạn muốn lát nữa gọi lại. Bạn nói gì?']],
+    spokenChoices: true,
+    questions: [
+      [
+        '何と言いますか。',
+        ['確認して、のちほどお電話をくださいます。', '確認して、のちほどお電話をなさいます。', '確認して、のちほどお電話をいただきます。', '確認して、のちほどお電話を差し上げます。'],
+        3,
+        'Người gọi lại là mình, nên dùng khiêm nhường お電話を差し上げます. Lựa chọn 2 đúng ý (mình gọi lại) nhưng なさる là tôn kính ngữ, đem dùng cho chính mình. Lựa chọn 1 và 3 biến thành anh Sato gọi cho mình.',
+      ],
+    ],
+    points: [
+      ['かけ直す', 'かけなおす', 'gọi lại'],
+      ['差し上げる', 'さしあげる', 'biếu, làm cho (khiêm nhường)'],
+    ],
+  }),
+  item('mock1', 'hatsugen', 4, {
+    script: [['状況', '取引先の工場を見学しています。案内の担当者に、機械の写真を撮ってもいいか聞きたいです。何と言いますか。', 'Bạn đang tham quan nhà máy của đối tác. Bạn muốn hỏi người hướng dẫn xem có được chụp ảnh máy móc không. Bạn nói gì?']],
+    spokenChoices: true,
+    questions: [
+      [
+        '何と言いますか。',
+        ['写真をお撮りになってもよろしいでしょうか。', '写真をお撮りいただいてもよろしいでしょうか。', '写真を撮らせていただいてもよろしいでしょうか。', '写真を撮られてもよろしいでしょうか。'],
+        2,
+        'Xin phép cho mình làm: 撮らせていただいてもよろしいでしょうか. Lựa chọn 1 đúng ý nhưng お撮りになる là tôn kính ngữ, dùng cho chính mình là sai chủ thể; lựa chọn 4 cũng vậy (撮られる kiểu tôn kính). Lựa chọn 2 thành nhờ người hướng dẫn chụp.',
+      ],
+    ],
+    points: [
+      ['見学する', 'けんがくする', 'tham quan (học hỏi)'],
+      ['～させていただく', 'させていただく', 'xin phép được làm ~'],
     ],
   }),
   item('mock1', 'hatsugen', 5, {
-    script: [['状況', '一週間前に送った見積もりについて、取引先からまだ返事がありません。催促していると感じさせずに、検討状況を知りたいです。何と言いますか。', 'Báo giá gửi đối tác một tuần trước vẫn chưa có hồi âm. Bạn muốn biết họ đang xem xét đến đâu mà không để họ cảm thấy bị giục. Bạn nói gì?']],
+    script: [['状況', '取引先の部長から、季節のあいさつの品が会社に届きました。電話でその部長にお礼を言います。何と言いますか。', 'Trưởng bộ phận bên đối tác gửi quà theo mùa đến công ty bạn. Bạn gọi điện cảm ơn vị đó. Bạn nói gì?']],
     spokenChoices: true,
     questions: [
       [
         '何と言いますか。',
-        ['もう決めましたか。早くお返事をください。', 'お見積もりはいかがでしたか。お安いでしょう？', 'お見積もり、ご覧になりましたでしょうか。まだでしたら、すぐにご覧ください。', '先日お送りしたお見積もりの件で、何かご不明な点などございませんでしたでしょうか。'],
+        ['結構なお品をさしあげ、ありがとうございました。', '結構なお品を頂戴なさり、ありがとうございました。', '結構なお品をもらわれ、ありがとうございました。', '結構なお品をいただき、ありがとうございました。'],
         3,
-        'Hỏi "có điểm nào chưa rõ không" là cách gợi chuyện mà không giục: đối tác có cớ để nói tình hình. Câu 1 và 3 giục thẳng. Câu 2 tự khen giá, ép khách đồng ý.',
+        'Mình nhận quà nên dùng khiêm nhường いただき. Lựa chọn 3 đúng ý nhưng もらわれる là thể tôn kính (～れる), đem gắn cho việc nhận của chính mình. Lựa chọn 2 ghép tôn kính なさる vào động từ khiêm nhường 頂戴. Lựa chọn 1 thành mình tặng.',
       ],
     ],
     points: [
-      ['催促する', 'さいそくする', 'giục, thúc'],
-      ['ご不明な点', 'ごふめいなてん', 'điểm chưa rõ'],
+      ['結構なお品', 'けっこうなおしな', 'món quà quý (lời cảm ơn)'],
+      ['頂戴する', 'ちょうだいする', 'nhận (khiêm nhường)'],
     ],
   }),
   item('mock1', 'hatsugen', 6, {
-    script: [['状況', '同期の同僚が、半年かけて交渉していた大きな契約を取りました。お祝いを言います。何と言いますか。', 'Một đồng nghiệp cùng khoá vừa giành được hợp đồng lớn sau nửa năm đàm phán. Bạn chúc mừng. Bạn nói gì?']],
+    script: [['状況', '社内の会議で、部長の説明の最後の部分がよく聞こえませんでした。もう一度言ってほしいです。何と言いますか。', 'Trong cuộc họp nội bộ, bạn nghe không rõ phần cuối lời giải thích của trưởng bộ phận. Bạn muốn ông nói lại. Bạn nói gì?']],
     spokenChoices: true,
     questions: [
       [
         '何と言いますか。',
-        ['大型契約、おめでとう！半年間、粘り強く通ってたもんね。', '大型契約、ご苦労様でございました。', '今回は運がよかったね。', 'おめでとうございます。私も取れればよかったんですが。'],
-        0,
-        'Với đồng nghiệp cùng khoá thì thể thường là tự nhiên; chúc mừng kèm ghi nhận công sức (粘り強く) là tốt nhất. Câu 2 sai cách dùng ご苦労様. Câu 3 coi nhẹ công sức. Câu 4 chuyển sang nói về mình.',
+        ['もう一度申し上げていただけますか。', 'もう一度おっしゃっていただけますか。', 'もう一度申していただけますか。', 'もう一度お言いになっていただけますか。'],
+        1,
+        'Người nói là trưởng bộ phận nên dùng tôn kính ngữ おっしゃる + ていただけますか. Lựa chọn 1 đúng ý nhưng 申し上げる là khiêm nhường, dùng cho việc của người trên là sai chủ thể; lựa chọn 3 cũng thế. Lựa chọn 4: 言う có dạng tôn kính riêng là おっしゃる, không nói お言いになる.',
       ],
     ],
-    points: [['粘り強い', 'ねばりづよい', 'bền bỉ, kiên trì']],
+    points: [['おっしゃる', 'おっしゃる', 'nói (tôn kính)']],
   }),
   item('mock1', 'hatsugen', 7, {
-    script: [['状況', '取引先の担当者から食事に誘われましたが、あなたの会社の規則では、取引先からの接待は受けられません。何と言いますか。', 'Người phụ trách bên đối tác mời bạn đi ăn, nhưng quy định công ty bạn không cho nhận tiếp đãi từ đối tác. Bạn nói gì?']],
+    script: [['状況', '取引先の担当者に、来週あなたの会社の社長の木村があいさつに行くと伝えます。何と言いますか。', 'Bạn báo với người phụ trách bên đối tác rằng tuần sau giám đốc Kimura của công ty bạn sẽ đến chào. Bạn nói gì?']],
     spokenChoices: true,
     questions: [
       [
         '何と言いますか。',
-        ['規則でだめなので、行けません。', 'ありがとうございます。ぜひごちそうになります。', 'お気持ちは大変ありがたいのですが、社の規定でご辞退させていただいておりまして…。', '今回は行きますが、次からは誘わないでください。'],
-        2,
-        'Cảm ơn tấm lòng trước, rồi viện quy định công ty và từ chối bằng ご辞退させていただいて, bỏ lửng cuối câu cho mềm. Câu 1 đúng lý do nhưng cộc. Câu 2 vi phạm quy định. Câu 4 vừa vi phạm vừa thất lễ.',
+        ['来週、社長の木村がごあいさつに伺います。', '来週、社長の木村がごあいさつにいらっしゃいます。', '来週、木村社長がごあいさつに伺います。', '来週、社長の木村がごあいさつにお越しになります。'],
+        0,
+        'Với người ngoài, giám đốc của mình cũng là "người bên mình": gọi 社長の木村 và dùng khiêm nhường 伺います. Lựa chọn 2 và 4 đúng ý nhưng dùng tôn kính ngữ cho người bên mình. Lựa chọn 3 động từ đúng nhưng gọi 木村社長, tức là tôn chức danh người bên mình trước mặt khách.',
       ],
     ],
     points: [
-      ['接待', 'せったい', 'tiếp đãi (khách hàng, đối tác)'],
-      ['辞退する', 'じたいする', 'từ chối (khéo, khiêm nhường)'],
+      ['伺う', 'うかがう', 'đến thăm (khiêm nhường)'],
+      ['お越しになる', 'おこしになる', 'đến (tôn kính)'],
     ],
   }),
   item('mock1', 'hatsugen', 8, {
-    script: [['状況', '今日から来た派遣社員に、コピー機の使い方を教えます。何と言いますか。', 'Bạn hướng dẫn một nhân viên phái cử mới đến hôm nay cách dùng máy photo. Bạn nói gì?']],
+    script: [['状況', '新しく来た派遣社員に会議室の予約方法を教えました。わからないことがあれば聞くように言います。何と言いますか。', 'Bạn vừa chỉ cho nhân viên phái cử mới đến cách đặt phòng họp. Bạn dặn có gì chưa hiểu thì cứ hỏi. Bạn nói gì?']],
     spokenChoices: true,
     questions: [
       [
         '何と言いますか。',
-        ['コピー機の使い方、わかりますよね。', 'コピー機はこちらです。社員番号を入れてから使うので、最初は一緒にやってみましょうか。', 'コピー機の使い方は、マニュアルを読んでください。', 'コピー機をお使いになられますか。'],
-        1,
-        'Chỉ chỗ, nói điểm riêng của công ty (nhập mã nhân viên) và đề nghị làm cùng lần đầu. Câu 1 cho là người ta đã biết. Câu 3 bỏ mặc. Câu 4 là kính ngữ kép (お～になられる) và không hướng dẫn gì.',
-      ],
-    ],
-    points: [['派遣社員', 'はけんしゃいん', 'nhân viên phái cử']],
-  }),
-  item('mock1', 'hatsugen', 9, {
-    script: [['状況', '会議の途中で、一つ意見を言いたいことがあります。司会者に発言の許可を求めます。何と言いますか。', 'Giữa cuộc họp, bạn muốn nêu một ý kiến. Bạn xin phép người chủ trì. Bạn nói gì?']],
-    spokenChoices: true,
-    questions: [
-      [
-        '何と言いますか。',
-        ['すみません、一点よろしいでしょうか。', 'ちょっと待ってください。私の意見を言います。', '発言させてあげてもいいですか。', 'みなさん、私の話を聞いてください。'],
-        0,
-        '一点よろしいでしょうか là câu chuẩn để xin phát biểu. Câu 2 và 4 tự giành lời, không xin phép người chủ trì. Câu 3 dùng てあげる sai hoàn toàn.',
-      ],
-    ],
-    points: [['発言', 'はつげん', 'phát biểu']],
-  }),
-  item('mock1', 'hatsugen', 10, {
-    script: [['状況', '部長から急ぎの仕事を頼まれました。しかし、課長からも今日中の仕事を頼まれていて、両方を今日中に終わらせるのは無理です。部長に何と言いますか。', 'Trưởng bộ phận nhờ bạn một việc gấp. Nhưng trưởng phòng cũng đã nhờ một việc phải xong trong hôm nay, và không thể làm xong cả hai trong hôm nay. Bạn nói gì với trưởng bộ phận?']],
-    spokenChoices: true,
-    questions: [
-      [
-        '何と言いますか。',
-        ['わかりました。両方やります。', '課長の仕事があるので、できません。', '部長のお仕事を先にやって、課長には黙っておきます。', '承知しました。ただ、課長からも本日中の案件をいただいておりまして、どちらを優先すべきか、ご指示いただけますでしょうか。'],
-        3,
-        'Nhận lời, nêu sự thật (đã có việc gấp khác) và xin cấp trên quyết thứ tự ưu tiên: đây là 相談 đúng cách. Câu 1 hứa điều không làm được. Câu 2 từ chối thẳng. Câu 3 tự ý bỏ việc của trưởng phòng mà không báo.',
+        ['わからないことがあれば伺ってくださいね。', 'わからないことがあればお聞きしてくださいね。', 'わからないことがあれば聞いてくださいね。', 'わからないことがあれば拝聴してくださいね。'],
+        2,
+        'Nói với người mới ngang hàng hoặc dưới mình: 聞いてくださいね là vừa đủ lịch sự, thân thiện. Lựa chọn 1 đúng ý nhưng 伺う là khiêm nhường, đem gắn cho việc người kia hỏi; lựa chọn 2 (お聞きする) cũng sai như vậy. Lựa chọn 4: 拝聴 là "kính cẩn nghe", sai cả nghĩa.',
       ],
     ],
     points: [
-      ['優先する', 'ゆうせんする', 'ưu tiên'],
-      ['案件', 'あんけん', 'vụ việc, đầu việc'],
+      ['派遣社員', 'はけんしゃいん', 'nhân viên phái cử'],
+      ['伺う', 'うかがう', 'hỏi (khiêm nhường)'],
+    ],
+  }),
+  item('mock1', 'hatsugen', 9, {
+    script: [['状況', '取引先の会社に電話をかけました。営業部の鈴木さんがいるかどうか、電話に出た人に聞きます。何と言いますか。', 'Bạn gọi điện đến công ty đối tác. Bạn hỏi người nghe máy xem anh Suzuki phòng kinh doanh có ở đó không. Bạn nói gì?']],
+    spokenChoices: true,
+    questions: [
+      [
+        '何と言いますか。',
+        ['営業部の鈴木様はおりますでしょうか。', '営業部の鈴木様はおいでになられますでしょうか。', '営業部の鈴木様はございますでしょうか。', '営業部の鈴木様はいらっしゃいますでしょうか。'],
+        3,
+        'Hỏi về người của đối tác thì dùng tôn kính いらっしゃいますでしょうか. Lựa chọn 1 đúng ý nhưng おる là khiêm nhường, dùng cho người bên kia là sai chủ thể. Lựa chọn 2 là kính ngữ kép (おいでになる + られる). Lựa chọn 3: ございます dùng cho vật, không cho người.',
+      ],
+    ],
+    points: [['いらっしゃる', 'いらっしゃる', 'có mặt, ở (tôn kính)']],
+  }),
+  item('mock1', 'hatsugen', 10, {
+    script: [['状況', '取引先から値引きを頼まれましたが、上司と相談しないと決められません。その場では返事ができません。何と言いますか。', 'Đối tác đề nghị giảm giá nhưng bạn không thể tự quyết nếu chưa bàn với cấp trên. Bạn không trả lời ngay được. Bạn nói gì?']],
+    spokenChoices: true,
+    questions: [
+      [
+        '何と言いますか。',
+        ['社内で検討の上、改めてご連絡なさいます。', '社内で検討の上、改めてご連絡いたします。', '社内で検討の上、改めてご連絡くださいます。', '社内で検討の上、改めてご連絡になります。'],
+        1,
+        'Mình sẽ liên lạc lại nên dùng khiêm nhường ご連絡いたします; 検討の上 là cách hoãn trả lời lịch sự. Lựa chọn 1 đúng ý nhưng なさる là tôn kính ngữ, dùng cho chính mình là sai chủ thể; lựa chọn 4 (ご～になる) cũng vậy. Lựa chọn 3 thành đối tác liên lạc.',
+      ],
+    ],
+    points: [
+      ['検討の上', 'けんとうのうえ', 'sau khi xem xét'],
+      ['改めて', 'あらためて', 'lại, vào dịp khác'],
     ],
   }),
 
   // ── 総合聴解 ──
   item('mock1', 'sogo-chokai', 1, {
     script: [
-      ['女', '来週の福岡出張ですが、飛行機と新幹線、どちらにしましょうか。', 'Chuyến công tác Fukuoka tuần sau, anh muốn đi máy bay hay Shinkansen ạ?'],
-      ['男', '時間だけなら飛行機だけど、空港から会場まで一時間近くかかるんだよね。', 'Nếu chỉ xét thời gian thì máy bay, nhưng từ sân bay đến hội trường mất gần một tiếng.'],
-      ['女', '新幹線なら、博多駅から会場まで歩いて五分です。ただ、東京から五時間かかります。', 'Đi Shinkansen thì từ ga Hakata đến hội trường đi bộ năm phút. Có điều từ Tokyo mất năm tiếng.'],
-      ['男', '移動中に資料を作りたいから、新幹線にしよう。ずっとパソコンが使えるしね。', 'Tôi muốn làm tài liệu trong lúc di chuyển, nên đi Shinkansen. Dùng máy tính suốt được.'],
-      ['女', 'わかりました。会議は朝十時からですが、前の日に行かれますか。', 'Vâng. Cuộc họp bắt đầu mười giờ sáng, anh có đi từ hôm trước không ạ?'],
-      ['男', '朝一番の新幹線でも、着くのは十一時だからね。前の日に行かないと無理だ。ホテルも頼むよ。', 'Chuyến Shinkansen sớm nhất cũng mười một giờ mới tới. Không đi từ hôm trước thì không kịp. Đặt khách sạn giúp tôi luôn nhé.'],
+      ['女', '課長、来月の産業機械展のブースのことで、ご相談があるんですが。', 'Trưởng phòng, em muốn xin ý kiến về gian hàng ở triển lãm máy công nghiệp tháng sau ạ.'],
+      ['男', 'うん、どうしたの。', 'Ừ, sao thế?'],
+      ['女', '主催者から配置図が届きまして、見てみたら、うちのブース、入口から一番奥になってしまったんです。抽選で決まったそうで…。', 'Ban tổ chức gửi sơ đồ rồi, em xem thì gian của mình bị xếp ở trong cùng, xa lối vào nhất ạ. Nghe nói là bốc thăm…'],
+      ['男', '奥か。去年は入口のすぐ近くで、お客さんがけっこう立ち寄ってくれたんだけどなあ。名刺も八十枚以上もらったんだよ。', 'Trong cùng à. Năm ngoái ngay sát lối vào, khách ghé vào khá nhiều. Nhận được hơn tám mươi tấm danh thiếp đấy.'],
+      ['女', 'それで、入口の近くに小さいブースが一つ空いているので、そっちに移れないか、主催者に聞いてみようかと思うんですが。', 'Vì thế, gần lối vào còn trống một gian nhỏ, em định hỏi ban tổ chức xem mình có chuyển sang đó được không.'],
+      ['男', 'うーん、小さいブースだと、新型の機械が入らないんじゃない？', 'Ừm, gian nhỏ thì cái máy đời mới có vừa không?'],
+      ['女', 'あ…、そうですね。幅があと三メートル足りません。', 'À… đúng ạ. Chiều rộng còn thiếu ba mét.'],
+      ['男', 'だったら、場所はそのままにして、入口でチラシを配る人を置くほうがいいよ。あと、入口からブースまで案内の看板を出せるかどうか、主催者に確認してみて。', 'Thế thì cứ để chỗ như cũ, đặt người phát tờ rơi ở lối vào thì hơn. Với lại hỏi ban tổ chức xem có được dựng biển chỉ đường từ lối vào đến gian mình không.'],
+      ['女', 'わかりました。チラシは、去年のものを少し直せば使えますので、今日中に…。', 'Vâng ạ. Tờ rơi thì sửa lại một chút cái năm ngoái là dùng được, nên trong hôm nay em…'],
+      ['男', 'ああ、チラシはあとでいいよ。看板が出せるかどうかで、チラシに載せる地図も変わってくるからね。', 'À, tờ rơi để sau cũng được. Có dựng được biển hay không thì bản đồ in trên tờ rơi cũng khác đi mà.'],
+      ['女', 'そうですね。じゃあ、そちらを先に問い合わせます。配る人は、営業部から二人お願いしてみます。', 'Đúng ạ. Vậy em hỏi việc đó trước. Người phát tờ rơi thì em sẽ nhờ phòng kinh doanh hai người.'],
+      ['男', 'うん、頼むよ。看板が無理だったら、また別の手を考えよう。', 'Ừ, nhờ em. Nếu không dựng biển được thì mình nghĩ cách khác.'],
     ],
     questions: [
       [
-        '男の人が新幹線を選んだ一番の理由は何ですか。',
-        ['飛行機より安いから', '移動中に仕事ができるから', '空港が遠いから', '会場が駅から近いから'],
+        '女の人はこのあとまず何をしますか。',
+        ['ブースを入口近くに移してもらう', '案内表示が出せるか問い合わせる', '去年のチラシを作り直す', 'チラシを配る担当者を決める'],
         1,
-        'Anh nói thẳng lý do: 移動中に資料を作りたいから. Ga gần hội trường do người phụ nữ nêu ra, là điểm cộng nhưng không phải lý do quyết định. Giá vé không ai nhắc tới.',
-      ],
-      [
-        '男の人はいつ福岡に行きますか。',
-        ['会議の当日の朝', '会議の当日の昼', '会議の前日', '会議の二日前'],
-        2,
-        'Chuyến sớm nhất cũng 11 giờ mới tới, trễ giờ họp 10 giờ, nên phải đi hôm trước (前の日). "Sáng hôm họp" là phương án đã bị loại.',
+        'Trưởng phòng dặn hỏi ban tổ chức có dựng được biển chỉ đường không, và nói tờ rơi để sau vì bản đồ phụ thuộc vào việc đó; chị đáp そちらを先に問い合わせます. Lựa chọn 1 là đề xuất đã bị bác (gian nhỏ không vừa máy). Lựa chọn 3 và 4 là việc làm sau.',
       ],
     ],
     points: [
-      ['前泊', 'ぜんぱく', 'ngủ lại từ đêm hôm trước'],
-      ['朝一番', 'あさいちばん', 'sớm nhất trong buổi sáng'],
+      ['立ち寄る', 'たちよる', 'ghé vào'],
+      ['配置図', 'はいちず', 'sơ đồ bố trí'],
+      ['問い合わせる', 'といあわせる', 'hỏi, liên hệ hỏi'],
     ],
   }),
   item('mock1', 'sogo-chokai', 2, {
     script: [
-      ['男', '人事部からお知らせします。来年度から、管理職に昇進するための条件が変わります。', 'Phòng nhân sự xin thông báo. Từ năm tài chính tới, điều kiện để thăng chức lên cấp quản lý sẽ thay đổi.'],
-      ['男', 'これまでは、勤続年数と上司の推薦が主な条件でしたが、来年度からは、これに加えて、社内研修を三つ修了していることが必要になります。', 'Trước giờ điều kiện chính là thâm niên và đề cử của cấp trên. Từ năm tới, ngoài hai điều đó, cần hoàn thành ba khoá đào tạo nội bộ.'],
-      ['男', '研修はオンラインで受講できますが、そのうち「部下育成」の研修だけは集合研修になります。定員がありますので、早めにお申し込みください。', 'Các khoá học có thể học trực tuyến, nhưng riêng khoá "Đào tạo cấp dưới" học tập trung. Vì có giới hạn số người, xin đăng ký sớm.'],
-      ['男', 'なお、勤続年数の条件は、これまでの十年から八年に短縮されます。', 'Ngoài ra, điều kiện thâm niên được rút ngắn từ mười năm xuống tám năm.'],
+      ['男', '新入社員の皆さん、おはようございます。人事部の小川です。今日から始まる三週間の研修について、簡単にご説明します。', 'Chào các bạn nhân viên mới. Tôi là Ogawa, phòng nhân sự. Tôi xin giải thích ngắn gọn về ba tuần đào tạo bắt đầu từ hôm nay.'],
+      ['男', '最初の一週間は、ビジネスマナーと会社の仕組みを学びます。二週目は工場に行って、製品ができるまでの流れを実際に見ていただきます。', 'Tuần đầu, các bạn học phép lịch sự trong kinh doanh và cơ cấu công ty. Tuần thứ hai, các bạn xuống nhà máy để tận mắt xem quy trình làm ra sản phẩm.'],
+      ['男', '三週目は、営業部や経理部など、各部署を一日ずつ回っていただきます。各部署では、実際の仕事を少し手伝っていただくこともあります。', 'Tuần thứ ba, các bạn lần lượt đến mỗi bộ phận như kinh doanh, kế toán, mỗi nơi một ngày. Ở mỗi bộ phận, có khi các bạn sẽ phụ một phần công việc thật.'],
+      ['男', '去年までは、研修の最後に筆記試験を行って、その点数を配属先に伝えていましたが、今年からやめることにしました。', 'Đến năm ngoái, cuối khoá có bài thi viết và điểm được báo cho bộ phận tiếp nhận, nhưng từ năm nay chúng tôi bỏ.'],
+      ['男', '配属されてから本当に大切なのは、覚えた知識の量よりも、わからないことを現場の人に自分から聞けるかどうかだ、ということがわかってきたからです。', 'Vì chúng tôi nhận ra rằng sau khi được phân về bộ phận, điều thật sự quan trọng không phải là lượng kiến thức đã nhớ, mà là có tự mình hỏi người ở hiện trường điều mình chưa biết hay không.'],
+      ['男', 'ですから、この三週間で、それぞれの部署に一人ずつ、気軽に相談できる先輩を見つけてください。これが今回の研修の一番の目的です。', 'Vì vậy, trong ba tuần này, hãy tìm ở mỗi bộ phận một anh chị đi trước mà mình có thể thoải mái hỏi han. Đó là mục đích lớn nhất của khoá đào tạo lần này.'],
+      ['男', '最終日には、見つけた先輩の名前と、その人から聞いた話を一つ、皆さんの前で発表していただきます。どんな小さな話でも構いません。', 'Ngày cuối, mỗi người sẽ trình bày trước mọi người tên các anh chị mình tìm được và một câu chuyện nghe từ họ. Chuyện nhỏ đến đâu cũng được.'],
+      ['男', '研修中に困ったことがあれば、いつでも人事部の私か、担当の中田まで、遠慮なく声をかけてください。', 'Trong thời gian đào tạo có gì khó khăn, cứ thoải mái gọi tôi hoặc anh Nakata phụ trách ở phòng nhân sự bất cứ lúc nào.'],
+      ['男', 'では、まず、お手元の名札にお名前を書いてください。', 'Bây giờ, trước hết xin các bạn viết tên vào thẻ tên đang có trên bàn.'],
     ],
     questions: [
       [
-        '来年度から新しく加わる条件は何ですか。',
-        ['勤続十年以上', '上司の推薦', '勤続八年以上', '研修を三つ修了していること'],
-        3,
-        'これに加えて đánh dấu điều kiện mới: hoàn thành ba khoá đào tạo. Thâm niên và đề cử là điều kiện cũ; thâm niên chỉ thay đổi con số (10 → 8 năm), không phải điều kiện mới.',
-      ],
-      [
-        '早めに申し込む必要があるのはなぜですか。',
-        ['集合研修には定員があるから', 'オンライン研修は人数が少ないから', '研修が来年度で終わるから', '推薦の期限があるから'],
-        0,
-        'Khoá "Đào tạo cấp dưới" học tập trung và 定員がありますので nên phải đăng ký sớm. Học trực tuyến thì không nhắc tới giới hạn số người.',
+        '人事部の人は、新入社員がこの研修で何を目指すように言っていますか。',
+        ['筆記試験でよい点を取ること', '製品ができる流れを理解すること', '各部署に相談できる相手を作ること', '研修の内容を人前で発表すること'],
+        2,
+        'Anh nói thẳng 一番の目的: tìm ở mỗi bộ phận một người đi trước có thể hỏi han, tức là có người để hỏi ở từng nơi. Lựa chọn 1 là cách làm của năm trước, đã bỏ. Lựa chọn 2 chỉ là nội dung tuần hai. Lựa chọn 4 là cách báo cáo kết quả ngày cuối, không phải mục tiêu.',
       ],
     ],
     points: [
-      ['勤続年数', 'きんぞくねんすう', 'số năm làm việc liên tục'],
-      ['修了する', 'しゅうりょうする', 'hoàn thành (khoá học)'],
-      ['短縮する', 'たんしゅくする', 'rút ngắn'],
+      ['配属', 'はいぞく', 'phân công về (bộ phận)'],
+      ['筆記試験', 'ひっきしけん', 'thi viết'],
+      ['気軽に', 'きがるに', 'thoải mái, không ngại'],
     ],
   }),
   item('mock1', 'sogo-chokai', 3, {
     script: [
-      ['女', 'あの、先週納品していただいた椅子のことなんですけど。', 'À, về số ghế bên anh giao tuần trước.'],
-      ['男', 'いつもありがとうございます。何か不具合がございましたでしょうか。', 'Cảm ơn chị luôn ủng hộ. Có trục trặc gì không ạ?'],
-      ['女', '不具合というほどではないんですが、座ると少しきしむんです。二十脚のうち三脚なんですけど。使えないことはないので、急ぎではないんですが…。', 'Không đến mức hỏng, nhưng ngồi lên thì hơi kêu cót két. Ba trong hai mươi cái. Không phải không dùng được nên cũng không gấp…'],
-      ['男', '大変申し訳ございません。すぐに新しいものとお取り替えいたします。', 'Thành thật xin lỗi chị. Chúng tôi sẽ đổi cái mới ngay.'],
-      ['女', 'あ、でも来週は会議室を毎日使うので、その間に作業に来ていただくのはちょっと…。', 'À, nhưng tuần sau phòng họp ngày nào cũng dùng, nên đến làm trong lúc đó thì hơi…'],
-      ['男', 'かしこまりました。では、来週の金曜日の夕方以降はいかがでしょうか。', 'Tôi hiểu ạ. Vậy từ chiều tối thứ sáu tuần sau thì được không ạ?'],
-      ['女', 'それなら大丈夫です。', 'Vậy thì được.'],
+      ['女', '先月から、ラインBで、ねじの締め忘れが続いています。今月だけで七件です。', 'Từ tháng trước, dây chuyền B liên tục bị quên siết ốc. Riêng tháng này đã bảy vụ.'],
+      ['男1', '七件か。出荷前に見つかっているからまだいいようなものの、このままじゃまずいな。', 'Bảy vụ à. Cũng may là phát hiện trước khi xuất hàng, nhưng cứ thế này thì không ổn.'],
+      ['男2', 'あのう、最後の検査の人を一人増やすのはどうでしょうか。', 'Dạ, hay là tăng thêm một người ở khâu kiểm tra cuối ạ?'],
+      ['女', '検査を増やしても、見つける数が増えるだけで、締め忘れそのものは減りませんよね。それに、人を増やす予算はもう残っていないんです。', 'Tăng kiểm tra thì chỉ phát hiện được nhiều hơn, còn bản thân việc quên siết thì không giảm. Hơn nữa, ngân sách tăng người cũng không còn.'],
+      ['男1', 'うん。原因のほうを何とかしないとな。', 'Ừ. Phải xử lý từ nguyên nhân mới được.'],
+      ['男2', 'じゃあ、作業手順書を書き直して、もう一度全員に説明するのは…。', 'Vậy thì viết lại sổ tay quy trình rồi giải thích lại cho mọi người thì…'],
+      ['女', '手順書は半年前に直したばかりなんです。それより、調べてみたら、締め忘れはほとんど夕方の時間帯に起きているんですよ。', 'Sổ quy trình mới sửa nửa năm trước thôi. Chuyện quan trọng hơn là, tôi tra thì thấy việc quên siết hầu như xảy ra vào khung giờ chiều tối.'],
+      ['男1', '夕方か。疲れが出てくるころだな。', 'Chiều tối à. Lúc người ta bắt đầu mệt nhỉ.'],
+      ['女', 'ええ。人の注意に頼るのには限界があります。それで、決められた回数を締めないと次の工程に進めないタイプの工具に替えてはどうかと。一台五万円で、ラインBには六台あります。', 'Vâng. Dựa vào sự chú ý của con người thì có giới hạn. Nên tôi đề xuất đổi sang loại dụng cụ mà chưa siết đủ số lần quy định thì không qua được công đoạn sau. Mỗi cái năm vạn yên, dây chuyền B có sáu cái.'],
+      ['男1', '三十万か。それなら今期の設備費で何とかなる。じゃあ、それでいこう。ただ、いきなり全部のラインは無理だから、まずBで試して、効果が出たらほかにも広げよう。', 'Ba mươi vạn à. Thế thì xoay được bằng chi phí thiết bị kỳ này. Vậy làm thế đi. Có điều, đổi hết các dây chuyền ngay thì không được, trước hết thử ở B, có hiệu quả thì mở rộng sang chỗ khác.'],
+      ['男2', 'わかりました。じゃあ、工具のメーカーに、いつ届くか確認しておきます。', 'Vâng ạ. Vậy em sẽ hỏi hãng dụng cụ xem khi nào giao được.'],
     ],
     questions: [
       [
-        '女の人が連絡してきた理由は何ですか。',
-        ['椅子が二十脚届かなかったから', '椅子が三脚壊れていて使えないから', '椅子が少し音を立てるから', '会議室の予定が変わったから'],
-        2,
-        'きしむ = kêu cót két. Chị nói rõ 不具合というほどではない và 使えないことはない, nên "hỏng, không dùng được" là nói quá. Hai mươi cái đã giao đủ; ba là số ghế bị kêu.',
-      ],
-      [
-        '椅子の交換はいつ行いますか。',
-        ['すぐに', '来週の金曜日の夕方以降', '来週の月曜日', '会議が全部終わった再来週'],
-        1,
-        'Bên bán định đổi ngay, nhưng tuần sau phòng họp bận, nên chuyển sang 来週の金曜日の夕方以降 và khách đồng ý (それなら大丈夫です). "Ngay lập tức" là ý định ban đầu.',
+        '締め忘れへの対策は、最終的にどうなりましたか。',
+        ['最終検査の担当者を増やす', '作業手順書を書き直す', '全ラインの工具を交換する', 'ラインBの工具を交換する'],
+        3,
+        'Trưởng xưởng chốt đổi dụng cụ, nhưng まずBで試して: trước hết chỉ ở dây chuyền B. Lựa chọn 3 là bước sau, chỉ làm nếu có hiệu quả. Lựa chọn 1 bị bác vì không giảm lỗi và hết ngân sách; lựa chọn 2 bị bác vì sổ quy trình vừa sửa.',
       ],
     ],
     points: [
-      ['きしむ', 'きしむ', 'kêu cót két'],
-      ['取り替える', 'とりかえる', 'thay, đổi (cái mới)'],
-      ['かしこまりました', 'かしこまりました', 'vâng, tôi hiểu (rất lịch sự)'],
+      ['締め忘れ', 'しめわすれ', 'quên siết (ốc)'],
+      ['工程', 'こうてい', 'công đoạn'],
+      ['設備費', 'せつびひ', 'chi phí thiết bị'],
     ],
   }),
   item('mock1', 'sogo-chokai', 4, {
     script: [
-      ['男', '新しい健康飲料の名前ですが、候補は「スッキリ茶」と「グリーンリセット」の二つです。', 'Về tên của loại đồ uống sức khoẻ mới, có hai ứng viên: "Sukkiri-cha" và "Green Reset".'],
-      ['女', '社内アンケートでは「スッキリ茶」のほうが人気でしたね。', 'Khảo sát nội bộ thì "Sukkiri-cha" được thích hơn nhỉ.'],
-      ['男', 'ええ。ただ、調べたところ、「スッキリ茶」は他社がすでに商標登録していました。', 'Vâng. Nhưng tra thử thì "Sukkiri-cha" đã được công ty khác đăng ký nhãn hiệu.'],
-      ['女', 'それは使えませんね。では「グリーンリセット」で…。', 'Vậy không dùng được rồi. Thế thì "Green Reset"…'],
-      ['男', 'それが、海外の担当者から、「リセット」は英語圏ではあまりいい印象を与えないという意見がありまして。', 'Có điều, người phụ trách thị trường nước ngoài góp ý rằng chữ "reset" không gây ấn tượng tốt lắm ở các nước nói tiếng Anh.'],
-      ['女', 'そうですか…。海外での発売は再来年でしょう。名前は国内と海外で分けてもいいんじゃないかしら。', 'Vậy à… Bán ở nước ngoài là năm sau nữa mà. Tên trong nước và nước ngoài tách riêng cũng được chứ nhỉ.'],
-      ['男', 'なるほど。では、国内は「グリーンリセット」で進めて、海外名は改めて考えます。', 'Ra vậy. Vậy trong nước triển khai với "Green Reset", tên nước ngoài sẽ nghĩ lại sau.'],
+      ['女', 'もしもし、さくら事務機さんですか。先週の月曜日にコピー用紙を五十箱注文した、北山工業の吉田と申します。', 'A lô, có phải Sakura Jimuki không ạ? Tôi là Yoshida ở Kitayama Kogyo, đã đặt năm mươi thùng giấy photo hôm thứ hai tuần trước.'],
+      ['男', 'いつもありがとうございます。担当の中野でございます。', 'Cảm ơn chị luôn ủng hộ. Tôi là Nakano, người phụ trách.'],
+      ['女', '今日届くはずだったんですけど、まだ来ていないんです。明日から決算の書類を大量に印刷するので、困っていまして。', 'Đáng lẽ hôm nay phải đến mà vẫn chưa thấy. Từ mai bên tôi in rất nhiều tài liệu quyết toán nên đang rất khó xử.'],
+      ['男', '大変申し訳ございません。すぐにお調べいたします。…お待たせいたしました。運送会社の倉庫で配達が一日遅れておりまして、明日の午後のお届けになるようです。', 'Thành thật xin lỗi chị. Tôi kiểm tra ngay ạ. … Xin lỗi đã để chị chờ. Kho của công ty vận chuyển giao trễ một ngày, nên có lẽ chiều mai mới đến nơi ạ.'],
+      ['女', '午後ですか…。印刷は朝から始めるので、それだとちょっと…。', 'Chiều à… Bên tôi in từ sáng, nên như vậy thì hơi…'],
+      ['男', '念のため、ご注文の内容を確認させていただけますか。A4のコピー用紙を五十箱で、お間違いないでしょうか。', 'Để cho chắc, cho phép tôi xác nhận lại đơn hàng ạ. Giấy photo A4, năm mươi thùng, đúng không ạ?'],
+      ['女', 'はい、そうです。', 'Vâng, đúng rồi.'],
+      ['男', 'でしたら、本日中に、私が近くの営業所から十箱だけお持ちするというのはいかがでしょうか。残りの四十箱は明日の午後にお届けいたします。', 'Nếu vậy, trong hôm nay tôi mang trước mười thùng từ văn phòng chi nhánh gần đó đến, chị thấy thế nào ạ? Bốn mươi thùng còn lại sẽ giao vào chiều mai.'],
+      ['女', '十箱あれば、午前中は何とかなります。助かります。', 'Có mười thùng thì buổi sáng xoay được. Vậy thì đỡ quá.'],
+      ['男', 'かしこまりました。ただ、営業所に十箱残っているかどうか、まだわかりませんので、これから確かめまして、何時ごろ伺えるか、三十分以内にお電話いたします。', 'Vâng ạ. Có điều, tôi chưa biết văn phòng chi nhánh còn đủ mười thùng không, nên tôi sẽ kiểm tra ngay, rồi trong vòng ba mươi phút sẽ gọi báo chị khoảng mấy giờ tôi đến được.'],
+      ['女', 'わかりました。じゃあ、お電話お待ちしています。よろしくお願いします。', 'Vâng. Vậy tôi chờ điện thoại của anh. Nhờ anh nhé.'],
     ],
     questions: [
       [
-        '「スッキリ茶」が使えない理由は何ですか。',
-        ['他社が商標を持っているから', 'アンケートで人気がなかったから', '英語圏で印象が悪いから', '海外で発売するから'],
+        '男の人はこのあとまず何をしますか。',
+        ['営業所の在庫を調べる', '十箱を北山工業に届ける', '残りの四十箱を手配する', '配達の遅れの原因を調べる'],
         0,
-        'Đã có công ty khác đăng ký nhãn hiệu (商標登録). Khảo sát thì "Sukkiri-cha" lại được thích hơn. Ấn tượng xấu ở nước nói tiếng Anh là vấn đề của "Green Reset".',
-      ],
-      [
-        '名前はどうなりましたか。',
-        ['国内も海外も「スッキリ茶」', '国内も海外も「グリーンリセット」', '国内は「スッキリ茶」、海外は新しい名前', '国内は「グリーンリセット」、海外は改めて考える'],
-        3,
-        'Chị đề xuất tách tên trong nước và nước ngoài; anh đồng ý: 国内は「グリーンリセット」で進めて、海外名は改めて考えます. "Sukkiri-cha" không dùng được ở đâu cả.',
+        'Anh nói 営業所に十箱残っているかどうか…これから確かめまして: việc đầu tiên là kiểm tra hàng tồn ở chi nhánh. Lựa chọn 2 là bước sau, phải biết còn hàng và gọi báo giờ trước đã. Lựa chọn 4 đã làm xong trong cuộc gọi. Lựa chọn 3 để chiều mai giao như cũ.',
       ],
     ],
     points: [
-      ['商標登録', 'しょうひょうとうろく', 'đăng ký nhãn hiệu'],
-      ['印象', 'いんしょう', 'ấn tượng'],
-      ['改めて', 'あらためて', 'lại, một lần nữa (sau)'],
+      ['決算', 'けっさん', 'quyết toán'],
+      ['営業所', 'えいぎょうしょ', 'văn phòng chi nhánh (kinh doanh)'],
+      ['在庫', 'ざいこ', 'hàng tồn kho'],
     ],
   }),
   item('mock1', 'sogo-chokai', 5, {
     script: [
-      ['男', '課長、例の新規事業の企画書、目を通していただけましたか。', 'Trưởng phòng, chị đã đọc qua bản kế hoạch kinh doanh mới chưa ạ?'],
-      ['女', 'ええ、読んだわ。よく調べてあるわね。市場の分析なんか、とても丁寧だった。', 'Ừ, đọc rồi. Tìm hiểu kỹ đấy. Phần phân tích thị trường rất cẩn thận.'],
-      ['男', 'ありがとうございます。では、来週の役員会議に出してもよろしいでしょうか。', 'Cảm ơn chị. Vậy tôi nộp lên cuộc họp ban giám đốc tuần sau được không ạ?'],
-      ['女', 'そうねえ…。役員の方たちは、まず、いくら投資して、いつ回収できるのかを見るのよ。そこが一ページ目で見えないと、なかなか先まで読んでもらえないと思うわ。', 'Ừm… Các thành viên ban giám đốc trước hết nhìn xem đầu tư bao nhiêu và khi nào thu hồi vốn. Trang đầu mà không thấy điều đó thì chắc khó mà được họ đọc tiếp.'],
-      ['男', 'あ…。費用の部分は、最後のほうにまとめてしまいました。', 'À… Phần chi phí tôi lại gom ở cuối.'],
-      ['女', '来週の会議には十分間に合うでしょう。', 'Vẫn thừa thời gian kịp cuộc họp tuần sau mà.'],
-      ['男', 'はい。すぐに直します。', 'Vâng. Tôi sửa ngay.'],
+      ['女', 'もしもし、ミドリ食品営業部の川口でございます。東西物産の森様の携帯電話でよろしかったでしょうか。いつも大変お世話になっております。', 'A lô, tôi là Kawaguchi, phòng kinh doanh Midori Shokuhin. Đây có phải số di động của anh Mori ở Tozai Bussan không ạ? Cảm ơn anh luôn giúp đỡ.'],
+      ['女', '先日はお忙しいところ、ご丁寧にありがとうございました。来週火曜日の午後二時からお願いしておりました、新商品の打ち合わせの件でお電話いたしました。', 'Hôm trước cảm ơn anh đã tiếp đón chu đáo dù đang bận. Tôi gọi về buổi họp bàn sản phẩm mới đã hẹn từ hai giờ chiều thứ ba tuần sau ạ.'],
+      ['女', '実は、弊社の工場長も同席できることになりまして、その分、少しお時間を長めにいただけないかと思いまして…。二時からではなく、一時半から始めていただくことは可能でしょうか。工場長はその日、夕方の新幹線で大阪に戻る予定でございまして。', 'Chuyện là xưởng trưởng bên tôi cũng có thể cùng dự, nên tôi muốn xin thêm chút thời gian… Liệu có thể bắt đầu từ một giờ rưỡi thay vì hai giờ được không ạ? Hôm đó xưởng trưởng định đi Shinkansen buổi chiều tối về Osaka.'],
+      ['女', 'それから、工場長が試作品を三種類お持ちしたいと申しておりまして、温めてお出ししたいので、もし会議室の近くにお湯が使える場所があれば助かります。こちらは当日伺ったときに教えていただければ結構です。試作品の資料は、前日までにメールでお送りいたします。', 'Ngoài ra, xưởng trưởng muốn mang theo ba loại sản phẩm thử, và muốn hâm nóng để mời, nên nếu gần phòng họp có chỗ dùng nước nóng thì tốt quá. Việc này hôm đó đến nơi anh chỉ cho cũng được ạ. Tài liệu về sản phẩm thử, tôi sẽ gửi email trước một ngày.'],
+      ['女', 'お忙しいところ恐縮ですが、時間の件だけ、明日の夕方までにお返事をいただけますでしょうか。私の携帯の番号は、このあとメールでお送りいたします。', 'Xin lỗi làm phiền lúc anh bận, nhưng riêng việc thời gian, anh có thể trả lời tôi trước chiều tối mai được không ạ? Số di động của tôi, lát nữa tôi sẽ gửi qua email.'],
+      ['女', '突然のお願いで申し訳ございません。それでは、失礼いたします。', 'Xin lỗi vì đề nghị đột ngột. Vậy tôi xin phép ạ.'],
     ],
     questions: [
       [
-        '課長は企画書についてどう考えていますか。',
-        ['内容が不十分なので、出すべきではない', 'このまま役員会議に出してよい', '分析はいいが、構成を直す必要がある', '市場の分析をもっと詳しくすべきだ'],
+        'この留守番電話を聞いた人は、まず何をしなければなりませんか。',
+        ['工場長に同席をお願いする', 'お湯が使える部屋を予約する', '開始を早められるか返事する', '川口さんに電話番号を送る'],
         2,
-        'Trưởng phòng khen phân tích, nhưng そうねえ… và chuyện "trang đầu phải thấy đầu tư và thu hồi vốn" là cách nói vòng rằng phải sửa bố cục. Chị không cấm nộp; "vẫn kịp" nghĩa là sửa rồi nộp.',
-      ],
-      [
-        '男の人はこのあと何をしますか。',
-        ['費用と回収の見通しを最初に書く', '市場の分析を書き直す', '役員会議の日程を変える', '企画書をそのまま提出する'],
-        0,
-        'Anh nhận ra chi phí đang nằm cuối và nói すぐに直します: đưa phần đầu tư, thu hồi vốn lên đầu. Phân tích thị trường được khen nên không cần viết lại.',
+        'Việc có hạn là trả lời có dời giờ bắt đầu lên 1 giờ rưỡi được không, hạn chiều tối mai (時間の件だけ…明日の夕方までに). Lựa chọn 2: chỗ dùng nước nóng thì hôm đó chỉ cũng được. Lựa chọn 4 ngược chiều: chị Kawaguchi gửi số của mình. Lựa chọn 1 là việc phía bên kia đã tự sắp xếp.',
       ],
     ],
     points: [
-      ['企画書', 'きかくしょ', 'bản kế hoạch, đề án'],
-      ['投資', 'とうし', 'đầu tư'],
-      ['回収', 'かいしゅう', 'thu hồi (vốn)'],
-      ['役員会議', 'やくいんかいぎ', 'họp ban giám đốc'],
+      ['同席する', 'どうせきする', 'cùng dự (cuộc họp)'],
+      ['試作品', 'しさくひん', 'sản phẩm thử'],
+      ['恐縮ですが', 'きょうしゅくですが', 'xin lỗi đã làm phiền, nhưng…'],
+    ],
+  }),
+  item('mock1', 'sogo-chokai', 6, {
+    script: [
+      ['女', '部長、昨日の中途採用の最終面接ですが、お二人のうち、どちらにいたしましょうか。', 'Thưa trưởng bộ phận, về buổi phỏng vấn cuối tuyển người có kinh nghiệm hôm qua, mình chọn ai trong hai người ạ?'],
+      ['男', 'うーん、経歴だけ見れば、大西さんだね。同じ業界で十年、資格もずいぶん持っている。', 'Ừm, chỉ xét lý lịch thì là anh Onishi. Mười năm cùng ngành, bằng cấp cũng nhiều.'],
+      ['女', 'ええ。受け答えもしっかりしていて、すぐに現場を任せられそうでした。前の会社では、八人のチームをまとめていたそうです。', 'Vâng. Trả lời cũng chắc chắn, có vẻ giao việc ở hiện trường ngay được. Nghe nói ở công ty cũ anh ấy quản lý một nhóm tám người.'],
+      ['男', 'うん、それは魅力なんだけどね。', 'Ừ, cái đó thì hấp dẫn đấy.'],
+      ['男', 'ただね、話を聞いていると、前の会社のやり方をそのまま持ち込みそうな感じがしたんだよ。「前の会社ではこうでした」って、何度も言っていたでしょう。', 'Có điều, nghe anh ấy nói thì tôi có cảm giác anh ấy sẽ mang nguyên cách làm của công ty cũ vào. Cứ "ở công ty trước thì thế này" mấy lần, đúng không?'],
+      ['女', 'そうでしたね。もう一人の村上さんは、経験は三年ですし、面接では少し緊張していたようでしたが…。', 'Đúng vậy ạ. Người kia là chị Murakami, kinh nghiệm mới ba năm, lúc phỏng vấn lại có vẻ hơi căng thẳng…'],
+      ['男', '村上さんは、うちの製品を自分で使ってみて、わからないところを逆にこっちに質問してきたよね。ああいう人は伸びるよ。うちみたいな小さい会社は、決まったやり方を持ってる人より、新しいことをどんどん吸収してくれる人がほしいんだ。', 'Chị Murakami đã tự dùng thử sản phẩm của mình, rồi chỗ nào chưa hiểu thì hỏi ngược lại mình. Người như thế sẽ tiến bộ. Công ty nhỏ như mình cần người tiếp thu cái mới liên tục hơn là người đã có sẵn cách làm cố định.'],
+      ['女', '希望の給与も、村上さんのほうが低いですね。', 'Mức lương mong muốn cũng là chị Murakami thấp hơn ạ.'],
+      ['男', 'それはまあ、二の次だよ。緊張なんて、慣れればなくなる。じゃあ、村上さんで進めてくれる？', 'Cái đó thì để sau. Căng thẳng thì quen rồi sẽ hết. Vậy chị tiến hành với chị Murakami nhé?'],
+      ['女', 'かしこまりました。では、村上さんに内定のご連絡をして、大西さんには丁寧にお断りのメールをお送りします。', 'Vâng ạ. Vậy tôi sẽ báo chị Murakami là được nhận, còn anh Onishi thì gửi email từ chối một cách lịch sự.'],
+    ],
+    questions: [
+      [
+        '部長が採用で一番重視していることは何ですか。',
+        ['同じ業界での経験が長いこと', '自分から学ぼうとする姿勢', 'すぐに現場を任せられること', '希望する給与が低いこと'],
+        1,
+        'Trưởng bộ phận chọn chị Murakami vì tự tìm hiểu, chủ động hỏi: 新しいことをどんどん吸収してくれる人がほしい. Lựa chọn 1 là điểm mạnh của anh Onishi mà ông không coi trọng bằng. Lựa chọn 3 là nhận xét của người phụ nữ. Lựa chọn 4 ông nói rõ là 二の次.',
+      ],
+    ],
+    points: [
+      ['中途採用', 'ちゅうとさいよう', 'tuyển người có kinh nghiệm'],
+      ['吸収する', 'きゅうしゅうする', 'tiếp thu'],
+      ['二の次', 'にのつぎ', 'thứ yếu, để sau'],
+    ],
+  }),
+  item('mock1', 'sogo-chokai', 7, {
+    script: [
+      ['女', 'お疲れさまです。本部営業企画の高橋です。店長、本部から、来月から入口の棚を全部季節の商品に替えるように、という指示が出ているんですが。', 'Chào anh, tôi là Takahashi, phòng kế hoạch kinh doanh của trụ sở. Cửa hàng trưởng, trụ sở có chỉ thị từ tháng sau đổi toàn bộ kệ ở lối vào sang hàng theo mùa ạ.'],
+      ['男', 'ああ、聞いてます。ただ、うちの店は、近くの病院に通う年配のお客様が多くてね。朝の九時台なんて、ほとんどがそういうお客様です。入口の棚には、毎日買っていく牛乳やパンを置いているんですよ。', 'À, tôi có nghe. Có điều, cửa hàng mình nhiều khách lớn tuổi đi khám ở bệnh viện gần đây. Khung chín giờ sáng thì gần như toàn những vị khách như thế. Kệ lối vào tôi để sữa, bánh mì là thứ ngày nào họ cũng mua.'],
+      ['女', 'でも、季節の商品は利益率が高いので、売上全体で見ると、かなり違ってきますよ。', 'Nhưng hàng theo mùa có tỉ suất lợi nhuận cao, nhìn tổng doanh thu thì khác nhau khá nhiều đấy ạ.'],
+      ['男', 'それはわかります。でも、入口で欲しいものがすぐ見つからないと、年配の方は奥まで歩かないで帰ってしまうんです。前に一度、棚を替えたら、常連さんから「どこにあるかわからない」って何度も言われましてね。', 'Cái đó tôi hiểu. Nhưng ở lối vào mà không thấy ngay thứ cần mua thì người lớn tuổi không đi vào trong mà về luôn. Trước có lần đổi kệ, khách quen than mãi "không biết để đâu".'],
+      ['女', 'でも、本部の方針ですので、まったく替えないというわけには…。', 'Nhưng đây là chủ trương của trụ sở, nên hoàn toàn không đổi thì…'],
+      ['男', 'ええ、それもわかっています。', 'Vâng, cái đó tôi cũng hiểu.'],
+      ['女', 'そうでしたか…。じゃあ、入口の棚は今のままにして、レジの横に季節の商品の小さい棚を置くのはどうでしょう。本部には私から説明します。', 'Vậy ạ… Thế thì giữ nguyên kệ lối vào, đặt một kệ nhỏ hàng theo mùa cạnh quầy thu ngân thì sao ạ? Phía trụ sở để tôi giải thích.'],
+      ['男', 'レジの横なら、並んでいる間に見てもらえますね。それならやってみましょう。', 'Cạnh quầy thu ngân thì khách xem được trong lúc xếp hàng. Thế thì làm thử đi.'],
+      ['女', 'はい。まずは一か月やってみて、売上を見てみましょう。', 'Vâng. Trước hết làm thử một tháng rồi xem doanh thu nhé.'],
+    ],
+    questions: [
+      [
+        '店長が一番大切にしていることは何ですか。',
+        ['常連客が買い物しやすいこと', '季節の商品を多く売ること', '本部の指示どおりにすること', 'レジの待ち時間を短くすること'],
+        0,
+        'Cửa hàng trưởng giữ kệ lối vào vì khách lớn tuổi quen mua sữa, bánh mì; đổi kệ thì họ không tìm thấy và bỏ về. Điều ông giữ là sự tiện lợi của khách quen. Lựa chọn 2 là lập luận của người từ trụ sở. Lựa chọn 4: quầy thu ngân chỉ là nơi đặt kệ mới, không ai bàn chuyện thời gian chờ.',
+      ],
+    ],
+    points: [
+      ['常連客', 'じょうれんきゃく', 'khách quen'],
+      ['利益率', 'りえきりつ', 'tỉ suất lợi nhuận'],
+      ['年配', 'ねんぱい', 'lớn tuổi'],
+    ],
+  }),
+  item('mock1', 'sogo-chokai', 8, {
+    script: [
+      ['男', '課長、先週の出張の報告書なんですが、見ていただけましたか。部長にお出しする前に、一度見ていただきたくて。', 'Chị trưởng phòng, báo cáo chuyến công tác tuần trước của em, chị đã xem chưa ạ? Em muốn chị xem một lượt trước khi nộp trưởng bộ phận.'],
+      ['女', 'ええ。それはいい心がけね。よく書けてるわよ。訪問した五社の反応も、表にまとめてあって見やすいし。', 'Ừ. Thế là tốt đấy. Viết cũng tốt. Phản ứng của năm công ty đến thăm cũng tóm thành bảng, dễ nhìn.'],
+      ['男', 'ありがとうございます。写真ももう少し入れたほうがいいでしょうか。', 'Cảm ơn chị. Em có nên thêm ảnh nữa không ạ?'],
+      ['女', '写真は今のままで十分。それより気になったのは最後のところ。「今後、検討が必要と思われる」で終わってるでしょう。', 'Ảnh thế là đủ rồi. Cái chị để ý là phần cuối. Em kết thúc bằng "có lẽ cần xem xét trong thời gian tới", đúng không?'],
+      ['男', 'はい。', 'Vâng.'],
+      ['女', '読んだ部長は、「で、どうしたいの？」って思うんじゃないかな。報告書は、何があったかだけじゃなくて、書いた人が次にどうしたいかまであって、初めて役に立つのよ。部長は毎日たくさん報告書を読むから、最後の数行で判断することが多いの。', 'Trưởng bộ phận đọc chắc sẽ nghĩ "thế rốt cuộc muốn làm gì?". Báo cáo phải có không chỉ chuyện gì đã xảy ra mà cả việc người viết muốn làm gì tiếp, thì mới có ích. Trưởng bộ phận ngày nào cũng đọc rất nhiều báo cáo, nên hay quyết định dựa vào mấy dòng cuối.'],
+      ['男', 'なるほど…。実は、二社からは見積もりを出してほしいと言われていて、来週中には出したいと思っていたんです。一社は、来月の予算会議に間に合わせたいそうなので。', 'Ra vậy… Thật ra có hai công ty bảo muốn em gửi báo giá, em định gửi trong tuần sau ạ. Vì một công ty muốn kịp cuộc họp ngân sách tháng sau.'],
+      ['女', 'それよ。それをそのまま書けばいいの。いつまでに何をするか、ね。表のほうは触らなくていいから。', 'Đấy. Cứ thế mà viết vào. Đến khi nào làm gì, nhé. Phần bảng thì không cần động vào.'],
+      ['男', 'わかりました。すぐ直して、今日の午後、もう一度お持ちします。', 'Vâng. Em sửa ngay rồi chiều nay mang lại chị ạ.'],
+      ['女', 'ええ、待ってるわ。', 'Ừ, chị đợi.'],
+    ],
+    questions: [
+      [
+        '男の人は報告書のどこを直しますか。',
+        ['五社の反応をまとめた表', '最後のまとめの書き方', '報告書に入れる写真の数', '見積もりの金額の書き方'],
+        1,
+        'Trưởng phòng chỉ ra phần kết "今後、検討が必要と思われる" quá mơ hồ, phải viết rõ mình muốn làm gì tiếp (gửi báo giá trong tuần sau). Lựa chọn 1: bảng được khen, 触らなくていい. Lựa chọn 3: ảnh 今のままで十分. Lựa chọn 4: số tiền báo giá không được nhắc.',
+      ],
+    ],
+    points: [
+      ['報告書', 'ほうこくしょ', 'báo cáo'],
+      ['見積もり', 'みつもり', 'báo giá'],
+    ],
+  }),
+  item('mock1', 'sogo-chokai', 9, {
+    script: [
+      ['男', '情報システム部の石田です。来月から使っていただく、経費精算の新しいシステムについてご説明します。', 'Tôi là Ishida, phòng hệ thống thông tin. Tôi xin giới thiệu hệ thống thanh toán chi phí mới mà mọi người sẽ dùng từ tháng sau.'],
+      ['男', 'これまでは、領収書を紙に貼って、上司の印鑑をもらってから経理部に提出していただいていました。新しいシステムでは、領収書をスマートフォンで撮影するだけで申請ができます。', 'Trước giờ mọi người dán hoá đơn lên giấy, xin con dấu của cấp trên rồi nộp phòng kế toán. Với hệ thống mới, chỉ cần chụp hoá đơn bằng điện thoại là đăng ký được.'],
+      ['男', '上司の方の承認もスマートフォンでできますので、出張中でもすぐに承認していただけます。なお、一万円を超える場合は、これまでどおり部長の承認も必要です。', 'Cấp trên cũng duyệt được bằng điện thoại, nên dù đang công tác cũng duyệt ngay được. Lưu ý, khoản trên một vạn yên thì vẫn như trước, cần cả trưởng bộ phận duyệt.'],
+      ['男', '皆さんからは、領収書を貼る手間がなくなって楽だ、という声をいただいていますが、会社として一番大きいと考えているのは、精算にかかる日数です。', 'Mọi người nói rằng đỡ mất công dán hoá đơn nên nhẹ nhàng hơn, nhưng điều công ty coi là lớn nhất là số ngày để thanh toán.'],
+      ['男', 'これまで申請から支払いまで平均三週間かかっていましたが、新しいシステムでは五日ほどになります。つまり、皆さんが立て替えたお金が、ずっと早く戻ってくるということです。', 'Trước đây từ lúc đăng ký đến lúc chi trả trung bình mất ba tuần, với hệ thống mới thì còn khoảng năm ngày. Tức là tiền mọi người ứng trước sẽ được hoàn lại nhanh hơn nhiều.'],
+      ['男', 'なお、紙の領収書は法律で七年間の保管が決められていますので、撮影したあとも捨てずに、月末にまとめて経理部へ提出してください。', 'Lưu ý, hoá đơn giấy theo luật phải lưu bảy năm, nên sau khi chụp đừng bỏ đi, cuối tháng gom lại nộp phòng kế toán.'],
+      ['男', '操作の説明会は来週の水曜日に開きます。出られない方のために、録画を社内サイトに載せる予定です。', 'Buổi hướng dẫn thao tác sẽ tổ chức vào thứ tư tuần sau. Với người không dự được, chúng tôi dự định đăng video ghi hình lên trang nội bộ.'],
+    ],
+    questions: [
+      [
+        '説明している人は、新しいシステムの一番の利点は何だと言っていますか。',
+        ['領収書を貼る手間がなくなること', '出張中でも承認ができること', '立て替えたお金が早く戻ること', '紙の領収書を捨てられること'],
+        2,
+        'Anh nói 会社として一番大きい là số ngày thanh toán rút từ ba tuần xuống năm ngày, tức tiền ứng trước về nhanh. Lựa chọn 1 là ý kiến của nhân viên, không phải điều anh coi là lớn nhất. Lựa chọn 2 là lợi ích phụ. Lựa chọn 4 sai: hoá đơn giấy vẫn phải lưu bảy năm.',
+      ],
+    ],
+    points: [
+      ['経費精算', 'けいひせいさん', 'thanh toán chi phí'],
+      ['立て替える', 'たてかえる', 'ứng trước (tiền)'],
+      ['領収書', 'りょうしゅうしょ', 'hoá đơn, biên lai'],
+    ],
+  }),
+  item('mock1', 'sogo-chokai', 10, {
+    script: [
+      ['女1', '新人の歓迎会ですけど、いつもの居酒屋で、金曜日の夜七時からでいいですか。', 'Tiệc chào mừng người mới, ở quán nhậu quen, từ bảy giờ tối thứ sáu được không ạ?'],
+      ['男', 'うん。…あ、でも、今年の新人の一人は、お酒が飲めないって言ってたな。', 'Ừ. … À, nhưng một bạn mới năm nay bảo không uống được rượu.'],
+      ['女2', 'それに、金曜の夜は、子どものお迎えがある人が三人いるんですよ。去年も途中で帰っていましたよね。せっかくの歓迎会なのに。', 'Với lại tối thứ sáu có ba người phải đi đón con. Năm ngoái cũng về giữa chừng đấy ạ. Tiệc chào mừng mà tiếc thật.'],
+      ['女1', 'そうでしたね…。じゃあ、お昼にしますか。会社の近くのイタリアンなら、ランチで貸し切りにできます。', 'Đúng rồi… Vậy làm buổi trưa nhé? Quán Ý gần công ty cho thuê trọn quán buổi trưa được.'],
+      ['女2', 'あそこなら、お酒以外の飲み物も多いですしね。', 'Quán đó đồ uống không cồn cũng nhiều nữa.'],
+      ['男', '昼か。でも、料理が出てくるのにも時間がかかるし、昼休みの一時間だと、自己紹介だけで終わっちゃうんじゃない？', 'Buổi trưa à. Nhưng đồ ăn lên cũng mất thời gian, nghỉ trưa có một tiếng thì giới thiệu bản thân xong là hết giờ còn gì?'],
+      ['女2', '部長に相談して、その日だけ昼休みを二時間にしてもらうのはどうでしょう。', 'Hay mình xin trưởng bộ phận cho riêng hôm đó nghỉ trưa hai tiếng ạ?'],
+      ['男', '二時間はさすがに難しいだろうけど、一時間半なら、私からお願いしてみるよ。', 'Hai tiếng thì chắc khó, nhưng một tiếng rưỡi thì để tôi xin thử.'],
+      ['女1', 'ありがとうございます。じゃあ、お店にも一時間半で予約できるか聞いてみます。日にちは金曜日のままでいいですか。', 'Cảm ơn anh. Vậy em hỏi quán xem đặt một tiếng rưỡi được không. Ngày thì vẫn thứ sáu ạ?'],
+      ['男', 'いや、金曜は月末で経理の締めがあるから、前の日の木曜にしよう。', 'Không, thứ sáu là cuối tháng, có chốt sổ kế toán, nên làm hôm trước đó, thứ năm đi.'],
+      ['女1', 'わかりました。木曜で押さえておきます。新人の二人にも伝えておきますね。', 'Vâng ạ. Em sẽ giữ chỗ ngày thứ năm. Em cũng báo cho hai bạn mới luôn.'],
+      ['男', 'うん。部長の返事が来たら、すぐ知らせるよ。', 'Ừ. Có trả lời của trưởng bộ phận là tôi báo ngay.'],
+    ],
+    questions: [
+      [
+        '歓迎会はどのように開く予定になりましたか。',
+        ['木曜日の昼に一時間半で開く', '金曜日の夜に居酒屋で開く', '金曜日の昼に二時間で開く', '木曜日の夜にイタリアンで開く'],
+        0,
+        'Buổi tối bị loại (người không uống rượu, người đón con), chuyển sang trưa ở quán Ý; hai tiếng thì khó nên xin một tiếng rưỡi; thứ sáu bận chốt sổ nên đổi sang thứ năm. Lựa chọn 2 là phương án ban đầu. Lựa chọn 3 lấy giờ đã bị bác (hai tiếng) và ngày đã bị đổi.',
+      ],
+    ],
+    points: [
+      ['貸し切り', 'かしきり', 'thuê trọn (quán, xe)'],
+      ['締め', 'しめ', 'chốt sổ, khoá sổ'],
+      ['押さえる', 'おさえる', 'giữ chỗ, đặt trước'],
     ],
   }),
 ];
