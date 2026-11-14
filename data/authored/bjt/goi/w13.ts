@@ -1,0 +1,52 @@
+import type { BjtVocab } from '@nihongo/shared';
+import { vocab } from '../helpers';
+
+/** Week 13 — economy and management. */
+export const V13: BjtVocab[] = [
+  ...vocab(13, 'Kinh tế', 'keizai', [
+    ['景気', 'けいき', 'tình hình kinh tế, thị trường', '景気の回復に伴い、求人が増えている。', 'Cùng với việc kinh tế hồi phục, số việc làm đang tăng.'],
+    ['好況', 'こうきょう', 'kinh tế thịnh vượng', '好況が続き、各社とも採用を増やした。', 'Kinh tế thịnh vượng kéo dài nên công ty nào cũng tuyển thêm người.'],
+    ['不況', 'ふきょう', 'suy thoái kinh tế', '不況の影響で、広告費を削る企業が多い。', 'Do suy thoái, nhiều công ty cắt chi phí quảng cáo.'],
+    ['円安', 'えんやす', 'đồng yên yếu', '円安で、輸入品の価格が上がっている。', 'Vì yên yếu, giá hàng nhập khẩu đang tăng.'],
+    ['円高', 'えんだか', 'đồng yên mạnh', '円高が進み、輸出企業の利益が目減りした。', 'Yên tăng giá khiến lợi nhuận của các công ty xuất khẩu hao hụt.'],
+    ['物価', 'ぶっか', 'vật giá', '物価の上昇に賃金が追いついていない。', 'Tiền lương không theo kịp giá cả tăng.'],
+    ['個人消費', 'こじんしょうひ', 'tiêu dùng cá nhân (hộ gia đình)', '個人消費は依然として力強さに欠ける。', 'Tiêu dùng cá nhân vẫn còn yếu.'],
+    ['設備投資', 'せつびとうし', 'đầu tư thiết bị', '工場の自動化に向けた設備投資を拡大する。', 'Mở rộng đầu tư thiết bị để tự động hóa nhà máy.'],
+    ['金利', 'きんり', 'lãi suất', '金利が上がると、住宅ローンの返済額が増える。', 'Lãi suất tăng thì tiền trả góp mua nhà tăng.'],
+    ['利上げ', 'りあげ', 'tăng lãi suất', '中央銀行は年内の利上げを見送った。', 'Ngân hàng trung ương đã hoãn tăng lãi suất trong năm nay.'],
+    ['為替', 'かわせ', 'tỷ giá hối đoái', '為替の変動が業績に大きく影響する。', 'Biến động tỷ giá ảnh hưởng lớn đến kết quả kinh doanh.'],
+    ['原材料費', 'げんざいりょうひ', 'chi phí nguyên vật liệu', '原材料費の高騰で、利益率が下がった。', 'Chi phí nguyên vật liệu tăng vọt làm tỷ suất lợi nhuận giảm.'],
+    ['人手不足', 'ひとでぶそく', 'thiếu nhân lực', '物流業界では人手不足が深刻だ。', 'Ngành logistics thiếu người trầm trọng.'],
+    ['賃上げ', 'ちんあげ', 'tăng lương', '今年の春は、大手企業の多くが賃上げに応じた。', 'Mùa xuân năm nay, nhiều công ty lớn đã chấp nhận tăng lương.'],
+    ['需要', 'じゅよう', 'nhu cầu (của thị trường)', '在宅勤務の広がりで、事務用家具の需要が伸びた。', 'Làm việc tại nhà lan rộng khiến nhu cầu đồ nội thất văn phòng tăng.'],
+  ]),
+  ...vocab(13, 'Quản trị doanh nghiệp', 'keiei', [
+    ['経営陣', 'けいえいじん', 'ban lãnh đạo', '経営陣は工場の閉鎖を決めた。', 'Ban lãnh đạo đã quyết định đóng cửa nhà máy.'],
+    ['業績', 'ぎょうせき', 'kết quả kinh doanh', '海外事業が業績を押し上げた。', 'Mảng kinh doanh ở nước ngoài đã kéo kết quả đi lên.'],
+    ['決算', 'けっさん', 'quyết toán, báo cáo tài chính kỳ', '三月期の決算を五月に発表する。', 'Kết quả tài chính năm kết thúc tháng 3 được công bố vào tháng 5.'],
+    ['黒字', 'くろじ', 'có lãi, thặng dư', '新商品が当たり、三年ぶりに黒字となった。', 'Sản phẩm mới thành công, lần đầu sau ba năm công ty có lãi.'],
+    ['純利益', 'じゅんりえき', 'lợi nhuận ròng', '純利益は前期比で二割減った。', 'Lợi nhuận ròng giảm hai phần mười so với kỳ trước.'],
+    ['株主', 'かぶぬし', 'cổ đông', '株主総会で新しい社長が承認された。', 'Tân giám đốc đã được thông qua tại đại hội cổ đông.'],
+    ['配当', 'はいとう', 'cổ tức', '業績の悪化を受け、配当を減らした。', 'Do kết quả kinh doanh xấu đi, công ty đã giảm cổ tức.'],
+    ['合併', 'がっぺい', 'sáp nhập', '二つの地方銀行が来春に合併する。', 'Hai ngân hàng địa phương sẽ sáp nhập vào mùa xuân tới.'],
+    ['買収', 'ばいしゅう', 'mua lại (công ty)', '海外の同業他社を買収し、販路を広げた。', 'Mua lại một công ty cùng ngành ở nước ngoài để mở rộng kênh bán.'],
+    ['提携', 'ていけい', 'hợp tác, liên kết', '物流会社と業務提携を結んだ。', 'Đã ký hợp tác nghiệp vụ với một công ty logistics.'],
+    ['撤退', 'てったい', 'rút lui (khỏi thị trường)', '採算が取れず、家電事業から撤退する。', 'Không có lãi nên rút khỏi mảng đồ điện gia dụng.'],
+    ['参入', 'さんにゅう', 'gia nhập (thị trường)', '異業種からの参入が相次いでいる。', 'Doanh nghiệp từ ngành khác liên tục gia nhập.'],
+    ['事業再編', 'じぎょうさいへん', 'tái cơ cấu các mảng kinh doanh', '事業再編の一環として、子会社を売却した。', 'Như một phần của tái cơ cấu, công ty đã bán công ty con.'],
+    ['不採算', 'ふさいさん', 'không có lãi, thua lỗ', '不採算の店舗を二十店閉める。', 'Đóng hai mươi cửa hàng làm ăn thua lỗ.'],
+    ['中期経営計画', 'ちゅうきけいえいけいかく', 'kế hoạch kinh doanh trung hạn (3–5 năm)', '新しい中期経営計画では、海外売上比率五割を目指す。', 'Kế hoạch trung hạn mới đặt mục tiêu doanh thu nước ngoài chiếm một nửa.'],
+  ]),
+  ...vocab(13, 'Đọc báo kinh tế', 'shinbun', [
+    ['見込み', 'みこみ', 'dự kiến, triển vọng', '工事は来月末に完了する見込みだ。', 'Công trình dự kiến xong vào cuối tháng sau.'],
+    ['に伴い', 'にともない', 'cùng với, kéo theo', '事業の拡大に伴い、本社を移転する。', 'Cùng với việc mở rộng kinh doanh, trụ sở sẽ chuyển đi.'],
+    ['背景', 'はいけい', 'bối cảnh, nguyên nhân sâu xa', '値上げの背景には、物流費の上昇がある。', 'Đằng sau việc tăng giá là chi phí logistics tăng.'],
+    ['歯止めがかかる', 'はどめがかかる', '(xu hướng xấu) được chặn lại', '客数の減少に、ようやく歯止めがかかった。', 'Lượng khách giảm cuối cùng cũng đã được chặn lại.'],
+    ['追い風', 'おいかぜ', 'gió xuôi, yếu tố thuận lợi', '訪日客の増加が、百貨店には追い風となった。', 'Lượng khách đến Nhật tăng là gió xuôi cho các trung tâm thương mại.'],
+    ['逆風', 'ぎゃくふう', 'gió ngược, hoàn cảnh bất lợi', '原料高という逆風の中でも、増益を確保した。', 'Dù gặp bất lợi giá nguyên liệu cao, công ty vẫn giữ được lợi nhuận tăng.'],
+    ['先行き', 'さきゆき', 'triển vọng sắp tới', '景気の先行きは依然として不透明だ。', 'Triển vọng kinh tế vẫn còn mờ mịt.'],
+    ['相次ぐ', 'あいつぐ', 'liên tiếp xảy ra', '食品メーカーの値上げが相次いでいる。', 'Các hãng thực phẩm liên tiếp tăng giá.'],
+    ['打ち出す', 'うちだす', 'đưa ra (chính sách, phương châm)', '同社は来年度から週休三日制を導入する方針を打ち出した。', 'Công ty đưa ra phương châm áp dụng tuần nghỉ ba ngày từ năm sau.'],
+    ['踏み切る', 'ふみきる', 'dứt khoát quyết định làm', '赤字が続き、ついに工場の売却に踏み切った。', 'Lỗ kéo dài, cuối cùng công ty quyết định bán nhà máy.'],
+  ]),
+];
