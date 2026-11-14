@@ -448,6 +448,12 @@ export const en: Dict = {
     bookLastMock: (s, l) => `Latest book mock: ${s} points (${l})`,
     bookMocks: 'Mock tests from my books',
     bookRunLine: (s, l, d) => `Last time: ${s} points (${l}) · ${d}`,
+    bookLastLegacy: (c, n) => `Latest book mock: ${c}/${n} correct (old-format test)`,
+    bookRunLegacy: (c, n, d) => `Last time: ${c}/${n} correct · ${d}`,
+    legacyNote: 'Old-format test — not converted to the J1 scale',
+    bookWrongList: 'Wrong answers in my books',
+    bookWrongRow: (n) => (n === 1 ? '1 question' : `${n} questions`),
+    bookRedo: 'Redo',
   },
   bjtBooks: {
     title: 'My books',
@@ -508,6 +514,9 @@ export const en: Dict = {
     yourAnswer: (a) => (a ? `You chose ${a}` : 'Not answered'),
     showPage: 'Show the question page',
     done: '← Back to my books',
+    legacyNote: 'Old-format test — not converted to the J1 scale',
+    lastLegacy: (c, n) => `Last time: ${c}/${n} correct`,
+    extras: 'Instructions & example recordings',
   },
   review: {
     title: 'Review',

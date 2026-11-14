@@ -60,7 +60,7 @@ export function BjtPage() {
   const wrongCount = wrongItems.reduce((n, x) => n + x.questions.filter((q) => answers[q.id] === false).length, 0);
   // runs are newest first, so the first one is the latest timed book run
   const lastBookRun = bookStats.runs[0];
-  const lastBookEst = lastBookRun && bjtEstimate(lastBookRun.last.correct, lastBookRun.last.total);
+  const lastBookEst = lastBookRun && !lastBookRun.legacy && bjtEstimate(lastBookRun.last.correct, lastBookRun.last.total);
 
   return (
     <div className="space-y-4">
@@ -99,6 +99,7 @@ export function BjtPage() {
               <p className="text-sm text-muted">{t.bjt.myBooksDesc}</p>
               {bookStats.wrong > 0 && <p className="text-sm font-bold">{t.bjt.bookWrong(bookStats.wrong)}</p>}
               {lastBookEst && <p className="text-sm font-bold text-emerald-600">{t.bjt.bookLastMock(lastBookEst.score, lastBookEst.level)}</p>}
+              {lastBookRun?.legacy && <p className="text-sm font-bold text-emerald-600">{t.bjt.bookLastLegacy(lastBookRun.last.correct, lastBookRun.last.total)}</p>}
             </div>
             <Link to="/bjt/sach" className="btn-primary">
               {t.bjt.openBooks}
@@ -119,6 +120,27 @@ export function BjtPage() {
               <button type="button" className="btn-sky" onClick={() => setRun({ title: t.bjt.redoWrong, items: wrongItems.slice(0, REDO_SIZE) })}>
                 {t.bjt.redoWrong}
               </button>
+            </section>
+          )}
+          {bookStats.wrongTests.length > 0 && (
+            <section className="card space-y-2 p-4" data-testid="bjt-book-wrong">
+              <p className="font-black">{t.bjt.bookWrongList}</p>
+              <ul className="space-y-2">
+                {bookStats.wrongTests.map((w) => (
+                  <li
+                    key={`${w.bookId}:${w.testId}`}
+                    className="flex items-center justify-between gap-2 rounded-2xl bg-cream p-3 dark:bg-bg"
+                    data-testid={`bjt-book-wrong-${w.bookId}:${w.testId}`}
+                  >
+                    <p className="min-w-0 text-sm break-words">
+                      <span className="font-bold">{w.book}</span> <span className="text-muted">· {w.test} · {t.bjt.bookWrongRow(w.nos.length)}</span>
+                    </p>
+                    <Link to={`/bjt/sach?redo=${encodeURIComponent(`${w.bookId}:${w.testId}`)}`} className="btn-sky shrink-0 text-sm">
+                      {t.bjt.bookRedo}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
           <section className="card flex flex-wrap items-center justify-between gap-3 p-4">
@@ -325,12 +347,20 @@ export function BjtPage() {
               <ul className="space-y-2">
                 {bookStats.runs.map((r) => {
                   const est = bjtEstimate(r.last.correct, r.last.total);
+                  const date = t.common.shortDate(new Date(r.last.at));
                   return (
                     <li key={r.key} className="rounded-2xl bg-cream p-3 dark:bg-bg" data-testid={`bjt-book-run-${r.key}`}>
                       <p className="font-bold break-words">
                         {r.book} <span className="font-normal text-muted">· {r.test}</span>
                       </p>
-                      <p className="text-sm font-bold text-emerald-600">{t.bjt.bookRunLine(est.score, est.level, t.common.shortDate(new Date(r.last.at)))}</p>
+                      {r.legacy ? (
+                        <>
+                          <p className="text-sm font-bold text-emerald-600">{t.bjt.bookRunLegacy(r.last.correct, r.last.total, date)}</p>
+                          <p className="text-xs text-muted">{t.bjt.legacyNote}</p>
+                        </>
+                      ) : (
+                        <p className="text-sm font-bold text-emerald-600">{t.bjt.bookRunLine(est.score, est.level, date)}</p>
+                      )}
                     </li>
                   );
                 })}

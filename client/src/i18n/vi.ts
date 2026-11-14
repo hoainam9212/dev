@@ -443,6 +443,12 @@ export const vi = {
     bookLastMock: (s: number, l: string) => `Thi thử sách gần nhất: ${s} điểm (${l})`,
     bookMocks: 'Thi thử từ sách của tôi',
     bookRunLine: (s: number, l: string, d: string) => `Lần gần nhất: ${s} điểm (${l}) · ${d}`,
+    bookLastLegacy: (c: number, n: number) => `Thi thử sách gần nhất: đúng ${c}/${n} (đề mẫu cũ)`,
+    bookRunLegacy: (c: number, n: number, d: string) => `Lần gần nhất: đúng ${c}/${n} · ${d}`,
+    legacyNote: 'Đề mẫu cũ — không quy đổi sang thang J1',
+    bookWrongList: 'Câu sai trong sách',
+    bookWrongRow: (n: number) => `${n} câu`,
+    bookRedo: 'Làm lại',
   },
   bjtBooks: {
     title: 'Sách của tôi',
@@ -503,6 +509,9 @@ export const vi = {
     yourAnswer: (a: number | undefined) => (a ? `Bạn chọn ${a}` : 'Chưa trả lời'),
     showPage: 'Xem trang đề',
     done: '← Về tủ sách',
+    legacyNote: 'Đề mẫu cũ — không quy đổi sang thang J1',
+    lastLegacy: (c: number, n: number) => `Lần gần nhất: đúng ${c}/${n}`,
+    extras: 'Băng hướng dẫn & bài mẫu',
   },
   review: {
     title: 'Ôn tập',

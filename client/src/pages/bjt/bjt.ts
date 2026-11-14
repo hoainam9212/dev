@@ -1,6 +1,6 @@
 import { BJT_PARTS, BJT_SECTIONS, bjtPartOf, type BjtItem, type BjtQuestion, type BjtSection } from '@nihongo/shared';
 import type { BjtRunResult } from '../../store/bjt';
-import { answerKey, type PackBook, type PackTest } from './books/book';
+import { answerKey, wrongNos, type PackBook, type PackTest } from './books/book';
 
 /** One screen of a run: a question together with the item it belongs to. */
 export interface Step {
@@ -126,6 +126,8 @@ export interface BookRun {
   key: string;
   book: string;
   test: string;
+  /** Old-format test: show the raw score, not an estimate on today's scale. */
+  legacy: boolean;
   last: BjtRunResult;
 }
 
@@ -138,10 +140,33 @@ export function bookRuns(books: { book: unknown }[], runs: Record<string, BjtRun
     for (const t of b.tests) {
       const key = `book:${b.id}:${t.id}`;
       const last = runs[key]?.at(-1);
-      if (last) out.push({ key, book: b.title, test: typeof t.title === 'string' ? t.title : t.id, last });
+      if (last) out.push({ key, book: b.title, test: typeof t.title === 'string' ? t.title : t.id, legacy: t.legacy === true, last });
     }
   }
   return out.sort((a, b) => (a.last.at < b.last.at ? 1 : a.last.at > b.last.at ? -1 : 0));
+}
+
+export interface BookWrongTest {
+  bookId: string;
+  testId: string;
+  book: string;
+  test: string;
+  /** Question numbers whose latest answer is wrong. */
+  nos: number[];
+}
+
+/** Each test of the stored books that has questions last answered wrong, in book and test order. */
+export function bookWrongTests(books: { book: unknown }[], answers: Record<string, boolean>): BookWrongTest[] {
+  const out: BookWrongTest[] = [];
+  for (const { book } of books) {
+    const b = testsOf(book);
+    if (!b) continue;
+    for (const t of b.tests) {
+      const nos = wrongNos(b.id, t, answers);
+      if (nos.length) out.push({ bookId: b.id, testId: t.id, book: b.title, test: typeof t.title === 'string' ? t.title : t.id, nos });
+    }
+  }
+  return out;
 }
 
 export function clock(seconds: number): string {

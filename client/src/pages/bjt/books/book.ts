@@ -28,6 +28,17 @@ export interface PackQuestion {
   explainPage?: number;
   /** Part of `page` that holds only this question [x0, y0, x1, y1], when the page holds several. */
   crop?: [number, number, number, number];
+  /** Section name as printed in the book (old format), shown instead of the section's Japanese name. */
+  label?: string;
+  /** A question printed over several pages, in reading order; `page` is then the last one. */
+  pages?: number[];
+  /** One extra page shown above `page` (same idea as `pages`, written by some packs). */
+  textPage?: number;
+}
+
+export interface PackExtra {
+  title: string;
+  audio: string;
 }
 
 export interface PackTest {
@@ -35,6 +46,12 @@ export interface PackTest {
   title: string;
   answerPages?: [number, number];
   scriptPages?: [number, number];
+  /** Official total minutes of this test; overrides the minutes of today's parts. */
+  minutes?: number;
+  /** Old-format test (100 questions, 120 minutes): no estimate on today's J1 scale. */
+  legacy?: boolean;
+  /** Instruction and example recordings of the book, outside the timed run. */
+  extras?: PackExtra[];
   questions: PackQuestion[];
 }
 
@@ -86,8 +103,11 @@ export function parseBook(text: string): PackBook {
             SECTION_IDS.has(q.section) &&
             Number.isInteger(q.page) &&
             [1, 2, 3, 4].includes(q.answer) &&
-            (bjtPartOf(q.section) === 'dokkai' || typeof q.audio === 'string'),
-        ),
+            (bjtPartOf(q.section) === 'dokkai' || typeof q.audio === 'string') &&
+            (q.pages === undefined || (Array.isArray(q.pages) && q.pages.length > 0 && q.pages.every(Number.isInteger))) &&
+            (q.textPage === undefined || Number.isInteger(q.textPage)),
+        ) &&
+        (t.extras === undefined || (Array.isArray(t.extras) && t.extras.every((x) => typeof x?.audio === 'string'))),
     );
   if (!ok) throw new Error('bad-book');
   return b;
@@ -95,16 +115,52 @@ export function parseBook(text: string): PackBook {
 
 export const pagePath = (n: number) => `pages/p${String(n).padStart(4, '0')}.jpg`;
 
+/** Pages a question is printed on, in reading order. */
+export const pagesOf = (q: PackQuestion): number[] => (q.pages?.length ? q.pages : q.textPage ? [q.textPage, q.page] : [q.page]);
+
 /** Every page and recording the tests point at, sorted, once each. */
 export function filesNeeded(b: PackBook): string[] {
   const set = new Set<string>();
-  for (const t of b.tests)
+  for (const t of b.tests) {
     for (const q of t.questions) {
-      set.add(pagePath(q.page));
+      for (const p of pagesOf(q)) set.add(pagePath(p));
       if (q.explainPage) set.add(pagePath(q.explainPage));
       if (q.audio) set.add(q.audio);
     }
+    for (const x of t.extras ?? []) set.add(x.audio);
+  }
   return [...set].sort();
+}
+
+/** Name of a question's section: the label printed in the book, else the section's Japanese name. */
+export const sectionName = (q: PackQuestion): string => q.label ?? BJT_SECTIONS.find((x) => x.id === q.section)!.ja;
+
+export interface QuestionGroup {
+  key: string;
+  name: string;
+  /** Question numbers of the group, in test order. */
+  nos: number[];
+}
+
+/**
+ * Sections of a test as the learner sees them: by printed label when the test has labels (an old section can map
+ * onto two of today's ids), else by section id in the order of the real exam.
+ */
+export function groupsOf(t: PackTest): QuestionGroup[] {
+  if (t.questions.some((q) => q.label)) {
+    const out = new Map<string, QuestionGroup>();
+    for (const q of t.questions) {
+      const name = sectionName(q);
+      const g = out.get(name) ?? out.set(name, { key: name, name, nos: [] }).get(name)!;
+      g.nos.push(q.no);
+    }
+    return [...out.values()];
+  }
+  return sectionsOf(t).map((s) => ({
+    key: s,
+    name: BJT_SECTIONS.find((x) => x.id === s)!.ja,
+    nos: t.questions.filter((q) => q.section === s).map((q) => q.no),
+  }));
 }
 
 /** Key under which a book answer is kept in the BJT store, apart from the app's own question ids. */
@@ -121,8 +177,9 @@ export const j1plusNos = (test: PackTest): number[] => test.questions.filter((q)
 export const sectionsOf = (t: PackTest): BjtSection[] =>
   [...new Set(t.questions.map((q) => q.section))].sort((a, b) => ORDER.get(a)! - ORDER.get(b)!);
 
-/** Official minutes of each part the test contains (a full test: 45 + 30 + 30). */
+/** The test's own official minutes, else those of each part it contains (a full test: 45 + 30 + 30). */
 export function bookExamSeconds(t: PackTest): number {
+  if (typeof t.minutes === 'number' && t.minutes > 0) return t.minutes * 60;
   const parts = new Set(t.questions.map((q) => bjtPartOf(q.section)));
   return BJT_PARTS.filter((p) => parts.has(p.id)).reduce((s, p) => s + p.minutes * 60, 0);
 }
@@ -131,7 +188,8 @@ export interface TestScore {
   correct: number;
   total: number;
   estimate: { score: number; level: string };
-  bySection: { section: BjtSection; ja: string; correct: number; total: number }[];
+  /** Per group of groupsOf(): `ja` is the printed label when the test has labels. */
+  bySection: { section: string; ja: string; correct: number; total: number }[];
   wrong: PackQuestion[];
 }
 
@@ -143,9 +201,9 @@ export function scoreTest(t: PackTest, picked: Record<number, number>): TestScor
     correct,
     total: t.questions.length,
     estimate: bjtEstimate(correct, t.questions.length),
-    bySection: sectionsOf(t).map((s) => {
-      const mine = t.questions.filter((q) => q.section === s);
-      return { section: s, ja: BJT_SECTIONS.find((x) => x.id === s)!.ja, correct: mine.filter(right).length, total: mine.length };
+    bySection: groupsOf(t).map((g) => {
+      const mine = t.questions.filter((q) => g.nos.includes(q.no));
+      return { section: g.key, ja: g.name, correct: mine.filter(right).length, total: mine.length };
     }),
     wrong: t.questions.filter((q) => !right(q)),
   };

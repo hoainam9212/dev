@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { BJT_SECTIONS, bjtEstimate, type BjtSection } from '@nihongo/shared';
+import { bjtEstimate, type BjtSection } from '@nihongo/shared';
 import { db, type StoredBook } from '../../../db/db';
 import { useBjt } from '../../../store/bjt';
 import { useT } from '../../../i18n';
-import { answerKey, bookExamSeconds, j1plusNos, sectionsOf, wrongNos, type PackBook, type PackTest } from './book';
+import { answerKey, bookExamSeconds, groupsOf, j1plusNos, wrongNos, type PackBook, type PackExtra, type PackTest } from './book';
 import { deleteBook, importBook } from './library';
 import { BookRunner } from './BookRunner';
+import { useBookFile } from './useBookFile';
 
 interface Run {
   book: PackBook;
@@ -24,6 +25,19 @@ export function BooksPage() {
   const [run, setRun] = useState<Run | null>(null);
   const [progress, setProgress] = useState<number | null>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
+  const [params, setParams] = useSearchParams();
+  const redo = params.get('redo');
+
+  // /bjt/sach?redo=<bookId>:<testId> (from the /bjt plan tab): open that test's wrong answers once the books are loaded
+  useEffect(() => {
+    if (!redo || !books) return;
+    const cut = redo.lastIndexOf(':');
+    const book = books.find((b) => b.id === redo.slice(0, cut))?.book as PackBook | undefined;
+    const test = book?.tests.find((x) => x.id === redo.slice(cut + 1));
+    const only = book && test ? wrongNos(book.id, test, useBjt.getState().answers) : [];
+    if (book && test && only.length) setRun({ book, test, exam: false, only });
+    setParams({}, { replace: true });
+  }, [redo, books, setParams]);
 
   if (run) {
     return (
@@ -94,6 +108,29 @@ export function BooksPage() {
   );
 }
 
+/** The book's instruction and example recordings: each with its own player, outside the timed run. */
+function Extras({ bookId, extras }: { bookId: string; extras: PackExtra[] }) {
+  const t = useT();
+  return (
+    <details className="rounded-xl bg-surface px-3 py-2 ring-1 ring-sakura/40" data-testid="book-extras" open>
+      <summary className="cursor-pointer text-sm font-bold">{t.bjtBooks.extras}</summary>
+      <ul className="mt-2 space-y-2">
+        {extras.map((x) => (
+          <li key={x.audio} className="space-y-1">
+            <p className="text-xs font-bold break-words">{x.title}</p>
+            <ExtraAudio bookId={bookId} path={x.audio} />
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
+function ExtraAudio({ bookId, path }: { bookId: string; path: string }) {
+  const url = useBookFile(bookId, path);
+  return <audio src={url} controls preload="none" className="w-full" data-testid="book-extra-audio" />;
+}
+
 function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => void }) {
   const t = useT();
   const book = stored.book as PackBook;
@@ -121,7 +158,7 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
 
       {book.tests.map((test) => {
         const last = runs[`book:${book.id}:${test.id}`]?.at(-1);
-        const est = last && bjtEstimate(last.correct, last.total);
+        const est = last && !test.legacy && bjtEstimate(last.correct, last.total);
         const minutes = bookExamSeconds(test) / 60;
         const wrong = wrongNos(book.id, test, answers);
         const plus = j1plusNos(test);
@@ -131,6 +168,8 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
               {test.title} <span className="text-sm font-normal text-muted">· {t.bjtBooks.questions(test.questions.length)}</span>
             </p>
             {last && est && <p className="text-xs text-muted">{t.bjtBooks.last(est.score, est.level, last.correct, last.total)}</p>}
+            {last && test.legacy && <p className="text-xs text-muted">{t.bjtBooks.lastLegacy(last.correct, last.total)}</p>}
+            {test.legacy && <p className="text-xs font-bold text-muted">{t.bjtBooks.legacyNote}</p>}
             <div className="flex flex-wrap gap-2">
               <button type="button" className="btn-primary text-sm" onClick={() => onRun({ book, test, exam: true })}>
                 {t.bjtBooks.exam(minutes)}
@@ -150,21 +189,21 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
               )}
             </div>
             <p className="text-xs text-muted">{t.bjtBooks.examRules}</p>
-            <ul className="grid grid-cols-1 gap-1 sm:grid-cols-3">
-              {sectionsOf(test).map((s) => {
-                const qs = test.questions.filter((q) => q.section === s);
-                const keys = qs.map((q) => answerKey(book.id, test.id, q.no));
+            {!!test.extras?.length && <Extras bookId={book.id} extras={test.extras} />}
+            <ul className={`grid grid-cols-1 gap-1 ${test.questions.some((q) => q.label) ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
+              {groupsOf(test).map((g) => {
+                const keys = g.nos.map((no) => answerKey(book.id, test.id, no));
                 const seen = keys.filter((k) => k in answers);
                 const right = seen.filter((k) => answers[k]).length;
                 return (
-                  <li key={s}>
+                  <li key={g.key}>
                     <button
                       type="button"
                       className="flex w-full items-center justify-between gap-2 rounded-xl bg-surface px-3 py-2 text-left text-sm ring-1 ring-sakura/40 hover:bg-sakura/30"
-                      onClick={() => onRun({ book, test, exam: false, sections: [s] })}
+                      onClick={() => onRun({ book, test, exam: false, only: g.nos })}
                     >
-                      <span className="font-bold">{BJT_SECTIONS.find((x) => x.id === s)!.ja}</span>
-                      <span className="shrink-0 text-xs text-muted tabular-nums">{seen.length ? t.bjtBooks.sectionDone(right, seen.length, qs.length) : t.bjtBooks.questions(qs.length)}</span>
+                      <span className="min-w-0 font-bold break-words">{g.name}</span>
+                      <span className="shrink-0 text-xs text-muted tabular-nums">{seen.length ? t.bjtBooks.sectionDone(right, seen.length, g.nos.length) : t.bjtBooks.questions(g.nos.length)}</span>
                     </button>
                   </li>
                 );

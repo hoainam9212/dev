@@ -110,7 +110,92 @@ describe('BookRunner, timed test', () => {
   });
 });
 
+describe('old-format test', () => {
+  const L1 = '第1部 セクション1 描写問題';
+  const L3 = '第3部 セクション3 短文読解';
+  const oldIndex = {
+    id: 'old',
+    title: 'Old book',
+    pages: 8,
+    audio: [],
+    tests: [
+      {
+        id: 't',
+        title: '体験テスト',
+        minutes: 120,
+        legacy: true,
+        extras: [{ title: '第1部 · 練習', audio: 'audio/a003.mp3' }],
+        questions: [
+          { no: 1, section: 'bamen', n: 1, label: L1, page: 2, answer: 3, audio: 'audio/a004.mp3' },
+          { no: 2, section: 'sogo-dokkai', n: 1, label: L3, pages: [5, 6], page: 6, answer: 2 },
+        ],
+      },
+    ],
+  };
+  const old = parseBook(JSON.stringify(oldIndex));
+  const oldZip = () =>
+    makeZip([
+      ['book.json', enc.encode(JSON.stringify(oldIndex))],
+      ...[2, 5, 6].map((p) => [`pages/p000${p}.jpg`, new Uint8Array([p])] as [string, Uint8Array]),
+      ['audio/a003.mp3', new Uint8Array([3])],
+      ['audio/a004.mp3', new Uint8Array([4])],
+    ]);
+  beforeEach(async () => {
+    await importBook(oldZip());
+  });
+
+  it('shows the printed section name and every page of a question', async () => {
+    render(<BookRunner book={old} test={old.tests[0]!} only={[2]} onExit={() => {}} />);
+    expect(screen.getByText(`${L3} · 1番`)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getAllByTestId('book-page').map((x) => x.getAttribute('alt'))).toEqual(['p.5', 'p.6']));
+  });
+
+  it('times 120 minutes and shows the raw score without an estimate', () => {
+    render(<BookRunner book={old} test={old.tests[0]!} exam onExit={() => {}} />);
+    expect(screen.getByTestId('book-clock')).toHaveTextContent('120:00');
+    fireEvent.click(screen.getByRole('button', { name: '3' }));
+    fireEvent.click(screen.getByRole('button', { name: /Câu tiếp/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Nộp bài' }));
+    const result = screen.getByTestId('book-result');
+    expect(result).toHaveTextContent('Đúng 1/2');
+    expect(result).toHaveTextContent('Đề mẫu cũ — không quy đổi sang thang J1');
+    expect(result).not.toHaveTextContent('Ước lượng');
+    expect(result).toHaveTextContent(L1);
+    expect(within(result).getAllByText(`${L3} · 1番`)).toHaveLength(1); // in the wrong-answer list
+  });
+
+  it('book card: raw last score, the extra recordings, and chips by printed section', async () => {
+    useBjt.setState({ runs: { 'book:old:t': [{ at: '2026-11-13T00:00:00Z', correct: 70, total: 100, seconds: 60 }] } });
+    render(<BooksPage />, { wrapper: MemoryRouter });
+    const card = (await screen.findAllByTestId('book-card')).find((c) => c.textContent?.includes('Old book'))!;
+    expect(card).toHaveTextContent('Lần gần nhất: đúng 70/100');
+    expect(card).toHaveTextContent('Đề mẫu cũ — không quy đổi sang thang J1');
+    expect(card).not.toHaveTextContent('điểm (');
+    expect(within(card).getByRole('button', { name: /Thi thử 120 phút/ })).toBeInTheDocument();
+    const extras = within(card).getByTestId('book-extras');
+    expect(extras).toHaveTextContent('Băng hướng dẫn & bài mẫu');
+    expect(extras).toHaveTextContent('第1部 · 練習');
+    await waitFor(() => expect(within(extras).getByTestId('book-extra-audio')).toHaveAttribute('src', 'blob:x'));
+    fireEvent.click(within(card).getByRole('button', { name: new RegExp(L3) }));
+    expect(screen.getByTestId('book-runner')).toHaveTextContent(`${L3} · 1番`);
+  });
+});
+
 describe('BooksPage', () => {
+  it('opens straight into redoing the wrong answers of a test from ?redo=', async () => {
+    useBjt.setState({ answers: { 'book:q4:mogi:1': true, 'book:q4:mogi:2': false } });
+    render(
+      <MemoryRouter initialEntries={['/bjt/sach?redo=q4:mogi']}>
+        <BooksPage />
+      </MemoryRouter>,
+    );
+    const runner = await screen.findByTestId('book-runner');
+    expect(screen.getByText('Câu 1/1')).toBeInTheDocument();
+    expect(runner).toHaveTextContent('語彙・文法 · 1番');
+    fireEvent.click(screen.getByRole('button', { name: /Thoát/ }));
+    expect(await screen.findByTestId('book-card')).toBeInTheDocument(); // leaving does not reopen it
+  });
+
   it('lists imported books with a timed test, practice and per-section buttons', async () => {
     render(<BooksPage />, { wrapper: MemoryRouter });
     const card = await screen.findByTestId('book-card');

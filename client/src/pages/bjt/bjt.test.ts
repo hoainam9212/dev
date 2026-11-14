@@ -1,5 +1,5 @@
 import type { BjtItem, BjtSection } from '@nihongo/shared';
-import { audioLines, bookRuns, bookSectionStats, clock, currentWeek, examOrder, examSeconds, pickPractice, sectionStats, toSteps, weekSet } from './bjt';
+import { audioLines, bookRuns, bookSectionStats, bookWrongTests, clock, currentWeek, examOrder, examSeconds, pickPractice, sectionStats, toSteps, weekSet } from './bjt';
 import type { PackBook } from './books/book';
 
 function mk(id: string, section: BjtSection, nq = 1, extra: Partial<BjtItem> = {}): BjtItem {
@@ -116,8 +116,16 @@ it('lists the latest timed run of each book test, newest first, with titles', ()
     mock1: [run('2026-11-13T00:00:00Z', 4)],
   };
   expect(bookRuns([{ book: BOOK }], runs)).toEqual([
-    { key: 'book:b1:t2', book: 'Book one', test: 'Test 2', last: run('2026-11-12T00:00:00Z', 2) },
-    { key: 'book:b1:t1', book: 'Book one', test: 'Test 1', last: run('2026-11-10T00:00:00Z', 3) },
+    { key: 'book:b1:t2', book: 'Book one', test: 'Test 2', legacy: false, last: run('2026-11-12T00:00:00Z', 2) },
+    { key: 'book:b1:t1', book: 'Book one', test: 'Test 1', legacy: false, last: run('2026-11-10T00:00:00Z', 3) },
   ]);
   expect(bookRuns([], runs)).toEqual([]);
+  const old = { ...BOOK, tests: [{ ...BOOK.tests[0]!, legacy: true }] };
+  expect(bookRuns([{ book: old }], runs)[0]!.legacy).toBe(true);
+});
+
+it('lists each book test with wrong answers, for one place to redo them', () => {
+  const answers = { 'book:b1:t1:1': false, 'book:b1:t1:3': false, 'book:b1:t1:2': true, 'book:b1:t2:1': true, 'book:gone:t1:1': false };
+  expect(bookWrongTests([{ book: BOOK }], answers)).toEqual([{ bookId: 'b1', testId: 't1', book: 'Book one', test: 'Test 1', nos: [1, 3] }]);
+  expect(bookWrongTests([{ book: { id: 'x' } }], answers)).toEqual([]);
 });
