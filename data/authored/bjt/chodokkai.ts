@@ -20,5 +20,5 @@ import { MOCK3 } from './chodokkai/mock3';
 // Rules and targets: docs/superpowers/specs/2026-11-13-bjt-design.md
 const WEEKS = ['w01', 'w02', 'w03', 'w04', 'w05', 'w06', 'w07', 'w09', 'w10', 'w11', 'w13', 'w14', 'w16'];
 /** Sets rewritten to the 2026-11-14 calibration rules (spec); data/src/bjt.test.ts checks them strictly. */
-export const CHODOKKAI_CALIBRATED: string[] = WEEKS.flatMap((w) => [`${w}/jokyo`, `${w}/sogo-chodokkai`]);
+export const CHODOKKAI_CALIBRATED: string[] = ['mock1', 'mock2', 'mock3', ...WEEKS.flatMap((w) => [`${w}/jokyo`, `${w}/sogo-chodokkai`])];
 export const BJT_CHODOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...W16, ...MOCK1, ...MOCK2, ...MOCK3];
