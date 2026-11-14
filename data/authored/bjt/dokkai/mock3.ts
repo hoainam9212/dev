@@ -2,10 +2,10 @@ import type { BjtItem } from '@nihongo/shared';
 import { item } from '../helpers';
 
 /**
- * Full test 3 — reading part (語彙・文法 10 + 表現読解 10 + 総合読解 10). Mixed themes of the 16 weeks.
- * About a third of the questions are J1+ (marked "J1+" below): keigo and grammar nuance, a refusal or warning
- * said indirectly, two conditions to combine, business days and totals to compute, a long business-news text,
- * a table to combine with an email. All dates are in 2027 and their weekdays were checked.
+ * Full test 3 — reading part (語彙・文法 10 + 表現読解 10 + 総合読解 10 items, one question each). Mixed themes.
+ * 表現読解 and 総合読解 follow the 2026-11-14 calibration rules (spec). About a third of the questions are J1+
+ * (some goi items are marked "J1+" below; in the rewritten sections: keigo subject, a refusal said indirectly,
+ * a ※ note to combine with a figure). Dates are in 2027 unless written otherwise; weekdays were checked.
  */
 export const MOCK3: BjtItem[] = [
   // ── 語彙・文法 ──────────────────────────────────────────────
@@ -155,340 +155,346 @@ export const MOCK3: BjtItem[] = [
       ['管理体制', 'かんりたいせい', 'hệ thống quản lý'],
     ],
   }),
-
-  // ── 表現読解 ──────────────────────────────────────────────
+  // ── 表現読解: one sentence or a short A/B exchange with a ＿＿＿ blank (spec, calibration rules 3 and 11) ──
   item('mock3', 'hyogen', 1, {
-    material: {
-      kind: 'text',
-      title: '社員食堂の改装工事について',
-      body: '社員各位\n\n本社社員食堂の改装工事を、2027年2月8日（月）から3月5日（金）まで行います。工事期間中の昼食は、次のとおりとします。\n・2月8日（月）〜2月19日（金）：食堂は全面休業します。1階ロビーで弁当を販売します（11:30〜13:00）。\n・2月22日（月）〜3月5日（金）：食堂の半分を使って営業します。メニューは日替わり定食のみです。\n3月8日（月）からは、通常どおり営業します。\n\n総務部',
-    },
     questions: [
       [
-        '2027年3月1日（月）に、社員食堂で食べられるものはどれですか。',
-        ['ロビーで売っている弁当', '日替わり定食', '通常どおりのメニュー', '何も食べられない'],
+        '（受付から内線で担当者に）営業部の野口さん、ただいま光洋商事の森様が＿＿＿。',
+        ['参りました', 'お見えになりました', 'お見えになられました', '伺いました'],
         1,
-        'Lựa chọn 2: ngày 1/3 nằm trong giai đoạn hai (22/2–5/3), nhà ăn mở một nửa và chỉ có suất ăn thay đổi theo ngày. Lựa chọn 1 là cách ăn trưa của giai đoạn một (8/2–19/2) và bán ở sảnh, không phải trong nhà ăn. Thực đơn bình thường chỉ có từ 8/3.',
+        'Người đến là khách (光洋商事の森様), nên dùng tôn kính お見えになりました (lựa chọn 2), kể cả khi nói qua điện thoại nội bộ. Lựa chọn 3 dễ nhầm nhất: お見えになる đã là tôn kính, thêm ～られる thành kính ngữ kép. Lựa chọn 1 và 4 là khiêm nhường ngữ: đúng ý "đã đến" nhưng sai chủ thể, hạ thấp khách.',
       ],
     ],
     points: [
-      ['改装', 'かいそう', 'sửa sang, cải tạo'],
-      ['日替わり定食', 'ひがわりていしょく', 'suất cơm đổi món theo ngày'],
+      ['お見えになる', 'おみえになる', 'đến (tôn kính)'],
+      ['内線', 'ないせん', 'điện thoại nội bộ'],
     ],
   }),
-  // J1+
   item('mock3', 'hyogen', 2, {
-    material: {
-      kind: 'text',
-      body: '株式会社サクラ化成 購買部 吉岡様\n\nいつもお世話になっております。東邦樹脂 営業部の松尾でございます。\n先日ご相談いただきました、来期の樹脂材料の単価を5%お下げする件につきまして、社内で検討いたしました。\n長年のお取引を考えますと、何とかご期待にお応えしたいところではございますが、原料価格が高止まりしている現状では、正直なところ、単価の見直しは難しいと申し上げざるを得ません。\nその代わりと申しますか、年間のご発注量をお約束いただける場合には、1回あたりの最低ロットを現在の半分にすることは可能でございます。御社の在庫のご負担を少しでも軽くできればと存じます。\nご検討のほど、よろしくお願い申し上げます。\n\n東邦樹脂 営業部 松尾',
-    },
     questions: [
       [
-        '松尾さんがこのメールで伝えていることは何ですか。',
-        ['単価を5%下げることに応じる', '年間の発注量を約束すれば、単価を下げられる', '原料価格が下がるまで、取引を休止したい', '単価は下げられないが、最低ロットは減らせる'],
+        '（セミナーの開会のあいさつ）本日はご多忙の中、多数ご参加＿＿＿、誠にありがとうございます。',
+        ['させていただき', 'なさられ', 'してさしあげ', 'いただき'],
         3,
-        'Lựa chọn 4: 単価の見直しは難しいと申し上げざるを得ません là lời từ chối giảm giá nói vòng; bù lại, nếu cam kết lượng đặt cả năm thì lô tối thiểu mỗi lần giảm còn một nửa. Lựa chọn 2 dễ chọn vì có đúng điều kiện "cam kết lượng cả năm", nhưng thứ đổi lại là lô nhỏ hơn, không phải đơn giá thấp hơn. Câu mở đầu ご期待にお応えしたい chỉ để làm mềm lời từ chối.',
+        'Người tham dự là khách mời, người cảm ơn là ban tổ chức: ご参加いただき (lựa chọn 4). Lựa chọn 1 dễ nhầm nhất vì nghe rất lịch sự, nhưng ご参加させていただく là "tôi được tham gia", sai chủ thể. Lựa chọn 2 là kính ngữ kép (なさる＋られる). Lựa chọn 3 nghĩa là mình "tham gia giúp" khách, sai ý.',
       ],
     ],
     points: [
-      ['高止まり', 'たかどまり', 'giá đứng ở mức cao'],
-      ['～ざるを得ない', 'ざるをえない', 'không thể không …'],
-      ['最低ロット', 'さいていろっと', 'lô đặt hàng tối thiểu'],
+      ['ご多忙の中', 'ごたぼうのなか', 'giữa lúc bận rộn'],
+      ['開会', 'かいかい', 'khai mạc'],
     ],
   }),
   item('mock3', 'hyogen', 3, {
-    material: {
-      kind: 'text',
-      title: '【訂正】品質管理研修の時間について',
-      body: '製造部 各位\n\n本日午前にお送りした「品質管理研修のご案内」に誤りがありました。\n研修の開始時刻を「13時30分」と記載しましたが、正しくは「13時」です。終了時刻（17時）と会場（第2工場 2階 研修室）に変更はありません。\nまた、案内では「筆記用具をご持参ください」としておりましたが、当日は研修用のタブレットを貸し出しますので、筆記用具は不要です。\nご迷惑をおかけし、申し訳ありません。\n\n品質保証部 金子',
-    },
     questions: [
       [
-        '研修について、正しいものはどれですか。',
-        ['13時開始で、筆記用具は不要','13時30分から17時まで行われる', '会場が第2工場の研修室に変更された', '研修用のタブレットを各自で用意する'],
-        0,
-        'Lựa chọn 1: thư đính chính hai điểm: giờ bắt đầu là 13 giờ (không phải 13 giờ 30) và không cần mang bút giấy vì được mượn máy tính bảng. Lựa chọn 2 là giờ ghi sai trong thông báo cũ. Lựa chọn 3 sai vì hội trường không đổi (変更はありません); máy tính bảng do công ty cho mượn chứ không tự chuẩn bị.',
+        '（取引先の人に荷物を持とうかと言われて）A：重そうですね。お持ちしましょうか。B：＿＿＿、すぐそこまでですので大丈夫です。',
+        ['お手数ですが', 'お言葉に甘えて', 'お気遣いなく', 'おかげさまで'],
+        2,
+        'B khéo khước từ lời đề nghị giúp, nên nói お気遣いなく "xin đừng bận tâm" (lựa chọn 3). Lựa chọn 2 dễ nhầm nhất vì cũng là câu đáp lời đề nghị, nhưng お言葉に甘えて là nhận lời, trái với 大丈夫です phía sau. Lựa chọn 1 dùng khi nhờ người khác làm việc gì. Lựa chọn 4 là lời cảm ơn khi được hỏi thăm.',
       ],
     ],
     points: [
-      ['訂正', 'ていせい', 'đính chính'],
-      ['持参する', 'じさんする', 'mang theo'],
-      ['貸し出す', 'かしだす', 'cho mượn'],
+      ['お気遣い', 'おきづかい', 'sự quan tâm, để ý'],
+      ['お持ちする', 'おもちする', 'cầm giúp (khiêm nhường)'],
     ],
   }),
-  // J1+
   item('mock3', 'hyogen', 4, {
-    material: {
-      kind: 'text',
-      title: '経費精算の手続きについて（再周知）',
-      body: '社員各位\n\n経費の精算は、支出した月の翌月5営業日までに、経費精算システムから申請してください。\n1件あたりの金額が3万円を超える場合は、申請する前に所属部長の承認を得る必要があります。承認のないまま申請されたものは、経理部では受け付けられません。\n領収書の原本は、申請後1週間以内に経理部へ提出してください。\n\n経理部',
-    },
     questions: [
       [
-        '1月に、取引先との会食代2万円と、出張の交通費3万5千円を立て替えました。正しい手続きはどれですか。',
-        ['2件とも、部長の承認を得てから申請する', '2件とも、そのまま申請してよい', '交通費だけ、先に部長の承認を得る','合計額で判断し、経理部に相談する'],
-        2,
-        'Lựa chọn 3: quy định tính theo từng khoản (1件あたり): chỉ tiền đi lại 35.000 yên vượt 30.000 yên nên cần trưởng bộ phận duyệt trước; tiền ăn 20.000 yên cứ nộp bình thường. Lựa chọn 1 là kết quả nếu cộng hai khoản thành 55.000 yên rồi áp mốc 30.000. Lựa chọn 2 bỏ sót mốc 30.000 yên.',
+        '（取引先へのあいさつで）＿＿＿より、くれぐれもよろしくと申しつかっております。',
+        ['社長の中野', '中野社長', '中野社長様', '社長の中野様'],
+        0,
+        'Nói với người ngoài về giám đốc công ty mình thì không dùng chức danh như kính xưng: 社長の中野 (lựa chọn 1). Lựa chọn 2 dễ nhầm nhất vì là cách gọi trong nội bộ công ty, nhưng 中野社長 đặt chức danh sau tên là cách gọi kính trọng. Lựa chọn 3 và 4 thêm 様 cho người nhà, sai.',
       ],
     ],
     points: [
-      ['立て替える', 'たてかえる', 'trả trước hộ (rồi thanh toán lại)'],
-      ['再周知', 'さいしゅうち', 'nhắc lại cho mọi người biết'],
-      ['営業日', 'えいぎょうび', 'ngày làm việc'],
+      ['申しつかる', 'もうしつかる', 'được dặn (khiêm nhường)'],
+      ['くれぐれも', 'くれぐれも', 'thật lòng, hết sức'],
     ],
   }),
-  // J1+
   item('mock3', 'hyogen', 5, {
-    material: {
-      kind: 'text',
-      body: '株式会社ハヤシ物流 お客様サービス課 御中\n\n先日の配送遅れの件では、迅速にご連絡とご説明をいただき、ありがとうございました。今回の事情は理解いたしましたので、この件はこれで結構です。\nただ、この半年で同様の遅れが3度目となりますと、弊社としても、お客様への説明に苦慮しているのが実情です。今後も改善が見られないようでしたら、来年度の契約につきましては、改めて考えさせていただくことになるかと存じます。\n\n株式会社タカミ商事 物流管理課 野村',
-    },
     questions: [
       [
-        '野村さんの気持ちに最も近いものはどれですか。',
-        ['今回の遅れによる損害を賠償してほしい', '説明に満足したので、今後も安心して任せたい', '今回は収めるが、続けば契約を考え直す', 'すぐに別の配送会社に切り替えるつもりだ'],
-        2,
-        'Lựa chọn 3: この件はこれで結構です = chuyện lần này coi như xong; nhưng 改めて考えさせていただくことになるかと存じます là lời cảnh báo nói vòng: nếu không cải thiện thì hợp đồng năm sau sẽ bị xem lại. Lựa chọn 2 dễ chọn vì đoạn đầu cảm ơn và nói đã hiểu, nhưng bỏ qua phần sau ただ. Lựa chọn 4 đi quá xa: chưa có quyết định đổi công ty.',
+        '（メールの返信で）資料をお送りいただき、ありがとうございました。内容を確認のうえ、改めて＿＿＿。',
+        ['ご連絡いたしました', 'ご連絡いたします', 'ご連絡なさいます', 'ご連絡いただきます'],
+        1,
+        'Việc liên lạc lại là của mình và xảy ra sau khi kiểm tra (確認のうえ), nên dùng khiêm nhường thì hiện tại: ご連絡いたします (lựa chọn 2). Lựa chọn 1 dễ nhầm nhất vì cùng khuôn khiêm nhường nhưng ở thì quá khứ, trái với 改めて. Lựa chọn 3 là tôn kính cho việc của mình. Lựa chọn 4 nghĩa là khách liên lạc cho mình.',
       ],
     ],
     points: [
-      ['苦慮する', 'くりょする', 'khổ tâm, đau đầu tìm cách'],
-      ['実情', 'じつじょう', 'tình hình thực tế'],
-      ['改めて', 'あらためて', 'một lần nữa, lại'],
+      ['確認のうえ', 'かくにんのうえ', 'sau khi kiểm tra'],
+      ['改めて', 'あらためて', 'lại, lần sau'],
     ],
   }),
-  // J1+
   item('mock3', 'hyogen', 6, {
-    material: {
-      kind: 'text',
-      title: '名刺の発注方法の変更について',
-      body: '社員各位\n\n2027年2月1日（月）から、名刺の発注は総務部への依頼ではなく、各自が社内ポータルの「名刺発注」画面から行うことになりました。\n通常の名刺は、発注した日の翌営業日から数えて3営業日目に、各部署へ届きます。\n裏面に英語表記を入れる場合は、確認作業のため、さらに2営業日かかります。\n※土日・祝日は営業日に含みません。\n\n総務部',
-    },
     questions: [
       [
-        '2027年2月3日（水）に、裏面に英語表記を入れた名刺を発注しました。名刺が届くのはいつですか。',
-        ['2月5日（金）', '2月8日（月）', '2月9日（火）', '2月10日（水）'],
-        3,
-        'Lựa chọn 4: đếm từ ngày làm việc kế tiếp: 4/2 (thứ Năm) là ngày 1, 5/2 (thứ Sáu) ngày 2, bỏ thứ Bảy, Chủ nhật, 8/2 (thứ Hai) ngày 3 → danh thiếp thường tới 8/2; thêm 2 ngày làm việc cho bản tiếng Anh → 10/2 (thứ Tư). Lựa chọn 2 là ngày của danh thiếp thường, quên phần cộng thêm. Lựa chọn 3 là kết quả nếu tính cả ngày đặt 3/2 là ngày 1.',
+        '（日程調整の電話で）A：来週の火曜日はいかがでしょうか。B：火曜日は＿＿＿予定が入っておりまして、水曜日でしたら終日空いております。',
+        ['さすがに', 'せっかく', 'あいにく', 'ようやく'],
+        2,
+        'Báo một điều không như ý người kia mong (thứ Ba đã có lịch) thì dùng あいにく (lựa chọn 3). Lựa chọn 2 せっかく dùng với ý tốt hay cơ hội hiếm, không đi với "đã có lịch". Lựa chọn 1 さすがに mang ý "dù sao cũng quá mức", lựa chọn 4 ようやく là "mãi mới", đều sai ý.',
       ],
     ],
     points: [
-      ['発注', 'はっちゅう', 'đặt hàng'],
-      ['表記', 'ひょうき', 'cách ghi, phần ghi'],
-      ['翌営業日', 'よくえいぎょうび', 'ngày làm việc kế tiếp'],
+      ['あいにく', 'あいにく', 'không may là'],
+      ['終日', 'しゅうじつ', 'cả ngày'],
     ],
   }),
   item('mock3', 'hyogen', 7, {
-    material: {
-      kind: 'text',
-      body: '株式会社ミヤビ食品 商品開発部 酒井様\n\nいつもお世話になっております。北星パッケージの原口です。\n新しい容器のサンプルが仕上がりましたので、ご説明に伺いたく存じます。下記のうち、ご都合のよい日時をお知らせいただけますでしょうか。\n①2月15日（月）10:00〜11:00\n②2月16日（火）15:00〜16:00\n③2月18日（木）10:00〜11:00\n\n――――――――\n原口様\n\nご連絡ありがとうございます。サンプルの完成を楽しみにしておりました。\nあいにく火曜日は終日社外に出ておりまして、また、15日の午前中は部内の定例会議が入っております。そのほかでしたら、いつでも結構です。\n\nミヤビ食品 酒井',
-    },
     questions: [
       [
-        '原口さんは、いつ酒井さんを訪問することになりますか。',
-        ['2月18日（木）10時', '2月15日（月）10時', '2月16日（火）15時', 'まだ決まらない'],
-        0,
-        'Lựa chọn 1: Sakai bận cả ngày thứ Ba (16/2) và sáng 15/2 có họp định kỳ, nên trong ba phương án chỉ còn ③ ngày 18/2 lúc 10 giờ. Lựa chọn 3 dễ chọn vì là buổi chiều, tránh được cuộc họp buổi sáng, nhưng 16/2 là thứ Ba, ngày Sakai ra ngoài cả ngày.',
+        '（先に帰る部長に）部長、本日はありがとうございました。＿＿＿。',
+        ['ご苦労さまでした', 'お疲れになりました', 'ご苦労さまでございます', 'お疲れさまでした'],
+        3,
+        'Chào cấp trên ra về: お疲れさまでした (lựa chọn 4). Lựa chọn 1 và 3 dễ nhầm vì cùng là lời chào cuối ngày, nhưng ご苦労さま là câu người trên nói với người dưới; nói với trưởng bộ phận là sai vai. Lựa chọn 2 là câu nhận xét "ngài đã mệt rồi", không phải lời chào.',
       ],
     ],
     points: [
-      ['仕上がる', 'しあがる', 'hoàn thành'],
-      ['終日', 'しゅうじつ', 'cả ngày'],
-      ['定例会議', 'ていれいかいぎ', 'cuộc họp định kỳ'],
+      ['お疲れさまでした', 'おつかれさまでした', 'anh/chị vất vả rồi (chào khi về)'],
+      ['ご苦労さま', 'ごくろうさま', 'vất vả rồi (người trên nói với người dưới)'],
     ],
   }),
   item('mock3', 'hyogen', 8, {
-    material: {
-      kind: 'text',
-      title: '社用車安全運転講習のご案内',
-      body: '営業部・物流部 各位\n\n社用車を運転する社員を対象に、安全運転講習を行います。\n日時：2027年3月12日（金）14:00〜16:00　会場：本社5階 大会議室\n今年度に社用車を一度も運転していない方は、受講しなくてもかまいません。一方、昨年度以降に社用車で事故を起こした方は、運転の頻度にかかわらず必ず受講してください。\n当日都合のつかない方は、後日配信する録画を視聴し、3月31日までに感想を提出してください。\n\n総務部 安全管理課',
-    },
     questions: [
       [
-        '受講しなくてもよい人はだれですか。',
-        ['今年度、月に1回ほど社用車を運転した人', '今年度は運転しておらず、事故を起こしたこともない人', '今年度は運転していないが、昨年度に社用車で事故を起こした人', '3月12日に出張の予定がある人'],
-        1,
-        'Lựa chọn 2: không lái xe công ty lần nào trong năm nay thì được miễn, và người này cũng không thuộc diện bắt buộc vì chưa từng gây tai nạn. Lựa chọn 3 dễ chọn vì cũng không lái năm nay, nhưng người gây tai nạn từ năm ngoái phải học bất kể tần suất lái (運転の頻度にかかわらず). Người đi công tác hôm đó vẫn phải xem bản ghi và nộp cảm nghĩ.',
+        '（取引先との打ち合わせの前に）議事録を作るため、会話を録音させていただいても＿＿＿。',
+        ['よろしいでしょうか', 'お願いできますか', 'よろしくお願いいたします', 'おかまいなく'],
+        0,
+        'Xin phép khách được ghi âm: ～させていただいてもよろしいでしょうか (lựa chọn 1). Lựa chọn 3 dễ nhầm vì có よろしく, nhưng ～てもよろしくお願いいたします không thành câu xin phép. Lựa chọn 2 là lời nhờ người khác làm, không nối với ～ても. Lựa chọn 4 là "xin đừng bận tâm", sai ý.',
       ],
     ],
     points: [
-      ['社用車', 'しゃようしゃ', 'xe công ty'],
-      ['～にかかわらず', 'にかかわらず', 'bất kể …'],
-      ['視聴する', 'しちょうする', 'xem (video, chương trình)'],
+      ['録音', 'ろくおん', 'ghi âm'],
+      ['させていただいてもよろしいでしょうか', 'させていただいてもよろしいでしょうか', 'cho phép tôi … được không ạ'],
     ],
   }),
-  // J1+
   item('mock3', 'hyogen', 9, {
-    material: {
-      kind: 'text',
-      body: '株式会社アオイ電設 資材課 西川様\n\nお問い合わせいただいたLED照明「LX-30」のお見積もりについてご連絡いたします。\n単価は1台4,000円（税抜）です。100台以上をまとめてご注文いただいた場合は、単価を3,600円とさせていただきます。\n送料は1回の配送につき2,000円ですが、1回の配送が50台以上の場合は無料です。\nご不明な点がございましたら、お気軽にお問い合わせください。\n\n光栄電機 営業部 柴田',
-    },
     questions: [
       [
-        '120台をまとめて注文し、60台ずつ2回に分けて届けてもらう場合、合計金額（税抜）はいくらですか。',
-        ['432,000円', '434,000円', '436,000円', '480,000円'],
-        0,
-        'Lựa chọn 1: đặt gộp 120 chiếc (từ 100 trở lên) nên đơn giá 3.600 yên: 120 × 3.600 = 432.000 yên; mỗi lần giao 60 chiếc (từ 50 trở lên) nên miễn phí vận chuyển. Lựa chọn 3 (436.000) là kết quả nếu cộng phí 2.000 yên cho cả hai lần giao. Lựa chọn 4 dùng đơn giá thường 4.000 yên.',
+        '（顧客向け説明会の案内状）当日は、この案内状を受付まで＿＿＿。',
+        ['お持ちしてください', 'ご持参いたしてください', 'お持ちください', 'お持ちになられてください'],
+        2,
+        'Nhờ khách mang thư mời tới: お持ちください (lựa chọn 3). Lựa chọn 1 dễ nhầm nhất: お持ちする là khiêm nhường (tôi mang giúp), không dùng để nhờ khách. Lựa chọn 2 cũng dùng khiêm nhường いたす cho việc của khách. Lựa chọn 4 là kính ngữ kép (お～になる＋られる).',
       ],
     ],
     points: [
-      ['税抜', 'ぜいぬき', 'chưa gồm thuế'],
-      ['お見積もり', 'おみつもり', 'báo giá'],
+      ['案内状', 'あんないじょう', 'thư mời, thư thông báo'],
+      ['お持ちください', 'おもちください', 'xin mang theo'],
     ],
   }),
   item('mock3', 'hyogen', 10, {
-    material: {
-      kind: 'text',
-      body: '株式会社ナガセ工業 製造部 部長 大森様\n\n本日はご多忙の中、貴重なお時間を割いていただき、誠にありがとうございました。\n御社の品質管理への徹底したお取り組みを伺い、大変勉強になりました。\nお話の中で拝見した検査工程の写真が、特に印象に残っております。もしお差し支えなければ、次の機会には、ぜひ実際の現場を拝見させていただければ幸いに存じます。\n今後とも、どうぞよろしくお願い申し上げます。\n\n株式会社リンクス 品質保証部 岡本',
-    },
     questions: [
       [
-        '岡本さんが希望していることは何ですか。',
-        ['検査工程の写真を送ってほしい', '大森さんに自社へ来てほしい', 'ナガセ工業の現場を見学したい', '大森さんに品質管理について講演してほしい'],
-        2,
-        'Lựa chọn 3: 実際の現場を拝見させていただければ幸いに存じます = mong được xem tận nơi hiện trường, tức là tham quan khâu kiểm tra ở công ty Nagase. Lựa chọn 1 dễ chọn vì thư nhắc tới ảnh khâu kiểm tra, nhưng ảnh chỉ là lý do khiến Okamoto muốn xem thực tế. Thư không mời Omori tới hay nhờ thuyết trình.',
+        '（取引先に返事の期限を聞かれて）A：今週中にお返事いただけますか。B：＿＿＿、来週の月曜日までお待ちいただけないでしょうか。',
+        ['せっかくですが', '勝手を申しますが', 'おかげさまで', 'お手数をおかけしましたが'],
+        1,
+        'B xin lùi hạn, tức là đưa ra yêu cầu theo ý mình, nên đệm bằng 勝手を申しますが (lựa chọn 2). Lựa chọn 1 dễ nhầm nhất vì B cũng đang không làm theo ý A, nhưng せっかくですが dùng khi khước từ ý tốt hay lời mời. Lựa chọn 4 ở thì quá khứ, xin lỗi về việc đã làm phiền, không phải lời mở đầu cho yêu cầu mới.',
       ],
     ],
     points: [
-      ['時間を割く', 'じかんをさく', 'dành thời gian'],
-      ['お差し支えなければ', 'おさしつかえなければ', 'nếu không phiền'],
-      ['拝見する', 'はいけんする', 'xem (khiêm nhường ngữ)'],
+      ['勝手を申す', 'かってをもうす', 'xin phép đưa ra ý riêng (khiêm nhường)'],
+      ['お返事', 'おへんじ', 'câu trả lời'],
     ],
   }),
-
-  // ── 総合読解 ──────────────────────────────────────────────
+  // ── 総合読解: business documents, one question each (spec, calibration rules 2, 3, 12) ──
   item('mock3', 'sogo-dokkai', 1, {
     material: {
       kind: 'text',
-      title: '中堅アパレル、受注生産に軸足　在庫を3割圧縮',
-      body: '衣料品の中堅メーカー、ミナセ衣料（本社・名古屋市）が、生産方式の見直しで成果を上げている。同社は2025年度から、店舗での予約や通販サイトの注文を受けてから生産する「受注生産」の比率を高めてきた。2026年度上半期の受注生産の比率は売上の35%と、2年前の10%から大きく伸びた。\n\nきっかけは、売れ残りの増加だった。同社は長年、シーズン前に需要を予測してまとめて生産してきたが、気温の変化や流行の移り変わりが読みにくくなり、2024年度には売れ残った商品の値引き販売が売上の2割近くを占めた。「作れば売れる時代は終わった。値引きで売り切るやり方では、ブランドの価値まで下がってしまう」と、森下社長は振り返る。\n\n受注生産に切り替えた商品は、注文から届くまでに約3週間かかる。当初は「待たされる」という声もあったが、色や丈を選べるようにしたことで、むしろ満足度は上がったという。在庫は2年前と比べて3割減り、値引き販売の比率も1割を切った。その結果、売上高はほぼ横ばいながら、営業利益は前年同期比で4割増えた。\n\nもっとも、課題もある。受注生産は、注文が特定の時期に集中すると縫製工場の作業が追いつかない。同社は繁忙期の生産を外部の工場にも委託しているが、その分コストがかさむ。業界に詳しいアナリストの平田氏は「受注生産は在庫の削減には効果があるが、それだけで成長できるわけではない。待ってでも買いたいと思わせる商品の力があってこそ成り立つ仕組みだ」と指摘している。',
+      title: '製品価格改定のお願い',
+      body: '拝啓　陽春の候、貴社いよいよご隆盛のこととお慶び申し上げます。平素より格別のご愛顧を賜り、厚く御礼申し上げます。\nさて、弊社では原材料費および物流費の上昇が続いており、これまで社内の努力で吸収してまいりましたが、現行価格の維持が困難な状況となりました。\nつきましては、誠に心苦しいお願いではございますが、2027年6月1日（火）出荷分より、全製品の価格を平均5%改定させていただきたく、何卒ご理解賜りますようお願い申し上げます。\n敬具',
     },
     questions: [
-      // J1+
       [
-        '記事の内容と合っているものはどれですか。',
-        ['受注生産の比率は、2年前の3.5倍になった', '受注生産にしてから、売上高が4割増えた', '2024年度には、値引き販売が売上の半分近くを占めた', '受注生産を始めた当初から、客の満足度は高かった'],
+        'この手紙の主な目的は何ですか。',
+        ['製品の値上げを受け入れてもらう', '物流の方法を変えることを知らせる', '6月から出荷を一時止めると知らせる', '原材料の値下げを交渉したい'],
         0,
-        'Lựa chọn 1: tỉ lệ sản xuất theo đơn tăng từ 10% lên 35% của doanh thu, tức gấp 3,5 lần. Lựa chọn 2 dễ chọn vì có con số 4 割, nhưng tăng 40% là lợi nhuận kinh doanh; doanh thu gần như đi ngang (ほぼ横ばい). Bán giảm giá năm 2024 chiếm gần 20% (2割), không phải gần một nửa; lúc đầu khách còn phàn nàn phải chờ.',
-      ],
-      // J1+
-      [
-        '平田氏の意見に最も近いものはどれですか。',
-        ['受注生産にすれば、どの会社でも成長できる', '受注生産はコストがかかるので、やめたほうがよい', '繁忙期は外部の工場に頼るべきだ', '受注生産は、商品に魅力があってこそ成り立つ'],
-        3,
-        'Lựa chọn 4: ～があってこそ成り立つ = chỉ đứng được khi có …; Hirata nói sản xuất theo đơn giảm được tồn kho nhưng tự nó không đem lại tăng trưởng, cần sản phẩm đủ hấp dẫn để khách chịu chờ. Lựa chọn 1 là điều ông phản bác (それだけで成長できるわけではない). Chi phí thuê ngoài là nhận xét của bài báo, Hirata không khuyên bỏ cách làm này.',
+        'Ý chính sau さて và つきましては: từ hàng xuất ngày 1/6 sẽ "điều chỉnh" giá bình quân 5%, mong được thông cảm → xin khách chấp nhận tăng giá (lựa chọn 1). 改定 ở đây là tăng giá, nói tránh. Lựa chọn 3 dễ nhầm vì có mốc 6月1日, nhưng đó là thời điểm áp giá mới, không phải dừng xuất hàng. Chi phí vận chuyển là lý do, không phải thay đổi cách vận chuyển.',
       ],
     ],
     points: [
-      ['受注生産', 'じゅちゅうせいさん', 'sản xuất theo đơn đặt hàng'],
-      ['横ばい', 'よこばい', 'đi ngang (không tăng không giảm)'],
-      ['軸足を移す', 'じくあしをうつす', 'chuyển trọng tâm'],
-      ['かさむ', 'かさむ', '(chi phí) phình ra'],
+      ['改定', 'かいてい', 'điều chỉnh (giá, quy định)'],
+      ['吸収する', 'きゅうしゅうする', 'gánh, hấp thụ (chi phí)'],
+      ['心苦しい', 'こころぐるしい', 'áy náy'],
     ],
   }),
   item('mock3', 'sogo-dokkai', 2, {
     material: {
       kind: 'text',
-      title: '2027年度 外部研修の申し込みについて',
-      body: '■ 外部研修コース一覧（人事部）\nコース｜形式｜日程｜受講料\nA 交渉力強化｜対面（大阪）｜5月13日（木）・14日（金）9:30〜17:00｜48,000円\nB 交渉力強化｜オンライン｜5月20日〜6月10日の毎週木曜 19:00〜21:00（全4回）｜36,000円\nC 財務の基礎｜オンライン｜5月11日〜6月1日の毎週火曜 19:00〜21:00（全4回）｜30,000円\nD 財務の基礎｜対面（東京）｜6月3日（木）・4日（金）9:30〜17:00｜42,000円\n\n■ 営業二課 課長からのメール\n加藤さん\n来年度の研修の件ですが、加藤さんには交渉力の研修を受けてもらいたいと考えています。5月から6月にかけては新規のお客様との商談が続くので、平日の日中に研修で席を外すのは避けてください。それから、受講料として会社が出せるのは1人4万円までです。申し込みは各自で、4月16日（金）までに人事部へお願いします。\n営業二課 課長 中島',
+      title: 'お見積りご依頼の件',
+      body: '株式会社ハヤセ製作所　資材部　山口様\n\nいつもお世話になっております。東和プレスの坂本です。\nこのたびは、新型ブラケットのお見積りをご依頼いただき、誠にありがとうございます。\n社内で検討いたしましたが、ご希望の8月納品となりますと、現在の受注状況では十分な生産時間を確保することが難しく、品質面でご迷惑をおかけするおそれがございます。大変心苦しいのですが、今回はお力になれそうにございません。\nまたの機会がございましたら、ぜひよろしくお願いいたします。',
     },
     questions: [
-      // J1+
       [
-        '加藤さんが申し込むべきコースはどれですか。',
-        ['A 交渉力強化（対面）', 'B 交渉力強化（オンライン）', 'C 財務の基礎（オンライン）', 'D 財務の基礎（対面）'],
-        1,
-        'Lựa chọn 2: phải là khoá kỹ năng đàm phán, không học vào ban ngày ngày thường, học phí tối đa 40.000 yên. Khoá B học tối thứ Năm, 36.000 yên, thoả cả ba. Lựa chọn 1 đúng chủ đề nhưng học ban ngày thứ Năm, thứ Sáu và 48.000 yên vượt mức công ty trả. Lựa chọn 3 thoả giờ học và học phí nhưng là khoá tài chính.',
-      ],
-      [
-        '加藤さんが4月16日までにしなければならないことは何ですか。',
-        ['中島課長に申し込んでもらう', '受講料を研修会社に振り込む', '人事部に受講料の上限を確認する', '自分で人事部に申し込む'],
-        3,
-        'Lựa chọn 4: 申し込みは各自で、4月16日までに人事部へ = mỗi người tự đăng ký với phòng nhân sự trước 16/4. Lựa chọn 1 dễ chọn vì trưởng phòng Nakajima là người chọn chủ đề, nhưng ông nói rõ mỗi người tự đăng ký. Mức trần 40.000 yên trưởng phòng đã cho biết, không cần hỏi lại.',
+        'このメールで坂本さんが伝えていることは何ですか。',
+        ['8月より前に納品できる', '品質の確認に時間がほしい', '今回は見積りを出せない', '他社を紹介することができる'],
+        2,
+        'Thư từ chối khéo: giao tháng 8 thì không đủ thời gian sản xuất, 今回はお力になれそうにございません = lần này không giúp được → không báo giá (lựa chọn 3). Lựa chọn 2 dễ nhầm vì có nhắc chất lượng, nhưng đó là lý do từ chối (sợ ảnh hưởng chất lượng), không phải lời xin thêm thời gian. Thư không giới thiệu công ty khác.',
       ],
     ],
     points: [
-      ['受講料', 'じゅこうりょう', 'học phí khoá học'],
-      ['席を外す', 'せきをはずす', 'rời chỗ làm việc'],
-      ['商談', 'しょうだん', 'đàm phán thương mại'],
+      ['お力になる', 'おちからになる', 'giúp được (cho quý công ty)'],
+      ['確保する', 'かくほする', 'bảo đảm có được'],
+      ['またの機会', 'またのきかい', 'dịp khác'],
     ],
   }),
   item('mock3', 'sogo-dokkai', 3, {
     material: {
       kind: 'text',
-      title: '「1on1」は誰のための時間か',
-      body: '部下と上司が定期的に一対一で話す「1on1ミーティング」を導入する企業が増えている。私の勤める会社でも3年前に始まり、月に1回、30分の面談が義務づけられた。\n\n始めた当初、私はこの時間を、部下の仕事の進み具合を確かめる場として使っていた。案件ごとに状況を聞き、遅れていれば対策を指示する。効率はよかったが、部下の口数は回を重ねるごとに減っていった。あるとき部下の一人から「この時間は、普段の報告と何が違うのですか」と聞かれ、言葉に詰まった。\n\nそれ以来、進み具合の確認は日々の報告に任せ、1on1では、私からは質問を一つだけ用意して、あとは部下の話を聞くことにしている。最初は沈黙が続いて気まずかったが、そのうち、仕事の悩みだけでなく、今後どんな仕事をしてみたいかといった話も出るようになった。\n\n制度を入れれば対話が生まれるわけではない。1on1を上司の管理の道具にしてしまえば、部下にとっては面談がもう一つ増えただけになる。',
+      title: 'フォークリフト接触事故の再発防止について',
+      body: '製造部各位\n\n安全衛生委員会です。先月、第1倉庫でフォークリフトと作業者の接触事故（軽傷）が発生しました。再発防止のため、次のとおり対応します。\n・倉庫内の歩行者通路を黄色の線で示し、通路の外を歩くことを禁止する。\n・フォークリフトを運転する社員は全員、6月末までに社内の安全講習を受け直す。講習は毎週木曜日14時から行い、申し込みは各職場の班長を通して行う。\n不明な点は安全衛生委員会（内線215）までお問い合わせください。',
     },
     questions: [
       [
-        '筆者が1on1のやり方を変えたきっかけは何ですか。',
-        ['会社の方針で、面談の回数が月2回に増えたこと', '普段の報告との違いを部下に問われたこと', '部下の担当する案件に、遅れが出始めたこと', '部下の話が長くなりすぎたこと'],
+        'フォークリフトを運転する社員がしなければならないことは何ですか。',
+        ['黄色い線の通路を引き直す', '班長を通して安全講習に申し込む', '事故の報告書を委員会に出す', '毎週木曜日の講習に必ず出席する'],
         1,
-        'Lựa chọn 2: một cấp dưới hỏi "buổi này khác gì báo cáo thường ngày", tác giả cứng họng, và "từ đó" (それ以来) đổi cách làm. Lựa chọn 3 dễ nhầm vì tác giả có nhắc chuyện công việc chậm, nhưng đó là nội dung các buổi theo cách cũ, không phải lý do thay đổi. Cấp dưới ngày càng ít nói chứ không nói dài.',
-      ],
-      [
-        '筆者が最も言いたいことは何ですか。',
-        ['1on1は、仕事の進み具合を確かめるのに効率がよい', '1on1の回数を増やせば、対話は自然に深まる', '1on1は、部下が話せる場にしなければ意味がない', '1on1は部下の負担になるので、やめたほうがよい'],
-        2,
-        'Lựa chọn 3: đoạn cuối nói đưa chế độ vào thì chưa chắc có đối thoại; nếu biến 1on1 thành công cụ quản lý của cấp trên thì với cấp dưới nó chỉ là thêm một buổi họp. Lựa chọn 1 là cách làm cũ mà tác giả đã từ bỏ dù "hiệu quả". Lựa chọn 4 đi quá xa: tác giả vẫn làm 1on1, chỉ đổi cách làm.',
+        'Người lái xe nâng phải học lại khoá an toàn trước cuối tháng 6, đăng ký qua tổ trưởng → lựa chọn 2. Lựa chọn 4 dễ nhầm vì có "thứ Năm hằng tuần", nhưng đó là lịch mở lớp; chỉ cần học một lần. Vạch vàng là biện pháp của công ty cho lối đi bộ, không phải việc của người lái.',
       ],
     ],
     points: [
-      ['口数', 'くちかず', 'số lời nói (nói nhiều, ít)'],
-      ['言葉に詰まる', 'ことばにつまる', 'cứng họng, không biết nói gì'],
-      ['義務づける', 'ぎむづける', 'bắt buộc'],
+      ['再発防止', 'さいはつぼうし', 'phòng ngừa tái diễn'],
+      ['安全衛生委員会', 'あんぜんえいせいいいんかい', 'ban an toàn vệ sinh lao động'],
+      ['班長', 'はんちょう', 'tổ trưởng'],
     ],
   }),
   item('mock3', 'sogo-dokkai', 4, {
     material: {
       kind: 'text',
-      title: '物流センター移転に伴う出荷スケジュールのお知らせ',
-      body: 'お取引先各位\n\n平素より格別のご高配を賜り、厚く御礼申し上げます。\nこのたび弊社は、物流センターを川口市から春日部市へ移転することとなりました。移転作業のため、2027年3月の出荷業務を次のとおりとさせていただきます。\n\n・3月10日（水）正午までのご注文：通常どおり、翌営業日に出荷いたします。\n・3月10日（水）正午から3月14日（日）までのご注文：3月15日（月）より、新センターから順次出荷いたします。\n・3月15日（月）以降のご注文：通常どおり、翌営業日に出荷いたします。\n\n移転期間中も、ご注文は通常どおり受け付けております。お問い合わせ先の電話番号にも変更はございません。\nご不便をおかけいたしますが、何とぞご理解のほどお願い申し上げます。\n\n株式会社ツバサ流通',
+      title: '年末年始の短期アルバイト募集について',
+      body: '各店店長各位\n\n人事課です。年末年始の繁忙期に向けて、短期アルバイトを下記のとおり募集します。各店の必要人数をもとに、本部でまとめて求人広告を出します。\n\n記\n募集期間：2026年12月20日〜2027年1月5日\n必要人数：本店5名、駅前店3名、郊外店4名\n※郊外店の4名のうち1名は、本店の社員が応援に入るため、求人の対象外とします。\n時給：1,200円（22時以降は1,500円）\n以上',
     },
     questions: [
       [
-        '3月11日（木）の午前中に注文した商品は、いつ出荷されますか。',
-        ['3月11日（木）', '3月12日（金）', '3月15日（月）から順次', '3月16日（火）から順次'],
-        2,
-        'Lựa chọn 3: đơn đặt từ trưa 10/3 tới 14/3 sẽ được xuất từ trung tâm mới, lần lượt từ 15/3. Lựa chọn 2 là kết quả nếu áp quy tắc thường "ngày làm việc kế tiếp"; "buổi sáng" chỉ có ý nghĩa với ngày 10/3, không phải 11/3.',
-      ],
-      [
-        'この案内の内容と合っているものはどれですか。',
-        ['3月10日朝の注文は、翌営業日に出荷される', '移転期間中は、新しい注文を一切受け付けない', '移転に伴い、問い合わせ先の電話番号が変わる', '新しい物流センターは、川口市に置かれる'],
-        0,
-        'Lựa chọn 1: đơn trước 12 giờ trưa 10/3 vẫn xuất như thường vào ngày làm việc kế tiếp (11/3). Lựa chọn 2 dễ chọn vì đang chuyển kho, nhưng thông báo nói vẫn nhận đơn bình thường. Số điện thoại không đổi; Kawaguchi là nơi cũ, trung tâm mới ở Kasukabe.',
+        '本部が求人広告で募集する人数は、合わせて何名ですか。',
+        ['12名', '13名', '10名', '11名'],
+        3,
+        'Tổng số người cần là 5 + 3 + 4 = 12, nhưng ghi chú ※: một trong bốn người của cửa hàng ngoại ô sẽ do nhân viên cửa hàng chính sang hỗ trợ, không tuyển → 12 − 1 = 11 (lựa chọn 4). Lựa chọn 1 dễ nhầm nhất vì quên ghi chú ※. Lựa chọn 2 lại cộng thêm người hỗ trợ.',
       ],
     ],
     points: [
-      ['移転', 'いてん', 'di dời'],
-      ['順次', 'じゅんじ', 'lần lượt'],
-      ['ご高配', 'ごこうはい', 'sự quan tâm (của quý vị, rất trang trọng)'],
+      ['繁忙期', 'はんぼうき', 'mùa cao điểm'],
+      ['求人広告', 'きゅうじんこうこく', 'quảng cáo tuyển dụng'],
+      ['対象外', 'たいしょうがい', 'ngoài diện áp dụng'],
     ],
   }),
-  // J1+
   item('mock3', 'sogo-dokkai', 5, {
     material: {
       kind: 'text',
-      title: 'プレゼンは「結論から」で十分か',
-      body: '「プレゼンは結論から話せ」とよく言われる。聞き手の時間を無駄にしないという意味では、確かに正しい。しかし、社内で新しい事業を提案するような場面では、結論を先に聞いた瞬間に、聞き手が「それは無理だ」と心を閉じてしまうことがある。これまでのやり方を変える提案では、特にそうだ。そうした場合は、まず聞き手と共有できる問題、たとえば「このままでは5年後に主力商品の売上が半分になる」といった事実から入り、相手が「確かに何とかしなければ」と思ったところで提案を示すほうが、受け入れられやすい。大切なのは型を守ることではなく、聞き手がどんな状態で話を聞くかを考えることである。',
+      title: '「OJTトレーナー研修」延期のお知らせ',
+      body: '受講予定者各位\n\n人事部です。2月18日（木）に予定しておりました「OJTトレーナー研修」は、講師の体調不良により延期いたします。新しい日程は3月4日（木）で、時間と会場に変更はありません。\nすでに提出いただいた事前アンケートは、そのまま使用しますので、再提出は不要です。新しい日程での参加が難しい方は、2月24日（水）までに人事部の吉村までお知らせください。',
     },
     questions: [
       [
-        '筆者の考えに最も近いものはどれですか。',
-        ['プレゼンは、どんな場面でも結論から話すべきだ', '場面によっては、結論を後に回したほうがよい', '新しい事業の提案では、結論を言わないほうがよい', 'プレゼンでは、事実よりも話し手の熱意が大切だ'],
-        1,
-        'Lựa chọn 2: tác giả công nhận "nói kết luận trước" có lý, nhưng với đề xuất thay đổi cách làm cũ, người nghe có thể đóng lòng ngay; khi đó nên đi từ vấn đề chung rồi mới đưa đề xuất. Điều quan trọng là trạng thái của người nghe, không phải khuôn mẫu. Lựa chọn 3 đi quá xa: vẫn đưa ra đề xuất, chỉ là sau. Lựa chọn 1 là khuôn mẫu tác giả đặt câu hỏi.',
-      ],
-      [
-        '筆者が「このままでは5年後に主力商品の売上が半分になる」という例を挙げたのは、何を示すためですか。',
-        ['プレゼンを結論から始めるべき理由', '主力商品の売上が落ちている原因', '聞き手と共有できる問題の例', '数字を使うと聞き手が心を閉じること'],
-        2,
-        'Lựa chọn 3: ví dụ đứng sau たとえば, minh hoạ cho "vấn đề có thể chia sẻ với người nghe" cần nói trước, để người nghe thấy "đúng là phải làm gì đó" rồi mới nghe đề xuất. Lựa chọn 1 ngược ý: ví dụ dùng cho cách không bắt đầu bằng kết luận. Bài không phân tích nguyên nhân doanh số giảm; người nghe khép lòng vì nghe kết luận trước, không phải vì con số.',
+        'このメールの主な目的は何ですか。',
+        ['研修の日程が変わったことを知らせる', '事前アンケートの提出を求める', '研修の会場が変わったことを知らせる', '研修の講師が交代することを知らせる'],
+        0,
+        'Khoá học ngày 18/2 bị hoãn sang 4/3 vì giảng viên không khoẻ → báo đổi lịch (lựa chọn 1). Lựa chọn 4 dễ nhầm vì có nhắc giảng viên, nhưng giảng viên ốm nên hoãn, không nói thay người. Giờ và địa điểm giữ nguyên; phiếu khảo sát đã nộp thì dùng lại, không cần nộp lại.',
       ],
     ],
     points: [
-      ['心を閉じる', 'こころをとじる', 'khép lòng, không chịu nghe'],
-      ['型', 'かた', 'khuôn mẫu'],
+      ['延期', 'えんき', 'hoãn'],
+      ['再提出', 'さいていしゅつ', 'nộp lại'],
+      ['体調不良', 'たいちょうふりょう', 'không khoẻ'],
+    ],
+  }),
+  item('mock3', 'sogo-dokkai', 6, {
+    material: {
+      kind: 'text',
+      title: '安否確認システムの切り替えについて',
+      body: '全社員各位\n\n総務部です。3月の全社防災訓練に合わせて、安否確認システムを新しくします。\n新システムでは、災害時に会社から届くメールに、各自が安否を回答します。訓練当日の3月10日（水）に一斉送信のテストを行いますので、事前に新システムへ各自の連絡用メールアドレスを登録してください。登録の締め切りは3月3日（水）です。\nなお、旧システムは3月31日（水）で利用を終了します。',
+    },
+    questions: [
+      [
+        '新システムへのメールアドレスの登録期限はいつですか。',
+        ['3月10日（水）', '3月31日（水）', '3月9日（火）', '3月3日（水）'],
+        3,
+        'Hạn đăng ký ghi rõ: 登録の締め切りは3月3日（水） → lựa chọn 4. Lựa chọn 3 dễ nhầm vì suy từ "đăng ký trước buổi diễn tập 10/3" ra hôm trước đó, nhưng văn bản có hạn chót riêng, sớm hơn. 10/3 là ngày diễn tập và gửi thử, 31/3 là ngày ngừng hệ thống cũ.',
+      ],
+    ],
+    points: [
+      ['安否確認', 'あんぴかくにん', 'xác nhận an toàn'],
+      ['一斉送信', 'いっせいそうしん', 'gửi đồng loạt'],
+      ['防災訓練', 'ぼうさいくんれん', 'diễn tập phòng chống thiên tai'],
+    ],
+  }),
+  item('mock3', 'sogo-dokkai', 7, {
+    material: {
+      kind: 'text',
+      title: '展示会準備ミーティング　議事メモ',
+      body: '日時：2027年4月7日（水）16:00〜16:30\n出席：営業企画課 長谷川、技術課 中島、総務課 太田\n1．ブースで使う実演機は、技術課が4月28日（水）までに調整を終える。\n2．来場者に配るパンフレットは、前回の残り600部では足りないため、営業企画課が400部を追加で発注する。\n3．スタッフの宿泊先は総務課が手配する。人数は営業企画課が4月14日（水）までに確定し、総務課に伝える。',
+    },
+    questions: [
+      [
+        '営業企画課の長谷川さんがしなければならないことはどれですか。',
+        ['実演機の調整を終わらせる', 'スタッフの宿泊先を予約する', 'パンフレットを追加で注文する', '残りのパンフレットを数え直す'],
+        2,
+        'Mục 2: phòng kế hoạch kinh doanh đặt thêm 400 cuốn tờ giới thiệu → lựa chọn 3. Lựa chọn 2 dễ nhầm vì mục 3 có nhắc phòng kế hoạch, nhưng việc của họ chỉ là chốt số người; đặt chỗ ở là phòng tổng vụ. Máy trình diễn là việc của phòng kỹ thuật; 600 cuốn còn lại đã biết là không đủ, không cần đếm lại.',
+      ],
+    ],
+    points: [
+      ['実演', 'じつえん', 'trình diễn trực tiếp'],
+      ['手配する', 'てはいする', 'sắp xếp, đặt (chỗ)'],
+      ['確定する', 'かくていする', 'chốt'],
+    ],
+  }),
+  item('mock3', 'sogo-dokkai', 8, {
+    material: {
+      kind: 'text',
+      title: '株主優待制度導入のお知らせ',
+      body: '株主各位\n\n平素は格別のご支援を賜り、厚く御礼申し上げます。\nこのたび、株主優待制度を下記のとおり導入いたします。毎年3月31日現在の株主名簿に記載された株主様を対象に、当社オンラインストアでご利用いただけるお買い物券を、6月下旬に発送いたします。\n\n記\n100株以上500株未満：1,000円分\n500株以上1,000株未満：3,000円分\n1,000株以上：5,000円分\n※3年以上継続して保有されている株主様には、上記に1,000円分を加算いたします。\n以上',
+    },
+    questions: [
+      [
+        '600株を4年間続けて保有している株主が受け取るお買い物券は、いくら分ですか。',
+        ['3,000円分', '4,000円分', '5,000円分', '6,000円分'],
+        1,
+        '600 cổ phiếu thuộc mức 500–dưới 1.000: 3.000 yên; giữ liên tục từ 3 năm trở lên được cộng 1.000 yên → 4.000 yên (lựa chọn 2). Lựa chọn 1 dễ nhầm vì quên ghi chú ※. Lựa chọn 3 là mức của người có từ 1.000 cổ phiếu.',
+      ],
+    ],
+    points: [
+      ['株主優待', 'かぶぬしゆうたい', 'ưu đãi cho cổ đông'],
+      ['株主名簿', 'かぶぬしめいぼ', 'sổ cổ đông'],
+      ['加算する', 'かさんする', 'cộng thêm'],
+    ],
+  }),
+  item('mock3', 'sogo-dokkai', 9, {
+    material: {
+      kind: 'text',
+      title: 'ご注文書の記入漏れについて',
+      body: '株式会社グリーン園芸　ご担当者様\n\nいつもご注文いただき、ありがとうございます。みどり種苗の受注センターです。\n本日FAXでいただいたご注文書（2枚）のうち、2枚目の「納品先」欄が空欄となっておりました。このままでは出荷の手配ができませんので、お手数ですが、納品先をご記入のうえ、2枚目のみ再度FAXでお送りいただけますでしょうか。\n本日15時までに届いた場合は、明日の出荷に間に合います。',
+    },
+    questions: [
+      [
+        'グリーン園芸の担当者がしなければならないことは何ですか。',
+        ['2枚目に納品先を書いて送り直す', '注文書を2枚とも書き直して送る', '15時までに受注センターに電話する', '明日の出荷の時間を知らせる'],
+        0,
+        'Chỉ trang 2 thiếu ô "nơi giao hàng"; điền vào rồi FAX lại riêng trang 2 → lựa chọn 1. Lựa chọn 2 dễ nhầm vì cũng là gửi lại, nhưng 2枚目のみ = chỉ trang 2. Mốc 15 giờ là để kịp xuất hàng ngày mai, gửi bằng FAX chứ không phải gọi điện.',
+      ],
+    ],
+    points: [
+      ['記入漏れ', 'きにゅうもれ', 'điền thiếu'],
+      ['空欄', 'くうらん', 'ô trống'],
+      ['納品先', 'のうひんさき', 'nơi giao hàng'],
+    ],
+  }),
+  item('mock3', 'sogo-dokkai', 10, {
+    material: {
+      kind: 'text',
+      title: '入社手続き書類の送付について',
+      body: '内定者の皆様\n\n株式会社ミライ電装　人事部の斎藤です。\n4月1日の入社に向けて、入社手続きの書類を本日郵送しました。同封の「入社承諾書」は2月26日（金）までに、「給与振込口座届」と「通勤経路届」は3月12日（金）までに、返信用封筒でご返送ください。\nまた、3月19日（金）に内定者研修を行います。詳細は後日メールでお知らせします。',
+    },
+    questions: [
+      [
+        '「通勤経路届」の提出期限はいつですか。',
+        ['2月26日（金）', '3月19日（金）', '4月1日（木）', '3月12日（金）'],
+        3,
+        '「給与振込口座届」と「通勤経路届」は3月12日（金）まで → lựa chọn 4. Lựa chọn 1 dễ nhầm vì là hạn đầu tiên trong thư, nhưng chỉ dành cho giấy đồng ý vào công ty. 19/3 là ngày đào tạo, 1/4 là ngày vào công ty.',
+      ],
+    ],
+    points: [
+      ['内定者', 'ないていしゃ', 'người đã nhận thư mời làm việc'],
+      ['承諾書', 'しょうだくしょ', 'giấy đồng ý'],
+      ['通勤経路', 'つうきんけいろ', 'tuyến đường đi làm'],
     ],
   }),
 ];
