@@ -35,6 +35,12 @@ real packs; the app currently ignores them):
     label?: string          // section name as printed in the book, e.g. "第1部 セクション1 描写問題";
                             // when present, show it instead of the section's Japanese name in the runner
                             // header, the wrong-answer list and the per-section chips ("n番" stays)
+    pages?: number[]        // a question printed over several pages (a long text on one page, the
+                            // question and choices on the next): show every page in this order, each in
+                            // its own PageImage, instead of the single `page` (which is then pages[last]);
+                            // filesNeeded() must include them
+    textPage?: number       // same idea for one extra page shown ABOVE `page` (some packs write this
+                            // instead of `pages`); treat it as pages = [textPage, page]
 
 Example (fake):
   { "id": "old", "title": "Old book", "pages": 3, "audio": [...],
