@@ -170,13 +170,13 @@ export const W16: BjtItem[] = [
         '支店長が一番言いたいことは何ですか。',
         ['外出の回数を減らして、社内にいる時間を増やしてほしい', '電話がかかってきたら、すぐに出てほしい', '折り返しの電話は、その日のうちにしてほしい', 'アンケートの回答をもっと集めてほしい'],
         2,
-        'Lựa chọn 3: vấn đề là gọi lại muộn (翌日以降); chỉ cần liên lạc trong ngày là đủ khác. Lựa chọn 2 dễ chọn vì nói đến chuyện nghe máy, nhưng chi nhánh trưởng chấp nhận việc không nghe ngay được (すぐに電話に出られないことはある).',
+        'Lựa chọn 3: vấn đề là gọi lại muộn (翌日以降); chỉ cần liên lạc trong ngày là đủ khác. Lựa chọn 2 dễ chọn vì nói đến chuyện nghe máy, nhưng trưởng chi nhánh chấp nhận việc không nghe ngay được (すぐに電話に出られないことはある).',
       ],
       [
         '支店長は今月から何をしますか。',
         ['毎日夕方に、残っている折り返しの件数を確認する', '折り返しが遅れた人を、朝礼で一人ずつ注意する', 'お客様アンケートを毎月行い、結果を発表する', '社員に、その日の外出の予定を毎朝報告させる'],
         0,
-        'Lựa chọn 1: 毎日夕方に私が確認します. Lựa chọn 2 dễ chọn vì việc kiểm tra nghe như để giám sát, nhưng chi nhánh trưởng nói rõ 責めるためではありません; mục đích là chia lại việc cho người rảnh tay.',
+        'Lựa chọn 1: 毎日夕方に私が確認します. Lựa chọn 2 dễ chọn vì việc kiểm tra nghe như để giám sát, nhưng trưởng chi nhánh nói rõ 責めるためではありません; mục đích là chia lại việc cho người rảnh tay.',
       ],
     ],
     points: [

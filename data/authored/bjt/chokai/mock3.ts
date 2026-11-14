@@ -401,7 +401,7 @@ export const MOCK3: BjtItem[] = [
       ['女', 'ええ。実は、社長のあいさつのページを一ページ追加したいという話になりまして。', 'Vâng. Thật ra bên tôi muốn thêm một trang lời chào của giám đốc.'],
       ['男', 'そうしますと、製本の都合上、ページは四ページ単位でしか増やせないんです。今の十六ページが二十ページになりますね。', 'Nếu vậy thì do cách đóng sách, chỉ tăng được theo đơn vị bốn trang. Mười sáu trang hiện nay sẽ thành hai mươi trang.'],
       ['女', '二十ページですか。そうなると、費用はどのくらい上がりますか。', 'Hai mươi trang à. Thế thì chi phí tăng khoảng bao nhiêu ạ?'],
-      ['男', '一部あたり三十円、三千部で九万円ほどです。それから、納品が三日遅れて十三日になってしまいます。', 'Mỗi cuốn ba mươi yên, ba nghìn cuốn là khoảng chín vạn yên. Ngoài ra ngày giao sẽ chậm ba ngày, thành ngày mười ba.'],
+      ['男', '一部あたり三十円、三千部で九万円ほどです。それから、納品が三日遅れて十三日になってしまいます。', 'Mỗi cuốn ba mươi yên, ba nghìn cuốn là khoảng chín mươi nghìn yên. Ngoài ra ngày giao sẽ chậm ba ngày, thành ngày mười ba.'],
       ['女', '十三日だと、十二日の展示会に間に合わないんです。', 'Ngày mười ba thì không kịp triển lãm ngày mười hai rồi.'],
       ['男', 'では、追加する四ページだけ、在庫のある別の紙にしていただければ、十日に間に合わせられます。少し薄い紙になりますが。', 'Vậy nếu chị đồng ý cho riêng bốn trang thêm dùng loại giấy khác mà bên tôi có sẵn, thì kịp ngày mười. Giấy sẽ mỏng hơn một chút.'],
       ['女', '中身が大事なので、それで構いません。費用のほうは上司に確認して、今日中にお返事します。', 'Nội dung mới là quan trọng, nên vậy cũng được. Còn chi phí thì tôi hỏi cấp trên rồi trả lời anh trong hôm nay.'],

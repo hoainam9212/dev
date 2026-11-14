@@ -147,7 +147,7 @@ export const W13: BjtItem[] = [
         'このニュースの内容と合っているのはどれですか。',
         ['売上高は八千五百億円になる見通しだ', '営業利益は当初の予想より二割増える', '国内事業だけを見ると、利益は増える見込みだ', '来年度から海外の生産拠点を二か所に増やす'],
         2,
-        'Lựa chọn 3: 国内事業に限れば増益 = riêng mảng trong nước thì lợi nhuận tăng. Lựa chọn 1 là con số dự báo ban đầu (8.200 + 300 = 8.500 tỷ), không phải con số mới. Lợi nhuận giảm hai mươi phần trăm chứ không tăng; cơ sở sản xuất giảm từ hai xuống một.',
+        'Lựa chọn 3: 国内事業に限れば増益 = riêng mảng trong nước thì lợi nhuận tăng. Lựa chọn 1 là con số dự báo ban đầu (820 + 30 = 850 tỷ yên), không phải con số mới. Lợi nhuận giảm hai mươi phần trăm chứ không tăng; cơ sở sản xuất giảm từ hai xuống một.',
       ],
     ],
     points: [

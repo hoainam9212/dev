@@ -105,7 +105,7 @@ export const W14: BjtItem[] = [
         'この話のあと、議題の予定時間の合計は何分になりますか。',
         ['45分', '60分', '65分', '75分'],
         1,
-        'Lựa chọn 2: phần khuyến mại 30 → 15 phút; tổng 15 + 15 + 20 + 10 = 60 phút, vừa khít một tiếng. Lựa chọn 4 là tổng ban đầu (75 phút). Lựa chọn 1 là bẫy nếu quên mục "その他".',
+        'Lựa chọn 2: phần khuyến mại 30 → 15 phút; tổng 15 + 15 + 20 + 10 = 60 phút, vừa khít một tiếng. Lựa chọn 4 là tổng ban đầu (75 phút). Lựa chọn 1 (15 + 20 + 10 = 45) là bẫy nếu hiểu nhầm là bỏ hẳn phần khuyến mại.',
       ],
     ],
     points: [
@@ -184,7 +184,7 @@ export const W14: BjtItem[] = [
     material: {
       kind: 'text',
       title: '提案：会議資料のペーパーレス化',
-      body: '現状：会議資料の印刷は月に約12,000枚。用紙・トナー代は月に約6万円。\n提案：資料はタブレットで閲覧する。タブレットを20台購入する（1台4万円）。\n効果：印刷費がなくなり、購入費は約14か月で回収できる。',
+      body: '現状：会議資料の印刷は月に約12,000枚。用紙・トナー代は月に約6万円。\n提案：資料はタブレットで閲覧する。タブレットを20台購入する（1台4万円）。\n効果：印刷費がなくなり、購入費は約13か月で回収できる。',
     },
     script: [
       ['男', '…以上の理由から、会議資料をタブレットで見る形への切り替えをご提案します。', '…Vì những lý do trên, tôi đề xuất chuyển sang hình thức xem tài liệu họp trên máy tính bảng.'],

@@ -51,7 +51,7 @@ export const W14: BjtItem[] = [
         '彼の提案は現場の実情を＿＿＿、机上の空論にすぎない。',
         ['踏まえつつ', '踏まえておらず', '踏まえたうえで', '踏まえているので'],
         1,
-        'Lựa chọn 2: 机上の空論にすぎない = chỉ là lý thuyết suông trên bàn giấy; lý do hợp lý là đề xuất "không dựa trên" thực tế hiện trường. Ba lựa chọn còn lại đều nói đề xuất có dựa trên thực tế, mâu thuẫn với lời chê phía sau. Lựa chọn 1 dễ nhầm nhất vì つつ đôi khi mang nghĩa "dù… nhưng", song khi đó vế sau phải trái với thực tế, còn ở đây chỉ có lời chê.',
+        'Lựa chọn 2: 机上の空論にすぎない = chỉ là lý thuyết suông trên bàn giấy; lý do hợp lý là đề xuất "không dựa trên" thực tế hiện trường. Ba lựa chọn còn lại đều nói đề xuất có dựa trên thực tế, mâu thuẫn với lời chê phía sau. Lựa chọn 1 dễ nhầm nhất vì つつ đôi khi mang nghĩa "dù… nhưng", song khi đó vế sau phải trái ngược với vế trước; "dựa trên thực tế mà vẫn chỉ là lý thuyết suông" thì tự mâu thuẫn.',
       ],
     ],
     points: [

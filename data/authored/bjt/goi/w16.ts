@@ -45,7 +45,7 @@ export const V16: BjtVocab[] = [
     ['折り入って', 'おりいって', '(nhờ việc) quan trọng, đặc biệt', '折り入ってご相談したいことがございます。', 'Tôi có việc quan trọng muốn bàn với anh.'],
     ['ぶしつけ', 'ぶしつけ', 'đường đột, thất lễ', 'ぶしつけなお願いで恐縮ですが、ご紹介いただけないでしょうか。', 'Xin lỗi vì lời nhờ đường đột, anh có thể giới thiệu giúp không ạ?'],
     ['お言葉に甘えて', 'おことばにあまえて', 'xin nhận lời tốt của anh', 'では、お言葉に甘えてお先に失礼します。', 'Vậy xin nhận lời anh, tôi xin phép về trước.'],
-    ['身に余る', 'みにあまる', 'quá sức mình xứng đáng', '身に余るお言葉をいただき、恐縮しております。', 'Được nhận lời khen quá mức xứng đáng, tôi thật ngại.'],
+    ['身に余る', 'みにあまる', 'quá mức mình xứng đáng', '身に余るお言葉をいただき、恐縮しております。', 'Được nhận lời khen quá mức xứng đáng, tôi thật ngại.'],
     ['恐れ多い', 'おそれおおい', 'không dám nhận, quá vinh dự', '社長から直接お礼を言われるとは、恐れ多いことです。', 'Được giám đốc trực tiếp cảm ơn, tôi thật không dám nhận.'],
     ['お手柔らかに', 'おてやわらかに', 'xin nương tay', '初めての交渉ですので、どうぞお手柔らかにお願いします。', 'Đây là lần đầu đàm phán, xin anh nương tay cho.'],
   ]),
