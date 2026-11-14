@@ -11,7 +11,7 @@ export function PositionMark({ n }: { n: string }) {
       role="img"
       aria-label={t.bjt.positionMark(n)}
       data-testid="bjt-mark"
-      className="mx-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-rose px-1 align-middle text-xs font-black leading-none text-white tabular-nums ring-2 ring-white/70 dark:ring-black/30"
+      className="mx-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-rose-700 px-1 align-middle text-xs font-black leading-none text-white tabular-nums ring-2 ring-white/70 dark:ring-black/30"
     >
       {n}
     </span>

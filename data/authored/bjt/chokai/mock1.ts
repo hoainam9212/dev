@@ -437,7 +437,7 @@ export const MOCK1: BjtItem[] = [
       ['男', 'それはわかります。でも、入口で欲しいものがすぐ見つからないと、年配の方は奥まで歩かないで帰ってしまうんです。前に一度、棚を替えたら、常連さんから「どこにあるかわからない」って何度も言われましてね。', 'Cái đó tôi hiểu. Nhưng ở lối vào mà không thấy ngay thứ cần mua thì người lớn tuổi không đi vào trong mà về luôn. Trước có lần đổi kệ, khách quen than mãi "không biết để đâu".'],
       ['女', 'でも、本部の方針ですので、まったく替えないというわけには…。', 'Nhưng đây là chủ trương của trụ sở, nên hoàn toàn không đổi thì…'],
       ['男', 'ええ、それもわかっています。', 'Vâng, cái đó tôi cũng hiểu.'],
-      ['女', 'そうでしたか…。じゃあ、入口の棚は今のままにして、レジの横に季節の商品の小さい棚を置くのはどうでしょう。本部には私から説明します。', 'Vậy ạ… Thế thì giữ nguyên kệ lối vào, đặt một kệ nhỏ hàng theo mùa cạnh quầy thu ngân thì sao ạ? Phía trụ sở để tôi giải thích.'],
+      ['女', 'そうですよね…。じゃあ、入口の棚は今のままにして、レジの横に季節の商品の小さい棚を置くのはどうでしょう。本部には私から説明します。', 'Đúng vậy ạ… Thế thì giữ nguyên kệ lối vào, đặt một kệ nhỏ hàng theo mùa cạnh quầy thu ngân thì sao ạ? Phía trụ sở để tôi giải thích.'],
       ['男', 'レジの横なら、並んでいる間に見てもらえますね。それならやってみましょう。', 'Cạnh quầy thu ngân thì khách xem được trong lúc xếp hàng. Thế thì làm thử đi.'],
       ['女', 'はい。まずは一か月やってみて、売上を見てみましょう。', 'Vâng. Trước hết làm thử một tháng rồi xem doanh thu nhé.'],
     ],

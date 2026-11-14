@@ -181,7 +181,9 @@ export function BjtRunner({ title, items, exam = false, setId, onExit }: Props) 
           </p>
           <div>
             <p className="text-xs font-bold text-muted">{t.bjt.explain}</p>
-            <p>{q.explain}</p>
+            <p>
+              <Marked text={q.explain} />
+            </p>
           </div>
           {item.script && (
             <div>
@@ -284,7 +286,9 @@ function BjtResult({ title, steps, picked, exam, onExit }: { title: string; step
                 <p className="text-sm font-bold text-emerald-600">
                   ✓ {q.answer + 1}. <Marked text={q.choices[q.answer]!} />
                 </p>
-                <p className="text-sm">{q.explain}</p>
+                <p className="text-sm">
+                  <Marked text={q.explain} />
+                </p>
               </li>
             );
           })}

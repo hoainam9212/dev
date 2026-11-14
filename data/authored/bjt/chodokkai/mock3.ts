@@ -301,7 +301,7 @@ export const MOCK3: BjtItem[] = [
   item('mock3', 'shiryo', 8, {
     material: {
       kind: 'text',
-      body: '拝啓　晩秋の候、貴社ますますご清栄のこととお慶び申し上げます。\nさて、弊社代表取締役社長　山田一郎は、11月30日をもちまして退任し、新たに副社長の川口直人が代表取締役社長に就任いたしました。\nなお、山田は引き続き相談役として弊社にとどまります。\n今後とも変わらぬご指導を賜りますよう、お願い申し上げます。\n敬具\n\n株式会社ヤマト精機',
+      body: '拝啓　初冬の候、貴社ますますご清栄のこととお慶び申し上げます。\nさて、弊社代表取締役社長　山田一郎は、11月30日をもちまして退任し、新たに副社長の川口直人が代表取締役社長に就任いたしました。\nなお、山田は引き続き相談役として弊社にとどまります。\n今後とも変わらぬご指導を賜りますよう、お願い申し上げます。\n敬具\n\n株式会社ヤマト精機',
     },
     script: [['男', 'ヤマト精機さんからこれが届いたから、来月の挨拶回りのリスト、これに合わせて直しておいてくれる？お名前を間違えたら大変だから。', 'Bên Yamato Seiki gửi tới cái này, em sửa danh sách đi chào hỏi tháng sau cho khớp với nó nhé. Nhầm tên thì nguy to.']],
     questions: [
@@ -450,7 +450,7 @@ export const MOCK3: BjtItem[] = [
       ['男', 'そうですね。じゃあ、エレベーターの隣の部屋か、廊下を挟んで向かいの角の部屋ですね。', 'Vâng. Vậy là phòng cạnh thang máy, hoặc phòng ở góc đối diện bên kia hành lang.'],
       ['女', '面接の部屋は、静かなところがいいので、一番奥の部屋はどうでしょう。', 'Phòng phỏng vấn cần yên tĩnh, nên phòng trong cùng thì sao ạ?'],
       ['男', 'あそこは窓がなくて狭いんです。面接官が三人入ると、学生さんが座る場所もぎりぎりで…。', 'Phòng đó không có cửa sổ, lại hẹp. Ba người phỏng vấn vào là chỗ cho sinh viên ngồi cũng sát sạt…'],
-      ['女', 'それは圧迫感がありますね。じゃあ、倉庫の隣の部屋を面接に使いましょう。', 'Thế thì ngột ngạt quá. Vậy dùng phòng cạnh nhà kho để phỏng vấn.'],
+      ['女', 'それは圧迫感がありますね。じゃあ、倉庫を挟んで反対側の部屋を面接に使いましょう。', 'Thế thì ngột ngạt quá. Vậy dùng phòng ở phía bên kia nhà kho để phỏng vấn.'],
       ['男', 'はい。ただ、そうすると、エレベーターの向かいの角の部屋は、面接の部屋の隣になります。壁が薄いので、話し声が聞こえてしまうかもしれません。', 'Vâng. Có điều, như thế thì phòng góc đối diện thang máy lại nằm sát phòng phỏng vấn. Tường mỏng nên có khi nghe được tiếng nói chuyện.'],
       ['女', '次の人に質問の内容が聞こえたら、公平じゃなくなりますね。控室は、エレベーターの隣のほうにしましょう。面接の部屋とは、廊下を挟んで向かい合わせになりますし。', 'Người sau nghe được câu hỏi thì không công bằng. Phòng chờ thì chọn phòng cạnh thang máy. Phòng đó đối diện phòng phỏng vấn qua hành lang.'],
       ['男', 'わかりました。その二つで予約しておきます。', 'Vâng, tôi sẽ đặt hai phòng đó.'],
@@ -553,7 +553,7 @@ export const MOCK3: BjtItem[] = [
       ['男', 'サービスカウンターの前は、配送の受付が近くて便利だという意見もありました。ただ、年末はカウンターの前に配送の列ができるので、コーナーを作ると通れなくなってしまいます。', 'Cũng có ý kiến nói trước quầy dịch vụ thì gần chỗ nhận giao hàng, tiện. Có điều cuối năm trước quầy có hàng người xếp để gửi giao hàng, làm góc ở đó thì không đi lại được.'],
       ['男', '果物売り場の隣は、来週から、お正月用品の売り場になります。そこで、お歳暮は、野菜売り場の隣、入口から見て一番奥の左側に置くことにしました。', 'Cạnh quầy trái cây thì từ tuần sau sẽ thành quầy đồ dùng cho dịp năm mới. Vì thế, quà cuối năm sẽ đặt cạnh quầy rau, phía trong cùng bên trái nhìn từ lối vào.'],
       ['男', '奥なので、お客様にわかりにくいかもしれません。入口とレジの近くに案内の札を出しますので、聞かれたらご案内してください。', 'Vì ở phía trong nên khách có thể khó tìm. Chúng ta sẽ đặt biển chỉ dẫn gần lối vào và quầy thu ngân, ai được hỏi thì hướng dẫn khách nhé.'],
-      ['男', 'コーナーの担当は、今年も田中さんと森さんにお願いします。配送のお申し込みは、これまでどおりサービスカウンターで受け付けます。以上です。今日もよろしくお願いします。', 'Đăng ký giao hàng vẫn nhận ở quầy dịch vụ như trước. Hết. Hôm nay cũng nhờ mọi người.'],
+      ['男', 'コーナーの担当は、今年も田中さんと森さんにお願いします。配送のお申し込みは、これまでどおりサービスカウンターで受け付けます。以上です。今日もよろしくお願いします。', 'Phụ trách góc năm nay vẫn nhờ chị Tanaka và chị Mori. Đăng ký giao hàng vẫn nhận ở quầy dịch vụ như trước. Hết. Hôm nay cũng nhờ mọi người.'],
     ],
     questions: [
       [

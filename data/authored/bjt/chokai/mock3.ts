@@ -335,7 +335,7 @@ export const MOCK3: BjtItem[] = [
         '改装工事はどのように行うことになりましたか。',
         ['店を一週間閉めて行う', '売り場を分けて順に行う', '夜間だけ一か月かけて行う', '二月の前半に一度に行う'],
         1,
-        'Chốt phương án của phó cửa hàng trưởng: thi công từng nửa khu bán hàng (半分ずつ), khoảng hai tuần, từ nửa cuối tháng hai. Lựa chọn 1 bị bác vì sợ mất khách quen. Lựa chọn 3 bị bác vì tốn hơn và khó dọn kịp. Lựa chọn 4 sai thời điểm và sai cách làm.',
+        'Chốt phương án của người phụ nữ thứ hai: thi công từng nửa khu bán hàng (半分ずつ), khoảng hai tuần, từ nửa cuối tháng hai. Lựa chọn 1 bị bác vì sợ mất khách quen. Lựa chọn 3 bị bác vì tốn hơn và khó dọn kịp. Lựa chọn 4 sai thời điểm và sai cách làm.',
       ],
     ],
     points: [

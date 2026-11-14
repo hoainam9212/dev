@@ -452,7 +452,7 @@ export const MOCK2: BjtItem[] = [
         'この留守番電話を聞いた人は、まず何をしますか。',
         ['帰りの便と宿泊を変更する', '会議の司会を山下さんに頼む', '共有フォルダの資料を印刷する', '工場訪問の日程を調整する'],
         0,
-        'Cuối tin nhắn anh dặn とりあえず、飛行機とホテルを先に頼む vì tuần này đông. Lựa chọn 2 cũng phải làm nhưng sau. Lựa chọn 3 sai: bản trong thư mục số liệu cũ, phải đợi bản sửa gửi tối nay. Lựa chọn 4 anh đã tự quyết rồi.',
+        'Cuối tin nhắn anh dặn とりあえず、飛行機とホテルを先に頼む vì tuần này đông. Lựa chọn 2 cũng phải làm nhưng sau. Lựa chọn 3 sai: bản trong thư mục số liệu cũ, phải đợi bản sửa gửi tối nay. Lựa chọn 4: xưởng trưởng ở Kitakyushu thì anh tự liên lạc.',
       ],
     ],
     points: [

@@ -404,7 +404,7 @@ export const MOCK2: BjtItem[] = [
         '北陽システムはどこですか。',
         ['【1】', '【2】', '【3】', '【4】'],
         2,
-        'Từ cây xăng đi ngược hướng bến xe buýt (sang đông), rẽ trái ở ngã tư lớn (lên bắc), đến ngã tư tiếp theo rẽ phải (sang đông); bên phải là ngân hàng ở xa, công ty ngay trước ngân hàng → 【3】. 【1】 là toà nhà xám ở phía bên kia đường, người phụ nữ nói là công ty khác. 【4】 nằm bên đường thứ nhất, phía nam, đoàn không đi ngang qua; 【2】 là khi rẽ trái thay vì rẽ phải ở ngã tư thứ hai.',
+        'Từ cây xăng đi ngược hướng bến xe buýt (sang đông), rẽ trái ở ngã tư lớn (lên bắc), đến ngã tư tiếp theo rẽ phải (sang đông); bên phải là ngân hàng ở xa, công ty ngay trước ngân hàng → 【3】. 【1】 là toà nhà xám ở phía bên kia đường, người phụ nữ nói là công ty khác. 【4】 nằm bên đường thứ nhất, phía nam, anh Kinoshita không đi ngang qua; 【2】 là khi rẽ trái thay vì rẽ phải ở ngã tư thứ hai.',
       ],
     ],
     points: [
@@ -458,7 +458,7 @@ export const MOCK2: BjtItem[] = [
     },
     script: [
       ['女', '店長、すみません。来週の火曜の朝、どうしても病院に行かなければならなくなりまして…。', 'Cửa hàng trưởng, xin lỗi anh. Sáng thứ ba tuần sau em bắt buộc phải đi bệnh viện…'],
-      ['男', '病院か。それは仕方ないね。火曜の早番か。佐藤さんは火曜は遅番だから、続けて入ってもらうと、一日十時間を超えちゃうな。それはできないし。', 'Ca sớm thứ ba à. Chị Sato thứ ba làm ca muộn, mà làm liền cả hai ca thì quá mười tiếng một ngày. Thế thì không được.'],
+      ['男', '病院か。それは仕方ないね。火曜の早番か。佐藤さんは火曜は遅番だから、続けて入ってもらうと、一日十時間を超えちゃうな。それはできないし。', 'Đi bệnh viện à. Vậy thì đành chịu. Ca sớm thứ ba à. Chị Sato thứ ba làm ca muộn, mà làm liền cả hai ca thì quá mười tiếng một ngày. Thế thì không được.'],
       ['女', 'はい、それは申し訳ないので…。木村さんにお願いできないでしょうか。', 'Vâng, như vậy thì phiền chị ấy quá… Có thể nhờ cậu Kimura được không ạ?'],
       ['男', '木村さんは、火曜は大学の授業が午後からだって言ってたから、朝なら入れると思う。その代わり、田中さんが木村さんの勤務を一つ引き受けてくれる？木曜の早番はどう？', 'Cậu Kimura nói thứ ba chiều mới có giờ học ở trường, nên buổi sáng chắc làm được. Đổi lại, em nhận giúp cậu ấy một ca được không? Ca sớm thứ năm thì sao?'],
       ['女', '木曜の朝は、子どもを学校に送っていくので、早番はちょっと…。夕方からでしたら大丈夫なんですが。', 'Sáng thứ năm em phải đưa con đi học, nên ca sớm thì hơi… Từ chiều thì em làm được.'],
@@ -560,7 +560,7 @@ export const MOCK2: BjtItem[] = [
     },
     script: [
       ['女', '社内報の西田さんの紹介、読んでいただけましたか。来月号に載せる予定なので、今週中に仕上げたいんです。', 'Anh đọc bài giới thiệu chị Nishida trên bản tin nội bộ chưa ạ? Bài sẽ đăng số tháng sau, nên em muốn hoàn thành trong tuần này.'],
-      ['男', '読んだよ。趣味の話があるのは、親しみが持てていいね。よくまとまってるけど、仕事の成果が何も書いてないね。大阪で担当した店の数が、三年で二倍になったって聞いてるよ。それは入れたほうがいい。', 'Đọc rồi. Viết gọn gàng đấy, nhưng chưa có gì về thành tích công việc. Tôi nghe nói số cửa hàng chị ấy phụ trách ở Osaka tăng gấp đôi trong ba năm. Nên thêm cái đó vào.'],
+      ['男', '読んだよ。趣味の話があるのは、親しみが持てていいね。よくまとまってるけど、仕事の成果が何も書いてないね。大阪で担当した店の数が、三年で二倍になったって聞いてるよ。それは入れたほうがいい。', 'Đọc rồi. Có chuyện sở thích nên thấy gần gũi, hay đấy. Viết gọn gàng, nhưng chưa có gì về thành tích công việc. Tôi nghe nói số cửa hàng chị ấy phụ trách ở Osaka tăng gấp đôi trong ba năm. Nên thêm cái đó vào.'],
       ['女', 'そうですね。では、最後の一文の前に入れるのはどうでしょう。結びの前に、すごさが伝わるように。', 'Đúng vậy ạ. Thế đặt trước câu cuối thì sao ạ? Để trước phần kết người đọc thấy được chị ấy giỏi thế nào.'],
       ['男', 'うーん、山登りの話の後に急に仕事の話に戻ると、読みにくいよ。', 'Ừm, đang chuyện leo núi mà quay ngoắt về chuyện công việc thì khó đọc.'],
       ['女', 'じゃあ、紹介の最初、一文目のすぐ後は？', 'Vậy ngay sau câu đầu tiên, phần mở đầu thì sao ạ?'],
@@ -667,7 +667,7 @@ export const MOCK2: BjtItem[] = [
       ],
     },
     script: [
-      ['男', 'もしもし、花水木の店長様でいらっしゃいますか。いつもお世話になっております。ミドリ食品の配送担当、岡田でございます。十二月の納品の件で、お電話いたしました。またあとでおかけしますが、先に用件をお伝えいたします。', 'A lô, xin hỏi có phải cửa hàng trưởng nhà hàng Hanamizuki không ạ. Cảm ơn anh luôn ủng hộ. Tôi là Okada, phụ trách giao hàng của Midori Shokuhin. Tôi gọi về việc giao hàng tháng mười hai. Lát nữa tôi sẽ gọi lại, nhưng xin báo trước nội dung.'],
+      ['男', '花水木の店長様、いつもお世話になっております。ミドリ食品の配送担当、岡田でございます。十二月の納品の件でお電話いたしましたが、お留守のようですので、先に用件をお伝えいたします。のちほど改めておかけいたします。', 'Gửi cửa hàng trưởng nhà hàng Hanamizuki, cảm ơn anh luôn ủng hộ. Tôi là Okada, phụ trách giao hàng của Midori Shokuhin. Tôi gọi về việc giao hàng tháng mười hai, nhưng có vẻ anh không có ở đó, nên xin để lại nội dung trước. Lát nữa tôi sẽ gọi lại.'],
       ['男', '先日はお電話で、年末の追加のご注文もいただきまして、ありがとうございました。', 'Cảm ơn anh hôm trước đã gọi điện đặt thêm hàng cho dịp cuối năm.'],
       ['男', 'まず、十日の油ですが、先日いただいた、本数を増やしたいというご連絡、承知いたしました。お届けの日は変わりません。', 'Trước hết, về dầu ăn ngày mười, chúng tôi đã nhận được yêu cầu tăng số chai hôm trước. Ngày giao không thay đổi.'],
       ['男', 'それから、十七日の木曜日ですが、配送のトラックの定期点検が入ってしまいまして、大変申し訳ないのですが、翌日の金曜日にお届けさせていただけないでしょうか。', 'Tiếp theo, về thứ năm ngày mười bảy, xe tải giao hàng phải kiểm tra định kỳ, thật xin lỗi, nhưng cho phép chúng tôi giao vào thứ sáu hôm sau được không ạ.'],
@@ -698,7 +698,7 @@ export const MOCK2: BjtItem[] = [
       ['男', '先輩、研修の申込書を書いたんですが、出す前に見ていただけますか。去年のを見ながら書いたので、心配で。', 'Chị ơi, em viết xong đơn đăng ký khoá học rồi, chị xem giúp em trước khi nộp được không? Em vừa nhìn đơn năm ngoái vừa viết nên hơi lo.'],
       ['女', 'いいよ。締め切りはいつ？', 'Được. Hạn nộp là khi nào?'],
       ['男', '今週の金曜です。', 'Thứ sáu tuần này ạ.'],
-      ['女', 'どれどれ。字はきれいに書けてるね。コースは初級なんだね。森田君、初級は去年受けたんじゃなかった？', 'Được. Khoá sơ cấp à. Kỳ năm ngoái em học sơ cấp rồi còn gì?'],
+      ['女', 'どれどれ。字はきれいに書けてるね。コースは初級なんだね。森田君、初級は去年受けたんじゃなかった？', 'Để xem nào. Chữ viết đẹp đấy. Khoá sơ cấp à. Morita, năm ngoái em học sơ cấp rồi còn gì?'],
       ['男', 'それが、去年は申し込んだんですけど、急な出張で受けられなかったんです。', 'Chuyện là năm ngoái em đăng ký nhưng đi công tác đột xuất nên không học được ạ.'],
       ['女', 'そうだったんだ。じゃあ、初級でいいね。日にちは十四日か。その日、部の会議じゃなかった？', 'Ra vậy. Thế thì sơ cấp là đúng. Ngày mười bốn à. Hôm đó không phải có họp phòng sao?'],
       ['男', '会議は十五日に移ったって、昨日メールが来ました。念のため、課長にも確認してあります。', 'Hôm qua có email báo cuộc họp dời sang ngày mười lăm rồi ạ. Để cho chắc em cũng đã hỏi lại trưởng phòng.'],
