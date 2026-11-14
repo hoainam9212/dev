@@ -18,6 +18,7 @@ import { MOCK3 } from './dokkai/mock3';
 
 // 読解 (語彙・文法, 表現読解, 総合読解): weekly practice w01…w16 and full tests mock1…mock3.
 // Rules and targets: docs/superpowers/specs/2026-11-13-bjt-design.md
+const WEEKS = ['w01', 'w02', 'w03', 'w04', 'w05', 'w06', 'w07', 'w09', 'w10', 'w11', 'w13', 'w14', 'w16'];
 /** Sets rewritten to the 2026-11-14 calibration rules (spec); data/src/bjt.test.ts checks them strictly. */
-export const DOKKAI_CALIBRATED: string[] = [];
+export const DOKKAI_CALIBRATED: string[] = WEEKS.flatMap((w) => [`${w}/hyogen`, `${w}/sogo-dokkai`]);
 export const BJT_DOKKAI: BjtItem[] = [...W01, ...W02, ...W03, ...W04, ...W05, ...W06, ...W07, ...W09, ...W10, ...W11, ...W13, ...W14, ...W16, ...MOCK1, ...MOCK2, ...MOCK3];
