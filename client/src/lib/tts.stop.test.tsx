@@ -81,6 +81,36 @@ it('leaving a reading lesson stops "Đọc cả bài"', async () => {
   expect(synth.cancel).toHaveBeenCalled();
 });
 
+function renderShell() {
+  render(
+    <MemoryRouter initialEntries={['/a']}>
+      <Routes>
+        <Route element={<AppShell />}>
+          <Route path="/a" element={<p>a</p>} />
+        </Route>
+      </Routes>
+    </MemoryRouter>,
+  );
+}
+
+it('turning the screen off (page hidden) keeps speech playing', () => {
+  renderShell();
+  speak('長い文章');
+  synth.cancel.mockClear();
+  Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+  document.dispatchEvent(new Event('visibilitychange'));
+  expect(synth.cancel).not.toHaveBeenCalled();
+  Object.defineProperty(document, 'visibilityState', { value: 'visible', configurable: true });
+});
+
+it('closing the page (pagehide) still stops speech', () => {
+  renderShell();
+  speak('長い文章');
+  synth.cancel.mockClear();
+  window.dispatchEvent(new Event('pagehide'));
+  expect(synth.cancel).toHaveBeenCalled();
+});
+
 it('navigating to another route stops speech', async () => {
   function Speaker() {
     const nav = useNavigate();

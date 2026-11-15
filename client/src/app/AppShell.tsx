@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { stopSpeaking } from '../lib/tts';
+import { installBackgroundAudio } from '../lib/backgroundAudio';
 import { NAV, MOBILE_PRIMARY } from './nav';
 import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
@@ -23,15 +24,15 @@ export function AppShell() {
   useEffect(() => {
     stopSpeaking();
   }, [pathname]);
-  // …and when the page is left or hidden (tab closed, app sent to background).
+  // …and when the page is closed. A hidden page (screen off, app in the background) keeps playing, like a
+  // music app; the Android notification has a Stop button (lib/backgroundAudio).
   useEffect(() => {
     const stop = () => stopSpeaking();
-    const onVisibility = () => document.visibilityState === 'hidden' && stopSpeaking();
     window.addEventListener('pagehide', stop);
-    document.addEventListener('visibilitychange', onVisibility);
+    const uninstall = installBackgroundAudio();
     return () => {
       window.removeEventListener('pagehide', stop);
-      document.removeEventListener('visibilitychange', onVisibility);
+      uninstall();
     };
   }, []);
   const primary = NAV.filter((n) => MOBILE_PRIMARY.includes(n.to));
