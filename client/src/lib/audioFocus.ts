@@ -6,12 +6,15 @@ import { registerPlugin } from '@capacitor/core';
  * app's speech. We take transient focus while speaking (music apps pause) and give it back
  * shortly after — the delay keeps music from resuming in the gaps between lines.
  */
-interface AudioFocusPlugin {
+export interface AudioFocusPlugin {
+  /** Takes focus and starts the media-playback service, so sound keeps going with the screen off. */
   request(): Promise<void>;
   abandon(): Promise<void>;
+  /** `interrupted`: another app took the audio; `stopRequested`: Stop pressed in the notification. */
+  addListener(event: 'interrupted' | 'stopRequested', fn: () => void): Promise<{ remove: () => Promise<void> }>;
 }
 
-const plugin = registerPlugin<AudioFocusPlugin>('AudioFocus');
+export const plugin = registerPlugin<AudioFocusPlugin>('AudioFocus');
 
 /** How long to wait after speech ends before letting other apps' audio resume. */
 export const RELEASE_DELAY_MS = 600;
