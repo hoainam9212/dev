@@ -204,12 +204,15 @@ describe('BJT vocabulary', () => {
     expect(wordStem('申し上げる')).toBe('申し');
     expect(wordStem('おっしゃる')).toBe('おっ');
     expect(wordStem('CC')).toBe('CC');
+    // a prefix/suffix entry: the example uses it inside a word (三年保証付き, 前年比)
+    expect(wordStem('～付き')).toBe('付');
+    expect(wordStem('仮～')).toBe('仮');
   });
 });
 
 /** First two characters of the word without する and without trailing okurigana (all-kana words keep theirs). */
 function wordStem(ja: string): string {
-  const base = ja.replace(/する$/, '');
+  const base = ja.replace(/[～〜]/g, '').replace(/する$/, '');
   const kanji = base.replace(/[ぁ-ゖ]+$/, '');
   return (kanji || base).slice(0, 2);
 }
