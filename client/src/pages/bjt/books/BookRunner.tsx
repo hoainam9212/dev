@@ -195,7 +195,7 @@ function QuestionPages({ book, q }: { book: PackBook; q: PackQuestion }) {
   );
 }
 
-/** A page image without its white margins, full width; pinch, double-tap or the corner buttons zoom it. */
+/** A page image without its white margins, full width; pinch, double-tap or the buttons under it zoom it. */
 export function PageImage({ book, page, box }: { book: PackBook; page: number; box?: [number, number, number, number] }) {
   const t = useT();
   const url = useBookFile(book.id, pagePath(page));

@@ -7,6 +7,8 @@ export const MAX_SCALE = 4;
 export const TAP_SCALE = 2.5;
 /** Factor of one "+" / "−" button press. */
 export const STEP = 1.5;
+/** While zoomed the frame may grow up to this share of the window height. */
+export const GROW_CAP = 0.7;
 
 const TAP_MOVE = 10; // px a finger may drift and still count as a tap
 const DOUBLE_TAP_MS = 300;
@@ -55,7 +57,7 @@ const raf: (cb: () => void) => number =
 
 /**
  * Image (or any content) that fits the frame width at 1x and zooms up to 4x: pinch, double-tap, ctrl+wheel and
- * corner buttons; one finger or the mouse pans only while zoomed, so at 1x the page scrolls as usual.
+ * the buttons under the frame; one finger or the mouse pans only while zoomed, so at 1x the page scrolls as usual.
  */
 export function ZoomImage({ src, alt = '', className = '', children }: Props) {
   const t = useT();
@@ -73,13 +75,21 @@ export function ZoomImage({ src, alt = '', className = '', children }: Props) {
 
   const apply = useCallback(() => {
     pending.current = false;
-    const v = view.current;
+    let v = view.current;
     const l = layerRef.current;
     const f = frameRef.current;
+    if (f) {
+      f.style.touchAction = v.scale > 1 ? 'none' : 'pan-y';
+      // A short strip (one question cut from a page) is ~90px high at 1x: the frame grows with the zoom,
+      // capped at 70% of the window, so the zoomed text is readable instead of letterboxed.
+      const h = l?.offsetHeight ?? 0;
+      f.style.height = v.scale > 1 && h > 0 ? `${Math.max(h, Math.min(h * v.scale, window.innerHeight * GROW_CAP))}px` : '';
+      // the pan was clamped against the old frame height: clamp again now so no gap or cut-off top is left
+      if (v.scale > 1) v = view.current = clampView(v, box());
+    }
     if (l) l.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.scale})`;
-    if (f) f.style.touchAction = v.scale > 1 ? 'none' : 'pan-y';
     setScale(v.scale);
-  }, []);
+  }, [box]);
 
   const set = useCallback(
     (v: View) => {
@@ -118,7 +128,7 @@ export function ZoomImage({ src, alt = '', className = '', children }: Props) {
 
     const down = (e: PointerEvent) => {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      // corner buttons keep their own clicks: no pan, no pointer capture, no tap
+      // a button inside the content keeps its own clicks: no pan, no pointer capture, no tap
       if ((e.target as Element | null)?.closest?.('button')) return;
       points.set(e.pointerId, local(e));
       if (points.size === 2) {
@@ -222,22 +232,25 @@ export function ZoomImage({ src, alt = '', className = '', children }: Props) {
   };
 
   return (
-    <div
-      ref={frameRef}
-      data-testid="zoom-frame"
-      className={`relative overflow-hidden select-none ${className}`}
-      style={{ touchAction: 'pan-y' }}
-    >
+    <div>
       <div
-        ref={layerRef}
-        data-testid="zoom-layer"
-        className="origin-top-left will-change-transform"
-        style={{ transform: 'translate(0px, 0px) scale(1)' }}
+        ref={frameRef}
+        data-testid="zoom-frame"
+        className={`relative overflow-hidden select-none ${className}`}
+        style={{ touchAction: 'pan-y' }}
       >
-        {src && <img src={src} alt={alt} className="block w-full" draggable={false} />}
-        {children}
+        <div
+          ref={layerRef}
+          data-testid="zoom-layer"
+          className="origin-top-left will-change-transform"
+          style={{ transform: 'translate(0px, 0px) scale(1)' }}
+        >
+          {src && <img src={src} alt={alt} className="block w-full" draggable={false} />}
+          {children}
+        </div>
       </div>
-      <div className="absolute right-1 bottom-1 flex gap-1">
+      {/* under the frame, never on top: a one-line strip is shorter than the buttons and they hid its text */}
+      <div className="mt-1 flex justify-end gap-1">
         <button
           type="button"
           className="btn-soft h-8 min-w-8 px-2! py-0! text-sm"
