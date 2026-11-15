@@ -146,6 +146,19 @@ export function validateBook(book) {
       if (!inRange(q.page)) bad(`${ql}: page ${q.page} is outside 1–${book.pages}`);
       if (!Number.isInteger(q.answer) || q.answer < 1 || q.answer > 4) bad(`${ql}: answer must be 1–4`);
       if (q.image !== undefined && !(typeof q.image === 'string' && /^images\/[^/]+$/.test(q.image))) bad(`${ql}: image must be a file under images/`);
+      if (q.text !== undefined) {
+        const x = q.text;
+        if (typeof x?.ask !== 'string' || !Array.isArray(x.choices) || x.choices.length !== 4 || !x.choices.every((c) => typeof c === 'string'))
+          bad(`${ql}: text needs ask and 4 choices`);
+        (Array.isArray(x?.doc) ? x.doc : []).forEach((b, k) => {
+          const ok =
+            typeof b === 'string' ||
+            typeof b?.h === 'string' ||
+            typeof b?.right === 'string' ||
+            (Array.isArray(b?.table) && b.table.every((r) => Array.isArray(r) && r.every((c) => typeof c === 'string')));
+          if (!ok) bad(`${ql}: text.doc[${k}] is not a paragraph, h, right or table`);
+        });
+      }
       const part = SECTIONS[q.section];
       if (part && part !== 'dokkai') {
         const a = audio.get(q.audio);

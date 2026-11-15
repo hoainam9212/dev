@@ -6,7 +6,21 @@ import { useProgress } from '../../../store/progress';
 import { useBjt } from '../../../store/bjt';
 import { useT } from '../../../i18n';
 import { clock } from '../bjt';
-import { answerKey, bookExamSeconds, cropStyle, pagePath, pagesOf, scoreTest, sectionName, type PackBook, type PackQuestion, type PackTest } from './book';
+import {
+  answerKey,
+  bookExamSeconds,
+  cropStyle,
+  inlineParts,
+  pagePath,
+  pagesOf,
+  scoreTest,
+  sectionName,
+  type PackBlock,
+  type PackBook,
+  type PackQuestion,
+  type PackTest,
+  type PackText,
+} from './book';
 import { useBookFile } from './useBookFile';
 
 const XP_PER_CORRECT = 2;
@@ -120,21 +134,42 @@ export function BookRunner({ book, test, exam = false, sections, only, onExit }:
 
       <div>
         <p className="mb-1 text-xs font-bold text-muted">{t.bjtBooks.pickAnswer(q.n)}</p>
-        <div className="grid grid-cols-4 gap-2">
-          {[1, 2, 3, 4].map((c) => (
-            <button
-              key={c}
-              type="button"
-              data-state={state(c)}
-              aria-pressed={mine === c}
-              disabled={revealed}
-              onClick={() => pick(c)}
-              className={`rounded-2xl py-3 text-center text-xl font-black transition active:scale-[0.98] disabled:cursor-default ${CHOICE[state(c)]}`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        {q.text ? (
+          <div className="grid gap-2" lang="ja">
+            {q.text.choices.map((label, k) => (
+              <button
+                key={k}
+                type="button"
+                data-state={state(k + 1)}
+                aria-pressed={mine === k + 1}
+                disabled={revealed}
+                onClick={() => pick(k + 1)}
+                className={`flex items-baseline gap-3 rounded-2xl px-4 py-3 text-left text-lg transition active:scale-[0.98] disabled:cursor-default ${CHOICE[state(k + 1)]}`}
+              >
+                <span className="font-black">{k + 1}</span>
+                <span>
+                  <Inline s={label} />
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-2">
+            {[1, 2, 3, 4].map((c) => (
+              <button
+                key={c}
+                type="button"
+                data-state={state(c)}
+                aria-pressed={mine === c}
+                disabled={revealed}
+                onClick={() => pick(c)}
+                className={`rounded-2xl py-3 text-center text-xl font-black transition active:scale-[0.98] disabled:cursor-default ${CHOICE[state(c)]}`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {revealed && <Explanation book={book} q={q} mine={mine} />}
@@ -182,11 +217,52 @@ function Recording({ bookId, path, exam }: { bookId: string; path: string; exam:
   );
 }
 
-/** A question's restored picture when the book has one, else its pages; the learner can switch to the book page. */
-function QuestionPages({ book, q }: { book: PackBook; q: PackQuestion }) {
+const TEXT_SIZES = ['text-base', 'text-lg', 'text-xl'] as const;
+const SIZE_KEY = 'ns.bookTextSize';
+const readSize = () => {
+  try {
+    const n = Number(localStorage.getItem(SIZE_KEY));
+    return n >= 0 && n < TEXT_SIZES.length ? n : 0;
+  } catch {
+    return 0;
+  }
+};
+
+/**
+ * A question's typed-out text, else its restored picture, else its pages; the learner can switch to the book page.
+ * `choices`: list the four choices under the text (the result screen; the runner puts them on the answer buttons).
+ */
+function QuestionPages({ book, q, choices = false }: { book: PackBook; q: PackQuestion; choices?: boolean }) {
   const t = useT();
   const [original, setOriginal] = useState(false);
+  const [size, setSize] = useState(readSize);
   useEffect(() => setOriginal(false), [q.no]);
+  if (q.text) {
+    const bigger = () => {
+      const n = (size + 1) % TEXT_SIZES.length;
+      setSize(n);
+      try {
+        localStorage.setItem(SIZE_KEY, String(n));
+      } catch {
+        /* private mode: the size just isn't remembered */
+      }
+    };
+    return (
+      <div className="space-y-1">
+        {original ? <BookPages book={book} q={q} /> : <TypedQuestion text={q.text} size={TEXT_SIZES[size]!} choices={choices} />}
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          {!original && (
+            <button type="button" className="btn-soft text-xs" onClick={bigger} aria-label={t.bjtBooks.textSize}>
+              Aa {size + 1}/{TEXT_SIZES.length}
+            </button>
+          )}
+          <button type="button" className="btn-soft text-xs" onClick={() => setOriginal(!original)}>
+            {original ? t.bjtBooks.showTyped : t.bjtBooks.showBookPage}
+          </button>
+        </div>
+      </div>
+    );
+  }
   if (!q.image) return <BookPages book={book} q={q} />;
   return (
     <div className="space-y-1">
@@ -197,6 +273,106 @@ function QuestionPages({ book, q }: { book: PackBook; q: PackQuestion }) {
           {original ? t.bjtBooks.showRedrawn : t.bjtBooks.showOriginal}
         </button>
       </div>
+    </div>
+  );
+}
+
+/** Ruby and the ＿＿ blank inside one line of typed text. */
+export function Inline({ s }: { s: string }) {
+  return (
+    <>
+      {inlineParts(s).map((p, k) =>
+        'ruby' in p ? (
+          <ruby key={k}>
+            {p.ruby}
+            <rt>{p.rt}</rt>
+          </ruby>
+        ) : 'blank' in p ? (
+          <span key={k} className="mx-0.5 inline-block w-12 border-b-2 border-current align-baseline" aria-label="＿＿" />
+        ) : (
+          <span key={k}>{p.t}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+const Lines = ({ s }: { s: string }) => (
+  <p className="whitespace-pre-wrap">
+    <Inline s={s} />
+  </p>
+);
+
+function Block({ b }: { b: PackBlock }) {
+  if (typeof b === 'string') return <Lines s={b} />;
+  if ('h' in b)
+    return (
+      <p className="text-center font-bold">
+        <Inline s={b.h} />
+      </p>
+    );
+  if ('right' in b)
+    return (
+      <p className="whitespace-pre-wrap text-right">
+        <Inline s={b.right} />
+      </p>
+    );
+  const [first, ...rest] = b.table;
+  const body = b.head ? rest : b.table;
+  return (
+    <div className="overflow-x-auto">
+      <table className={`w-full border-collapse ${(first?.length ?? 0) >= 4 ? 'text-[0.8em]' : 'text-[0.92em]'}`}>
+        {b.head && first && (
+          <thead>
+            <tr>
+              {first.map((c, k) => (
+                <th key={k} className="border border-slate-400 bg-slate-100 px-1.5 py-1 text-left font-bold">
+                  <Inline s={c} />
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {body.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, k) => (
+                <td key={k} className={`whitespace-pre-wrap border border-slate-400 px-1.5 py-1 align-top ${k === 0 && r.length === 2 ? 'min-w-[6em]' : ''}`}>
+                  <Inline s={c} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** A question typed out from the book, reflowed to the screen width. */
+function TypedQuestion({ text, size, choices }: { text: PackText; size: string; choices: boolean }) {
+  return (
+    <div className={`space-y-3 rounded-2xl bg-white p-3 leading-relaxed text-slate-900 ring-1 ring-sakura/40 ${size}`} lang="ja" data-testid="book-text">
+      <div className={text.doc?.length ? 'font-bold' : ''}>
+        <Lines s={text.ask} />
+      </div>
+      {!!text.doc?.length && (
+        <div className="space-y-2 rounded-xl border border-slate-300 p-2.5">
+          {text.doc.map((b, k) => (
+            <Block key={k} b={b} />
+          ))}
+        </div>
+      )}
+      {choices && (
+        <ol className="space-y-1">
+          {text.choices.map((c, k) => (
+            <li key={k}>
+              <span className="mr-2 font-bold">{k + 1}</span>
+              <Inline s={c} />
+            </li>
+          ))}
+        </ol>
+      )}
     </div>
   );
 }
@@ -348,7 +524,7 @@ function BookResult({ book, test, picked, exam, onExit }: { book: PackBook; test
               <button type="button" className="btn-soft text-xs" onClick={() => setOpen(open === q.no ? null : q.no)}>
                 {t.bjtBooks.showPage}
               </button>
-              {open === q.no && <QuestionPages book={book} q={q} />}
+              {open === q.no && <QuestionPages book={book} q={q} choices />}
             </li>
           ))}
         </ul>

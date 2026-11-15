@@ -117,6 +117,15 @@ test('validateBook wants a question picture under images/', () => {
   assert.ok(validateBook(bad).some((p) => p.includes('image must be a file under images/')));
 });
 
+test('validateBook checks a typed-out question: ask, four choices, known blocks', () => {
+  const text = { ask: 'a', doc: ['p', { h: 'h' }, { right: 'r' }, { table: [['x']], head: true }], choices: ['1', '2', '3', '4'] };
+  assert.deepEqual(validateBook(book([{ ...listen(1, 0), text }])), []);
+  const three = book([{ ...listen(1, 0), text: { ...text, choices: ['1', '2', '3'] } }]);
+  assert.ok(validateBook(three).some((p) => p.includes('text needs ask and 4 choices')));
+  const odd = book([{ ...listen(1, 0), text: { ...text, doc: [{ x: 1 }] } }]);
+  assert.ok(validateBook(odd).some((p) => p.includes('text.doc[0] is not a paragraph, h, right or table')));
+});
+
 test('kindOf sorts files into what the import does with them', () => {
   assert.equal(kindOf('a/b/Book.PDF'), 'pdf');
   assert.equal(kindOf('scan_001.JPG'), 'image');
