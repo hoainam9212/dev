@@ -1,15 +1,11 @@
 package vn.nihongosensei.app;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Build;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -62,20 +58,12 @@ public class AudioFocusPlugin extends Plugin {
         } else {
             audioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         }
-        askNotificationsOnce();
+        // No notification-permission prompt here: asking while a recording was starting covered the app with the
+        // system dialog and left the recording stuck (1.6.4). Without the permission (Android 13+) the service
+        // still keeps sound going with the screen off; only its notification and Stop button stay hidden until
+        // the learner allows notifications in the system settings.
         PlaybackService.start(getContext());
         call.resolve();
-    }
-
-    /** Android 13+: without this permission the playback notification (and its Stop button) stays hidden. */
-    private void askNotificationsOnce() {
-        if (Build.VERSION.SDK_INT < 33 || getActivity() == null) return;
-        String perm = "android.permission.POST_NOTIFICATIONS";
-        if (ContextCompat.checkSelfPermission(getContext(), perm) == PackageManager.PERMISSION_GRANTED) return;
-        SharedPreferences prefs = getContext().getSharedPreferences("audio", Context.MODE_PRIVATE);
-        if (prefs.getBoolean("askedNotifications", false)) return;
-        prefs.edit().putBoolean("askedNotifications", true).apply();
-        getActivity().runOnUiThread(() -> ActivityCompat.requestPermissions(getActivity(), new String[] { perm }, 4711));
     }
 
     @PluginMethod
