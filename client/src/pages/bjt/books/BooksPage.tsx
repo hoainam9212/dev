@@ -9,6 +9,7 @@ import { answerKey, bookExamSeconds, groupsOf, j1plusNos, wrongNos, type PackBoo
 import { deleteBook, importBook } from './library';
 import { BookRunner } from './BookRunner';
 import { useBookFile } from './useBookFile';
+import { canRememberFiles, cleanCopy, forgetFile, pickFile, readFile, recentFiles, rememberFile, type PickedFile, type RecentFile } from './bookFiles';
 
 interface Run {
   book: PackBook;
@@ -27,6 +28,8 @@ export function BooksPage() {
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
   const [params, setParams] = useSearchParams();
   const redo = params.get('redo');
+  const native = canRememberFiles();
+  const [recent, setRecent] = useState<RecentFile[]>(() => (native ? recentFiles() : []));
 
   // /bjt/sach?redo=<bookId>:<testId> (from the /bjt plan tab): open that test's wrong answers once the books are loaded
   useEffect(() => {
@@ -47,26 +50,45 @@ export function BooksPage() {
     );
   }
 
-  const onFile = async (file: File | undefined) => {
-    if (!file) return;
+  /** Imports a book; `place` is where the .zip is on the phone, remembered so the book can be opened again. */
+  const load = async (read: () => Promise<Blob>, place?: PickedFile) => {
     setMessage(null);
     setProgress(0);
     try {
-      const b = await importBook(file, (done, total) => setProgress(Math.round((done / total) * 100)));
+      const b = await importBook(await read(), (done, total) => setProgress(Math.round((done / total) * 100)));
+      if (place) {
+        rememberFile({ ...place, bookId: b.id, title: b.title, openedAt: new Date().toISOString() });
+        setRecent(recentFiles());
+      }
       setMessage({ ok: true, text: t.bjtBooks.imported(b.title) });
+      requestAnimationFrame(() => document.getElementById(`book-${b.id}`)?.scrollIntoView?.({ behavior: 'smooth', block: 'start' }));
     } catch (e) {
       const code = e instanceof Error ? e.message : '';
       const errs = t.bjtBooks.errors;
       const text = code.startsWith('missing:')
         ? errs.missing(code.slice(8))
-        : code === 'not-zip' || code === 'compressed' || code === 'no-index' || code === 'bad-book'
+        : code === 'not-zip' || code === 'compressed' || code === 'no-index' || code === 'bad-book' || code === 'gone'
           ? errs[code]
           : errs.other;
       setMessage({ ok: false, text });
     } finally {
       setProgress(null);
+      if (native) void cleanCopy();
     }
   };
+
+  const onFile = (file: File | undefined) => (file ? load(async () => file) : undefined);
+
+  const pickNative = async () => {
+    try {
+      const place = await pickFile();
+      if (place) await load(() => readFile(place.uri), place);
+    } catch {
+      setMessage({ ok: false, text: t.bjtBooks.errors.other });
+    }
+  };
+
+  const busy = progress !== null;
 
   return (
     <div className="space-y-4">
@@ -81,24 +103,67 @@ export function BooksPage() {
       <section className="card space-y-2 p-4">
         <h2 className="font-black">{t.bjtBooks.importTitle}</h2>
         <p className="text-sm text-muted">{t.bjtBooks.importHelp}</p>
-        <label className={`btn-primary inline-block cursor-pointer ${progress !== null ? 'pointer-events-none opacity-60' : ''}`}>
-          {progress !== null ? t.bjtBooks.importing(progress) : t.bjtBooks.pick}
-          <input
-            type="file"
-            accept=".zip,application/zip"
-            className="sr-only"
-            data-testid="book-file"
-            disabled={progress !== null}
-            onChange={(e) => {
-              void onFile(e.target.files?.[0]);
-              e.target.value = '';
-            }}
-          />
-        </label>
+        {native ? (
+          <button type="button" className="btn-primary" disabled={busy} onClick={() => void pickNative()}>
+            {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
+          </button>
+        ) : (
+          <label className={`btn-primary inline-block cursor-pointer ${busy ? 'pointer-events-none opacity-60' : ''}`}>
+            {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
+            <input
+              type="file"
+              accept=".zip,application/zip"
+              className="sr-only"
+              data-testid="book-file"
+              disabled={busy}
+              onChange={(e) => {
+                void onFile(e.target.files?.[0]);
+                e.target.value = '';
+              }}
+            />
+          </label>
+        )}
         {message && (
           <p role="status" className={`text-sm font-bold ${message.ok ? 'text-emerald-600' : 'text-rose'}`}>
             {message.text}
           </p>
+        )}
+        {recent.length > 0 && (
+          <div className="space-y-1 pt-2" data-testid="book-recent">
+            <h3 className="text-sm font-black">{t.bjtBooks.recentTitle}</h3>
+            <p className="text-xs text-muted">{t.bjtBooks.recentHelp}</p>
+            <ul className="space-y-1">
+              {recent.map((f) => (
+                <li key={f.uri} className="flex items-stretch gap-1">
+                  <button
+                    type="button"
+                    disabled={busy}
+                    aria-label={t.bjtBooks.reopen(f.title)}
+                    className="min-w-0 flex-1 rounded-xl bg-surface px-3 py-2 text-left ring-1 ring-sakura/40 hover:bg-sakura/30 disabled:opacity-60"
+                    onClick={() => void load(() => readFile(f.uri), f)}
+                  >
+                    <span className="block font-bold break-words">📖 {f.title}</span>
+                    <span className="block text-xs text-muted break-all">
+                      {f.name}
+                      {f.size > 0 && ` · ${t.bjtBooks.size(Math.max(1, Math.round(f.size / 1048576)))}`}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={busy}
+                    aria-label={t.bjtBooks.forget(f.title)}
+                    className="shrink-0 rounded-xl px-3 text-muted ring-1 ring-sakura/40 hover:bg-sakura/30"
+                    onClick={() => {
+                      forgetFile(f.uri);
+                      setRecent(recentFiles());
+                    }}
+                  >
+                    ✕
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </section>
 
@@ -137,7 +202,7 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
   const runs = useBjt((s) => s.runs);
   const answers = useBjt((s) => s.answers);
   return (
-    <section className="card space-y-3 p-4" data-testid="book-card">
+    <section id={`book-${book.id}`} className="card scroll-mt-4 space-y-3 p-4" data-testid="book-card">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <h2 className="font-black break-words">{book.title}</h2>
