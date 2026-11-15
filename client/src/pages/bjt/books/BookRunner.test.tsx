@@ -95,6 +95,25 @@ describe('BookRunner, practice', () => {
     expect(await screen.findByTestId('book-image')).toBeInTheDocument();
   });
 
+  it('shows a typed-out question as text, answers on its choices, and keeps the book page one tap away', async () => {
+    const text = { ask: '次の{書類|しょるい}について＿＿', doc: ['本文の段落', { table: [['品名', '値段'], ['りんご', '120']], head: true }], choices: ['選択一', '選択二', '選択三', '選択四'] };
+    const typed = parseBook(JSON.stringify({ ...index, tests: [{ ...index.tests[0], questions: [{ ...index.tests[0]!.questions[1], text }] }] }));
+    render(<BookRunner book={typed} test={typed.tests[0]!} onExit={() => {}} />);
+    const q = screen.getByTestId('book-text');
+    expect(within(q).getByText('しょるい').tagName).toBe('RT');
+    expect(within(q).getByText('本文の段落')).toBeInTheDocument();
+    expect(within(q).getByRole('table')).toHaveTextContent('120');
+    expect(within(q).getByRole('columnheader', { name: '品名' })).toBeInTheDocument();
+    expect(screen.queryByTestId('book-page')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /2\s*選択二/ }));
+    expect(screen.getByRole('button', { name: /4\s*選択四/ })).toHaveAttribute('data-state', 'correct');
+    fireEvent.click(screen.getByRole('button', { name: 'Xem trang gốc trong sách' }));
+    expect(await screen.findByTestId('book-page')).toBeInTheDocument();
+    expect(screen.queryByTestId('book-text')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Xem bản chữ' }));
+    expect(screen.getByTestId('book-text')).toBeInTheDocument();
+  });
+
   it('says which question the answer row is for', () => {
     render(<BookRunner book={book} test={test0} sections={['goi']} onExit={() => {}} />);
     expect(screen.getByText('Chọn đáp án cho 1番')).toBeInTheDocument();

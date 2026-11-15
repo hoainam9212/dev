@@ -39,6 +39,52 @@ export interface PackQuestion {
    * instead of the page; the book page stays one tap away.
    */
   image?: string;
+  /** The question typed out from the book, shown as text instead of the page; the book page stays one tap away. */
+  text?: PackText;
+}
+
+/** One block of a typed-out document: a paragraph (lines kept), a centred heading, a right-aligned line or a table. */
+export type PackBlock = string | { h: string } | { right: string } | { table: string[][]; head?: boolean };
+
+export interface PackText {
+  /** The question line(s) as printed: an instruction, a sentence with ＿＿, or an A/B dialogue. */
+  ask: string;
+  /** The document the question is about (mail, notice, table…), shown in a frame under `ask`. */
+  doc?: PackBlock[];
+  choices: [string, string, string, string];
+}
+
+const isBlock = (b: unknown): boolean =>
+  typeof b === 'string' ||
+  (typeof b === 'object' &&
+    b !== null &&
+    (typeof (b as { h?: unknown }).h === 'string' ||
+      typeof (b as { right?: unknown }).right === 'string' ||
+      (Array.isArray((b as { table?: unknown }).table) &&
+        (b as { table: unknown[] }).table.every((r) => Array.isArray(r) && r.every((c) => typeof c === 'string')))));
+
+const isText = (x: PackText | undefined): boolean =>
+  x === undefined ||
+  (typeof x?.ask === 'string' &&
+    Array.isArray(x.choices) &&
+    x.choices.length === 4 &&
+    x.choices.every((c) => typeof c === 'string') &&
+    (x.doc === undefined || (Array.isArray(x.doc) && x.doc.every(isBlock))));
+
+export type InlinePart = { t: string } | { ruby: string; rt: string } | { blank: true };
+
+/** Marks inside typed text: `{漢字|かな}` is ruby, `＿＿` (two or more) is the blank to fill. */
+export function inlineParts(s: string): InlinePart[] {
+  const out: InlinePart[] = [];
+  const re = /\{([^|{}]+)\|([^|{}]+)\}|＿{2,}/g;
+  let at = 0;
+  for (let m = re.exec(s); m; m = re.exec(s)) {
+    if (m.index > at) out.push({ t: s.slice(at, m.index) });
+    out.push(m[1] ? { ruby: m[1], rt: m[2]! } : { blank: true });
+    at = m.index + m[0].length;
+  }
+  if (at < s.length) out.push({ t: s.slice(at) });
+  return out;
 }
 
 export interface PackExtra {
@@ -111,7 +157,8 @@ export function parseBook(text: string): PackBook {
             (bjtPartOf(q.section) === 'dokkai' || typeof q.audio === 'string') &&
             (q.pages === undefined || (Array.isArray(q.pages) && q.pages.length > 0 && q.pages.every(Number.isInteger))) &&
             (q.textPage === undefined || Number.isInteger(q.textPage)) &&
-            (q.image === undefined || typeof q.image === 'string'),
+            (q.image === undefined || typeof q.image === 'string') &&
+            isText(q.text),
         ) &&
         (t.extras === undefined || (Array.isArray(t.extras) && t.extras.every((x) => typeof x?.audio === 'string'))),
     );

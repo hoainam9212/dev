@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { answerKey, bookExamSeconds, cropStyle, filesNeeded, groupsOf, j1plusNos, pagePath, pagesOf, parseBook, scoreTest, sectionName, sectionsOf, wrongNos } from './book';
+import { answerKey, bookExamSeconds, cropStyle, filesNeeded, groupsOf, inlineParts, j1plusNos, pagePath, pagesOf, parseBook, scoreTest, sectionName, sectionsOf, wrongNos } from './book';
 import type { PackTest } from './book';
 
 const q = (no: number, section: string, answer: number, extra: object = {}) => ({ no, section, n: no, page: 9, answer, ...extra });
@@ -24,8 +24,32 @@ describe('parseBook', () => {
     ['answer out of range', JSON.stringify(raw([q(1, 'goi', 5)]))],
     ['listening without audio', JSON.stringify(raw([q(1, 'bamen', 1)]))],
     ['a picture that is not a path', JSON.stringify(raw([q(1, 'goi', 1, { image: 7 })]))],
+    ['typed text without four choices', JSON.stringify(raw([q(1, 'goi', 1, { text: { ask: 'a', choices: ['1', '2', '3'] } })]))],
+    ['typed text with an unknown block', JSON.stringify(raw([q(1, 'goi', 1, { text: { ask: 'a', doc: [{ x: 1 }], choices: ['1', '2', '3', '4'] } })]))],
   ])('refuses %s', (_, text) => {
     expect(() => parseBook(text)).toThrow('bad-book');
+  });
+
+  it('accepts a question typed out as text, with paragraphs, headings, right-aligned lines and tables', () => {
+    const text = { ask: '次の書類について', doc: ['本文', { h: '見出し' }, { right: '田中' }, { table: [['a', 'b'], ['c', 'd']], head: true }], choices: ['1', '2', '3', '4'] };
+    const b = parseBook(JSON.stringify(raw([q(1, 'sogo-dokkai', 3, { text })])));
+    expect(b.tests[0]!.questions[0]!.text).toEqual(text);
+  });
+});
+
+describe('inline marks of typed text', () => {
+  it('splits ruby {漢字|かな} and blanks ＿＿ out of plain text', () => {
+    expect(inlineParts('次の{書類|しょるい}が＿＿です')).toEqual([
+      { t: '次の' },
+      { ruby: '書類', rt: 'しょるい' },
+      { t: 'が' },
+      { blank: true },
+      { t: 'です' },
+    ]);
+  });
+
+  it('keeps text without marks whole', () => {
+    expect(inlineParts('（　）ので')).toEqual([{ t: '（　）ので' }]);
   });
 });
 
