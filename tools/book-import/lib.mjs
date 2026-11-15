@@ -145,6 +145,7 @@ export function validateBook(book) {
       if (!(q.section in SECTIONS)) bad(`${ql}: unknown section "${q.section}"`);
       if (!inRange(q.page)) bad(`${ql}: page ${q.page} is outside 1–${book.pages}`);
       if (!Number.isInteger(q.answer) || q.answer < 1 || q.answer > 4) bad(`${ql}: answer must be 1–4`);
+      if (q.image !== undefined && !(typeof q.image === 'string' && /^images\/[^/]+$/.test(q.image))) bad(`${ql}: image must be a file under images/`);
       const part = SECTIONS[q.section];
       if (part && part !== 'dokkai') {
         const a = audio.get(q.audio);
@@ -343,8 +344,8 @@ export function zipEnd(count, cdSize, cdOffset) {
   return h;
 }
 
-/** Files of a built book that go into its zip: the index, pages and audio, never the build state. */
-export const zipEntries = (files) => files.filter((f) => f === 'book.json' || /^(pages|audio)\//.test(f)).sort(naturalCompare);
+/** Files of a built book that go into its zip: the index, pages, audio and redrawn pictures, never the build state. */
+export const zipEntries = (files) => files.filter((f) => f === 'book.json' || /^(pages|audio|images)\//.test(f)).sort(naturalCompare);
 
 /** Keep everything a person (or Claude) wrote into an existing book.json; refresh only what the build knows. */
 export function mergeBook(existing, built) {

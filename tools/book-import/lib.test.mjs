@@ -106,6 +106,17 @@ test('zipEntries keeps the index, pages and audio, drops the build state', () =>
   ]);
 });
 
+test('zipEntries also keeps the redrawn pictures under images/', () => {
+  assert.deepEqual(zipEntries(['images/q01.jpg', 'book.json', 'goc/q01.png']), ['book.json', 'images/q01.jpg']);
+});
+
+test('validateBook wants a question picture under images/', () => {
+  const ok = book([{ ...listen(1, 0), image: 'images/q01.jpg' }]);
+  assert.deepEqual(validateBook(ok), []);
+  const bad = book([{ ...listen(1, 0), image: 'pages/p0001.jpg' }]);
+  assert.ok(validateBook(bad).some((p) => p.includes('image must be a file under images/')));
+});
+
 test('kindOf sorts files into what the import does with them', () => {
   assert.equal(kindOf('a/b/Book.PDF'), 'pdf');
   assert.equal(kindOf('scan_001.JPG'), 'image');

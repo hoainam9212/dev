@@ -73,6 +73,28 @@ describe('BookRunner, practice', () => {
     expect(screen.getByRole('button', { name: 'Phóng to' })).toBeInTheDocument();
   });
 
+  it('shows a redrawn picture first, with the book page one tap away', async () => {
+    const withImage = parseBook(JSON.stringify({ ...index, tests: [{ ...index.tests[0], questions: [{ ...index.tests[0]!.questions[0], image: 'images/q01.jpg' }] }] }));
+    await importBook(
+      makeZip([
+        ['book.json', enc.encode(JSON.stringify(withImage))],
+        ['pages/p0009.jpg', new Uint8Array([1])],
+        ['pages/p0012.jpg', new Uint8Array([3])],
+        ['images/q01.jpg', new Uint8Array([5])],
+        ['audio/a003.mp3', new Uint8Array([4])],
+      ]),
+    );
+    render(<BookRunner book={withImage} test={withImage.tests[0]!} onExit={() => {}} />);
+    expect(await screen.findByTestId('book-image')).toBeInTheDocument();
+    expect(screen.queryByTestId('book-page')).toBeNull();
+    expect(screen.getByText(/Ảnh phục hồi bằng AI/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Xem ảnh gốc trong sách' }));
+    expect(await screen.findByTestId('book-page')).toBeInTheDocument();
+    expect(screen.queryByTestId('book-image')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Xem ảnh phục hồi' }));
+    expect(await screen.findByTestId('book-image')).toBeInTheDocument();
+  });
+
   it('says which question the answer row is for', () => {
     render(<BookRunner book={book} test={test0} sections={['goi']} onExit={() => {}} />);
     expect(screen.getByText('Chọn đáp án cho 1番')).toBeInTheDocument();

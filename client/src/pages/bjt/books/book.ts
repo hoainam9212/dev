@@ -34,6 +34,11 @@ export interface PackQuestion {
   pages?: number[];
   /** One extra page shown above `page` (same idea as `pages`, written by some packs). */
   textPage?: number;
+  /**
+   * A sharper redrawn copy of the question's picture (`images/…`, restored with AI from a blurry scan), shown
+   * instead of the page; the book page stays one tap away.
+   */
+  image?: string;
 }
 
 export interface PackExtra {
@@ -105,7 +110,8 @@ export function parseBook(text: string): PackBook {
             [1, 2, 3, 4].includes(q.answer) &&
             (bjtPartOf(q.section) === 'dokkai' || typeof q.audio === 'string') &&
             (q.pages === undefined || (Array.isArray(q.pages) && q.pages.length > 0 && q.pages.every(Number.isInteger))) &&
-            (q.textPage === undefined || Number.isInteger(q.textPage)),
+            (q.textPage === undefined || Number.isInteger(q.textPage)) &&
+            (q.image === undefined || typeof q.image === 'string'),
         ) &&
         (t.extras === undefined || (Array.isArray(t.extras) && t.extras.every((x) => typeof x?.audio === 'string'))),
     );
@@ -126,6 +132,7 @@ export function filesNeeded(b: PackBook): string[] {
       for (const p of pagesOf(q)) set.add(pagePath(p));
       if (q.explainPage) set.add(pagePath(q.explainPage));
       if (q.audio) set.add(q.audio);
+      if (q.image) set.add(q.image);
     }
     for (const x of t.extras ?? []) set.add(x.audio);
   }

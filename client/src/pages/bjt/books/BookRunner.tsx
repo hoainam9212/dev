@@ -182,8 +182,38 @@ function Recording({ bookId, path, exam }: { bookId: string; path: string; exam:
   );
 }
 
-/** Every page a question is printed on, in reading order; the question's crop applies to its own `page` only. */
+/** A question's restored picture when the book has one, else its pages; the learner can switch to the book page. */
 function QuestionPages({ book, q }: { book: PackBook; q: PackQuestion }) {
+  const t = useT();
+  const [original, setOriginal] = useState(false);
+  useEffect(() => setOriginal(false), [q.no]);
+  if (!q.image) return <BookPages book={book} q={q} />;
+  return (
+    <div className="space-y-1">
+      {original ? <BookPages book={book} q={q} /> : <RedrawnImage bookId={book.id} path={q.image} />}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        {!original && <p className="text-xs text-muted">{t.bjtBooks.redrawnNote}</p>}
+        <button type="button" className="btn-soft ml-auto text-xs" onClick={() => setOriginal(!original)}>
+          {original ? t.bjtBooks.showRedrawn : t.bjtBooks.showOriginal}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function RedrawnImage({ bookId, path }: { bookId: string; path: string }) {
+  const t = useT();
+  const url = useBookFile(bookId, path);
+  if (!url) return <p className="rounded-2xl bg-white p-6 text-center text-sm text-muted ring-1 ring-sakura/40">{t.bjtBooks.loading}</p>;
+  return (
+    <ZoomImage className="rounded-2xl bg-white ring-1 ring-sakura/40">
+      <img src={url} alt="" className="block w-full" draggable={false} data-testid="book-image" />
+    </ZoomImage>
+  );
+}
+
+/** Every page a question is printed on, in reading order; the question's crop applies to its own `page` only. */
+function BookPages({ book, q }: { book: PackBook; q: PackQuestion }) {
   const pages = pagesOf(q);
   if (pages.length === 1) return <PageImage book={book} page={pages[0]!} box={q.crop} />;
   return (
