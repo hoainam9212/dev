@@ -30,33 +30,60 @@ public class PlaybackService extends Service {
 
     private PowerManager.WakeLock wakeLock;
 
+    // A service started with startForegroundService() must reach startForeground() before it may stop, or
+    // Android crashes the app. A stop that arrives while the start is still pending is kept for later.
+    private static final Object lock = new Object();
+    private static boolean startPending;
+    private static boolean stopWhenStarted;
+
     static void start(Context context) {
         Intent i = new Intent(context, PlaybackService.class);
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(i);
-            else context.startService(i);
-        } catch (RuntimeException e) {
-            // Android 12+ refuses to start a foreground service from the background; sound still plays
-            // while the app is visible, so this only costs the screen-off case.
+        synchronized (lock) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(i);
+                else context.startService(i);
+                startPending = true;
+                stopWhenStarted = false;
+            } catch (RuntimeException e) {
+                // Android 12+ refuses to start a foreground service from the background; sound still plays
+                // while the app is visible, so this only costs the screen-off case.
+            }
         }
     }
 
     static void stop(Context context) {
+        synchronized (lock) {
+            if (startPending) {
+                stopWhenStarted = true;
+                return;
+            }
+        }
         context.stopService(new Intent(context, PlaybackService.class));
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && ACTION_STOP.equals(intent.getAction())) {
-            if (stopListener != null) stopListener.onStopRequested();
-            stopSelf();
-            return START_NOT_STICKY;
-        }
+        // always go foreground first, whatever the command: that is the promise startForegroundService() made
         Notification n = buildNotification();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(NOTIFICATION_ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
         } else {
             startForeground(NOTIFICATION_ID, n);
+        }
+        boolean quit;
+        synchronized (lock) {
+            startPending = false;
+            quit = stopWhenStarted;
+            stopWhenStarted = false;
+        }
+        if (intent != null && ACTION_STOP.equals(intent.getAction())) {
+            if (stopListener != null) stopListener.onStopRequested();
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+        if (quit) {
+            stopSelf();
+            return START_NOT_STICKY;
         }
         if (wakeLock == null) {
             PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);

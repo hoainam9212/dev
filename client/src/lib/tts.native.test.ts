@@ -91,6 +91,8 @@ it('speakSequence keeps focus between lines and releases it once at the end', as
 });
 
 it('stopSpeaking() gives the audio focus back', async () => {
+  speak('ねこ');
+  await vi.waitFor(() => expect(focus.request).toHaveBeenCalled());
   stopSpeaking();
   await vi.waitFor(() => expect(focus.abandon).toHaveBeenCalled(), { timeout: 2000 });
 });

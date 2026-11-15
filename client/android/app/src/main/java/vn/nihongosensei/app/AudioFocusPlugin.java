@@ -75,7 +75,7 @@ public class AudioFocusPlugin extends Plugin {
         SharedPreferences prefs = getContext().getSharedPreferences("audio", Context.MODE_PRIVATE);
         if (prefs.getBoolean("askedNotifications", false)) return;
         prefs.edit().putBoolean("askedNotifications", true).apply();
-        ActivityCompat.requestPermissions(getActivity(), new String[] { perm }, 4711);
+        getActivity().runOnUiThread(() -> ActivityCompat.requestPermissions(getActivity(), new String[] { perm }, 4711));
     }
 
     @PluginMethod

@@ -68,6 +68,47 @@ it('pausing or ending the recording gives the focus back shortly after', async (
   }
 });
 
+it('a playing recording removed from the page (next question) still gives the focus back', async () => {
+  vi.useFakeTimers();
+  try {
+    const a = audioEl();
+    a.dispatchEvent(new Event('play'));
+    a.remove(); // React drops the element; the browser pauses it, but the event no longer reaches document
+    Object.defineProperty(a, 'paused', { value: true, configurable: true });
+    a.dispatchEvent(new Event('pause'));
+    await vi.advanceTimersByTimeAsync(RELEASE_DELAY_MS + 10);
+    expect(focusLog).toEqual(['request', 'abandon']);
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
+it('a recording that stops does not take the focus away from speech still playing', async () => {
+  vi.useFakeTimers();
+  try {
+    const { acquireAudioFocus } = await import('./audioFocus');
+    await acquireAudioFocus('tts');
+    const a = audioEl();
+    a.dispatchEvent(new Event('play'));
+    Object.defineProperty(a, 'paused', { value: true, configurable: true });
+    a.dispatchEvent(new Event('ended'));
+    await vi.advanceTimersByTimeAsync(RELEASE_DELAY_MS + 10);
+    expect(focusLog).toEqual(['request']);
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
+it('after Stop in the notification the next sound asks for the focus (and the service) again', async () => {
+  const a = audioEl();
+  a.dispatchEvent(new Event('play'));
+  await vi.waitFor(() => expect(listeners.stopRequested).toBeTypeOf('function'));
+  listeners.stopRequested!();
+  Object.defineProperty(a, 'paused', { value: false, configurable: true });
+  a.dispatchEvent(new Event('play'));
+  await vi.waitFor(() => expect(focusLog.filter((x) => x === 'request')).toHaveLength(2));
+});
+
 it.each(['interrupted', 'stopRequested'])('the native "%s" event stops speech and pauses recordings', async (event) => {
   const a = audioEl();
   await vi.waitFor(() => expect(listeners[event]).toBeTypeOf('function'));
