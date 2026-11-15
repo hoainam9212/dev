@@ -208,7 +208,23 @@ describe('ZoomImage', () => {
     expect(scaleOf(layer())).toBe(1);
   });
 
-  it('taps on the corner buttons are not gestures', async () => {
+  it('keeps the zoom buttons outside the frame so they never cover the content', () => {
+    render(<ZoomImage src="page.png" alt="p" />);
+    for (const b of screen.getAllByRole('button')) expect(frame()).not.toContainElement(b);
+  });
+
+  it('grows the frame while zoomed (up to 70% of the window) so a short strip gets readable', async () => {
+    render(<ZoomImage src="page.png" alt="p" />);
+    expect(frame().style.height).toBe('');
+    fireEvent.click(screen.getByRole('button', { name: 'Zoom in' })); // 400 high content × 1.5 = 600
+    await nextFrame();
+    expect(frame().style.height).toBe(`${Math.max(400, Math.min(600, window.innerHeight * 0.7))}px`);
+    fireEvent.click(screen.getByRole('button', { name: 'Fit width (1:1)' }));
+    await nextFrame();
+    expect(frame().style.height).toBe('');
+  });
+
+  it('taps on the zoom buttons are not gestures', async () => {
     render(<ZoomImage src="page.png" alt="p" />);
     const reset = screen.getByRole('button', { name: 'Fit width (1:1)' });
     for (let i = 0; i < 2; i++) {
