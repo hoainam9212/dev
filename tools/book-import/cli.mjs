@@ -135,6 +135,7 @@ function check(out) {
     const book = readJson(bookPath);
     const problems = validateBook(book);
     for (const a of book.audio ?? []) if (!fs.existsSync(path.join(out, id, a.file))) problems.push(`missing file ${a.file}`);
+    for (const t of book.tests ?? []) for (const q of t.questions ?? []) if (q.image && !fs.existsSync(path.join(out, id, q.image))) problems.push(`missing file ${q.image}`);
     const pages = fs.existsSync(path.join(out, id, 'pages')) ? fs.readdirSync(path.join(out, id, 'pages')).length : 0;
     if (pages !== book.pages) problems.push(`book.json says ${book.pages} pages but pages/ holds ${pages}`);
     const questions = (book.tests ?? []).reduce((n, t) => n + (t.questions?.length ?? 0), 0);

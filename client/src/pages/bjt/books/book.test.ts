@@ -23,6 +23,7 @@ describe('parseBook', () => {
     ['unknown section', JSON.stringify(raw([q(1, 'nope', 1)]))],
     ['answer out of range', JSON.stringify(raw([q(1, 'goi', 5)]))],
     ['listening without audio', JSON.stringify(raw([q(1, 'bamen', 1)]))],
+    ['a picture that is not a path', JSON.stringify(raw([q(1, 'goi', 1, { image: 7 })]))],
   ])('refuses %s', (_, text) => {
     expect(() => parseBook(text)).toThrow('bad-book');
   });
@@ -37,6 +38,11 @@ describe('files of a book', () => {
   it('filesNeeded lists every page and recording the tests use, once', () => {
     const b = parseBook(JSON.stringify(raw([q(1, 'bamen', 1, { audio: 'audio/a003.mp3', explainPage: 12 }), q(2, 'goi', 4)])));
     expect(filesNeeded(b)).toEqual(['audio/a003.mp3', 'pages/p0009.jpg', 'pages/p0012.jpg']);
+  });
+
+  it('filesNeeded also lists a redrawn picture', () => {
+    const b = parseBook(JSON.stringify(raw([q(1, 'bamen', 1, { audio: 'audio/a003.mp3', image: 'images/q4-01.jpg' })])));
+    expect(filesNeeded(b)).toEqual(['audio/a003.mp3', 'images/q4-01.jpg', 'pages/p0009.jpg']);
   });
 });
 
