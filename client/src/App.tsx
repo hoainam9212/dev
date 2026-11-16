@@ -1,4 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
+import { resumePath } from './lib/resume';
+import { LearnPage } from './pages/LearnPage';
+import { MePage } from './pages/MePage';
+import { useLaunchRoutes } from './app/launch';
 import { AppShell } from './app/AppShell';
 import { useSyncHtmlLang } from './i18n';
 import { Home } from './pages/Home';
@@ -21,10 +25,15 @@ import { LoginPage } from './pages/LoginPage';
 
 export default function App() {
   useSyncHtmlLang();
+  useLaunchRoutes();
   return (
     <Routes>
       <Route element={<AppShell />}>
         <Route path="/" element={<Home />} />
+        <Route path="/learn" element={<LearnPage />} />
+        <Route path="/me" element={<MePage />} />
+        {/* where the learner left off: the home page's button and the phone's "Continue" shortcut */}
+        <Route path="/continue" element={<Navigate to={resumePath()} replace />} />
         <Route path="/kana" element={<KanaPage />} />
         <Route path="/vocab" element={<VocabPage />} />
         <Route path="/kanji" element={<KanjiPage />} />

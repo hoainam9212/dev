@@ -22,6 +22,7 @@ import {
   type PackText,
 } from './book';
 import { useBookFile } from './useBookFile';
+import { saveBookPlace } from '../../../lib/resume';
 
 const XP_PER_CORRECT = 2;
 
@@ -34,6 +35,8 @@ interface Props {
   sections?: BjtSection[];
   /** Practice only these question numbers (redo wrong answers, J1+ only). */
   only?: number[];
+  /** Practice: start at this question of the list (Continue). */
+  start?: number;
   onExit: () => void;
 }
 
@@ -45,7 +48,7 @@ const CHOICE: Record<string, string> = {
 };
 
 /** Runs one test of an imported book: page image, the book's own recording, answer 1–4. */
-export function BookRunner({ book, test, exam = false, sections, only, onExit }: Props) {
+export function BookRunner({ book, test, exam = false, sections, only, start = 0, onExit }: Props) {
   const t = useT();
   const questions = useMemo(
     () =>
@@ -53,7 +56,11 @@ export function BookRunner({ book, test, exam = false, sections, only, onExit }:
     [test, sections, only],
   );
   const run: PackTest = useMemo(() => ({ ...test, questions }), [test, questions]);
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(() => (exam ? 0 : Math.max(0, Math.min(start, questions.length - 1))));
+  // practice: remember the question, for "Continue" (a timed test starts over instead)
+  useEffect(() => {
+    if (!exam) saveBookPlace({ bookId: book.id, testId: test.id, i, only, sections, title: book.title, testTitle: test.title });
+  }, [exam, book, test, i, only, sections]);
   const [picked, setPicked] = useState<Record<number, number>>({});
   const [finished, setFinished] = useState(false);
   const [left, setLeft] = useState(() => bookExamSeconds(run));

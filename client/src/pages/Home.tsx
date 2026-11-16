@@ -8,10 +8,13 @@ import { NAV } from '../app/nav';
 import { useDueCounts } from '../db/srs';
 import { useSettings } from '../store/settings';
 import { pickMascotLine, levelName } from '../lib/mascot';
+import { lastPlace } from '../lib/resume';
+import { tabLabel } from './bjt/books/book';
 import { levelFromXp } from '../store/streak';
 import { useLang, useT } from '../i18n';
 import { pickText } from '@nihongo/shared';
 
+/** Home: what to do now (continue, today's review, the BJT books) first; every lesson is in "Learn". */
 export function Home() {
   const t = useT();
   const lang = useLang();
@@ -21,51 +24,62 @@ export function Home() {
   const dueTotal = due ? due.vocab + due.kanji + due.grammar : 0;
   const xp = useProgress((s) => s.xp);
   const g = pickMascotLine({ hour: new Date().getHours(), streak, due: dueTotal });
-  const quick = NAV.filter((n) => !['/', '/settings', '/progress'].includes(n.to));
+
+  const place = lastPlace();
+  const page = place?.kind === 'page' ? NAV.find((n) => place.path === n.to || place.path.startsWith(`${n.to}/`)) : undefined;
+  const where =
+    place?.kind === 'book' ? t.home.continueBook(tabLabel(place.title), place.testTitle, place.i + 1) : page ? `${page.icon} ${t.nav[page.key].label}` : undefined;
+
+  const action = 'card flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:shadow-lg';
 
   return (
-    <div className="space-y-6">
-      <section className="card relative overflow-hidden p-6 md:p-8">
+    <div className="space-y-4">
+      <section className="card relative overflow-hidden p-4 md:p-6">
         {petals && <Petals />}
-        <div className="relative flex flex-col items-center gap-4 md:flex-row md:items-end">
-          <Mascot mood="happy" size={180} />
-          <div className="flex-1 space-y-3">
+        <div className="relative flex items-center gap-3">
+          <Mascot mood="happy" size={88} />
+          <div className="min-w-0 flex-1 space-y-2">
             <SpeechBubble>
-              <p className="text-lg font-bold">{g.ja}</p>
+              <p className="font-bold">{g.ja}</p>
               <p className="text-sm text-muted">{pickText(g.vi, g.en, lang)}</p>
             </SpeechBubble>
-            <div className="flex flex-wrap gap-3">
-              <div className="rounded-2xl bg-sakura/30 px-4 py-2 font-bold">{t.home.streak(streak)}</div>
-              <div className="rounded-2xl bg-lavender/40 px-4 py-2 font-bold">🏅 {levelName(levelFromXp(xp).level, t)}</div>
-              <div className="rounded-2xl bg-sky/40 px-4 py-2 font-bold" data-testid="due-chip">
-                {t.home.due(dueTotal)}
-              </div>
-              {dueTotal > 0 && (
-                <Link to="/review" className="btn-primary">
-                  {t.home.reviewNow}
-                </Link>
-              )}
-            </div>
-            <XpBar />
           </div>
+        </div>
+        <div className="relative mt-3 flex flex-wrap gap-2 text-sm">
+          <div className="rounded-2xl bg-sakura/30 px-3 py-1.5 font-bold">{t.home.streak(streak)}</div>
+          <div className="rounded-2xl bg-lavender/40 px-3 py-1.5 font-bold">🏅 {levelName(levelFromXp(xp).level, t)}</div>
+          <div className="rounded-2xl bg-sky/40 px-3 py-1.5 font-bold" data-testid="due-chip">
+            {t.home.due(dueTotal)}
+          </div>
+        </div>
+        <div className="relative mt-3">
+          <XpBar />
         </div>
       </section>
 
-      <section>
-        <h2 className="mb-3 text-xl font-black text-rose">{t.home.startLearning}</h2>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-          {quick.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="card flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              <span className="text-2xl">{n.icon}</span>
-              <span className="font-bold">{t.nav[n.key].label}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <div className="grid gap-3 md:grid-cols-3">
+        {where && (
+          <Link to="/continue" className={`${action} bg-rose-700! text-white md:col-span-3`}>
+            <span className="text-2xl">▶</span>
+            <span className="min-w-0">
+              <span className="block font-black">{t.home.continue}</span>
+              <span className="block text-sm break-words opacity-90">{where}</span>
+            </span>
+          </Link>
+        )}
+        <Link to="/review" className={action}>
+          <span className="text-2xl">🔁</span>
+          <span className="font-bold">{t.home.reviewToday(dueTotal)}</span>
+        </Link>
+        <Link to="/bjt/sach" className={action}>
+          <span className="text-2xl">📖</span>
+          <span className="font-bold">{t.home.bjtBooks}</span>
+        </Link>
+        <Link to="/learn" className={action}>
+          <span className="text-2xl">📚</span>
+          <span className="font-bold">{t.home.allLessons}</span>
+        </Link>
+      </div>
     </div>
   );
 }

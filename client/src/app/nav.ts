@@ -38,5 +38,37 @@ export const NAV: NavItem[] = [
   { to: '/settings', icon: '⚙️', key: 'settings' },
 ];
 
-// Items shown in the mobile bottom bar (max 5); the rest live in the "more" sheet.
-export const MOBILE_PRIMARY = ['/', '/vocab', '/kanji', '/review', '/progress'];
+export type GroupKey = 'home' | 'learn' | 'bjt' | 'review' | 'me';
+
+/** The five groups of the phone bar (and the headings of the side bar). Every page belongs to one. */
+export interface NavGroup {
+  key: GroupKey;
+  to: string;
+  icon: string;
+  /** Pages of the group, by path prefix (the group's own page included). */
+  pages: string[];
+  /** Pages listed under the group in the side bar. */
+  items: NavKey[];
+}
+
+export const GROUPS: NavGroup[] = [
+  { key: 'home', to: '/', icon: '🏠', pages: [], items: ['home'] },
+  {
+    key: 'learn',
+    to: '/learn',
+    icon: '📚',
+    pages: ['/learn', '/kana', '/vocab', '/kanji', '/grammar', '/reading', '/listening', '/speaking', '/writing'],
+    items: ['kana', 'vocab', 'kanji', 'grammar', 'reading', 'listening', 'speaking', 'writing'],
+  },
+  { key: 'bjt', to: '/bjt', icon: '🏅', pages: ['/bjt', '/business'], items: ['bjt', 'business'] },
+  { key: 'review', to: '/review', icon: '🔁', pages: ['/review'], items: ['review'] },
+  { key: 'me', to: '/me', icon: '👤', pages: ['/me', '/progress', '/settings', '/login', '/register'], items: ['progress', 'settings'] },
+];
+
+/** The group a path belongs to ("/" only for the home page itself). */
+export function groupOf(path: string): GroupKey | undefined {
+  if (path === '/') return 'home';
+  return GROUPS.find((g) => g.pages.some((p) => path === p || path.startsWith(`${p}/`)))?.key;
+}
+
+export const navItem = (key: NavKey) => NAV.find((n) => n.key === key)!;

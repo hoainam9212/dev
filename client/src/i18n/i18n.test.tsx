@@ -54,12 +54,11 @@ it('clicking EN in the shell switch turns the sidebar English', () => {
   expect(screen.queryByRole('link', { name: /Từ vựng/ })).toBeNull();
 });
 
-it('takes the more button and nav aria labels from the dictionary', () => {
+it('takes the group names and nav aria labels from the dictionary', () => {
   act(() => useSettings.getState().setLang('en'));
   renderShell();
   expect(screen.getByRole('navigation', { name: en.nav.mainAria })).toBeInTheDocument();
-  expect(screen.getByRole('navigation', { name: en.nav.mobileAria })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: new RegExp(en.nav.more) })).toBeInTheDocument();
+  expect(screen.getByRole('navigation', { name: en.nav.mobileAria })).toHaveTextContent(en.nav.groups.learn);
 });
 
 it('counts cards with English plurals', () => {
