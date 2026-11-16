@@ -39,7 +39,11 @@ public class AudioFocusPlugin extends Plugin {
 
     @PluginMethod
     public void request(PluginCall call) {
-        if (audioManager == null) {
+        // focus=false (book recordings): the WebView's player takes the focus itself; taking it too paused that
+        // player, our release resumed it, and so on — the Play button flickered and nothing was heard.
+        boolean focus = Boolean.TRUE.equals(call.getBoolean("focus", true));
+        if (audioManager == null || !focus) {
+            PlaybackService.start(getContext());
             call.resolve();
             return;
         }

@@ -3,10 +3,10 @@ import { acquireAudioFocus, forgetAudioFocus, plugin, releaseAudioFocusSoon } fr
 import { stopSpeaking } from './tts';
 
 /**
- * Sound that is not speech: book recordings play through <audio>, which never asks Android for audio focus, so
- * music from other apps kept playing under them. Every media element that starts takes the focus (other apps
- * pause; the native side also starts the media-playback service that keeps sound going with the screen off) and
- * gives it back shortly after the last one stops.
+ * Sound that is not speech: book recordings play through <audio>. The WebView's player takes Android's audio
+ * focus itself (taking it here as well made the two fight: the Play button flickered, nothing was heard), so a
+ * media element that starts only keeps the media-playback service on — sound goes on with the screen off — and
+ * the service stops shortly after the last one stops.
  *
  * The other way round: when another app takes the audio (a call, the user starting music) or the user presses
  * Stop in the notification, all of the app's sound stops.

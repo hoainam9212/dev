@@ -4,8 +4,9 @@ const { focusLog, focus, listeners, ttsStop } = vi.hoisted(() => {
   const focusLog: string[] = [];
   const listeners: Record<string, () => void> = {};
   const focus = {
-    request: vi.fn(async () => {
-      focusLog.push('request');
+    // `focus: false` = only the playback service (screen off), no system audio focus
+    request: vi.fn(async (o?: { focus?: boolean }) => {
+      focusLog.push(o?.focus === false ? 'service' : 'request');
     }),
     abandon: vi.fn(async () => {
       focusLog.push('abandon');
@@ -48,10 +49,21 @@ function audioEl() {
   return a;
 }
 
-it('a recording that starts playing takes the audio focus', async () => {
+it('a recording that starts playing keeps the playback service on, but never takes the audio focus', async () => {
+  // The WebView's player takes the system focus itself. Taking it as well paused the player (focus lost), the
+  // pause gave the focus back, the player resumed, and so on: the Play button flickered and nothing was heard.
   const a = audioEl();
   a.dispatchEvent(new Event('play'));
-  await vi.waitFor(() => expect(focusLog).toEqual(['request']));
+  await vi.waitFor(() => expect(focusLog).toEqual(['service']));
+});
+
+it('speech starting while a recording plays still takes the audio focus', async () => {
+  const a = audioEl();
+  a.dispatchEvent(new Event('play'));
+  await vi.waitFor(() => expect(focusLog).toEqual(['service']));
+  const { acquireAudioFocus } = await import('./audioFocus');
+  await acquireAudioFocus('tts');
+  expect(focusLog).toEqual(['service', 'request']);
 });
 
 it('pausing or ending the recording gives the focus back shortly after', async () => {
@@ -62,7 +74,7 @@ it('pausing or ending the recording gives the focus back shortly after', async (
     Object.defineProperty(a, 'paused', { value: true, configurable: true });
     a.dispatchEvent(new Event('ended'));
     await vi.advanceTimersByTimeAsync(RELEASE_DELAY_MS + 10);
-    expect(focusLog).toEqual(['request', 'abandon']);
+    expect(focusLog).toEqual(['service', 'abandon']);
   } finally {
     vi.useRealTimers();
   }
@@ -77,7 +89,7 @@ it('a playing recording removed from the page (next question) still gives the fo
     Object.defineProperty(a, 'paused', { value: true, configurable: true });
     a.dispatchEvent(new Event('pause'));
     await vi.advanceTimersByTimeAsync(RELEASE_DELAY_MS + 10);
-    expect(focusLog).toEqual(['request', 'abandon']);
+    expect(focusLog).toEqual(['service', 'abandon']);
   } finally {
     vi.useRealTimers();
   }
@@ -106,7 +118,7 @@ it('after Stop in the notification the next sound asks for the focus (and the se
   listeners.stopRequested!();
   Object.defineProperty(a, 'paused', { value: false, configurable: true });
   a.dispatchEvent(new Event('play'));
-  await vi.waitFor(() => expect(focusLog.filter((x) => x === 'request')).toHaveLength(2));
+  await vi.waitFor(() => expect(focusLog.filter((x) => x === 'service')).toHaveLength(2));
 });
 
 it.each(['interrupted', 'stopRequested'])('the native "%s" event stops speech and pauses recordings', async (event) => {
