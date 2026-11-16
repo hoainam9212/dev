@@ -5,7 +5,7 @@ import { bjtEstimate, type BjtSection } from '@nihongo/shared';
 import { db, type StoredBook } from '../../../db/db';
 import { useBjt } from '../../../store/bjt';
 import { useT } from '../../../i18n';
-import { answerKey, bookExamSeconds, groupsOf, j1plusNos, wrongNos, type PackBook, type PackExtra, type PackTest } from './book';
+import { answerKey, bookExamSeconds, groupsOf, j1plusNos, tabLabel, wrongNos, type PackBook, type PackExtra, type PackTest } from './book';
 import { deleteBook, importBook } from './library';
 import { BookRunner } from './BookRunner';
 import { useBookFile } from './useBookFile';
@@ -19,10 +19,30 @@ interface Run {
   only?: number[];
 }
 
-/** /bjt/sach: the learner's own prep books, imported from .zip and kept on the device. */
+/** The tab shown last (a book id, or ADD), so the learner comes back to the book they study. */
+const TAB_KEY = 'ns.bookTab';
+const ADD = '+add';
+const readTab = () => {
+  try {
+    return localStorage.getItem(TAB_KEY);
+  } catch {
+    return null;
+  }
+};
+
+/** /bjt/sach: the learner's own prep books, imported from .zip and kept on the device. One tab per book. */
 export function BooksPage() {
   const t = useT();
   const books = useLiveQuery(() => db.books.orderBy('importedAt').toArray(), []);
+  const [tab, setTabState] = useState<string | null>(readTab);
+  const setTab = (id: string) => {
+    setTabState(id);
+    try {
+      localStorage.setItem(TAB_KEY, id);
+    } catch {
+      /* the tab is a convenience */
+    }
+  };
   const [run, setRun] = useState<Run | null>(null);
   const [progress, setProgress] = useState<number | null>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
@@ -57,11 +77,16 @@ export function BooksPage() {
     try {
       const b = await importBook(await read(), (done, total) => setProgress(Math.round((done / total) * 100)));
       if (place) {
-        rememberFile({ ...place, bookId: b.id, title: b.title, openedAt: new Date().toISOString() });
+        rememberFile({
+          ...place,
+          bookId: b.id,
+          title: b.title,
+          openedAt: new Date().toISOString(),
+        });
         setRecent(recentFiles());
       }
       setMessage({ ok: true, text: t.bjtBooks.imported(b.title) });
-      requestAnimationFrame(() => document.getElementById(`book-${b.id}`)?.scrollIntoView?.({ behavior: 'smooth', block: 'start' }));
+      setTab(b.id);
     } catch (e) {
       const code = e instanceof Error ? e.message : '';
       const errs = t.bjtBooks.errors;
@@ -89,6 +114,9 @@ export function BooksPage() {
   };
 
   const busy = progress !== null;
+  // the stored tab when it still exists, else the first book; no book yet → the import tab
+  const current = !books ? null : books.length === 0 ? ADD : tab === ADD || books.some((b) => b.id === tab) ? tab : books[0]!.id;
+  const shown = books?.find((b) => b.id === current);
 
   return (
     <div className="space-y-4">
@@ -100,75 +128,130 @@ export function BooksPage() {
         <p className="text-sm text-muted">{t.bjtBooks.subtitle}</p>
       </header>
 
-      <section className="card space-y-2 p-4">
-        <h2 className="font-black">{t.bjtBooks.importTitle}</h2>
-        <p className="text-sm text-muted">{t.bjtBooks.importHelp}</p>
-        {native ? (
-          <button type="button" className="btn-primary" disabled={busy} onClick={() => void pickNative()}>
-            {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
-          </button>
-        ) : (
-          <label className={`btn-primary inline-block cursor-pointer ${busy ? 'pointer-events-none opacity-60' : ''}`}>
-            {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
-            <input
-              type="file"
-              accept=".zip,application/zip"
-              className="sr-only"
-              data-testid="book-file"
-              disabled={busy}
-              onChange={(e) => {
-                void onFile(e.target.files?.[0]);
-                e.target.value = '';
-              }}
-            />
-          </label>
-        )}
-        {message && (
-          <p role="status" className={`text-sm font-bold ${message.ok ? 'text-emerald-600' : 'text-rose'}`}>
-            {message.text}
-          </p>
-        )}
-        {recent.length > 0 && (
-          <div className="space-y-1 pt-2" data-testid="book-recent">
-            <h3 className="text-sm font-black">{t.bjtBooks.recentTitle}</h3>
-            <p className="text-xs text-muted">{t.bjtBooks.recentHelp}</p>
-            <ul className="space-y-1">
-              {recent.map((f) => (
-                <li key={f.uri} className="flex items-stretch gap-1">
-                  <button
-                    type="button"
-                    disabled={busy}
-                    aria-label={t.bjtBooks.reopen(f.title)}
-                    className="min-w-0 flex-1 rounded-xl bg-surface px-3 py-2 text-left ring-1 ring-sakura/40 hover:bg-sakura/30 disabled:opacity-60"
-                    onClick={() => void load(() => readFile(f.uri), f)}
-                  >
-                    <span className="block font-bold break-words">📖 {f.title}</span>
-                    <span className="block text-xs text-muted break-all">
-                      {f.name}
-                      {f.size > 0 && ` · ${t.bjtBooks.size(Math.max(1, Math.round(f.size / 1048576)))}`}
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    disabled={busy}
-                    aria-label={t.bjtBooks.forget(f.title)}
-                    className="shrink-0 rounded-xl px-3 text-muted ring-1 ring-sakura/40 hover:bg-sakura/30"
-                    onClick={() => {
-                      forgetFile(f.uri);
-                      setRecent(recentFiles());
-                    }}
-                  >
-                    ✕
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
+      {message && (
+        <p role="status" className={`text-sm font-bold ${message.ok ? 'text-emerald-600' : 'text-rose'}`}>
+          {message.text}
+        </p>
+      )}
 
-      {books && books.length === 0 && <p className="text-center text-muted">{t.bjtBooks.empty}</p>}
-      {books?.map((b) => <BookCard key={b.id} stored={b} onRun={setRun} />)}
+      {books && books.length > 0 && (
+        <div role="tablist" aria-label={t.bjtBooks.tabs} className="flex flex-wrap gap-2">
+          {[
+            ...books.map((b) => ({
+              id: b.id,
+              label: tabLabel(b.title),
+              title: b.title,
+            })),
+            {
+              id: ADD,
+              label: t.bjtBooks.addTab,
+              title: t.bjtBooks.importTitle,
+            },
+          ].map((x) => {
+            const selected = current === x.id;
+            return (
+              <button
+                key={x.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-controls="book-panel"
+                title={x.title}
+                onClick={() => setTab(x.id)}
+                className={`max-w-[12rem] shrink-0 truncate rounded-full px-4 py-2 text-sm font-bold ring-1 transition ${
+                  selected ? 'bg-rose-700 text-white ring-rose-700' : 'bg-surface ring-sakura/40 hover:bg-sakura/30'
+                }`}
+              >
+                {x.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <div role="tabpanel" id="book-panel" className="space-y-4">
+        {current === ADD && (
+          <section className="card space-y-2 p-4">
+            <h2 className="font-black">{t.bjtBooks.importTitle}</h2>
+            <p className="text-sm text-muted">{t.bjtBooks.importHelp}</p>
+            {native ? (
+              <button type="button" className="btn-primary" disabled={busy} onClick={() => void pickNative()}>
+                {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
+              </button>
+            ) : (
+              <label className={`btn-primary inline-block cursor-pointer ${busy ? 'pointer-events-none opacity-60' : ''}`}>
+                {busy ? t.bjtBooks.importing(progress ?? 0) : t.bjtBooks.pick}
+                <input
+                  type="file"
+                  accept=".zip,application/zip"
+                  className="sr-only"
+                  data-testid="book-file"
+                  disabled={busy}
+                  onChange={(e) => {
+                    void onFile(e.target.files?.[0]);
+                    e.target.value = '';
+                  }}
+                />
+              </label>
+            )}
+            {recent.length > 0 && (
+              <div className="space-y-1 pt-2" data-testid="book-recent">
+                <h3 className="text-sm font-black">{t.bjtBooks.recentTitle}</h3>
+                <p className="text-xs text-muted">{t.bjtBooks.recentHelp}</p>
+                <ul className="space-y-1">
+                  {recent.map((f) => {
+                    const inApp = !!books?.some((b) => b.id === f.bookId);
+                    return (
+                      <li key={f.uri} className="flex items-stretch gap-1">
+                        <button
+                          type="button"
+                          disabled={busy}
+                          aria-label={inApp ? t.bjtBooks.openBook(f.title) : t.bjtBooks.reopen(f.title)}
+                          className="min-w-0 flex-1 rounded-xl bg-surface px-3 py-2 text-left ring-1 ring-sakura/40 hover:bg-sakura/30 disabled:opacity-60"
+                          onClick={() => (inApp ? setTab(f.bookId) : void load(() => readFile(f.uri), f))}
+                        >
+                          <span className="block font-bold break-words">📖 {f.title}</span>
+                          <span className="block text-xs text-muted break-all">
+                            {f.name}
+                            {f.size > 0 && ` · ${t.bjtBooks.size(Math.max(1, Math.round(f.size / 1048576)))}`}
+                            {inApp && ` · ${t.bjtBooks.inApp}`}
+                          </span>
+                        </button>
+                        {inApp && (
+                          <button
+                            type="button"
+                            disabled={busy}
+                            aria-label={t.bjtBooks.reimportOf(f.title)}
+                            className="shrink-0 rounded-xl px-3 text-xs font-bold ring-1 ring-sakura/40 hover:bg-sakura/30 disabled:opacity-60"
+                            onClick={() => void load(() => readFile(f.uri), f)}
+                          >
+                            {t.bjtBooks.reimport}
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          disabled={busy}
+                          aria-label={t.bjtBooks.forget(f.title)}
+                          className="shrink-0 rounded-xl px-3 text-muted ring-1 ring-sakura/40 hover:bg-sakura/30"
+                          onClick={() => {
+                            forgetFile(f.uri);
+                            setRecent(recentFiles());
+                          }}
+                        >
+                          ✕
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
+        {books && books.length === 0 && <p className="text-center text-muted">{t.bjtBooks.empty}</p>}
+        {shown && <BookCard key={shown.id} stored={shown} onRun={setRun} />}
+      </div>
     </div>
   );
 }
@@ -201,6 +284,9 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
   const book = stored.book as PackBook;
   const runs = useBjt((s) => s.runs);
   const answers = useBjt((s) => s.answers);
+  // tests fold; the one taken last (else the first) starts open
+  const lastAt = (id: string) => runs[`book:${book.id}:${id}`]?.at(-1)?.at ?? '';
+  const openId = book.tests.reduce((a, x) => (lastAt(x.id) > lastAt(a.id) ? x : a), book.tests[0]!).id;
   return (
     <section id={`book-${book.id}`} className="card scroll-mt-4 space-y-3 p-4" data-testid="book-card">
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -228,53 +314,57 @@ function BookCard({ stored, onRun }: { stored: StoredBook; onRun: (r: Run) => vo
         const wrong = wrongNos(book.id, test, answers);
         const plus = j1plusNos(test);
         return (
-          <div key={test.id} className="space-y-2 rounded-2xl bg-cream p-3 dark:bg-bg">
-            <p className="font-bold">
-              {test.title} <span className="text-sm font-normal text-muted">· {t.bjtBooks.questions(test.questions.length)}</span>
-            </p>
-            {last && est && <p className="text-xs text-muted">{t.bjtBooks.last(est.score, est.level, last.correct, last.total)}</p>}
-            {last && test.legacy && <p className="text-xs text-muted">{t.bjtBooks.lastLegacy(last.correct, last.total)}</p>}
-            {test.legacy && <p className="text-xs font-bold text-muted">{t.bjtBooks.legacyNote}</p>}
-            <div className="flex flex-wrap gap-2">
-              <button type="button" className="btn-primary text-sm" onClick={() => onRun({ book, test, exam: true })}>
-                {t.bjtBooks.exam(minutes)}
-              </button>
-              <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false })}>
-                {t.bjtBooks.practice}
-              </button>
-              {wrong.length > 0 && (
-                <button type="button" className="btn-sky text-sm" onClick={() => onRun({ book, test, exam: false, only: wrong })}>
-                  {t.bjtBooks.redoWrong(wrong.length)}
+          <details key={test.id} open={openId === test.id} className="rounded-2xl bg-cream p-3 dark:bg-bg" data-testid="book-test">
+            <summary className="cursor-pointer">
+              <span className="font-bold">
+                {test.title} <span className="text-sm font-normal text-muted">· {t.bjtBooks.questions(test.questions.length)}</span>
+              </span>
+              {last && est && <span className="block text-xs text-muted">{t.bjtBooks.last(est.score, est.level, last.correct, last.total)}</span>}
+              {last && test.legacy && <span className="block text-xs text-muted">{t.bjtBooks.lastLegacy(last.correct, last.total)}</span>}
+            </summary>
+            <div className="mt-2 space-y-2">
+              {test.legacy && <p className="text-xs font-bold text-muted">{t.bjtBooks.legacyNote}</p>}
+              <div className="flex flex-wrap gap-2">
+                <button type="button" className="btn-primary text-sm" onClick={() => onRun({ book, test, exam: true })}>
+                  {t.bjtBooks.exam(minutes)}
                 </button>
-              )}
-              {plus.length > 0 && (
-                <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false, only: plus })}>
-                  {t.bjtBooks.j1plusOnly(plus.length)}
+                <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false })}>
+                  {t.bjtBooks.practice}
                 </button>
-              )}
+                {wrong.length > 0 && (
+                  <button type="button" className="btn-sky text-sm" onClick={() => onRun({ book, test, exam: false, only: wrong })}>
+                    {t.bjtBooks.redoWrong(wrong.length)}
+                  </button>
+                )}
+                {plus.length > 0 && (
+                  <button type="button" className="btn-soft text-sm" onClick={() => onRun({ book, test, exam: false, only: plus })}>
+                    {t.bjtBooks.j1plusOnly(plus.length)}
+                  </button>
+                )}
+              </div>
+              <p className="text-xs text-muted">{t.bjtBooks.examRules}</p>
+              {!!test.extras?.length && <Extras bookId={book.id} extras={test.extras} />}
+              <ul className={`grid grid-cols-1 gap-1 ${test.questions.some((q) => q.label) ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
+                {groupsOf(test).map((g) => {
+                  const keys = g.nos.map((no) => answerKey(book.id, test.id, no));
+                  const seen = keys.filter((k) => k in answers);
+                  const right = seen.filter((k) => answers[k]).length;
+                  return (
+                    <li key={g.key}>
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between gap-2 rounded-xl bg-surface px-3 py-2 text-left text-sm ring-1 ring-sakura/40 hover:bg-sakura/30"
+                        onClick={() => onRun({ book, test, exam: false, only: g.nos })}
+                      >
+                        <span className="min-w-0 font-bold break-words">{g.name}</span>
+                        <span className="shrink-0 text-xs text-muted tabular-nums">{seen.length ? t.bjtBooks.sectionDone(right, seen.length, g.nos.length) : t.bjtBooks.questions(g.nos.length)}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <p className="text-xs text-muted">{t.bjtBooks.examRules}</p>
-            {!!test.extras?.length && <Extras bookId={book.id} extras={test.extras} />}
-            <ul className={`grid grid-cols-1 gap-1 ${test.questions.some((q) => q.label) ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
-              {groupsOf(test).map((g) => {
-                const keys = g.nos.map((no) => answerKey(book.id, test.id, no));
-                const seen = keys.filter((k) => k in answers);
-                const right = seen.filter((k) => answers[k]).length;
-                return (
-                  <li key={g.key}>
-                    <button
-                      type="button"
-                      className="flex w-full items-center justify-between gap-2 rounded-xl bg-surface px-3 py-2 text-left text-sm ring-1 ring-sakura/40 hover:bg-sakura/30"
-                      onClick={() => onRun({ book, test, exam: false, only: g.nos })}
-                    >
-                      <span className="min-w-0 font-bold break-words">{g.name}</span>
-                      <span className="shrink-0 text-xs text-muted tabular-nums">{seen.length ? t.bjtBooks.sectionDone(right, seen.length, g.nos.length) : t.bjtBooks.questions(g.nos.length)}</span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          </details>
         );
       })}
     </section>

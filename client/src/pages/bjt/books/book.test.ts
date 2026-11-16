@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { answerKey, bookExamSeconds, cropStyle, filesNeeded, groupsOf, inlineParts, j1plusNos, pagePath, pagesOf, parseBook, scoreTest, sectionName, sectionsOf, wrongNos } from './book';
+import { answerKey, bookExamSeconds, cropStyle, filesNeeded, groupsOf, inlineParts, j1plusNos, pagePath, pagesOf, parseBook, scoreTest, sectionName, sectionsOf, tabLabel, wrongNos } from './book';
 import type { PackTest } from './book';
+
+describe('tab label of a book', () => {
+  it('keeps a volume number, else drops the notes in brackets', () => {
+    expect(tabLabel('Sách đề (Quyển 4)')).toBe('Quyển 4');
+    expect(tabLabel('Bộ đề thử (bản Việt + CD)')).toBe('Bộ đề thử');
+    expect(tabLabel('問題集（語彙・読解）')).toBe('問題集');
+    expect(tabLabel('Sách thường')).toBe('Sách thường');
+    expect(tabLabel('(chỉ có ngoặc)')).toBe('(chỉ có ngoặc)');
+  });
+});
 
 const q = (no: number, section: string, answer: number, extra: object = {}) => ({ no, section, n: no, page: 9, answer, ...extra });
 const raw = (questions: object[]) => ({

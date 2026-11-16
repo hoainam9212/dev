@@ -72,7 +72,7 @@ describe('BooksPage on the phone', () => {
     served = zipOf('q4', 'Quyển 4');
     native.pick.mockResolvedValue({ uri: 'content://docs/q4', name: 'q4.zip', size: 2097152 });
     page();
-    fireEvent.click(screen.getByRole('button', { name: 'Chọn file .zip' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Chọn file .zip' })); // no book yet: the import tab
     expect(await screen.findByText('Đã nhập: Quyển 4')).toBeInTheDocument();
     expect(native.copy).toHaveBeenCalledWith({ uri: 'content://docs/q4' });
     expect(fetch).toHaveBeenCalledWith('https://localhost/_capacitor_file_/cache/book-import.zip');
@@ -83,7 +83,7 @@ describe('BooksPage on the phone', () => {
   it('a cancelled picker says nothing', async () => {
     native.pick.mockRejectedValue(Object.assign(new Error('cancelled'), { code: 'cancelled' }));
     page();
-    fireEvent.click(screen.getByRole('button', { name: 'Chọn file .zip' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Chọn file .zip' }));
     await waitFor(() => expect(native.pick).toHaveBeenCalled());
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(native.copy).not.toHaveBeenCalled();
@@ -98,6 +98,24 @@ describe('BooksPage on the phone', () => {
     expect(native.pick).not.toHaveBeenCalled();
     expect(native.copy).toHaveBeenCalledWith({ uri: 'content://docs/t1' });
     expect((await db.books.get('t1'))?.title).toBe('T1 体験テスト');
+  });
+
+  it('a remembered book already in the app opens its tab; reading the file again is a separate button', async () => {
+    served = zipOf('t1', 'T1 体験テスト');
+    native.copy.mockResolvedValue({ path: '/cache/book-import.zip', size: 10 });
+    const { importBook } = await import('./library');
+    await importBook(served);
+    rememberFile(entry('content://docs/t1', 't1', 'T1 体験テスト'));
+    page();
+    fireEvent.click(await screen.findByRole('tab', { name: /Thêm sách/ }));
+    fireEvent.click(screen.getByRole('button', { name: /^Mở T1 体験テスト/ }));
+    expect(await screen.findByRole('tab', { name: 'T1 体験テスト', selected: true })).toBeInTheDocument();
+    expect(screen.getByTestId('book-card')).toHaveTextContent('T1 体験テスト');
+    expect(native.copy).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('tab', { name: /Thêm sách/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Nhập lại T1 体験テスト/ }));
+    expect(await screen.findByText('Đã nhập: T1 体験テスト')).toBeInTheDocument();
+    expect(native.copy).toHaveBeenCalledWith({ uri: 'content://docs/t1' });
   });
 
   it('a file that was moved or deleted says so and can be forgotten', async () => {

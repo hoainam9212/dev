@@ -117,6 +117,15 @@ export interface PackBook {
   boxes?: Record<string, [number, number, number, number]>;
 }
 
+/** Short name for the book's tab: the volume number in brackets when the title has one, else the title without its notes in brackets. */
+export function tabLabel(title: string): string {
+  // the Vietnamese word for "volume", as written in the titles of the book packs (data, not UI text)
+  const volume = /[(（]\s*(Quy.{1,2}n\s*\d+)\s*[)）]/.exec(title)?.[1];
+  if (volume) return volume.replace(/\s+/g, ' ');
+  const bare = title.replace(/\s*[(（][^()（）]*[)）]\s*/g, ' ').trim();
+  return bare || title;
+}
+
 /** CSS that shows only `box` of an image of `w`×`h` pixels inside a full-width frame. */
 export function cropStyle(box: [number, number, number, number] | undefined, w: number, h: number) {
   const [x0, y0, x1, y1] = box && box[2] > box[0] && box[3] > box[1] ? box : [0, 0, 1, 1];

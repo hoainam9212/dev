@@ -47,6 +47,7 @@ beforeEach(async () => {
   await importBook(zip());
 });
 afterEach(async () => {
+  localStorage.removeItem('ns.bookTab');
   await db.books.clear();
   await db.bookFiles.clear();
 });
@@ -208,7 +209,8 @@ describe('old-format test', () => {
   it('book card: raw last score, the extra recordings, and chips by printed section', async () => {
     useBjt.setState({ runs: { 'book:old:t': [{ at: '2026-11-13T00:00:00Z', correct: 70, total: 100, seconds: 60 }] } });
     render(<BooksPage />, { wrapper: MemoryRouter });
-    const card = (await screen.findAllByTestId('book-card')).find((c) => c.textContent?.includes('Old book'))!;
+    fireEvent.click(await screen.findByRole('tab', { name: 'Old book' }));
+    const card = screen.getByTestId('book-card');
     expect(card).toHaveTextContent('Lần gần nhất: đúng 70/100');
     expect(card).toHaveTextContent('Đề mẫu cũ — không quy đổi sang thang J1');
     expect(card).not.toHaveTextContent('điểm (');
@@ -259,6 +261,37 @@ describe('BooksPage', () => {
     expect(screen.getByTestId('book-runner')).toHaveTextContent('語彙・文法 · 1番');
   });
 
+  it('shows one book at a time, one tab per book, and remembers the tab', async () => {
+    const other = { id: 'b2', title: 'Sách hai (Quyển 8)', pages: 1, tests: [{ id: 't', title: 'Đề A', questions: [{ no: 1, section: 'goi', n: 1, page: 1, answer: 1 }] }] };
+    await importBook(makeZip([['book.json', enc.encode(JSON.stringify(other))], ['pages/p0001.jpg', new Uint8Array([1])]]));
+    localStorage.removeItem('ns.bookTab');
+    const { unmount } = render(<BooksPage />, { wrapper: MemoryRouter });
+    expect(await screen.findByRole('tab', { name: 'Quyển 4', selected: true })).toBeInTheDocument();
+    expect(screen.getAllByTestId('book-card')).toHaveLength(1);
+    expect(screen.getByTestId('book-card')).toHaveTextContent('模擬テスト');
+    expect(screen.queryByRole('button', { name: 'Chọn file .zip' })).toBeNull(); // importing has its own tab
+    fireEvent.click(screen.getByRole('tab', { name: 'Quyển 8' }));
+    expect(screen.getByTestId('book-card')).toHaveTextContent('Đề A');
+    unmount();
+    render(<BooksPage />, { wrapper: MemoryRouter });
+    expect(await screen.findByRole('tab', { name: 'Quyển 8', selected: true })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('tab', { name: /Thêm sách/ }));
+    expect(screen.queryByTestId('book-card')).toBeNull();
+    expect(screen.getByTestId('book-file')).toBeInTheDocument();
+    localStorage.removeItem('ns.bookTab');
+  });
+
+  it('a book with several tests folds them, the one last taken open', async () => {
+    const two = { id: 'b3', title: 'Ba đề', pages: 1, tests: ['A', 'B', 'C'].map((x) => ({ id: x, title: `Đề ${x}`, questions: [{ no: 1, section: 'goi', n: 1, page: 1, answer: 1 }] })) };
+    await importBook(makeZip([['book.json', enc.encode(JSON.stringify(two))], ['pages/p0001.jpg', new Uint8Array([1])]]));
+    useBjt.setState({ runs: { 'book:b3:B': [{ at: '2026-11-13T00:00:00Z', correct: 1, total: 1, seconds: 9 }] } });
+    render(<BooksPage />, { wrapper: MemoryRouter });
+    fireEvent.click(await screen.findByRole('tab', { name: 'Ba đề' }));
+    const tests = screen.getAllByTestId('book-test');
+    expect(tests.map((d) => (d as HTMLDetailsElement).open)).toEqual([false, true, false]);
+    localStorage.removeItem('ns.bookTab');
+  });
+
   it('imports a picked .zip and says so, or explains why not', async () => {
     await db.books.clear();
     render(<BooksPage />, { wrapper: MemoryRouter });
@@ -268,8 +301,12 @@ describe('BooksPage', () => {
       fireEvent.change(input, { target: { files: [new File([zip()], 'q4.zip')] } });
     });
     expect(await screen.findByRole('status')).toHaveTextContent('Đã nhập: Quyển 4');
+    // the new book's tab opens, the message stays above the tabs
+    expect(await screen.findByRole('tab', { name: 'Quyển 4', selected: true })).toBeInTheDocument();
+    expect(screen.getByTestId('book-card')).toHaveTextContent('模擬テスト');
+    fireEvent.click(screen.getByRole('tab', { name: /Thêm sách/ }));
     await act(async () => {
-      fireEvent.change(input, { target: { files: [new File(['hello there, not a zip, definitely not'], 'x.zip')] } });
+      fireEvent.change(screen.getByTestId('book-file'), { target: { files: [new File(['hello there, not a zip, definitely not'], 'x.zip')] } });
     });
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('File này không phải .zip.'));
   });
