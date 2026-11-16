@@ -34,6 +34,24 @@ const isNative = () => Capacitor.isNativePlatform();
  * fires its end/error handler, which would otherwise start the next line.)
  */
 let generation = 0;
+/**
+ * Lines waiting for the native engine. Android reports neither "done" nor "error" for a line that was stopped,
+ * so the plugin's speak() never settles: a stop must free the waiting sequence itself, else the runner's
+ * "playing" state (and its disabled Play button) stays for good.
+ */
+const stopWaiters = new Set<() => void>();
+function newGeneration(): void {
+  generation++;
+  for (const w of stopWaiters) w();
+  stopWaiters.clear();
+}
+/** Settles when the line ends or when speech is stopped / replaced, whichever comes first. */
+function untilStopped(line: Promise<void>): Promise<void> {
+  let w: () => void = () => {};
+  const stopped = new Promise<void>((r) => (w = r));
+  stopWaiters.add(w);
+  return Promise.race([line, stopped]).finally(() => stopWaiters.delete(w));
+}
 const hasWebSpeech = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
 
 export function canSpeak(): boolean {
@@ -95,7 +113,7 @@ export function useStopSpeechOnUnmount(): void {
 }
 
 export function stopSpeaking(): void {
-  generation++;
+  newGeneration();
   if (isNative()) {
     void TextToSpeech.stop().catch(() => {});
     releaseAudioFocusSoon();
@@ -107,16 +125,17 @@ export function speak(text: string, opts: { rate?: number; lang?: string } = {})
   const lang = opts.lang ?? 'ja-JP';
   const rate = opts.rate ?? defaultRate;
   if (isNative()) {
-    const gen = ++generation;
+    newGeneration();
+    const gen = generation;
     void (async () => {
       await acquireAudioFocus();
-      await speakNative(text, lang, rate);
+      await untilStopped(speakNative(text, lang, rate));
       if (gen === generation) releaseAudioFocusSoon();
     })();
     return true;
   }
   if (!hasWebSpeech()) return false;
-  generation++;
+  newGeneration();
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(makeUtterance(text, { rate, lang }));
   return true;
@@ -161,7 +180,7 @@ export function speakSequence(
       await acquireAudioFocus();
       for (let i = 0; i < lines.length && alive(); i++) {
         opts.onLine?.(i);
-        await speakNative(lines[i]!, lang, rate);
+        await untilStopped(speakNative(lines[i]!, lang, rate));
         if (alive() && gap > 0 && i < lines.length - 1) await new Promise((r) => setTimeout(r, gap));
       }
       // a cancel/stop already released focus; a newer speak() holds it now

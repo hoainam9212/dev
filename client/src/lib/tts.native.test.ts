@@ -97,6 +97,18 @@ it('stopSpeaking() gives the audio focus back', async () => {
   await vi.waitFor(() => expect(focus.abandon).toHaveBeenCalled(), { timeout: 2000 });
 });
 
+it('a sequence stopped from outside (a call, Stop in the notification) still ends', async () => {
+  // Android's engine reports neither "done" nor "error" for a stopped line, so the plugin's speak() never settles
+  plugin.speak.mockImplementationOnce(() => new Promise(() => {}));
+  const s = speakSequence(['a', 'b'], { gapMs: 0 });
+  await vi.waitFor(() => expect(plugin.speak).toHaveBeenCalled());
+  stopSpeaking(); // what backgroundAudio's stopAll does; the runner never called cancel()
+  let ended = false;
+  void s.done.then(() => (ended = true));
+  await vi.waitFor(() => expect(ended).toBe(true));
+  expect(plugin.speak).toHaveBeenCalledTimes(1);
+});
+
 it('reports a missing Japanese voice instead of failing silently', async () => {
   vi.resetModules(); // fresh module: no cached language check
   const fresh = await import('./tts');
