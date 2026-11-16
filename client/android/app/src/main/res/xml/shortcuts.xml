@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Long-press the app icon: these open a page directly (LaunchPlugin hands the route to the web side).
+     Each can be dragged onto the home screen as its own icon. -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="continue"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_continue"
+        android:shortcutLongLabel="@string/shortcut_continue_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="vn.nihongosensei.app"
+            android:targetClass="vn.nihongosensei.app.MainActivity">
+            <extra android:name="route" android:value="/continue" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="books"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_books"
+        android:shortcutLongLabel="@string/shortcut_books_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="vn.nihongosensei.app"
+            android:targetClass="vn.nihongosensei.app.MainActivity">
+            <extra android:name="route" android:value="/bjt/sach" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="review"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_review"
+        android:shortcutLongLabel="@string/shortcut_review_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="vn.nihongosensei.app"
+            android:targetClass="vn.nihongosensei.app.MainActivity">
+            <extra android:name="route" android:value="/review" />
+        </intent>
+    </shortcut>
+</shortcuts>

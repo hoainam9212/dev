@@ -261,6 +261,23 @@ describe('BooksPage', () => {
     expect(screen.getByTestId('book-runner')).toHaveTextContent('語彙・文法 · 1番');
   });
 
+  it('remembers the question being practised, and "Continue" opens the book there', async () => {
+    localStorage.removeItem('ns.resume');
+    const { unmount } = render(<BooksPage />, { wrapper: MemoryRouter });
+    fireEvent.click(within(await screen.findByTestId('book-card')).getByRole('button', { name: /Luyện, xem lời giải ngay/ }));
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: /Câu tiếp/ }));
+    expect(JSON.parse(localStorage.getItem('ns.resume')!)).toMatchObject({ kind: 'book', bookId: 'q4', testId: 'mogi', i: 1, title: 'Quyển 4' });
+    unmount();
+    render(
+      <MemoryRouter initialEntries={['/bjt/sach?resume=1']}>
+        <BooksPage />
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText('Câu 2/2')).toBeInTheDocument();
+    localStorage.removeItem('ns.resume');
+  });
+
   it('shows one book at a time, one tab per book, and remembers the tab', async () => {
     const other = { id: 'b2', title: 'Sách hai (Quyển 8)', pages: 1, tests: [{ id: 't', title: 'Đề A', questions: [{ no: 1, section: 'goi', n: 1, page: 1, answer: 1 }] }] };
     await importBook(makeZip([['book.json', enc.encode(JSON.stringify(other))], ['pages/p0001.jpg', new Uint8Array([1])]]));

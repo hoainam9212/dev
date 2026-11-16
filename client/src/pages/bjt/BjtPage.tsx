@@ -69,6 +69,15 @@ export function BjtPage() {
           <h1 className="text-2xl font-black text-rose">{t.bjt.title}</h1>
           <p className="text-sm text-muted">{t.bjt.subtitle}</p>
         </div>
+        {/* the learner's books and workplace Japanese live under BJT too: one tap from every tab */}
+        <nav className="grid w-full grid-cols-2 gap-2 sm:w-auto" aria-label={t.nav.groups.bjt}>
+          <Link to="/bjt/sach" className="btn-primary py-2! text-center text-sm whitespace-nowrap">
+            {t.bjt.quickBooks}
+          </Link>
+          <Link to="/business" className="btn-soft py-2! text-center text-sm whitespace-nowrap">
+            {t.bjt.quickBusiness}
+          </Link>
+        </nav>
         {/* four tabs do not fit the shared Segmented on a phone: equal columns, tighter padding */}
         <div className="grid w-full grid-cols-4 rounded-full bg-sakura/30 p-1 sm:w-auto" role="tablist" aria-label={t.common.mode}>
           {(['plan', 'sections', 'vocab', 'mock'] as const).map((v) => (

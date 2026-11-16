@@ -9,7 +9,17 @@ it('renders the home page with the mascot on the home route', () => {
     </MemoryRouter>,
   );
   expect(screen.getByRole('img', { name: /Sakura/ })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { level: 2, name: 'Bắt đầu học' })).toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: /Tất cả bài học/ }).length).toBeGreaterThan(0);
+});
+
+it('"Continue" with nothing to go back to opens the lessons', () => {
+  localStorage.removeItem('ns.resume');
+  render(
+    <MemoryRouter initialEntries={['/continue']}>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(screen.getByRole('heading', { level: 1, name: 'Học' })).toBeInTheDocument();
 });
 
 it('renders a placeholder page for a module route', () => {

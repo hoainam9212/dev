@@ -17,6 +17,33 @@ it('shows greeting, streak and xp', () => {
   expect(screen.getByText(/Cấp 2/)).toBeInTheDocument();
 });
 
+it('puts Continue, today\'s review and the BJT books first', () => {
+  localStorage.setItem('ns.resume', JSON.stringify({ kind: 'book', bookId: 'q8', testId: 's2', i: 11, title: 'Quyển 8', testTitle: 'セクション2' }));
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>,
+  );
+  const go = screen.getByRole('link', { name: /Tiếp tục học/ });
+  expect(go).toHaveAttribute('href', '/continue');
+  expect(go).toHaveTextContent('Quyển 8 · セクション2 · câu 12');
+  expect(screen.getByRole('link', { name: /Ôn hôm nay|không còn thẻ/ })).toHaveAttribute('href', '/review');
+  expect(screen.getByRole('link', { name: /Sách BJT của tôi/ })).toHaveAttribute('href', '/bjt/sach');
+  expect(screen.getByRole('link', { name: /Tất cả bài học/ })).toHaveAttribute('href', '/learn');
+  localStorage.removeItem('ns.resume');
+});
+
+it('Continue names the lesson page left last', () => {
+  localStorage.setItem('ns.resume', JSON.stringify({ kind: 'page', path: '/kanji' }));
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>,
+  );
+  expect(screen.getByRole('link', { name: /Tiếp tục học/ })).toHaveTextContent('Kanji');
+  localStorage.removeItem('ns.resume');
+});
+
 it('shows the mascot line in English and re-translates it in place when the language flips', () => {
   useProgress.setState({ xp: 0, streak: 10, lastStudyDay: '2026-09-19' });
   withLang('en');

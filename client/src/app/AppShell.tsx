@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { stopSpeaking } from '../lib/tts';
 import { installBackgroundAudio } from '../lib/backgroundAudio';
-import { NAV, MOBILE_PRIMARY } from './nav';
+import { noteVisit } from '../lib/resume';
+import { GROUPS, groupOf, navItem } from './nav';
 import { ThemeToggle } from './ThemeToggle';
 import { Celebration } from './Celebration';
 import { SyncDot } from './SyncDot';
@@ -17,12 +18,12 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function AppShell() {
   const t = useT();
-  const [more, setMore] = useState(false);
   const { pathname } = useLocation();
 
   // Speech never outlives the screen that started it: stop on every route change…
   useEffect(() => {
     stopSpeaking();
+    noteVisit(pathname); // "Continue" on the home page goes back to the last lesson page
   }, [pathname]);
   // …and when the page is closed. A hidden page (screen off, app in the background) keeps playing, like a
   // music app; the Android notification has a Stop button (lib/backgroundAudio).
@@ -35,8 +36,7 @@ export function AppShell() {
       uninstall();
     };
   }, []);
-  const primary = NAV.filter((n) => MOBILE_PRIMARY.includes(n.to));
-  const secondary = NAV.filter((n) => !MOBILE_PRIMARY.includes(n.to));
+  const group = groupOf(pathname);
 
   return (
     <div className="min-h-screen md:flex">
@@ -48,12 +48,24 @@ export function AppShell() {
           <span className="text-xl font-black text-rose">Nihongo Sensei</span>
         </div>
         <nav className="flex flex-col gap-1" aria-label={t.nav.mainAria}>
-          {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.to === '/'} className={linkClass}>
-              <span className="w-6 text-center">{n.icon}</span>
-              <span>{t.nav[n.key].label}</span>
-            </NavLink>
-          ))}
+          {GROUPS.map((g) => {
+            const items = g.items.map(navItem);
+            const link = (n: (typeof items)[number]) => (
+              <NavLink key={n.to} to={n.to} end={n.to === '/' || n.to === '/bjt'} className={linkClass}>
+                <span className="w-6 text-center">{n.icon}</span>
+                <span>{t.nav[n.key].label}</span>
+              </NavLink>
+            );
+            if (items.length === 1) return link(items[0]!);
+            return (
+              <div key={g.key} className="flex flex-col gap-1">
+                <p className="px-4 pt-3 text-xs font-black tracking-wide text-muted uppercase">
+                  {g.icon} {t.nav.groups[g.key]}
+                </p>
+                {items.map(link)}
+              </div>
+            );
+          })}
         </nav>
         <div className="mt-auto flex items-center justify-between pt-4">
           <ThemeToggle />
@@ -75,55 +87,18 @@ export function AppShell() {
         aria-label={t.nav.mobileAria}
         style={{ paddingBottom: 'max(4px, env(safe-area-inset-bottom))' }}
       >
-        {primary.map((n) => (
-          <NavLink
-            key={n.to}
-            to={n.to}
-            end={n.to === '/'}
-            className={({ isActive }) =>
-              `flex flex-col items-center rounded-2xl px-2 py-1 text-xs font-bold ${isActive ? 'text-rose' : 'text-muted'}`
-            }
+        {GROUPS.map((g) => (
+          <Link
+            key={g.key}
+            to={g.to}
+            aria-current={group === g.key ? 'page' : undefined}
+            className={`flex min-w-0 flex-1 flex-col items-center rounded-2xl px-1 py-1 text-xs font-bold ${group === g.key ? 'text-rose' : 'text-muted'}`}
           >
-            <span className="text-lg">{n.icon}</span>
-            <span>{t.nav[n.key].label}</span>
-          </NavLink>
+            <span className="text-lg">{g.icon}</span>
+            <span className="truncate">{t.nav.groups[g.key]}</span>
+          </Link>
         ))}
-        <button
-          type="button"
-          className="flex flex-col items-center rounded-2xl px-2 py-1 text-xs font-bold text-muted"
-          onClick={() => setMore((m) => !m)}
-          aria-expanded={more}
-        >
-          <span className="text-lg">✨</span>
-          <span>{t.nav.more}</span>
-        </button>
       </nav>
-
-      {more && (
-        <div className="fixed inset-0 z-50 md:hidden" onClick={() => setMore(false)}>
-          <div className="absolute inset-0 bg-black/30" />
-          <div
-            className="card absolute inset-x-3 bottom-20 grid grid-cols-3 gap-2 p-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {secondary.map((n) => (
-              <NavLink
-                key={n.to}
-                to={n.to}
-                onClick={() => setMore(false)}
-                className="flex flex-col items-center rounded-2xl bg-bg px-2 py-3 text-sm font-bold text-text"
-              >
-                <span className="text-2xl">{n.icon}</span>
-                <span>{t.nav[n.key].label}</span>
-              </NavLink>
-            ))}
-            <div className="col-span-3 flex flex-wrap items-center justify-center gap-3 pt-2">
-              <ThemeToggle />
-              <LangSwitch />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

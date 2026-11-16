@@ -4,4 +4,10 @@
     <string name="title_activity_main">Nihongo Sensei</string>
     <string name="package_name">vn.nihongosensei.app</string>
     <string name="custom_url_scheme">vn.nihongosensei.app</string>
+    <string name="shortcut_continue">Tiếp tục học</string>
+    <string name="shortcut_continue_long">Tiếp tục bài đang học</string>
+    <string name="shortcut_books">Sách BJT</string>
+    <string name="shortcut_books_long">Sách BJT của tôi</string>
+    <string name="shortcut_review">Ôn hôm nay</string>
+    <string name="shortcut_review_long">Ôn thẻ hôm nay</string>
 </resources>

@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!-- long-press shortcuts: Continue, My BJT books, Review today -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
         </activity>
 
         <!-- keeps lesson audio playing with the screen off (started only while the app plays sound) -->

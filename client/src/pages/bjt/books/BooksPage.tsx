@@ -9,6 +9,7 @@ import { answerKey, bookExamSeconds, groupsOf, j1plusNos, tabLabel, wrongNos, ty
 import { deleteBook, importBook } from './library';
 import { BookRunner } from './BookRunner';
 import { useBookFile } from './useBookFile';
+import { lastPlace } from '../../../lib/resume';
 import { canRememberFiles, cleanCopy, forgetFile, pickFile, readFile, recentFiles, rememberFile, type PickedFile, type RecentFile } from './bookFiles';
 
 interface Run {
@@ -17,6 +18,7 @@ interface Run {
   exam: boolean;
   sections?: BjtSection[];
   only?: number[];
+  start?: number;
 }
 
 /** The tab shown last (a book id, or ADD), so the learner comes back to the book they study. */
@@ -61,6 +63,21 @@ export function BooksPage() {
     if (book && test && only.length) setRun({ book, test, exam: false, only });
     setParams({}, { replace: true });
   }, [redo, books, setParams]);
+
+  // /bjt/sach?resume=1 ("Continue"): the book question practised last
+  const resume = params.get('resume');
+  useEffect(() => {
+    if (!resume || !books) return;
+    const p = lastPlace();
+    const book = p?.kind === 'book' ? (books.find((b) => b.id === p.bookId)?.book as PackBook | undefined) : undefined;
+    const test = p?.kind === 'book' ? book?.tests.find((x) => x.id === p.testId) : undefined;
+    if (p?.kind === 'book' && book && test) {
+      setTab(book.id);
+      setRun({ book, test, exam: false, only: p.only, sections: p.sections, start: p.i });
+    }
+    setParams({}, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resume, books, setParams]);
 
   if (run) {
     return (
