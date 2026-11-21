@@ -8,9 +8,8 @@ Giao diện tiếng Việt, mascot là mèo Mochi. Spec: `docs/superpowers/specs
 - Repo GitHub `hoainam9212/dev`, dùng chung với nihongo-sensei. Mọi nhánh của dự án này mang tiền tố `office-neko/`:
   `office-neko/master`, `office-neko/feat/...`. Nhánh `main` chỉ có README, đừng làm việc trên đó.
 - **Không có nhánh làm dở; mọi plan trong ROADMAP đã xong** (2026-11-10, dự án hoàn tất theo spec). Việc lẻ còn
-  treo: `docs/superpowers/plans/2026-10-10-backlog/STATUS.md` › Việc còn treo. Việc mới thì tạo nhánh
-  `feat/<tên>` từ `master`, gộp `--ff-only`. Việc lẻ sau hoàn tất (2026-11-11, đã gộp + deploy):
-  `docs/superpowers/plans/2026-11-11-sau-hoan-tat/STATUS.md`.
+  treo: `docs/superpowers/plans/2026-11-11-sau-hoan-tat/STATUS.md` › Việc còn treo (danh sách của
+  `2026-10-10-backlog/STATUS.md` đã trống). Việc mới thì tạo nhánh `feat/<tên>` từ `master`, gộp `--ff-only`.
 - Bản online: https://mochi-office.pages.dev (Cloudflare Pages, lệnh đưa bản mới ở README; deploy là việc ra ngoài,
   hỏi trước). Người dùng báo "vẫn thấy bản cũ" thì thường do PWA (`registerType: 'prompt'`): phải bấm **Tải lại** ở
   thông báo "Có bản mới…" hoặc Ctrl+Shift+R.

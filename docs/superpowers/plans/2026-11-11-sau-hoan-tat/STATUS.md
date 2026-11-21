@@ -13,5 +13,12 @@ Gộp: `git merge --no-ff origin/claude/vigilant-galileo-8wdiu6` vào `office-ne
 | 5 | Ghi chú nhãn hiệu Microsoft, nguồn ảnh chụp Office | ☑ | Cài đặt › "Giới thiệu & nguồn": câu nhãn hiệu Microsoft, không liên kết/không được bảo trợ, giao diện là bản mô phỏng tự vẽ, ảnh chụp thật chỉ để minh hoạ và đã che thông tin cá nhân; thêm Tiptap/ProseMirror và Fluent UI (MIT) vào danh sách thư viện. Dòng ghi nguồn dưới ảnh ("Ảnh chụp Microsoft Excel"…) đã có sẵn, giữ nguyên. Chưa đối chiếu câu chữ bắt buộc của chính sách ảnh chụp màn hình của Microsoft — người dùng nên đọc trước khi phổ biến rộng |
 | 6 | Nút bật/tắt tiếng nhanh | ☑ | Nút 🔊/🔇 trên thanh trên cùng (cạnh ⚙️), `aria-pressed`, cùng `profile.sound` với công tắc Âm thanh trong Cài đặt. Chromium 390/1280: thanh không tràn, bấm thì Cài đặt đổi theo |
 
-Việc 1–5 đã gộp master (`977aa50`) và đưa lên mạng. **Còn lại:** gộp việc 6 (nhánh `claude/vigilant-galileo-8wdiu6`
-tách từ `977aa50`) vào master rồi đưa lên mochi-office.pages.dev; thử việc 4 trên điện thoại thật.
+Việc 1–5 đã gộp master (`977aa50`) và đưa lên mạng. Việc 6 đã gộp master (`a8f46ab`, 2026-11-11).
+
+## Việc còn treo
+
+- Đưa bản có việc 6 lên mochi-office.pages.dev nếu chưa đưa (chưa ghi lại lần deploy sau `a8f46ab`). Deploy là việc
+  ra ngoài, hỏi người dùng trước.
+- Thử việc 4 trên điện thoại thật (bàn phím ảo, Enter của Gboard/Laban Key).
+- Người dùng đọc chính sách ảnh chụp màn hình của Microsoft trước khi phổ biến rộng (việc 5).
+- Xoá nhánh đã gộp hết: `office-neko/feat/real-ribbon-excel-ppt`, `claude/vigilant-galileo-8wdiu6` (cần người dùng đồng ý).
