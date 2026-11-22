@@ -36,6 +36,28 @@ describe('SettingsPage', () => {
     for (const lib of ['Tiptap', 'Fluent UI']) expect(about).toHaveTextContent(lib);
   });
 
+  it('offers the extra-large "Cực lớn" font size', async () => {
+    renderPage();
+    fireEvent.click(await screen.findByRole('radio', { name: 'Cực lớn' }));
+    await waitFor(async () => expect((await db.profiles.get('p1'))?.fontScale).toBe('xxl'));
+  });
+
+  it('turning easy mode on also sets the biggest font and unlocks every lesson', async () => {
+    renderPage();
+    fireEvent.click(await screen.findByRole('switch', { name: 'Chế độ dễ dùng' }));
+    await waitFor(async () =>
+      expect(await db.profiles.get('p1')).toMatchObject({ easyMode: true, fontScale: 'xxl', unlockAll: true }));
+  });
+
+  it('turning easy mode off keeps the chosen font size', async () => {
+    await db.profiles.update('p1', { easyMode: true, fontScale: 'xxl', unlockAll: true });
+    renderPage();
+    const sw = await screen.findByRole('switch', { name: 'Chế độ dễ dùng' });
+    await waitFor(() => expect(sw).toBeChecked());
+    fireEvent.click(sw);
+    await waitFor(async () => expect(await db.profiles.get('p1')).toMatchObject({ easyMode: false, fontScale: 'xxl' }));
+  });
+
   it('changes OS, font size and sound', async () => {
     renderPage();
     fireEvent.click(await screen.findByRole('radio', { name: 'Mac' }));

@@ -31,7 +31,9 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
     root.dataset.font = profile?.fontScale ?? 'md';
     if (profile?.reducedMotion) root.dataset.motion = 'reduce';
     else delete root.dataset.motion;
-  }, [profile?.fontScale, profile?.reducedMotion]);
+    if (profile?.easyMode) root.dataset.easy = '1';
+    else delete root.dataset.easy;
+  }, [profile?.fontScale, profile?.reducedMotion, profile?.easyMode]);
 
   // id rỗng ⇒ null: chưa chọn ai (khác với undefined = đang tải).
   return <ProfileContext.Provider value={id ? profile : null}>{children}</ProfileContext.Provider>;

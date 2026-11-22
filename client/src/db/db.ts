@@ -9,7 +9,12 @@ export interface Profile {
   avatar: AvatarId;
   os: OS;
   dailyGoalMin: 5 | 10 | 20;
-  fontScale: 'md' | 'lg' | 'xl';
+  fontScale: 'md' | 'lg' | 'xl' | 'xxl';
+  /**
+   * Chế độ dễ dùng cho người lớn tuổi: chữ và nút to, chỉ 4 lộ trình, ẩn XP/cấp/phụ kiện, lời dễ hiểu.
+   * Hồ sơ cũ không có trường này (= tắt).
+   */
+  easyMode?: boolean;
   sound: boolean;
   reducedMotion: boolean;
   /** Chế độ mở khoá toàn bộ bài học (dành cho người hướng dẫn). Hồ sơ cũ không có trường này. */

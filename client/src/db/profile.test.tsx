@@ -49,6 +49,17 @@ describe('profile', () => {
     expect(document.documentElement.dataset.motion).toBe('reduce');
   });
 
+  it('marks <html> with data-easy while the learner uses easy mode, and the xxl font', async () => {
+    const p = await createProfile({ name: 'Mẹ', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
+    await updateProfile(p.id, { easyMode: true, fontScale: 'xxl' });
+    setCurrentProfileId(p.id);
+    render(<ProfileProvider><Show /></ProfileProvider>);
+    await waitFor(() => expect(document.documentElement.dataset.easy).toBe('1'));
+    expect(document.documentElement.dataset.font).toBe('xxl');
+    await updateProfile(p.id, { easyMode: false });
+    await waitFor(() => expect(document.documentElement.dataset.easy).toBeUndefined());
+  });
+
   it('falls back to a guessed OS without a provider', () => {
     render(<Show />);
     expect(screen.getByText('loading')).toBeInTheDocument();

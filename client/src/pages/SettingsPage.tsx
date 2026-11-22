@@ -161,8 +161,18 @@ export function SettingsPage() {
           <span className="font-semibold">Cỡ chữ</span>
           <div>
             <Segmented<Profile['fontScale']> label="Cỡ chữ" value={profile.fontScale} onChange={(fontScale) => updateProfile(profile.id, { fontScale })}
-              options={[{ value: 'md', label: 'Vừa' }, { value: 'lg', label: 'Lớn' }, { value: 'xl', label: 'Rất lớn' }]} />
+              options={[{ value: 'md', label: 'Vừa' }, { value: 'lg', label: 'Lớn' }, { value: 'xl', label: 'Rất lớn' }, { value: 'xxl', label: 'Cực lớn' }]} />
           </div>
+        </div>
+        <div className="space-y-1">
+          <div className="flex items-center justify-between gap-3">
+            <span className="font-semibold">Chế độ dễ dùng</span>
+            <Toggle label="Chế độ dễ dùng" checked={profile.easyMode ?? false}
+              onChange={(easyMode) => updateProfile(profile.id, easyMode ? { easyMode, fontScale: 'xxl', unlockAll: true } : { easyMode })} />
+          </div>
+          <p className="text-muted">
+            Dành cho người lớn tuổi: chữ to, nút to, chỉ hiện Làm quen máy tính, PowerPoint, Word, Excel; lời giải thích dễ hiểu hơn.
+          </p>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-semibold">Âm thanh</span>
