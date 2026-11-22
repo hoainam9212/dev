@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { extractTermKeys } from '@office-neko/shared';
-import { LESSONS, findTerm } from '../index';
+import { extractTermKeys, visibleLessons } from '@office-neko/shared';
+import { LESSONS, TRACKS, findTerm } from '../index';
 import { EASY } from './index';
 
 const entries = Object.entries(EASY);
@@ -17,6 +17,12 @@ function textsOf(e: (typeof EASY)[string]): string[] {
 describe('lời dễ (EASY)', () => {
   it('có ít nhất một bài', () => {
     expect(entries.length).toBeGreaterThan(0);
+  });
+
+  it('mọi bài Windows của Làm quen máy tính đều có lời dễ', () => {
+    const basics = TRACKS.find((t) => t.id === 'basics')!;
+    const missing = visibleLessons(basics, LESSONS, 'win').map((l) => l.id).filter((id) => !EASY[id]);
+    expect(missing).toEqual([]);
   });
 
   it('khoá là id bài có thật', () => {
