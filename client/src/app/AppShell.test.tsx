@@ -46,3 +46,22 @@ describe('AppShell – nút bật/tắt tiếng', () => {
     await waitFor(async () => expect((await db.profiles.get(id))?.sound).toBe(true));
   });
 });
+
+describe('AppShell – chế độ dễ dùng', () => {
+  beforeEach(async () => {
+    await resetDb();
+  });
+
+  it('hồ sơ thường có nút Luyện gõ', async () => {
+    setCurrentProfileId((await createProfile({ name: 'An', os: 'win', dailyGoalMin: 10, avatar: 'cam' })).id);
+    renderShell();
+    expect(await screen.findByRole('link', { name: 'Luyện gõ' })).toBeInTheDocument();
+  });
+
+  it('hồ sơ dễ dùng không có nút Luyện gõ', async () => {
+    setCurrentProfileId((await createProfile({ name: 'Hoa', os: 'win', dailyGoalMin: 10, avatar: 'cam', easyMode: true })).id);
+    renderShell();
+    await screen.findByRole('button', { name: 'Âm thanh' });
+    expect(screen.queryByRole('link', { name: 'Luyện gõ' })).not.toBeInTheDocument();
+  });
+});

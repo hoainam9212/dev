@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { levelFromXp, newlyUnlocked, nextLessonId, unlockState, type AccessoryId } from '@office-neko/shared';
 import { db } from '../db/db';
-import { LESSONS, TRACKS } from '../content';
+import { LESSONS } from '../content';
+import { useTracks } from '../lib/easy';
 import { useOs, useProfileId, useTestedOut, useUnlockAll } from '../db/profile';
 import { recordLessonResult } from '../progress/record';
 import { awardBadges } from '../progress/badges';
@@ -16,6 +17,7 @@ export function LessonPage({ id }: { id: string }) {
   const os = useOs();
   const unlockAll = useUnlockAll();
   const testedOut = useTestedOut();
+  const tracks = useTracks();
   const [done, setDone] = useState<{
     result: LessonResult; xpGained: number; newBadges?: string[]; newAccessories?: AccessoryId[]; saveError?: string;
   } | null>(null);
@@ -57,8 +59,10 @@ export function LessonPage({ id }: { id: string }) {
       </div>
     );
   }
+  // Bài của lộ trình bị ẩn (chế độ dễ dùng ẩn Gõ phím, AI) ⇒ về bản đồ.
+  if (!tracks.some((t) => t.id === lesson.trackId)) return <Navigate to="/" replace />;
   if (!loaded) return null;
-  if (!done && !unlockState(TRACKS, LESSONS, os, completed, unlockAll, testedOut).lessonUnlocked.has(id)) {
+  if (!done && !unlockState(tracks, LESSONS, os, completed, unlockAll, testedOut).lessonUnlocked.has(id)) {
     return (
       <div className="card mx-auto mt-10 max-w-md space-y-3 p-6 text-center">
         <p className="text-lg font-bold">Bài này chưa mở khoá 🔒</p>
@@ -73,7 +77,7 @@ export function LessonPage({ id }: { id: string }) {
         lesson={lesson}
         result={done.result}
         xpGained={done.xpGained}
-        nextId={nextLessonId(TRACKS, LESSONS, os, id)}
+        nextId={nextLessonId(tracks, LESSONS, os, id)}
         saveError={done.saveError}
         newBadges={done.newBadges}
         newAccessories={done.newAccessories}

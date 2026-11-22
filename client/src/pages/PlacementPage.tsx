@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { placementPassed } from '@office-neko/shared';
+// Giữ TRACKS: chế độ dễ dùng đã mở mọi bài và không có lối vào trang này.
 import { TRACKS } from '../content';
 import { PLACEMENT_QUIZ, PLACEMENT_TRACKS, TYPING_PLACEMENT, type PlacementTrackId } from '../content/placement';
 import { useProfileId, useTestedOut } from '../db/profile';

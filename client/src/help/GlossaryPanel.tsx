@@ -13,6 +13,7 @@ function GlossaryDetail({ entry, onBack }: { entry: GlossaryEntry; onBack: () =>
   const { completed } = useCompleted(useProfileId());
   const unlockAll = useUnlockAll();
   const testedOut = useTestedOut();
+  // Giữ TRACKS cả khi bật chế độ dễ dùng: link tới bài của lộ trình bị ẩn thì LessonPage tự đưa về bản đồ.
   const unlocked = unlockState(TRACKS, LESSONS, os, completed, unlockAll, testedOut).lessonUnlocked;
   const lessons = entry.lessonIds
     .map((id) => LESSONS[id])

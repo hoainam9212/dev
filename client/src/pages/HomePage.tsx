@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { unlockState, visibleLessons } from '@office-neko/shared';
-import { LESSONS, TRACKS } from '../content';
+import { LESSONS } from '../content';
 import { PLACEMENT_TRACKS } from '../content/placement';
 import { useProfile, useTestedOut } from '../db/profile';
+import { tracksFor } from '../lib/easy';
 import { useCompleted, useStreak, useTodayMinutes } from '../progress/useStats';
 import { Mochi } from '../components/Mochi';
 import { TrackMap } from '../home/TrackMap';
@@ -26,12 +27,14 @@ export function HomePage() {
   const doneKey = [...completed].sort().join('|');
   const unlockAll = profile.unlockAll ?? false;
   const testedOut = useTestedOut();
+  const easy = profile.easyMode ?? false;
+  const tracks = tracksFor(easy);
   const unlock = useMemo(
-    () => unlockState(TRACKS, LESSONS, profile.os, completed, unlockAll, testedOut),
+    () => unlockState(tracks, LESSONS, profile.os, completed, unlockAll, testedOut),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [profile.os, doneKey, unlockAll, testedOut],
+    [tracks, profile.os, doneKey, unlockAll, testedOut],
   );
-  const todo = [...TRACKS]
+  const todo = [...tracks]
     .sort((a, b) => a.order - b.order)
     .flatMap((t) => visibleLessons(t, LESSONS, profile.os))
     .filter((l) => unlock.lessonUnlocked.has(l.id) && !completed.has(l.id));
@@ -63,7 +66,8 @@ export function HomePage() {
           <span className="block text-muted">Mở Word, Excel, PowerPoint để tự luyện, không chấm điểm.</span>
         </span>
       </Link>
-      <TrackMap tracks={TRACKS} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} placeable={PLACEABLE} />
+      {/* Chế độ dễ dùng: không mời làm kiểm tra đầu vào (đã mở sẵn mọi bài). */}
+      <TrackMap tracks={tracks} lessons={LESSONS} os={profile.os} unlock={unlock} stars={stars} currentId={next?.id} placeable={easy ? undefined : PLACEABLE} />
     </div>
   );
 }

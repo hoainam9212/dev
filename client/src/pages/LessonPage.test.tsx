@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { screen, fireEvent, waitFor, act, render } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { db } from '../db/db';
-import { createProfile } from '../db/profile';
+import { createProfile, ProfileContext } from '../db/profile';
 import { LessonPage } from './LessonPage';
 import { makeProfile, renderWithProfile, resetDb } from '../test/utils';
 
@@ -88,5 +89,19 @@ describe('LessonPage', () => {
     expect(await screen.findByText('Nội dung bài hai')).toBeInTheDocument();
     TRACKS[0]!.chapters[0]!.lessonIds.pop();
     delete LESSONS['t.second'];
+  });
+
+  it('hồ sơ dễ dùng mở bài Gõ phím (lộ trình bị ẩn) thì về trang chủ', async () => {
+    render(
+      <MemoryRouter initialEntries={['/lesson/typing.home1']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ProfileContext.Provider value={makeProfile({ easyMode: true, unlockAll: true })}>
+          <Routes>
+            <Route path="/" element={<p>Trang chủ</p>} />
+            <Route path="/lesson/:id" element={<LessonPage id="typing.home1" />} />
+          </Routes>
+        </ProfileContext.Provider>
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText('Trang chủ')).toBeInTheDocument();
   });
 });

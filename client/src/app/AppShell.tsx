@@ -31,9 +31,12 @@ export function AppShell() {
           <span title={`Còn ${lvl.need - lvl.into} XP nữa lên cấp`} className="rounded-full bg-lavender/40 px-2.5 py-1 sm:px-3">
             Cấp {lvl.level}<span className="hidden sm:inline"> · {profile.xp} XP</span>
           </span>
-          <Link to="/typing" data-help-id="app.typing" aria-label="Luyện gõ" className="rounded-full bg-sky/50 px-2.5 py-1 sm:px-3">
-            ⌨️<span className="hidden sm:inline"> Luyện gõ</span>
-          </Link>
+          {/* Chế độ dễ dùng ẩn lộ trình Gõ phím nên ẩn luôn lối vào khu Luyện gõ. */}
+          {!profile.easyMode && (
+            <Link to="/typing" data-help-id="app.typing" aria-label="Luyện gõ" className="rounded-full bg-sky/50 px-2.5 py-1 sm:px-3">
+              ⌨️<span className="hidden sm:inline"> Luyện gõ</span>
+            </Link>
+          )}
           {/* Bật/tắt tiếng nhanh: cùng `profile.sound` với công tắc Âm thanh trong Cài đặt. */}
           <button
             type="button"
