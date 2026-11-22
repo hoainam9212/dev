@@ -32,6 +32,16 @@ describe('HomePage – lộ trình', () => {
     expect(screen.getByText(/Gõ phím 10 ngón/)).toBeInTheDocument();
   });
 
+  it('hồ sơ dễ dùng: không có kệ huy hiệu; hồ sơ thường thì có', async () => {
+    const { unmount } = renderWithProfile(<HomePage />);
+    await trackHeadings();
+    expect(screen.getByRole('heading', { name: 'Huy hiệu' })).toBeInTheDocument();
+    unmount();
+    renderWithProfile(<HomePage />, { profile: makeProfile({ easyMode: true }) });
+    await trackHeadings();
+    expect(screen.queryByRole('heading', { name: 'Huy hiệu' })).toBeNull();
+  });
+
   it('hồ sơ dễ dùng: không có nút làm bài kiểm tra đầu vào', async () => {
     renderWithProfile(<HomePage />, { profile: makeProfile({ easyMode: true }) });
     await trackHeadings();

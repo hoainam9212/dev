@@ -47,7 +47,9 @@ export function SettingsPage() {
 
   if (!profile) return null;
   const level = levelFromXp(profile.xp).level;
-  const worn = wearable(profile);
+  const easy = profile.easyMode ?? false;
+  // Chế độ dễ dùng không có phụ kiện (phần thưởng theo cấp).
+  const worn = easy ? null : wearable(profile);
 
   const onFile = async (file: File | undefined) => {
     setError(null);
@@ -116,7 +118,7 @@ export function SettingsPage() {
         </div>
       </Section>
 
-      <Section title="Phụ kiện cho Mochi">
+      {!easy && <Section title="Phụ kiện cho Mochi">
         <p className="text-muted">Lên cấp để mở thêm phụ kiện. Bạn đang ở cấp {level}.</p>
         <div className="flex flex-wrap items-center gap-4">
           <Mochi skin={avatarSkin(profile.avatar)} accessory={worn} size={64} mood="happy" animated={false} label="Xem trước Mochi" />
@@ -137,7 +139,7 @@ export function SettingsPage() {
             })}
           </div>
         </div>
-      </Section>
+      </Section>}
 
       <Section title="Người học trên máy này">
         <p className="text-muted">Mỗi người có tiến độ riêng. Chọn tên mình ở màn hình “Ai đang học?” trước khi bắt đầu.</p>

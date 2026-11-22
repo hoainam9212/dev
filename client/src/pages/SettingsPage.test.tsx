@@ -58,6 +58,13 @@ describe('SettingsPage', () => {
     await waitFor(async () => expect(await db.profiles.get('p1')).toMatchObject({ easyMode: false, fontScale: 'xxl' }));
   });
 
+  it('hồ sơ thường có mục "Phụ kiện cho Mochi", bật chế độ dễ dùng thì mục này ẩn', async () => {
+    renderPage();
+    expect(await screen.findByRole('heading', { name: 'Phụ kiện cho Mochi' })).toBeInTheDocument();
+    await act(async () => { await db.profiles.update('p1', { easyMode: true }); });
+    await waitFor(() => expect(screen.queryByRole('heading', { name: 'Phụ kiện cho Mochi' })).toBeNull());
+  });
+
   it('changes OS, font size and sound', async () => {
     renderPage();
     fireEvent.click(await screen.findByRole('radio', { name: 'Mac' }));

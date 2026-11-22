@@ -4,7 +4,15 @@ import { ACCESSORIES, BADGES, type AccessoryId, type Lesson } from '@office-neko
 import { Confetti } from '../components/Confetti';
 import { Mochi } from '../components/Mochi';
 import { useSound } from '../lib/sound';
+import { useEasyMode } from '../lib/easy';
 import type { LessonResult } from './LessonPlayer';
+
+/** Chế độ dễ dùng: thay XP và con số bằng một câu khen theo số sao. */
+const EASY_PRAISE: Record<number, string> = {
+  3: 'Tuyệt vời! Bạn làm rất giỏi.',
+  2: 'Giỏi lắm! Lần sau thử ít gợi ý hơn nhé.',
+  1: 'Bạn đã làm xong rồi! Học lại lúc nào cũng được.',
+};
 
 export function FinishView({
   lesson, result, xpGained, nextId, saveError, newBadges = [], newAccessories = [],
@@ -13,9 +21,11 @@ export function FinishView({
   newBadges?: string[]; newAccessories?: AccessoryId[];
 }) {
   const sound = useSound();
+  const easy = useEasyMode();
   useEffect(() => sound('finish'), [sound]);
-  const badges = BADGES.filter((b) => newBadges.includes(b.id));
-  const gifts = ACCESSORIES.filter((a) => newAccessories.includes(a.id)).map((a) => a.name);
+  // Dễ dùng: XP, huy hiệu vẫn được ghi, chỉ không hiện ra.
+  const badges = easy ? [] : BADGES.filter((b) => newBadges.includes(b.id));
+  const gifts = easy ? [] : ACCESSORIES.filter((a) => newAccessories.includes(a.id)).map((a) => a.name);
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-4 p-6 text-center">
       <Confetti />
@@ -24,10 +34,16 @@ export function FinishView({
       <p aria-label={`${result.stars} trên 3 sao`} className="text-5xl tracking-widest">
         {'⭐'.repeat(result.stars)}<span className="opacity-25">{'⭐'.repeat(3 - result.stars)}</span>
       </p>
-      <p className="text-lg font-bold">
-        {xpGained > 0 ? `+${xpGained} XP` : 'Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!'}
-      </p>
-      <p className="text-muted">Gợi ý đã dùng: {result.maxHint}/3 · Lần kiểm tra chưa đúng: {result.failures}</p>
+      {easy ? (
+        <p className="text-lg font-bold">{EASY_PRAISE[result.stars] ?? EASY_PRAISE[1]}</p>
+      ) : (
+        <>
+          <p className="text-lg font-bold">
+            {xpGained > 0 ? `+${xpGained} XP` : 'Bạn đã có số sao này rồi, ôn lại như vậy rất tốt!'}
+          </p>
+          <p className="text-muted">Gợi ý đã dùng: {result.maxHint}/3 · Lần kiểm tra chưa đúng: {result.failures}</p>
+        </>
+      )}
       {badges.length > 0 && (
         <section className="w-full rounded-2xl border-2 border-peach bg-peach/15 p-4">
           <h2 className="text-lg font-extrabold">Huy hiệu mới!</h2>

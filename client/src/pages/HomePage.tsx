@@ -58,7 +58,7 @@ export function HomePage() {
           <div className="font-extrabold">{streak} ngày</div>
         </div>
       </section>
-      <BadgeShelf earned={badges} />
+      {!easy && <BadgeShelf earned={badges} />}
       <Link to="/sandbox" className="card flex items-center gap-4 p-5 transition hover:ring-4 hover:ring-peach">
         <span aria-hidden className="text-4xl">🧪</span>
         <span>

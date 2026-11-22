@@ -22,15 +22,17 @@ export function AppShell() {
           title="Đổi người học"
           className="ml-auto flex items-center gap-2 rounded-full bg-white px-2 py-1 text-sm font-bold shadow sm:px-3"
         >
-          <Mochi skin={avatarSkin(profile.avatar)} accessory={wearable(profile)} size={26} mood="happy" animated={false} label={`Ảnh của ${profile.name}`} />
+          <Mochi skin={avatarSkin(profile.avatar)} accessory={profile.easyMode ? null : wearable(profile)} size={26} mood="happy" animated={false} label={`Ảnh của ${profile.name}`} />
           <span className="hidden sm:inline">{profile.name}</span>
         </Link>
         {/* Màn hẹp: bỏ số XP và chữ "Luyện gõ" để mỗi chip nằm trên một dòng (whitespace-nowrap). */}
         <div className="flex items-center gap-1 whitespace-nowrap text-sm font-bold sm:gap-2">
           <span title="Chuỗi ngày học" className="rounded-full bg-butter/60 px-2.5 py-1 sm:px-3">🔥 {streak}</span>
-          <span title={`Còn ${lvl.need - lvl.into} XP nữa lên cấp`} className="rounded-full bg-lavender/40 px-2.5 py-1 sm:px-3">
-            Cấp {lvl.level}<span className="hidden sm:inline"> · {profile.xp} XP</span>
-          </span>
+          {!profile.easyMode && (
+            <span title={`Còn ${lvl.need - lvl.into} XP nữa lên cấp`} className="rounded-full bg-lavender/40 px-2.5 py-1 sm:px-3">
+              Cấp {lvl.level}<span className="hidden sm:inline"> · {profile.xp} XP</span>
+            </span>
+          )}
           {/* Chế độ dễ dùng ẩn lộ trình Gõ phím nên ẩn luôn lối vào khu Luyện gõ. */}
           {!profile.easyMode && (
             <Link to="/typing" data-help-id="app.typing" aria-label="Luyện gõ" className="rounded-full bg-sky/50 px-2.5 py-1 sm:px-3">
