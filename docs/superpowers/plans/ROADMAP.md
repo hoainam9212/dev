@@ -9,6 +9,7 @@ Bốn plan dưới đây làm nốt toàn bộ dự án theo spec `specs/2026-09
 | 2 ☑ | `2026-10-10-phase6a-ai/` | `feat/phase6a-ai` | 9 | Lộ trình "Dùng AI" 10 bài trên trình mô phỏng chat |
 | 3 ☑ | `2026-10-10-phase6b-polish/` | `feat/phase6b-polish` → `feat/lane-desktop` | 6 | Huy hiệu, phụ kiện Mochi, Phòng tự do, kiểm tra đầu vào, `Start Tin Hoc.bat`, PWA |
 | 4 ☑ | `2026-10-10-backlog/` | `feat/lane-desktop` + `feat/lane-cloud` (song song) | 6 | Dọn tồn đọng từ giai đoạn 2–5A: bài vỏ máy tính, trợ năng, bàn phím ảo, lỗi chấm gõ phím |
+| 5 ☑ | `2026-11-22-che-do-de-dung/` | `feat/che-do-de-dung` | 7 | Chế độ dễ dùng cho người lớn tuổi: link `/de-dung`, chữ Cực lớn, 4 lộ trình (Máy tính → PPT → Word → Excel), ẩn XP/huy hiệu/phụ kiện, lời dễ hiểu cho Làm quen máy tính (Windows) |
 
 > **XONG 2026-11-10: cả bốn plan đã gộp `master`, dự án hoàn tất theo spec.** Không có nhánh làm dở. Việc lẻ còn treo
 > ghi ở `2026-11-11-sau-hoan-tat/STATUS.md` › Việc còn treo.
