@@ -1,9 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { levelFromXp, newlyUnlocked, nextLessonId, unlockState, type AccessoryId } from '@office-neko/shared';
 import { db } from '../db/db';
 import { LESSONS } from '../content';
-import { useTracks } from '../lib/easy';
+import { useEasyMode, useTracks } from '../lib/easy';
+import { EASY, applyEasy } from '../content/easy';
 import { useOs, useProfileId, useTestedOut, useUnlockAll } from '../db/profile';
 import { recordLessonResult } from '../progress/record';
 import { awardBadges } from '../progress/badges';
@@ -18,6 +19,9 @@ export function LessonPage({ id }: { id: string }) {
   const unlockAll = useUnlockAll();
   const testedOut = useTestedOut();
   const tracks = useTracks();
+  const easy = useEasyMode();
+  // Chế độ dễ dùng: thay chữ bằng lời dễ hiểu nếu bài có (file bài gốc không đổi).
+  const shown = useMemo(() => (lesson && easy ? applyEasy(lesson, EASY[id]) : lesson), [lesson, easy, id]);
   const [done, setDone] = useState<{
     result: LessonResult; xpGained: number; newBadges?: string[]; newAccessories?: AccessoryId[]; saveError?: string;
   } | null>(null);
@@ -74,7 +78,7 @@ export function LessonPage({ id }: { id: string }) {
   if (done) {
     return (
       <FinishView
-        lesson={lesson}
+        lesson={shown!}
         result={done.result}
         xpGained={done.xpGained}
         nextId={nextLessonId(tracks, LESSONS, os, id)}
@@ -84,5 +88,5 @@ export function LessonPage({ id }: { id: string }) {
       />
     );
   }
-  return <LessonPlayer lesson={lesson} onFinish={onFinish} onExit={onExit} />;
+  return <LessonPlayer lesson={shown!} onFinish={onFinish} onExit={onExit} />;
 }

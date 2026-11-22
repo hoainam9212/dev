@@ -91,6 +91,19 @@ describe('LessonPage', () => {
     delete LESSONS['t.second'];
   });
 
+  it('hồ sơ dễ dùng thấy lời dễ của bài, hồ sơ thường thấy lời gốc', async () => {
+    const { EASY } = await import('../content/easy');
+    const saved = EASY['basics.welcome'];
+    EASY['basics.welcome'] = { steps: { 0: { kind: 'explain', body: 'Lời dễ thử nghiệm' } } };
+    const { unmount } = renderWithProfile(<LessonPage id="basics.welcome" />, { profile: makeProfile({ easyMode: true, unlockAll: true }) });
+    expect(await screen.findByText('Lời dễ thử nghiệm')).toBeInTheDocument();
+    unmount();
+    renderWithProfile(<LessonPage id="basics.welcome" />);
+    await screen.findByRole('button', { name: 'Tiếp tục →' });
+    expect(screen.queryByText('Lời dễ thử nghiệm')).toBeNull();
+    if (saved) EASY['basics.welcome'] = saved; else delete EASY['basics.welcome'];
+  });
+
   it('hồ sơ dễ dùng mở bài Gõ phím (lộ trình bị ẩn) thì về trang chủ', async () => {
     render(
       <MemoryRouter initialEntries={['/lesson/typing.home1']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
