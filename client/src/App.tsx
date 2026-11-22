@@ -5,6 +5,7 @@ import { AppShell } from './app/AppShell';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { UpdateToast } from './app/UpdateToast';
 import { WelcomePage } from './pages/WelcomePage';
+import { EasyWelcomePage } from './pages/EasyWelcomePage';
 import { ProfilePicker } from './profiles/ProfilePicker';
 import { HomePage } from './pages/HomePage';
 import { LessonPage } from './pages/LessonPage';
@@ -45,6 +46,7 @@ export default function App() {
         <Routes>
           <Route path="/who" element={<ProfilePicker />} />
           <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/de-dung" element={<EasyWelcomePage />} />
           <Route element={<RequireProfile><AppShell /></RequireProfile>}>
             <Route index element={<HomePage />} />
             <Route path="/lesson/:id" element={<LessonRoute />} />

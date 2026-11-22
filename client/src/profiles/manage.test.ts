@@ -21,6 +21,17 @@ describe('profile management', () => {
     expect(await countProfiles()).toBe(1);
   });
 
+  it('creates an ordinary profile without easy mode when no extra settings are given', async () => {
+    const p = await createProfile({ name: 'Lan', os: 'win', dailyGoalMin: 10, avatar: 'cam' });
+    expect(p).toMatchObject({ fontScale: 'md', unlockAll: false });
+    expect(p.easyMode).toBeUndefined();
+  });
+
+  it('creates an easy-mode profile with the given font size and unlock', async () => {
+    const p = await createProfile({ name: 'Hoa', os: 'win', dailyGoalMin: 10, avatar: 'cam', easyMode: true, fontScale: 'xxl', unlockAll: true });
+    expect(await db.profiles.get(p.id)).toMatchObject({ easyMode: true, fontScale: 'xxl', unlockAll: true });
+  });
+
   it('lists the most recent learner first', async () => {
     await createProfile({ name: 'A', os: 'win', dailyGoalMin: 10, avatar: 'cam' }, new Date('2026-09-19T00:00:00Z'));
     const b = await createProfile({ name: 'B', os: 'win', dailyGoalMin: 10, avatar: 'tim' }, new Date('2026-09-20T00:00:00Z'));

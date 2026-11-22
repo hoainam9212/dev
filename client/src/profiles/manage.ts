@@ -1,6 +1,7 @@
 import { db, OWNED_TABLES, type Profile } from '../db/db';
 
-export type NewProfile = Pick<Profile, 'name' | 'os' | 'dailyGoalMin' | 'avatar'>;
+export type NewProfile = Pick<Profile, 'name' | 'os' | 'dailyGoalMin' | 'avatar'>
+  & Partial<Pick<Profile, 'easyMode' | 'fontScale' | 'unlockAll'>>;
 
 /**
  * Id kế tiếp: `p<lớn nhất + 1>`. Id của hồ sơ đã xoá không bao giờ dùng lại, để
@@ -34,10 +35,11 @@ export async function createProfile(p: NewProfile, now = new Date()): Promise<Pr
       avatar: p.avatar,
       os: p.os,
       dailyGoalMin: p.dailyGoalMin,
-      fontScale: 'md',
+      fontScale: p.fontScale ?? 'md',
       sound: true,
       reducedMotion: false,
-      unlockAll: false,
+      unlockAll: p.unlockAll ?? false,
+      ...(p.easyMode ? { easyMode: true } : {}),
       xp: 0,
       createdAt: at,
       lastActiveAt: at,

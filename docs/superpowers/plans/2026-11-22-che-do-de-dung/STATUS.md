@@ -5,7 +5,7 @@ Nhánh `office-neko/feat/che-do-de-dung`. Dòng đầu tiên chưa ☑ là task 
 | # | Task | Xong | Ghi chú |
 |---|---|---|---|
 | 1 | Hồ sơ và giao diện | ☑ | `easyMode`, `xxl` 24px, `data-easy` (nút cao 3.25rem, chữ phụ đậm, giãn dòng), công tắc Cài đặt (bật ⇒ xxl + unlockAll). Chrome 1280: nút "Học tiếp" 78px, không tràn. 390: thanh trên tràn vì chip Cấp/Luyện gõ, task 3–4 ẩn ⇒ kiểm lại ở task 7 |
-| 2 | Link `/de-dung` | ☐ | |
+| 2 | Link `/de-dung` | ☑ | `EasyWelcomePage`: chào → hỏi tên (trống thì khoá "Xong", Enter cũng gửi) → hồ sơ win/xxl/unlockAll/easyMode. Chữ to từ màn đầu nhờ `setPreviewLook` trong `db/profile.tsx` (effect của trang con chạy trước `ProfileProvider` nên không đặt thẳng `dataset` được). Chrome: hồ sơ thường giữ 17px; `/de-dung` 24px; mở lại link khi đã dễ dùng ⇒ về `/`; đổi về hồ sơ thường ⇒ 17px; 390 không tràn |
 | 3 | Lộ trình | ☐ | |
 | 4 | Ẩn phần thưởng | ☐ | |
 | 5 | Khung lời dễ | ☐ | |
