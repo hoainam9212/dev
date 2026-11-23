@@ -33,8 +33,12 @@ export function HelpTooltipLayer() {
       touched = isTouch(e);
       hide();
     };
-    const key = () => {
+    const key = (e: Event) => {
       touched = false;
+      // Đang gõ chữ (chuột nằm yên trên bàn phím ảo): tắt chú thích để không che dòng chữ cần gõ. Tab vẫn mở chú
+      // thích cho nút được focus như cũ.
+      const k = (e as globalThis.KeyboardEvent).key;
+      if (k === 'Backspace' || k.length === 1) hide();
     };
     const over = (e: Event) => {
       if (e.type === 'pointerover' ? isTouch(e) : touched) return;

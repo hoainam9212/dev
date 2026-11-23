@@ -8,8 +8,20 @@ export function OnScreenKeyboard({ os, next }: { os: OS; next: string | null }) 
   const want = next ? fingersForChar(next) : null;
   const isNext = (k: KeyCap) => want !== null && (k.id === want.key.id || k.id === want.shiftKey);
   const keyCls =
-    'relative flex min-w-0 h-9 sm:h-11 items-center justify-center gap-1 overflow-hidden rounded-md sm:rounded-lg border border-b-4 border-muted/30 font-bold';
+    'relative flex min-w-0 h-9 sm:h-[min(2.75rem,7.5vh)] items-center justify-center gap-1 rounded-md sm:rounded-lg border border-b-4 border-muted/30 font-bold';
   const nextCls = 'ring-4 ring-rose z-[1]';
+  /** Chữ hoa/ký hiệu: giữ Shift trước (1) rồi mới bấm phím (2). */
+  const stepOf = (k: KeyCap): 1 | 2 | null =>
+    want?.shiftKey ? (k.id === want.shiftKey ? 1 : k.id === want.key.id ? 2 : null) : null;
+  const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+  const stepBadge = (n: 1 | 2, cls = '') => (
+    <span
+      data-step={n}
+      className={`flex shrink-0 items-center justify-center rounded-full bg-rose-ink font-extrabold leading-none text-white ${cls}`}
+    >
+      {n}
+    </span>
+  );
 
   return (
     <div
@@ -22,13 +34,14 @@ export function OnScreenKeyboard({ os, next }: { os: OS; next: string | null }) 
           {row.map((k) => {
             const mod = k.name !== undefined && k.id !== 'space';
             const hit = isNext(k);
+            const step = stepOf(k);
             return (
               <span
                 key={k.id}
                 data-key={k.id}
                 data-next={hit || undefined}
                 title={k.name}
-                className={`${keyCls} ${mod ? 'bg-white text-[0.65rem] sm:text-xs' : 'text-xs sm:text-sm'} ${hit ? nextCls : ''}`}
+                className={`${keyCls} ${step ? 'overflow-visible' : 'overflow-hidden'} ${mod ? 'bg-white text-[0.65rem] sm:text-xs' : 'text-xs sm:text-sm'} ${hit ? nextCls : ''}`}
                 style={{
                   flexGrow: k.width,
                   flexShrink: 1,
@@ -42,15 +55,31 @@ export function OnScreenKeyboard({ os, next }: { os: OS; next: string | null }) 
                 <span>{k.label}</span>
                 {mod && k.name !== k.label && <span className="hidden truncate font-semibold md:inline">{k.name}</span>}
                 {(k.id === 'f' || k.id === 'j') && <span className="absolute bottom-1 h-0.5 w-3 rounded bg-text/60" />}
+                {/* Số nằm ở góc ngoài của phím (phím có số thì không cắt tràn) để không che chữ trên phím. */}
+                {step && stepBadge(step, 'absolute -right-2 -top-2.5 z-[2] h-4 w-4 text-[0.6rem] shadow sm:h-5 sm:w-5 sm:text-xs')}
               </span>
             );
           })}
         </div>
       ))}
       {want && (
-        <p className="pt-1 text-center text-sm font-semibold">
-          Dùng: {FINGER_VI[want.key.finger]}
-          {want.shiftKey && ` + Shift bên ${want.shiftKey === 'shift-right' ? 'phải' : 'trái'}`}
+        <p data-testid="finger-caption" className="flex flex-wrap items-center justify-center gap-x-1.5 pt-1 text-center text-sm font-semibold">
+          {want.shiftKey ? (
+            <>
+              {stepBadge(1, 'h-5 w-5 text-xs')}{' '}
+              <span>
+                Giữ <b>Shift</b> bên {want.shiftKey === 'shift-right' ? 'phải' : 'trái'} bằng{' '}
+                {lower(FINGER_VI[want.shiftKey === 'shift-right' ? 'rp' : 'lp'])}
+              </span>{' '}
+              <span>→</span>{' '}
+              {stepBadge(2, 'h-5 w-5 text-xs')}{' '}
+              <span>
+                bấm <b>{want.key.label}</b> bằng {lower(FINGER_VI[want.key.finger])}
+              </span>
+            </>
+          ) : (
+            <>Dùng: {FINGER_VI[want.key.finger]}</>
+          )}
         </p>
       )}
     </div>

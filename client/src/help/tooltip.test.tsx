@@ -40,6 +40,18 @@ describe('HelpTooltipLayer', () => {
     expect(screen.getByRole('tooltip')).toHaveTextContent('Kiểm tra');
   });
 
+  it('đang gõ chữ thì chú thích tắt, để không che dòng chữ cần gõ', () => {
+    vi.useFakeTimers();
+    render(<><HelpTooltipLayer /><div data-help-id="keyboard.board">bàn phím</div></>);
+    fireEvent.pointerOver(screen.getByText('bàn phím'));
+    act(() => vi.advanceTimersByTime(450));
+    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    fireEvent.keyDown(document.body, { key: 'X' });
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(1000));
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+
   it('ignores unknown help ids', () => {
     vi.useFakeTimers();
     render(<><HelpTooltipLayer /><button data-help-id="nope">x</button></>);

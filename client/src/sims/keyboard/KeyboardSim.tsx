@@ -14,7 +14,18 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
   const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    boxRef.current?.focus();
+    const box = boxRef.current;
+    if (!box) return;
+    box.focus({ preventScroll: true });
+    // Màn thấp (laptop, chữ to): bàn phím và bàn tay lọt xuống dưới mép. Cuộn khung gõ lên sát thanh trên để thấy cùng
+    // lúc dòng chữ, cả bàn phím và hai bàn tay; chật quá thì bỏ dòng WPM, chỉ cuộn tới dòng chữ. Đã vừa màn hình, hoặc
+    // cuộn cũng không vừa (bài kiểm tra tốc độ chữ dài), thì giữ nguyên để không mất đồng hồ và tiêu đề.
+    const card = box.closest('.card')?.getBoundingClientRect();
+    if (!card || card.bottom <= window.innerHeight) return;
+    const top = (document.querySelector('header')?.getBoundingClientRect().bottom ?? 0) + 8;
+    const room = window.innerHeight - top;
+    const from = card.bottom - card.top <= room ? card.top : card.bottom - box.getBoundingClientRect().top <= room ? box.getBoundingClientRect().top : null;
+    if (from !== null) window.scrollBy({ top: from - top });
   }, []);
 
   useEffect(() => {
@@ -103,10 +114,16 @@ export function KeyboardSim({ initial, onState, os }: SimProps<S>) {
         </p>
       ) : null}
       {!state.ime && (
-        <>
-          <OnScreenKeyboard os={os} next={next} />
-          <Hands finger={nextFingers?.key.finger ?? null} shift={nextFingers?.shiftFinger ?? null} />
-        </>
+        // Màn rộng: hai bàn tay đứng cạnh bàn phím (mắt thấy phím và ngón cùng lúc, không phải cuộn); màn hẹp: tay ở dưới.
+        // `lg:pr-14` chừa chỗ cho nút "?" nổi ở góc phải dưới.
+        <div data-testid="keyboard-and-hands" className="flex flex-col items-center gap-3 lg:flex-row lg:gap-6 lg:pr-14">
+          <div className="w-full min-w-0 lg:flex-1">
+            <OnScreenKeyboard os={os} next={next} />
+          </div>
+          <div className="w-full lg:w-1/4 lg:shrink-0">
+            <Hands finger={nextFingers?.key.finger ?? null} shift={nextFingers?.shiftFinger ?? null} />
+          </div>
+        </div>
       )}
     </div>
   );

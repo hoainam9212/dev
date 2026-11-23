@@ -29,6 +29,21 @@ describe('OnScreenKeyboard', () => {
     expect(document.querySelector('[data-key="j"]')).toHaveAttribute('data-next', 'true');
   });
 
+  it('chữ hoa: số 1 trên phím Shift, số 2 trên phím chữ, chú thích theo thứ tự', () => {
+    render(<OnScreenKeyboard os="win" next="X" />);
+    expect(document.querySelector('[data-key="shift-right"] [data-step]')).toHaveTextContent('1');
+    expect(document.querySelector('[data-key="x"] [data-step]')).toHaveTextContent('2');
+    expect(document.querySelectorAll('[data-key] [data-step]')).toHaveLength(2);
+    const cap = screen.getByTestId('finger-caption');
+    expect(cap).toHaveTextContent('1 Giữ Shift bên phải bằng ngón út phải → 2 bấm X bằng ngón áp út trái');
+  });
+
+  it('chữ thường: không có số, chú thích như cũ', () => {
+    render(<OnScreenKeyboard os="win" next="x" />);
+    expect(document.querySelectorAll('[data-step]')).toHaveLength(0);
+    expect(screen.getByTestId('finger-caption')).toHaveTextContent('Dùng: Ngón áp út trái');
+  });
+
   it('phím co theo bề rộng (flex theo đơn vị phím), không đặt bề rộng cố định', () => {
     render(<OnScreenKeyboard os="win" next={null} />);
     const a = document.querySelector<HTMLElement>('[data-key="a"]')!;

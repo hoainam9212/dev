@@ -30,8 +30,30 @@ const RIGHT: Finger[] = ['rp', 'rr', 'rm', 'ri'];
  */
 export function Hands({ finger, shift = null }: { finger: Finger | null; shift?: Finger | null }) {
   const label = finger
-    ? `Dùng ${NAME[finger]}${shift ? `, ${NAME[shift]} giữ Shift` : ''}`
+    ? shift
+      ? `Trước tiên ${NAME[shift]} giữ Shift, rồi ${NAME[finger]} bấm phím`
+      : `Dùng ${NAME[finger]}`
     : 'Hai bàn tay đặt trên hàng phím cơ sở';
+
+  /** Số thứ tự trên đầu ngón: tâm theo trục x của cả hình (tay phải đã lật gương nên tính lại x, không vẽ trong nhóm lật). */
+  const tip = (f: Finger) => {
+    const left = LEFT.indexOf(f);
+    const i = left >= 0 ? left : RIGHT.indexOf(f);
+    const s = FINGERS[i]!;
+    const cx = s.x + s.w / 2;
+    return { x: left >= 0 ? cx : 300 - cx, y: s.y - 13 };
+  };
+  const badge = (step: 1 | 2, f: Finger) => {
+    const { x, y } = tip(f);
+    return (
+      <g key={step} data-step={step} data-step-finger={f} data-x={x}>
+        <circle cx={x} cy={y} r={11} fill="#B0164A" />
+        <text x={x} y={y} dy="0.35em" textAnchor="middle" fontSize={15} fontWeight={800} fill="#FFFFFF">
+          {step}
+        </text>
+      </g>
+    );
+  };
 
   const part = (f: Finger, shape: { x: number; y: number; w: number; h: number }, transform?: string) => {
     const on = f === finger || f === shift;
@@ -66,11 +88,12 @@ export function Hands({ finger, shift = null }: { finger: Finger | null; shift?:
       role="img"
       aria-label={label}
       data-testid="hands"
-      viewBox="0 0 300 130"
+      viewBox="0 -20 300 150"
       className="mx-auto block h-auto w-full max-w-[15rem] sm:max-w-xs"
     >
       <g>{hand(LEFT)}</g>
       <g transform="translate(300 0) scale(-1 1)">{hand(RIGHT)}</g>
+      {finger && shift && finger !== 'th' && [badge(1, shift), badge(2, finger)]}
     </svg>
   );
 }
