@@ -14,15 +14,15 @@ describe('HomePage – lộ trình', () => {
     await resetDb();
   });
 
-  it('hồ sơ dễ dùng: 4 lộ trình Máy tính → PowerPoint → Word → Excel, không có Gõ phím và AI', async () => {
+  it('hồ sơ dễ dùng: 5 lộ trình Máy tính → Gõ phím → PowerPoint → Word → Excel, không có AI', async () => {
     renderWithProfile(<HomePage />, { profile: makeProfile({ easyMode: true, unlockAll: true }) });
     const titles = await trackHeadings();
-    expect(titles).toHaveLength(4);
+    expect(titles).toHaveLength(5);
     expect(titles[0]).toMatch(/Làm quen máy tính/);
-    expect(titles[1]).toMatch(/PowerPoint/);
-    expect(titles[2]).toMatch(/Word/);
-    expect(titles[3]).toMatch(/Excel/);
-    expect(screen.queryByText(/Gõ phím 10 ngón/)).not.toBeInTheDocument();
+    expect(titles[1]).toMatch(/1\. Gõ phím 10 ngón/);
+    expect(titles[2]).toMatch(/PowerPoint/);
+    expect(titles[3]).toMatch(/Word/);
+    expect(titles[4]).toMatch(/Excel/);
     expect(screen.queryByText(/Dùng AI/)).not.toBeInTheDocument();
   });
 

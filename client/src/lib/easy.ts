@@ -7,12 +7,12 @@ export function useEasyMode(): boolean {
   return useProfile()?.easyMode ?? false;
 }
 
-/** Thứ tự lộ trình cho người lớn tuổi; Gõ phím 10 ngón và Dùng AI bị ẩn. */
-export const EASY_TRACK_ORDER = ['basics', 'ppt', 'word', 'excel'] as const;
+/** Thứ tự lộ trình cho người lớn tuổi (chủ dự án chốt 2026-11-23 thêm Gõ phím ngay sau Máy tính); Dùng AI bị ẩn. */
+export const EASY_TRACK_ORDER = ['basics', 'typing', 'ppt', 'word', 'excel'] as const;
 
 const EASY_TRACKS: Track[] = EASY_TRACK_ORDER.map((id, order) => ({ ...TRACKS.find((t) => t.id === id)!, order }));
 
-/** Lộ trình người học thấy: tắt ⇒ `TRACKS` nguyên vẹn; bật ⇒ bản sao 4 lộ trình, `order` 0..3. */
+/** Lộ trình người học thấy: tắt ⇒ `TRACKS` nguyên vẹn; bật ⇒ bản sao 5 lộ trình, `order` 0..4. */
 export function tracksFor(easy: boolean): Track[] {
   return easy ? EASY_TRACKS : TRACKS;
 }

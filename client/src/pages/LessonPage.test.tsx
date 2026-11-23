@@ -104,17 +104,32 @@ describe('LessonPage', () => {
     if (saved) EASY['basics.welcome'] = saved; else delete EASY['basics.welcome'];
   });
 
-  it('hồ sơ dễ dùng mở bài Gõ phím (lộ trình bị ẩn) thì về trang chủ', async () => {
+  it('hồ sơ dễ dùng mở bài Dùng AI (lộ trình bị ẩn) thì về trang chủ', async () => {
     render(
-      <MemoryRouter initialEntries={['/lesson/typing.home1']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <MemoryRouter initialEntries={['/lesson/ai.intro']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ProfileContext.Provider value={makeProfile({ easyMode: true, unlockAll: true })}>
           <Routes>
             <Route path="/" element={<p>Trang chủ</p>} />
-            <Route path="/lesson/:id" element={<LessonPage id="typing.home1" />} />
+            <Route path="/lesson/:id" element={<LessonPage id="ai.intro" />} />
           </Routes>
         </ProfileContext.Provider>
       </MemoryRouter>,
     );
     expect(await screen.findByText('Trang chủ')).toBeInTheDocument();
+  });
+
+  it('hồ sơ dễ dùng mở được bài Gõ phím', async () => {
+    render(
+      <MemoryRouter initialEntries={['/lesson/typing.posture']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ProfileContext.Provider value={makeProfile({ easyMode: true, unlockAll: true })}>
+          <Routes>
+            <Route path="/" element={<p>Trang chủ</p>} />
+            <Route path="/lesson/:id" element={<LessonPage id="typing.posture" />} />
+          </Routes>
+        </ProfileContext.Provider>
+      </MemoryRouter>,
+    );
+    expect(await screen.findByRole('button', { name: 'Tiếp tục →' })).toBeInTheDocument();
+    expect(screen.queryByText('Trang chủ')).toBeNull();
   });
 });
